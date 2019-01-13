@@ -1,8 +1,13 @@
-function out = table_gen_prohibited_ops
+function out = gen_table_prohibited_ops
   % Generate code for the prohibited table operations
   
-  bad = {'transpose', 'ctranspose', 'circshift', 'length', ...
-    'shiftdims'};
+  bad = {
+    'transpose'
+    'ctranspose'
+    'circshift'
+    'length'
+    'shiftdims'
+    };
   
   for i = 1:numel(bad)
     fcn = bad{i};
