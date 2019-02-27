@@ -244,7 +244,7 @@ classdef table
       chain_s = s(2:end);
       s = s(1);
       if ~isempty(chain_s)
-          rhs_in = subsref(this, s;
+          rhs_in = subsref(this, s);
           rhs = subsasgn(rhs_in, chain_s, val);
       else
           rhs = val;
