@@ -32,7 +32,7 @@ classdef table
       % Peel off trailing options
       knownOpts = {'VariableNames', 'RowNames'};
       opts = struct;
-      while numel(args) >= 3 && ismember(args{end-1}, knownOpts)
+      while numel(args) >= 3 && ischar (args{end-1}) && ismember(args{end-1}, knownOpts)
         opts.(args{end-1}) = args{end};
         args(end-1:end) = [];
       end
