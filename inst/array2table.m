@@ -1,9 +1,6 @@
-function out = cell2table(c, varargin)
+function out = array2table(c, varargin)
   %CELL2TABLE Convert a cell array to a table
 
-  if ~iscell (c)
-    error ('Input must be cell; got %s', class (c));
-  endif
   if ndims (c) > 2
     error ('Input must be 2-D; got %d-D', ndims (c));
   endif
@@ -23,22 +20,7 @@ function out = cell2table(c, varargin)
   nCols = size (c, 2);
   colVals = cell (1, nCols);
   for iCol = 1:nCols
-    if iscellstr (c(:,iCol))
-      % Special-case char conversion
-      colVals{iCol} = c(:,iCol);
-    else
-      % Cheap hack to test for cat-ability
-      try
-        x = cat (1, c{:,iCol});
-        if size (x, 1) == size (c, 1)
-          colVals{iCol} = x;
-          continue
-        endif
-      catch
-        % Nope, couldn't cat. Fall through.
-      end
-      colVals{iCol} = c(:,iCol);
-    endif
+    colVals{iCol} = c(:,iCol);
   endfor
   
   if isfield (opts, 'VariableNames')
