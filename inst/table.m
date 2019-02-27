@@ -375,9 +375,9 @@ classdef table
       
       rowFmts = cell (1, nCols);
       for i = 1:nCols
-        rowFmts{i} = ['%-' num2str (colWidths(i)) 's'];
+        rowFmts{i} = ['%-' num2str(colWidths(i)) 's'];
       end
-      rowFmt = ['| ' strjoin (rowFmts, ' | ')  ' |' sprintf ('\n')];
+      rowFmt = ['| ' strjoin(rowFmts, ' | ')  ' |' sprintf('\n')];
       fprintf ('%s\n', repmat ('-', [1 totalWidth]));
       fprintf (rowFmt, colNames{:});
       fprintf ('%s\n', repmat ('-', [1 totalWidth]));
@@ -499,8 +499,10 @@ classdef table
           [proxyKeysA(:,i), proxyKeysB(:,i)] = identityProxy (A.VariableValues{i}, B.VariableValues{i});
         endfor
         if size (proxyKeysA, 2) > 1
-          [~, ~, proxyKeysA] = unique (proxyKeysA, 'rows');
-          [~, ~, proxyKeysB] = unique (proxyKeysB, 'rows');
+          nRowsA = size (proxyKeysA, 1);
+          [~, ~, jx] = unique ([proxyKeysA; proxyKeysB], 'rows');
+          proxyKeysA = jx(1:nRowsA);
+          proxyKeysB = jx(nRowsA+1:end);
         end
       endif
     endfunction
@@ -562,7 +564,17 @@ if isnumeric (a)
   endif
   if size (outA, 2) > 1
     [~, ~, outA] = unique (outA, 'rows');
+    tfNan = any (isnanny (outA), 2);
+    if any (tfNan)
+      ixNan = find (tfNan);
+      outA(ismember (outA, ixNan)) = NaN;
+    endif
     [~, ~, outB] = unique (outB, 'rows');
+    tfNan = any (isnanny (outB), 2);
+    if any (tfNan)
+      ixNan = find (tfNan);
+      outB(ismember (outB, ixNan)) = NaN;
+    endif
   endif
 else
 	% General case: rely on UNIQUE() trick to identify an ordered set of values
@@ -599,23 +611,33 @@ function [outA, outB] = identityProxyUsingUnique (a, b)
 
 if nargin == 1
   if size (a, 2) > 1
-    [~, ~, outA] = unique (a, 'rows');
+    [uA, ixA, outA] = unique (a, 'rows');
   else
-    [~, ~, outA] = unique (a);
+    [uA, ixA, outA] = unique (a);
   end
+  tfNan = any (isnanny (uA), 2);
+  if any (tfNan)
+    ixNan = find (tfNan);
+    outA(ismember (outA, ixNan)) = NaN;
+  endif
 else
   if size (a, 2) ~= size (b, 2)
     error ('Inputs must be same size along dimension 2; got %d-wide vs %d-wide', ...
       size (a, 2), size (b, 2));
   endif
   if size (a, 2) == 1
-    [~, ~, ixC] = unique ([a; b]);
+    [u, ix, jx] = unique ([a; b]);
   else 
-    [~, ~, ixC] = unique ([a; b], 'rows');
+    [u, ix, jx] = unique ([a; b], 'rows');
+  endif
+  tfNan = any (isnanny (u), 2);
+  if any (tfNan)
+    ixNan = find (tfNan);
+    jx(ismember (jx, ixNan)) = NaN;
   endif
   nRowsA = size (a, 1);
-  outA = ixC(1:nRowsA);
-  outB = ixC(nRowsA+1:end);
+  outA = jx(1:nRowsA);
+  outB = jx(nRowsA+1:end);
 end
 end
 
