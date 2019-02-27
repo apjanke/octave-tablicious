@@ -27,15 +27,8 @@ classdef table
       % t = table (..., 'RowNames', rowNames)
       % t = table
       
-      args = varargin;
-      
       % Peel off trailing options
-      knownOpts = {'VariableNames', 'RowNames'};
-      opts = struct;
-      while numel (args) >= 3 && ischar (args{end-1}) && ismember (args{end-1}, knownOpts)
-        opts.(args{end-1}) = args{end};
-        args(end-1:end) = [];
-      end
+      [opts, args] = peelOffNameValueOptions (varargin, {'VariableNames', 'RowNames'});
       
       % Calling form handling
       nargs = numel (args);

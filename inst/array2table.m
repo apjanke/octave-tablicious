@@ -6,13 +6,7 @@ function out = array2table(c, varargin)
   endif
   
   % Peel off trailing options
-  knownOpts = {'VariableNames', 'RowNames'};
-  opts = struct;
-  args = varargin;
-  while numel (args) >= 2 && ismember (args{end-1}, knownOpts)
-    opts.(args{end-1}) = args{end};
-    args(end-1:end) = [];
-  end
+  [opts, args] = peelOffNameValueOptions (varargin, {'VariableNames', 'RowNames'});
   if ~isempty (args)
     error ('Unrecognized options');
   endif
