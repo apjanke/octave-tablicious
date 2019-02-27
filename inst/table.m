@@ -104,6 +104,10 @@ classdef table
     
     % Structural stuff
     
+    function out = istable (this)
+      out = true;
+    endfunction
+
     function out = size(this)
       out = [height(this), width(this)];
     end
@@ -235,14 +239,22 @@ classdef table
     
     function out = subsasgn(this, s, val)
       %SUBSASGN Subscripted assignment
+
+      % Chained subscripts
       chain_s = s(2:end);
       s = s(1);
+      if ~isempty(chain_s)
+          rhs_in = subsref(this, s;
+          rhs = subsasgn(rhs_in, chain_s, val);
+      else
+          rhs = val;
+      end
+
       out = this;
       switch s(1).type
         case '()'
           error('Assignment using ()-indexing is not supported for table');
         case '{}'
-          rhs = val;
           if numel(s.subs) ~= 2
             error('{}-indexing of table requires exactly two arguments');
           end
@@ -252,13 +264,10 @@ classdef table
               numel(ixCol));
           end
           colData = this.VariableValues{ixCol};
-          if ~isempty(chain_s)
-            error('Chained {}-indexing is not implemented. Sorry.');
-          end
-          colData(ixRow) = val;
+          colData(ixRow) = rhs;
           out.VariableValues{ixCol} = colData;
         case '.'
-          out = setCol(this, s.subs, val);
+          out = setCol(this, s.subs, rhs);
       end
     end
     
@@ -417,8 +426,156 @@ classdef table
       out = this.VariableValues{loc};
     end
   end
+
+  methods (Static, Access = private)
+      function [proxyKeysA, proxyKeysB] = proxyKeys (A, B)
+      %PROXYKEYS Compute proxy keys for tables
+      %
+      % A and B must be tables with the same column names, and
+      % compatible column types. "Compatible" column types means they must be
+      % able to be cat-ed together *losslessly*.
+      %
+      % Returns two column vectors of doubles that contain values with the
+      % same equivalence and ordering relationships as the records in the
+      % inputs.
+      mustBeScalar (A);
+      mustBeType (A, 'table');
+      if nargin == 1
+        proxyKeysA = NaN (height (A), width (A));
+        for i = 1:width (A)
+          proxyKeysA(:,i) = identityProxy (A.VariableValues{i});
+        endfor
+        if size (proxyKeysA, 2) > 1
+          [~, ~, proxyKeysA] = unique(proxyKeysA, 'rows');
+        end
+      else
+        mustBeScalar (B);
+        mustBeType (B, 'table');
+        proxyKeysA = NaN (height (A), width (A));
+        proxyKeysB = NaN (height (B), width (B));
+        for i = 1:width (A)
+          [proxyKeysA(:,i), proxyKeysB(:,i)] = identityProxy (A.VariableValues{i}, B.VariableValues{i});
+        endfor
+        if size (proxyKeysA, 2) > 1
+          [~, ~, proxyKeysA] = unique (proxyKeysA, 'rows');
+          [~, ~, proxyKeysB] = unique (proxyKeysB, 'rows');
+        end
+      endif
+    endfunction
+  endmethods
+endclassdef
+
+function [outA, outB] = identityProxy(a, b)
+%IDENTITYPROXY Proxy values for identity tests on a set of values
+%
+% [outA, outB] = identityProxy(a, b)
+%
+% Transforms the input arrays in to double arrays which can be used as proxy
+% values for doing equality and ordering operations on the inputs. This is
+% useful for implementing equality and ordering functions for composite types
+% whose components are of heterogeneous types. The proxy values are all of the
+% same primitive type, so they can all be concatenated and compared efficiently.
+%
+% The inputs are treated as arrays whose rows are records.
+%
+% The identity proxy values may contain NaNs, for inputs which were NaN.
+%
+% Returns column vectors of doubles.
+
+if nargin < 2
+  outA = identityProxyOneInput (a);
+  return
+endif
+
+%TODO: Relax this restriction to support losslessly-cat-compatible types
+if ~isequal (class (a), class (b))
+	error ('Cannot compute identity proxy values for mixed types (%s vs. %s)',...
+		class (a), class (b));
 end
 
+if size (a, 2) ~= size (b, 2)
+  error ('Inputs must be same size along dimension 2; got %d-wide vs %d-wide', ...
+    size (a, 2), size (b, 2));
+endif
+
+if isnumeric (a)
+  % Special case: numerics can be converted directly to keys
+  if isa (a, 'double')
+    outA = a;
+    outB = b;
+  else
+    outA = double (a);
+    outB = double (b);
+    % Handle possible underflow for 64-bit ints
+    % TODO: Probably change this so that this method just returns "numeric", not necessarily
+    % double.
+    if isa (a, 'int64') || isa (a, 'uint64')
+      checkA = cast (outA, class (a));
+      checkB = cast (outB, class (a));
+      if ~isequal (checkA, a) || ~isequal (checkB, b)
+        % Underflow occurred. Fall back to using the UNIQUE trick
+        [outA, outB] = identityProxyUsingUnique (a, b);
+      endif
+    endif
+  endif
+  if size (outA, 2) > 1
+    [~, ~, outA] = unique (outA, 'rows');
+    [~, ~, outB] = unique (outB, 'rows');
+  endif
+else
+	% General case: rely on UNIQUE() trick to identify an ordered set of values
+	[outA, outB] = identityProxyUsingUnique (a, b);
+endif
+endfunction
+
+function out = identityProxyOneInput(x)
+if isnumeric(x)
+  if ~isa (x, 'double')
+    out = double (x);
+    % Handle possible underflow for 64-bit ints
+    if isa (x, 'int64') || isa (x, 'uint64')
+      checkX = cast (out, class (x));
+      if ~isequal (checkX, x)
+        % Underflow occurred. Fall back to using the UNIQUE trick
+        out = identityProxyUsingUnique (x);
+        return
+      endif
+    endif
+  endif
+else
+  out = identityProxyUsingUnique(x);
+endif
+endfunction
+
+function [outA, outB] = identityProxyUsingUnique(a, b)
+%IDENTITYPROXYUSINGUNIQUE Compute proxy values using output of UNIQUE
+%
+% Computes proxy keys for row values of arbitrary types using unique() to identify
+% their unique values. Inputs must support unique(), and have it respect a total
+% ordering on their values. Inputs must support unique(..., 'rows') if size(x, 2)
+% is greater than 1.
+
+if nargin == 1
+  if size (a, 2) > 1
+    [~, ~, outA] = unique (a, 'rows');
+  else
+    [~, ~, outA] = unique (a);
+  end
+else
+  if size (a, 2) ~= size (b, 2)
+    error ('Inputs must be same size along dimension 2; got %d-wide vs %d-wide', ...
+      size (a, 2), size (b, 2));
+  endif
+  if size (a, 2) == 1
+    [~, ~, ixC] = unique ([a; b]);
+  else 
+    [~, ~, ixC] = unique ([a; b], 'rows');
+  endif
+  nRowsA = size (a, 1);
+  outA = ixC(1:nRowsA);
+  outB = ixC(nRowsA+1:end);
+end
+end
 
 function mustBeAllSameCols(varargin)
   args = varargin;
