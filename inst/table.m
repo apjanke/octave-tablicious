@@ -95,6 +95,67 @@ classdef table
       end
     end
     
+    % Display
+    
+    function display (this)
+      %DISPLAY Custom display.
+      in_name = inputname (1);
+      if ~isempty (in_name)
+        fprintf ('%s =\n', in_name);
+      end
+      disp (this);
+    end
+
+    function disp (this)
+      %DISP Custom display.
+      if isempty (this)
+        fprintf ('Empty %s %s\n', size2str (size (this)), class (this));
+      else
+        fprintf ('table: %d rows x %d variables\n', height (this), width (this));
+        fprintf ('  VariableNames: %s\n', strjoin (this.VariableNames, ', '));
+      end
+    end
+    
+    function prettyprint (this)
+      %PRETTYPRINT Display table values, formatted as a table
+      if isempty (this)
+        fprintf ('Empty %s %s\n', size2str (size (this)), class (this));
+        return;
+      end
+      nCols = width (this);
+      colNames = this.VariableNames;
+      colStrs = cell (1, nCols);
+      colWidths = NaN (1, nCols);
+      for iVar = 1:numel (this.VariableValues)
+        vals = this.VariableValues{iVar};
+        strs = dispstrs (vals);
+        lines = cell (height(this), 1);
+        for iRow = 1:size (strs, 1)
+          lines{iRow} = strjoin (strs(iRow,:), '   ');
+        end
+        colStrs{iVar} = lines;
+        colWidths(iVar) = max (cellfun ('numel', lines));
+      end
+      colWidths;
+      nameWidths = cellfun ('numel', colNames);
+      colWidths = max ([nameWidths; colWidths]);
+      totalWidth = sum (colWidths) + 4 + (3 * (nCols - 1));
+      elementStrs = cat (2, colStrs{:});
+      
+      rowFmts = cell (1, nCols);
+      for i = 1:nCols
+        rowFmts{i} = ['%-' num2str(colWidths(i)) 's'];
+      end
+      rowFmt = ['| ' strjoin(rowFmts, ' | ')  ' |' sprintf('\n')];
+      fprintf ('%s\n', repmat ('-', [1 totalWidth]));
+      fprintf (rowFmt, colNames{:});
+      fprintf ('%s\n', repmat ('-', [1 totalWidth]));
+      for i = 1:height (this)
+        fprintf (rowFmt, elementStrs{i,:});
+      end
+      fprintf ('%s\n', repmat ('-', [1 totalWidth]));
+    end
+    
     % Structural stuff
     
     function out = istable (this)
@@ -326,67 +387,6 @@ classdef table
       out.VariableValues{ixCol} = value;
     end
 
-    % Display
-    
-    function display (this)
-      %DISPLAY Custom display.
-      in_name = inputname (1);
-      if ~isempty (in_name)
-        fprintf ('%s =\n', in_name);
-      end
-      disp (this);
-    end
-
-    function disp (this)
-      %DISP Custom display.
-      if isempty (this)
-        fprintf ('Empty %s %s\n', size2str (size (this)), class (this));
-      else
-        fprintf ('table: %d rows x %d variables\n', height (this), width (this));
-        fprintf ('  VariableNames: %s\n', strjoin (this.VariableNames, ', '));
-      end
-    end
-    
-    function prettyprint (this)
-      %PRETTYPRINT Display table values, formatted as a table
-      if isempty (this)
-        fprintf ('Empty %s %s\n', size2str (size (this)), class (this));
-        return;
-      end
-      nCols = width (this);
-      colNames = this.VariableNames;
-      colStrs = cell (1, nCols);
-      colWidths = NaN (1, nCols);
-      for iVar = 1:numel (this.VariableValues)
-        vals = this.VariableValues{iVar};
-        strs = dispstrs (vals);
-        lines = cell (height(this), 1);
-        for iRow = 1:size (strs, 1)
-          lines{iRow} = strjoin (strs(iRow,:), '   ');
-        end
-        colStrs{iVar} = lines;
-        colWidths(iVar) = max (cellfun ('numel', lines));
-      end
-      colWidths;
-      nameWidths = cellfun ('numel', colNames);
-      colWidths = max ([nameWidths; colWidths]);
-      totalWidth = sum (colWidths) + 4 + (3 * (nCols - 1));
-      elementStrs = cat (2, colStrs{:});
-      
-      rowFmts = cell (1, nCols);
-      for i = 1:nCols
-        rowFmts{i} = ['%-' num2str(colWidths(i)) 's'];
-      end
-      rowFmt = ['| ' strjoin(rowFmts, ' | ')  ' |' sprintf('\n')];
-      fprintf ('%s\n', repmat ('-', [1 totalWidth]));
-      fprintf (rowFmt, colNames{:});
-      fprintf ('%s\n', repmat ('-', [1 totalWidth]));
-      for i = 1:height (this)
-        fprintf (rowFmt, elementStrs{i,:});
-      end
-      fprintf ('%s\n', repmat ('-', [1 totalWidth]));
-    end
-    
     % Prohibited operations
 
     function out = transpose (this,varargin)
