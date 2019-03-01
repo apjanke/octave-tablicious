@@ -393,7 +393,8 @@ classdef table
       
     endfunction
     
-    function out = unique (this)
+    function [out, indx] = unique (this)
+      %UNIQUE Unique row values
       keys = proxykeys (this);
       [uKeys, indx] = unique (keys);
       out = subsetRows (this, indx);
