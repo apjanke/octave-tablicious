@@ -386,6 +386,18 @@ classdef table
       end
       out.VariableValues{ixCol} = value;
     end
+    
+    % Relational operations
+    
+    function out = sortrows (this, varargin)
+      
+    endfunction
+    
+    function out = unique (this)
+      keys = proxykeys (this);
+      [uKeys, indx] = unique (keys);
+      out = subsetRows (this, indx);
+    endfunction
 
     % Prohibited operations
 
@@ -415,10 +427,25 @@ classdef table
       [tf, loc] = ismember (name, this.VariableNames);
       if ~tf
         error ('table has no variable named ''%s''', name);
-      end
+      endif
       out = this.VariableValues{loc};
-    end
-  end
+    endfunction
+
+    function mustBeAllSameCols (varargin)
+      %MUSTBEALLSAMECOLS Require that all inputs have the same-named columns
+      args = varargin;
+      if isempty (args)
+        return
+      endif
+      colNames = args{1}.VariableNames;
+      for i = 2:numel (args)
+        if ~isequal (colNames, args{i}.VariableNames)
+          error ('Inconsistent VariableNames.\n  Input 1: %s\n  Input %d: %s', ...
+            strjoin (colNames, ', '), i, strjoin (args{i}.VariableNames, ', '));
+        endif
+      endfor
+    endfunction
+  endmethods
   
   methods (Static)
     function varargout = exampleSpDb
@@ -470,7 +497,7 @@ classdef table
   endmethods
 
   methods (Static, Access = private)
-      function [proxyKeysA, proxyKeysB] = proxyKeys (A, B)
+      function [proxyKeysA, proxyKeysB] = proxykeys (A, B)
       %PROXYKEYS Compute proxy keys for tables
       %
       % A and B must be tables with the same column names, and
@@ -480,7 +507,6 @@ classdef table
       % Returns two column vectors of doubles that contain values with the
       % same equivalence and ordering relationships as the records in the
       % inputs.
-      mustBeScalar (A);
       mustBeType (A, 'table');
       if nargin == 1
         proxyKeysA = NaN (height (A), width (A));
@@ -489,9 +515,8 @@ classdef table
         endfor
         if size (proxyKeysA, 2) > 1
           [~, ~, proxyKeysA] = unique(proxyKeysA, 'rows');
-        end
+        endif
       else
-        mustBeScalar (B);
         mustBeType (B, 'table');
         proxyKeysA = NaN (height (A), width (A));
         proxyKeysB = NaN (height (B), width (B));
@@ -503,7 +528,7 @@ classdef table
           [~, ~, jx] = unique ([proxyKeysA; proxyKeysB], 'rows');
           proxyKeysA = jx(1:nRowsA);
           proxyKeysB = jx(nRowsA+1:end);
-        end
+        endif
       endif
     endfunction
   endmethods
@@ -535,7 +560,7 @@ endif
 if ~isequal (class (a), class (b))
 	error ('Cannot compute identity proxy values for mixed types (%s vs. %s)',...
 		class (a), class (b));
-end
+endif
 
 if size (a, 2) ~= size (b, 2)
   error ('Inputs must be same size along dimension 2; got %d-wide vs %d-wide', ...
@@ -584,7 +609,9 @@ endfunction
 
 function out = identityProxyOneInput (x)
 if isnumeric (x)
-  if ~isa (x, 'double')
+  if isa (x, 'double')
+    out = x;
+  else
     out = double (x);
     % Handle possible underflow for 64-bit ints
     if isa (x, 'int64') || isa (x, 'uint64')
@@ -614,7 +641,7 @@ if nargin == 1
     [uA, ixA, outA] = unique (a, 'rows');
   else
     [uA, ixA, outA] = unique (a);
-  end
+  endif
   tfNan = any (isnanny (uA), 2);
   if any (tfNan)
     ixNan = find (tfNan);
@@ -638,23 +665,8 @@ else
   nRowsA = size (a, 1);
   outA = jx(1:nRowsA);
   outB = jx(nRowsA+1:end);
-end
-end
-
-function mustBeAllSameCols (varargin)
-  %MUSTBEALLSAMECOLS Require that all inputs have the same-named columns
-  args = varargin;
-  if isempty (args)
-    return
-  end
-  colNames = args{1}.VariableNames;
-  for i = 2:numel (args)
-    if ~isequal (colNames, args{i}.VariableNames)
-      error ('Inconsistent VariableNames.\n  Input 1: %s\n  Input %d: %s', ...
-        strjoin (colNames, ', '), i, strjoin (args{i}.VariableNames, ', '));
-    end
-  end
-end
+endif
+endfunction
 
 function out = size2str (sz)
 %SIZE2STR Format an array size for display
@@ -670,10 +682,10 @@ function out = size2str (sz)
 strs = cell (size (sz));
 for i = 1:numel (sz)
 	strs{i} = sprintf ('%d', sz(i));
-end
+endfor
 
 out = strjoin (strs, '-by-');
-end
+endfunction
 
 function out = dispstrs (x)
   %DISPSTRS Display strings for arbitrary matrix
@@ -687,5 +699,5 @@ function out = dispstrs (x)
     out = num2cell (x);
   else
     out = repmat ({sprintf('1-by-1 %s', class(x))}, size (x));
-  end
-end
+  endif
+endfunction
