@@ -328,14 +328,14 @@ classdef table
     function ixCol = resolveColRef (this, colRef)
       if isnumeric (colRef) || islogical (colRef)
         ixCol = colRef;
+      elseif isequal (colRef, ':')
+        ixCol = 1:width (this);
       elseif ischar (colRef) || iscellstr (colRef)
         colRef = cellstr (colRef);
         [tf, ixCol] = ismember (colRef, this.VariableNames);
         if ~all (tf)
           error ('No such variable in table: %s', strjoin (colRef(~tf), ', '));
         end
-      elseif isequal (colRef, ':')
-        ixCol = 1:width (this);
       else
         error ('Unsupported column indexing operand type: %s', class (colRef));
       end
@@ -389,8 +389,83 @@ classdef table
     
     % Relational operations
     
-    function out = sortrows (this, varargin)
+    function [out, index] = sortrows (this, varargin)
+      %SORTROWS Sort rows of table
       
+      % Parse input signature
+      % This is tricky because the sortrows() signature is complicated and ambiguous
+      args = varargin;
+      doRowNames = false;
+      direction = 'ascend';
+      varRef = ':';
+      knownOptions = {'MissingPlacement', 'ComparisonMethod'};
+      [opts, ~, optArgs] = peelOffNameValueOptions (args, knownOptions);
+      if ~isempty (args) && (ischar (args{end}) || iscellstr (args{end})) ...
+        && all (ismember (args{end}, {'ascend','descend'}))
+        direction = args{end};
+        args(end) = [];
+      end
+      if numel (args) > 1
+        error ('table.sortrows: Unrecognized options or arguments');
+      endif
+      if !isempty (args)
+        %FIXME: Determine how to identify the "rowDimName" argument
+        if ischar (args{1}) && isequal (args{1}, 'RowNames')
+          doRowNames = true;
+        else
+          varRef = args{1};
+        endif
+        args(end) = [];
+      endif
+      
+      % Interpret inputs
+      
+      % Do sorting
+      if doRowNames
+        % Special case: sort by row names
+        if isempty (this.rowNames)
+          error ('table.sortrows: this table does not have row names');
+        endif
+        [sortedRowNames, index] = sortrows (this.RowNames, direction, optArgs{:});
+        out = subsetRows (this, index);
+      else
+        % General case
+        ixCols = resolveColRef (this, varRef);
+        if ischar (direction)
+          direction = cellstr (direction);
+        endif
+        if isscalar (direction)
+          directions = repmat (direction, size (ixCols));
+        else
+          directions = direction;
+        endif
+        if ~isequal (size (directions), size (ixCols))
+          error ('table.sortrows: inconsistent size between direction and vars specifier');
+        endif
+        % Perform a radix sort on the referenced variables
+        index = 1:height (this);
+        tmp = this;
+        for iStep = 1:numel(ixCols)
+          iCol = numel(ixCols) - iStep + 1;
+          ixCol = ixCols(iCol);
+          varVal = tmp.VariableValues{ixCol};
+          %Convert Matlab-style 'descend' arg to Octave-style negative column index
+          %TODO: Add support for Octave-style negative column indexes.
+          %TODO: Wrap this arg munging logic in a sortrows_matlabby() function
+          %TODO: Better error message when optArgs are is present.
+          if isequal (directions{iCol}, 'descend')
+            [~, ix] = sortrows (varVal, -1 * (1:size (varVal, 2)), optArgs{:});
+          else
+            [~, ix] = sortrows (varVal, optArgs{:});
+          endif
+          index = index(ix)
+          tmp = subsetRows (tmp, ix);
+          % Debugging output
+          %fprintf ('Step %d: col %d\n', iStep, ixCol);
+          %prettyprint (tmp);
+        endfor
+        out = subsetRows (this, index);
+      endif
     endfunction
     
     function [out, indx] = unique (this)
