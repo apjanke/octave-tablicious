@@ -285,7 +285,7 @@ classdef table
           [ixRow, ixVar] = resolveRowVarRefs (this, s.subs{1}, s.subs{2});
           out = this;
           out = subsetRows (out, ixRow);
-          out = subsetCols (out, ixVar);
+          out = subsetVars (out, ixVar);
         case '{}'
           if numel (s.subs) ~= 2
             error ('table.subsref: {}-indexing of table requires exactly two arguments');
