@@ -325,9 +325,17 @@ classdef table
       end
     end
     
+    function out = rows (this)
+      out = height (this);
+    endfunction
+    
     function out = width (this)
       out = numel (this.VariableNames);
     end
+    
+    function out = columns (this)
+      out = width (this);
+    endfunction
     
     function out = numel (this)
       n = 0;
