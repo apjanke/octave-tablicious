@@ -640,6 +640,7 @@ classdef table
       keyVarNames = intersect_stable (A.VariableNames, B.VariableNames);
       nonKeyVarsB = setdiff_stable (B.VariableNames, keyVarNames);
       if isempty (keyVarNames)
+        % TODO: Should this degenerate to cartesian product instead of erroring?
         error ('table.realjoin: Cannot join: inputs have no variable names in common');
       endif
       keysA = subsetVars (A, keyVarNames);
