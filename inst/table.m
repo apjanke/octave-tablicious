@@ -1040,6 +1040,80 @@ classdef table
       [tf, loc] = ismember (pkA, pkB, 'rows');
     endfunction
     
+    % Missing values
+    
+    function out = ismissing (this, indicator)
+      %ISMISSING Find missing values
+      %
+      % Finds missing values in this' variables.
+      %
+      % All variables in this must be vectors. (This is due to the requirement
+      % that size(out) == size(this).)
+      %
+      % Returns a logical array the same size as this.
+      mustBeType (this, 'table');
+      if nargin > 1
+        %TODO: We need to support heterogeneous indicator inputs here
+        %TODO: Probably rewrite this just to delegate indicator support to global
+        % ismissing().
+        error ('table.ismissing: indicator input is not implemented');
+      endif
+      mustBeAllColVectorVars (this);
+      out = false (size (this));
+      for i = 1:width (this)
+        out(:,i) = ismissing (this.VariableValues{i});
+      endfor
+    endfunction
+    
+    function [out, tf] = rmmissing (this, varargin)
+      %RMMISSING Remove rows with missing values
+      %
+      % [out, tf] = rmmissing (this)
+      % [out, tf] = rmmissing (this, indicator)
+      % [out, tf] = rmmissing (..., 'DataVariables',vars)
+      %
+      % Removes rows with missing values.
+      %
+      % If the 'DataVariables' option is given, only the data in the specified
+      % variables is considered.
+      %
+      % Returns:
+      % out - A table the same as this, but with rows with missing values removed.
+      % tf - A logical index vector indicating which rows were removed.
+      [opts, args] = peelOffNameValueOptions (varargin, {'DataVariables','MinNumMissing'});
+      hasIndicator = false;
+      if numel (args) > 1
+        error ('table.rmmissing: Too many arguments.');
+      elseif numel (args) == 1
+        hasIndicator = true;
+        indicator = args{1};
+      endif
+      if isfield (opts, 'MinNumMissing')
+        error ('table.missing: The MinNumMissing option is not supported for tables.');
+      endif
+      
+      if isfield (opts, 'DataVariables')
+        dataVarsSelector = opts.DataVariables;
+        if isa (dataVarsSelector, 'function_handle')
+          error ('table.rmmissing: function handle DataVariables option is not implemented.');
+        else
+          ixDataVars = resolveVarRef (dataVarsSelector);
+        endif
+      else
+        ixDataVars = 1:width (this);
+      endif
+      
+      dataVals = subsetvars (this, ixDataVars);
+      if hasIndicator
+        tfMissing = ismissing (dataVals, indicator);
+      else
+        tfMissing = ismissing (dataVals);
+      endif
+      tfRowHasMissing = any (tfMissing, 2);
+      out = subsetRows (this, ~tfRowHasMissing);
+      tf = tfRowHasMissing;
+    endfunction
+
     % Prohibited operations
 
     function out = transpose (this,varargin)
@@ -1083,6 +1157,17 @@ classdef table
         if ~isequal (varNames, args{i}.VariableNames)
           error ('Inconsistent VariableNames.\n  Input 1: %s\n  Input %d: %s', ...
             strjoin (varNames, ', '), i, strjoin (args{i}.VariableNames, ', '));
+        endif
+      endfor
+    endfunction
+    
+    function mustBeAllColVectorVars (this)
+      %MUSTBEALLCOLVECTORVARS Require that all vars in this are vectors, not matrixes
+      for i = 1:width (this)
+        val = this.VariableValues{i};
+        if size (val, 2) ~= 1
+          error ('All variables in input must be vectors, but variable %d (''%s'') has %d columns', ...
+            i, this.VariableNames{i}, size (val, 2));
         endif
       endfor
     endfunction
