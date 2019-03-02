@@ -506,7 +506,7 @@ classdef table
           ixVar = ixVars(iVar);
           varVal = tmp.VariableValues{ixVar};
           %Convert Matlab-style 'descend' arg to Octave-style negative column index
-          %TODO: Add support for Octave-style negative column indexes.
+          %TODO: Add support for Octave-style negative column indexes in table.sortrows input.
           %TODO: Wrap this arg munging logic in a sortrows_matlabby() function
           %TODO: Better error message when optArgs are is present.
           if isequal (directions{iVar}, 'descend')
