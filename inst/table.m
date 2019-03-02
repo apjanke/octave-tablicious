@@ -1235,24 +1235,28 @@ classdef table
     endfunction
     
     % Prohibited operations
+    
+    % TODO: These could probably actually be allowed in certain restricted
+    % circumstances based on the type and shape of values in this. Consider
+    % allowing them.
 
-    function out = transpose (this,varargin)
+    function out = transpose (this, varargin)
       error ('Function transpose is not supported for tables');
     end
 
-    function out = ctranspose (this,varargin)
+    function out = ctranspose (this, varargin)
       error ('Function ctranspose is not supported for tables');
     end
 
-    function out = circshift (this,varargin)
+    function out = circshift (this, varargin)
       error ('Function circshift is not supported for tables');
     end
 
-    function out = length (this,varargin)
+    function out = length (this, varargin)
       error ('Function length is not supported for tables');
     end
 
-    function out = shiftdims (this,varargin)
+    function out = shiftdims (this, varargin)
       error ('Function shiftdims is not supported for tables');
     end
   end
