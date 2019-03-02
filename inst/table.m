@@ -382,7 +382,7 @@ classdef table
           error ('table.resolveRowVarRefs: No such named row in table: %s', strjoin (rowRef(~tf), ', '));
         end
       elseif isequal (rowRef, ':')
-        ixRow = 1:width (this);
+        ixRow = 1:height (this);
       else
         error ('table.resolveRowVarRefs: Unsupported row indexing operand type: %s', class (rowRef));
       end
