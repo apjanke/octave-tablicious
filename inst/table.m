@@ -506,6 +506,36 @@ classdef table
       out.VariableValues{ixVar} = value;
     end
     
+    function out = convertvars (this, vars, dataType)
+      %CONVERTVARS Convert variables to specified data type
+      %
+      % out = convertvars (this, vars, dataType)
+      %
+      % Converts the variables specified by vars to the specified data type.
+      %
+      % vars is a cellstr or numeric vector specifying which variables to convert.
+      %
+      % dataType specifies the data type to convert those variables to. It is either
+      % a char holding the name of the data type, or a function handle which will
+      % perform the conversion. If it is the name of the data type, there must
+      % either be a one-arg constructor of that type which accepts the specified
+      % variables' current types as input, or a conversion method of that name
+      % defined on the specified variables' current type.
+      %
+      % Returns a table with the same variable names as this, but with converted
+      % types.
+      if ~ischar (dataType) && isa (dataType, 'function_handle')
+        error ('table.convertvars: dataType must be char or function_handle; got a %s', ...
+          class (dataType));
+      endif
+      ixVars = resolveVarRef (this, vars);
+      out = this;
+      for i = 1:numel (ixVars)
+        ixVar = ixVars(i);
+        out.VariableValues{ixVar} = feval (dataType, this.VariableValues{ixVar});
+      endfor
+    endfunction
+    
     function out = head (this, k)
       %HEAD Get first K rows of table
       %
