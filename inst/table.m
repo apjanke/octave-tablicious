@@ -319,6 +319,9 @@ classdef table
   
     function out = sizeof (this)
       %SIZEOF Size of this in bytes.
+      %
+      % TODO: Calculate this as the sum of bytes in all variables and in all
+      % properties/metadata arrays.
       error ('table.sizeof: sizeof is not yet implemented for tables');
     endfunction
 
