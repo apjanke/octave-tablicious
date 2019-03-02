@@ -563,6 +563,12 @@ classdef table
       endif
     endfunction
     
+    function out = issortedrows (this, varargin)
+      %ISSORTEDROWS Determine if table rows are sorted
+      [~, ix] = sortrows (this, varargin{:});
+      out = isequal (ix, 1:height (this));
+    endfunction
+
     function [out, ia, ic] = unique (this, varargin)
       %UNIQUE Unique row values
       %
