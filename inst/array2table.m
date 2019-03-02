@@ -2,13 +2,13 @@ function out = array2table(c, varargin)
   %CELL2TABLE Convert a cell array to a table
 
   if ndims (c) > 2
-    error ('Input must be 2-D; got %d-D', ndims (c));
+    error ('array2table: Input must be 2-D; got %d-D', ndims (c));
   endif
   
   % Peel off trailing options
   [opts, args] = peelOffNameValueOptions (varargin, {'VariableNames', 'RowNames'});
   if ~isempty (args)
-    error ('Unrecognized options');
+    error ('array2table: Unrecognized options');
   endif
 
   nCols = size (c, 2);

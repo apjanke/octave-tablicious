@@ -36,7 +36,7 @@ classdef table
         % Undocumented form for internal use
         [varNames, varVals] = args{2:3};
       elseif nargs == 4 && isequal (args{1}, 'Size') && isequal (args{3}, 'VariableTypes')
-        error('This constructor form is unimplemented');
+        error('table: This constructor form is unimplemented');
       else
         varVals = args;
         if isfield (opts, 'VariableNames')
@@ -54,20 +54,20 @@ classdef table
       
       % Input validation
       if ~iscell (varVals) || (~isvector (varVals) && ~isempty (varVals))
-        error('VariableValues must be a cell vector');
+        error('table: VariableValues must be a cell vector');
       end
       if ~iscellstr (varNames) || (~isvector (varNames) && ~isempty (varNames))
-        error('VariableNames must be a cellstr vector');
+        error('table: VariableNames must be a cellstr vector');
       end
       varNames = varNames(:)';
       varVals = varVals(:)';
       if numel (varNames) ~= numel (varVals)
-        error ('Inconsistent number of VariableNames (%d) and VariableValues (%d)', ...
+        error ('table: Inconsistent number of VariableNames (%d) and VariableValues (%d)', ...
          numel (varNames), numel (varVals));
       end
       for i = 1:numel (varNames)
         if ~isvarname (varNames{i})
-          error ('Invalid VariableName: ''%s''', varNames{i});
+          error ('table: Invalid VariableName: ''%s''', varNames{i});
         end
       end
       if ~isempty (varVals)
@@ -75,7 +75,7 @@ classdef table
         for i = 2:numel (varVals)
           nrows2 = size (varVals{i}, 1);
           if nrows ~= nrows2
-            error ('Inconsistent sizes: var 1 (%s) is %d rows; var %d (%s) is %d rows', ...
+            error ('table: Inconsistent sizes: var 1 (%s) is %d rows; var %d (%s) is %d rows', ...
               varNames{1}, nrows, i, varNames{i}, nrows2);
           end
         end
@@ -84,7 +84,7 @@ classdef table
       if numel (uqNames) < numel (varNames)
         ixBad = 1:numel (varNames);
         ixBad(ix) = [];
-        error ('Duplicate VariableNames: %s', strjoin (varNames(ixBad), ', '));
+        error ('table: Duplicate VariableNames: %s', strjoin (varNames(ixBad), ', '));
       end
 
       % Construction
@@ -226,7 +226,7 @@ classdef table
       for i = 2:numel (args)
         if isempty (out.RowNames)
           if ~isempty (args{i}.RowNames)
-            error ('Cannot cat tables with mixed empty and non-empty RowNames');
+            error ('table.vertcat: Cannot cat tables with mixed empty and non-empty RowNames');
           end
         else
           out.RowNames = [out.RowNames; args{i}.RowNames];
@@ -250,7 +250,7 @@ classdef table
       for i = 2:numel (args)
         dup_names = intersect (seen_names, args{i}.VariableNames);
         if ~isempty (dup_names)
-          error ('Inputs have duplicate VariableNames: %s', strjoin (dup_names, ', '));
+          error ('table.horzcat: Inputs have duplicate VariableNames: %s', strjoin (dup_names, ', '));
         end
         seen_names = [seen_names args{i}.VariableNames];
       end
@@ -272,7 +272,7 @@ classdef table
       switch s(1).type
         case '()'
           if numel (s.subs) ~= 2
-            error ('()-indexing of table requires exactly two arguments');
+            error ('table.subsref: ()-indexing of table requires exactly two arguments');
           end
           [ixRow, ixCol] = resolveRowColRefs (this, s.subs{1}, s.subs{2});
           out = this;
@@ -280,25 +280,25 @@ classdef table
           out = subsetCols (out, ixCol);
         case '{}'
           if numel (s.subs) ~= 2
-            error ('{}-indexing of table requires exactly two arguments');
+            error ('table.subsref: {}-indexing of table requires exactly two arguments');
           end
           [ixRow, ixCol] = resolveRowColRefs (this, s.subs{1}, s.subs{2});
           if numel (ixRow) ~= 1 && numel (ixCol) ~= 1
-            error('{}-indexing of table requires one of the inputs to be scalar');
+            error('table.subsref: {}-indexing of table requires one of the inputs to be scalar');
           end
           %FIXME: I'm not sure how to handle the signature here yet
           if numel (ixCol) > 1
-            error ('{}-indexing across multiple columns is currently unimplemented');
+            error ('table.subsref: {}-indexing across multiple columns is currently unimplemented');
           end
           if numel (ixRow) > 1
-            error ('{}-indexing across multiple rows is currently unimplemented');
+            error ('table.subsref: {}-indexing across multiple rows is currently unimplemented');
           end
           colData = this.VariableValues{ixCol};
           out = colData(ixRow);
         case '.'
           name = s.subs;
           if ~ischar (name)
-            error ('.-reference arguments must be char');
+            error ('table.subsref: .-reference arguments must be char');
           end
           out = getVar (this, name);
       end
@@ -324,14 +324,14 @@ classdef table
       out = this;
       switch s(1).type
         case '()'
-          error ('Assignment using ()-indexing is not supported for table');
+          error ('table.subsasgn: Assignment using ()-indexing is not supported for table');
         case '{}'
           if numel (s.subs) ~= 2
-            error('{}-indexing of table requires exactly two arguments');
+            error('table.subsasgn: {}-indexing of table requires exactly two arguments');
           end
           [ixRow, ixCol] = resolveRowColRefs (this, s.subs{1}, s.subs{2});
           if ~isscalar (ixCol)
-            error ('{}-indexing must reference a single variable; got %d', ...
+            error ('table.subsasgn: {}-indexing must reference a single variable; got %d', ...
               numel (ixCol));
           end
           colData = this.VariableValues{ixCol};
@@ -351,10 +351,10 @@ classdef table
         colRef = cellstr (colRef);
         [tf, ixCol] = ismember (colRef, this.VariableNames);
         if ~all (tf)
-          error ('No such variable in table: %s', strjoin (colRef(~tf), ', '));
+          error ('table.resolveColRef: No such variable in table: %s', strjoin (colRef(~tf), ', '));
         end
       else
-        error ('Unsupported column indexing operand type: %s', class (colRef));
+        error ('table.resolveColRef: Unsupported column indexing operand type: %s', class (colRef));
       end
     end
 
@@ -363,16 +363,16 @@ classdef table
         ixRow = rowRef;
       elseif iscellstr (rowRef)
         if isempty (this.RowNames)
-          error ('this table has no RowNames');
+          error ('table.resolveRowColRefs: this table has no RowNames');
         end
         [tf, ixRow] = ismember (rowRef, this.RowNames);
         if ~all (tf)
-          error ('No such named row in table: %s', strjoin (rowRef(~tf), ', '));
+          error ('table.resolveRowColRefs: No such named row in table: %s', strjoin (rowRef(~tf), ', '));
         end
       elseif isequal (rowRef, ':')
         ixRow = 1:width (this);
       else
-        error ('Unsupported row indexing operand type: %s', class (rowRef));
+        error ('table.resolveRowColRefs: Unsupported row indexing operand type: %s', class (rowRef));
       end
       
       ixCol = resolveColRef (this, colRef);
@@ -405,7 +405,7 @@ classdef table
       ixCol = resolveColRef (this, colRef);
       out = this;
       if size (value, 1) ~= height (this)
-        error ('Inconsistent dimensions: table is height %d, input is height %d', ...
+        error ('table.setcol: Inconsistent dimensions: table is height %d, input is height %d', ...
           height (this), size (value, 1));
       end
       out.VariableValues{ixCol} = value;

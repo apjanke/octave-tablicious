@@ -2,16 +2,16 @@ function out = cell2table(c, varargin)
   %CELL2TABLE Convert a cell array to a table
 
   if ~iscell (c)
-    error ('Input must be cell; got %s', class (c));
+    error ('cell2table: Input must be cell; got %s', class (c));
   endif
   if ndims (c) > 2
-    error ('Input must be 2-D; got %d-D', ndims (c));
+    error ('cell2table: Input must be 2-D; got %d-D', ndims (c));
   endif
   
   % Peel off trailing options
   [opts, args] = peelOffNameValueOptions (varargin, {'VariableNames', 'RowNames'});  
   if ~isempty (args)
-    error ('Unrecognized options');
+    error ('cell2table: Unrecognized options');
   endif
 
   nCols = size (c, 2);
