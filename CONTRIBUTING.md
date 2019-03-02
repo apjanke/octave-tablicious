@@ -10,13 +10,13 @@ work and interact within this project.
 Basics
 ------
 
+* Do not use MATLAB to develop this project! That could be a violation of your MATLAB license.
+  * Only use Octave and reference to the [publicly-available MATLAB documentation](https://www.mathworks.com/help/matlab/) to develop this project.
 * Bug reports and merge requests via GitHub are very welcome.
 * Contributions include testing, writing more tests, documentation,
   submitting bug reports, and proposing new features and tests.
 * Issues and changes should be small and focused on a particular topic.
 * Contributors are expected to abide by the [code of conduct](CODE_OF_CONDUCT.md).
-* Do not use MATLAB to develop this project! That could be a violation of your MATLAB license.
-  * Only use Octave and reference to the [publicly-available MATLAB documentation](https://www.mathworks.com/help/matlab/) to develop this project.
 
 Community
 ---------
