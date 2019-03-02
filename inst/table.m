@@ -1329,6 +1329,17 @@ classdef table
       endswitch
     endfunction
     
+    function [G, TID] = findgroups (this)
+      %FINDGROUPS Find groups within a table's row values and get group numbers
+      %
+      % [G, TID] = findgroups (this)
+      %
+      % Returns:
+      % G - A double column vector of group numbers created from this.
+      % TID - A table containing the row values corresponding to the group numbers.
+      [TID, ~, G] = unique (this);
+    endfunction
+    
     function out = evalWithVars (this, expr)
       %EVALWITHVARS Evaluate an expression with this' variables in a workspace
       %
