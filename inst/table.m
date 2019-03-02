@@ -8,6 +8,10 @@ classdef table
   % A table object is like an SQL table or resultset, or a relation, or a 
   % DataFrame in R or Pandas.
   
+  % Developer's notes:
+  % - Wherever you see the abbreviation "pk", that means "proxy keys", not
+  %   "primary keys".
+
   properties
     % The names of the variables (columns), as cellstr
     VariableNames = {}
