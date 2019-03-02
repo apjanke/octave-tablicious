@@ -803,7 +803,7 @@ classdef table
       % Set logic
       [pkA, pkB] = proxykeysForMatrixes (A, B);
       [~, ia, ib] = union (pkA, pkB, 'rows');
-      C = [subsetRows (A, ia); subsetRows (B, ib)];      
+      C = [subsetRows(A, ia); subsetRows(B, ib)];      
     endfunction
     
     function [C, ia, ib] = intersect (A, B)
@@ -825,7 +825,7 @@ classdef table
       % Set logic
       [pkA, pkB] = proxykeysForMatrixes (A, B);
       [~, ia, ib] = intersect (pkA, pkB, 'rows');
-      C = [subsetRows (A, ia); subsetRows (B, ib)];      
+      C = [subsetRows(A, ia); subsetRows(B, ib)];      
     endfunction
     
     function [C, ia, ib] = setxor (A, B)
@@ -848,7 +848,7 @@ classdef table
       % Set logic
       [pkA, pkB] = proxykeysForMatrixes (A, B);
       [~, ia, ib] = setxor (pkA, pkB, 'rows');
-      C = [subsetRows (A, ia); subsetRows (B, ib)];      
+      C = [subsetRows(A, ia); subsetRows(B, ib)];      
     endfunction
     
     function [C, ia] = setdiff (A, B)
