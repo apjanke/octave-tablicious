@@ -1544,7 +1544,7 @@ classdef table
 
     % Prohibited operations
     
-    % TODO: These could probably actually be allowed in certain restricted
+    % TODO: Some of these could probably actually be allowed in certain restricted
     % circumstances based on the type and shape of values in this. Consider
     % allowing them.
 
@@ -1566,6 +1566,10 @@ classdef table
 
     function out = shiftdims (this, varargin)
       error ('Function shiftdims is not supported for tables');
+    end
+
+    function out = reshape (this, varargin)
+      error ('Function reshape is not supported for tables');
     end
   end
   
