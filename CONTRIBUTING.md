@@ -12,6 +12,7 @@ Basics
 
 * Do not use MATLAB to develop this project! That could be a violation of your MATLAB license.
   * Only use Octave and reference to the [publicly-available MATLAB documentation](https://www.mathworks.com/help/matlab/) to develop this project.
+  * This includes using MATLAB for testing or benchmarking purposes. Please do not submit any contributions that include MATLAB test or benchmark results. They will be politely but summarily deleted.
 * Bug reports and merge requests via GitHub are very welcome.
 * Contributions include testing, writing more tests, documentation,
   submitting bug reports, and proposing new features and tests.

@@ -24,15 +24,24 @@ pkg load table
   * `git clone https://github.com/apjanke/octave-addons-table`
 * Add the `inst/` directory from the repo to your Octave path.
 
-## Naming conventions
-
-Anything in a namespace with `internal` in its name is for the internal use of this package, and is not intended for use by user code.
-
 ## Documentation
 
 See the `doc-project/` directory for notes on this project, especially for [Developer Notes](doc-project/Developer-Notes.md). Also see [CONTRIBUTING](CONTRIBUTING.md) if you would like to contribute to this project.
 
 Real user documentation is hopefully coming soon.
+
+## Contributing
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for more details.
+
+### No Matlab usage!
+
+To avoid issues with the Matlab license's Non-Compete clause, this project needs to be developed entirely using Octave, and not using Matlab at all, including for testing or benchmarking purposes. Please do not submit any Matlab test or benchmark results, or any code produced using Matlab.
+
+### Naming conventions
+
+Anything in a namespace with `internal` in its name is for the internal use of this package, and is not intended for use by user code.
+
 
 ## Author
 
