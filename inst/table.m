@@ -304,6 +304,14 @@ classdef table
       out = 2;
     end
     
+    function out = squeeze (this)
+      %SQUEEZE Remove singleton dimensions from this
+      %
+      % This is always a no-op that returns the input unmodified, because tables
+      % always have exactly 2 dimensions.
+      out = this;
+    endfunction
+    
     function out = height (this)
       if isempty (this.VariableValues)
         out = 0;
