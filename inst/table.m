@@ -1030,6 +1030,55 @@ classdef table
       endif
     endfunction
     
+    function out = cartesian (A, B)
+      %CARTESIAN Cartesian product of two tables
+      %
+      % out = cartesian (A, B)
+      %
+      % Computes the Cartesian product of two tables. The Cartesian product is
+      % each row in A combined with each row in B.
+      %
+      % Due to the definition and structural constraints of table, the two inputs
+      % must have no variable names in common. It is an error if they do.
+      %
+      % The Cartesian product is seldom used in practice. If you find yourself
+      % calling this method, you should step back and re-evaluate what you are
+      % doing, asking yourself if that is really what you want to happen. If nothing
+      % else, writing a function that calls cartesian() is usually much less
+      % efficient than alternate ways of arriving at the same result.
+      %
+      % This implementation does not remove duplicate values.
+      % TODO: Determine whether this duplicate-removing behavior is correct.
+      %
+      % The ordering of the rows in the result is undefined, and may be implementation-
+      % dependent. TODO: Determine if we can lock this behavior down to a fixed,
+      % defined ordering, without killing performance.
+      
+      % FIXME: prettyprint() on the results of this errors out sometimes. E.g.:
+      %   [s,p,sp] = table_examples.SpDb
+      %   pp(cartesian(s(:,1:3), p))   % throws error
+      % This means a bug in either cartesian() or (more likely) prettyprint()
+      
+      mustBeA (A, 'table');
+      mustBeA (B, 'table');
+      
+      commonVars = intersect (A.VariableNames, B.VariableNames);
+      if ~isempty (commonVars)
+        error ('table.cartesian: Inputs have variable names in common: %s', ...
+          strjoin (commonVars, ', '));
+      endif
+      
+      nRowsA = height (A);
+      nRowsB = height (B);
+      ixA = 1:nRowsA;
+      ixB = 1:nRowsB;
+      ixAOut = repelem (ixA, nRowsB);
+      ixBOut = repmat (ixB, nRowsA);
+      outA = subsetRows (A, ixAOut);
+      outB = subsetRows (B, ixBOut);
+      out = [outA outB];
+    endfunction
+
     function [outA, outB] = congruentize (A, B)
       %CONGRUENTIZE Make tables congruent
       %
