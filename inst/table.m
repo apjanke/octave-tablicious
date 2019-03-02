@@ -1346,6 +1346,58 @@ classdef table
       endswitch
     endfunction
     
+    function out = rowfun (func, A, varargin)
+      %ROWFUN Apply function to table rows
+      %
+      % out = rowfun (func, A)
+      % out = rowfun (..., Name,Value, ...)
+      %
+      % TODO: Document all the Name/Value options; there's a bunch of them.
+      
+      % Input handling
+      mustBeType (A, 'table');
+      validOptions = {'InputVariables', 'GroupingVariables', 'OutputFormat', ...
+        'SeparateInputs', 'ExtractCellContents', 'OutputVariableNames', ...
+        'NumOutputs', 'ErrorHandler'};
+      [opts, args] = peelOffNameValueOptions (varargin, validOptions);
+      unimplementedOptions = {'InputVariables', 'GroupingVariables', ...
+        'SeparateInputs', 'ExtractCellContents', 'OutputVariableNames', ...
+        'NumOutputs'};
+      for i = 1:numel (unimplementedOptions)
+        if isfield (opts, unimplementedOptions{i})
+          error ('table.rowfun: Option %s is not yet implemented.', unimplementedOptions{i});
+        endif
+      endfor
+      if ~isa (func, 'function_handle')
+        error ('table.rowfun: func must be a function handle; got a %s', class (func));
+      endif
+      outputFormat = 'table';
+      if isfield (opts, 'OutputFormat')
+        outputFormat = opts.OutputFormat;
+      endif
+      validOutputFormats = {'table','uniform','cell'};
+      if ~ismember (outputFormat, validOutputFormats);
+        error ('table.rowfun: Invalid OutputFormat: %s. Must be one of: %s', ...
+          outputFormat, strjoin (validOutputFormats, ', '));
+      endif
+      errorHandler = [];
+      if isfield (opts, 'ErrorHandler')
+        if ~isa (opts.ErrorHandler, 'function_handle')
+          error ('table.rowfun: ErrorHandler must be a function handle; got a %s', ...
+            class (opts.ErrorHandler));
+        endif
+        errorHandler = opts.ErrorHandler;
+      endif
+      tbl = A;
+      
+      error('table.rowfun: This function is not yet implemented.');
+      
+      % Function application
+      
+      % Output packaging
+      
+    endfunction
+    
     function [G, TID] = findgroups (this)
       %FINDGROUPS Find groups within a table's row values and get group numbers
       %
