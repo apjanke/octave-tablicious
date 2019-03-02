@@ -235,7 +235,7 @@ classdef table
       [opts, args] = peelOffNameValueOptions (varargin, {'ToScalar'});
       toScalar = false;
       if isfield (opts, 'ToScalar')
-        mustBeType (opts.ToScalar, 'logical');
+        mustBeA (opts.ToScalar, 'logical');
         mustBeScalar (opts.ToScalar);
         toScalar = opts.ToScalar;
       endif
@@ -1194,7 +1194,7 @@ classdef table
       % that size(out) == size(this).)
       %
       % Returns a logical array the same size as this.
-      mustBeType (this, 'table');
+      mustBeA (this, 'table');
       if nargin > 1
         %TODO: We need to support heterogeneous indicator inputs here
         %TODO: Probably rewrite this just to delegate indicator support to global
@@ -1264,7 +1264,7 @@ classdef table
       % function, which is not yet implemented in Octave, so any use of this method
       % is likely to error out.
       narginchk (2, 4);
-      mustBeType (this, 'table');
+      mustBeA (this, 'table');
       [opts, args] = peelOffNameValueOptions (varargin, {'DataVariables'});
       if ~isempty (args)
         error ('table.standardizeMissing: Too many input arguments');
@@ -1300,7 +1300,7 @@ classdef table
       % out = varfun (..., 'OutputFormat', outputFormat)
       % out = varfun (..., 'InputVariables', vars)
       % out = varfun (..., 'ErrorHandler', errorFcn)
-      mustBeType (A, 'table');
+      mustBeA (A, 'table');
       validOptions = {'InputVariables', 'GroupingVariables', 'OutputFormat', 'ErrorHandler'};
       [opts, args] = peelOffNameValueOptions (varargin, validOptions);
       unimplementedOptions = {'GroupingVariables', 'ErrorHandler'};
@@ -1386,7 +1386,7 @@ classdef table
       % TODO: Document all the Name/Value options; there's a bunch of them.
       
       % Input handling
-      mustBeType (A, 'table');
+      mustBeA (A, 'table');
       validOptions = {'InputVariables', 'GroupingVariables', 'OutputFormat', ...
         'SeparateInputs', 'ExtractCellContents', 'OutputVariableNames', ...
         'NumOutputs', 'ErrorHandler'};
@@ -1561,11 +1561,11 @@ classdef table
     function [pkA, pkB] = proxykeysForMatrixes (A, B)
       %PROXYKEYSFORMATRIXES Compute row proxy keys for tables
       if nargin == 1
-        mustBeType (A, 'table');
+        mustBeA (A, 'table');
         pkA = proxykeysForOneTable (A);
       else  
-        mustBeType (A, 'table');
-        mustBeType (B, 'table');
+        mustBeA (A, 'table');
+        mustBeA (B, 'table');
         if !isequal (A.VariableNames, B.VariableNames)
           error ('table.proxykeysForMatrixes: Inconsistent variable names in inputs');
         endif

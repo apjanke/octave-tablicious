@@ -1,4 +1,4 @@
-function mustBeType (x, type)
+function mustBeA (x, type)
   if isa (x, type)
     return
   endif
