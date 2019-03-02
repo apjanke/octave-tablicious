@@ -238,6 +238,13 @@ classdef table
     end
     
     function out = horzcat (varargin)
+      %HORZCAT Horizontal concatenation
+      %
+      % Inputs must have all distinct variable names.
+      %
+      % Output has the same RowNames as varargin{1}. The variable names and values
+      % are the result of the concatenation of the variable names and values lists
+      % from the inputs.
       args = varargin;
       seen_names = args{1}.VariableNames;
       for i = 2:numel (args)
@@ -247,6 +254,16 @@ classdef table
         end
         seen_names = [seen_names args{i}.VariableNames];
       end
+      % Okay, all var names are distinct. We can just concatenate.
+      varNameses = cell (size (args));
+      varValses = cell (size (args));
+      for i = 1:numel (args)
+        varNameses{i} = args{i}.VariableNames;
+        varValses{i} = args{i}.VariableValues;
+      endfor
+      out = varargin{1};
+      out.VariableNames = cat (2, varNameses{:});
+      out.VariableValues = cat (2, varValses{:});
     end
     
     function out = subsref (this, s)
@@ -372,6 +389,13 @@ classdef table
     end
     
     function out = subsetCols (this, ixCols)
+      if iscellstr (ixCols)
+        [tf,ix] = ismember (ixCols, this.VariableNames);
+        if ~all (tf)
+          error ('table.subsetCols: no such columns in this');
+        endif
+        ixCols = ix;
+      endif
       out = this;
       out.VariableNames = this.VariableNames(ixCols);
       out.VariableValues = this.VariableValues(ixCols);
@@ -460,9 +484,6 @@ classdef table
           endif
           index = index(ix)
           tmp = subsetRows (tmp, ix);
-          % Debugging output
-          %fprintf ('Step %d: col %d\n', iStep, ixCol);
-          %prettyprint (tmp);
         endfor
         out = subsetRows (this, index);
       endif
@@ -470,9 +491,58 @@ classdef table
     
     function [out, indx] = unique (this)
       %UNIQUE Unique row values
-      keys = proxykeys (this);
-      [uKeys, indx] = unique (keys);
+      pk = proxykeysForMatrixes (this);
+      [uPk, indx] = unique (pk, 'rows');
       out = subsetRows (this, indx);
+    endfunction
+    
+    function [C, ib] = join (A, B, varargin)
+      %JOIN Combine two tables by rows using key variables
+      %
+      % This is not a full relational join operation. It has the restrictions
+      % that:
+      %  1) The key values in B must be unique. 
+      %  2) Every key value in A must map to a key value in B.
+      % These are restrictions inherited from the Matlab definition of table.join.
+      
+      % Input munging
+      optNames = {'Keys', 'KeepOneCopy', 'LeftKeys', 'RightKeys', ...
+        'LeftVariables', 'RightVariables'};
+      opts = peelOffNameValueOptions (varargin, optNames);
+      unimplementedOptions = optNames;
+      for i = 1:numel (unimplementedOptions)
+        if isfield (opts, unimplementedOptions{i})
+          error ('table.join: Option %s is unimplemented. Sorry.', ...
+            unimplementedOptions{i});
+        endif
+      endfor
+      if !isa (A, 'table')
+        A = table (A);
+      endif
+      if !isa (B, 'table')
+        B = table (B);
+      endif
+      
+      % Join logic
+      keyVarNames = intersect_stable (A.VariableNames, B.VariableNames);
+      nonKeyVarsB = setdiff_stable (B.VariableNames, keyVarNames);
+      if isempty (keyVarNames)
+        error ('table.join: Cannot join: inputs have no variable names in common');
+      endif
+      keysA = subsetCols (A, keyVarNames);
+      keysB = subsetCols (B, keyVarNames);
+      uKeysB = unique (keysB);
+      if height (uKeysB) < height (keysB)
+        error ('table.join: Non-unique keys in B');
+      endif
+      [pkA, pkB] = proxykeysForMatrixes (keysA, keysB);
+      [tf, ib] = ismember (pkA, pkB, 'rows');
+      if ~all (tf)
+        error ('table.join: Some rows in A had no corresponding key values in B');
+      endif
+      nonKeysB = subsetCols (B, nonKeyVarsB);
+      outB = subsetRows (nonKeysB, ib);
+      C = [A outB];
     endfunction
 
     % Prohibited operations
@@ -523,6 +593,44 @@ classdef table
     endfunction
   endmethods
   
+  methods
+    function [pkA, pkB] = proxykeysForMatrixes (A, B)
+      %PROXYKEYSFORMATRIXES Compute row proxy keys for tables
+      if nargin == 1
+        mustBeType (A, 'table');
+        pkA = proxykeysForOneTable (A);
+      else  
+        mustBeType (A, 'table');
+        mustBeType (B, 'table');
+        if !isequal (A.VariableNames, B.VariableNames)
+          error ('table.proxykeysForMatrixes: Inconsistent variable names in inputs');
+        endif
+        [pkA, pkB] = proxykeysForTwoTables (A, B);
+      endif
+    endfunction
+  endmethods
+
+  methods (Access = private)
+    function out = proxykeysForOneTable (this)
+      varProxyKeys = cell (size (this.VariableNames));
+      for iVar = 1:numel (this.VariableNames);
+        varProxyKeys{iVar} = proxykeysForMatrixes (this.VariableValues{iVar});
+      endfor
+      out = cat (2, varProxyKeys{:});
+    endfunction
+    
+    function [pkA, pkB] = proxykeysForTwoTables (A, B)
+      varProxyKeysA = cell (size (A.VariableNames));
+      varProxyKeysB = cell (size (B.VariableNames));
+      for iVar = 1:numel (A.VariableNames)
+        [varProxyKeysA{iVar}, varProxyKeysB{iVar}] = proxykeysForMatrixes (...
+          A.VariableValues{iVar}, B.VariableValues{iVar});
+      endfor
+      pkA = cat (2, varProxyKeysA{:});
+      pkB = cat (2, varProxyKeysB{:});
+    endfunction
+  endmethods
+
   methods (Static)
     function varargout = exampleSpDb
       %EXAMPLESPDB The classic suppliers-parts example database
@@ -572,208 +680,4 @@ classdef table
     endfunction
   endmethods
 
-  methods (Static, Access = private)
-      function [proxyKeysA, proxyKeysB] = proxykeys (A, B)
-      %PROXYKEYS Compute proxy keys for tables
-      %
-      % A and B must be tables with the same column names, and
-      % compatible column types. "Compatible" column types means they must be
-      % able to be cat-ed together *losslessly*.
-      %
-      % Returns two column vectors of doubles that contain values with the
-      % same equivalence and ordering relationships as the records in the
-      % inputs.
-      mustBeType (A, 'table');
-      if nargin == 1
-        proxyKeysA = NaN (height (A), width (A));
-        for i = 1:width (A)
-          proxyKeysA(:,i) = identityProxy (A.VariableValues{i});
-        endfor
-        if size (proxyKeysA, 2) > 1
-          [~, ~, proxyKeysA] = unique(proxyKeysA, 'rows');
-        endif
-      else
-        mustBeType (B, 'table');
-        proxyKeysA = NaN (height (A), width (A));
-        proxyKeysB = NaN (height (B), width (B));
-        for i = 1:width (A)
-          [proxyKeysA(:,i), proxyKeysB(:,i)] = identityProxy (A.VariableValues{i}, B.VariableValues{i});
-        endfor
-        if size (proxyKeysA, 2) > 1
-          nRowsA = size (proxyKeysA, 1);
-          [~, ~, jx] = unique ([proxyKeysA; proxyKeysB], 'rows');
-          proxyKeysA = jx(1:nRowsA);
-          proxyKeysB = jx(nRowsA+1:end);
-        endif
-      endif
-    endfunction
-  endmethods
 endclassdef
-
-function [outA, outB] = identityProxy (a, b)
-%IDENTITYPROXY Proxy values for identity tests on a set of values
-%
-% [outA, outB] = identityProxy (a, b)
-%
-% Transforms the input arrays in to double arrays which can be used as proxy
-% values for doing equality and ordering operations on the inputs. This is
-% useful for implementing equality and ordering functions for composite types
-% whose components are of heterogeneous types. The proxy values are all of the
-% same primitive type, so they can all be concatenated and compared efficiently.
-%
-% The inputs are treated as arrays whose rows are records.
-%
-% The identity proxy values may contain NaNs, for inputs which were NaN.
-%
-% Returns column vectors of doubles.
-
-if nargin < 2
-  outA = identityProxyOneInput (a);
-  return
-endif
-
-%TODO: Relax this restriction to support losslessly-cat-compatible types
-if ~isequal (class (a), class (b))
-	error ('Cannot compute identity proxy values for mixed types (%s vs. %s)',...
-		class (a), class (b));
-endif
-
-if size (a, 2) ~= size (b, 2)
-  error ('Inputs must be same size along dimension 2; got %d-wide vs %d-wide', ...
-    size (a, 2), size (b, 2));
-endif
-
-if isnumeric (a)
-  % Special case: numerics can be converted directly to keys
-  if isa (a, 'double')
-    outA = a;
-    outB = b;
-  else
-    outA = double (a);
-    outB = double (b);
-    % Handle possible underflow for 64-bit ints
-    % TODO: Probably change this so that this method just returns "numeric", not necessarily
-    % double.
-    if isa (a, 'int64') || isa (a, 'uint64')
-      checkA = cast (outA, class (a));
-      checkB = cast (outB, class (a));
-      if ~isequal (checkA, a) || ~isequal (checkB, b)
-        % Underflow occurred. Fall back to using the UNIQUE trick
-        [outA, outB] = identityProxyUsingUnique (a, b);
-      endif
-    endif
-  endif
-  if size (outA, 2) > 1
-    [~, ~, outA] = unique (outA, 'rows');
-    tfNan = any (isnanny (outA), 2);
-    if any (tfNan)
-      ixNan = find (tfNan);
-      outA(ismember (outA, ixNan)) = NaN;
-    endif
-    [~, ~, outB] = unique (outB, 'rows');
-    tfNan = any (isnanny (outB), 2);
-    if any (tfNan)
-      ixNan = find (tfNan);
-      outB(ismember (outB, ixNan)) = NaN;
-    endif
-  endif
-else
-	% General case: rely on UNIQUE() trick to identify an ordered set of values
-	[outA, outB] = identityProxyUsingUnique (a, b);
-endif
-endfunction
-
-function out = identityProxyOneInput (x)
-if isnumeric (x)
-  if isa (x, 'double')
-    out = x;
-  else
-    out = double (x);
-    % Handle possible underflow for 64-bit ints
-    if isa (x, 'int64') || isa (x, 'uint64')
-      checkX = cast (out, class (x));
-      if ~isequal (checkX, x)
-        % Underflow occurred. Fall back to using the UNIQUE trick
-        out = identityProxyUsingUnique (x);
-        return
-      endif
-    endif
-  endif
-else
-  out = identityProxyUsingUnique (x);
-endif
-endfunction
-
-function [outA, outB] = identityProxyUsingUnique (a, b)
-%IDENTITYPROXYUSINGUNIQUE Compute proxy values using output of UNIQUE
-%
-% Computes proxy keys for row values of arbitrary types using unique() to identify
-% their unique values. Inputs must support unique(), and have it respect a total
-% ordering on their values. Inputs must support unique(..., 'rows') if size(x, 2)
-% is greater than 1.
-
-if nargin == 1
-  if size (a, 2) > 1
-    [uA, ixA, outA] = unique (a, 'rows');
-  else
-    [uA, ixA, outA] = unique (a);
-  endif
-  tfNan = any (isnanny (uA), 2);
-  if any (tfNan)
-    ixNan = find (tfNan);
-    outA(ismember (outA, ixNan)) = NaN;
-  endif
-else
-  if size (a, 2) ~= size (b, 2)
-    error ('Inputs must be same size along dimension 2; got %d-wide vs %d-wide', ...
-      size (a, 2), size (b, 2));
-  endif
-  if size (a, 2) == 1
-    [u, ix, jx] = unique ([a; b]);
-  else 
-    [u, ix, jx] = unique ([a; b], 'rows');
-  endif
-  tfNan = any (isnanny (u), 2);
-  if any (tfNan)
-    ixNan = find (tfNan);
-    jx(ismember (jx, ixNan)) = NaN;
-  endif
-  nRowsA = size (a, 1);
-  outA = jx(1:nRowsA);
-  outB = jx(nRowsA+1:end);
-endif
-endfunction
-
-function out = size2str (sz)
-%SIZE2STR Format an array size for display
-%
-% out = size2str (sz)
-%
-% Sz is an array of dimension sizes, in the format returned by SIZE.
-%
-% Examples:
-%
-% size2str (magic (3))
-
-strs = cell (size (sz));
-for i = 1:numel (sz)
-	strs{i} = sprintf ('%d', sz(i));
-endfor
-
-out = strjoin (strs, '-by-');
-endfunction
-
-function out = dispstrs (x)
-  %DISPSTRS Display strings for arbitrary matrix
-  if isnumeric (x) || islogical (x)
-    out = reshape (strtrim (cellstr (num2str (x(:)))), size (x));
-  elseif iscellstr (x) || isa (x, 'string')
-    out = cellstr (x);
-  elseif isa (x, 'datetime')
-    out = datestrs (x);    
-  elseif ischar (x)
-    out = num2cell (x);
-  else
-    out = repmat ({sprintf('1-by-1 %s', class(x))}, size (x));
-  endif
-endfunction

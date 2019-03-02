@@ -13,6 +13,10 @@ function out = isnanny (x)
   %
   % isnanny() smooths over those differences so you can call it polymorphically on
   % any input type.
+  %
+  % The function name "isnanny" should be read as "is NaN-y" (that is, "is like a
+  % NaN"), not "is nanny" (that is, "is like someone who is hired to take care of
+  % young children").
   
   if isnumeric (x)
     out = isnan (x);
