@@ -447,6 +447,44 @@ classdef table
       out.VariableValues{ixVar} = value;
     end
     
+    function out = head (this, k)
+      %HEAD Get first K rows of table
+      %
+      % out = head (this, k)
+      %
+      % Returns the first k rows of this. K defaults to 8.
+      %
+      % If there are less than k rows in this, returns all rows.
+      if nargin < 2 || isempty (k)
+        k = 8;
+      endif
+      nRows = height (this);
+      if nRows < k
+        out = this;
+        return;
+      endif
+      out = subsetRows (this, 1:k);
+    endfunction
+    
+    function out = tail (this, k)
+      %TAIL Get last K rows of table
+      %
+      % out = tail (this, k)
+      %
+      % Returns the last k rows of this. K defaults to 8.
+      %
+      % If there are less than k rows in this, returns all rows.
+      if nargin < 2 || isempty (k)
+        k = 8;
+      endif
+      nRows = height (this);
+      if nRows < k
+        out = this;
+        return;
+      endif
+      out = subsetRows (this, [(nRows - (k - 1)):nRows]);
+    endfunction
+    
     % Relational operations
     
     function [out, index] = sortrows (this, varargin)
