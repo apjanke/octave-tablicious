@@ -1542,6 +1542,7 @@ classdef table
       endif
     endfunction
 
+    % 
     % Prohibited operations
     
     % TODO: Some of these could probably actually be allowed in certain restricted
@@ -1570,6 +1571,14 @@ classdef table
 
     function out = reshape (this, varargin)
       error ('Function reshape is not supported for tables');
+    end
+
+    function out = resize (this, varargin)
+      error ('Function resize is not supported for tables');
+    end
+
+    function out = vec (this, varargin)
+      error ('Function vec is not supported for tables');
     end
   end
   
