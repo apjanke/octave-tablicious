@@ -1148,6 +1148,92 @@ classdef table
       
     endfunction
 
+    % Function application
+    
+    function out = varfun (func, A, varargin)
+      %VARFUN Apply function to table variables
+      %
+      % out = varfun (func, A)
+      % out = varfun (..., 'OutputFormat', outputFormat)
+      % out = varfun (..., 'InputVariables', vars)
+      % out = varfun (..., 'ErrorHandler', errorFcn)
+      mustBeType (A, 'table');
+      validOptions = {'InputVariables', 'GroupingVariables', 'OutputFormat', 'ErrorHandler'};
+      [opts, args] = peelOffNameValueOptions (varargin, validOptions);
+      unimplementedOptions = {'GroupingVariables', 'ErrorHandler'};
+      for i = 1:numel (unimplementedOptions)
+        if isfield (opts, unimplementedOptions{i})
+          error ('table.varfun: Option %s is not yet implemented.', unimplementedOptions{i});
+        endif
+      endfor
+      if ~isa (func, 'function_handle')
+        error ('table.varfun: func must be a function handle; got a %s', class (func));
+      endif
+      outputFormat = 'table';
+      if isfield (opts, 'OutputFormat')
+        outputFormat = opts.OutputFormat;
+      endif
+      validOutputFormats = {'table','uniform','cell'};
+      if ~ismember (outputFormat, validOutputFormats);
+        error ('table.varfun: Invalid OutputFormat: %s. Must be one of: %s', ...
+          outputFormat, strjoin (validOutputFormats, ', '));
+      endif
+      errorHandler = [];
+      if isfield (opts, 'ErrorHandler')
+        if ~isa (opts.ErrorHandler, 'function_handle')
+          error ('table.varfun: ErrorHandler must be a function handle; got a %s', ...
+            class (opts.ErrorHandler));
+        endif
+        errorHandler = opts.ErrorHandler;
+      endif
+      
+      tbl = A;
+      if isfield (opts, 'InputVariables')
+        ixInVars = resolveVarRef (tbl, opts.InputVariables);
+      else
+        ixInVars = 1:width (tbl);
+      endif
+      
+      outVals = cell (1, numel (ixInVars));
+      for i = 1:numel (ixInVars)
+        ixInVar = ixInVars(i);
+        varVal = tbl.VariableValues{ixInVar};
+        if isempty (errorHandler)
+          fcnOut = feval (func, varVal);
+        else
+          try
+            fcnOut = feval (func, varVal);
+          catch err
+            fcnOut = feval (errorHandler, varVal);
+          end_try_catch
+        endif
+        outVals{i} = fcnOut;
+      endfor
+
+      switch outputFormat
+        case 'cell'
+          out = outVals;
+        case 'table'
+          out = table (outVals{:}, 'VariableNames', tbl.VariableNames);
+        case 'uniform'
+          tfScalar = cellfun('isscalar', outVals);
+          if ~all (tfScalar)
+            ixFirstBad = find(~tfScalar, 1);
+            error (['table.varfun: For OutputFormat ''uniform'', all function ' ...
+              'outputs must be scalar; output %d was %d long'], ...
+              ixFirstBad, numel (outVals{ixFirstBad}));
+          endif
+          outClasses = cellfun ('class', outVals, 'UniformOutput', false);
+          uOutClasses = unique (outClasses);
+          if numel (uOutClasses) > 1
+            error (['table.varfun: For OutputFormat ''uniform'', all function ' ...
+              'outputs must be the same type; got a mix of: %s'], ...
+              strjoin (uOutClasses, ', '));
+          endif
+          out = cat (2, outVals{:});
+      endswitch
+    endfunction
+    
     % Prohibited operations
 
     function out = transpose (this,varargin)
