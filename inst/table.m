@@ -828,6 +828,29 @@ classdef table
       C = [subsetRows (A, ia); subsetRows (B, ib)];      
     endfunction
     
+    function [C, ia, ib] = setxor (A, B)
+      %SETXOR Set exclusive OR
+      %
+      % [C, ia, ib] = setxor (A, B)
+      %
+      % Computes the setwise exclusive OR of two tables. The set XOR is defined
+      % as the set of rows that are present in one array or another, but not in
+      % both.
+      %
+      % Returns:
+      % C - A table containing the row values in the set XOR of A and B.
+      % ia - Row indexes into A of the rows from A included in C.
+      % ib - Row indexes into B of the rows from B included in C.
+      
+      % Input handling
+      [A, B] = congruentize (A, B);
+            
+      % Set logic
+      [pkA, pkB] = proxykeysForMatrixes (A, B);
+      [~, ia, ib] = setxor (pkA, pkB, 'rows');
+      C = [subsetRows (A, ia); subsetRows (B, ib)];      
+    endfunction
+    
     function [C, ia] = setdiff (A, B)
       %SETDIFF Set difference
       %
@@ -847,6 +870,25 @@ classdef table
       [pkA, pkB] = proxykeysForMatrixes (A, B);
       [~, ia] = setdiff (pkA, pkB, 'rows');
       C = subsetRows (A, ia);
+    endfunction
+    
+    function [tf, loc] = ismember (A, B)
+      %ISMEMBER Set membership (table rows that are members of another table)
+      %
+      % [tf, loc] = ismember (A, B)
+      %
+      % Finds rows in A that are members of B.
+      %
+      % Returns:
+      % tf - A logical vector indicating whether each A(i,:) was present in B.
+      % loc - Indexes into B of rows that were found.
+      
+      % Input handling
+      [A, B] = congruentize (A, B);
+            
+      % Set logic
+      [pkA, pkB] = proxykeysForMatrixes (A, B);
+      [tf, loc] = ismember (pkA, pkB, 'rows');
     endfunction
     
     % Prohibited operations
