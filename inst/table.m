@@ -652,6 +652,86 @@ classdef table
       out = [outA outB];
 
     endfunction
+  
+    function [outA, ixA, outB, ixB] = semijoin (A, B)
+      %SEMIJOIN Natural semijoin
+      %
+      % [outA, ixA, outB, ixB] = semijoin (A, B)
+      %
+      % Returns:
+      % outA - all the rows in A with matching row(s) in B
+      % ixA - the row indexes into A which produced outA
+      % outB - all the rows in B with matching row(s) in A
+      % ixB - the row indexes into B which produced outB
+      
+      % Developer note: This is almost exactly the same as semidiff, just with
+      % inverted ismember() tests. See if the implementations can be refactored
+      % together.
+      
+      % Input handling
+      if !isa (A, 'table')
+        A = table (A);
+      endif
+      if !isa (B, 'table')
+        B = table (B);
+      endif
+      
+      % Join logic
+      keyVarNames = intersect_stable (A.VariableNames, B.VariableNames);
+      nonKeyVarsB = setdiff_stable (B.VariableNames, keyVarNames);
+      if isempty (keyVarNames)
+        % TODO: There's probably a correct degenerate output for this, but I don't
+        % know if it should be "all rows" or "no rows" - apjanke
+        error ('table.semijoin: Cannot semijoin: inputs have no variable names in common');
+      endif
+      keysA = subsetVars (A, keyVarNames);
+      keysB = subsetVars (B, keyVarNames);
+      [pkA, pkB] = proxykeysForMatrixes (keysA, keysB);
+      ixA = find (ismember (pkA, pkB, 'rows'));
+      outA = subsetRows (A, ixA);
+      if nargout > 2
+        ixB = find (ismember (pkB, pkA, 'rows'));
+        outB = subsetRows (B, ixB);
+      endif
+    endfunction
+
+    function [outA, ixA, outB, ixB] = semidiff (A, B)
+      %SEMIDIFF Natural semidifference
+      %
+      % [outA, ixA, outB, ixB] = semidiff (A, B)
+      %
+      % Returns:
+      % outA - all the rows in A with no matching row in B
+      % ixA - the row indexes into A which produced outA
+      % outB - all the rows in B with no matching row in A
+      % ixB - the row indexes into B which produced outB
+      
+      % Input handling
+      if !isa (A, 'table')
+        A = table (A);
+      endif
+      if !isa (B, 'table')
+        B = table (B);
+      endif
+      
+      % Join logic
+      keyVarNames = intersect_stable (A.VariableNames, B.VariableNames);
+      nonKeyVarsB = setdiff_stable (B.VariableNames, keyVarNames);
+      if isempty (keyVarNames)
+        % TODO: There's probably a correct degenerate output for this, but I don't
+        % know if it should be "all rows" or "no rows" - apjanke
+        error ('table.semidiff: Cannot semidiff: inputs have no variable names in common');
+      endif
+      keysA = subsetVars (A, keyVarNames);
+      keysB = subsetVars (B, keyVarNames);
+      [pkA, pkB] = proxykeysForMatrixes (keysA, keysB);
+      ixA = find (!ismember (pkA, pkB, 'rows'));
+      outA = subsetRows (A, ixA);
+      if nargout > 2
+        ixB = find (!ismember (pkB, pkA, 'rows'));
+        outB = subsetRows (B, ixB);
+      endif
+    endfunction
     
     % Prohibited operations
 
