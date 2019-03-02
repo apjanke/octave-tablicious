@@ -490,7 +490,7 @@ classdef table
           else
             [~, ix] = sortrows (varVal, optArgs{:});
           endif
-          index = index(ix)
+          index = index(ix);
           tmp = subsetRows (tmp, ix);
         endfor
         out = subsetRows (this, index);
