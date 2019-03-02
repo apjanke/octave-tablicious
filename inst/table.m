@@ -317,6 +317,11 @@ classdef table
       error ('table.size_equal: size_equal is not yet implemented for tables');
     endfunction
   
+    function out = sizeof (this)
+      %SIZEOF Size of this in bytes.
+      error ('table.sizeof: sizeof is not yet implemented for tables');
+    endfunction
+
     function out = height (this)
       if isempty (this.VariableValues)
         out = 0;
