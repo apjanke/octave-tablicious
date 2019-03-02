@@ -218,6 +218,10 @@ classdef table
       out = height (this) == 1 && width (this) == 1;
     end
     
+    function out = hasrownames (this)
+      out = ~isempty (this.RowNames);
+    endfunction
+    
     function out = vertcat (varargin)
       args = varargin;
       for i = 1:numel (args)
@@ -568,11 +572,62 @@ classdef table
       if ~all (tf)
         error ('table.join: Some rows in A had no corresponding key values in B');
       endif
+      outA = A;
       nonKeysB = subsetVars (B, nonKeyVarsB);
       outB = subsetRows (nonKeysB, ib);
-      C = [A outB];
+      C = [outA outB];
     endfunction
 
+    function [out, ixs] = realjoin(A, B)
+      %REALJOIN "Real" relational inner join, without key restrictions
+      %
+      % [out, ixs] = realjoin(A, B)
+      %
+      % Performs a "real" relational natural inner join between two tables, 
+      % without the key restrictions that JOIN imposes.
+      %
+      % Returns:
+      %   out - a table containing the result of joining A and B, with RowNames
+      %         removed.
+      %   ixs - an n-by-2 double matrix where ixs(i,:) is [ixA ixB], which are
+      %         the indexes from A and B containing the input rows that resulted
+      %         in this output row.
+      %
+      % RowNames on the output may be added in a future revision.
+      %
+      % This is an Octave extension.
+      
+      % Input handling
+      if !isa (A, 'table')
+        A = table (A);
+      endif
+      if !isa (B, 'table')
+        B = table (B);
+      endif
+      if hasrownames (A)
+        error ('table.realjoin: Input A may not have row names');
+      endif
+      if hasrownames (B)
+        error ('table.realjoin: Input B may not have row names');
+      endif
+      
+      % Join logic
+      keyVarNames = intersect_stable (A.VariableNames, B.VariableNames);
+      nonKeyVarsB = setdiff_stable (B.VariableNames, keyVarNames);
+      if isempty (keyVarNames)
+        error ('table.realjoin: Cannot join: inputs have no variable names in common');
+      endif
+      keysA = subsetVars (A, keyVarNames);
+      keysB = subsetVars (B, keyVarNames);
+      [pkA, pkB] = proxykeysForMatrixes (keysA, keysB);
+      ixs = matchrows (pkA, pkB);
+      outA = subsetRows (A, ixs(:,1));
+      nonKeysB = subsetVars (B, nonKeyVarsB);
+      outB = subsetRows (nonKeysB, ixs(:,2));
+      out = [outA outB];
+
+    endfunction
+    
     % Prohibited operations
 
     function out = transpose (this,varargin)
