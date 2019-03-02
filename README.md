@@ -37,3 +37,7 @@ Real user documentation is hopefully coming soon.
 ## Author
 
 Table is created by [Andrew Janke](https://apjanke.net).
+
+## Acknowledgments
+
+Thanks to [Polkadot Stingray](https://polkadotstingray-official.jimdo.com/) for [powering](https://www.youtube.com/watch?v=3ad4NsEy1tg) [my](https://www.youtube.com/watch?v=-zlq6eMycLA) [coding](https://www.youtube.com/watch?v=1z4RosaB-UQ) [sessions](https://www.youtube.com/watch?v=p6oVXuLsbxM).
