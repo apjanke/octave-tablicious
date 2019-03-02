@@ -171,7 +171,7 @@ classdef table
     endfunction
 
     function out = size (this)
-      out = [height (this), width (this)];
+      out = [height(this), width(this)];
     end
     
     function out = ndims (this)
