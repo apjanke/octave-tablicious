@@ -521,11 +521,36 @@ classdef table
       endif
     endfunction
     
-    function [out, indx] = unique (this)
+    function [out, ia, ic] = unique (this, varargin)
       %UNIQUE Unique row values
+      %
+      % [out, ia, ic] = unique (this)
+      % [out, ia, ic] = unique (..., 'first'/'last')
+      % [out, ia, ic] = unique (..., 'legacy')
+      % [out, ia, ic] = unique (..., 'stable'/'sorted')
+      %
+      % The 'legacy', 'stable', and 'sorted' flags are currently unsupported 
+      % because Octave's core unique() function does not support them. If you use
+      % them, you will get an error with a possibly-obsure error message.
+      %
+      % You can also pass a 'rows' flag, but it is effectively ignored, because
+      % row-wise operation is the only mode supported for unique() on tables. 
+      validFlags = {'rows', 'legacy', 'stable', 'sorted', 'first', 'last'};
+      redundantFlags = {'rows'};
+      if ~iscellstr (varargin)
+        error ('table.unique: Invalid inputs: args 2 and later must be char flags');
+      endif
+      flags = varargin;
+      invalidFlags = setdiff (varargin, validFlags);
+      if ~isempty (invalidFlags)
+        error ('table.unique: Invalid flags: %s', strjoin(invalidFlags, ', '));
+      endif
+      tfRedundant = ismember (flags, redundantFlags);
+      flags(tfRedundant) = [];
+
       pk = proxykeysForMatrixes (this);
-      [uPk, indx] = unique (pk, 'rows');
-      out = subsetRows (this, indx);
+      [uPk, ia, ic] = unique (pk, 'rows', flags{:});
+      out = subsetRows (this, ia);
     endfunction
     
     function [C, ib] = join (A, B, varargin)
