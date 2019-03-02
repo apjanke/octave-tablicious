@@ -565,8 +565,24 @@ classdef table
     
     function out = issortedrows (this, varargin)
       %ISSORTEDROWS Determine if table rows are sorted
+      %
+      % TODO: Document my signature.
       [~, ix] = sortrows (this, varargin{:});
       out = isequal (ix, 1:height (this));
+    endfunction
+    
+    function [out, ia] = topkrows (this, k, varargin)
+      %TOPKROWS Top rows in sorted order
+      %
+      % TODO: Document my signature.
+      [sorted, ix] = sortrows (this, varargin);
+      if k > height (sorted)
+        out = sorted;
+        ia = ix;
+      else
+        out = sorted(1:k,:);
+        ia = ix(1:k);
+      end
     endfunction
 
     function [out, ia, ic] = unique (this, varargin)
