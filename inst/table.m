@@ -188,6 +188,52 @@ classdef table
         endif
       endfor
     endfunction
+    
+    function out = table2struct (this, varargin)
+      %TABLE2STRUCT Convert table to structure array
+      %
+      % Converts this to a scalar structure or structure array.
+      %
+      % Row names are not included in the output struct. To include them, you
+      % must add them manually:
+      %   s = table2struct (tbl, 'ToScalar', true);
+      %   s.RowNames = tbl.Properties.RowNames;
+      %
+      % Returns a scalar struct or struct array, depending on the value of the
+      % ToScalar option.
+      [opts, args] = peelOffNameValueOptions (varargin, {'ToScalar'});
+      toScalar = false;
+      if isfield (opts, 'ToScalar')
+        mustBeType (opts.ToScalar, 'logical');
+        mustBeScalar (opts.ToScalar);
+        toScalar = opts.ToScalar;
+      endif
+      
+      if toScalar
+        out = struct;
+        for i = 1:width (this)
+          out.(this.VariableNames{i}) = this.VariableValues{i};
+        endfor
+      else
+        %TODO: Figure out how to implement this efficiently using cell2struct
+        s0 = struct;
+        for i = 1:width (this)
+          s0.(this.VariableNames{i}) = [];
+        endfor
+        out = repmat (s0, [height(this) 1]);
+        for iVar = 1:width (this)
+          varVal = this.VariableValues{iVar};
+          for iRow = 1:height (this)
+            if iscell (varVal) && size (varVal, 2) == 1
+              elVal = varVal{iRow};
+            else
+              elVal = varVal(iRow,:);
+            endif
+            out(iRow).(this.VariableNames{iVar}) = elVal;
+          endfor
+        endfor
+      endif
+    endfunction
 
     % Structural stuff
     
