@@ -1114,6 +1114,40 @@ classdef table
       tf = tfRowHasMissing;
     endfunction
 
+    function out = standardizeMissing (this, indicator, varargin)
+      %STANDARDIZEMISSING Insert standard missing values
+      %
+      % This method depends on the implementation of the global standardizeMissing()
+      % function, which is not yet implemented in Octave, so any use of this method
+      % is likely to error out.
+      narginchk (2, 4);
+      mustBeType (this, 'table');
+      [opts, args] = peelOffNameValueOptions (varargin, {'DataVariables'});
+      if ~isempty (args)
+        error ('table.standardizeMissing: Too many input arguments');
+      endif
+
+      if isfield (opts, 'DataVariables')
+        dataVarsSelector = opts.DataVariables;
+        if isa (dataVarsSelector, 'function_handle')
+          error ('table.standardizeMissing: function handle DataVariables option is not implemented.');
+        else
+          ixDataVars = resolveVarRef (dataVarsSelector);
+        endif
+      else
+        ixDataVars = 1:width (this);
+      endif
+      
+      out = this;
+      for i = 1:numel (ixDataVars)
+        ixDataVar = ixDataVars(i);
+        val = this.VariableValues{ixDataVar};
+        standardized = standardizeMissing (val, indicator);
+        out.VariableValues{ixDataVar} = standardized;
+      endfor
+      
+    endfunction
+
     % Prohibited operations
 
     function out = transpose (this,varargin)
