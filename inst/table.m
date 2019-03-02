@@ -164,6 +164,31 @@ classdef table
       fprintf ('%s\n', repmat ('-', [1 totalWidth]));
     end
     
+    % Type conversion
+    
+    function out = table2cell (this)
+      %TABLE2CELL Convert table to cell
+      %
+      % out = table2cell (this)
+      %
+      % Each variable in this becomes a column in the output.
+      %
+      % Returns a cell array the same size as this.
+      out = cell (size (this));
+      for i = 1:width (this)
+        varVal = this.VariableValues{i};
+        if iscell (varVal)
+          if size (varVal, 2) == 1
+            out(:,i) = varVal;
+          else
+            out(:,i) = mat2cell (varVal, ones (1, size (varVal, 2)));
+          endif
+        else
+          out(:,i) = num2cell (varVal, 2);
+        endif
+      endfor
+    endfunction
+
     % Structural stuff
     
     function out = istable (this)
