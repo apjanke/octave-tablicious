@@ -234,6 +234,19 @@ classdef table
         endfor
       endif
     endfunction
+    
+    function out = table2array (this)
+      %TABLE2ARRAY Convert table to homogeneous array
+      if isempty (this)
+        out = [];
+        return
+      endif
+      % Wow, this is an easy implementation
+      % TODO: Doesn't work for mixed cell and non-cell variable values, because of the
+      % implicit conversion of numerics to single cells. Dunno if we want to add
+      % more graceful support for that or not.
+      out = cat (2, this.VariableValues{:});
+    endfunction
 
     % Structural stuff
     
