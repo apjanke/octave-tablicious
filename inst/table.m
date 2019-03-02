@@ -1030,7 +1030,7 @@ classdef table
       endif
     endfunction
     
-    function out = cartesian (A, B)
+    function [out, ixs] = cartesian (A, B)
       %CARTESIAN Cartesian product of two tables
       %
       % out = cartesian (A, B)
@@ -1054,10 +1054,8 @@ classdef table
       % dependent. TODO: Determine if we can lock this behavior down to a fixed,
       % defined ordering, without killing performance.
       
-      % FIXME: prettyprint() on the results of this errors out sometimes. E.g.:
-      %   [s,p,sp] = table_examples.SpDb
-      %   pp(cartesian(s(:,1:3), p))   % throws error
-      % This means a bug in either cartesian() or (more likely) prettyprint()
+      % Developer's note: The second argout, ixs, is for table's internal use,
+      % and is thus undocumented.
       
       mustBeA (A, 'table');
       mustBeA (B, 'table');
@@ -1070,10 +1068,11 @@ classdef table
       
       nRowsA = height (A);
       nRowsB = height (B);
-      ixA = 1:nRowsA;
-      ixB = 1:nRowsB;
+      ixA = (1:nRowsA)';
+      ixB = (1:nRowsB)';
       ixAOut = repelem (ixA, nRowsB);
-      ixBOut = repmat (ixB, nRowsA);
+      ixBOut = repmat (ixB, [nRowsA 1]);
+      ixs = [ixAOut ixBOut];
       outA = subsetRows (A, ixAOut);
       outB = subsetRows (B, ixBOut);
       out = [outA outB];
