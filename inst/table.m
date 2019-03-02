@@ -122,10 +122,14 @@ classdef table
         fprintf ('Empty %s %s\n', size2str (size (this)), class (this));
         return;
       end
-      nCols = width (this);
-      colNames = this.VariableNames;
-      colStrs = cell (1, nCols);
-      colWidths = NaN (1, nCols);
+      nVars = width (this);
+      varNames = this.VariableNames;
+      % Here, "cols" means output columns, not data columns. Each data variable
+      % will be displayed in a single output column.
+      %FIXME: This display logic might be broken for multi-column variables.
+      colNames = varNames;
+      colStrs = cell (1, nVars);
+      colWidths = NaN (1, nVars);
       for iVar = 1:numel (this.VariableValues)
         vals = this.VariableValues{iVar};
         strs = dispstrs (vals);
@@ -137,18 +141,18 @@ classdef table
         colWidths(iVar) = max (cellfun ('numel', lines));
       end
       colWidths;
-      nameWidths = cellfun ('numel', colNames);
+      nameWidths = cellfun ('numel', varNames);
       colWidths = max ([nameWidths; colWidths]);
-      totalWidth = sum (colWidths) + 4 + (3 * (nCols - 1));
+      totalWidth = sum (colWidths) + 4 + (3 * (nVars - 1));
       elementStrs = cat (2, colStrs{:});
       
-      rowFmts = cell (1, nCols);
-      for i = 1:nCols
+      rowFmts = cell (1, nVars);
+      for i = 1:nVars
         rowFmts{i} = ['%-' num2str(colWidths(i)) 's'];
       end
       rowFmt = ['| ' strjoin(rowFmts, ' | ')  ' |' sprintf('\n')];
       fprintf ('%s\n', repmat ('-', [1 totalWidth]));
-      fprintf (rowFmt, colNames{:});
+      fprintf (rowFmt, varNames{:});
       fprintf ('%s\n', repmat ('-', [1 totalWidth]));
       for i = 1:height (this)
         fprintf (rowFmt, elementStrs{i,:});
@@ -221,7 +225,7 @@ classdef table
           args{i} = table (args{i});
         end
       end
-      mustBeAllSameCols (args{:});
+      mustBeAllSameVars (args{:});
       out = args{1};
       for i = 2:numel (args)
         if isempty (out.RowNames)
@@ -231,8 +235,8 @@ classdef table
         else
           out.RowNames = [out.RowNames; args{i}.RowNames];
         end
-        for iCol = 1:width (out)
-          out.VariableValues{iCol} = [out.VariableValues{iCol}; args{i}.VariableValues{iCol}];
+        for iVar = 1:width (out)
+          out.VariableValues{iVar} = [out.VariableValues{iVar}; args{i}.VariableValues{iVar}];
         end
       end
     end
@@ -274,27 +278,27 @@ classdef table
           if numel (s.subs) ~= 2
             error ('table.subsref: ()-indexing of table requires exactly two arguments');
           end
-          [ixRow, ixCol] = resolveRowColRefs (this, s.subs{1}, s.subs{2});
+          [ixRow, ixVar] = resolveRowVarRefs (this, s.subs{1}, s.subs{2});
           out = this;
           out = subsetRows (out, ixRow);
-          out = subsetCols (out, ixCol);
+          out = subsetCols (out, ixVar);
         case '{}'
           if numel (s.subs) ~= 2
             error ('table.subsref: {}-indexing of table requires exactly two arguments');
           end
-          [ixRow, ixCol] = resolveRowColRefs (this, s.subs{1}, s.subs{2});
-          if numel (ixRow) ~= 1 && numel (ixCol) ~= 1
+          [ixRow, ixVar] = resolveRowVarRefs (this, s.subs{1}, s.subs{2});
+          if numel (ixRow) ~= 1 && numel (ixVar) ~= 1
             error('table.subsref: {}-indexing of table requires one of the inputs to be scalar');
           end
           %FIXME: I'm not sure how to handle the signature here yet
-          if numel (ixCol) > 1
-            error ('table.subsref: {}-indexing across multiple columns is currently unimplemented');
+          if numel (ixVar) > 1
+            error ('table.subsref: {}-indexing across multiple variables is currently unimplemented');
           end
           if numel (ixRow) > 1
             error ('table.subsref: {}-indexing across multiple rows is currently unimplemented');
           end
-          colData = this.VariableValues{ixCol};
-          out = colData(ixRow);
+          varData = this.VariableValues{ixVar};
+          out = varData(ixRow);
         case '.'
           name = s.subs;
           if ~ischar (name)
@@ -329,53 +333,57 @@ classdef table
           if numel (s.subs) ~= 2
             error('table.subsasgn: {}-indexing of table requires exactly two arguments');
           end
-          [ixRow, ixCol] = resolveRowColRefs (this, s.subs{1}, s.subs{2});
-          if ~isscalar (ixCol)
+          [ixRow, ixVar] = resolveRowVarRefs (this, s.subs{1}, s.subs{2});
+          if ~isscalar (ixVar)
             error ('table.subsasgn: {}-indexing must reference a single variable; got %d', ...
-              numel (ixCol));
+              numel (ixVar));
           end
-          colData = this.VariableValues{ixCol};
-          colData(ixRow) = rhs;
-          out.VariableValues{ixCol} = colData;
+          varData = this.VariableValues{ixVar};
+          varData(ixRow) = rhs;
+          out.VariableValues{ixVar} = varData;
         case '.'
           out = setCol (this, s.subs, rhs);
       end
     end
     
-    function ixCol = resolveColRef (this, colRef)
-      if isnumeric (colRef) || islogical (colRef)
-        ixCol = colRef;
-      elseif isequal (colRef, ':')
-        ixCol = 1:width (this);
-      elseif ischar (colRef) || iscellstr (colRef)
-        colRef = cellstr (colRef);
-        [tf, ixCol] = ismember (colRef, this.VariableNames);
+    function ixVar = resolveVarRef (this, varRef)
+      %RESOLVEVARREF Resolve a reference to variables
+      %
+      % A varRef is a numeric or char/cellstr indicator of which variables within
+      % this table are being referenced.
+      if isnumeric (varRef) || islogical (varRef)
+        ixVar = varRef;
+      elseif isequal (varRef, ':')
+        ixVar = 1:width (this);
+      elseif ischar (varRef) || iscellstr (varRef)
+        varRef = cellstr (varRef);
+        [tf, ixVar] = ismember (varRef, this.VariableNames);
         if ~all (tf)
-          error ('table.resolveColRef: No such variable in table: %s', strjoin (colRef(~tf), ', '));
+          error ('table.resolveVarRef: No such variable in table: %s', strjoin (varRef(~tf), ', '));
         end
       else
-        error ('table.resolveColRef: Unsupported column indexing operand type: %s', class (colRef));
+        error ('table.resolveVarRef: Unsupported variable indexing operand type: %s', class (varRef));
       end
     end
 
-    function [ixRow, ixCol] = resolveRowColRefs (this, rowRef, colRef)
+    function [ixRow, ixVar] = resolveRowVarRefs (this, rowRef, varRef)
       if isnumeric (rowRef) || islogical (rowRef)
         ixRow = rowRef;
       elseif iscellstr (rowRef)
         if isempty (this.RowNames)
-          error ('table.resolveRowColRefs: this table has no RowNames');
+          error ('table.resolveRowVarRefs: this table has no RowNames');
         end
         [tf, ixRow] = ismember (rowRef, this.RowNames);
         if ~all (tf)
-          error ('table.resolveRowColRefs: No such named row in table: %s', strjoin (rowRef(~tf), ', '));
+          error ('table.resolveRowVarRefs: No such named row in table: %s', strjoin (rowRef(~tf), ', '));
         end
       elseif isequal (rowRef, ':')
         ixRow = 1:width (this);
       else
-        error ('table.resolveRowColRefs: Unsupported row indexing operand type: %s', class (rowRef));
+        error ('table.resolveRowVarRefs: Unsupported row indexing operand type: %s', class (rowRef));
       end
       
-      ixCol = resolveColRef (this, colRef);
+      ixVar = resolveVarRef (this, varRef);
     end
     
     function out = subsetRows (this, ixRows)
@@ -396,27 +404,39 @@ classdef table
       end
     end
     
-    function out = subsetCols (this, ixCols)
-      if iscellstr (ixCols)
-        [tf,ix] = ismember (ixCols, this.VariableNames);
-        if ~all (tf)
-          error ('table.subsetCols: no such columns in this');
+    function out = subsetVars (this, ixVars)
+      %SUBSETVARS Subset this along its variables
+
+      if ischar (ixVars)
+        if ~isequal (ixVars, ':')
+          ixVars = cellstr (ixVars);
         endif
-        ixCols = ix;
+      endif
+      if iscellstr (ixVars)
+        [tf,ix] = ismember (ixVars, this.VariableNames);
+        if ~all (tf)
+          error ('table.subsetVars: no such variables in this table: %s', ...
+            strjoin (ixVars(~tf), ', '));
+        endif
+        ixVars = ix;
       endif
       out = this;
-      out.VariableNames = this.VariableNames(ixCols);
-      out.VariableValues = this.VariableValues(ixCols);
+      out.VariableNames = this.VariableNames(ixVars);
+      out.VariableValues = this.VariableValues(ixVars);
     end
     
-    function out = setcol (this, colRef, value)
-      ixCol = resolveColRef (this, colRef);
+    function out = setvar (this, varRef, value)
+      %SETVAR Set value for a variable
+      %
+      % This sets (replaces) the value for a variable that already exists in this.
+      % It cannot be used to add a new variable.
+      ixVar = resolveVarRef (this, varRef);
       out = this;
       if size (value, 1) ~= height (this)
-        error ('table.setcol: Inconsistent dimensions: table is height %d, input is height %d', ...
+        error ('table.setvar: Inconsistent dimensions: table is height %d, input is height %d', ...
           height (this), size (value, 1));
       end
-      out.VariableValues{ixCol} = value;
+      out.VariableValues{ixVar} = value;
     end
     
     % Relational operations
@@ -462,30 +482,30 @@ classdef table
         out = subsetRows (this, index);
       else
         % General case
-        ixCols = resolveColRef (this, varRef);
+        ixVars = resolveVarRef (this, varRef);
         if ischar (direction)
           direction = cellstr (direction);
         endif
         if isscalar (direction)
-          directions = repmat (direction, size (ixCols));
+          directions = repmat (direction, size (ixVars));
         else
           directions = direction;
         endif
-        if ~isequal (size (directions), size (ixCols))
+        if ~isequal (size (directions), size (ixVars))
           error ('table.sortrows: inconsistent size between direction and vars specifier');
         endif
         % Perform a radix sort on the referenced variables
         index = 1:height (this);
         tmp = this;
-        for iStep = 1:numel(ixCols)
-          iCol = numel(ixCols) - iStep + 1;
-          ixCol = ixCols(iCol);
-          varVal = tmp.VariableValues{ixCol};
+        for iStep = 1:numel(ixVars)
+          iVar = numel(ixVars) - iStep + 1;
+          ixVar = ixVars(iVar);
+          varVal = tmp.VariableValues{ixVar};
           %Convert Matlab-style 'descend' arg to Octave-style negative column index
           %TODO: Add support for Octave-style negative column indexes.
           %TODO: Wrap this arg munging logic in a sortrows_matlabby() function
           %TODO: Better error message when optArgs are is present.
-          if isequal (directions{iCol}, 'descend')
+          if isequal (directions{iVar}, 'descend')
             [~, ix] = sortrows (varVal, -1 * (1:size (varVal, 2)), optArgs{:});
           else
             [~, ix] = sortrows (varVal, optArgs{:});
@@ -537,8 +557,8 @@ classdef table
       if isempty (keyVarNames)
         error ('table.join: Cannot join: inputs have no variable names in common');
       endif
-      keysA = subsetCols (A, keyVarNames);
-      keysB = subsetCols (B, keyVarNames);
+      keysA = subsetVars (A, keyVarNames);
+      keysB = subsetVars (B, keyVarNames);
       uKeysB = unique (keysB);
       if height (uKeysB) < height (keysB)
         error ('table.join: Non-unique keys in B');
@@ -548,7 +568,7 @@ classdef table
       if ~all (tf)
         error ('table.join: Some rows in A had no corresponding key values in B');
       endif
-      nonKeysB = subsetCols (B, nonKeyVarsB);
+      nonKeysB = subsetVars (B, nonKeyVarsB);
       outB = subsetRows (nonKeysB, ib);
       C = [A outB];
     endfunction
@@ -585,17 +605,17 @@ classdef table
       out = this.VariableValues{loc};
     endfunction
 
-    function mustBeAllSameCols (varargin)
-      %MUSTBEALLSAMECOLS Require that all inputs have the same-named columns
+    function mustBeAllSameVars (varargin)
+      %MUSTBEALLSAMEVARS Require that all inputs have the same-named columns
       args = varargin;
       if isempty (args)
         return
       endif
-      colNames = args{1}.VariableNames;
+      varNames = args{1}.VariableNames;
       for i = 2:numel (args)
-        if ~isequal (colNames, args{i}.VariableNames)
+        if ~isequal (varNames, args{i}.VariableNames)
           error ('Inconsistent VariableNames.\n  Input 1: %s\n  Input %d: %s', ...
-            strjoin (colNames, ', '), i, strjoin (args{i}.VariableNames, ', '));
+            strjoin (varNames, ', '), i, strjoin (args{i}.VariableNames, ', '));
         endif
       endfor
     endfunction
