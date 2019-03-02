@@ -289,7 +289,7 @@ classdef table
           [ixRow, ixVar] = resolveRowVarRefs (this, s.subs{1}, s.subs{2});
           out = this;
           out = subsetRows (out, ixRow);
-          out = subsetVars (out, ixVar);
+          out = subsetvars (out, ixVar);
         case '{}'
           if numel (s.subs) ~= 2
             error ('table.subsref: {}-indexing of table requires exactly two arguments');
@@ -412,7 +412,7 @@ classdef table
       end
     end
     
-    function out = subsetVars (this, ixVars)
+    function out = subsetvars (this, ixVars)
       %SUBSETVARS Subset this along its variables
 
       if ischar (ixVars)
@@ -423,7 +423,7 @@ classdef table
       if iscellstr (ixVars)
         [tf,ix] = ismember (ixVars, this.VariableNames);
         if ~all (tf)
-          error ('table.subsetVars: no such variables in this table: %s', ...
+          error ('table.subsetvars: no such variables in this table: %s', ...
             strjoin (ixVars(~tf), ', '));
         endif
         ixVars = ix;
@@ -432,6 +432,65 @@ classdef table
       out.VariableNames = this.VariableNames(ixVars);
       out.VariableValues = this.VariableValues(ixVars);
     end
+    
+    function out = removevars (this, vars)
+      %REMOVEVARS Remove variables
+      %
+      % out = removevars (this, vars)
+      %
+      % Deletes the variables specified by vars.
+      %
+      % vars may be a char, cellstr, numeric index vector, or logical index vector.
+      %
+      % Returns table.
+      ixVar = resolveVarRef (this, vars);
+      out = this;
+      out.VariableNames(ixVar) = [];
+      out.VariableValues(ixVar) = [];
+    endfunction
+    
+    function out = movevars (this, vars, relLocation, location)
+      %MOVEVARS Move variables
+      %
+      % out = movevars (this, vars, relLocation, location)
+      %
+      % Moves around variables in a table.
+      %
+      % vars is a list of variables to move, specified by name or index.
+      %
+      % relLocation is 'Before' or 'After'.
+      %
+      % location indicates a single variable to use as the target location, 
+      % specified by name or index. If it is specified by index, it is the index
+      % into the list of *unmoved* variables from this, not the original full
+      % list of variables in this.
+      %
+      % Returns table with the same variables as this, but in a different order.
+      if ~ischar (relLocation)
+        error ('table.movevars: relLocation must be char; got %s', class (relLocation));
+      endif
+      if ~ismember (relLocation, {'Before', 'After'})
+        error ('table.movevars: relLocation must be ''Before'' or ''After''; got ''%s''', ...
+          relLocation);
+      endif
+      ixVar = resolveVarRef (this, vars);
+      ixOtherVars = 1:width (this);
+      ixOtherVars(ixVar) = [];
+      tmp = subsetvars (this, ixOtherVars);
+      moved = subsetvars (this, ixVar);
+      ixLoc = resolveVarRef (tmp, location);
+      if ~isscalar (ixLoc)
+        error ('table.movevars: location must specify a single existing variable');
+      endif
+      if isequal(relLocation, 'Before')
+        insertionIx = ixLoc;
+      else
+        insertionIx = ixLoc = 1;
+      endif
+      left = subsetvars (tmp, 1:insertionIx-1);
+      right = subsetvars (tmp, insertionIx:width (tmp));
+      out = [left moved right];
+    endfunction
     
     function out = setvar (this, varRef, value)
       %SETVAR Set value for a variable
@@ -650,8 +709,8 @@ classdef table
       if isempty (keyVarNames)
         error ('table.join: Cannot join: inputs have no variable names in common');
       endif
-      keysA = subsetVars (A, keyVarNames);
-      keysB = subsetVars (B, keyVarNames);
+      keysA = subsetvars (A, keyVarNames);
+      keysB = subsetvars (B, keyVarNames);
       uKeysB = unique (keysB);
       if height (uKeysB) < height (keysB)
         error ('table.join: Non-unique keys in B');
@@ -662,7 +721,7 @@ classdef table
         error ('table.join: Some rows in A had no corresponding key values in B');
       endif
       outA = A;
-      nonKeysB = subsetVars (B, nonKeyVarsB);
+      nonKeysB = subsetvars (B, nonKeyVarsB);
       outB = subsetRows (nonKeysB, ib);
       C = [outA outB];
     endfunction
@@ -707,12 +766,12 @@ classdef table
         % TODO: Should this degenerate to cartesian product instead of erroring?
         error ('table.realjoin: Cannot join: inputs have no variable names in common');
       endif
-      keysA = subsetVars (A, keyVarNames);
-      keysB = subsetVars (B, keyVarNames);
+      keysA = subsetvars (A, keyVarNames);
+      keysB = subsetvars (B, keyVarNames);
       [pkA, pkB] = proxykeysForMatrixes (keysA, keysB);
       ixs = matchrows (pkA, pkB);
       outA = subsetRows (A, ixs(:,1));
-      nonKeysB = subsetVars (B, nonKeyVarsB);
+      nonKeysB = subsetvars (B, nonKeyVarsB);
       outB = subsetRows (nonKeysB, ixs(:,2));
       out = [outA outB];
 
@@ -749,8 +808,8 @@ classdef table
         % know if it should be "all rows" or "no rows" - apjanke
         error ('table.semijoin: Cannot semijoin: inputs have no variable names in common');
       endif
-      keysA = subsetVars (A, keyVarNames);
-      keysB = subsetVars (B, keyVarNames);
+      keysA = subsetvars (A, keyVarNames);
+      keysB = subsetvars (B, keyVarNames);
       [pkA, pkB] = proxykeysForMatrixes (keysA, keysB);
       ixA = find (ismember (pkA, pkB, 'rows'));
       outA = subsetRows (A, ixA);
@@ -787,8 +846,8 @@ classdef table
         % know if it should be "all rows" or "no rows" - apjanke
         error ('table.semidiff: Cannot semidiff: inputs have no variable names in common');
       endif
-      keysA = subsetVars (A, keyVarNames);
-      keysB = subsetVars (B, keyVarNames);
+      keysA = subsetvars (A, keyVarNames);
+      keysB = subsetvars (B, keyVarNames);
       [pkA, pkB] = proxykeysForMatrixes (keysA, keysB);
       ixA = find (!ismember (pkA, pkB, 'rows'));
       outA = subsetRows (A, ixA);
@@ -840,7 +899,7 @@ classdef table
       outA = A;
       outB = B;
       [~,loc] = ismember (A.VariableNames, outB.VariableNames);
-      outB = subsetVars (outB, loc);
+      outB = subsetvars (outB, loc);
       
       endfunction
 
