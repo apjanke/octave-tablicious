@@ -120,6 +120,37 @@ classdef table
       end
     end
     
+    function out = summary (this)
+      %SUMMARY Summary of table
+      %
+      % summary (this)
+      % s = summary (this)
+      %
+      % Prints or returns a summary of the data in this table.
+      %
+      % Currently, only the `s = summary (this)` capturing form is implemented.
+      % This is a work in progress.
+      
+      % Common summary things:
+      % Size, Type, Description, Units, CustomProperties
+      % Size and Type can be computed from variable data itself;
+      % Description, Units and CustomProperties are drawn from the table-managed metadata.
+      
+      out = struct;
+      for iVar = 1:width (this)
+        varVal = this.VariableValues{iVar};
+        s = octave.table.internal.mx_summary (varVal);
+        %TODO: Decorate with table-managed metadata: Description, Units, CustomProperties
+        out.(this.VariableNames{iVar}) = s;
+      endfor
+      
+      if nargout == 0
+        %TODO: Include obj-level Description etc
+        prettyprint_summary_data (out);
+        clear out
+      endif
+    endfunction
+    
     function prettyprint (this)
       %PRETTYPRINT Display table values, formatted as a table
       if isempty (this)
@@ -1564,3 +1595,7 @@ classdef table
     endfunction
   endmethods
 endclassdef
+
+function out = prettyprint_summary_data (s)
+  error ('table.prettyprint_summary_data: This is not yet implemented.');
+endfunction
