@@ -913,7 +913,7 @@ classdef table
       % outB - all the rows in B with matching row(s) in A
       % ixB - the row indexes into B which produced outB
       
-      % Developer note: This is almost exactly the same as semidiff, just with
+      % Developer note: This is almost exactly the same as antijoin, just with
       % inverted ismember() tests. See if the implementations can be refactored
       % together.
       
@@ -943,11 +943,28 @@ classdef table
         outB = subsetRows (B, ixB);
       endif
     endfunction
-
+    
     function [outA, ixA, outB, ixB] = semidiff (A, B)
-      %SEMIDIFF Natural semidifference
+      %SEMIDIFF Alias for ANTIJOIN
       %
       % [outA, ixA, outB, ixB] = semidiff (A, B)
+      %
+      % Computes the relational semidifference of A and B. This is just an alias
+      % for the more common term "anti-join", which is implemented by ANTIJOIN.
+      if nargout > 2
+        [outA, ixA, outB, ixB] = antijoin (A, B);
+      else
+        [outA, ixA] = antijoin (A, B);
+      endif
+    end    
+
+    function [outA, ixA, outB, ixB] = antijoin (A, B)
+      %ANTIJOIN Natural antijoin (aka semi-difference)
+      %
+      % [outA, ixA, outB, ixB] = antijoin (A, B)
+      %
+      % Computes the anti-join of A and B. The anti-join is defined as all the
+      % rows from one input which do not have matching rows in the other input.
       %
       % Returns:
       % outA - all the rows in A with no matching row in B
@@ -969,7 +986,7 @@ classdef table
       if isempty (keyVarNames)
         % TODO: There's probably a correct degenerate output for this, but I don't
         % know if it should be "all rows" or "no rows" - apjanke
-        error ('table.semidiff: Cannot semidiff: inputs have no variable names in common');
+        error ('table.antijoin: Cannot antijoin: inputs have no variable names in common');
       endif
       keysA = subsetvars (A, keyVarNames);
       keysB = subsetvars (B, keyVarNames);
