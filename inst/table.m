@@ -734,6 +734,117 @@ classdef table
       endif
     endfunction
     
+    function [outA, outB] = congruentize (A, B)
+      %CONGRUENTIZE Make tables congruent
+      %
+      % out = congruentize (A, B)
+      %
+      % Makes tables congruent by ensuring they have the same variables of the
+      % same types in the same order. Congruent tables may be safely unioned,
+      % intersected, vertcatted, or have other set operations done to them.
+      %
+      % Variable names present in one input but not in the other produces an error.
+      % Variables with the same name but different types in the inputs produces
+      % an error.
+      % Inputs must either both have row names or both not have row names; it is
+      % an error if one has row names and the other doesn't.
+      % Variables in different orders are reordered to be in the same order as A.
+      
+      if !isa (A, 'table')
+        A = table (A);
+      endif
+      if !isa (B, 'table')
+        B = table (B);
+      endif
+      if hasrownames (A) && !hasrownames (B)
+        error ('table.congruentize: Input A has row names but input B does not');
+      endif
+      if !hasrownames (A) && hasrownames (B)
+        error ('table.congruentize: Input B has row names but input A does not');
+      endif
+      varsOnlyInA = setdiff (A.VariableNames, B.VariableNames);
+      if !isempty (varsOnlyInA)
+        error ('table.congruentize: Input A has variables not present in B: %s', ...
+          strjoin (varsOnlyInA, ', '));
+      endif
+      varsOnlyInB = setdiff (B.VariableNames, A.VariableNames);
+      if !isempty (varsOnlyInB)
+        error ('table.congruentize: Input B has variables not present in A: %s', ...
+          strjoin (varsOnlyInB, ', '));
+      endif
+
+      outA = A;
+      outB = B;
+      [~,loc] = ismember (A.VariableNames, outB.VariableNames);
+      outB = subsetVars (outB, loc);
+      
+      endfunction
+
+    function [C, ia, ib] = union (A, B)
+      %UNION Set union
+      %
+      % [C, ia, ib] = union (A, B)
+      %
+      % Computes the union of two tables. The union is defined to be the unique
+      % values which are present in either of the the two input tables.
+      %
+      % Returns:
+      % C - A table containing all the unique row values present in A or B.
+      % ia - Row indexes into A of the rows from A included in C.
+      % ib - Row indexes into B of the rows from B included in C.
+      
+      % Input handling
+      [A, B] = congruentize (A, B);
+            
+      % Set logic
+      [pkA, pkB] = proxykeysForMatrixes (A, B);
+      [~, ia, ib] = union (pkA, pkB, 'rows');
+      C = [subsetRows (A, ia); subsetRows (B, ib)];      
+    endfunction
+    
+    function [C, ia, ib] = intersect (A, B)
+      %INTERSECT Set intersection
+      %
+      % [C, ia, ib] = intersect (A, B)
+      %
+      % Computes the intersection of two tables. The intersection is defined to 
+      % be the unique values which are present in both of the two input tables.
+      %
+      % Returns:
+      % C - A table containing all the unique row values present in A and B.
+      % ia - Row indexes into A of the rows from A included in C.
+      % ib - Row indexes into B of the rows from B included in C.
+      
+      % Input handling
+      [A, B] = congruentize (A, B);
+            
+      % Set logic
+      [pkA, pkB] = proxykeysForMatrixes (A, B);
+      [~, ia, ib] = intersect (pkA, pkB, 'rows');
+      C = [subsetRows (A, ia); subsetRows (B, ib)];      
+    endfunction
+    
+    function [C, ia] = setdiff (A, B)
+      %SETDIFF Set difference
+      %
+      % [C, ia] = setdiff (A, B)
+      %
+      % Computes the set difference of two tables. The set difference is defined 
+      % as the set of rows in A that are not in B.
+      %
+      % Returns:
+      % C - A table containing the rows in A that were not in B.
+      % ia - Row indexes into A of the rows that are in C.
+      
+      % Input handling
+      [A, B] = congruentize (A, B);
+            
+      % Set logic
+      [pkA, pkB] = proxykeysForMatrixes (A, B);
+      [~, ia] = setdiff (pkA, pkB, 'rows');
+      C = subsetRows (A, ia);
+    endfunction
+    
     % Prohibited operations
 
     function out = transpose (this,varargin)
