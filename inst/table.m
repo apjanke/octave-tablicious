@@ -250,6 +250,17 @@ classdef table
 
     % Structural stuff
     
+    function out = varnames (this)
+      %VARNAMES Variable names in table
+      %
+      % Gets the list of variable names in this.
+      %
+      % Returns cellstr.
+      %
+      % This is an Octave extension.
+      out = this.VariableNames;
+    endfunction
+
     function out = istable (this)
       out = true;
     endfunction
@@ -1318,6 +1329,60 @@ classdef table
       endswitch
     endfunction
     
+    function out = evalWithVars (this, expr)
+      %EVALWITHVARS Evaluate an expression with this' variables in a workspace
+      %
+      % out = evalWithVars (this, expr)
+      %
+      % Evaluates the M-code expression expr in a workspace where all of this'
+      % variables have been assigned to workspace variables.
+      %
+      % As an implementation detail, the workspace will also contain some variables
+      % that are prefixed and suffixed with "__". So try to avoid those in your
+      % table variable names.
+      %
+      % Examples:
+      % [s,p,sp] = table_examples.SpDb
+      % tmp = join (sp, p);
+      % shipment_weight = evalWithVars (tmp, "Qty .* Weight")
+      if ~ischar (expr)
+        error ('table.evalWithVars: expr must be char; got a %s', class (expr));
+      endif
+      out = __eval_expr_with_table_vars_in_workspace__ (this, expr);
+    endfunction
+    
+    function out = restrict (this, arg)
+      %RESTRICT Subset rows based on index or variable expression
+      %
+      % out = restrict (this, index)
+      % out = restrict (this, expr)
+      %
+      % Subsets this table row-wise, using either an index vector or an expression
+      % involving this' variables.
+      %
+      % If the argument is a numeric or logical vector, it is interpreted as an
+      % index into the rows of this. (Just as with `subsetRows (this, index)`.)
+      %
+      % If the argument is a char, then it is evaulated as an M-code expression,
+      % with all of this' variables available as workspace variables, as with
+      % `evalWithVars`. The output of expr must be a numeric or logical index
+      % vector (This form is a shorthand for 
+      % `out = subsetRows (this, evalWithVars (this, expr))`.)
+      %
+      % TODO: Decide whether to name this to "where" to be more like SQL instead
+      % of relational algebra.
+      %
+      % Examples:
+      % [s,p,sp] = table_examples.SpDb;
+      % prettyprint (restrict (p, 'Weight >= 14 & strcmp(Color, "Red")'))
+      if ischar (arg)
+        rowIx = evalWithVars (this, arg);
+        out = subsetRows (this, rowIx);
+      elseif isnumeric (arg) || islogical (arg)
+        out = subsetRows (this, arg);
+      endif
+    endfunction
+
     % Prohibited operations
     
     % TODO: These could probably actually be allowed in certain restricted
