@@ -1,8 +1,8 @@
 function varargout = SpDb
   %SPDB The classic suppliers-parts example database
   %
-  % s = table.examples.SpDb
-  % [s, p, sp] = table.examples.SpDb
+  % s = table_examples.SpDb
+  % [s, p, sp] = table_examples.SpDb
   %
   % Constructs the classic C. J. Date Suppliers-Parts ("SP") example database
   % as tables.
