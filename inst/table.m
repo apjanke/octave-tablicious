@@ -380,6 +380,14 @@ classdef table
     
     function out = subsetRows (this, ixRows)
       out = this;
+      if ~isnumeric (ixRows) && ~islogical (ixRows)
+        % TODO: Hmm. Maybe we ought not to do this check, but just defer to the
+        % individual variable values' indexing logic, so SUBSREF/SUBSINDX overrides
+        % are respected. Would produce worse error messages, but be more "right"
+        % type-wise.
+        error ('table.subsetRows: ixRows must be numeric or logical; got a %s', ...
+          class (ixRows));
+      endif
       for i = 1:width (this)
         out.VariableValues{i} = out.VariableValues{i}(ixRows,:);
       end
