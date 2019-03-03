@@ -729,6 +729,14 @@ classdef table
       out = subsetRows (this, [(nRows - (k - 1)):nRows]);
     endfunction
     
+    function out = transpose (this)
+      out = transpose_table (this);
+    end
+
+    function out = ctranspose (this)
+      out = transpose_table (this);
+    end
+
     % Relational operations
     
     function [out, index] = sortrows (this, varargin)
@@ -1564,14 +1572,6 @@ classdef table
     % circumstances based on the type and shape of values in this. Consider
     % allowing them. See https://github.com/apjanke/octave-table/issues/20.
 
-    function out = transpose (this, varargin)
-      error ('Function transpose is not supported for tables');
-    end
-
-    function out = ctranspose (this, varargin)
-      error ('Function ctranspose is not supported for tables');
-    end
-
     function out = circshift (this, varargin)
       %CIRCSHIFT Prohibited
       
@@ -1611,6 +1611,19 @@ classdef table
         error ('table has no variable named ''%s''', name);
       endif
       out = this.VariableValues{loc};
+    endfunction
+
+    function out = transpose_table (this)
+      %TRANSPOSE_TABLE This is for table's internal use
+      if ~hasrownames (this)
+        error ('table.transpose: this must have RowNames, but it does not');
+      endif
+      tfRowNamesAreVarNames = cellfun(@isvarname, this.RowNames);
+      if ~all (tfRowNamesAreVarNames)
+        error ('table.transpose: Row names must all be valid variable names');
+      endif
+      c = table2cell (this);
+      out = cell2table(c', 'VariableNames', this.RowNames, 'RowNames', this.VariableNames);
     endfunction
 
     function mustBeAllSameVars (varargin)
