@@ -1,15 +1,19 @@
 function [out,tf] = rmmissing (x, varargin)
-  %RMMISSING Remove missing entries
+  %RMMISSING Remove missing entries from vector or matrix
   %
   % [out,tf] = rmmissing (x)
   % [out,tf] = rmmissing (x, dim)
   % [out,tf] = rmmissing (..., 'MinNumMissing', minNumMissing)
   %
+  % If x is a vector, removes elements with missing values. If x is a matrix,
+  % removes rows or columns with missing data elements.
+  %
   % dim is the dimension to operate along. Specifying a dimension forces rmmissing
   % to operate in matrix instead of vector mode.
   %
-  % MinNumMissing indicates how many missing values there must be in a row or column
-  % for it to be considered missing and this removed.
+  % MinNumMissing indicates how many missing element values there must be in a
+  % row or column for it to be considered missing and this removed. This option
+  % is only used in matrix mode; it is silently ignored in vector mode.
   %
   % Returns:
   % out - the input, with missing elements or rows or columns removed
