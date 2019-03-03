@@ -9,49 +9,55 @@ function out = ismissing (x, indicator)
   % used.
   %
   % Standard missing values depend on the data type:
-  %   * NaN for double, single
+  %   * NaN for double, single, duration, and calendarDuration
   %   * NaT for datetime
   %   * ' ' for char
   %   * {''} for cellstrs
-  %   * Integer types have no standard missing value; they are not considered missing.
+  %   * Integer numeric types have no standard missing value; they are never 
+  %     considered missing.
+  %   * Structs are never considered missing.
+  %   * Logicals are never considered missing.
   %   * Other types have no standard missing value; it is currently an error to
-  %     call ismissing() on them.
+  %     call ismissing() on them without providing an indicator.
+  %     * This includes cells which are not cellstrs; calling ismissing() on them
+  %       results in an error.
   %     * TODO: Determine whether this should really be an error, or if it should
   %       default to never considering those types as missing.
-  %   * TODO: Decide whether, for classdef objects, ismissing() should polymorphically
-  %     detect isnan()/isnat()/isnanny() methods and use those, or whether we should
-  %     require classes to override ismissing() itself.
+  %     * TODO: Decide whether, for classdef objects, ismissing() should polymorphically
+  %       detect isnan()/isnat()/isnanny() methods and use those, or whether we should
+  %       require classes to override ismissing() itself.
   %
-  % If indicator is supplied, it is an array containing multiple values of the same
-  % type as x, all of which are considered to be missing values.
-  % TODO: The comparison method for indicator is currently not implemented, because
-  % of the complication of testing for NaN and similar values using generic functions
-  % like eq or ismember.
-  % 
+  % If indicator is supplied, it is an array containing multiple values, all of
+  % which are considered to be missing values. Only indicator values that are
+  % type-compatible with the input are considered; other indicator value types are
+  % silently ignored. This is by design, so you can pass an indicator that holds
+  % sentinel values for disparate types in to ismissing() used for any type, or
+  % for compound types like table.
+  %
+  % Indicators are currently not supported for struct or logical inputs. This is
+  % probably a bug.
+  %
   % Table defines its own ismissing() methods which respects individual variables'
   % data types; see TABLE.ISMISSING.
   
-  % Developer's note: This is very similar in semantics to isnanny(); see if they
-  % can be reconciled and/or merged.
-  
-  if nargin > 1
-    error ('ismissing: indicator option support is not implemented');
+  if nargin == 1
+    out = ismissing_standard (x);
+  else
+    out = ismissing_indicator (x, indicator);
   endif
-  
-  out = ismissing_standard (x);
-  
+
 endfunction
 
 function out = ismissing_standard (x)
   if isnumeric (x)
     out = isnan (x);
+  elseif islogical (x);
+    out = false (size (x));
   elseif isa (x, 'datetime')
     out = isnat (x);
   elseif isa (x, 'duration') || isa (x, 'calendarDuration')
     out = isnan (x);
   elseif ischar (x)
-    %TODO: Is this right? Or should it treat char arrays as lists of strings and
-    %do blank-padding-aware string comparisons?
     out = x == ' ';
   elseif iscell (x)
     if iscellstr (x)
@@ -59,7 +65,79 @@ function out = ismissing_standard (x)
     else
       error ('ismissing: cells which are not cellstrs are not supported');
     endif
+  elseif isstruct (x)
+    out = false (size (x));
   else
     error ('ismissing: input type %s is not supported', class (x));
   endif
+endfunction
+
+function out = ismissing_with_indicator (x, indicator)
+  indicator = octave.internal.parse_ismissing_indicator (indicator);
+  if isnumeric (x)
+    out = ismissing_numeric (x, indicator);
+  elseif iscell (x)
+    if iscellstr (x)
+      out = ismissing_cellstr (x, indicator);
+    else
+      error ('ismissing: non-cellstr cells are not supported');  
+    endif
+  elseif isobject (x)
+    % This isobject case also handles datetime, duration, and calendarDuration,
+    % because it uses eqn(), which supports them. There might be subtleties with
+    % its isa() test for eq-compatibility that we need to address, though.
+    out = ismissing_object (x, indicator);
+  else
+    error ('ismissing: unsupported input type: %s', class (x));
+  endif
+endfunction
+
+function out = ismissing_numeric (x, indicator)
+out = false (size (x));
+for i = 1:numel (indicator)
+  indicator_i = indicator{i};
+  if ~isnumeric (indicator_i)
+    continue;
+  endif
+  tf = eqn (x, indicator_i);
+  out = out | tf;
+endfor
+endfunction
+
+function out = ismissing_object (x, indicator)
+out = false (size (x));
+for i = 1:numel (indicator)
+  indicator_i = indicator{i};
+  % This type-eq-compatibility test is kind of a hack; not sure if it's correct
+  is_type_eq_compatible = isa (indicator_i, class (x)) || isa (x, class (indicator_i));
+  if ~is_type_eq_compatible
+    continue
+  endif
+  tf = eqn (x, indicator_i);
+  out = out | tf;
+endfor
+endfunction
+
+function out = ismissing_cellstr (x, indicator)
+out = false (size (x));
+for i = 1:numel (indicator)
+  indicator_i = indicator{i};
+  if ~ischar (indicator_i)
+    continue;
+  endif
+  tf = strcmp (x, {indicator_i});
+  out = out | tf;
+endfor
+endfunction
+
+function out = ismissing_char (x, indicator)
+out = false (size (x));
+for i = 1:numel (indicator)
+  indicator_i = indicator{i};
+  if ~(ischar (indicator_i) && isscalar (indicator_i))
+    continue;
+  endif
+  tf = x == indicator_i;
+  out = out | tf;
+endfor
 endfunction
