@@ -522,7 +522,15 @@ classdef table
           varData(ixRow) = rhs;
           out.VariableValues{ixVar} = varData;
         case '.'
-          out = setCol (this, s.subs, rhs);
+          if ~ischar (s.subs)
+            error ('table.subsasgn: .-index argument must be char; got a %s', ...
+              class (s.subs));
+          endif
+          if isequal (s.subs, 'Properties')
+            % Special case for this.Properties access
+          else
+            out = setvar (this, s.subs, rhs);            
+          endif
       end
     end
     
