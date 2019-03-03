@@ -27,4 +27,4 @@ essentially the original author (Andrew Janke) at the moment. However, this proj
 that at some point in the future, this project's components will be merged into GNU
 Octave and cease to be developed in an independent project.
 
-The GitHub home for this project is https://github.com/apjanke/octave-addons-chrono.
+The GitHub home for this project is https://github.com/apjanke/octave-table.
