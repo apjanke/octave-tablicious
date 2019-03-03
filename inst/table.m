@@ -77,6 +77,10 @@ classdef table
       if ~isempty (varVals)
         nrows = size (varVals{1}, 1);
         for i = 2:numel (varVals)
+          if ndims (varVals{i}) > 2
+            error (['table: Variable values may not have > 2 dimensions; ' ...
+              'input %d (%s) has %d'], i, varNames{i}, ndims (varVals{i}));
+          endif
           nrows2 = size (varVals{i}, 1);
           if nrows ~= nrows2
             error ('table: Inconsistent sizes: var 1 (%s) is %d rows; var %d (%s) is %d rows', ...
