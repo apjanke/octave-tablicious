@@ -50,10 +50,12 @@ To avoid issues with the Matlab license's Non-Compete clause, this project needs
 Anything in a namespace with `internal` in its name is for the internal use of this package, and is not intended for use by user code.
 
 
-## Author
+## Author and Acknowledgments
 
 Table is created by [Andrew Janke](https://apjanke.net).
 
-## Acknowledgments
-
 Thanks to [Polkadot Stingray](https://polkadotstingray-official.jimdo.com/) for [powering](https://www.youtube.com/watch?v=3ad4NsEy1tg) [my](https://www.youtube.com/watch?v=-zlq6eMycLA) [coding](https://www.youtube.com/watch?v=1z4RosaB-UQ) [sessions](https://www.youtube.com/watch?v=p6oVXuLsbxM).
+
+Shout out to [Mike Miller](https://mtmxr.com/) for showing me how to properly structure an Octave package repo, and encouraging me to contribute.
+
+Thanks to [Sebastian Schöps](https://github.com/schoeps) for getting me more involved in Octave development in the first place, via his [Octave.app](https://octave-app.org) project.
