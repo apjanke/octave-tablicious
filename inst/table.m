@@ -1267,23 +1267,32 @@ classdef table
     function out = ismissing (this, indicator)
       %ISMISSING Find missing values
       %
+      % out = ismissing (this)
+      % out = ismissing (this, indicator)
+      %
       % Finds missing values in this' variables.
+      %
+      % If indicator is not supplied, uses the standard missing values for each
+      % variable's data type. If indicator is supplied, the same indicator is
+      % applied across all variables.
       %
       % All variables in this must be vectors. (This is due to the requirement
       % that size(out) == size(this).)
       %
       % Returns a logical array the same size as this.
       mustBeA (this, 'table');
+      hasIndicator = false;
       if nargin > 1
-        %TODO: We need to support heterogeneous indicator inputs here
-        %TODO: Probably rewrite this just to delegate indicator support to global
-        % ismissing().
-        error ('table.ismissing: indicator input is not implemented');
+        hasIndicator = true;
       endif
       mustBeAllColVectorVars (this);
       out = false (size (this));
       for i = 1:width (this)
-        out(:,i) = ismissing (this.VariableValues{i});
+        if hasIndicator
+          out(:,i) = ismissing (this.VariableValues{i}, indicator);
+        else
+          out(:,i) = ismissing (this.VariableValues{i});
+        endif
       endfor
     endfunction
     
