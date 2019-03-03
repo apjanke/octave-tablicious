@@ -45,11 +45,6 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for more details.
 
 To avoid issues with the Matlab license's Non-Compete clause, this project needs to be developed entirely using Octave, and not using Matlab at all, including for testing or benchmarking purposes. Please do not submit any Matlab test or benchmark results, or any code produced using Matlab.
 
-### Naming conventions
-
-Anything in a namespace with `internal` in its name is for the internal use of this package, and is not intended for use by user code.
-
-
 ## Author and Acknowledgments
 
 Table is created by [Andrew Janke](https://apjanke.net).
