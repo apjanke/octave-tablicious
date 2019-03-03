@@ -479,7 +479,12 @@ classdef table
           if ~ischar (name)
             error ('table.subsref: .-reference arguments must be char');
           end
-          out = getVar (this, name);
+          if isequal (name, 'Properties')
+            % Special case for this.Properties access
+            out = getProperties (this);
+          else
+            out = getVar (this, name);
+          endif
       end
       % Chained references
       if ~isempty (chain_s)
@@ -1655,6 +1660,17 @@ classdef table
             i, this.VariableNames{i}, size (val, 2));
         endif
       endfor
+    endfunction
+    
+    function out = getProperties (this)
+      %GETPROPERTIES Get object's properties as a struct
+      %
+      % This is just for the internal use of subsref/subsasgn for .Properties
+      % access support.
+      out = struct;
+      out.VariableNames = this.VariableNames;
+      out.VariableValues = this.VariableValues;
+      out.RowNames = this.RowNames;
     endfunction
   endmethods
   
