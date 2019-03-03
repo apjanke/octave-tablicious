@@ -300,8 +300,14 @@ classdef table
       out = true;
     endfunction
 
-    function out = size (this)
-      out = [height(this), width(this)];
+    function out = size (this, dim)
+      %SIZE Size of array
+      if nargin == 1
+        out = [height(this), width(this)];
+      else
+        sz = size (this);
+        out = sz(dim);
+      end
     end
     
     function out = length (this, varargin)
@@ -1027,6 +1033,32 @@ classdef table
 
     endfunction
   
+    function [out, ia, ib] = outerjoin (A, B, varargin)
+      %OUTERJOIN Outer join
+      
+      % Input handling
+      if !istable (A)
+        A = table (A);
+      endif
+      if !istable (B)
+        B = table (B);
+      endif
+      optNames = {'Keys', 'LeftKeys', 'RightKeys', 'MergeKeys', ...
+        'LeftVariables', 'RightVariables', 'Type'};
+      opts = peelOffNameValueOptions (varargin, optNames);
+      unimplementedOptions = optNames;
+      for i = 1:numel (unimplementedOptions)
+        if isfield (opts, unimplementedOptions{i})
+          error ('table.outerjoin: Option %s is unimplemented. Sorry.', ...
+            unimplementedOptions{i});
+        endif
+      endfor
+      
+      
+
+      error ('table.outerjoin is not yet implemented');
+    endfunction
+
     function [outA, ixA, outB, ixB] = semijoin (A, B)
       %SEMIJOIN Natural semijoin
       %
