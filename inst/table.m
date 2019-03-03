@@ -300,6 +300,13 @@ classdef table
       out = [height(this), width(this)];
     end
     
+    function out = length (this, varargin)
+      %LENGTH Length along longest dimension
+      %
+      % Use of LENGTH is not recommended. Use NUMEL or SIZE instead.
+      out = max (size (this));
+    end
+
     function out = ndims (this)
       out = 2;
     end
@@ -1578,13 +1585,6 @@ classdef table
       % In order for circshift to work for tables, we need to override it to
       % respect RowNames and variable properties.
       error ('Function circshift is not supported for tables');
-    end
-
-    function out = length (this, varargin)
-      %LENGTH Length along longest dimension
-      %
-      % Use of LENGTH is not recommended. Use NUMEL or SIZE instead.
-      out = max (size (this));
     end
 
     function out = shiftdims (this, varargin)
