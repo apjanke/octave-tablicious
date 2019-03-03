@@ -511,7 +511,7 @@ classdef table
           error ('table.subsasgn: Assignment using ()-indexing is not supported for table');
         case '{}'
           if numel (s.subs) ~= 2
-            error('table.subsasgn: {}-indexing of table requires exactly two arguments');
+            error ('table.subsasgn: {}-indexing of table requires exactly two arguments');
           end
           [ixRow, ixVar] = resolveRowVarRefs (this, s.subs{1}, s.subs{2});
           if ~isscalar (ixVar)
