@@ -1004,22 +1004,8 @@ classdef table
       endif
     endfunction
     
-    function [outA, ixA, outB, ixB] = semidiff (A, B)
-      %SEMIDIFF Alias for ANTIJOIN
-      %
-      % [outA, ixA, outB, ixB] = semidiff (A, B)
-      %
-      % Computes the relational semidifference of A and B. This is just an alias
-      % for the more common term "anti-join", which is implemented by ANTIJOIN.
-      if nargout > 2
-        [outA, ixA, outB, ixB] = antijoin (A, B);
-      else
-        [outA, ixA] = antijoin (A, B);
-      endif
-    end    
-
     function [outA, ixA, outB, ixB] = antijoin (A, B)
-      %ANTIJOIN Natural antijoin (aka semi-difference)
+      %ANTIJOIN Natural antijoin (AKI semi-difference)
       %
       % [outA, ixA, outB, ixB] = antijoin (A, B)
       %
