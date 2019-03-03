@@ -13,6 +13,8 @@ function [ixs, ixUnmatchedA, ixUnmatchedB] = matchrows (A, B)
   % ixUnmatchedA - a vector of indexes of rows from A which had no matches in B
   % ixUnmatchedB - a vector of indexes of rows from B which had no matches in A
   %
+  % This is an Octave extension.
+  %
   % Developer notes: It is my intent that if this function turns out to be useful,
   % the slow generic dumb-nested-loops implementation could be supplemented by
   % optimized implementations of smarter matching algorithms for numerics.

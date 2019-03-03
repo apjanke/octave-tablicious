@@ -60,6 +60,8 @@ function [pkA, pkB] = proxykeysForMatrixes (A, B)
   % implementations, or so that their unique() implementations may themselves use
   % proxykeysForMatrixes. This may be especially useful for classes which are 
   % represented internally by single numeric matrices.
+  %
+  % This is an Octave extension.
 
   % TODO: Add support for non-cellstr cell inputs.
 
