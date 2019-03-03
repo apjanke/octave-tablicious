@@ -384,7 +384,7 @@ classdef table
     function out = vertcat (varargin)
       args = varargin;
       for i = 1:numel (args)
-        if ~isa (args{i}, 'table')
+        if ~istable (args{i})
           args{i} = table (args{i});
         end
       end
@@ -881,10 +881,10 @@ classdef table
             unimplementedOptions{i});
         endif
       endfor
-      if !isa (A, 'table')
+      if !istable (A)
         A = table (A);
       endif
-      if !isa (B, 'table')
+      if !istable (B)
         B = table (B);
       endif
       
@@ -931,10 +931,10 @@ classdef table
       % This is an Octave extension.
       
       % Input handling
-      if !isa (A, 'table')
+      if !istable (A)
         A = table (A);
       endif
-      if !isa (B, 'table')
+      if !istable (B)
         B = table (B);
       endif
       if hasrownames (A)
@@ -978,10 +978,10 @@ classdef table
       % together.
       
       % Input handling
-      if !isa (A, 'table')
+      if !istable (A)
         A = table (A);
       endif
-      if !isa (B, 'table')
+      if !istable (B)
         B = table (B);
       endif
       
@@ -1019,10 +1019,10 @@ classdef table
       % ixB - the row indexes into B which produced outB
       
       % Input handling
-      if !isa (A, 'table')
+      if !istable (A)
         A = table (A);
       endif
-      if !isa (B, 'table')
+      if !istable (B)
         B = table (B);
       endif
       
@@ -1109,10 +1109,10 @@ classdef table
       % an error if one has row names and the other doesn't.
       % Variables in different orders are reordered to be in the same order as A.
       
-      if !isa (A, 'table')
+      if !istable (A)
         A = table (A);
       endif
-      if !isa (B, 'table')
+      if !istable (B)
         B = table (B);
       endif
       if hasrownames (A) && !hasrownames (B)
