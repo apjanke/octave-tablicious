@@ -534,6 +534,37 @@ classdef table
       end
     end
     
+    function this = setVariableNames (this, names)
+      %SETVARIABLENAMES Set VariableNames
+      if ~iscellstr (names)
+        error ('table: VariableNames must be cellstr; got a %s', class (names));
+      endif
+      if ~all (cellfun (@isvarname, names))
+        error ('table: VariableNames must be valid variable names');
+      endif
+      if ~isequal (size (names), [1 width(this)])
+        error ('table: Dimension mismatch: table has %d columns but new VariableNames is %s', ...
+          width (this), size2str (size (names)));
+      endif
+      this.VariableNames = names;
+    endfunction
+    
+    function this = setRowNames (this, names)
+      %SETROWNAMES Set RowNames
+      if isempty (names)
+        this.RowNames = [];
+        return;
+      endif
+      if ~iscellstr (names)
+        error ('table: RowNames must be cellstr; got a %s', class (names));
+      endif
+      if ~isequal (size (names), [height(this), 1])
+        error ('table: Dimension mismatch: table has %d rows but new RowNames is %s', ...
+          height (this), size2str (size (names)));
+      endif
+      this.RowNames = names;
+    endfunction
+
     function ixVar = resolveVarRef (this, varRef)
       %RESOLVEVARREF Resolve a reference to variables
       %
