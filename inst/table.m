@@ -1319,8 +1319,9 @@ classdef table
         hasIndicator = true;
         indicator = args{1};
       endif
+      minNumMissing = 1;
       if isfield (opts, 'MinNumMissing')
-        error ('table.missing: The MinNumMissing option is not supported for tables.');
+        minNumMissing = opts.MinNumMissing;
       endif
       
       if isfield (opts, 'DataVariables')
@@ -1340,7 +1341,8 @@ classdef table
       else
         tfMissing = ismissing (dataVals);
       endif
-      tfRowHasMissing = any (tfMissing, 2);
+      nMissing = sum (tfMissing, 2);
+      tfRowHasMissing = nMissing >= minNumMissing;
       out = subsetRows (this, ~tfRowHasMissing);
       tf = tfRowHasMissing;
     endfunction
