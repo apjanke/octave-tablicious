@@ -1572,6 +1572,14 @@ classdef table
       error ('Function ctranspose is not supported for tables');
     end
 
+    function out = circshift (this, varargin)
+      %CIRCSHIFT Prohibited
+      
+      % In order for circshift to work for tables, we need to override it to
+      % respect RowNames and variable properties.
+      error ('Function circshift is not supported for tables');
+    end
+
     function out = length (this, varargin)
       error ('Function length is not supported for tables');
     end
