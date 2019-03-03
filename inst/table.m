@@ -1562,7 +1562,7 @@ classdef table
     
     % TODO: Some of these could probably actually be allowed in certain restricted
     % circumstances based on the type and shape of values in this. Consider
-    % allowing them.
+    % allowing them. See https://github.com/apjanke/octave-table/issues/20.
 
     function out = transpose (this, varargin)
       error ('Function transpose is not supported for tables');
