@@ -445,6 +445,7 @@ classdef table
     end
     
     function out = subsref (this, s)
+      %SUBSREF Subscripted reference
       chain_s = s(2:end);
       s = s(1);
       switch s(1).type
