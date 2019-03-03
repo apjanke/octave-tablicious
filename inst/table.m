@@ -1581,7 +1581,10 @@ classdef table
     end
 
     function out = length (this, varargin)
-      error ('Function length is not supported for tables');
+      %LENGTH Length along longest dimension
+      %
+      % Use of LENGTH is not recommended. Use NUMEL or SIZE instead.
+      out = max (size (this));
     end
 
     function out = shiftdims (this, varargin)
