@@ -1572,21 +1572,8 @@ classdef table
       endif
     endfunction
 
-    % 
     % Prohibited operations
     
-    % TODO: Some of these could probably actually be allowed in certain restricted
-    % circumstances based on the type and shape of values in this. Consider
-    % allowing them. See https://github.com/apjanke/octave-table/issues/20.
-
-    function out = circshift (this, varargin)
-      %CIRCSHIFT Prohibited
-      
-      % In order for circshift to work for tables, we need to override it to
-      % respect RowNames and variable properties.
-      error ('Function circshift is not supported for tables');
-    end
-
     function out = shiftdims (this, varargin)
       error ('Function shiftdims is not supported for tables');
     end
