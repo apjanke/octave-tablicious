@@ -1302,6 +1302,7 @@ classdef table
       % [out, tf] = rmmissing (this)
       % [out, tf] = rmmissing (this, indicator)
       % [out, tf] = rmmissing (..., 'DataVariables',vars)
+      % [out, tf] = rmmissing (..., 'MinNumMissing',minNumMissing)
       %
       % Removes rows with missing values.
       %
