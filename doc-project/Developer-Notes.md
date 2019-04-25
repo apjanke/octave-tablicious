@@ -21,7 +21,6 @@ Table Developer Notes
   * Takes single table or struct with tabular field contents
   * Doing this in Java would be easier; in Qt would be nicer
     * But doing it in Qt would require users installing the package to have Qt dev tools installed. Yuck.
-* standardizeMissing() (the top-level one, not table.standardizeMissing)
 * Other "Missing Data" stuff, like @missing, fillmissing() etc?
   * https://www.mathworks.com/help/matlab/data_analysis/missing-data-in-matlab.html
 

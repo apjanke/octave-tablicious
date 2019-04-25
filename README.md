@@ -10,7 +10,7 @@ This package attempts to provide a set of mostly-Matlab-compatible implementatio
 
   * `table` and related construction/conversion functions
   * `ismissing` and friends
-    * `ismissing` and `rmmissing` are currently implemented; `standardizeMissing`, `fillmissing`, and `@missing` are not.
+    * `ismissing`, `standardizeMissing`, and `rmmissing` are currently implemented; `fillmissing` and `@missing` are not.
   * `eqn` and `isnanny`
     * These are experimental Octave extensions for dealing with NaN-like values. They are used by `table`, `ismissing`, and friends, but should be generally useful, and need to be global so they can be overridden by user-defined classes.
 

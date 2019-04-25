@@ -1868,11 +1868,22 @@ classdef table
     function out = standardizeMissing (this, indicator, varargin)
       %STANDARDIZEMISSING Insert standard missing values
       %
-      % out = standardizeMissing (this, indicator, varargin)
+      % out = standardizeMissing (this, indicator)
+      % out = standardizeMissing (this, indicator, 'DataVariables', varNamesOrIndexes)
       %
-      % This method depends on the implementation of the global standardizeMissing()
-      % function, which is not yet implemented in Octave, so any use of this method
-      % is likely to error out.
+      % Standardizes missing values in variable data.
+      %
+      % If DataVariables option is supplied, only the indicated variables are 
+      % standardized.
+      %
+      % Indicator is passed along to standardizeMissing when it is called on each
+      % of the data variables in turn. The same indicator is used for all
+      % variables. You can mix and match indicator types by just passing in 
+      % mixed indicator types in a cell array; indicators that don't match the
+      % type of the column they are operating on are just ignored.
+      %
+      % Returns table with same variable names and types as this, but with variable
+      % values standardized.
       narginchk (2, 4);
       mustBeA (this, 'table');
       [opts, args] = peelOffNameValueOptions (varargin, {'DataVariables'});
