@@ -23,7 +23,7 @@ function out = tableOuterFillValue (x)
     endif
   elseif iscell (x)
     if iscellstr (x)
-      % This is an exception to the "check the type, not its values" rule
+      % This is an exception to the "check the type, not its values" rule.
       out = repmat ({''}, 1, nCols);
     else
       error ('table: outer fill values for non-cellstr cells are not supported');
@@ -47,8 +47,8 @@ function out = tableOuterFillValue (x)
     out = table (varVals{:}, 'VariableNames', x.Properties.VariableNames);
   elseif isa (x, 'categorical')
     % We may need to construct an <undefined> value of the particular categories
-    % in a categorical variable. Moot point since categorical is not defined in
-    % Octave yet
+    % in a categorical variable. Currently a moot point since categorical is not
+    % defined in Octave yet.
     error ('table: outer fill values for categorical variables are not yet implemented');
   else
     % Fall back to using array-expansion fill value
