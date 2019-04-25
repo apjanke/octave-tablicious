@@ -2223,22 +2223,6 @@ classdef table
     endfunction
   endmethods
 
-  methods (Static)
-    function out = guessFillValueFromArrayExpansion (x)
-      if isempty (x)
-        xx = x;
-        % We need to guess at what a usable value is. The zero-arg constructor
-        % ought to work.
-        defaultVal = feval (class (x));
-        xx(3) = defaultVal;
-        out = x(2);
-      else
-        xx = x(1);
-        xx(3) = x(1);
-        out = x(2);
-      endif
-    endfunction
-  endmethods
 endclassdef
 
 function out = prettyprint_summary_data (s)
