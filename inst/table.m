@@ -1941,7 +1941,8 @@ classdef table
     function [pkA, pkB] = proxykeysForMatrixes (A, B)
       %PROXYKEYSFORMATRIXES Compute row proxy keys for tables
       
-      % TODO: Rename this method
+      % Note: This is called "proxykeysForMatrixes", not "proxyKeysForTables", because
+      % it overrides the generic proxykeysForMatrixes, and tables *are* matrixes.
       
       if nargin == 1
         mustBeA (A, 'table');
