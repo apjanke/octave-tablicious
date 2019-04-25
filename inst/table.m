@@ -592,6 +592,9 @@ classdef table
     end
 
     function [ixRow, ixVar] = resolveRowVarRefs (this, rowRef, varRef)
+      %RESOLVEROWVARREFS Internal implementation method
+      %
+      % This resolves both row and variable refs to indexes.
       if isnumeric (rowRef) || islogical (rowRef)
         ixRow = rowRef;
       elseif iscellstr (rowRef)
@@ -934,11 +937,12 @@ classdef table
     function [C, ib] = join (A, B, varargin)
       %JOIN Combine two tables by rows using key variables
       %
-      % This is not a full relational join operation. It has the restrictions
+      % This is not a "real" relational join operation. It has the restrictions
       % that:
       %  1) The key values in B must be unique. 
       %  2) Every key value in A must map to a key value in B.
       % These are restrictions inherited from the Matlab definition of table.join.
+      %
       % You probably don't want to use this method. You probably want to use
       % innerjoin or outerjoin instead.
       %
@@ -981,6 +985,8 @@ classdef table
       if ~all (tf)
         error ('table.join: Some rows in A had no corresponding key values in B');
       endif
+      % TODO: Once we've applied the key restrictions, can we just call
+      % realjoin() here?
       outA = A;
       nonKeysB = subsetvars (B, nonKeyVarsB);
       outB = subsetRows (nonKeysB, ib);
@@ -988,7 +994,7 @@ classdef table
     endfunction
 
     function out = resolveJoinKeysAndVars(A, B, opts)
-      
+      %RESOLVEJOINKEYSANDVARS Internal implementation method
       if isfield (opts, 'Keys')
         if isnumeric (opts.Keys) || islogical (opts.Keys)
           if islogical (opts.Keys)
@@ -1110,8 +1116,15 @@ classdef table
 
     function [out, ix, ixb] = innerjoin(A, B, varargin)
       %INNERJOIN Relational inner join between two tables
-      
-      % TODO: Implement options
+      %
+      % Computes the relational inner join between two tables. "Inner" means that
+      % only rows which had matching rows in the other input are kept in the
+      % output.
+      %
+      % Returns:
+      % out - A table that is the result of joining A and B
+      % ix - Indexes into A for each row in out
+      % ixb - Indexes into B for each row in out
       
       % Input munging
       optNames = {'Keys', 'LeftKeys', 'RightKeys', ...
@@ -1137,16 +1150,17 @@ classdef table
       % Performs a "real" relational natural inner join between two tables, 
       % without the key restrictions that JOIN imposes.
       %
+      % Currently does not support tables which have RowNames. This may be
+      % added in the future.
+      %
+      % This is an Octave extension.
+      %
       % Returns:
       %   out - a table containing the result of joining A and B, with RowNames
       %         removed.
       %   ixs - an n-by-2 double matrix where ixs(i,:) is [ixA ixB], which are
       %         the indexes from A and B containing the input rows that resulted
       %         in this output row.
-      %
-      % RowNames on the output may be added in a future revision.
-      %
-      % This is an Octave extension.
       
       % Input handling
       optNames = {'Keys', 'LeftKeys', 'RightKeys', ...
@@ -1190,6 +1204,7 @@ classdef table
     endfunction
   
     function [outA, outB] = makeVarNamesUnique (A, B)
+      %MAKEVARNAMESUNIQUE Internal implementation method
       seenNames = struct;
       namesA = A.VariableNames;
       for i = 1:numel (namesA)
@@ -1228,6 +1243,20 @@ classdef table
   
     function [out, ia, ib] = outerjoin (A, B, varargin)
       %OUTERJOIN Relational outer join
+      %
+      % [out, ia, ib] = outerjoin (A, B, varargin)
+      %
+      % Computes the relational outer join of tables A and B. This is like a
+      % regular join, but also includes rows in each input which did not have
+      % matching rows in the other input; the columns from the missing side are
+      % filled in with placeholder values.
+      %
+      % This method is not implemented yet. Sorry.
+      %
+      % Returns:
+      % out - A table that is the result of the outer join of A and B
+      % ia - indexes into A for each row in out
+      % ib - indexes into B for each row in out
       
       % Input handling
       if !istable (A)
@@ -1255,6 +1284,14 @@ classdef table
       %SEMIJOIN Natural semijoin
       %
       % [outA, ixA, outB, ixB] = semijoin (A, B)
+      %
+      % Computes the natural semijoin of tables A and B. The semi-join of tables
+      % A and B is the set of all rows in A which have matching rows in B, based
+      % on comparing the values of variables with the same names.
+      %
+      % This method also computes the semijoin of B and A, for convenience.
+      %
+      % This is an Octave extension.
       %
       % Returns:
       % outA - all the rows in A with matching row(s) in B
@@ -1301,11 +1338,14 @@ classdef table
       % Computes the anti-join of A and B. The anti-join is defined as all the
       % rows from one input which do not have matching rows in the other input.
       %
+      % This is an Octave extension.
+      %
       % Returns:
       % outA - all the rows in A with no matching row in B
       % ixA - the row indexes into A which produced outA
       % outB - all the rows in B with no matching row in A
       % ixB - the row indexes into B which produced outB
+      
       
       % Input handling
       if !istable (A)
@@ -1357,6 +1397,8 @@ classdef table
       % The ordering of the rows in the result is undefined, and may be implementation-
       % dependent. TODO: Determine if we can lock this behavior down to a fixed,
       % defined ordering, without killing performance.
+      %
+      % This is an Octave extension.
       
       % Developer's note: The second argout, ixs, is for table's internal use,
       % and is thus undocumented.
@@ -1397,6 +1439,8 @@ classdef table
       % Inputs must either both have row names or both not have row names; it is
       % an error if one has row names and the other doesn't.
       % Variables in different orders are reordered to be in the same order as A.
+      %
+      % This is an Octave extension.
       
       if !istable (A)
         A = table (A);

@@ -9,6 +9,7 @@ Table Developer Notes
 * timetable
 * More documentation for individual methods
 * Texinfo documentation
+* Once implementation is finished, clean up interface by making methods private/protected
 
 # Release Checklist
 
