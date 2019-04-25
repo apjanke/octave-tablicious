@@ -18,7 +18,7 @@ Table Developer Notes
 * `git push; git push --tags`
 * Create GitHub release
   * Draft a release from the `v<version>` tag
-  * Note it as pre-release
+  * Check the “This is a pre-release” box
   * Upload the dist file resulting from that `make dist` you did
 * Update release in `DESCRIPTION` to `<version>+` to open development on next release
 * `git commit -a; git push`
