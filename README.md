@@ -21,14 +21,14 @@ This package attempts to provide a set of mostly-Matlab-compatible implementatio
 To get started using or testing this project, install it using Octave's `pkg` function:
 
 ```
-pkg install https://github.com/apjanke/octave-addons-table/archive/master.zip
+pkg install https://github.com/apjanke/octave-table/archive/master.zip
 pkg load table
 ```
 
 ### Installation for development
 
 * Clone the repo
-  * `git clone https://github.com/apjanke/octave-addons-table`
+  * `git clone https://github.com/apjanke/octave-table`
 * Add the `inst/` directory from the repo to your Octave path.
 
 ## Documentation
