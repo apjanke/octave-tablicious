@@ -1280,6 +1280,38 @@ classdef table
 
     endfunction
 
+    function out = outerfillvals (this)
+      %OUTERFILLVALS Fill values for outer join
+      fillVals = cell (1, width (this));
+      for iCol = 1:width (this)
+        x = this.VariableValues{iCol};
+        if isnumeric (x)
+          if isa (x, "double")
+            fillVal = NaN;
+          elseif isa (x, "single")
+            fillVal = single (NaN);
+          elseif isinteger (x)
+            fillVal = zeros (1, 1, class(x));
+          else
+            fillVal = table.guessFillValueFromArrayExpansion (x);
+          endif
+        elseif iscell (x)
+          % Sigh. We have to guess at whether this column is a cellstr or a 
+          % regular "generic" cell
+          if iscellstr (x)
+            fillVal = {''};
+          else
+            fillVal = {[]};
+          endif
+        else
+          % Generic case: use the array-expansion fill value
+          fillVal = table.guessFillValueFromArrayExpansion (x);
+        endif
+        fillVals{iCol} = fillVal;
+      endfor
+      out = table (fillVals{:}, 'VariableNames', this.VariableNames);
+    endfunction
+    
     function [outA, ixA, outB, ixB] = semijoin (A, B)
       %SEMIJOIN Natural semijoin
       %
@@ -2027,6 +2059,23 @@ classdef table
       endfor
       pkA = cat (2, varProxyKeysA{:});
       pkB = cat (2, varProxyKeysB{:});
+    endfunction
+  endmethods
+
+  methods (Static)
+    function out = guessFillValueFromArrayExpansion (x)
+      if isempty (x)
+        xx = x;
+        % We need to guess at what a usable value is. The zero-arg constructor
+        % ought to work
+        defaultVal = feval (class (x));
+        xx(3) = defaultVal;
+        out = x(2);
+      else
+        xx = x(1);
+        xx(3) = x(1);
+        out = x(2);
+      endif
     endfunction
   endmethods
 endclassdef
