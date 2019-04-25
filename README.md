@@ -32,6 +32,8 @@ pkg load table
 
 ### Installation for development
 
+If you want to hack on the `octave-table` code itself, set it up like this:
+
 * Clone the repo
   * `git clone https://github.com/apjanke/octave-table`
 * Add the `inst/` directory from the repo to your Octave path.
