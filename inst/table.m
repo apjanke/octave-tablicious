@@ -132,7 +132,6 @@ classdef table
       %
       % Prints or returns a summary of the data in this table.
       %
-      % Currently, only the `s = summary (this)` capturing form is implemented.
       % This is a work in progress.
       
       % Common summary things:
