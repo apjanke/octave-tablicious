@@ -178,11 +178,53 @@ classdef missing
       out = calendarDuration (NaN (size (this)));
     endfunction
 
+    % Arithmetic
+    
+    function out = plus (A, B)
+      args = missing.demote ({A B});
+      out = plus(args{1}, args{2});
+    endfunction
+
+    function out = minus (A, B)
+      args = missing.demote ({A B});
+      out = minus(args{1}, args{2});
+    endfunction
+
+    function out = times (A, B)
+      args = missing.demote ({A B});
+      out = times(args{1}, args{2});
+    endfunction
+
+    function out = mtimes (A, B)
+      args = missing.demote ({A B});
+      out = mtimes(args{1}, args{2});
+    endfunction
+
+    function out = divide (A, B)
+      args = missing.demote ({A B});
+      out = divide(args{1}, args{2});
+    endfunction
+
+    function out = rdivide (A, B)
+      args = missing.demote ({A B});
+      out = rdivide(args{1}, args{2});
+    endfunction
+
+    function out = power (A, B)
+      args = missing.demote ({A B});
+      out = power(args{1}, args{2});
+    endfunction
+
+    function out = mpower (A, B)
+      args = missing.demote ({A B});
+      out = mpower(args{1}, args{2});
+    endfunction
+
     % Auto-conversion stuff
     
     function out = cat (dim, varargin)
       %CAT Concatenate arrays.
-      args = missing.demote (varargin);      
+      args = missing.demote (varargin);
       out = cat (dim, args{:});
     endfunction
 
