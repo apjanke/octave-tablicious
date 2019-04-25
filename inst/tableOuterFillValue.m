@@ -11,6 +11,8 @@ function out = tableOuterFillValue (x)
   % Returns a 1-by-ncols value of the same type as x, which may be any type, where
   % ncols is the number of columns in the input.
   
+  % TODO: This is now redundant with table.outerfillvals. Merge them.
+
   nCols = size (x, 2);
   if isnumeric (x)
     if isa (x, 'double') || isa (x, 'single')
