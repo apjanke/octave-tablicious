@@ -1747,6 +1747,8 @@ classdef table
       % out = rowfun (func, A)
       % out = rowfun (..., Name,Value, ...)
       %
+      % This method is currently unimplemented. Sorry.
+      %
       % TODO: Document all the Name/Value options; there's a bunch of them.
       
       % Input handling
@@ -1816,6 +1818,8 @@ classdef table
       % that are prefixed and suffixed with "__". So try to avoid those in your
       % table variable names.
       %
+      % This is an Octave extension.
+      %
       % Examples:
       % [s,p,sp] = table_examples.SpDb
       % tmp = join (sp, p);
@@ -1846,6 +1850,8 @@ classdef table
       %
       % TODO: Decide whether to name this to "where" to be more like SQL instead
       % of relational algebra.
+      %
+      % This is an Octave extension.
       %
       % Examples:
       % [s,p,sp] = table_examples.SpDb;

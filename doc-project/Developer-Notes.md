@@ -7,6 +7,8 @@ Table Developer Notes
 * Get subsasgn assignment to work
  * It's currently erroring: `error: invalid dot name structure assignment because the structure array is empty.  Specify a subscript on the structure array to resolve.`
 * timetable
+* More documentation for individual methods
+* Texinfo documentation
 
 # Release Checklist
 
