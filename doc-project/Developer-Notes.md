@@ -19,6 +19,8 @@ Table Developer Notes
   * Probably pull in Apache FOP for this. Will need to write custom Java layer for acceptable performance.
 * viewtable()
   * Takes single table or struct with tabular field contents
+  * Doing this in Java would be easier; in Qt would be nicer
+    * But doing it in Qt would require users installing the package to have Qt dev tools installed. Yuck.
 * standardizeMissing() (the top-level one, not table.standardizeMissing)
 
 # Release Checklist
