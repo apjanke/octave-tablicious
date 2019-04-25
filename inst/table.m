@@ -1199,7 +1199,7 @@ classdef table
           else
             varIxB = opts.RightVariables;
           endif
-          varNamesA = B.VariableNames(varIxB);
+          varNamesB = B.VariableNames(varIxB);
         else
           varNamesB = cellstr (opts.RightVariables);
           [tf, varIxB] = ismember (varNamesB, B.VariableNames);
