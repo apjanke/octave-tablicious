@@ -11,6 +11,13 @@ Table Developer Notes
 * Texinfo documentation
 * QHelp documentation
 * Once implementation is finished, clean up interface by making methods private/protected
+* File I/O
+  * readtable, writetable
+  * tableread
+  * table.textscan, table.csvread, table.dlmread
+  * Probably pull in Apache FOP for this. Will need to write custom Java layer for acceptable performance.
+* viewtable()
+  * Takes single table or struct with tabular field contents
 
 # Release Checklist
 
