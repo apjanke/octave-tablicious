@@ -939,6 +939,12 @@ classdef table
       %  1) The key values in B must be unique. 
       %  2) Every key value in A must map to a key value in B.
       % These are restrictions inherited from the Matlab definition of table.join.
+      % You probably don't want to use this method. You probably want to use
+      % innerjoin or outerjoin instead.
+      %
+      % See also: REALJOIN, INNERJOIN
+      
+      % TODO: Implement options
       
       % Input munging
       optNames = {'Keys', 'KeepOneCopy', 'LeftKeys', 'RightKeys', ...
@@ -981,10 +987,152 @@ classdef table
       C = [outA outB];
     endfunction
 
-    function [out, ixs] = realjoin(A, B)
+    function out = resolveJoinKeysAndVars(A, B, opts)
+      
+      if isfield (opts, 'Keys')
+        if isnumeric (opts.Keys) || islogical (opts.Keys)
+          if islogical (opts.Keys)
+            keyIxA = find (opts.Keys);
+            keyIxB = find (opts.Keys);
+          else
+            keyIxA = opts.Keys;
+            keyIxB = opts.Keys;
+          endif
+          keyNamesA = A.VariableNames(keyIxA);
+          keyNamesB = B.VariableNames(keyIxB);
+        elseif ischar (opts.Keys) || iscellstr (opts.Keys)
+          keyNamesA = cellstr (opts.Keys);
+          keyNamesB = cellstr (opts.Keys);
+          [tf, keyIxA] = ismember (keyNamesA, A.VariableNames);
+          if ! all (tf)
+            error ('Named keys not found in table A: %s', strjoin (keyNamesA(!tf), ', '));
+          endif
+          [tf, keyIxB] = ismember (keyNamesB, B.VariableNames);
+          if ! all (tf)
+            error ('Named keys not found in table B: %s', strjoin (keyNamesB(!tf), ', '));
+          endif
+        endif
+      elseif isfield (opts, 'LeftKeys')
+        if ! isfield (opts, 'RightKeys')
+          error ('If option LeftKeys is supplied, then RightKeys must be, too.');
+        endif
+        if isnumeric (opts.LeftKeys) || islogical (opts.LeftKeys)
+          if islogical (opts.LeftKeys)
+            keyIxA = find (opts.LeftKeys);
+          else
+            keyIxA = opts.LeftKeys;
+          endif
+          keyNamesA = A.VariableNames(keyIxA);
+        elseif ischar (opts.LeftKeys) || iscellstr (opts.LeftKeys)
+          keyNamesA = cellstr (opts.LeftKeys);
+          [tf, keyIxA] = ismember (keyNamesA, A.VariableNames);
+          if ! all (tf)
+            error ('Named keys not found in table A: %s', strjoin (keyNamesA(!tf), ', '));
+          endif
+        endif
+        if isnumeric (opts.RightKeys) || islogical (opts.RightKeys)
+          if islogical (opts.RightKeys)
+            keyIxB = find (opts.RightKeys);
+          else
+            keyIxB = opts.RightKeys;
+          endif
+          keyNamesB = B.VariableNames(keyIxB);
+        elseif ischar (opts.RightKeys) || iscellstr (opts.RightKeys)
+          keyNamesB = cellstr (opts.RightKeys);
+          [tf, keyIxB] = ismember (keyNamesB, B.VariableNames);
+          if ! all (tf)
+            error ('Named keys not found in table B: %s', strjoin (keyNamesB(!tf), ', '));
+          endif
+        endif
+      elseif isfield (opts, 'RightKeys')
+          error ('If option RightKeys is supplied, then LeftKeys must be, too.');
+      else
+        % Default keys are a natural join
+        commonCols = intersect (A.VariableNames, B.VariableNames);
+        keyNamesA = commonCols;
+        keyNamesB = commonCols;
+        [~, keyIxA] = ismember (commonCols, A.VariableNames);
+        [~, keyIxB] = ismember (commonCols, B.VariableNames);
+      endif
+      if numel (keyIxA) != numel (keyIxB)
+        error ('Number of keys must be same for A and B; got %d vs. %s', ...
+          numel (keyIxA), numel (keyIxB));
+      endif
+
+      if isfield (opts, 'LeftVariables')
+        if isnumeric (opts.LeftVariables) || islogical (opts.LeftVariables)
+          if islogical (opts.LeftVariables)
+            varIxA = find (opts.LeftVariables);
+          else
+            varIxA = opts.LeftVariables;
+          endif
+          varNamesA = A.VariableNames(varIxA);
+        else
+          varNamesA = cellstr (opts.LeftVariables);
+          [tf, varIxA] = ismember (varNamesA, A.VariableNames);
+          if ! all (tf)
+            error ('Named variables not found in table A: %s', strjoin (varNamesA(!tf), ', '));
+          endif
+        endif
+      else
+        varIxA = 1:width(A);
+        varNamesA = A.VariableNames;
+      endif
+      if isfield (opts, 'RightVariables')
+        if isnumeric (opts.RightVariables) || islogical (opts.RightVariables)
+          if islogical (opts.RightVariables)
+            varIxB = find (opts.RightVariables);
+          else
+            varIxB = opts.RightVariables;
+          endif
+          varNamesA = B.VariableNames(varIxB);
+        else
+          varNamesB = cellstr (opts.RightVariables);
+          [tf, varIxB] = ismember (varNamesB, B.VariableNames);
+          if ! all (tf)
+            error ('Named variables not found in table B: %s', strjoin (varNamesB(!tf), ', '));
+          endif
+        endif
+      else
+        varIxB = 1:width(B);
+        varNamesB = B.VariableNames;
+      endif
+
+      out.keyIxA = keyIxA;
+      out.keyIxB = keyIxB;
+      out.keyNamesA = keyNamesA;
+      out.keyNamesB = keyNamesB;
+      out.varIxA = varIxA;
+      out.varIxB = varIxB;
+      out.varNamesA = varNamesA;
+      out.varNamesB = varNamesB;
+    endfunction
+
+    function [out, ix, ixb] = innerjoin(A, B, varargin)
+      %INNERJOIN Relational inner join between two tables
+      
+      % TODO: Implement options
+      
+      % Input munging
+      optNames = {'Keys', 'LeftKeys', 'RightKeys', ...
+        'LeftVariables', 'RightVariables'};
+      opts = peelOffNameValueOptions (varargin, optNames);
+      if ! istable (A)
+        A = table (A);
+      endif
+      if ! istable (B)
+        B = table (B);
+      endif
+      
+      [out, ix] = realjoin(A, B, varargin{:});
+      ixa = ix(:,1);
+      ixb = ix(:,2);
+    endfunction
+    
+    function [out, ixs] = realjoin(A, B, varargin)
       %REALJOIN "Real" relational inner join, without key restrictions
       %
-      % [out, ixs] = realjoin(A, B)
+      % [out, ixs] = realjoin(A, B, varargin)
       %
       % Performs a "real" relational natural inner join between two tables, 
       % without the key restrictions that JOIN imposes.
@@ -1001,12 +1149,16 @@ classdef table
       % This is an Octave extension.
       
       % Input handling
-      if !istable (A)
+      optNames = {'Keys', 'LeftKeys', 'RightKeys', ...
+        'LeftVariables', 'RightVariables'};
+      opts = peelOffNameValueOptions (varargin, optNames);
+      if ! istable (A)
         A = table (A);
       endif
-      if !istable (B)
+      if ! istable (B)
         B = table (B);
       endif
+      opts2 = resolveJoinKeysAndVars (A, B, opts);
       if hasrownames (A)
         error ('table.realjoin: Input A may not have row names');
       endif
@@ -1015,26 +1167,67 @@ classdef table
       endif
       
       % Join logic
-      keyVarNames = intersect_stable (A.VariableNames, B.VariableNames);
-      nonKeyVarsB = setdiff_stable (B.VariableNames, keyVarNames);
-      if isempty (keyVarNames)
+      if isempty (opts2.keyIxA)
         % This degenerates to a cartesian product
         [out, ixs] = cartesian (A, B);
         return
       endif
-      keysA = subsetvars (A, keyVarNames);
-      keysB = subsetvars (B, keyVarNames);
+      keysA = subsetvars (A, opts2.keyIxA);
+      keysB = subsetvars (B, opts2.keyIxB);
       [pkA, pkB] = proxykeysForMatrixes (keysA, keysB);
       ixs = matchrows (pkA, pkB);
-      outA = subsetRows (A, ixs(:,1));
-      nonKeysB = subsetvars (B, nonKeyVarsB);
-      outB = subsetRows (nonKeysB, ixs(:,2));
+      subA = subsetvars (A, opts2.varIxA);
+      outA = subsetRows (subA, ixs(:,1));
+      % TODO: This logic might need to be changed, to allow key variables to be
+      % redundantly included. This should move the nonkey var subsetting up to
+      % resolveJoinKeysAndVars, and add renaming logic here.
+      ixNonKeyVarsB = setdiff (1:width (B), opts2.keyIxB);
+      subB = subsetvars (B, ixNonKeyVarsB);
+      outB = subsetRows (subB, ixs(:,2));
+      [outA, outB] = makeVarNamesUnique (outA, outB);
       out = [outA outB];
 
     endfunction
   
+    function [outA, outB] = makeVarNamesUnique (A, B)
+      seenNames = struct;
+      namesA = A.VariableNames;
+      for i = 1:numel (namesA)
+        seenNames.(namesA{i}) = true;
+      endfor
+      namesB = B.VariableNames;
+      newNamesB = cell (size (namesB));
+      for i = 1:numel (namesB)
+        oldName = namesB{i};
+        newName = [];
+        if ! isfield (seenNames, oldName)
+          newName = oldName;
+        else
+          newBaseName = [oldName '_B'];
+          if ! isfield (seenNames, newBaseName)
+            newName = newBaseName;
+          else
+            n = 0;
+            while true
+              n = n + 1;
+              candidate = sprintf('%s_%d', newBaseName, n);
+              if ! isfield (seenNames, candidate)
+                newName = candidate;
+                break
+              endif
+            endwhile
+          endif
+        endif
+        newNamesB{i} = newName;
+        senNames.(newName) = true;
+      endfor
+      outA = A;
+      outB = B;
+      outB.VariableNames = newNamesB;
+    endfunction
+  
     function [out, ia, ib] = outerjoin (A, B, varargin)
-      %OUTERJOIN Outer join
+      %OUTERJOIN Relational outer join
       
       % Input handling
       if !istable (A)
@@ -1054,9 +1247,8 @@ classdef table
         endif
       endfor
       
-      
+      error ('table.outerjoin is not yet implemented. Sorry.');
 
-      error ('table.outerjoin is not yet implemented');
     endfunction
 
     function [outA, ixA, outB, ixB] = semijoin (A, B)
@@ -1754,8 +1946,9 @@ classdef table
       else  
         mustBeA (A, 'table');
         mustBeA (B, 'table');
-        if !isequal (A.VariableNames, B.VariableNames)
-          error ('table.proxykeysForMatrixes: Inconsistent variable names in inputs');
+        if width (A) != width (B)
+          error ('table.proxykeysForMatrixes: Tables must be same width; got %d vs %d', ...
+            width (A), width (B));
         endif
         [pkA, pkB] = proxykeysForTwoTables (A, B);
       endif
