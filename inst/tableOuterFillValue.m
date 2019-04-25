@@ -11,8 +11,6 @@ function out = tableOuterFillValue (x)
   % Returns a 1-by-ncols value of the same type as x, which may be any type, where
   % ncols is the number of columns in the input.
   
-  % TODO: This is now redundant with table.outerfillvals. Merge them.
-
   nCols = size (x, 2);
   if isnumeric (x)
     if isa (x, 'double') || isa (x, 'single')
@@ -58,9 +56,9 @@ function out = tableOuterFillValue (x)
       % Assume the 0-arg constructor works
       x0 = feval (class (x));
     else
-      x0 = x(1);
+      x0 = x(1,:);
     endif
-    x0(3) = x0;
-    out = repmat (x0(2), 1, nCols);
+    x0(3,:) = x0;
+    out = x0(2,:);
   endif
 endfunction

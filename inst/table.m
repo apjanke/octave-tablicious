@@ -1366,29 +1366,7 @@ classdef table
       fillVals = cell (1, width (this));
       for iCol = 1:width (this)
         x = this.VariableValues{iCol};
-        if isnumeric (x)
-          if isa (x, "double")
-            fillVal = NaN;
-          elseif isa (x, "single")
-            fillVal = single (NaN);
-          elseif isinteger (x)
-            fillVal = zeros (1, 1, class(x));
-          else
-            fillVal = table.guessFillValueFromArrayExpansion (x);
-          endif
-        elseif iscell (x)
-          % Sigh. We have to guess at whether this column is a cellstr or a 
-          % regular "generic" cell
-          if iscellstr (x)
-            fillVal = {''};
-          else
-            fillVal = {[]};
-          endif
-        else
-          % Generic case: use the array-expansion fill value
-          fillVal = table.guessFillValueFromArrayExpansion (x);
-        endif
-        fillVals{iCol} = fillVal;
+        fillVals{iCol} = tableOuterFillValue (x);
       endfor
       out = table (fillVals{:}, 'VariableNames', this.VariableNames);
     endfunction
