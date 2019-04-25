@@ -1100,8 +1100,8 @@ classdef table
           endif
         endif
       else
-        varIxB = 1:width(B);
-        varNamesB = B.VariableNames;
+        varIxB = find (! ismember (B.VariableNames, varNamesA));
+        varNamesB = B.VariableNames(varIxB);
       endif
 
       out.keyIxA = keyIxA;
@@ -1192,11 +1192,7 @@ classdef table
       ixs = matchrows (pkA, pkB);
       subA = subsetvars (A, opts2.varIxA);
       outA = subsetRows (subA, ixs(:,1));
-      % TODO: This logic might need to be changed, to allow key variables to be
-      % redundantly included. This should move the nonkey var subsetting up to
-      % resolveJoinKeysAndVars, and add renaming logic here.
-      ixNonKeyVarsB = setdiff (1:width (B), opts2.keyIxB);
-      subB = subsetvars (B, ixNonKeyVarsB);
+      subB = subsetvars (B, opts2.varIxB);
       outB = subsetRows (subB, ixs(:,2));
       [outA, outB] = makeVarNamesUnique (outA, outB);
       out = [outA outB];
