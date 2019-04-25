@@ -296,11 +296,14 @@ classdef table
     endfunction
 
     function out = istable (this)
+      %ISTABLE True if input is a table
       out = true;
     endfunction
 
     function out = size (this, dim)
       %SIZE Size of array
+      %
+      % For tables, the size is [number-of-rows x number-of-variables].
       if nargin == 1
         out = [height(this), width(this)];
       else
@@ -317,6 +320,9 @@ classdef table
     end
 
     function out = ndims (this)
+      %NDIMS Number of dimensions
+      %
+      % For tables, ndims is always 2.
       out = 2;
     end
     
@@ -342,6 +348,7 @@ classdef table
     endfunction
 
     function out = height (this)
+      %HEIGHT Number of rows in table
       if isempty (this.VariableValues)
         out = 0;
       else
@@ -350,18 +357,34 @@ classdef table
     end
     
     function out = rows (this)
+      %ROWS Number of rows in table
       out = height (this);
     endfunction
     
     function out = width (this)
+      %WIDTH Number of variables in table
+      %
+      % Note that this is not the sum of the number of columns in each variable.
+      % It is just the number of variables.
       out = numel (this.VariableNames);
     end
     
     function out = columns (this)
+      %COLUMNS Number of columns (variables) in table
+      %
+      % Note that this is not the sum of the number of columns in each variable.
+      % It is just the number of variables.      
       out = width (this);
     endfunction
     
     function out = numel (this)
+      %NUMEL Total number of elements in table
+      %
+      % This is the total number of elements in this table. This is calculated
+      % as the sum of numel for each variable.
+      %
+      % TODO: Those semantics may be wrong. This may actually need to be defined
+      % as height(this) * width(this).
       n = 0;
       for i = 1:numel (this.VariableValues)
         n = n + numel (this.VariableValues{i});
@@ -370,34 +393,58 @@ classdef table
     end
     
     function out = isempty (this)
+      %ISEMPTY True if array is empty
+      %
+      % For tables, isempty() is true if the number of rows is 0 or the number
+      % of variables is 0.
       out = isempty (this.VariableNames);
     end
     
     function out = ismatrix (this)
+      %ISMATRIX True if input is a matrix
+      %
+      % For tables, ismatrix() is always true, by definition.
       out = true;
     end
     
     function out = isrow (this)
+      %ISROW True if input is a row vector
       out = height (this) == 1;
     end
     
     function out = iscol (this)
+      %ISCOL True if input is a column vector
+      %
+      % For tables, iscol() is true if the input has a single variable. The number
+      % of columns within that variable do not matter.
       out = width (this) == 1;
     end
     
     function out = isvector (this)
+      %ISVECTOR True if input is a vector
       out = isrow (this) || iscol (this);
     end
     
     function out = isscalar (this)
+      %ISSCALAR True if input is a scalar
       out = height (this) == 1 && width (this) == 1;
     end
     
     function out = hasrownames (this)
+      %HASROWNAMES True if this table has row names defined
       out = ~isempty (this.RowNames);
     endfunction
     
     function out = vertcat (varargin)
+      %VERTCAT Vertical concatenation
+      %
+      % Combines tables by vertically concatenating them.
+      %
+      % Inputs that are not tables are automatically converted to tables by calling
+      % table() on them.
+      %
+      % The inputs must have the same number and names of variables, and their
+      % variable value types and sizes must be cat-compatible.
       args = varargin;
       for i = 1:numel (args)
         if ~istable (args{i})
@@ -477,6 +524,16 @@ classdef table
     
     function out = subsref (this, s)
       %SUBSREF Subscripted reference
+      %
+      % tbl.VarName
+      % tbl.VarName(ix)
+      % tbl.(VarName)
+      % tbl(ixRows, ixVars)
+      % tbl{ixRow, ixVar}
+      % tbl{ixRow, ixVar}(ix)
+      %
+      % Table supports various forms of indexing that allow you to subset the
+      % table or get at the variable values within the table.
       chain_s = s(2:end);
       s = s(1);
       switch s(1).type
@@ -640,6 +697,12 @@ classdef table
     end
     
     function out = subsetRows (this, ixRows)
+      %SUBSETROWS Subset table by rows
+      %
+      % out = subsetRows (this, ixRows)
+      %
+      % Subsets this by rows. ixRows may be a numeric or logical index into the
+      % rows of this.
       out = this;
       if ~isnumeric (ixRows) && ~islogical (ixRows)
         % TODO: Hmm. Maybe we ought not to do this check, but just defer to the
@@ -658,8 +721,20 @@ classdef table
     end
     
     function out = subsetvars (this, ixVars)
-      %SUBSETVARS Subset this along its variables
-
+      %SUBSETVARS Subset table along its variables
+      %
+      % out = subsetvars (this, ixVars)
+      %
+      % Subsets this by subsetting it along its variables.
+      %
+      % ixVars may be:
+      %   - a numeric index vector
+      %   - a logical index vector
+      %   - ":"
+      %   - a cellstr vector of variable names
+      %
+      % The resulting table will have its variables reordered to match ixVars.
+      
       if ischar (ixVars)
         if ~isequal (ixVars, ':')
           ixVars = cellstr (ixVars);
@@ -831,6 +906,10 @@ classdef table
     
     function [out, index] = sortrows (this, varargin)
       %SORTROWS Sort rows of table
+      %
+      % [out, index] = sortrows (this, varargin)
+      %
+      % Sorts the rows of this based on the values in their variables.
       
       % Parse input signature
       % This is tricky because the sortrows() signature is complicated and ambiguous
@@ -908,6 +987,8 @@ classdef table
     function out = issortedrows (this, varargin)
       %ISSORTEDROWS Determine if table rows are sorted
       %
+      % out = issortedrows (this, varargin)
+      %
       % TODO: Document my signature.
       [~, ix] = sortrows (this, varargin{:});
       out = isequal (ix, 1:height (this));
@@ -915,6 +996,8 @@ classdef table
     
     function [out, ia] = topkrows (this, k, varargin)
       %TOPKROWS Top rows in sorted order
+      %
+      % [out, ia] = topkrows (this, k, varargin)
       %
       % TODO: Document my signature.
       [sorted, ix] = sortrows (this, varargin);
@@ -971,7 +1054,7 @@ classdef table
       % You probably don't want to use this method. You probably want to use
       % innerjoin or outerjoin instead.
       %
-      % See also: REALJOIN, INNERJOIN
+      % See also: INNERJOIN, OUTERJOIN, REALJOIN
       
       % TODO: Implement options
       
@@ -1142,14 +1225,18 @@ classdef table
     function [out, ixa, ixb] = innerjoin(A, B, varargin)
       %INNERJOIN Relational inner join between two tables
       %
+      % [out, ixa, ixb] = innerjoin(A, B, varargin)
+      %
       % Computes the relational inner join between two tables. "Inner" means that
       % only rows which had matching rows in the other input are kept in the
       % output.
       %
+      % TODO: Document options.
+      %
       % Returns:
-      % out - A table that is the result of joining A and B
-      % ix - Indexes into A for each row in out
-      % ixb - Indexes into B for each row in out
+      %   out - A table that is the result of joining A and B
+      %   ix - Indexes into A for each row in out
+      %   ixb - Indexes into B for each row in out
       
       % Input munging
       optNames = {'Keys', 'LeftKeys', 'RightKeys', ...
@@ -1179,6 +1266,8 @@ classdef table
       % added in the future.
       %
       % This is an Octave extension.
+      %
+      % TODO: Document options.
       %
       % Returns:
       %   out - a table containing the result of joining A and B, with RowNames
@@ -1272,7 +1361,7 @@ classdef table
       % matching rows in the other input; the columns from the missing side are
       % filled in with placeholder values.
       %
-      % This method is not implemented yet. Sorry.
+      % TODO: Document options.
       %
       % Returns:
       % out - A table that is the result of the outer join of A and B
@@ -1362,6 +1451,12 @@ classdef table
 
     function out = outerfillvals (this)
       %OUTERFILLVALS Fill values for outer join
+      %
+      % out = outerfillvals (this)
+      %
+      % Returns a table with the same variables as this, but containing only
+      % a single row whose variable values are the values to use as fill values
+      % when doing an outer join.
       fillVals = cell (1, width (this));
       for iCol = 1:width (this)
         x = this.VariableValues{iCol};
@@ -1384,10 +1479,10 @@ classdef table
       % This is an Octave extension.
       %
       % Returns:
-      % outA - all the rows in A with matching row(s) in B
-      % ixA - the row indexes into A which produced outA
-      % outB - all the rows in B with matching row(s) in A
-      % ixB - the row indexes into B which produced outB
+      %   outA - all the rows in A with matching row(s) in B
+      %   ixA - the row indexes into A which produced outA
+      %   outB - all the rows in B with matching row(s) in A
+      %   ixB - the row indexes into B which produced outB
       
       % Developer note: This is almost exactly the same as antijoin, just with
       % inverted ismember() tests. See if the implementations can be refactored
@@ -1431,10 +1526,10 @@ classdef table
       % This is an Octave extension.
       %
       % Returns:
-      % outA - all the rows in A with no matching row in B
-      % ixA - the row indexes into A which produced outA
-      % outB - all the rows in B with no matching row in A
-      % ixB - the row indexes into B which produced outB
+      %   outA - all the rows in A with no matching row in B
+      %   ixA - the row indexes into A which produced outA
+      %   outB - all the rows in B with no matching row in A
+      %   ixB - the row indexes into B which produced outB
       
       
       % Input handling
@@ -1467,7 +1562,7 @@ classdef table
     function [out, ixs] = cartesian (A, B)
       %CARTESIAN Cartesian product of two tables
       %
-      % out = cartesian (A, B)
+      % [out, ixs] = cartesian (A, B)
       %
       % Computes the Cartesian product of two tables. The Cartesian product is
       % each row in A combined with each row in B.
@@ -1517,7 +1612,7 @@ classdef table
     function [outA, outB] = congruentize (A, B)
       %CONGRUENTIZE Make tables congruent
       %
-      % out = congruentize (A, B)
+      % [outA, outB] = congruentize (A, B)
       %
       % Makes tables congruent by ensuring they have the same variables of the
       % same types in the same order. Congruent tables may be safely unioned,
@@ -1757,6 +1852,8 @@ classdef table
 
     function out = standardizeMissing (this, indicator, varargin)
       %STANDARDIZEMISSING Insert standard missing values
+      %
+      % out = standardizeMissing (this, indicator, varargin)
       %
       % This method depends on the implementation of the global standardizeMissing()
       % function, which is not yet implemented in Octave, so any use of this method
@@ -2001,18 +2098,22 @@ classdef table
     % Prohibited operations
     
     function out = shiftdims (this, varargin)
+      %SHIFTDIMS Not supported
       error ('Function shiftdims is not supported for tables');
     end
 
     function out = reshape (this, varargin)
+      %RESHAPE Not supported
       error ('Function reshape is not supported for tables');
     end
 
     function out = resize (this, varargin)
+      %RESIZE Not supported
       error ('Function resize is not supported for tables');
     end
 
     function out = vec (this, varargin)
+      %VEC Not supported
       error ('Function vec is not supported for tables');
     end
   end
@@ -2080,7 +2181,9 @@ classdef table
   methods
     function [pkA, pkB] = proxykeysForMatrixes (A, B)
       %PROXYKEYSFORMATRIXES Compute row proxy keys for tables
-      
+      %
+      % [pkA, pkB] = proxykeysForMatrixes (A, B)
+      %
       % Note: This is called "proxykeysForMatrixes", not "proxyKeysForTables", because
       % it overrides the generic proxykeysForMatrixes, and tables *are* matrixes.
       
@@ -2125,7 +2228,7 @@ classdef table
       if isempty (x)
         xx = x;
         % We need to guess at what a usable value is. The zero-arg constructor
-        % ought to work
+        % ought to work.
         defaultVal = feval (class (x));
         xx(3) = defaultVal;
         out = x(2);

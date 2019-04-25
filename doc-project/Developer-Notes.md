@@ -19,6 +19,7 @@ Table Developer Notes
   * Probably pull in Apache FOP for this. Will need to write custom Java layer for acceptable performance.
 * viewtable()
   * Takes single table or struct with tabular field contents
+* standardizeMissing() (the top-level one, not table.standardizeMissing)
 
 # Release Checklist
 
