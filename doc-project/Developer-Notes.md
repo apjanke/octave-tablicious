@@ -3,9 +3,22 @@ Table Developer Notes
 
 # TODO
 
-* Proxykeys
-* Relational operations
-  * merge, setdiff, union, intersect
-* unique
+* table.outerjoin
 * Get subsasgn assignment to work
  * It's currently erroring: `error: invalid dot name structure assignment because the structure array is empty.  Specify a subscript on the structure array to resolve.`
+* timetable
+
+# Release Checklist
+
+* Update release in `DESCRIPTION`
+* Update download instructions version in `README.md`
+* `git commit`
+* Do `make dist` to make sure that it works
+* `git tag v<version>`
+* `git push; git push --tags`
+* Create GitHub release
+  * Draft a release from the `v<version>` tag
+  * Note it as pre-release
+  * Upload the dist file resulting from that `make dist` you did
+* Update release in `DESCRIPTION` to `<version>+` to open development on next release
+* `git commit -a; git push`
