@@ -1940,6 +1940,9 @@ classdef table
   methods
     function [pkA, pkB] = proxykeysForMatrixes (A, B)
       %PROXYKEYSFORMATRIXES Compute row proxy keys for tables
+      
+      % TODO: Rename this method
+      
       if nargin == 1
         mustBeA (A, 'table');
         pkA = proxykeysForOneTable (A);
