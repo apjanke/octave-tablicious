@@ -450,6 +450,32 @@ classdef table
       out.VariableValues = cat (2, varValses{:});
     end
     
+    function out = repmat (this, sz)
+      %REPMAT Replicate matrix
+      %
+      % out = repmat (tbl, sz)
+      %
+      % Repmats a table by repmatting each of its variables vertically.
+      %
+      % For tables, repmatting is only supported along dimension 1. That is, the
+      % values of sz(2:end) must all be exactly 1.
+      %
+      % Returns a new table with the same variable names and types as tbl, but
+      % with a possibly different row count.
+      mustBeA (this, 'table');
+      mustBeNumeric (sz);
+      if any (sz(2:end) != 1)
+        error ('table.repmat: all size elements for dim 2 and higher must be 1');
+      endif
+      out = this;
+      for i = 1:numel (this.VariableValues)
+        out.VariableValues{i} = repmat (this.VariableValues{i}, sz);
+      endfor
+      if ! isempty (this.RowNames)
+        out.RowNames = repmat (this.RowNames, sz);
+      endif
+    endfunction
+    
     function out = subsref (this, s)
       %SUBSREF Subscripted reference
       chain_s = s(2:end);
@@ -1114,7 +1140,7 @@ classdef table
       out.varNamesB = varNamesB;
     endfunction
 
-    function [out, ix, ixb] = innerjoin(A, B, varargin)
+    function [out, ixa, ixb] = innerjoin(A, B, varargin)
       %INNERJOIN Relational inner join between two tables
       %
       % Computes the relational inner join between two tables. "Inner" means that
@@ -1191,10 +1217,10 @@ classdef table
       [pkA, pkB] = proxykeysForMatrixes (keysA, keysB);
       ixs = matchrows (pkA, pkB);
       subA = subsetvars (A, opts2.varIxA);
-      outA = subsetRows (subA, ixs(:,1));
       subB = subsetvars (B, opts2.varIxB);
+      [subA, subB] = makeVarNamesUnique (subA, subB);
+      outA = subsetRows (subA, ixs(:,1));
       outB = subsetRows (subB, ixs(:,2));
-      [outA, outB] = makeVarNamesUnique (outA, outB);
       out = [outA outB];
 
     endfunction
@@ -1237,10 +1263,10 @@ classdef table
       outB.VariableNames = newNamesB;
     endfunction
   
-    function [out, ia, ib] = outerjoin (A, B, varargin)
+    function [out, ixa, ixb] = outerjoin (A, B, varargin)
       %OUTERJOIN Relational outer join
       %
-      % [out, ia, ib] = outerjoin (A, B, varargin)
+      % [out, ixa, ixb] = outerjoin (A, B, varargin)
       %
       % Computes the relational outer join of tables A and B. This is like a
       % regular join, but also includes rows in each input which did not have
@@ -1251,8 +1277,8 @@ classdef table
       %
       % Returns:
       % out - A table that is the result of the outer join of A and B
-      % ia - indexes into A for each row in out
-      % ib - indexes into B for each row in out
+      % ixa - indexes into A for each row in out
+      % ixb - indexes into B for each row in out
       
       % Input handling
       if !istable (A)
@@ -1264,15 +1290,74 @@ classdef table
       optNames = {'Keys', 'LeftKeys', 'RightKeys', 'MergeKeys', ...
         'LeftVariables', 'RightVariables', 'Type'};
       opts = peelOffNameValueOptions (varargin, optNames);
-      unimplementedOptions = optNames;
-      for i = 1:numel (unimplementedOptions)
-        if isfield (opts, unimplementedOptions{i})
-          error ('table.outerjoin: Option %s is unimplemented. Sorry.', ...
-            unimplementedOptions{i});
-        endif
-      endfor
+      if isfield (opts, 'Type')
+        joinType = opts.Type;
+      else
+        joinType = 'full';
+      endif
+      switch joinType
+        case 'left'
+          fillLeft = false;
+          fillRight = true;
+        case 'right'
+          fillLeft = true;
+          fillRight = false;
+        case 'full'
+          fillLeft = true;
+          fillRight = true;
+        case 'inner'
+          fillLeft = true;
+          fillRight = true;
+        otherwise
+          error ('table.outerjoin: Invalid opts.Type: %s', joinType);
+      endswitch
+      opts2 = resolveJoinKeysAndVars (A, B, opts);
+      if hasrownames (A)
+        error ('table.outerjoin: Input A may not have row names');
+      endif
+      if hasrownames (B)
+        error ('table.outerjoin: Input B may not have row names');
+      endif
       
-      error ('table.outerjoin is not yet implemented. Sorry.');
+      % Join logic
+      if isempty (opts2.keyIxA)
+        % This degenerates to a cartesian product
+        [out, ixs] = cartesian (A, B);
+        return
+      endif
+      keysA = subsetvars (A, opts2.keyIxA);
+      keysB = subsetvars (B, opts2.keyIxB);
+      [pkA, pkB] = proxykeysForMatrixes (keysA, keysB);
+      [ixs, ixUnmatchedA, ixUnmatchedB] = matchrows (pkA, pkB);
+      subA = subsetvars (A, opts2.varIxA);
+      subB = subsetvars (B, opts2.varIxB);
+      [subA, subB] = makeVarNamesUnique (subA, subB);
+      outA = subsetRows (subA, ixs(:,1));
+      outB = subsetRows (subB, ixs(:,2));
+      ixa = ixs(:,1);
+      ixb = ixs(:,2);
+      fillTables = {};
+      if fillLeft
+        fillRowB = outerfillvals (subB);
+        fillLeftTable = [subsetRows(subA, ixUnmatchedA) ...
+          repmat(fillRowB, [numel(ixUnmatchedA) 1])];
+        fillTables{end+1} = fillLeftTable;
+        ixa = [ixa; ixUnmatchedA];
+        ixB = [ixb; NaN(size(ixUnmatchedA))];
+      endif
+      if fillRight
+        fillRowA = outerfillvals (subA);
+        fillRightTable = [repmat(fillRowA, [numel(ixUnmatchedB) 1]) ...
+          subsetRows(subB, ixUnmatchedB)];
+        fillTables{end+1} = fillRightTable;
+        ixa = [ixa; NaN(size(ixUnmatchedB))];
+        ixb = [ixb; ixUnmatchedB];
+      endif
+      out = [outA outB];
+      % We have to do a loop because Octave doesn't like a plain cat() here
+      for i = 1:numel (fillTables)
+        out = [out; fillTables{i}];
+      endfor
 
     endfunction
 
