@@ -21,8 +21,15 @@ Table Developer Notes
   * Takes single table or struct with tabular field contents
   * Doing this in Java would be easier; in Qt would be nicer
     * But doing it in Qt would require users installing the package to have Qt dev tools installed. Yuck.
-* Other "Missing Data" stuff, like @missing, fillmissing() etc?
+* Other "Missing Data" stuff
+  * @missing
+  * fillmissing()
   * https://www.mathworks.com/help/matlab/data_analysis/missing-data-in-matlab.html
+
+# Code Style and Principles
+
+* Standard [GNU Octave code style]()
+* Use reallyLongDescriptiveNames for non-Matlab-or-Octave standard functions you are adding, to reduce chance of name collisions.
 
 # Release Checklist
 
