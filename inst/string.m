@@ -106,7 +106,7 @@ classdef string
         this.strs = arrayfun (@(x) {datestr (x)}, in);
         this.tfMissing = false (size (this.strs));
       elseif isa (in, 'duration') || isa (in, 'calendarDuration')
-        error ('string: duration and calendarDuration conversion are not implemented yet. Sorry');
+        error ('string: duration and calendarDuration conversion are not implemented yet. Sorry.');
       else
         error ('string: unsupported input type: %s', class (in));
       endif
