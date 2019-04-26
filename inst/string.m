@@ -65,9 +65,9 @@ classdef string
   
   properties
     % The underlying char data, as cellstr
-    strs = {''};  % @planar
-    % A logical mask indicating
-    tfMissing
+    strs = {''};  % planar
+    % A logical mask indicating whether each element is a missing value
+    tfMissing     % planar
   endproperties
   
   methods
