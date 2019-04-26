@@ -354,6 +354,12 @@ classdef string
 
     function out = lower (this)
       %LOWER Convert to lower case
+      %
+      % out = lower (this)
+      %
+      % Converts all the characters in all the strings in this to lower case.
+      %
+      % Returns a string array the same size as this.
       out = this;
       % TODO: This lower() call is probably wrong: it relies on Octave's lower(),
       % which I think only does ASCII case conversion, not Unicode case conversion. -apj
@@ -362,6 +368,12 @@ classdef string
     
     function out = upper (this)
       %UPPER Convert to upper case
+      %
+      % out = upper (this)
+      %
+      % Converts all the characters in all the strings in this to upper case.
+      %
+      % Returns a string array the same size as this.
       out = this;
       % TODO: This upper() call is probably wrong: it relies on Octave's upper(),
       % which I think only does ASCII case conversion, not Unicode case conversion. -apj
@@ -370,6 +382,12 @@ classdef string
     
     function out = erase (this, match)
       %ERASE Erase matching substring
+      %
+      % out = erase (this, match)
+      %
+      % Erases the substrings in this which match the match input.
+      %
+      % Returns a string array the same size as this.
       [this, match] = promote (this, match);
       out = this;
       out.strs = strrep (this.strs, char(match), '');
@@ -377,6 +395,14 @@ classdef string
     
     function out = strrep (this, match, replacement, varargin)
       %STRREP Replace occurrences of pattern with other string
+      %
+      % out = strrep (this, match, replacement, varargin)
+      %
+      % Replaces matching substrings with a given replacement string.
+      %
+      % The varargin is passed along to core Octave's strrep() function.
+      %
+      % Returns a string array the same size as this.
       [this, match, replacement] = promote (this, match, replacement);
       out = this;
       out.strs = strrep(this.strs, char(match), char(replacement), varargin{:});
@@ -384,6 +410,8 @@ classdef string
 
     function out = strfind(this, pattern, varargin)
       %STRFIND Find pattern in string
+      %
+      % out = strfind(this, pattern, varargin)
       %
       % TODO: It's ambiguous whether a scalar this should result in a numeric
       % out or a cell array out.
@@ -394,6 +422,11 @@ classdef string
     
     function out = regexprep(this, pat, repstr, varargin)
       %REGEXPREP Replace regular expression patterns in string
+      %
+      % out = regexprep(this, pat, repstr, varargin)
+      %
+      % Replaces substrings matching a given regexp pattern with the given 
+      % replacement text.
       [this, pat, repstr] = promote (this, pat, repstr);
       args = demote_strings(varargin);
       out = this;
