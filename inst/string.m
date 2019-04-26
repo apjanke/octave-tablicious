@@ -112,6 +112,10 @@ classdef string
     
     function out = isstring (this)
       %ISSTRING True if input is a string array
+      %
+      % This is always true for string arrays.
+      %
+      % Returns scalar logical.
       out = true;
     end
 
@@ -138,6 +142,13 @@ classdef string
     function out = dispstrs (this)
       %DISPSTRS Custom display strings
       %
+      % out = dispstrs (this)
+      %
+      % Gets display strings for all the elements in this. These display strings
+      % will either be the string contents of the element, enclosed in '"..."',
+      % and with CR/LF characters replaced with '\r' and '\n' escape sequences,
+      % or "<missing>" for missing values.
+      %
       % Returns cellstr, for compatibility with the dispstr API.
       out = strcat ({'"'}, this.strs, {'"'});
       out = strrep (out, sprintf ("\r"), '\r');
@@ -147,11 +158,21 @@ classdef string
     
     function out = ismissing (this)
       %ISMISSING True for missing data
+      %
+      % out = ismissing (this)
+      %
+      % Indicates which values in this are missing.
+      %
+      % Returns a logical array the same size as this.
       out = this.tfMissing;
     endfunction
     
     function out = isnanny (this)
       %ISNANNY True for NaN-like values
+      %
+      % Missing values are considered nanny; any other string value is not.
+      %
+      % Returns a logical array the same size as this.
       out = ismissing (this);
     endfunction
     
@@ -159,14 +180,25 @@ classdef string
     
     function out = cellstr (this)
       %CELLSTR Convert to cellstr
+      %
+      % out = cellstr (this)
+      %
+      % Converts this to a cellstr. Missing values are converted to ''.
       out = this.strs;
       % TODO: I don't know what the best conversion is here. Maybe it should
-      % even error if any are missing?
-      out(this.tfMissing) = {'<missing>'};
+      % even error if any are missing? For now I'm using '', because that's the
+      % "standard" missing value for cellstrs.
+      out(this.tfMissing) = {''};
     end
     
     function out = cell (this)
       %CELL Convert to cell
+      %
+      % Converts this to a cell, which will be a cellstr. Missing values are
+      % converted to ''.
+      %
+      % This method returns the same values as cellstr(this); it is just provided
+      % for interface compatibility purposes.
       out = this.strs;
       out(tfMissing) = {[]};
     end      
@@ -267,9 +299,20 @@ classdef string
     function out = reverse_bytes (this)
       %REVERSE_BYTES Reverse string, byte-wise (not character-wise)
       %
+      % out = reverse_bytes (this)
+      %
+      % Reverses the bytes in each string in this.
+      %
       % This may well produce invalid strings as a result, because reversing a
       % UTF-8 byte sequence does not necessarily produce another valid UTF-8
       % byte sequence.
+      %
+      % You probably do not want to use this method. You probably want to use
+      % string.reverse instead.
+      %
+      % Returns a string array the same size as this.
+      %
+      % See also: STRING.REVERSE
       out = this;
       for i = 1:numel (this)
         out.strs{i} = out.strs{i}(end:-1:1);
