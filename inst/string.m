@@ -888,7 +888,7 @@ classdef string
       if nargin < 2
         sz = [1 1];
       endif
-      out = repmat (string, sz));
+      out = repmat (string, sz);
     endfunction
     
     function out = decode (bytes, charsetName)
