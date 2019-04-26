@@ -140,8 +140,8 @@ classdef string
       %
       % Returns cellstr, for compatibility with the dispstr API.
       out = strcat ({'"'}, this.strs, {'"'});
-      out = strrep (out, sprintf ("\r"), "\r");
-      out = strrep (out, sprintf ("\n"), "\n");
+      out = strrep (out, sprintf ("\r"), '\r');
+      out = strrep (out, sprintf ("\n"), '\n');
       out(this.tfMissing) = "<missing>";
     endfunction
     
