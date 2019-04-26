@@ -16,9 +16,11 @@
 classdef string
   %STRING A string array of Unicode strings
   %
+  % A string object array is an array of strings.
+  %
   % The string class represents strings, where:
   %   - Each element of a string array is a single string
-  %   - A single string is a 1-dimensional row vector of characters
+  %   - A single string is a 1-dimensional row vector of Unicode characters
   %   - Those characters are encoded in UTF-8
   %
   % This should correspond pretty well to what people think of as strings, and
@@ -83,7 +85,7 @@ classdef string
       if isa(in, "string")
         % Copy properties, because I don't know if a full-array pass-through
         % works in Octave. -apj
-        % this = in; % That is, don't try this.
+        % this = in; % That is, don't do this.
         this.strs = in.strs;
         this.tfMissing = in.tfMissing;
         return
