@@ -448,24 +448,40 @@ classdef string
     endfunction
     
     % Relational operations
-    % TODO: Add Missing support for all these
     
-    function out = eq(A, B)
+    function out = eq (A, B)
       %EQ Equals.
-      out = strcmp(A, B);
+      out = strcmp (A, B);
     endfunction
     
-    function out = cmp(A, B)
+    function out = strcmp (A, B)
+      %STRCMP String comparison
+      %
+      % out = strcmp (A, B)
+      %
+      % Tests whether each element in A is exactly equal to the corresponding
+      % element in B. Missing values are not considered equal to each other.
+      %
+      % Returns logical array the size of the scalar expansion of A and B.
+      [A, B] = promote (A, B);
+      [A, B] = scalarexpand (A, B);
+      out = strcmp (A.strs, B.strs);
+      out(A.tfMissing | B.tfMissing) = false;
+    endfunction
+    
+    function [out, A, B] = cmp(A, B)
       %CMP C-style strcmp, with -1/0/+1 return value
       %
-      % out = cmp(A, B)
+      % [out, A, B] = cmp(A, B)
       %
       % TODO: What to do about missing values? Should missings sort to the end
       % (preserving total ordering over the full domain), or should their comparisons
-      % result in a fourth "null"/"undef" return value?
+      % result in a fourth "null"/"undef" return value, probably represented by NaN?
+      % FIXME: The current implementation does not handle missings.
       %
       % Returns a numeric array the same size as the scalar expansion of A and B.
-      % Each value in it will be -1, 0, or 1.
+      % Each value in it will be -1, 0, or 1. Also returns the promoted, scalar-
+      % expanded values of A and B, as a programming convenience.
       [A, B] = promote (A, B);
       % In production code, you wouldn't scalarexpand; you'd do a scalar test
       % and smarter indexing.
@@ -479,6 +495,8 @@ classdef string
         if isequal (a, b)
           out(i) = 0;
         else
+          % This implementation is gross, but it's the best I can do with what
+          % the base language provides. - apj
           tmp = [a b];
           [tmp2, ix] = sort (tmp);
           if ix(1) == 1
@@ -492,22 +510,30 @@ classdef string
     
     function out = lt (A, B)
       %LT Less than.
-      out = cmp (A, B) < 0;
+      [cmpval, A, B] = cmp (A, B);
+      out = cmpval < 0;
+      out = propagate_missing (out, A, B);
     endfunction
 
     function out = le (A, B)
       %LE Less than or equal.
-      out = cmp (A, B) <= 0;
+      [cmpval, A, B] = cmp (A, B);
+      out = cmpval <= 0;
+      out = propagate_missing (out, A, B);
     endfunction
 
     function out = gt(A, B)
       %GT Greater than.
-      out = cmp (A, B) > 0;
+      [cmpval, A, B] = cmp (A, B);
+      out = cmpval > 0;
+      out = propagate_missing (out, A, B);
     endfunction
 
     function out = ge (A, B)
       %GE Greater than or equal.
-      out = cmp (A, B) >= 0;
+      [cmpval, A, B] = cmp (A, B);
+      out = cmpval >= 0;
+      out = propagate_missing (out, A, B);
     endfunction
     
     % TODO: max, min
@@ -516,6 +542,8 @@ classdef string
       %ISMEMBER True for set member.
       [a, b] = promote (a, b);
       [out, Indx] = ismember (a.strs, b.strs, varargin{:});
+      out(a.tfMissing) = false;
+      Indx(a.tfMissing) = 0;
     endfunction
     
     function [out, Indx] = setdiff (a, b, varargin)
@@ -927,6 +955,17 @@ classdef string
   end
 
 endclassdef
+
+function out = propagate_missing (out, varargin)
+  %PROPAGATE_MISSING Propagate missing values to single output
+  %
+  % Assumes all inputs are strings, and have been scalar-expanded, and have
+  % congruent dimensions.
+  for i = 1:numel (varargin)
+    arg = varargin{i};
+    out.tfMissing = out.tfMissing | arg.tfMissing;
+  endfor
+endfunction
 
 function varargout = promote (varargin)
   %PROMOTEC Promote arguments to strings
