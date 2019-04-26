@@ -260,6 +260,9 @@ classdef string
       % See also: STRING.DECODE
       mustBeScalar (this);
       mustHavaJava ();
+      if this.tfMissing
+        error ('string.encode: cannot encode missing values');
+      endif
       java_str = javaObject ('java.lang.String', this.strs{i});
       java_bytes = javaMethod ('getBytes', java_str, charsetName);
       out = typecast (java_bytes', 'uint8');
