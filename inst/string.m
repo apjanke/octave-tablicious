@@ -16,7 +16,7 @@
 classdef string
   %STRING A string array of Unicode strings
   %
-  % A string object array is an array of strings.
+  % A string array is an array of strings, where each element is a string.
   %
   % The string class represents strings, where:
   %   - Each element of a string array is a single string
