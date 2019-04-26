@@ -9,8 +9,10 @@ Tabular data structure for Octave.
 This package attempts to provide a set of mostly-Matlab-compatible implementation of the table class. It provides:
 
   * `table` and related construction/conversion functions
-  * `ismissing` and friends
-    * `ismissing`, `standardizeMissing`, and `rmmissing` are currently implemented; `fillmissing` and `@missing` are not.
+  * Missing Data support
+    * `ismissing` and friends: `rmmissing`, `standardizeMissing`
+    * `@missing`
+    * `fillmissing` is not implemented yet, because that requires some actual math.
   * `eqn` and `isnanny`
     * These are experimental Octave extensions for dealing with NaN-like values. They are used by `table`, `ismissing`, and friends, but should be generally useful, and need to be global so they can be overridden by user-defined classes.
 
