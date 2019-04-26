@@ -47,6 +47,10 @@ classdef string
   % some methods like strlength() and reverse() are just going to be wrong if
   % they delegate straight to chars.
   %
+  % "Missing" string values work like NaNs. They are never considered equal,
+  % less than, or greater to any other string, including other missing strings.
+  % This applies to set membership and other equivalence tests.
+  %
   % TODO: Need to decide how far to go with Unicode semantics, and how much to
   % just make this an object wrapper over cellstr and defer to Octave's existing
   % char/string-handling functions.
@@ -443,6 +447,15 @@ classdef string
     
     function out = cmp(A, B)
       %CMP C-style strcmp, with -1/0/+1 return value
+      %
+      % out = cmp(A, B)
+      %
+      % TODO: What to do about missing values? Should missings sort to the end
+      % (preserving total ordering over the full domain), or should their comparisons
+      % result in a fourth "null"/"undef" return value?
+      %
+      % Returns a numeric array the same size as the scalar expansion of A and B.
+      % Each value in it will be -1, 0, or 1.
       [A, B] = promote (A, B);
       % In production code, you wouldn't scalarexpand; you'd do a scalar test
       % and smarter indexing.
