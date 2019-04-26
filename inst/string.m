@@ -336,9 +336,11 @@ classdef string
       out = this;
       % Transcode to UTF-32 (since UTF-32 is a fixed-width encoding), 
       % reverse that, and transcode back to original encoding
-      bytess = encode (this, 'UTF-32LE');
       for i = 1:numel (this)
-        bytes = bytess{i};
+        if this.tfMissing(i)
+          continue
+        endif
+        bytes = encode (this(i), 'UTF-32LE');
         utf32 = typecast (bytes, 'uint32');
         utf32_reverse = utf32(end:-1:1);
         bytes2 = typecast (utf32_reverse, 'uint8');
