@@ -790,7 +790,10 @@ classdef string
       % out = string.missing (sz)
       %
       % Constructs a string array of the given size with all missing values.
-      % If sz is omitted, returns a scalar.
+      %
+      % Sz is the size of array to create. If sz is omitted, creates a scalar.
+      %
+      % Returns a string array whose values are all missing.
       if nargin < 2
         sz = [1 1];
       endif
