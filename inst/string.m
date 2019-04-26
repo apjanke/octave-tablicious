@@ -352,6 +352,8 @@ classdef string
     
     function out = strcat (varargin)
       %STRCAT Concatenate strings
+      %
+      % TODO: Fix missing handling
       args = promotec (varargin);
       args_strs = cell (size (args));
       args_tfMissing = cell (size (args));
@@ -518,6 +520,8 @@ classdef string
     
     function [out, Indx] = setdiff (a, b, varargin)
       %SETDIFF Set difference.
+      %
+      % TODO: Handle missings.
       [a, b] = promote (a, b);
       [s_out, Indx] = setdiff (a.strs, b.strs, varargin{:});
       out = string (s_out);
@@ -525,6 +529,8 @@ classdef string
 
     function [out, ia, ib] = intersect (a, b, varargin)
       %INTERSECT Set intersection.
+      %
+      % TODO: Handle missings.
       [a, b] = promote (a, b);
       [s_out, ia, ib] = intersect (a.strs, b.strs, varargin{:});
       out = string (s_out);
@@ -532,6 +538,8 @@ classdef string
     
     function [out, ia, ib] = union (a, b, varargin)
       %UNION Set union.
+      %
+      % TODO: Handle missings.
       [a, b] = promote (a, b);
       [s_out, ia, ib] = union (a.strs, b.strs, varargin{:});
       out = string (s_out);
@@ -539,6 +547,8 @@ classdef string
 
     function [out, Indx] = unique (this, varargin)
       %UNIQUE Set unique.
+      %
+      % TODO: Handle missings.
       this = promote (this);
       [s_out, Indx] = unique (this.strs, varargin{:});
       out = string (s_out);
@@ -551,6 +561,8 @@ classdef string
     
     function out = sprintf (fmt, varargin)
       %SPRINTF Like printf, but returns a string
+      %
+      % TODO: Handle missings.
       fmt = char (string (fmt));
       args = demote_strings (varargin);
       out = string (sprintf (fmt, args{:}));
@@ -558,6 +570,8 @@ classdef string
     
     function out = fprintf (varargin)
       %FPRINTF Formatted output to stream or file handle
+      %
+      % TODO: Handle missings.
       args = demote_strings (varargin);
       out = fprintf (args{:});
       if nargout == 0
@@ -567,6 +581,8 @@ classdef string
 
     function out = printf (varargin)
       %PRINTF Formatted output
+      %
+      % TODO: Handle missings.
       args = demote_strings( varargin);
       printf (args{:});
       if nargout == 0
@@ -574,7 +590,10 @@ classdef string
       endif
     endfunction
 
-    % TODO: fdisp, fputs, fwrite
+    % TODO: fdisp, fputs
+    
+    % Note: fwrite is not supported, because that is a low-level byte-oriented
+    % I/O function, and string is character-oriented.
     
     % plot() and related functions. Yuck.
     
