@@ -14,7 +14,7 @@
 ## along with this program; If not, see <http://www.gnu.org/licenses/>.
 
 classdef string
-  %STRING A string of Unicode text
+  %STRING A string array of Unicode strings
   %
   % The string class represents strings, where:
   %   - Each element of a string array is a single string
