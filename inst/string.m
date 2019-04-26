@@ -111,6 +111,9 @@ classdef string
         this.tfMissing = false (size (this.strs));
       elseif isa (in, 'duration') || isa (in, 'calendarDuration')
         error ('string: duration and calendarDuration conversion are not implemented yet. Sorry.');
+      elseif isa (in, 'missing')
+        this.strs = repmat ({''}, size (in));
+        this.tfMissing = true (size (in));
       else
         error ('string: unsupported input type: %s', class (in));
       endif
