@@ -65,5 +65,6 @@ function gen_colvecfun (maxdepth)
   
   fclose (fid);
   fprintf ('Generated function is at %s\n', out_file);
+  fprintf ('Now copy that into colvecfun.m\n');
   
 endfunction
