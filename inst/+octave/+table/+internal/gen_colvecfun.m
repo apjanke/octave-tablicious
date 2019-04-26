@@ -35,9 +35,13 @@ function gen_colvecfun (maxdepth)
     p('function out = colvecfun_for_%d_dims (fcn, x)', ndims);
     ixes = repmat({'1'}, [1 ndims-1]);
     ix_expr = strjoin(ixes, ',');
+    # First, do a single call with full array assignment to get correct'
+    # type of output array
     p('  out1 = fcn (x(:,%s));', ix_expr);
     p('  sz = size (x);');
     p('  out = repmat(out1, [1 sz(2:end)]);');
+    # Then iterate over all the columns in the array, assigning results
+    # into pre-allocated output
     for depth = 1:ndims-1
       dim = ndims - depth + 1;
       indent =  repmat ('  ', [1 depth]);
