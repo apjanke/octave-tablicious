@@ -19,7 +19,6 @@ classdef categorical
   % This class is not fully implemented yet. Missing stuff:
   %   gt, ge, lt, le
   %   union, intersect, setdiff
-  %   sort
   %   Ordinal support in general
   
   properties (SetAccess = private)
@@ -334,6 +333,21 @@ classdef categorical
       out = X;
       out.code = uint16 (u_code);
       out.tfMissing = isnan (u_code);
+    endfunction
+    
+    function [out, indx] = sort (this, varargin)
+      %SORT Sort values
+      %
+      % [out, indx] = sort (X)
+      % [out, indx] = sort (X, dim)
+      % [out, indx] = sort (X, mode)
+      % [out, indx] = sort (X, dim, mode)
+      code = double (this.code);
+      code(this.tfMissing) = NaN;
+      [out_code, indx] = sort (code, varargin{:});
+      out = this;
+      out.code = uint16(out_code);
+      out.tfMissing = isnan (out_code);
     endfunction
     
     % TODO: union, intersect, setdiff
