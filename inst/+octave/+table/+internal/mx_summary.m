@@ -16,6 +16,10 @@
 function out = mx_summary (x)
   %MX_SUMMARY "Summary" data for an arbitrary array, with specific type support
   %
+  % TODO: This needs to be expanded to support tables of arbitrary columns, to
+  % support things like summaries of distinct value frequencies in categorical
+  % values.
+  %
   % Returns a scalar struct.
 
   out = struct;
