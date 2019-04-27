@@ -2252,5 +2252,5 @@ classdef table
 endclassdef
 
 function out = prettyprint_summary_data (s)
-  error ('table.prettyprint_summary_data: This is not yet implemented.');
+  error ('table.prettyprint_summary_data: This is not yet implemented. Sorry.');
 endfunction

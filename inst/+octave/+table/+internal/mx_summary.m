@@ -31,9 +31,9 @@ function out = mx_summary (x)
   elseif islogical (x)
     out = mx_summary_logical (x, out);
   elseif isa (x, 'categorical')
-    error ('mx_summary: categorical is not yet implemented in Octave.');
+    out = mx_summary_categorical (x, out);
   else
-  	% nop: we've already got Szie and Type; that's all that is supported
+  	% nop: we've already got Size and Type; that's all that is supported
   endif
 endfunction
 
@@ -55,3 +55,7 @@ function out = mx_summary_logical (x, out)
   out.True = numel (find (x));
   out.False = numel (find (~x));
 end
+
+function out = mx_summary_categorical (x, out)
+  out.NumCategories = numel (categories (x));
+endfunction
