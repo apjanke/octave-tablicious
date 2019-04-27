@@ -192,6 +192,21 @@ classdef categorical
       out(!this.tfMissing) = this.categoryList(ix);
       out(this.tfMissing) = {'<undefined>'};
     endfunction
+    
+    function summary (this)
+      %SUMMARY Print a summary of the values in this categorical array
+      
+      Code = [1:numel(this.categoryList)]';
+      Category = this.categoryList';
+      category_table = table (Code, Category);
+      
+      fprintf ('Categorical array\n');
+      fprintf ('  %d categories, %d elements\n', numel (Category), numel (this));
+      fprintf ('  %d missing values\n', numel (find (this.tfMissing(:))));
+      prettyprint (category_table);
+      % TODO: Frequencies of each code value. Probably just roll that up into the
+      % above table as an additional column.
+    endfunction
 
     function out = ismissing (this)
       %ISMISSING True for missing data
