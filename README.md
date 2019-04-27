@@ -1,12 +1,13 @@
-Table for GNU Octave
-====================
+Tablicious for GNU Octave
+=========================
 
-Tabular data structure for Octave.
+Tablicious provides tabular data structures for Octave.
 
 | WARNING: All the code in here is currently experimental. (Pre-beta quality, that is.) Do not use it in any production or business code! Seriously!! |
 | ---- |
 
-This package attempts to provide a set of mostly-Matlab-compatible implementation of the table class. It provides:
+This package attempts to provide a set of mostly-Matlab-compatible implementation of the table class and related structures and functions.
+It provides:
 
   * `table` and related construction/conversion functions
   * Missing Data support
@@ -15,11 +16,15 @@ This package attempts to provide a set of mostly-Matlab-compatible implementatio
     * `fillmissing` is not implemented yet, because that requires some actual math.
   * `eqn` and `isnanny`
     * These are experimental Octave extensions for dealing with NaN-like values. They are used by `table`, `ismissing`, and friends, but should be generally useful, and need to be global so they can be overridden by user-defined classes.
+  * `string`
+  * `categorical`
 
 It currently does not provide, but we would like to add:
 
   * `timetable`
   * Table I/O, such as `readtable`, `writetable`, and `csvread`/`dlmread` `table` support
+
+The `string` and `categorical` support are incomplete, and less mature than the rest of the package.
 
 ## Installation and usage
 
@@ -28,13 +33,13 @@ It currently does not provide, but we would like to add:
 To get started using or testing this project, install it using Octave's `pkg` function:
 
 ```
-pkg install https://github.com/apjanke/octave-table/archive/master.zip
+pkg install https://github.com/apjanke/octave-tablicious/archive/master.zip
 pkg load table
 ```
 
 ### Installation for development
 
-If you want to hack on the `octave-table` code itself, set it up like this:
+If you want to hack on the Tablicious code itself, set it up like this:
 
 * Clone the repo
   * `git clone https://github.com/apjanke/octave-table`

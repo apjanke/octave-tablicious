@@ -3,6 +3,7 @@ Table Developer Notes
 
 # TODO
 
+* Makefile with `make dist` and friends
 * Get subsasgn assignment to work
   * It's currently erroring: `error: invalid dot name structure assignment because the structure array is empty.  Specify a subscript on the structure array to resolve.`
 * Validation: enforce that all variables in a table have the same height
@@ -22,7 +23,6 @@ Table Developer Notes
   * Doing this in Java would be easier; in Qt would be nicer
     * But doing it in Qt would require users installing the package to have Qt dev tools installed. Yuck.
 * Other "Missing Data" stuff
-  * @missing
   * fillmissing()
   * https://www.mathworks.com/help/matlab/data_analysis/missing-data-in-matlab.html
 

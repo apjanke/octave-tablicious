@@ -1,4 +1,5 @@
-# Contributing to Table for GNU Octave
+Contributing to Tablicious for GNU Octave
+=========================================
 
 ## Introduction
 
@@ -11,7 +12,8 @@ work and interact within this project.
 ## Basics
 
 ### No MATLAB!
-Do not use MATLAB to develop this project! That could be a violation of your MATLAB license terms, because the Matlab license includes a Non-Compete clause.
+Do not use MATLAB to develop this project!
+That could be a violation of your MATLAB license terms, because the Matlab license includes a Non-Compete clause.
 
 * Only use Octave and reference to the [publicly-available MATLAB documentation](https://www.mathworks.com/help/matlab/) to develop this project.
 * This includes using MATLAB for testing or benchmarking purposes. Please do not submit any contributions that include MATLAB test or benchmark results. They will be politely but summarily deleted.
@@ -26,12 +28,12 @@ Do not use MATLAB to develop this project! That could be a violation of your MAT
 
 ## Community
 
-All project interaction takes place on GitHub. The project community is
-essentially the original author (Andrew Janke) at the moment. However, this project exists within the greater GNU Octave community. It is the author's hope
-that at some point in the future, this project's components will be merged into GNU
-Octave and cease to be developed in an independent project.
+All project interaction takes place on GitHub.
+The project community is essentially the original author (Andrew Janke) at the moment.
+However, this project exists within the greater GNU Octave community.
+It is the author's hope that at some point in the future, this project's components will be merged into GNU Octave and cease to be developed in an independent project.
 
-The GitHub home for this project is https://github.com/apjanke/octave-table.
+The GitHub home for this project is <https://github.com/apjanke/octave-tablicious>.
 
 ## Code conventions
 
