@@ -73,7 +73,7 @@ classdef missing
       out = true (size (this));
     endfunction
     
-    function out = isnanny (this)
+    function out = isnannish (this)
       out = true (size (this));
     endfunction
     

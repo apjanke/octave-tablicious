@@ -219,8 +219,8 @@ classdef categorical
       out = this.tfMissing;
     endfunction
     
-    function out = isnanny (this)
-      %ISNANNY True for NaN-like values
+    function out = isnannish (this)
+      %ISNANNISH True for NaN-like values
       %
       % Missing values are considered nanny; any other string value is not.
       %

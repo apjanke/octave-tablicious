@@ -39,7 +39,7 @@ function out = ismissing (x, indicator)
   %     * TODO: Determine whether this should really be an error, or if it should
   %       default to never considering those types as missing.
   %     * TODO: Decide whether, for classdef objects, ismissing() should polymorphically
-  %       detect isnan()/isnat()/isnanny() methods and use those, or whether we should
+  %       detect isnan()/isnat()/isnannish() methods and use those, or whether we should
   %       require classes to override ismissing() itself.
   %
   % If indicator is supplied, it is an array containing multiple values, all of
