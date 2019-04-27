@@ -823,7 +823,7 @@ classdef string
       fieldArgs1 = cellfun(@(obj) {obj.strs}, args);
       out.strs = cat(dim, fieldArgs1{:});
       fieldArgs2 = cellfun(@(obj) {obj.tfMissing}, args);
-      out.strs = cat(dim, fieldArgs2{:});
+      out.tfMissing = cat(dim, fieldArgs2{:});
     endfunction
       
     function out = horzcat (varargin)
