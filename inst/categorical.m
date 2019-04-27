@@ -18,7 +18,6 @@ classdef categorical
   %
   % This class is not fully implemented yet. Missing stuff:
   %   gt, ge, lt, le
-  %   union, intersect, setdiff
   %   Ordinal support in general
   
   properties (SetAccess = private)
@@ -350,7 +349,86 @@ classdef categorical
       out.tfMissing = isnan (out_code);
     endfunction
     
-    % TODO: union, intersect, setdiff
+    function [out, ixa, ixb] = union (A, B, varargin)
+      %UNION Set union
+      %
+      % [out, ixa, ixb] = union (A, B)
+      % [out, ixa, ixb] = union (A, B, "rows")
+      
+      [A, B] = promote2 (A, B);
+      % Hack: use NaN indexes to handle missings
+      code_A = double (A.code);
+      code_A(A.tfMissing) = NaN;
+      code_B = double (B.code);
+      code_B(B.tfMissing) = NaN;
+
+      code_out = union (code_A, code_B, varargin{:});
+      
+      out = A;
+      out.code = uint16 (code_out);
+      out.tfMissing = isnan (code_out);
+    endfunction
+    
+    function [out, ixa, ixb] = intersect (A, B, varargin)
+      %INTERSECT Set intersection
+      %
+      % [out, ixa, ixb] = intersect (A, B)
+      % [out, ixa, ixb] = intersect (A, B, "rows")
+      
+      [A, B] = promote2 (A, B);
+      % Hack: use NaN indexes to handle missings
+      code_A = double (A.code);
+      code_A(A.tfMissing) = NaN;
+      code_B = double (B.code);
+      code_B(B.tfMissing) = NaN;
+
+      code_out = intersect (code_A, code_B, varargin{:});
+      
+      out = A;
+      out.code = uint16 (code_out);
+      out.tfMissing = isnan (code_out);
+    endfunction
+    
+    function [out, ixa, ixb] = setdiff (A, B, varargin)
+      %SETDIFF Set difference
+      %
+      % [out, ixa, ixb] = setdiff (A, B)
+      % [out, ixa, ixb] = setdiff (A, B, "rows")
+      
+      [A, B] = promote2 (A, B);
+      % Hack: use NaN indexes to handle missings
+      code_A = double (A.code);
+      code_A(A.tfMissing) = NaN;
+      code_B = double (B.code);
+      code_B(B.tfMissing) = NaN;
+
+      code_out = setdiff (code_A, code_B, varargin{:});
+      
+      out = A;
+      out.code = uint16 (code_out);
+      out.tfMissing = isnan (code_out);
+    endfunction
+    
+    function [out, ixa, ixb] = setxor (A, B, varargin)
+      %SETXOR Set exclusive or
+      %
+      % [out, ixa, ixb] = setxor (A, B)
+      % [out, ixa, ixb] = setxor (A, B, "rows")
+      
+      [A, B] = promote2 (A, B);
+      % Hack: use NaN indexes to handle missings
+      code_A = double (A.code);
+      code_A(A.tfMissing) = NaN;
+      code_B = double (B.code);
+      code_B(B.tfMissing) = NaN;
+
+      code_out = setxor (code_A, code_B, varargin{:});
+      
+      out = A;
+      out.code = uint16 (code_out);
+      out.tfMissing = isnan (code_out);
+    endfunction
+    
   endmethods
   
   % Planar structural stuff
