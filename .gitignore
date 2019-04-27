@@ -7,3 +7,5 @@
 cmake-build-debug
 !.idea
 .idea/workspace.xml
+datasets/iris/iris.csv
+datasets/iris/iris.mat
