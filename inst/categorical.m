@@ -22,7 +22,7 @@ classdef categorical
   %   sort
   %   Ordinal support in general
   
-  properties
+  properties (SetAccess = private)
     % Code for each element. Codes are an index into categoryList.
     code = uint16(0)      % planar
     % Whether each element is missing/undefined
