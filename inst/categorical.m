@@ -29,7 +29,6 @@ classdef categorical
   % This class is not fully implemented yet. Missing stuff:
   %   gt, ge, lt, le
   %   Ordinal support in general
-  %   setcats
   %   countcats
   %   summary
   
@@ -376,6 +375,31 @@ classdef categorical
       out = this;
       out.code = new_codes;
       out.cats = newcats;
+    endfunction
+    
+    function out = setcats (this, newcats)
+      %SETCATS Set categories for categorical array
+      %
+      % out = setcats (this, newcats)
+      %
+      % Sets the categories to use for a categorical array. If any current
+      % categories are absent from the newcats list, current values of those
+      % categories become undefined.
+      newcats = cellstr (newcats);
+      newcats = newcats(:)';
+      
+      if this.isOrdinal
+        error ('categorical.setcats: Cannot set categories on Ordinal categorical arrays');
+      endif
+      
+      [tf, loc] = ismember (this.cats, newcats);
+      loc(~tf) = 0;
+      codes = codes_with_nans (this);
+      new_codes = NaN(size(codes));
+      new_codes(!isnan(codes)) = loc(codes(!isnan(codes)));
+      out = this;
+      out.code = uint16 (new_codes);
+      out.tfMissing = out.tfMissing | isnan (new_codes) | new_codes == 0;
     endfunction
     
     function out = isundefined (this)

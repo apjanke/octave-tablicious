@@ -29,7 +29,6 @@ Table Developer Notes
   * startsWith, endsWith
 * categorical stuff
   * discretize
-  * setcats
   * summary
   * countcats
 
