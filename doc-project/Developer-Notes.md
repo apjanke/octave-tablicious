@@ -27,6 +27,11 @@ Table Developer Notes
   * https://www.mathworks.com/help/matlab/data_analysis/missing-data-in-matlab.html
 * String functions
   * startsWith, endsWith
+* categorical stuff
+  * discretize
+  * setcats
+  * summary
+  * countcats
 
 # Code Style and Principles
 

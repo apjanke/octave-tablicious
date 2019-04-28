@@ -375,12 +375,25 @@ classdef categorical
       out.cats = newcats;
     endfunction
     
+    function out = isundefined (this)
+      %ISUNDEFINED True for undefined data elements
+      %
+      % out = isundefined (this)
+      %
+      % Indicates which values in this are undefined.
+      %
+      % Returns a logical array the same size as this.
+      out = this.tfMissing;
+    endfunction
+    
     function out = ismissing (this)
-      %ISMISSING True for missing data
+      %ISMISSING True for missing data elements
       %
       % out = ismissing (this)
       %
-      % Indicates which values in this are missing.
+      % Indicates which values in this are missing. Undefined values are 
+      % considered missing; other values are not. So this produces the same
+      % output as isundefined (this).
       %
       % Returns a logical array the same size as this.
       out = this.tfMissing;
@@ -389,7 +402,8 @@ classdef categorical
     function out = isnannish (this)
       %ISNANNISH True for NaN-like values
       %
-      % Missing values are considered nanny; any other string value is not.
+      % Undefined values are considered nannish; any other value is not. So
+      % this returns the same as isundefined (this).
       %
       % Returns a logical array the same size as this.
       out = ismissing (this);
