@@ -239,6 +239,9 @@ classdef categorical
       %
       % This is an internal implementation method that will become private before
       % release 1.0.
+      %
+      % TODO: Promotion of plain values should pick up the Ordinality of its
+      % categorical counterpart, to support stuff like `x < 'foo'`.
       
       inA = A;
       inB = B;
