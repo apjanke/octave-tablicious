@@ -28,6 +28,7 @@ classdef categorical
   %
   % This class is not fully implemented yet. Missing stuff:
   %   gt, ge, lt, le
+  %   reordercats
   %   Ordinal support in general
   
   properties (SetAccess = private)
