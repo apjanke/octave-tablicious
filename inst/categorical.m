@@ -812,7 +812,7 @@ classdef categorical
         arg = varargin{i_arg};
         if isa (arg, 'categorical')
           error ('promote_to_existing_categories: categorical input is not supported yet.');
-        elseif isstring (arg)
+        elseif isstring (arg) || iscellstr (arg)
           [tfMember, loc] = ismember (arg, this.cats);
           tfBad = !tfMember & !ismissing (arg);
           if any (tfBad)
@@ -825,8 +825,8 @@ classdef categorical
           out.code = uint16(code);
           out.isOrdinal = this.isOrdinal;
           out.tfMissing = ismissing (arg);
-        elseif iscellstr (arg)
-          
+        else
+          error ('categorical: unsupported input type: %s', class (arg));
         endif
       endfor
     endfunction
