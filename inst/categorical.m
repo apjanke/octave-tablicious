@@ -29,6 +29,9 @@ classdef categorical
   % This class is not fully implemented yet. Missing stuff:
   %   gt, ge, lt, le
   %   Ordinal support in general
+  %   setcats
+  %   countcats
+  %   summary
   
   properties (SetAccess = private)
     % Code for each element. Codes are an index into cats.
