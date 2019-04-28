@@ -19,6 +19,9 @@
 # Would require creating more temporaries, but some of the code would be simpler.
 # Would be about the same storage at rest (uint16 + logical = 3 bytes;
 # single = 4 bytes).
+# ...actually, it might not be that great: you can't use NaN for indexing and have
+# it silently produce another NaN, so you'll still have to mask a lot of your
+# operations (in this implementation) with (ismissing(this)).
 
 classdef categorical
   %CATEGORICAL Categorical variable array
@@ -217,6 +220,135 @@ classdef categorical
       % TODO: Frequencies of each code value. Probably just roll that up into the
       % above table as an additional column.
     endfunction
+    
+    function out = addcats (this, newcats)
+      %ADDCATS Add categories to this categorical array
+      %
+      % out = addcats (this, newcats)
+      %
+      % Adds the specified categories to this categorical array, without changing
+      % any of its values.
+      %
+      % newcats is a cellstr.
+      narginchk (2, 2);
+      newcats = cellstr (newcats);
+      newcats = newcats(:)';
+      if this.isOrdinal
+        error (['categorical.addcats: Adding categories for Ordinal arrays is ' ...
+          'not implemented yet. Sorry.');
+      endif
+      [tf, loc] = ismember (newcats, this.categoryList);
+      if any (tf)
+        error ('categorical.addcats: Categories are already present in input: %s', ...
+          strjoin (newcats(tf), ', '));
+      endif
+      out = this;
+      out.categoryList = [out.categoryList newcats];
+    endfunction
+    
+    function out = removecats (this, oldcats)
+      %REMOVECATS Remove categories from this categorical array
+      %
+      % out = removecats (this)
+      % out = removecats (this, oldcats)
+      %
+      % out = removecats (this) removes all unused categories from this. This is
+      % equivalent to out = squeezecats (this).
+      %
+      % out = removecats (this, oldcats) removes all specified categories from 
+      % this. Elements of this whose values belonged to those categories are 
+      % replaced with undefined.
+      if nargin == 1
+        out = squeezecats (this);
+        return
+      end
+      
+      oldcats = cellstr (oldcats);
+      [tf, codes_to_remove] = ismember (oldcats, this.categoryList);
+      [tf_undef] = ismember (this.code, codes_to_remove)
+      out = this;
+      out.code(tf_undef) = 0;
+      out.tfMissing = out.tfMissing | tf_undef;
+      out = remove_unused_cats (out, oldcats);
+    endfunction
+    
+    function out = mergecats (this, oldcats, newcat)
+      %MERGECATS Merge multiple categories
+      %
+      % out = mergecats (this, oldcats)
+      % out = mergecats (this, oldcats, newcat)
+      %
+      % newcat is the name of the new category to merge the input categories
+      % into. It does not have to be an existing category in this (unless this
+      % is ordinal.
+      narginchk (2, 3);
+      mustBeNonEmpty (oldcats);
+      if nargin < 3
+        newcat = oldcats{1};
+      endif
+      oldcats = cellstr (oldcats);
+      
+      if this.isOrdinal
+        error ('categorical: Merging of ordinal categories is not yet implemented. Sorry.');
+      endif
+      
+      [tf, old_cat_codes] = ismember (oldcats, this.categoryList);
+      if ! all (tf)
+        % TODO: I don't know if this should be an error, or just silently ignored -apj
+        error ('categorical.mergecats: Specified categories not present in input: %s', ...
+          strjoin(oldcats(!tf), ', '));
+      endif
+      [is_current_cat, new_cat_code] = ismember (newcat, this.categoryList)
+      
+      out = this;
+      if is_current_cat
+        % Merge into existing category
+        cats_to_delete = setdiff (oldcats, newcat);
+        [tf, loc] = ismember (this.code, old_cat_codes);
+        out.code(tf) = new_cat_code;
+        out = remove_unused_cats (out, cats_to_delete);
+      else
+        % Merge into new category
+        cats_to_delete = oldcats;
+        [tf, loc] = ismember (this.code, old_cat_codes);
+        out = addcats (out, newcat);
+        [~, new_cat_code] = ismember (newcat, out.categoryList);
+        out.code(tf) = new_cat_code;
+        out = remove_unused_cats (out, cats_to_delete);
+      endif
+    endfunction
+    
+    function out = renamecats (this, varargin)
+      %RENAMECATS Rename categories
+      %
+      % out = renamecats (this, varargin)
+      %
+      % Renames existing categories in this, without changing values.
+      narginchk (2, 3);
+      if nargin == 2
+        oldnames = this.categoryList;
+        newnames = varargin{1};
+      else
+        oldnames = varargin{1};
+        newnames = varargin{2};
+      endif
+      oldnames = cellstr (oldnames);
+      oldnames = oldnames(:)';
+      newnames = cellstr (newnames);
+      newnames = newnames(:)';
+      if ! isequal (size (oldnames), size (newnames));
+        error (['categorical.renamecats: Inconsistent dimensions for oldnames ' ...
+          'and newnames: %s vs %s'], size2str (size (oldnames)), size2str (size (newnames)));
+      endif
+      
+      out = this;
+      [tf, loc] = ismember (oldnames, this.categoryList);
+      if ! all (tf)
+        error ('categorical.renamecats: Specified categories do not exist in input: %s', ...
+          strjoin (oldnames(!tf), ', '));
+      endif
+      out.categoryList(loc) = newnames;
+    endfunction
 
     function out = ismissing (this)
       %ISMISSING True for missing data
@@ -238,8 +370,8 @@ classdef categorical
       out = ismissing (this);
     endfunction
     
-    function out = squeezecategories (this)
-      %SQUEEZECATEGORIES Remove categories that have no corresponding values
+    function out = squeezecats (this)
+      %SQUEEZECATS Remove categories that have no corresponding values in this
       error('categorical.squeezecategories: This is unimplemented. Sorry.');
     endfunction
     
@@ -748,4 +880,29 @@ classdef categorical
     
   endmethods
   
+  methods (Access = private)
+    function out = remove_unused_cats (this, cats_to_delete)
+      %REMOVE_UNUSED_CATS Removes specified categories, as long as they have no values
+      [tf, cat_codes_to_rm] = ismember (cats_to_delete, this.categoryList);
+      cat_codes_to_rm = cat_codes_to_rm(tf);
+      cats_to_delete2 = cats_to_delete(tf);
+      [tf_code_used, loc] = ismember (cat_codes_to_rm, this.code);
+      if any (tf_code_used)
+        error ('categorical: Internal error: some categories to delete are still in use: %s', ...
+          strjoin (cats_to_delete2(tf_code_used), ', '));
+      endif
+      old_cats = this.categoryList;
+      old_codes = 1:numel(this.categoryList);
+      codes_with_holes = old_codes;
+      codes_with_holes(cat_codes) = NaN;
+      new_cats = old_cats;
+      new_cats(cat_codes_to_rm) = [];
+      [tf, loc] = ismember (old_cats, new_cats);
+      new_codes(!this.tfMissing) = loc(this.code(!this.tfMissing));
+      new_codes(this.tfMissing) = 0;
+      out = this;
+      out.code = uint16 (new_codes);
+      out.categoryList = new_cats;
+    endfunction
+  endmethods
 endclassdef
