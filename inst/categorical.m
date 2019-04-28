@@ -28,7 +28,6 @@ classdef categorical
   %
   % This class is not fully implemented yet. Missing stuff:
   %   gt, ge, lt, le
-  %   reordercats
   %   Ordinal support in general
   
   properties (SetAccess = private)
@@ -351,6 +350,31 @@ classdef categorical
       out.cats(loc) = newnames;
     endfunction
 
+    function out = reordercats (this, newcats)
+      %REORDERCATS Reorder categories in this' category list
+      %
+      % out = reordercats (this)
+      % out = reordercats (this, newcats)
+      %
+      % newcats (cellstr) must be a reordering of this' existing category list.
+      % If newcats is not supplied, sorts the categories in alphabetical order.
+      if nargin == 1
+        newcats = sort (this.cats);
+      endif
+      newcats = cellstr (newcats);
+      newcats = newcats(:)';
+      if ! isequal (sort (newcats), sort (this.cats))
+        error ('categorical.reordercats: newcats and oldcats must be the same sets, just reordered');
+      endif
+      
+      [tf, loc] = ismember (this.cats, newcats);
+      new_codes = NaN (size (this.code));
+      new_codes(!this.tfMissing) = loc(this.code(!this.tfMissing));
+      out = this;
+      out.code = new_codes;
+      out.cats = newcats;
+    endfunction
+    
     function out = ismissing (this)
       %ISMISSING True for missing data
       %
