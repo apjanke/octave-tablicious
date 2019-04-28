@@ -1,5 +1,5 @@
-Table Developer Notes
-=====================
+Tablicious Developer Notes
+==========================
 
 # TODO
 
