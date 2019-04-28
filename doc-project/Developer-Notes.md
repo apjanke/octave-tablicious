@@ -3,6 +3,18 @@ Table Developer Notes
 
 # TODO
 
+* table stuff
+  * grpstats
+  * groupby
+* String functions
+  * startsWith, endsWith
+* categorical stuff
+  * discretize
+  * summary
+  * countcats
+* Other "Missing Data" stuff
+  * fillmissing()
+  * https://www.mathworks.com/help/matlab/data_analysis/missing-data-in-matlab.html
 * Makefile with `make dist` and friends
 * Get subsasgn assignment to work
   * It's currently erroring: `error: invalid dot name structure assignment because the structure array is empty.  Specify a subscript on the structure array to resolve.`
@@ -22,15 +34,6 @@ Table Developer Notes
   * Takes single table or struct with tabular field contents
   * Doing this in Java would be easier; in Qt would be nicer
     * But doing it in Qt would require users installing the package to have Qt dev tools installed. Yuck.
-* Other "Missing Data" stuff
-  * fillmissing()
-  * https://www.mathworks.com/help/matlab/data_analysis/missing-data-in-matlab.html
-* String functions
-  * startsWith, endsWith
-* categorical stuff
-  * discretize
-  * summary
-  * countcats
 
 # Code Style and Principles
 

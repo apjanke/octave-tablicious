@@ -1328,44 +1328,6 @@ classdef table
 
     endfunction
   
-    function [outA, outB] = makeVarNamesUnique (A, B)
-      %MAKEVARNAMESUNIQUE Internal implementation method
-      seenNames = struct;
-      namesA = A.VariableNames;
-      for i = 1:numel (namesA)
-        seenNames.(namesA{i}) = true;
-      endfor
-      namesB = B.VariableNames;
-      newNamesB = cell (size (namesB));
-      for i = 1:numel (namesB)
-        oldName = namesB{i};
-        newName = [];
-        if ! isfield (seenNames, oldName)
-          newName = oldName;
-        else
-          newBaseName = [oldName '_B'];
-          if ! isfield (seenNames, newBaseName)
-            newName = newBaseName;
-          else
-            n = 0;
-            while true
-              n = n + 1;
-              candidate = sprintf('%s_%d', newBaseName, n);
-              if ! isfield (seenNames, candidate)
-                newName = candidate;
-                break
-              endif
-            endwhile
-          endif
-        endif
-        newNamesB{i} = newName;
-        senNames.(newName) = true;
-      endfor
-      outA = A;
-      outB = B;
-      outB.VariableNames = newNamesB;
-    endfunction
-  
     function [out, ixa, ixb] = outerjoin (A, B, varargin)
       %OUTERJOIN Relational outer join
       %
@@ -2145,6 +2107,44 @@ classdef table
   end
   
   methods (Access = private)
+    function [outA, outB] = makeVarNamesUnique (A, B)
+      %MAKEVARNAMESUNIQUE Internal implementation method
+      seenNames = struct;
+      namesA = A.VariableNames;
+      for i = 1:numel (namesA)
+        seenNames.(namesA{i}) = true;
+      endfor
+      namesB = B.VariableNames;
+      newNamesB = cell (size (namesB));
+      for i = 1:numel (namesB)
+        oldName = namesB{i};
+        newName = [];
+        if ! isfield (seenNames, oldName)
+          newName = oldName;
+        else
+          newBaseName = [oldName '_B'];
+          if ! isfield (seenNames, newBaseName)
+            newName = newBaseName;
+          else
+            n = 0;
+            while true
+              n = n + 1;
+              candidate = sprintf('%s_%d', newBaseName, n);
+              if ! isfield (seenNames, candidate)
+                newName = candidate;
+                break
+              endif
+            endwhile
+          endif
+        endif
+        newNamesB{i} = newName;
+        senNames.(newName) = true;
+      endfor
+      outA = A;
+      outB = B;
+      outB.VariableNames = newNamesB;
+    endfunction
+  
     function out = getVar (this, name)
       [tf, loc] = ismember (name, this.VariableNames);
       if ~tf
