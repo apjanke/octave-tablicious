@@ -33,9 +33,12 @@ classdef categorical
     % Whether each element is missing/undefined
     tfMissing = true      % planar
     % The list of categoryList for this array, indexed by code
-    categoryList = {}
+    categoryList = {}     % not planar
     % Whether this array is ordinal
-    isOrdinal = false
+    isOrdinal = false     % not planar
+    % Whether this array's categories are "protected", which disallows implicit
+    % expansion of the category list
+    isProtected = false   % not planar
   endproperties
   
   methods
@@ -241,6 +244,10 @@ classdef categorical
       inB = B;
       
       % Make them both categoricals
+      % TODO: This implementation is wrong. It requires inputs to map to existing
+      % categories on the categorical input. Whether that is required should be
+      % determined by the Protected property; non-Protected categoricals may expand
+      % their set of categories automatically.
       if ! isa (A, 'categorical')
         if isordinal (B)
           B = promote_to_existing_categories (A, B);
@@ -269,6 +276,24 @@ classdef categorical
     function [outA, outB] = unify_nonordinal_categories (A, B)
       mustBeA (A, 'categorical');
       mustBeA (B, 'categorical');
+      % TODO: In the protected case, eliminate categories that have no values on
+      % the non-protected side, to avoid possibly-spurious errors.
+      if A.isProtected
+        cats_only_in_B = setdiff (B.categoryList, A.categoryList);
+        if ! isempty (cats_only_in_B)
+          error ('categorical: input A is Protected, but input B has categories not in A: %s', ...
+            strjoin (cats_only_in_B, ', '));
+        endif
+      endif
+      if B.isProtected
+        cats_only_in_A = setdiff (A.categoryList, B.categoryList);
+        if ! isempty (cats_only_in_A)
+          error ('categorical: input B is Protected, but input A has categories not in B: %s', ...
+            strjoin (cats_only_in_A, ', '));
+        endif        
+      endif
+      % Okay, at this point, it's safe to expand categories on both sides, either
+      % because they're not protected, or they will gain no new categories
       unified_categories = unique ([A.categoryList B.categoryList]);
       [tf, code_map_a] = ismember (A.categoryList, unified_categories);
       new_code_a = A.code;
@@ -670,7 +695,7 @@ classdef categorical
       if ~isa (rhs, 'categorical')
         % TODO: This conversion is probably wrong. It probably needs to be done
         % with respect to this's existing categoryList list
-        rhs = categorical (rhs);
+        [this, rhs] = promote2 (this, rhs);
       endif
       this.code(s.subs{:}) = rhs.code;
       this.tfMissing(s.subs{:}) = rhs.tfMissing;
