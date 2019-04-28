@@ -11,9 +11,9 @@ Tablicious Developer Notes
 * Other "Missing Data" stuff
   * fillmissing()
   * https://www.mathworks.com/help/matlab/data_analysis/missing-data-in-matlab.html
-* Makefile with `make dist` and friends
-* Get subsasgn assignment to work
+* Get subsasgn assignment to work in table
   * It's currently erroring: `error: invalid dot name structure assignment because the structure array is empty.  Specify a subscript on the structure array to resolve.`
+* Makefile with `make dist` and friends
 * Validation: enforce that all variables in a table have the same height
 * Description, Units, and CustomProperties for variables in table
 * timetable

@@ -34,7 +34,7 @@ To get started using or testing this project, install it using Octave's `pkg` fu
 
 ```
 pkg install https://github.com/apjanke/octave-tablicious/archive/master.zip
-pkg load table
+pkg load tablicious
 ```
 
 ### Installation for development
@@ -42,7 +42,7 @@ pkg load table
 If you want to hack on the Tablicious code itself, set it up like this:
 
 * Clone the repo
-  * `git clone https://github.com/apjanke/octave-table`
+  * `git clone https://github.com/apjanke/octave-tablicious`
 * Add the `inst/` directory from the repo to your Octave path.
 
 ## Documentation
