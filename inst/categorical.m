@@ -235,7 +235,7 @@ classdef categorical
       newcats = newcats(:)';
       if this.isOrdinal
         error (['categorical.addcats: Adding categories for Ordinal arrays is ' ...
-          'not implemented yet. Sorry.');
+          'not implemented yet. Sorry.']);
       endif
       [tf, loc] = ismember (newcats, this.categoryList);
       if any (tf)
