@@ -126,8 +126,8 @@ classdef categorical
       if ! isnumeric (x)
         error ('categorical.code: values must be numeric');
       endif
+      code = uint16 (x);
       if ! isa (x, 'uint16')
-        code = uint16 (x);
         if ! all (code(:) == x(:))
           error ('categorical.code: input did not convert cleanly to uint16');
         endif
