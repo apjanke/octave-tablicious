@@ -37,7 +37,7 @@ Table Developer Notes
 # Code Style and Principles
 
 * Standard [GNU Octave code style](https://wiki.octave.org/Octave_style_guide)
-* Use reallyLongDescriptiveNames for non-Matlab-or-Octave standard functions you are adding, to reduce chance of name collisions.
+* In general, use reallyLongDescriptiveNames for non-standard-Matlab-or-Octave functions you are adding, to reduce chance of name collisions.
 
 # Release Checklist
 
