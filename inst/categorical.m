@@ -13,6 +13,13 @@
 ## You should have received a copy of the GNU General Public License
 ## along with this program; If not, see <http://www.gnu.org/licenses/>.
 
+# TODO: Consider combining .code and .tfMissing into one @single .code array, 
+# where NaNs are used to indicate undefineds, instead of a separate tfMissing 
+# mask. Or even keep .code as uint16, and just use 0 to indicate undefined.
+# Would require creating more temporaries, but some of the code would be simpler.
+# Would be about the same storage at rest (uint16 + logical = 3 bytes;
+# single = 4 bytes).
+
 classdef categorical
   %CATEGORICAL Categorical variable array
   %
