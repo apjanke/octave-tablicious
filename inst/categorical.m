@@ -43,124 +43,117 @@ classdef categorical
     function this = categorical (x, varargin)
       %CATEGORICAL Construct a new categorical array
       %
-      % this = categorical (string_vals)
-      % this = categorical (string_vals, category_vals);
-      % this = categorical (string_vals, category_order, 'Ordinal', true);
+      % this = categorical (vals)
+      % this = categorical (vals, valueset);
+      % this = categorical (vals, valueset, category_names);
+      % this = categorical (..., "Ordinal", true);
+      % this = categorical (..., "Protected", true);
+      %
+      % TODO: Empty strings and cellstrs should convert to <undefined>
+      % TODO: Handle datetime and duration inputs
+      % TODO: Handle logical inputs
+      % TODO: Numeric conversion is probably wrong. It's trying to convert 
+      % numeric inputs directly to codes. It should probably convert them to the
+      % num2str representation of numbers instead, and make those all categories.
+      % TODO: Support objects.
       
-      validOptions = {'Ordinal'};
+      validOptions = {'Ordinal', 'Protected'};
       [opts, args] = peelOffNameValueOptions (varargin, validOptions);
       if ischar (x)
         x = cellstr (x);
       endif
-      if isstring (x) || iscellstr (x)
-        % String conversion
-        if numel (varargin) > 1
-          error ('categorical: too many inputs');
+      if numel (args) >= 1
+        valueset = args{1};
+        valueset = valueset(:)';
+        if any (ismissing (valueset))
+          error ('categorical:InvalidInput', 'categorical: Cannot have missing values in valueset');
         endif
-        doOrdinal = false;
-        if isfield (opts, 'Ordinal')
-          mustBeScalarLogical (opts.Ordinal, 'Ordinal option');
-          doOrdinal = opts.Ordinal;
+        u_valueset = unique (valueset);
+        if numel (u_valueset) < numel (valueset)
+          error ("categorical:InvalidInput", ...
+            "categorical: Non-unique values in valueset; valueset values must be unique.");
         endif
-        x = string (x);
-        if isempty (varargin)
-          categoryList = unique (x);
-          categoryList(ismissing(categoryList)) = [];
-          categoryList = categoryList(:)';
-        else
-          categoryList = varargin{1};
-          if ! (iscellstr (categoryList) || isstring (categoryList))
-            error ('categorical: categories list must be string or cellstr; got %s', ...
-              class (categoryList));
-          endif
-          categoryList = string (categoryList);
-          if any (ismissing (categoryList))
-            error ('categorical: cannot have missing values in categories list');
-          endif
-          u_categoryList = unique (categoryList);
-          if numel (u_categoryList) < numel (categoryList)
-            error ('categorical: cannot have duplicate values in categories list');
-          endif
-          if doOrdinal
-            % Leave categoryList list in its provided order
-          else
-            categoryList = sort (categoryList);
-          endif
-          categoryList = categoryList(:)';
-        endif
-        [tf, loc] = ismember (x, categoryList);
-        tfBogusLevel = (!tf) & (!ismissing (x));
-        if any (tfBogusLevel)
-          u_bogus = unique (x(tfBogusLevel));
-          error ('categorical: got values that were not in provided categories list: %s', ...
-            strjoin (u_bogus, ', '));
-        endif
-      elseif isa (x, 'missing')
-        this.code = repmat (uint16 (0), size (x));
-        this.tfMissing = true (size (x));
-        this.categoryList = {};
-        return;
-      elseif isnumeric (x)
-        if isempty (args)
-          error ('categorical: category_vals must be supplied for numerics');
-        endif
-        categoryList = args{1};
-        if ! (iscellstr (categoryList) || isstring (categoryList))
-          error ('categorical: category_values must be a string or cellstr; got a %s', ...
-            class (categoryList));
-        endif
-        categoryList = cellstr (categoryList);
-        code = uint16(x);
-        % Need to refine this test to allow for NaNs
-        %if ! all (code(:) == x(:))
-        %  error ('categorical: numeric code input did not convert cleanly to uint16');
-        %endif
-        if doOrdinal
-          error ('categorical: Ordinal support for numeric inputs is not implemented yet. Sorry.');
-        endif
-        % TODO: Sort categories and map code values
-        this.code = code;
-        this.categoryList = categoryList(:)';
-        this.tfMissing = isnan (code);
-        this.isOrdinal = doOrdinal;
       else
-        error ('categorical:InvalidInput', 'categorical: invalid input type: %s', ...
-          class (x));
+        valueset = unique (x);
+        valueset = valueset(!ismissing(valueset));
       endif
-      categoryList = cellstr (categoryList);
+      if numel (args) >= 2
+        category_names = args{2};
+      else
+        if isa (valueset, 'string') || iscellstr (valueset)
+          category_names = cellstr (valueset);
+        else
+          category_names = dispstrs (valueset);
+        endif
+      endif
+      doProtected = false;
+      if isfield (opts, 'Protected')
+        mustBeScalarLogical (opts.Protected, 'Protected option');
+        doProtected = opts.Protected;
+      endif
+      doOrdinal = false;
+      if isfield (opts, 'Ordinal')
+        mustBeScalarLogical (opts.Ordinal, 'Ordinal option');
+        doOrdinal = opts.Ordinal;
+      endif
+      if doOrdinal
+        doProtected = true;
+      endif
+      
+      [tf, loc] = ismember (x, valueset);
+      if any(loc > intmax ('uint16'))
+        error (['Category count out of range: categorical supports a max of %d ' ...
+          'categories; this input has %d'], intmax ('uint16'), max (loc));
+      endif
       code = uint16 (loc);
-      code(ismissing (x)) = 0;
+      code(!tf) = 0;
+      tfMissing = !tf;
+      
       this.code = code;
-      this.tfMissing = ismissing (x);
-      this.categoryList = categoryList;
+      this.tfMissing = tfMissing;
+      this.categoryList = category_names;
       this.isOrdinal = doOrdinal;
+      this.isProtected = doProtected;
     endfunction
     
     function this = set.code (this, x)
       if ! isnumeric (x)
         error ('categorical.code: values must be numeric');
       endif
-      code = uint16 (x);
-      if !all (code(:) == x(:))
-        error ('categorical.code: input did not convert cleanly to uint16');
+      if ! isa (x, 'uint16')
+        code = uint16 (x);
+        if ! all (code(:) == x(:))
+          error ('categorical.code: input did not convert cleanly to uint16');
+        endif
       endif
       this.code = code;
     endfunction
     
     function out = categories (this)
       %CATEGORIES Get a list of the categories in this categorical array
+      %
+      % Returns a cellstr column vector.
       out = this.categoryList(:);
     endfunction
     
     function out = isordinal (this)
-      %ISORDINAL True if this categorical is ordinal
+      %ISORDINAL True if this categorical array is ordinal
       out = this.isOrdinal;
     endfunction
     
     function out = string (this)
+      %STRING Convert to string array
       out = cell (size (this));
       out(!this.tfMissing) = this.category_list(this.code(!this.tfMissing));
+      out = string (out);
       out(this.tfMissing) = string.missing;
+    endfunction
+    
+    function out = cellstr (this)
+      %CELLSTR Convert to cellstr
+      out = cell (size (this));
+      out(!this.tfMissing) = this.category_list(this.code(!this.tfMissing));
+      out(this.tfMissing) = {""};      
     endfunction
     
     function display (this)
