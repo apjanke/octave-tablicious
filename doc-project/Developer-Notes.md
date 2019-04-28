@@ -3,6 +3,8 @@ Table Developer Notes
 
 # TODO
 
+* table
+  * summary
 * String functions
   * startsWith, endsWith
 * categorical stuff
