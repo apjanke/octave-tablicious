@@ -226,6 +226,11 @@ classdef categorical
       out = ismissing (this);
     endfunction
     
+    function out = squeezecategories (this)
+      %SQUEEZECATEGORIES Remove categories that have no corresponding values
+      error('categorical.squeezecategories: This is unimplemented. Sorry.');
+    endfunction
+    
     function [A, B] = promote2 (A, B)
       %PROMOTE2 Promote exactly 2 inputs to be comparable categoricals.
       %
