@@ -139,6 +139,15 @@ classdef categorical
       out = this.categoryList(:);
     endfunction
     
+    function out = iscategory (this, catnames)
+      %ISCATEGORY Test for category name existence
+      %
+      % out = iscategory (this, catnames)
+      mustBeA (this, 'categorical');
+      catnames = cellstr (catnames);
+      out = ismember (catnames, this.categoryList);
+    endfunction
+    
     function out = isordinal (this)
       %ISORDINAL True if this categorical array is ordinal
       out = this.isOrdinal;

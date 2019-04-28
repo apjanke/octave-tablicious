@@ -25,6 +25,8 @@ Table Developer Notes
 * Other "Missing Data" stuff
   * fillmissing()
   * https://www.mathworks.com/help/matlab/data_analysis/missing-data-in-matlab.html
+* String functions
+  * startsWith, endsWith
 
 # Code Style and Principles
 
