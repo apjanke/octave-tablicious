@@ -8,7 +8,6 @@ Table Developer Notes
 * String functions
   * startsWith, endsWith
 * categorical stuff
-  * discretize
   * summary
   * countcats
 * Other "Missing Data" stuff

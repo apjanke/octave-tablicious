@@ -37,6 +37,6 @@ function x = mustBeScalarLogical (x, label)
       label = "input";
     endif
     error ("%s must be a scalar logical; got a %s %s", ...
-      label, size2str (size (x), class (x));
+      label, size2str (size (x)), class (x));
   endif
 endfunction

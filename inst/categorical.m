@@ -46,6 +46,36 @@ classdef categorical
     isProtected = false   % not planar
   endproperties
   
+  methods (Static = true, Hidden = true)
+    function out = from_codes (codes, cats, varargin)
+      [opts, args] = peelOffNameValueOptions (varargin, {'Ordinal', 'Protected'});
+      isOrdinal = false;
+      if isfield (opts, 'Ordinal')
+        mustBeScalarLogical (opts.Ordinal, 'Ordinal option');
+        isOrdinal = opts.Ordinal;
+      endif
+      isProtected = false;
+      if isfield (opts, 'Protected')
+        mustBeScalarLogical (opts.Protected, 'Protected option');
+        isProtected = opts.Protected;
+      endif
+      cats = cellstr(cats);
+      cats = cats(:)';
+      
+      code = uint16 (codes);
+      if ! isa (codes, 'uint16')
+        % TODO: Check for clean conversion
+      endif
+      
+      out = categorical;
+      out.code = code;
+      out.tfMissing = isnan (codes);
+      out.cats = cats;
+      out.isOrdinal = isOrdinal;
+      out.isProtected = isProtected;
+    endfunction
+  endmethods
+  
   methods
     
     function this = categorical (x, varargin)
@@ -64,6 +94,10 @@ classdef categorical
       % numeric inputs directly to codes. It should probably convert them to the
       % num2str representation of numbers instead, and make those all categories.
       % TODO: Support objects.
+      
+      if nargin == 0
+        return
+      endif
       
       validOptions = {'Ordinal', 'Protected'};
       [opts, args] = peelOffNameValueOptions (varargin, validOptions);
