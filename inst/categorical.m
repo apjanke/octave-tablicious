@@ -34,7 +34,7 @@ classdef categorical
   
   properties (SetAccess = private)
     % Code for each element. Codes are an index into cats.
-    code = uint16(0)      % planar
+    code = uint16 (0)     % planar
     % Whether each element is missing/undefined
     tfMissing = true      % planar
     % The list of category names for this array, indexed by code
