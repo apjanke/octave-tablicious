@@ -5,7 +5,6 @@ Table Developer Notes
 
 * table stuff
   * grpstats
-  * groupby
 * String functions
   * startsWith, endsWith
 * categorical stuff

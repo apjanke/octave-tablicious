@@ -1585,6 +1585,61 @@ classdef table
       outB = subsetRows (B, ixBOut);
       out = [outA outB];
     endfunction
+    
+    function out = groupby (this, groupvars, aggcalcs)
+      %GROUPBY Find groups and apply functions to variables within groups
+      %
+      % out = groupby (this, groupvars, aggcalcs)
+      %
+      % This works like an SQL "SELECT ... GROUP BY ..." statement.
+      %
+      % groupvars (cellstr, numeric) is a list of the grouping variables, 
+      % identified by name or index.
+      %
+      % aggcalcs is a specification of the aggregate calculations to perform
+      % on them, in the form {out_var, fcn, in_vars; ...}, where:
+      %   out_var (char) is the name of the output variable
+      %   fcn (function handle) is the function to apply to produce it
+      %   in_vars (cellstr) is a list of the input variables to pass to fcn
+      %
+      % Returns a table.      
+      narginchk (2, 3);
+      if nargin < 3 || isempty (aggcalcs);  aggcalcs = cell(0, 3); end
+      mustBeA (aggcalcs, 'cell');
+      if size (aggcalcs, 2) != 3
+        error ('table.groupby: aggcalcs must be an 3-wide cell; got %d-wide', ...
+          size (aggcalcs, 2));
+      endif
+      
+      % Resolve input vars once up front for speed
+      n_aggs = size (aggcalcs, 1);
+      for i = 1:n_aggs
+        aggcalcs{i,4} = resolveVarRef (this, aggcalcs{i,3});
+      endfor
+      
+      agg_outs = cell (1, n_aggs);
+      [group_id, groups_tbl] = findgroups (subsetvars (this, groupvars));
+      n_groups = size (groups_tbl, 1);
+      for i_group = 1:n_groups
+        tf_in_group = group_id == i_group;
+        for i_agg = 1:n_aggs
+          [~, fcn, in_vars, ix_in_vars] = aggcalcs{i_agg,:};
+          agg_ins = cell(1, numel (ix_in_vars));
+          for i_in_var = 1:numel (agg_ins)
+            agg_ins{i_in_var} = this.VariableValues{ix_in_vars(i_in_var)}(tf_in_group);
+          endfor
+          agg_out = fcn(agg_ins{:});
+          if i_group == 1
+            agg_outs{i_agg} = repmat(agg_out, [n_groups 1]);
+          else
+            agg_outs{i_agg}(i_group) = agg_out;
+          endif
+        endfor
+      endfor
+      
+      agg_out_tbl = table(agg_outs{:}, 'VariableNames', aggcalcs(:,1));
+      out = [groups_tbl agg_out_tbl];
+    endfunction
 
     function [outA, outB] = congruentize (A, B)
       %CONGRUENTIZE Make tables congruent
