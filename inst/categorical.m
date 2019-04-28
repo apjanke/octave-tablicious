@@ -482,10 +482,8 @@ classdef categorical
       % into B of a matching item for each matched element or row in A.
       [A, B] = promote2 (A, B);
       % Hack: use NaN indexes to handle missings
-      code_A = double (A.code);
-      code_A(A.tfMissing) = NaN;
-      code_B = double (B.code);
-      code_B(B.tfMissing) = NaN;
+      code_A = codes_with_nans (A);
+      code_B = codes_with_nans (B);
       [out, idx] = ismember (code_A, code_B, varargin{:});
     endfunction
     
@@ -501,8 +499,7 @@ classdef categorical
       % same category list and ordinality.
       
       % Hack: use NaN indexes to handle missings
-      code = double (X.code);
-      code(X.tfMissing) = NaN;
+      code = codes_with_nans (X);
       [u_code, indx, jndx] = unique (code, varargin{:});
       out = X;
       out.code = uint16 (u_code);
@@ -516,8 +513,7 @@ classdef categorical
       % [out, indx] = sort (X, dim)
       % [out, indx] = sort (X, mode)
       % [out, indx] = sort (X, dim, mode)
-      code = double (this.code);
-      code(this.tfMissing) = NaN;
+      code = codes_with_nans (this);
       [out_code, indx] = sort (code, varargin{:});
       out = this;
       out.code = uint16(out_code);
@@ -532,10 +528,8 @@ classdef categorical
       
       [A, B] = promote2 (A, B);
       % Hack: use NaN indexes to handle missings
-      code_A = double (A.code);
-      code_A(A.tfMissing) = NaN;
-      code_B = double (B.code);
-      code_B(B.tfMissing) = NaN;
+      code_A = codes_with_nans (A);
+      code_B = codes_with_nans (B);
 
       code_out = union (code_A, code_B, varargin{:});
       
@@ -552,10 +546,8 @@ classdef categorical
       
       [A, B] = promote2 (A, B);
       % Hack: use NaN indexes to handle missings
-      code_A = double (A.code);
-      code_A(A.tfMissing) = NaN;
-      code_B = double (B.code);
-      code_B(B.tfMissing) = NaN;
+      code_A = codes_with_nans (A);
+      code_B = codes_with_nans (B);
 
       code_out = intersect (code_A, code_B, varargin{:});
       
@@ -572,10 +564,8 @@ classdef categorical
       
       [A, B] = promote2 (A, B);
       % Hack: use NaN indexes to handle missings
-      code_A = double (A.code);
-      code_A(A.tfMissing) = NaN;
-      code_B = double (B.code);
-      code_B(B.tfMissing) = NaN;
+      code_A = codes_with_nans (A);
+      code_B = codes_with_nans (B);
 
       code_out = setdiff (code_A, code_B, varargin{:});
       
@@ -592,11 +582,9 @@ classdef categorical
       
       [A, B] = promote2 (A, B);
       % Hack: use NaN indexes to handle missings
-      code_A = double (A.code);
-      code_A(A.tfMissing) = NaN;
-      code_B = double (B.code);
-      code_B(B.tfMissing) = NaN;
-
+      code_A = codes_with_nans (A);
+      code_B = codes_with_nans (B);
+      
       code_out = setxor (code_A, code_B, varargin{:});
       
       out = A;
@@ -882,6 +870,11 @@ classdef categorical
   endmethods
   
   methods (Access = private)
+    function out = codes_with_nans (this)
+      out = single (this.code);
+      out(this.tfMissing) = NaN;
+    endfunction
+    
     function out = remove_unused_cats (this, cats_to_delete)
       %REMOVE_UNUSED_CATS Removes specified categories, as long as they have no values
       [tf, cat_codes_to_rm] = ismember (cats_to_delete, this.cats);
