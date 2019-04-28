@@ -31,12 +31,12 @@ classdef categorical
   %   Ordinal support in general
   
   properties (SetAccess = private)
-    % Code for each element. Codes are an index into categoryList.
+    % Code for each element. Codes are an index into cats.
     code = uint16(0)      % planar
     % Whether each element is missing/undefined
     tfMissing = true      % planar
-    % The list of categoryList for this array, indexed by code
-    categoryList = {}     % not planar
+    % The list of category names for this array, indexed by code
+    cats = {}             % not planar
     % Whether this array is ordinal
     isOrdinal = false     % not planar
     % Whether this array's categories are "protected", which disallows implicit
@@ -117,7 +117,7 @@ classdef categorical
       
       this.code = code;
       this.tfMissing = tfMissing;
-      this.categoryList = category_names;
+      this.cats = category_names;
       this.isOrdinal = doOrdinal;
       this.isProtected = doProtected;
     endfunction
@@ -139,7 +139,7 @@ classdef categorical
       %CATEGORIES Get a list of the categories in this categorical array
       %
       % Returns a cellstr column vector.
-      out = this.categoryList(:);
+      out = this.cats(:);
     endfunction
     
     function out = iscategory (this, catnames)
@@ -148,7 +148,7 @@ classdef categorical
       % out = iscategory (this, catnames)
       mustBeA (this, 'categorical');
       catnames = cellstr (catnames);
-      out = ismember (catnames, this.categoryList);
+      out = ismember (catnames, this.cats);
     endfunction
     
     function out = isordinal (this)
@@ -202,15 +202,15 @@ classdef categorical
       % Returns cellstr, for compatibility with the dispstr API.
       out = cell (size (this));
       ix = this.code(!this.tfMissing);
-      out(!this.tfMissing) = this.categoryList(ix);
+      out(!this.tfMissing) = this.cats(ix);
       out(this.tfMissing) = {'<undefined>'};
     endfunction
     
     function summary (this)
       %SUMMARY Print a summary of the values in this categorical array
       
-      Code = [1:numel(this.categoryList)]';
-      Category = this.categoryList';
+      Code = [1:numel(this.cats)]';
+      Category = this.cats';
       category_table = table (Code, Category);
       
       fprintf ('Categorical array\n');
@@ -237,13 +237,13 @@ classdef categorical
         error (['categorical.addcats: Adding categories for Ordinal arrays is ' ...
           'not implemented yet. Sorry.']);
       endif
-      [tf, loc] = ismember (newcats, this.categoryList);
+      [tf, loc] = ismember (newcats, this.cats);
       if any (tf)
         error ('categorical.addcats: Categories are already present in input: %s', ...
           strjoin (newcats(tf), ', '));
       endif
       out = this;
-      out.categoryList = [out.categoryList newcats];
+      out.cats = [out.cats newcats];
     endfunction
     
     function out = removecats (this, oldcats)
@@ -264,7 +264,7 @@ classdef categorical
       end
       
       oldcats = cellstr (oldcats);
-      [tf, codes_to_remove] = ismember (oldcats, this.categoryList);
+      [tf, codes_to_remove] = ismember (oldcats, this.cats);
       [tf_undef] = ismember (this.code, codes_to_remove)
       out = this;
       out.code(tf_undef) = 0;
@@ -292,13 +292,13 @@ classdef categorical
         error ('categorical: Merging of ordinal categories is not yet implemented. Sorry.');
       endif
       
-      [tf, old_cat_codes] = ismember (oldcats, this.categoryList);
+      [tf, old_cat_codes] = ismember (oldcats, this.cats);
       if ! all (tf)
         % TODO: I don't know if this should be an error, or just silently ignored -apj
         error ('categorical.mergecats: Specified categories not present in input: %s', ...
           strjoin(oldcats(!tf), ', '));
       endif
-      [is_current_cat, new_cat_code] = ismember (newcat, this.categoryList)
+      [is_current_cat, new_cat_code] = ismember (newcat, this.cats)
       
       out = this;
       if is_current_cat
@@ -312,7 +312,7 @@ classdef categorical
         cats_to_delete = oldcats;
         [tf, loc] = ismember (this.code, old_cat_codes);
         out = addcats (out, newcat);
-        [~, new_cat_code] = ismember (newcat, out.categoryList);
+        [~, new_cat_code] = ismember (newcat, out.cats);
         out.code(tf) = new_cat_code;
         out = remove_unused_cats (out, cats_to_delete);
       endif
@@ -326,7 +326,7 @@ classdef categorical
       % Renames existing categories in this, without changing values.
       narginchk (2, 3);
       if nargin == 2
-        oldnames = this.categoryList;
+        oldnames = this.cats;
         newnames = varargin{1};
       else
         oldnames = varargin{1};
@@ -342,12 +342,12 @@ classdef categorical
       endif
       
       out = this;
-      [tf, loc] = ismember (oldnames, this.categoryList);
+      [tf, loc] = ismember (oldnames, this.cats);
       if ! all (tf)
         error ('categorical.renamecats: Specified categories do not exist in input: %s', ...
           strjoin (oldnames(!tf), ', '));
       endif
-      out.categoryList(loc) = newnames;
+      out.cats(loc) = newnames;
     endfunction
 
     function out = ismissing (this)
@@ -408,7 +408,7 @@ classdef categorical
       endif
       
       % Unify their category definitions
-      if isequal (A.categoryList, B.categoryList)
+      if isequal (A.cats, B.cats)
         return
       endif
       if isordinal (A) || isordinal (B)
@@ -423,14 +423,14 @@ classdef categorical
       % TODO: In the protected case, eliminate categories that have no values on
       % the non-protected side, to avoid possibly-spurious errors.
       if A.isProtected
-        cats_only_in_B = setdiff (B.categoryList, A.categoryList);
+        cats_only_in_B = setdiff (B.cats, A.cats);
         if ! isempty (cats_only_in_B)
           error ('categorical: input A is Protected, but input B has categories not in A: %s', ...
             strjoin (cats_only_in_B, ', '));
         endif
       endif
       if B.isProtected
-        cats_only_in_A = setdiff (A.categoryList, B.categoryList);
+        cats_only_in_A = setdiff (A.cats, B.cats);
         if ! isempty (cats_only_in_A)
           error ('categorical: input B is Protected, but input A has categories not in B: %s', ...
             strjoin (cats_only_in_A, ', '));
@@ -438,19 +438,19 @@ classdef categorical
       endif
       % Okay, at this point, it's safe to expand categories on both sides, either
       % because they're not protected, or they will gain no new categories
-      unified_categories = unique ([A.categoryList B.categoryList]);
-      [tf, code_map_a] = ismember (A.categoryList, unified_categories);
+      unified_categories = unique ([A.cats B.cats]);
+      [tf, code_map_a] = ismember (A.cats, unified_categories);
       new_code_a = A.code;
       new_code_a(!A.tfMissing) = code_map_a(A.code(!A.tfMissing));
       outA = A;
       outA.code = new_code_a;
-      outA.categoryList = unified_categories;
-      [tf, code_map_b] = ismember (B.categoryList, unified_categories);
+      outA.cats = unified_categories;
+      [tf, code_map_b] = ismember (B.cats, unified_categories);
       new_code_b = B.code;
       new_code_b(!B.tfMissing) = code_map_b(B.code(!B.tfMissing));
       outB = B;
       outB.code = new_code_b;
-      outB.categoryList = unified_categories;
+      outB.cats = unified_categories;
     endfunction
     
     % Relational operations
@@ -779,8 +779,8 @@ classdef categorical
           switch s(1).subs
             case 'code'
               varargout = { this.code };
-            case 'categoryList'
-              varargout = { this.categoryList };
+            case 'cats'
+              varargout = { this.cats };
             case 'tfMissing'
               varargout = { this.tfMissing };
             case 'isOrdinal'
@@ -813,7 +813,7 @@ classdef categorical
         if isa (arg, 'categorical')
           error ('promote_to_existing_categories: categorical input is not supported yet.');
         elseif isstring (arg)
-          [tfMember, loc] = ismember (arg, this.categoryList);
+          [tfMember, loc] = ismember (arg, this.cats);
           tfBad = !tfMember & !ismissing (arg);
           if any (tfBad)
             error('input string had values that were not members of this''s categories');
@@ -821,7 +821,7 @@ classdef categorical
           code = loc;
           code(ismissing (arg)) = 0;
           out = categorical;
-          out.categoryList = this.categoryList;
+          out.cats = this.cats;
           out.code = uint16(code);
           out.isOrdinal = this.isOrdinal;
           out.tfMissing = ismissing (arg);
@@ -838,7 +838,7 @@ classdef categorical
       %SUBSASGNPARENSPLANAR ()-assignment for planar object
       if ~isa (rhs, 'categorical')
         % TODO: This conversion is probably wrong. It probably needs to be done
-        % with respect to this's existing categoryList list
+        % with respect to this's existing cats list
         [this, rhs] = promote2 (this, rhs);
       endif
       this.code(s.subs{:}) = rhs.code;
@@ -883,7 +883,7 @@ classdef categorical
   methods (Access = private)
     function out = remove_unused_cats (this, cats_to_delete)
       %REMOVE_UNUSED_CATS Removes specified categories, as long as they have no values
-      [tf, cat_codes_to_rm] = ismember (cats_to_delete, this.categoryList);
+      [tf, cat_codes_to_rm] = ismember (cats_to_delete, this.cats);
       cat_codes_to_rm = cat_codes_to_rm(tf);
       cats_to_delete2 = cats_to_delete(tf);
       [tf_code_used, loc] = ismember (cat_codes_to_rm, this.code);
@@ -891,8 +891,8 @@ classdef categorical
         error ('categorical: Internal error: some categories to delete are still in use: %s', ...
           strjoin (cats_to_delete2(tf_code_used), ', '));
       endif
-      old_cats = this.categoryList;
-      old_codes = 1:numel(this.categoryList);
+      old_cats = this.cats;
+      old_codes = 1:numel(this.cats);
       codes_with_holes = old_codes;
       codes_with_holes(cat_codes) = NaN;
       new_cats = old_cats;
@@ -902,7 +902,7 @@ classdef categorical
       new_codes(this.tfMissing) = 0;
       out = this;
       out.code = uint16 (new_codes);
-      out.categoryList = new_cats;
+      out.cats = new_cats;
     endfunction
   endmethods
 endclassdef
