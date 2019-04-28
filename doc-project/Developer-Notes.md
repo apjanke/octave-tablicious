@@ -3,8 +3,6 @@ Table Developer Notes
 
 # TODO
 
-* table stuff
-  * grpstats
 * String functions
   * startsWith, endsWith
 * categorical stuff
@@ -33,6 +31,7 @@ Table Developer Notes
   * Takes single table or struct with tabular field contents
   * Doing this in Java would be easier; in Qt would be nicer
     * But doing it in Qt would require users installing the package to have Qt dev tools installed. Yuck.
+* Various TODOs scattered throughout the code
 
 # Code Style and Principles
 

@@ -668,7 +668,7 @@ classdef table
       this.RowNames = names;
     endfunction
 
-    function ixVar = resolveVarRef (this, varRef)
+    function [ixVar, varNames] = resolveVarRef (this, varRef)
       %RESOLVEVARREF Resolve a reference to variables
       %
       % A varRef is a numeric or char/cellstr indicator of which variables within
@@ -686,6 +686,7 @@ classdef table
       else
         error ('table.resolveVarRef: Unsupported variable indexing operand type: %s', class (varRef));
       end
+      varNames = this.VariableNames(ixVar);
     end
 
     function [ixRow, ixVar] = resolveRowVarRefs (this, rowRef, varRef)
@@ -1632,13 +1633,69 @@ classdef table
           if i_group == 1
             agg_outs{i_agg} = repmat(agg_out, [n_groups 1]);
           else
-            agg_outs{i_agg}(i_group) = agg_out;
+            agg_outs{i_agg}(i_group,:) = agg_out;
           endif
         endfor
       endfor
       
       agg_out_tbl = table(agg_outs{:}, 'VariableNames', aggcalcs(:,1));
       out = [groups_tbl agg_out_tbl];
+    endfunction
+    
+    function out = grpstats (this, groupvar, varargin)
+      %GRPSTATS Statistics by group
+      %
+      % See also: GROUPBY
+      [opts, args] = peelOffNameValueOptions (varargin, {'DataVars'});
+      if numel (args) > 1
+        error ('table.grpstats: too many inputs');
+      elseif numel (args) == 1
+        whichstats = args{1};
+      else
+        whichstats = {'mean'};
+      endif
+      if ! iscell (whichstats)
+        error ('whichstats must be a cell array');
+      endif
+      [ix_groupvar, groupvar_names] = resolveVarRef (this, groupvar);
+      if isfield (opts, 'DataVars')
+        data_vars = opts.DataVars;
+        [ix_data_vars, data_vars] = resolveVarRef (this, data_vars);
+      else
+        data_vars = setdiff (this.VariableNames, groupvar_names);
+      endif
+      aggs = cell(0, 3);
+      
+      % TODO: Implement sem, gname, meanci, predci
+      stat_map = {
+        'mean'    @mean
+        'numel'   @numel
+        'std'     @std
+        'var'     @var
+        'min'     @min
+        'max'     @max
+        'range'   @range
+        };
+        
+      for i_var = 1:numel (data_vars)
+        for i_stat = 1:numel (whichstats)
+          if ischar (whichstats{i_stat})
+            stat_fcn_name = whichstats{i_stat};
+            [tf,loc] = ismember (stat_fcn_name, stat_map(:,1));
+            if ! tf
+              error ('table.grpstats: unsupported stat name: %s', stat_fcn_name);
+            endif
+            stat_fcn = stat_map{loc,2};
+          elseif isa (whichstats{i_stat}, fcn_handle)
+            stat_fcn = whichstats{i_stat};
+            stat_fcn_name = func2str (stat_fcn);
+          endif
+          out_var = sprintf('%s_%s', stat_fcn_name, data_vars{i_var});
+          aggs = [aggs; { out_var, stat_fcn, data_vars{i_var} }];
+        endfor
+      endfor
+      
+      out = groupby (this, groupvar, aggs);
     endfunction
 
     function [outA, outB] = congruentize (A, B)
