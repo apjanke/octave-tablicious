@@ -1319,7 +1319,7 @@ classdef table
       keysA = subsetvars (A, opts2.keyIxA);
       keysB = subsetvars (B, opts2.keyIxB);
       [pkA, pkB] = proxykeysForMatrixes (keysA, keysB);
-      ixs = matchrows (pkA, pkB);
+      ixs = octave.table.internal.matchrows (pkA, pkB);
       subA = subsetvars (A, opts2.varIxA);
       subB = subsetvars (B, opts2.varIxB);
       [subA, subB] = makeVarNamesUnique (subA, subB);
@@ -1394,7 +1394,7 @@ classdef table
       keysA = subsetvars (A, opts2.keyIxA);
       keysB = subsetvars (B, opts2.keyIxB);
       [pkA, pkB] = proxykeysForMatrixes (keysA, keysB);
-      [ixs, ixUnmatchedA, ixUnmatchedB] = matchrows (pkA, pkB);
+      [ixs, ixUnmatchedA, ixUnmatchedB] = octave.table.internal.matchrows (pkA, pkB);
       subA = subsetvars (A, opts2.varIxA);
       subB = subsetvars (B, opts2.varIxB);
       [subA, subB] = makeVarNamesUnique (subA, subB);

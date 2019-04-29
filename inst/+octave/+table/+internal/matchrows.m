@@ -54,6 +54,46 @@ function [ixs, ixUnmatchedA, ixUnmatchedB] = matchrows (A, B)
   
 endfunction
 
+function out = ixj2ixk(ixJ, n)
+  out = cell(n, 1);
+  for i = 1:n
+    out{i} = find (ixJ == i);
+  endfor
+endfunction
+
+function [ixs, ixUnmatchedA, ixUnmatchedB] = matchrows_two_way_ismember (A, B)
+  
+  [uA, ixIA, ixJA] = unique (A, 'rows');
+  [uB, ixIB, ixJB] = unique (B, 'rows');
+  % ixsK is a cell containing a list of all indexes in the input that mapped
+  % to that row in the unique output
+  ixsKA = ixj2ixk(ixJA, numel (ixIA));
+  ixsKB = ixj2ixk(ixJB, numel (ixIB));
+  
+  
+  ixUs = [];
+  
+  [tf, loc] = ismember (uA, uB);
+  tfUnmatchedUA = !tf;
+  ixUnmatchedUA = find (tfUnmatchedUA);
+  ixAU = 1:size(uA);
+  ixUs = [ixAU(tf), loc(tf)];
+  % Now expand these out to the original indexes
+  tfUnmatchedA = false(size(A, 1), 1);
+  tfUnmatchedA(ixJA(ixUnmatchedUA)) = true;
+  ixUnmatchedA = find (tfUnmatchedA);
+  
+  
+  
+  [tf, loc] = ismember (uA, uB);
+  
+  ixs = [];
+  [tf, ixB] = ismember(A, B, 'rows');
+  ixUnmatchedA = find (!tf);
+  
+  
+endfunction
+
 function [ixs, ixUnmatchedA, ixUnmatchedB] = matchrows_dumb_nested_loops (A, B)
   % This is a dumb nested-loops M-code implementation of matchrows.
   % Even without going to an oct-file, this could be improved with some smarter
@@ -74,7 +114,9 @@ function [ixs, ixUnmatchedA, ixUnmatchedB] = matchrows_dumb_nested_loops (A, B)
   
   for iA = 1:nRowsA
     for iB = 1:nRowsB
-      if isequal (A(iA,:), B(iB,:))
+      # all(... == ...) is much faster than isequal(). Use that.
+      #if isequal (A(iA,:), B(iB,:))
+      if all (A(iA,:) == B(iB,:))
         nMatches = nMatches + 1;
         ixs(nMatches,:) = [iA iB];
         tfMatchedA(iA) = true;
