@@ -49,50 +49,55 @@ function [ixs, ixUnmatchedA, ixUnmatchedB] = matchrows (A, B)
     error ('matchrows: input B must be a matrix; got a %s', size2str ( size (B)));
   endif
   
-  % M-code dumb-nested-loops is the only implementation we currently have
-  [ixs, ixUnmatchedA, ixUnmatchedB] = matchrows_dumb_nested_loops (A, B);
-  
-endfunction
-
-function out = ixj2ixk(ixJ, n)
-  out = cell(n, 1);
-  for i = 1:n
-    out{i} = find (ixJ == i);
-  endfor
+  # Two-way ismember will often be faster, but it's not well tested yet
+  #[ixs, ixUnmatchedA, ixUnmatchedB] = matchrows_dumb_nested_loops (A, B);
+  [ixs, ixUnmatchedA, ixUnmatchedB] = matchrows_two_way_ismember (A, B);
 endfunction
 
 function [ixs, ixUnmatchedA, ixUnmatchedB] = matchrows_two_way_ismember (A, B)
+  % This is an attempt to do the actual matching using vectorized operations.
+  % This will work a lot better on highly selective joins (those with relatively
+  % few matching rows).
   
   [uA, ixIA, ixJA] = unique (A, 'rows');
   [uB, ixIB, ixJB] = unique (B, 'rows');
   % ixsK is a cell containing a list of all indexes in the input that mapped
   % to that row in the unique output
-  ixsKA = ixj2ixk(ixJA, numel (ixIA));
-  ixsKB = ixj2ixk(ixJB, numel (ixIB));
-  
-  
-  ixUs = [];
+  ixsKA = octave.table.internal.jndx2kndxs (ixJA);
+  ixsKB = octave.table.internal.jndx2kndxs (ixJB);
   
   [tf, loc] = ismember (uA, uB);
   tfUnmatchedUA = !tf;
   ixUnmatchedUA = find (tfUnmatchedUA);
-  ixAU = 1:size(uA);
-  ixUs = [ixAU(tf), loc(tf)];
-  % Now expand these out to the original indexes
-  tfUnmatchedA = false(size(A, 1), 1);
-  tfUnmatchedA(ixJA(ixUnmatchedUA)) = true;
-  ixUnmatchedA = find (tfUnmatchedA);
+  ixUnmatchedUB = setdiff (1:size(uB,1), loc(tf));
+  ixUMatch = [(1:size(uA,1))' loc];
+  ixUMatch = ixUMatch(tf,:);
+  % These are unique values, so we know we have all the possible matches.
+  % Now expand them out to the original input row values
   
+  % Avoid a Shlemiel by pre-allocating
+  ixs = NaN(size(A,1) * size(B,1), 2);
+  n_matches = 0;
+  for i_match = 1:size(ixUMatch, 1)
+    ixsA = ixsKA{ixUMatch(i_match,1)};
+    ixsB = ixsKB{ixUMatch(i_match,2)};
+    for i_a = 1:numel(ixsA)
+      for i_b = 1:numel(ixsB)
+        n_matches = n_matches + 1;
+        ixs(n_matches,1) = ixsA(i_a);
+        ixs(n_matches,2) = ixsB(i_b);
+      endfor
+    endfor
+  endfor
+  ixs = ixs(1:n_matches,:);
   
-  
-  [tf, loc] = ismember (uA, uB);
-  
-  ixs = [];
-  [tf, ixB] = ismember(A, B, 'rows');
-  ixUnmatchedA = find (!tf);
-  
+  ixsUnmatchedA = ixsKA(ixUnmatchedUA);
+  ixUnmatchedA = cat(1, ixsUnmatchedA{:});
+  ixsUnmatchedB = ixsKB(ixUnmatchedUB);
+  ixUnmatchedB = cat(1, ixsUnmatchedB{:});
   
 endfunction
+
 
 function [ixs, ixUnmatchedA, ixUnmatchedB] = matchrows_dumb_nested_loops (A, B)
   % This is a dumb nested-loops M-code implementation of matchrows.
@@ -105,6 +110,7 @@ function [ixs, ixUnmatchedA, ixUnmatchedB] = matchrows_dumb_nested_loops (A, B)
 
   nRowsA = size (A, 1);
   nRowsB = size (B, 1);
+  nCols = size (A, 2);
   tfMatchedA = false (nRowsA, 1);
   tfMatchedB = false (nRowsB, 1);
   % Pessimistic allocation to avoid Shlemiel-the-painter behavior
