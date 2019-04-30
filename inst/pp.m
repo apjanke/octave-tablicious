@@ -13,6 +13,21 @@
 ## You should have received a copy of the GNU General Public License
 ## along with this program; If not, see <http://www.gnu.org/licenses/>.
 
+## -*- texinfo -*-
+## @deftypefn {Function} pp (@var{X})
+## @deftypefnx {Function} pp (@var{A}, @var{B}, @var{C}, @dots{})
+## @deftypefnx {Function} pp (@code{'A'}, @code{'B'}, @code{'C'}, @dots{})
+## @deftypefnx {Function} pp @code{A} @code{B} @code{C} @dots{}
+##
+## Alias for prettyprint, for interactive use.
+##
+## This is an alias for prettyprint(), with additional name-conversion magic.
+##
+## If you pass in a char, instead of pretty-printing that directly, it will 
+## grab and pretty-print the variable of that name from the caller’s workspace.
+## This is so you can conveniently run it from the command line.
+##
+## @end deftypefn
 function pp(varargin)
   %PP Alias for prettyprint, for debugging
   %

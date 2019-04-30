@@ -13,50 +13,62 @@
 ## You should have received a copy of the GNU General Public License
 ## along with this program; If not, see <http://www.gnu.org/licenses/>.
 
+## -*- texinfo -*-
+## @deftp {Class} string
+##
+## A string array of Unicode strings.
+##
+## A string array is an array of strings, where each array element is a single
+## string.
+##
+## The string class represents strings, where:
+##   - Each element of a string array is a single string
+##   - A single string is a 1-dimensional row vector of Unicode characters
+##   - Those characters are encoded in UTF-8
+##
+## This should correspond pretty well to what people think of as strings, and
+## is pretty compatible with people’s typical notion of strings in Octave.
+##
+## String arrays also have a special “missing” value, that is like the string
+## equivalent of NaN for doubles or “undefined” for categoricals, or SQL NULL.
+##
+## This is a slightly higher-level and more strongly-typed way of representing
+## strings than cellstrs are. (A cellstr array is of type cell, not a text-
+## specific type, and allows assignment of non-string data into it.)
+##
+## Be aware that while string arrays interconvert with Octave chars and cellstrs,
+## Octave char elements represent 8-bit UTF-8 code units, not Unicode code points.
+##
+## This class really serves three roles.
+##   - It is an object wrapper around Octave’s base primitive character types. 
+##   - It adds ismissing() semantics.
+##   - And it introduces Unicode support. 
+## Not clear whether it’s a good fit to have the Unicode support wrapped
+## up in this. Maybe it should just be a simple object wrapper
+## wrapper, and defer Unicode semantics to when core Octave adopts them for
+## char and cellstr. On the other hand, because Octave chars are UTF-8, not UCS-2,
+## some methods like strlength() and reverse() are just going to be wrong if
+## they delegate straight to chars.
+##
+## “Missing” string values work like NaNs. They are never considered equal,
+## less than, or greater to any other string, including other missing strings.
+## This applies to set membership and other equivalence tests.
+##
+## The current implementation depends on Java for its Unicode and encoding
+## support. This means your Octave session must be running Java to call those
+## methods. This should be changed in the future to use a native C/C++ library
+## and avoid the Java dependency, especially before this class is merged into
+## core Octave.
+##
+## TODO: Need to decide how far to go with Unicode semantics, and how much to
+## just make this an object wrapper over cellstr and defer to Octave's existing
+## char/string-handling functions.
+##
+## TODO: demote_strings should probably be static or global, so that other
+## functions can use it to hack themselves into being string-aware.
+##
+## @end deftp
 classdef string
-  %STRING A string array of Unicode strings
-  %
-  % A string array is an array of strings, where each element is a string.
-  %
-  % The string class represents strings, where:
-  %   - Each element of a string array is a single string
-  %   - A single string is a 1-dimensional row vector of Unicode characters
-  %   - Those characters are encoded in UTF-8
-  %
-  % This should correspond pretty well to what people think of as strings, and
-  % is pretty compatible with people's typical notion of strings.
-  %
-  % String arrays also have a special "missing" value, that is like the string
-  % equivalent of NaN for doubles or "undefined" for categoricals, or SQL NULL.
-  %
-  % This is a slightly higher-level and more strongly-typed way of representing
-  % strings than cellstrs are. (A cellstr array is of type cell, not a text-
-  % specific type, and allows assignment of non-string data into it.)
-  %
-  % Be aware that while string arrays interconvert with Octave chars and cellstrs,
-  % Octave char elements represent 8-bit UTF-8 code units, not Unicode code points.
-  %
-  % This class really serves three roles.
-  %   - It is an object wrapper around Octave's base primitive char types. 
-  %   - It adds ismissing() semantics.
-  %   - And it introduces Unicode support. 
-  % Not clear whether it's a good fit to have the Unicode support wrapped
-  % up in this. Maybe it should just be a simple object wrapper
-  % wrapper, and defer Unicode semantics to when core Octave adopts them for
-  % char and cellstr. On the other hand, because Octave chars are UTF-8, not UCS-2,
-  % some methods like strlength() and reverse() are just going to be wrong if
-  % they delegate straight to chars.
-  %
-  % "Missing" string values work like NaNs. They are never considered equal,
-  % less than, or greater to any other string, including other missing strings.
-  % This applies to set membership and other equivalence tests.
-  %
-  % TODO: Need to decide how far to go with Unicode semantics, and how much to
-  % just make this an object wrapper over cellstr and defer to Octave's existing
-  % char/string-handling functions.
-  %
-  % TODO: demote_strings should probably be static or global, so that other
-  % functions can use it to hack themselves into being string-aware.
   
   % Developer's note: The string manipulation and encoding methods are implemented
   % using Java here. This should be switched to use gnulib, ICU4C, or another 
@@ -71,14 +83,25 @@ classdef string
   endproperties
   
   methods
+    ## -*- texinfo -*-
+    ## @node string.string
+    ## @deftypefn {Constructor} {@var{obj} =} string ()
+    ## @deftypefnx {Constructor} {@var{obj} =} string (@var{in})
+    ##
+    ## Construct a new string array.
+    ##
+    ## The zero-argument constructor creates a new scalar string array
+    ## whose value is the empty string. TODO: Determine if this should
+    ## actually return a “missing” string instead.
+    ##
+    ## The other constructors construct a new string array by converting
+    ## various types of inputs.
+    ##   - chars and cellstrs are converted via cellstr()
+    ##   - numerics are converted via num2str()
+    ##   - datetimes are converted via datestr()
+    ##
+    ## @end deftypefn
     function this = string(in, varargin)
-      %STRING Construct a string array
-      %
-      % Constructs a new string array by converting various types of inputs.
-      %   - chars and cellstrs are converted via cellstr()
-      %   - numerics are converted via num2str()
-      %   - datetimes are converted via datestr()
-      %
       % TODO: Support a 'MapMissing' option to map "standard missing values"
       % (empty strings, NaN, NaT) to string missings.
       %
@@ -119,12 +142,18 @@ classdef string
       endif
     endfunction
     
+    ## -*- texinfo -*-
+    ## @node string.isstring
+    ## @deftypefn {Method} {@var{out} =} isstring (@var{obj})
+    ##
+    ## Test if input is a string array.
+    ##
+    ## @code{isstring} is always true for @code{string} inputs.
+    ##
+    ## Returns a scalar logical.
+    ##
+    ## @end deftypefn
     function out = isstring (this)
-      %ISSTRING True if input is a string array
-      %
-      % This is always true for string arrays.
-      %
-      % Returns scalar logical.
       out = true;
     end
 
@@ -148,51 +177,73 @@ classdef string
       fprintf("%s", out);
     end
     
+    ## -*- texinfo -*-
+    ## @node string.dispstrs
+    ## @deftypefn {Method} {@var{out} =} dispstrs (@var{obj})
+    ##
+    ## Display strings for array elements.
+    ##
+    ## Gets display strings for all the elements in @var{obj}. These display strings
+    ## will either be the string contents of the element, enclosed in @code{"..."},
+    ## and with CR/LF characters replaced with @code{'\r'} and @code{'\n'} escape sequences,
+    ## or @code{"<missing>"} for missing values.
+    ##
+    ## Returns a cellstr of the same size as @var{obj}.
+    ##
+    ## @end deftypefn
     function out = dispstrs (this)
-      %DISPSTRS Custom display strings
-      %
-      % out = dispstrs (this)
-      %
-      % Gets display strings for all the elements in this. These display strings
-      % will either be the string contents of the element, enclosed in '"..."',
-      % and with CR/LF characters replaced with '\r' and '\n' escape sequences,
-      % or "<missing>" for missing values.
-      %
-      % Returns cellstr, for compatibility with the dispstr API.
       out = strcat ({'"'}, this.strs, {'"'});
       out = strrep (out, sprintf ("\r"), '\r');
       out = strrep (out, sprintf ("\n"), '\n');
       out(this.tfMissing) = "<missing>";
     endfunction
     
+    ## -*- texinfo -*-
+    ## @node string.ismissing
+    ## @deftypefn {Method} {@var{out} =} ismissing (@var{obj})
+    ##
+    ## Test whether array elements are missing.
+    ##
+    ## For @code{string} arrays, only the special “missing” value is
+    ## considered missing. Empty strings are not considered missing, 
+    ## the way they are with cellstrs.
+    ##
+    ## Returns a logical array the same size as @code{obj}.
+    ##
+    ## @end deftypefn
     function out = ismissing (this)
-      %ISMISSING True for missing data
-      %
-      % out = ismissing (this)
-      %
-      % Indicates which values in this are missing.
-      %
-      % Returns a logical array the same size as this.
       out = this.tfMissing;
     endfunction
     
+    ## -*- texinfo -*-
+    ## @node string.isnannish
+    ## @deftypefn {Method} {@var{out} =} isnannish (@var{obj})
+    ##
+    ## Test whether array elements are NaN-like.
+    ##
+    ## Missing values are considered nannish; any other string value is not.
+    ##
+    ## Returns a logical array of the same size as @var{obj}.
+    ##
+    ## @end deftypefn
     function out = isnannish (this)
-      %ISNANNISH True for NaN-like values
-      %
-      % Missing values are considered nanny; any other string value is not.
-      %
-      % Returns a logical array the same size as this.
       out = ismissing (this);
     endfunction
     
     % Type conversion methods
     
+    ## -*- texinfo -*-
+    ## @node string.cellstr
+    ## @deftypefn {Method} {@var{out} =} cellstr (@var{obj})
+    ##
+    ## Convert to cellstr.
+    ##
+    ## Converts @var{obj} to a cellstr. Missing values are converted to @code{''}.
+    ##
+    ## Returns a cellstr array of the same size as @var{obj}.
+    ##
+    ## @end deftypefn
     function out = cellstr (this)
-      %CELLSTR Convert to cellstr
-      %
-      % out = cellstr (this)
-      %
-      % Converts this to a cellstr. Missing values are converted to ''.
       out = this.strs;
       % TODO: I don't know what the best conversion is here. Maybe it should
       % even error if any are missing? For now I'm using '', because that's the
@@ -200,18 +251,42 @@ classdef string
       out(this.tfMissing) = {''};
     end
     
+    ## -*- texinfo -*-
+    ## @node string.cell
+    ## @deftypefn {Method} {@var{out} =} cell (@var{obj})
+    ##
+    ## Convert to cell array.
+    ##
+    ## Converts this to a cell, which will be a cellstr. Missing values are
+    ## converted to @code{''}.
+    ##
+    ## This method returns the same values as @code{cellstr(obj)}; it is just provided
+    ## for interface compatibility purposes.
+    ##
+    ## Returns a cell array of the same size as @var{obj}.
+    ##
+    ## @end deftypefn
     function out = cell (this)
-      %CELL Convert to cell
-      %
-      % Converts this to a cell, which will be a cellstr. Missing values are
-      % converted to ''.
-      %
-      % This method returns the same values as cellstr(this); it is just provided
-      % for interface compatibility purposes.
       out = this.strs;
       out(tfMissing) = {[]};
-    end      
+    end
     
+    ## -*- texinfo -*-
+    ## @node string.char
+    ## @deftypefn {Method} {@var{out} =} char (@var{obj})
+    ##
+    ## Convert to char array.
+    ##
+    ## Converts @var{obj} to a 2-D char array. It will have as many rows
+    ## as @var{obj} has elements.
+    ##
+    ## It is an error to convert missing-valued @code{string} arrays to
+    ## char. (NOTE: This may change in the future; it may be more appropriate)
+    ## to convert them to space-padded empty strings.)
+    ##
+    ## Returns 2-D char array.
+    ##
+    ## @end deftypefn
     function out = char (this)
       %CHAR Convert to char
       if any (this.tfMissing)
@@ -244,20 +319,23 @@ classdef string
     
     % Encoding
     
+    ## -*- texinfo -*-
+    ## @node string.encode
+    ## @deftypefn {Method} {@var{out} =} encode (@var{obj}, @var{charsetName})
+    ##
+    ## Encode string in a given character encoding.
+    ##
+    ## @var{obj} must be scalar.
+    ##
+    ## @var{charsetName} (charvec) is the name of a character encoding.
+    ## (TODO: Document what determines the set of valid encoding names.)
+    ##
+    ## Returns the encoded string as a @code{uint8} vector.
+    ##
+    ## See also: @ref{string.decode}.
+    ##
+    ## @end deftypefn
     function out = encode (this, charsetName)
-      %ENCODE Encode this string in a given encoding
-      %
-      % out = encode (this, charsetName)
-      %
-      % Encodes this string in a given encoding.
-      %
-      % This must be scalar.
-      %
-      % charsetName (char) is the name of a character encoding.
-      %
-      % Returns the encoded string as uint8 vector.
-      %
-      % See also: STRING.DECODE
       mustBeScalar (this);
       mustHavaJava ();
       if this.tfMissing
@@ -270,6 +348,23 @@ classdef string
       
     % String manipulation methods
     
+    ## -*- texinfo -*-
+    ## @node string.strlength_bytes
+    ## @deftypefn {Method} {@var{out} =} strlength_bytes (@var{obj})
+    ##
+    ## String length in bytes.
+    ##
+    ## Gets the length of each string in @var{obj}, counted in Unicode UTF-8
+    ## code units (bytes). This is the same as @code{numel(str)} for the corresponding
+    ## Octave char vector for each string, but may not be what you 
+    ## actually want to use. You may want @code{strlength} instead.
+    ##
+    ## Returns double array of the same size as @var{obj}. Returns NaNs for missing
+    ## strings.
+    ##
+    ## See also: @ref{string.strlength}
+    ##
+    ## @end deftypefn
     function out = strlength_bytes (this)
       %STRLENGTH_BYTES String length in UTF-8 code units (bytes)
       %
@@ -286,17 +381,23 @@ classdef string
       out(this.tfMissing) = NaN;
     endfunction
     
+    ## -*- texinfo -*-
+    ## @node string.strlength
+    ## @deftypefn {Method} {@var{out} =} strlength (@var{obj})
+    ##
+    ## String length in characters.
+    ##
+    ## Gets the length of each string, counted in Unicode characters (code
+    ## points). This is the string length method you probably want to use,
+    ## not @code{strlength_bytes}.
+    ##
+    ## Returns double array of the same size as @var{obj}. Returns NaNs for missing
+    ## strings.
+    ##
+    ## See also: @ref{string.strlength_bytes}
+    ##
+    ## @end deftypefn
     function out = strlength(this)
-      %STRLENGTH String length in Unicode characters (code points)
-      %
-      % Gets the length of each string, counted in Unicode characters (code
-      % points). This is the string length method you probably want to use,
-      % not STRLENGTH_BYTES.
-      %
-      % Returns double array of the same size as this. Returns NaNs for missing
-      % strings.
-      %
-      % See also: STRING.STRLENGTH_BYTES
       mustHaveJava ();
       out = NaN (size(this));
       for i = 1:numel (out)
@@ -308,31 +409,48 @@ classdef string
       endfor
     endfunction
     
+    ## -*- texinfo -*-
+    ## @node string.reverse_bytes
+    ## @deftypefn {Method} {@var{out} =} reverse_bytes (@var{obj})
+    ##
+    ## Reverse string, byte-wise.
+    ##
+    ## Reverses the bytes in each string in @var{obj}. This operates on bytes
+    ## (Unicode code units), not characters.
+    ##
+    ## This may well produce invalid strings as a result, because reversing a
+    ## UTF-8 byte sequence does not necessarily produce another valid UTF-8
+    ## byte sequence.
+    ##
+    ## You probably do not want to use this method. You probably want to use
+    ## @code{string.reverse} instead.
+    ##
+    ## Returns a string array the same size as @var{obj}.
+    ##
+    ## See also: @ref{string.reverse}
+    ##
+    ## @end deftypefn
     function out = reverse_bytes (this)
-      %REVERSE_BYTES Reverse string, byte-wise (not character-wise)
-      %
-      % out = reverse_bytes (this)
-      %
-      % Reverses the bytes in each string in this.
-      %
-      % This may well produce invalid strings as a result, because reversing a
-      % UTF-8 byte sequence does not necessarily produce another valid UTF-8
-      % byte sequence.
-      %
-      % You probably do not want to use this method. You probably want to use
-      % string.reverse instead.
-      %
-      % Returns a string array the same size as this.
-      %
-      % See also: STRING.REVERSE
       out = this;
       for i = 1:numel (this)
         out.strs{i} = out.strs{i}(end:-1:1);
       endfor
     endfunction
     
+    ## -*- texinfo -*-
+    ## @node string.reverse
+    ## @deftypefn {Method} {@var{out} =} reverse (@var{obj})
+    ##
+    ## Reverse string, character-wise.
+    ##
+    ## Reverses the characters in each string in @var{obj}. This operates on
+    ## Unicode characters (code points), not on bytes, so it is guaranteed
+    ## to produce valid UTF-8 as its output.
+    ##
+    ## Returns a string array the same size as @var{obj}.
+    ##
+    ## @end deftypefn
     function out = reverse(this)
-      %REVERSE Reverse string, character-wise
       out = this;
       % Transcode to UTF-32 (since UTF-32 is a fixed-width encoding), 
       % reverse that, and transcode back to original encoding
@@ -350,9 +468,24 @@ classdef string
       endfor
     endfunction
     
+    ## -*- texinfo -*-
+    ## @node string.strcat
+    ## @deftypefn {Method} {@var{out} =} strcat (@var{varargin})
+    ##
+    ## String concatenation.
+    ##
+    ## Concatenates the corresponding elements of all the input arrays,
+    ## string-wise. Inputs that are not string arrays are converted to
+    ## string arrays.
+    ##
+    ## The semantics of concatenating missing strings with non-missing
+    ## strings has not been determined yet.
+    ##
+    ## Returns a string array the same size as the scalar expansion of its
+    ## inputs.
+    ##
+    ## @end deftypefn
     function out = strcat (varargin)
-      %STRCAT Concatenate strings
-      %
       % TODO: Fix missing handling
       args = promotec (varargin);
       args_strs = cell (size (args));
@@ -363,84 +496,129 @@ classdef string
       endfor
       out = string (strcat (args_strs{:}));
       % TODO: I think this is wrong: it doesn't handle scalar expansion
+      % TODO: Actually, this is completely wrong. Then inputs should be ORed
+      % or something like that, not concatenated.
       out.tfMissing = cat (2, args_tfMissing{:});
     endfunction
 
+    ## -*- texinfo -*-
+    ## @node string.lower
+    ## @deftypefn {Method} {@var{out} =} lower (@var{obj})
+    ##
+    ## Convert to lower case.
+    ##
+    ## Converts all the characters in all the strings in @var{obj} to lower case.
+    ##
+    ## This currently delegates to Octave’s own @code{lower()} function to
+    ## do the conversion, so whatever character class handling it has, this
+    ## has.
+    ##
+    ## Returns a string array of the same size as @var{obj}.
+    ##
+    ## @end deftypefn
     function out = lower (this)
-      %LOWER Convert to lower case
-      %
-      % out = lower (this)
-      %
-      % Converts all the characters in all the strings in this to lower case.
-      %
-      % Returns a string array the same size as this.
       out = this;
       % TODO: This lower() call is probably wrong: it relies on Octave's lower(),
       % which I think only does ASCII case conversion, not Unicode case conversion. -apj
       out.strs = lower (this.strs);
     endfunction
     
+    ## -*- texinfo -*-
+    ## @node string.upper
+    ## @deftypefn {Method} {@var{out} =} upper (@var{obj})
+    ##
+    ## Convert to upper case.
+    ##
+    ## Converts all the characters in all the strings in @var{obj} to upper case.
+    ##
+    ## This currently delegates to Octave’s own @code{upper()} function to
+    ## do the conversion, so whatever character class handling it has, this
+    ## has.
+    ##
+    ## Returns a string array of the same size as @var{obj}.
+    ##
+    ## @end deftypefn
     function out = upper (this)
-      %UPPER Convert to upper case
-      %
-      % out = upper (this)
-      %
-      % Converts all the characters in all the strings in this to upper case.
-      %
-      % Returns a string array the same size as this.
       out = this;
       % TODO: This upper() call is probably wrong: it relies on Octave's upper(),
       % which I think only does ASCII case conversion, not Unicode case conversion. -apj
       out.strs = upper (this.strs);
     endfunction
     
+    ## -*- texinfo -*-
+    ## @node string.erase
+    ## @deftypefn {Method} {@var{out} =} erase (@var{obj}, @var{match})
+    ##
+    ## Erase matching substring.
+    ##
+    ## Erases the substrings in @var{obj} which match the @var{match} input.
+    ##
+    ## Returns a string array of the same size as @var{obj}.
+    ##
+    ## @end deftypefn
     function out = erase (this, match)
-      %ERASE Erase matching substring
-      %
-      % out = erase (this, match)
-      %
-      % Erases the substrings in this which match the match input.
-      %
-      % Returns a string array the same size as this.
       [this, match] = promote (this, match);
       out = this;
       out.strs = strrep (this.strs, char(match), '');
     endfunction
     
+    ## -*- texinfo -*-
+    ## @node string.strrep
+    ## @deftypefn {Method} {@var{out} =} strrep (@var{obj}, @var{match}, @var{replacement})
+    ## @deftypefnx {Method} {@var{out} =} strrep (@dots{}, @var{varargin})
+    ##
+    ## Replace occurrences of pattern with other string.
+    ##
+    ## Replaces matching substrings in @var{obj} with a given replacement string.
+    ##
+    ## @var{varargin} is passed along to the core Octave @code{strrep} function. This
+    ## supports whatever options it does.
+    ## TODO: Maybe document what those options are.
+    ##
+    ## Returns a string array of the same size as @var{obj}.
+    ##
+    ## @end deftypefn
     function out = strrep (this, match, replacement, varargin)
-      %STRREP Replace occurrences of pattern with other string
-      %
-      % out = strrep (this, match, replacement, varargin)
-      %
-      % Replaces matching substrings with a given replacement string.
-      %
-      % The varargin is passed along to core Octave's strrep() function.
-      %
-      % Returns a string array the same size as this.
       [this, match, replacement] = promote (this, match, replacement);
       out = this;
       out.strs = strrep(this.strs, char(match), char(replacement), varargin{:});
     endfunction
 
+    ## -*- texinfo -*-
+    ## @node string.strfind
+    ## @deftypefn {Method} {@var{out} =} strfind (@var{obj}, @var{pattern})
+    ## @deftypefnx {Method} {@var{out} =} strfind (@dots{}, @var{varargin})
+    ##
+    ## Find pattern in string.
+    ##
+    ## Finds the locations where @var{pattern} occurs in the strings of @var{obj}.
+    ##
+    ## TODO: It’s ambiguous whether a scalar this should result in a numeric
+    ## out or a cell array out.
+    ##
+    ## Returns either an index vector, or a cell array of index vectors.
+    ##
+    ## @end deftypefn
     function out = strfind(this, pattern, varargin)
-      %STRFIND Find pattern in string
-      %
-      % out = strfind(this, pattern, varargin)
-      %
-      % TODO: It's ambiguous whether a scalar this should result in a numeric
-      % out or a cell array out.
       [this, pattern] = promote (this, pattern);
       out = strfind(this.strs, char(pattern), varargin{:});
       out(this.tfMissing) = {[]};
     endfunction
     
+    ## -*- texinfo -*-
+    ## @node string.regexprep
+    ## @deftypefn {Method} {@var{out} =} regexprep (@var{obj}, @var{pat}, @var{repstr})
+    ## @deftypefnx {Method} {@var{out} =} regexprep (@dots{}, @var{varargin})
+    ##
+    ## Replace based on regular expression matching.
+    ##
+    ## Replaces all the substrings matching a given regexp pattern @var{pat} with
+    ## the given replacement text @var{repstr}.
+    ##
+    ## Returns a string array of the same size as @var{obj}.
+    ##
+    ## @end deftypefn
     function out = regexprep(this, pat, repstr, varargin)
-      %REGEXPREP Replace regular expression patterns in string
-      %
-      % out = regexprep(this, pat, repstr, varargin)
-      %
-      % Replaces substrings matching a given regexp pattern with the given 
-      % replacement text.
       [this, pat, repstr] = promote (this, pat, repstr);
       args = demote_strings(varargin);
       out = this;
@@ -454,39 +632,58 @@ classdef string
       out = strcmp (A, B);
     endfunction
     
+    ## -*- texinfo -*-
+    ## @node string.strcmp
+    ## @deftypefn {Method} {@var{out} =} strcmp (@var{A}, @var{B})
+    ##
+    ## String comparison.
+    ##
+    ## Tests whether each element in A is exactly equal to the corresponding
+    ## element in B. Missing values are not considered equal to each other.
+    ##
+    ## This does the same comparison as @code{A == B}, but is not polymorphic.
+    ## Generally, there is no reason to use @code{strcmp} instead of @code{==}
+    ## or @code{eq} on string arrays, unless you want to be compatible with
+    ## cellstr inputs as well.
+    ##
+    ## Returns logical array the size of the scalar expansion of A and B.
+    ##
+    ## @end deftypefn
     function out = strcmp (A, B)
-      %STRCMP String comparison
-      %
-      % out = strcmp (A, B)
-      %
-      % Tests whether each element in A is exactly equal to the corresponding
-      % element in B. Missing values are not considered equal to each other.
-      %
-      % Returns logical array the size of the scalar expansion of A and B.
       [A, B] = promote (A, B);
       [A, B] = scalarexpand (A, B);
       out = strcmp (A.strs, B.strs);
       out(A.tfMissing | B.tfMissing) = false;
     endfunction
     
+    ## -*- texinfo -*-
+    ## @node string.cmp
+    ## @deftypefn {Method} {[@var{out}, @var{outA}, @var{outB}] =} cmp (@var{A}, @var{B})
+    ##
+    ## Value ordering comparison, returning -1/0/+1.
+    ##
+    ## Compares each element of @var{A} and @var{B}, returning for
+    ## each element @code{i} whether @code{A(i)} was less than (-1),
+    ## equal to (0), or greater than (1) the corresponding @code{B(i)}.
+    ##
+    ## TODO: What to do about missing values? Should missings sort to the end
+    ## (preserving total ordering over the full domain), or should their comparisons
+    ## result in a fourth "null"/"undef" return value, probably represented by NaN?
+    ## FIXME: The current implementation does not handle missings.
+    ##
+    ## Returns a numeric array @var{out} of the same size as the scalar expansion
+    ## of @var{A} and @var{B}. Each value in it will be -1, 0, or 1.
+    ##
+    ## Also returns scalar-expanded copies of @var{A} and @var{B} as @var{outA} and
+    ## @var{outB}, as a programming convenience.
+    ##
+    ## @end deftypefn
     function [out, A, B] = cmp(A, B)
-      %CMP C-style strcmp, with -1/0/+1 return value
-      %
-      % [out, A, B] = cmp(A, B)
-      %
-      % TODO: What to do about missing values? Should missings sort to the end
-      % (preserving total ordering over the full domain), or should their comparisons
-      % result in a fourth "null"/"undef" return value, probably represented by NaN?
-      % FIXME: The current implementation does not handle missings.
-      %
-      % Returns a numeric array the same size as the scalar expansion of A and B.
-      % Each value in it will be -1, 0, or 1. Also returns the promoted, scalar-
-      % expanded values of A and B, as a programming convenience.
       [A, B] = promote (A, B);
       % In production code, you wouldn't scalarexpand; you'd do a scalar test
       % and smarter indexing.
-      % Though really, in production code, you'd want to implement this whole function
-      % as a built-in or MEX file.
+      % Though really, in production code, you'd probably want to implement this
+      % whole function as a built-in or oct-file.
       [A, B] = scalarexpand (A, B);
       out = NaN (size (A));
       for i = 1:numel (A)
@@ -930,26 +1127,40 @@ classdef string
   endmethods
   
   methods (Static)
+    ## -*- texinfo -*-
+    ## @node string.missing
+    ## @deftypefn {Static Method} {@var{out} = } string.missing (@var{sz})
+    ##
+    ## Missing string value.
+    ##
+    ## Creates a string array of all-missing values of the specified size @var{sz}.
+    ## If @var{sz} is omitted, creates a scalar missing string.
+    ##
+    ## Returns a string array of size @var{sz}.
+    ##
+    ## @end deftypefn
     function out = missing (sz)
-      %MISSING Missing string value
-      %
-      % out = string.missing (sz)
-      %
-      % Constructs a string array of the given size with all missing values.
-      %
-      % Sz is the size of array to create. If sz is omitted, creates a scalar.
-      %
-      % Returns a string array whose values are all missing.
       if nargin < 2
         sz = [1 1];
       endif
       out = repmat (string, sz);
     endfunction
     
+    ## -*- texinfo -*-
+    ## @node string.decode
+    ## @deftypefn {Static Method} {@var{out} =} string.decode (@var{bytes}, @var{charsetName})
+    ##
+    ## Decode encoded text from bytes.
+    ##
+    ## Decodes the given encoded text in @var{bytes} according to the specified
+    ## encoding, given by @var{charsetName}.
+    ##
+    ## Returns a scalar string.
+    ##
+    ## See also: @ref{string.encode}
+    ##
+    ## @end deftypefn
     function out = decode (bytes, charsetName)
-      %DECODE Decode encoded text from bytes into a string object
-      %
-      % See also: STRING.ENCODE
       out = string (char (javaObject ('java.lang.String', bytes, charsetName)));
     end
   end

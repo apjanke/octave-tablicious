@@ -13,15 +13,28 @@
 ## You should have received a copy of the GNU General Public License
 ## along with this program; If not, see <http://www.gnu.org/licenses/>.
 
+## -*- texinfo -*-
+## @deftypefn {Function} {@var{out} =} vecfun (@var{fcn}, @var{x}, @var{dim})
+##
+## Apply function to vectors in array along arbitrary dimension.
+##
+## This function is not implemented yet.
+##
+## Applies a given function to the vector slices of an N-dimensional array, where
+## those slices are along a given dimension.
+##
+## @var{fcn} is a function handle to apply.
+##
+## @var{x} is an array of arbitrary type which is to be sliced and passed
+## in to @var{fcn}.
+##
+## @var{dim} is the dimension along which the vector slices lay.
+##
+## Returns the collected output of the @var{fcn} calls, which will be
+## the same size as @var{x}, but not necessarily the same type.
+##
+## @end deftypefn
 function out = vecfun(fcn, x, dim)
-  %VECFUN Apply a function to vector slices of an N-dimensional array
-  %
-  % out = vecfcn(fcn, x, dim)
-  %
-  % This is like arrayfun, except instead of iterating over all dimensions and
-  % applying a function to scalar elements of an array, it iterates over all but
-  % one specified dimension of an array, and applies a function to the vector
-  % slices along that dimension.
   
   n_dims = ndims (x);
   

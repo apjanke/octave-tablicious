@@ -13,26 +13,29 @@
 ## You should have received a copy of the GNU General Public License
 ## along with this program; If not, see <http://www.gnu.org/licenses/>.
 
+## -*- texinfo -*-
+## @deftypefn {Function} {[@var{out}, @var{tf}] =} rmmissing (@var{X})
+## @deftypefnx {Function} {[@var{out}, @var{tf}] =} rmmissing (@var{X}, @var{dim})
+## @deftypefnx {Function} {[@var{out}, @var{tf}] =} rmmissing (@dots{}, @code{'MinNumMissing'}, @var{MinNumMissing})
+##
+## Remove missing values.
+##
+## If @var{x} is a vector, removes elements with missing values. If @var{x} is a matrix,
+## removes rows or columns with missing data elements.
+##
+## @var{dim} is the dimension to operate along. Specifying a dimension forces @code{rmmissing}
+## to operate in matrix instead of vector mode.
+##
+## @var{MinNumMissing} indicates how many missing element values there must be in a
+## row or column for it to be considered missing and this removed. This option
+## is only used in matrix mode; it is silently ignored in vector mode.
+##
+## Returns:
+##   @var{out} - the input, with missing elements or rows or columns removed
+##   @var{tf} - a logical index vector indicating which elements, rows, or columns were removed
+##
+## @end deftypefn
 function [out,tf] = rmmissing (x, varargin)
-  %RMMISSING Remove missing entries from vector or matrix
-  %
-  % [out,tf] = rmmissing (x)
-  % [out,tf] = rmmissing (x, dim)
-  % [out,tf] = rmmissing (..., 'MinNumMissing', minNumMissing)
-  %
-  % If x is a vector, removes elements with missing values. If x is a matrix,
-  % removes rows or columns with missing data elements.
-  %
-  % dim is the dimension to operate along. Specifying a dimension forces rmmissing
-  % to operate in matrix instead of vector mode.
-  %
-  % MinNumMissing indicates how many missing element values there must be in a
-  % row or column for it to be considered missing and this removed. This option
-  % is only used in matrix mode; it is silently ignored in vector mode.
-  %
-  % Returns:
-  % out - the input, with missing elements or rows or columns removed
-  % tf - a logical index vector indicating which elements, rows, or columns were removed
   
   validOptions = {'MinNumMissing'};
   [opts, args] = peelOffNameValueOptions (varargin, validOptions);

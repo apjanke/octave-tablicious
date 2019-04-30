@@ -13,8 +13,22 @@
 ## You should have received a copy of the GNU General Public License
 ## along with this program; If not, see <http://www.gnu.org/licenses/>.
 
+## -*- texinfo -*-
+## @deftypefn {Function} {@var{out} =} struct2table (@var{s})
+## @deftypefnx {Function} {@var{out} =} struct2table (@dots{}, @code{'AsArray'}, @var{AsArray})
+##
+## Convert struct to a table.
+##
+## Converts the input struct @var{s} to a @code{table}.
+##
+## @var{s} may be a scalar struct or a nonscalar struct array.
+##
+## The @var{AsArray} option is not implemented yet.
+##
+## Returns a @code{table}.
+##
+## @end deftypefn
 function out = struct2table (s, varargin)
-  %STRUCT2TABLE Convert struct to table
   
   % Peel off trailing options
   [opts, args] = peelOffNameValueOptions (varargin, {'AsArray'});

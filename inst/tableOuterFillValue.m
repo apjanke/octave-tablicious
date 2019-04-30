@@ -13,19 +13,31 @@
 ## You should have received a copy of the GNU General Public License
 ## along with this program; If not, see <http://www.gnu.org/licenses/>.
 
-function out = tableOuterFillValue (x)
-  %TABLEOUTERFILLVALUE Fill value for outer joins for a given variable value
-  %
-  % Determines the fill value to use vor a given variable value in table outer
-  % joins.
-  %
-  % This function may become private to table before version 1.0. It is currently
-  % global to make debugging more convenient. It (or an equivalent) will remain
-  % global if we want to allow user-defined classes to customize their fill value.
-  % 
-  % Returns a 1-by-ncols value of the same type as x, which may be any type, where
-  % ncols is the number of columns in the input.
-  
+## -*- texinfo -*-
+## @deftypefn {Function} {@var{out} =} tableOuterFillValue (@var{x})
+##
+## Outer fill value for variable within a table.
+##
+## Determines the fill value to usse for a given variable value @var{x}
+## when that value is used as a variable in a table that is involved in
+## an outer join.
+##
+## The default implementation for @code{tableOuterFillValue} has support for
+## all Octave primitive types, plus cellstrs, datetime & friends, strings,
+## and @code{table}-valued variables.
+##
+## This function may become private to table before version 1.0. It is currently
+## global to make debugging more convenient. It (or an equivalent) will remain
+## global if we want to allow user-defined classes to customize their fill value.
+## It also has default logic that will determine the fill value for an arbitrary
+## type by detecting the value used to fill elements during array expansion
+## operations. This will be appropriate for most data types.
+## 
+## Returns a 1-by-ncols value of the same type as x, which may be any type, where
+## ncols is the number of columns in the input.
+##
+## @end deftypefn
+function out = tableOuterFillValue (x)  
   nCols = size (x, 2);
   if isnumeric (x)
     if isa (x, 'double') || isa (x, 'single')

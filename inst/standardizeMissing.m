@@ -13,8 +13,28 @@
 ## You should have received a copy of the GNU General Public License
 ## along with this program; If not, see <http://www.gnu.org/licenses/>.
 
+## -*- texinfo -*-
+## @deftypefn {Function} {@var{out} =} standardizeMissing (@var{X}, @var{indicator})
+##
+## Insert standard missing values.
+##
+## Standardizes missing values in @var{X} by replacing the values listed in
+## @var{indicator} with the standard missing values for the type of @var{X}.
+##
+## Standard missing values depend on the data type:
+##   * NaN for double, single, duration, and calendarDuration
+##   * NaT for datetime
+##   * @code{' '} for char
+##   * @code{@{''@}} for cellstrs
+##   * Integer numeric types have no standard missing value; they are never 
+##     considered missing.
+##   * Structs are never considered missing.
+##   * Logicals are never considered missing.
+##
+## See also: @ref{table.standardizeMissing}
+##
+## @end deftypefn
 function out = standardizeMissing(A, indicator)
-  %STANDARDIZEMISSING Insert standard missing values
   
   % Developer's note: This is the implementation for cell and primitive matrixes.
   % The table implementation is at table.standardizeMissing.
