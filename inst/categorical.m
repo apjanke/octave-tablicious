@@ -127,15 +127,40 @@ classdef categorical
   
   methods
     
+    ## -*- texinfo -*-
+    ## @node categorical.categorical
+    ## @deftypefn {Constructor} {@var{obj} =} categorical ()
+    ##
+    ## Constructs a new scalar categorical whose value is undefined.
+    ##
+    ## @end deftypefn
+    ##
+    ## @deftypefn {Constructor} {@var{obj} =} categorical (@var{vals})
+    ## @deftypefnx {Constructor} {@var{obj} =} categorical (@var{vals}, @var{valueset})
+    ## @deftypefnx {Constructor} {@var{obj} =} categorical (@var{vals}, @var{valueset}, @var{category_names})
+    ## @deftypefnx {Constructor} {@var{obj} =} categorical (@dots{}, @code{'Ordinal'}, @var{Ordinal})
+    ## @deftypefnx {Constructor} {@var{obj} =} categorical (@dots{}, @code{'Protected'}, @var{Protected})
+    ##
+    ## Constructs a new categorical array from the given values.
+    ##
+    ## @var{vals} is the array of values to convert to categoricals.
+    ##
+    ## @var{valueset} is the set of all values from which @var{vals} is drawn.
+    ## If omitted, it defaults to the unique values in @var{vals}.
+    ##
+    ## @var{category_names} is a list of category names corresponding to
+    ## @var{valueset}. If omitted, it defaults to @var{valueset}, converted
+    ## to strings.
+    ##
+    ## @var{Ordinal} is a logical indicating whether the category values in
+    ## @var{obj} have a numeric ordering relationship. Defaults to false.
+    ##
+    ## @var{Protected} indicates whether @var{obj} should be protected, which
+    ## prevents the addition of new categories to the array. Defaults to
+    ## false.
+    ##
+    ## @end deftypefn
     function this = categorical (x, varargin)
-      %CATEGORICAL Construct a new categorical array
-      %
-      % this = categorical (vals)
-      % this = categorical (vals, valueset);
-      % this = categorical (vals, valueset, category_names);
-      % this = categorical (..., "Ordinal", true);
-      % this = categorical (..., "Protected", true);
-      %
       % TODO: Empty strings and cellstrs should convert to <undefined>
       % TODO: Handle datetime and duration inputs
       % TODO: Handle logical inputs
@@ -220,13 +245,34 @@ classdef categorical
       this.code = code;
     endfunction
     
+    ## -*- texinfo -*-
+    ## @node categorical.categories
+    ## @deftypefn {Method} {@var{out} =} categories (@var{obj})
+    ##
+    ## Get a list of the categories in @var{obj}.
+    ##
+    ## Gets a list of the categories in @var{obj}, identified by their 
+    ## category names.
+    ##
+    ## Returns a cellstr column vector.
+    ##
+    ## @end deftypefn
     function out = categories (this)
-      %CATEGORIES Get a list of the categories in this categorical array
-      %
-      % Returns a cellstr column vector.
       out = this.cats(:);
     endfunction
     
+    ## -*- texinfo -*-
+    ## @node categorical.iscategory
+    ## @deftypefn {Method} {@var{out} =} iscategory (@var{obj}, @var{catnames})
+    ##
+    ## Test whether input is a category on a categorical array.
+    ##
+    ## @var{catnames} is a cellstr listing the category names to check against
+    ## @var{obj}.
+    ##
+    ## Returns a logical array the same size as @var{catnames}.
+    ##
+    ## @end deftypefn
     function out = iscategory (this, catnames)
       %ISCATEGORY Test for category name existence
       %
@@ -236,21 +282,54 @@ classdef categorical
       out = ismember (catnames, this.cats);
     endfunction
     
+    ## -*- texinfo -*-
+    ## @node categorical.isordinal
+    ## @deftypefn {Method} {@var{out} =} isordinal (@var{obj})
+    ##
+    ## Whether @var{obj} is ordinal.
+    ##
+    ## Returns true if @var{obj} is ordinal (as determined by its
+    ## @code{IsOrdinal} property), and false otherwise.
+    ##
+    ## @end deftypefn
     function out = isordinal (this)
-      %ISORDINAL True if this categorical array is ordinal
       out = this.isOrdinal;
     endfunction
     
+    ## -*- texinfo -*-
+    ## @node categorical.string
+    ## @deftypefn {Method} {@var{out} =} string (@var{obj})
+    ##
+    ## Convert to string array.
+    ##
+    ## Converts @var{obj} to a string array. The strings will be the
+    ## category names for corresponding values, or <missing> for undefined
+    ## values.
+    ##
+    ## Returns a @code{string} array the same size as @var{obj}.
+    ##
+    ## @end deftypefn
     function out = string (this)
-      %STRING Convert to string array
       out = cell (size (this));
       out(!this.tfMissing) = this.category_list(this.code(!this.tfMissing));
       out = string (out);
       out(this.tfMissing) = string.missing;
     endfunction
     
+    ## -*- texinfo -*-
+    ## @node categorical.cellstr
+    ## @deftypefn {Method} {@var{out} =} cellstr (@var{obj})
+    ##
+    ## Convert to cellstr.
+    ##
+    ## Converts @var{obj} to a cellstr array. The strings will be the
+    ## category names for corresponding values, or @code{''} for undefined
+    ## values.
+    ##
+    ## Returns a cellstr array the same size as @var{obj}.
+    ##
+    ## @end deftypefn
     function out = cellstr (this)
-      %CELLSTR Convert to cellstr
       out = cell (size (this));
       out(!this.tfMissing) = this.category_list(this.code(!this.tfMissing));
       out(this.tfMissing) = {""};      
@@ -276,21 +355,36 @@ classdef categorical
       fprintf("%s", out);
     end
     
+    ## -*- texinfo -*-
+    ## @node categorical.dispstrs
+    ## @deftypefn {Method} {@var{out} =} dispstrs (@var{obj})
+    ##
+    ## Display strings.
+    ##
+    ## Gets display strings for each element in @var{obj}. The display strings are
+    ## either the category string, or @code{'<undefined>'} for undefined values.
+    ##
+    ## Returns a cellstr array the same size as @var{obj}.
+    ##
+    ## @end deftypefn
     function out = dispstrs (this)
-      %DISPSTRS Custom display strings
-      %
-      % out = dispstrs (this)
-      %
-      % Gets display strings for each element in this. The display strings are
-      % either the category string, or '<undefined>' for undefined values.
-      %
-      % Returns cellstr, for compatibility with the dispstr API.
       out = cell (size (this));
       ix = this.code(!this.tfMissing);
       out(!this.tfMissing) = this.cats(ix);
       out(this.tfMissing) = {'<undefined>'};
     endfunction
     
+    ## -*- texinfo -*-
+    ## @node categorical.summary
+    ## @deftypefn {Method} summary (@var{obj})
+    ##
+    ## Display summary of array’s values.
+    ##
+    ## Displays a summary of the values in this categorical array. The output
+    ## may contain info like the number of categories, number of undefined values,
+    ## and frequency of each category.
+    ##
+    ## @end deftypefn
     function summary (this)
       %SUMMARY Print a summary of the values in this categorical array
       
@@ -300,21 +394,26 @@ classdef categorical
       
       fprintf ('Categorical array\n');
       fprintf ('  %d categories, %d elements\n', numel (Category), numel (this));
-      fprintf ('  %d missing values\n', numel (find (this.tfMissing(:))));
+      fprintf ('  %d undefined values\n', numel (find (this.tfMissing(:))));
       prettyprint (category_table);
       % TODO: Frequencies of each code value. Probably just roll that up into the
       % above table as an additional column.
     endfunction
     
+    ## -*- texinfo -*-
+    ## @node categorical.addcats
+    ## @deftypefn {Method} {@var{out} =} addcats (@var{obj}, @var{newcats})
+    ##
+    ## Add categories to categorical array.
+    ##
+    ## Adds the specified categories to @var{obj}, without changing any of
+    ## its values.
+    ##
+    ## @var{newcats} is a cellstr listing the category names to add to
+    ## @var{obj}.
+    ##
+    ## @end deftypefn
     function out = addcats (this, newcats)
-      %ADDCATS Add categories to this categorical array
-      %
-      % out = addcats (this, newcats)
-      %
-      % Adds the specified categories to this categorical array, without changing
-      % any of its values.
-      %
-      % newcats is a cellstr.
       narginchk (2, 2);
       newcats = cellstr (newcats);
       newcats = newcats(:)';
@@ -331,18 +430,27 @@ classdef categorical
       out.cats = [out.cats newcats];
     endfunction
     
+    ## -*- texinfo -*-
+    ## @node categorical.removecats
+    ## @deftypefn {Method} {@var{out} =} removecats (@var{obj})
+    ##
+    ## Removes all unused categories from @var{obj}. This is equivalent to
+    ## @code{out = squeezecats (obj)}.
+    ##
+    ## @end deftypefn
+    ##
+    ## @deftypefn {Method} {@var{out} =} removecats (@var{obj}, @var{oldcats})
+    ##
+    ## Remove categories from categorical array.
+    ##
+    ## Removes the specified categories from @var{obj}. Elements of @var{obj}
+    ## whose values belonged to those categories are replaced with undefined.
+    ##
+    ## @var{newcats} is a cellstr listing the category names to add to
+    ## @var{obj}.
+    ##
+    ## @end deftypefn
     function out = removecats (this, oldcats)
-      %REMOVECATS Remove categories from this categorical array
-      %
-      % out = removecats (this)
-      % out = removecats (this, oldcats)
-      %
-      % out = removecats (this) removes all unused categories from this. This is
-      % equivalent to out = squeezecats (this).
-      %
-      % out = removecats (this, oldcats) removes all specified categories from 
-      % this. Elements of this whose values belonged to those categories are 
-      % replaced with undefined.
       if nargin == 1
         out = squeezecats (this);
         return
@@ -357,15 +465,23 @@ classdef categorical
       out = remove_unused_cats (out, oldcats);
     endfunction
     
+    ## -*- texinfo -*-
+    ## @node categorical.mergecats
+    ## @deftypefn {Method} {@var{out} =} mergecats (@var{obj}, @var{oldcats})
+    ## @deftypefnx {Method} {@var{out} =} mergecats (@var{obj}, @var{oldcats}, @var{newcat})
+    ##
+    ## Merge multiple categories.
+    ##
+    ## Merges the categories @var{oldcats} into a single category. If @var{newcat}
+    ## is specified, that new category is added if necessary, and all of @var{oldcats}
+    ## are merged into it. @var{newcat} must be an existing category in @var{obj} if
+    ## @var{obj} is ordinal.
+    ##
+    ## If @var{newcat} is not provided, all of @var{odcats} are merged into
+    ## @code{oldcats@{1@}}.
+    ##
+    ## @end deftypefn
     function out = mergecats (this, oldcats, newcat)
-      %MERGECATS Merge multiple categories
-      %
-      % out = mergecats (this, oldcats)
-      % out = mergecats (this, oldcats, newcat)
-      %
-      % newcat is the name of the new category to merge the input categories
-      % into. It does not have to be an existing category in this (unless this
-      % is ordinal.
       narginchk (2, 3);
       mustBeNonEmpty (oldcats);
       if nargin < 3
@@ -403,12 +519,18 @@ classdef categorical
       endif
     endfunction
     
+    ## -*- texinfo -*-
+    ## @node categorical.renamecats
+    ## @deftypefn {Method} {@var{out} =} renamecats (@var{obj}, @var{newcats})
+    ## @deftypefnx {Method} {@var{out} =} renamecats (@var{obj}, @var{oldcats}, @var{newcats})
+    ##
+    ## Rename categories.
+    ##
+    ## Renames some or all of the categories in @var{obj}, without changing
+    ## any of its values.
+    ##
+    ## @end deftypefn
     function out = renamecats (this, varargin)
-      %RENAMECATS Rename categories
-      %
-      % out = renamecats (this, varargin)
-      %
-      % Renames existing categories in this, without changing values.
       narginchk (2, 3);
       if nargin == 2
         oldnames = this.cats;
@@ -435,14 +557,21 @@ classdef categorical
       out.cats(loc) = newnames;
     endfunction
 
+    ## -*- texinfo -*-
+    ## @node categorical.reordercats
+    ## @deftypefn {Method} {@var{out} =} reordercats (@var{obj})
+    ## @deftypefnx {Method} {@var{out} =} reordercats (@var{obj}, @var{newcats})
+    ##
+    ## Reorder categories.
+    ##
+    ## Reorders the categories in @var{obj} to match @var{newcats}.
+    ##
+    ## @var{newcats} is a cellstr that must be a reordering of @var{obj}’s existing
+    ## category list. If @var{newcats} is not supplied, sorts the categories
+    ## in alphabetical order.
+    ##
+    ## @end deftypefn
     function out = reordercats (this, newcats)
-      %REORDERCATS Reorder categories in this' category list
-      %
-      % out = reordercats (this)
-      % out = reordercats (this, newcats)
-      %
-      % newcats (cellstr) must be a reordering of this' existing category list.
-      % If newcats is not supplied, sorts the categories in alphabetical order.
       if nargin == 1
         newcats = sort (this.cats);
       endif
@@ -460,14 +589,18 @@ classdef categorical
       out.cats = newcats;
     endfunction
     
+    ## -*- texinfo -*-
+    ## @node categorical.setcats
+    ## @deftypefn {Method} {@var{out} =} setcats (@var{obj}, @var{newcats})
+    ##
+    ## Set categories for categorical array.
+    ##
+    ## Sets the categories to use for @var{obj}. If any current categories
+    ## are absent from the @var{newcats} list, current values of those
+    ## categories become undefined.
+    ##
+    ## @end deftypefn
     function out = setcats (this, newcats)
-      %SETCATS Set categories for categorical array
-      %
-      % out = setcats (this, newcats)
-      %
-      % Sets the categories to use for a categorical array. If any current
-      % categories are absent from the newcats list, current values of those
-      % categories become undefined.
       newcats = cellstr (newcats);
       newcats = newcats(:)';
       
@@ -485,42 +618,69 @@ classdef categorical
       out.tfMissing = out.tfMissing | isnan (new_codes) | new_codes == 0;
     endfunction
     
+    ## -*- texinfo -*-
+    ## @node categorical.isundefined
+    ## @deftypefn {Method} {@var{out} =} isundefined (@var{obj})
+    ##
+    ## Test whether elements are undefined.
+    ##
+    ## Checks whether each element in @var{obj} is undefined. "Undefined" is
+    ## a special value defined by @code{categorical}. It is equivalent to
+    ## a @code{NaN} or a @code{missing} value.
+    ##
+    ## Returns a logical array the same size as @var{obj}.
+    ##
+    ## @end deftypefn
     function out = isundefined (this)
-      %ISUNDEFINED True for undefined data elements
-      %
-      % out = isundefined (this)
-      %
-      % Indicates which values in this are undefined.
-      %
-      % Returns a logical array the same size as this.
       out = this.tfMissing;
     endfunction
     
+    ## -*- texinfo -*-
+    ## @node categorical.ismissing
+    ## @deftypefn {Method} {@var{out} =} ismissing (@var{obj})
+    ##
+    ## Test whether elements are missing.
+    ##
+    ## For categorical arrays, undefined elements are considered to be
+    ## missing.
+    ##
+    ## Returns a logical array the same size as @var{obj}.
+    ##
+    ## @end deftypefn
     function out = ismissing (this)
-      %ISMISSING True for missing data elements
-      %
-      % out = ismissing (this)
-      %
-      % Indicates which values in this are missing. Undefined values are 
-      % considered missing; other values are not. So this produces the same
-      % output as isundefined (this).
-      %
-      % Returns a logical array the same size as this.
       out = this.tfMissing;
     endfunction
     
+    ## -*- texinfo -*-
+    ## @node categorical.isnannish
+    ## @deftypefn {Method} {@var{out} =} isnannish (@var{obj})
+    ##
+    ## Test whethere elements are NaN-ish.
+    ##
+    ## Checks where each element in @var{obj} is NaN-ish. For categorical
+    ## arrays, undefined values are considered NaN-ish; any other 
+    ## value is not.
+    ##
+    ## Returns a logical array the same size as @var{obj}.
+    ##
+    ## @end deftypefn
     function out = isnannish (this)
-      %ISNANNISH True for NaN-like values
-      %
-      % Undefined values are considered nannish; any other value is not. So
-      % this returns the same as isundefined (this).
-      %
-      % Returns a logical array the same size as this.
       out = ismissing (this);
     endfunction
     
+    ## -*- texinfo -*-
+    ## @node categorical.squeezecats
+    ## @deftypefn {Method} {@var{out} =} squeezecats (@var{obj})
+    ##
+    ## Remove unused categories.
+    ##
+    ## Removes all categories which have no corresponding values in @var{obj}’s
+    ## elements.
+    ##
+    ## This is currently unimplemented.
+    ##
+    ## @end deftypefn
     function out = squeezecats (this)
-      %SQUEEZECATS Remove categories that have no corresponding values in this
       error('categorical.squeezecategories: This is unimplemented. Sorry.');
     endfunction
     

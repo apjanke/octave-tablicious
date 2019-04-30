@@ -13,8 +13,31 @@
 ## You should have received a copy of the GNU General Public License
 ## along with this program; If not, see <http://www.gnu.org/licenses/>.
 
+## -*- texinfo -*-
+## @deftypefn {Function} {[@var{Y}, @var{E}] =} discretize (@var{X}, @var{n})
+## @deftypefnx {Function} {[@var{Y}, @var{E}] =} discretize (@var{X}, @var{edges})
+## @deftypefnx {Function} {[@var{Y}, @var{E}] =} discretize (@var{X}, @var{dur})
+## @deftypefnx {Function} {[@var{Y}, @var{E}] =} discretize (@dots{}, @code{'categorical'})
+## @deftypefnx {Function} {[@var{Y}, @var{E}] =} discretize (@dots{}, @code{'IncludedEdge'}, @var{IncludedEdge})
+##
+## Group data into discrete bins or categories.
+##
+## @var{n} is the number of bins to group the values into.
+##
+## @var{edges} is an array of edge values defining the bins.
+##
+## @var{dur} is a @code{duration} value indicating the length of time of each
+## bin.
+##
+## If @code{'categorical'} is specified, the resulting values are a @code{categorical}
+## array instead of a numeric array of bin indexes.
+##
+## Returns:
+##  @var{Y} - the bin index or category of each value from @var{X}
+##  @var{E} - the list of bin edge values
+##
+## @end deftypefn
 function [Y, E] = discretize (X, arg1, varargin)
-  %DISCRETIZE Group data into discrete bins or categories
   
   % Input handling
   do_categorical = false;

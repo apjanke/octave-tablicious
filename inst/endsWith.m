@@ -13,24 +13,26 @@
 ## You should have received a copy of the GNU General Public License
 ## along with this program; If not, see <http://www.gnu.org/licenses/>.
 
-function out = endsWith (str, pattern, varargin)
-  %ENDSWITH Test if strings start with pattern
-  %
-  % out = endsWith (str, pattern)
-  % out = endsWith (str, pattern, 'IgnoreCase', true)
-  %
-  % Tests whether the given strings end with the given pattern(s).
-  %
-  % str (char, cellstr, string) is a list of strings to compare against 
-  % pattern.
-  %
-  % pattern (char, cellstr, string) is a list of patterns to match. These are
-  % literal plain string patterns, not regex patterns. If more than one pattern
-  % is supplied, the return value is true if the string matched any of them.
-  %
-  % Returns a logical array of the same size as the string array represented by
-  % str.
-  
+## -*- texinfo -*-
+## @deftypefn {Function} {@var{out} =} endsWith (@var{str}, @var{pattern})
+## @deftypefnx {Function} {@var{out} =} endsWith (@dots{}, @code{'IgnoreCase'}, @var{IgnoreCase})
+##
+## Test if strings end with a pattern.
+##
+## Tests whether the given strings end with the given pattern(s).
+##
+## @var{str} (char, cellstr, or string) is a list of strings to compare against 
+## @var{pattern}.
+##
+## @var{pattern} (char, cellstr, or string) is a list of patterns to match. These are
+## literal plain string patterns, not regex patterns. If more than one pattern
+## is supplied, the return value is true if the string matched any of them.
+##
+## Returns a logical array of the same size as the string array represented by
+## @var{str}.
+##
+## @end deftypefn
+function out = endsWith (str, pattern, varargin)  
   [opts, args] = peelOffNameValueOptions (varargin, {'IgnoreCase'});
   ignore_case = false;
   if isfield (opts, 'IgnoreCase')

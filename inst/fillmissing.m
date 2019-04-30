@@ -13,12 +13,36 @@
 ## You should have received a copy of the GNU General Public License
 ## along with this program; If not, see <http://www.gnu.org/licenses/>.
 
+## -*- texinfo -*-
+## @deftypefn {Function} {[@var{out}, @var{tfFilled}] =} fillmissing (@var{X}, @var{method})
+## @deftypefnx {Function} {[@var{out}, @var{tfFilled}] =} fillmissing (@var{X}, @code{'constant'}, @var{fill_val})
+## @deftypefnx {Function} {[@var{out}, @var{tfFilled}] =} fillmissing (@var{X}, @var{movmethod}, @var{window})
+##
+## Fill missing values.
+##
+## Fills missing values in @var{X} according to the method specified by
+## @var{method}.
+##
+## This method is only partially implemented.
+##
+## @var{method} may be:
+##    @code{'constant'}
+##    @code{'previous'}
+##    @code{'next'}
+##    @code{'nearest'}
+##    @code{'linear'}
+##    @code{'spline'}
+##    @code{'pchip'}
+## @var{movmethod} may be:
+##    @code{'movmean'}
+##    @code{'movmedian'}
+##
+## Returns @var{out}, which is @var{X} but with missing values filled in, and
+## @var{tfFilled}, a logical array the same size as @var{X} which indicates
+## which elements were filled.
+##
+## @end deftypefn
 function [out, tfFilled] = fillmissing (X, method, varargin)
-  %FILLMISSING Fill missing values
-  %
-  % [out, tfFilled] = fillmissing (X, constant, fill_val)
-  % [out, tfFilled] = fillmissing (X, method)
-  % [out, tfFilled] = fillmissing (X, movmethod, window)
   narginchk (2, Inf);
   mustBeCharvec (method);
   [opts, args] = peelOffNameValueOptions (varargin);

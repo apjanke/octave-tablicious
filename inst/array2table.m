@@ -20,7 +20,7 @@
 ##
 ## Convert an array to a table.
 ##
-## Converts an array to a table, with columns in the array becoming variables in
+## Converts a 2-D array to a table, with columns in the array becoming variables in
 ## the output table. This is typically used on numeric arrays, but it can
 ## be applied to any type of array.
 ##

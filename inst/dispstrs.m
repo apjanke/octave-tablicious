@@ -13,6 +13,25 @@
 ## You should have received a copy of the GNU General Public License
 ## along with this program; If not, see <http://www.gnu.org/licenses/>.
 
+## -*- texinfo -*-
+## @deftypefn {Function} {@var{out} =} dispstrs (@var{x})
+##
+## Display strings for array.
+##
+## Gets the display strings for each element of @var{x}. The display strings
+## should be short, one-line, human-presentable strings describing the
+## value of that element.
+##
+## The default implementation of @code{dispstrs} can accept input of any
+## type, and has decent implementations for Octave’s standard built-in types,
+## but will have opaque displays for most user-defined objects.
+##
+## This is a polymorphic method that user-defined classes may override
+## with their own custom display that is more informative.
+##
+## Returns a cell array the same size as @var{x}.
+##
+## @end deftypefn
 function out = dispstrs (x)
   %DISPSTRS Display strings for arbitrary array
   if isnumeric (x) || islogical (x)

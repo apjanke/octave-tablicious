@@ -13,23 +13,26 @@
 ## You should have received a copy of the GNU General Public License
 ## along with this program; If not, see <http://www.gnu.org/licenses/>.
 
+## -*- texinfo -*-
+## @deftypefn {Function} {@var{out} =} colvecfun (@var{str}, @var{pattern})
+## @deftypefnx {Function} {@var{out} =} colvecfun (@dots{}, @code{'IgnoreCase'}, @var{IgnoreCase})
+##
+## Test if strings contain a pattern.
+##
+## Tests whether the given strings contain the given pattern(s).
+##
+## @var{str} (char, cellstr, or string) is a list of strings to compare against 
+## pattern.
+##
+## @var{pattern} (char, cellstr, or string) is a list of patterns to match. These are
+## literal plain string patterns, not regex patterns. If more than one pattern
+## is supplied, the return value is true if the string matched any of them.
+##
+## Returns a logical array of the same size as the string array represented by
+## @var{str}.
+##
+## @end deftypefn
 function out = contains (str, pattern, varargin)
-  %CONTAINS Test if strings contain a pattern
-  %
-  % out = contains (str, pattern)
-  % out = contains (str, pattern, 'IgnoreCase', true)
-  %
-  % Tests whether the given strings contain the given pattern(s).
-  %
-  % str (char, cellstr, string) is a list of strings to compare against 
-  % pattern.
-  %
-  % pattern (char, cellstr, string) is a list of patterns to match. These are
-  % literal plain string patterns, not regex patterns. If more than one pattern
-  % is supplied, the return value is true if the string matched any of them.
-  %
-  % Returns a logical array of the same size as the string array represented by
-  % str.
   
   [opts, args] = peelOffNameValueOptions (varargin, {'IgnoreCase'});
   ignore_case = false;
