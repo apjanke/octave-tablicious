@@ -19,7 +19,6 @@ Tablicious Developer Notes
 * timetable
 * More documentation for individual methods
 * Texinfo documentation
-* QHelp documentation
 * Once implementation is finished, clean up interface by making methods private/protected
 * File I/O
   * readtable, writetable
