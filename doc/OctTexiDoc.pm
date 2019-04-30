@@ -61,7 +61,6 @@ sub add_thing {
     die "Node name cannot be empty or blank" 
         if ($node_name eq "" or $node_name eq " ");
     my $file = $$block{file};
-    print "Adding thing node '$node_name' from file $file\n";
     if ($self->docs->{$node_name}) {
         my $other_file = $self->docs->{$node_name}{file};
         printf STDERR "Warning: Node $node_name from file $file is shadowed by previous file $other_file\n";
@@ -81,7 +80,6 @@ sub add_sub_thing {
     die "Sub-thing node name cannot be empty or blank" 
         if ($node_name eq "" or $node_name eq " ");
     my $file = $$block{file};
-    print "Adding sub-thing node '$node_name' from file $file\n";
     if ($self->nodes->{$node_name}) {
         my $other_file = $self->nodes->{$node_name}{file};
         printf STDERR "Warning: Node $node_name from file $file is shadowed by previous file $other_file\n";
