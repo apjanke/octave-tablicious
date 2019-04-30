@@ -943,6 +943,22 @@ classdef table
       this.RowNames = names;
     endfunction
 
+    ## -*- texinfo -*-
+    ## @node table.resolveVarRef
+    ## @deftypefn {Method} {[@var{ixVar}, @var{varNames}] =} resolveVarREf (@var{obj}, @var{varRef})
+    ##
+    ## Resolve a variable reference against this table.
+    ##
+    ## A @var{varRef} is a numeric or char/cellstr indicator of which variables within
+    ## @var{obj} are being referenced.
+    ##
+    ## Returns:
+    ##   @var{ixVar} - the indexes of the variables in @var{obj}
+    ##   @var{varNames} - a cellstr of the names of the variables in @var{obj}
+    ##
+    ## Raises an error if any of the specified variables could not be resolved.
+    ##
+    ## @end deftypefn
     function [ixVar, varNames] = resolveVarRef (this, varRef)
       %RESOLVEVARREF Resolve a reference to variables
       %
@@ -987,13 +1003,18 @@ classdef table
       ixVar = resolveVarRef (this, varRef);
     end
     
+    ## -*- texinfo -*-
+    ## @node table.subsetRows
+    ## @deftypefn {Method} {@var{out} =} subsetRows (@var{obj}, @var{ixRows})
+    ##
+    ## Subset table by rows.
+    ##
+    ## Subsets this table by rows.
+    ##
+    ## @var{ixRows} may be a numeric or logical index into the rows of @var{obj}.
+    ##
+    ## @end deftypefn
     function out = subsetRows (this, ixRows)
-      %SUBSETROWS Subset table by rows
-      %
-      % out = subsetRows (this, ixRows)
-      %
-      % Subsets this by rows. ixRows may be a numeric or logical index into the
-      % rows of this.
       out = this;
       if ~isnumeric (ixRows) && ~islogical (ixRows)
         % TODO: Hmm. Maybe we ought not to do this check, but just defer to the
@@ -1011,21 +1032,24 @@ classdef table
       end
     end
     
-    function out = subsetvars (this, ixVars)
-      %SUBSETVARS Subset table along its variables
-      %
-      % out = subsetvars (this, ixVars)
-      %
-      % Subsets this by subsetting it along its variables.
-      %
-      % ixVars may be:
-      %   - a numeric index vector
-      %   - a logical index vector
-      %   - ":"
-      %   - a cellstr vector of variable names
-      %
-      % The resulting table will have its variables reordered to match ixVars.
-      
+    ## -*- texinfo -*-
+    ## @node table.subsetvars
+    ## @deftypefn {Method} {@var{out} =} subsetvars (@var{obj}, @var{ixVars})
+    ##
+    ## Subset table by variables.
+    ##
+    ## Subsets table @var{obj} by subsetting it along its variables.
+    ##
+    ## ixVars may be:
+    ##   - a numeric index vector
+    ##   - a logical index vector
+    ##   - ":"
+    ##   - a cellstr vector of variable names
+    ##
+    ## The resulting table will have its variables reordered to match ixVars.
+    ##
+    ## @end deftypefn
+    function out = subsetvars (this, ixVars)      
       if ischar (ixVars)
         if ~isequal (ixVars, ':')
           ixVars = cellstr (ixVars);
@@ -1044,39 +1068,44 @@ classdef table
       out.VariableValues = this.VariableValues(ixVars);
     end
     
+    ## -*- texinfo -*-
+    ## @node table.removevars
+    ## @deftypefn {Method} {@var{out} =} removevars (@var{obj}, @var{vars})
+    ##
+    ## Remove variables from table.
+    ##
+    ## Deletes the variables specified by @var{vars} from @var{obj}.
+    ##
+    ## @var{vars} may be a char, cellstr, numeric index vector, or logical
+    ## index vector.
+    ##
+    ## @end deftypefn
     function out = removevars (this, vars)
-      %REMOVEVARS Remove variables
-      %
-      % out = removevars (this, vars)
-      %
-      % Deletes the variables specified by vars.
-      %
-      % vars may be a char, cellstr, numeric index vector, or logical index vector.
-      %
-      % Returns table.
       ixVar = resolveVarRef (this, vars);
       out = this;
       out.VariableNames(ixVar) = [];
       out.VariableValues(ixVar) = [];
     endfunction
     
+    ## -*- texinfo -*-
+    ## @node table.movevars
+    ## @deftypefn {Method} {@var{out} =} movevars (@var{obj}, @var{vars}, @var{relLocation}, @var{location})
+    ##
+    ## Move around variables in a table.
+    ##
+    ## @var{vars} is a list of variables to move, specified by name or index.
+    ##
+    ## @var{relLocation} is @code{'Before'} or @code{'After'}.
+    ##
+    ## @var{location} indicates a single variable to use as the target location, 
+    ## specified by name or index. If it is specified by index, it is the index
+    ## into the list of *unmoved* variables from @var{obj}, not the original full
+    ## list of variables in @var{obj}.
+    ##
+    ## Returns a table with the same variables as @var{obj}, but in a different order.
+    ##
+    ## @end deftypefn
     function out = movevars (this, vars, relLocation, location)
-      %MOVEVARS Move variables
-      %
-      % out = movevars (this, vars, relLocation, location)
-      %
-      % Moves around variables in a table.
-      %
-      % vars is a list of variables to move, specified by name or index.
-      %
-      % relLocation is 'Before' or 'After'.
-      %
-      % location indicates a single variable to use as the target location, 
-      % specified by name or index. If it is specified by index, it is the index
-      % into the list of *unmoved* variables from this, not the original full
-      % list of variables in this.
-      %
-      % Returns table with the same variables as this, but in a different order.
       if ~ischar (relLocation)
         error ('table.movevars: relLocation must be char; got %s', class (relLocation));
       endif
@@ -1103,11 +1132,17 @@ classdef table
       out = [left moved right];
     endfunction
     
+    ## -*- texinfo -*-
+    ## @node table.setvar
+    ## @deftypefn {Method} {@var{out} =} setvar (@var{obj}, @var{varRef}, @var{value})
+    ##
+    ## Set value for a variable in table.
+    ##
+    ## This sets (replaces) the value for a variable that already exists in @var{obj}.
+    ## It cannot be used to add a new variable.
+    ##
+    ## @end deftypefn
     function out = setvar (this, varRef, value)
-      %SETVAR Set value for a variable
-      %
-      % This sets (replaces) the value for a variable that already exists in this.
-      % It cannot be used to add a new variable.
       ixVar = resolveVarRef (this, varRef);
       out = this;
       if size (value, 1) ~= height (this)
@@ -1117,24 +1152,28 @@ classdef table
       out.VariableValues{ixVar} = value;
     end
     
+    ## -*- texinfo -*-
+    ## @node table.convertvars
+    ## @deftypefn {Method} {@var{out} =} convertvars (@var{obj}, @var{vars}, @var{dataType})
+    ##
+    ## Convert variables to specified data type.
+    ##
+    ## Converts the variables in @var{obj} specified by @var{vars} to the specified data type.
+    ##
+    ## @var{vars} is a cellstr or numeric vector specifying which variables to convert.
+    ##
+    ## @var{dataType} specifies the data type to convert those variables to. It is either
+    ## a char holding the name of the data type, or a function handle which will
+    ## perform the conversion. If it is the name of the data type, there must
+    ## either be a one-arg constructor of that type which accepts the specified
+    ## variables' current types as input, or a conversion method of that name
+    ## defined on the specified variables' current type.
+    ##
+    ## Returns a table with the same variable names as @var{obj}, but with converted
+    ## types.
+    ##
+    ## @end deftypefn
     function out = convertvars (this, vars, dataType)
-      %CONVERTVARS Convert variables to specified data type
-      %
-      % out = convertvars (this, vars, dataType)
-      %
-      % Converts the variables specified by vars to the specified data type.
-      %
-      % vars is a cellstr or numeric vector specifying which variables to convert.
-      %
-      % dataType specifies the data type to convert those variables to. It is either
-      % a char holding the name of the data type, or a function handle which will
-      % perform the conversion. If it is the name of the data type, there must
-      % either be a one-arg constructor of that type which accepts the specified
-      % variables' current types as input, or a conversion method of that name
-      % defined on the specified variables' current type.
-      %
-      % Returns a table with the same variable names as this, but with converted
-      % types.
       if ~ischar (dataType) && isa (dataType, 'function_handle')
         error ('table.convertvars: dataType must be char or function_handle; got a %s', ...
           class (dataType));
@@ -1147,14 +1186,21 @@ classdef table
       endfor
     endfunction
     
+    ## -*- texinfo -*-
+    ## @node table.head
+    ## @deftypefn {Method} {@var{out} =} head (@var{obj})
+    ## @deftypefnx {Method} {@var{out} =} head (@var{obj}, @var{k})
+    ##
+    ## Get first K rows of table.
+    ##
+    ## Returns the first @var{k} rows of @var{obj}, as a table.
+    ##
+    ## @var{k} defaults to 8.
+    ##
+    ## If there are less than @var{k} rows in @var{obj}, returns all rows.
+    ##
+    ## @end deftypefn
     function out = head (this, k)
-      %HEAD Get first K rows of table
-      %
-      % out = head (this, k)
-      %
-      % Returns the first k rows of this. K defaults to 8.
-      %
-      % If there are less than k rows in this, returns all rows.
       if nargin < 2 || isempty (k)
         k = 8;
       endif
@@ -1166,6 +1212,20 @@ classdef table
       out = subsetRows (this, 1:k);
     endfunction
     
+    ## -*- texinfo -*-
+    ## @node table.tail
+    ## @deftypefn {Method} {@var{out} =} tail (@var{obj})
+    ## @deftypefnx {Method} {@var{out} =} tail (@var{obj}, @var{k})
+    ##
+    ## Get last K rows of table.
+    ##
+    ## Returns the last @var{k} rows of @var{obj}, as a table.
+    ##
+    ## @var{k} defaults to 8.
+    ##
+    ## If there are less than @var{k} rows in @var{obj}, returns all rows.
+    ##
+    ## @end deftypefn
     function out = tail (this, k)
       %TAIL Get last K rows of table
       %
@@ -1333,20 +1393,26 @@ classdef table
       out = subsetRows (this, ia);
     endfunction
     
+    ## -*- texinfo -*-
+    ## @node table.join
+    ## @deftypefn {Method} {[@var{C}, @var{ib}] =} join (@var{A}, @var{B})
+    ## @deftypefnx {Method} {[@var{C}, @var{ib}] =} join (@var{A}, @var{B}, @dots{})
+    ##
+    ## Combine two tables by rows using key variables, in a restricted form.
+    ##
+    ## This is not a "real" relational join operation. It has the restrictions
+    ## that:
+    ##  1) The key values in B must be unique. 
+    ##  2) Every key value in A must map to a key value in B.
+    ## These are restrictions inherited from the Matlab definition of table.join.
+    ##
+    ## You probably don’t want to use this method. You probably want to use
+    ## innerjoin or outerjoin instead.
+    ##
+    ## See also: @ref{table.innerjoin}, @ref{table.outerjoin}
+    ##
+    ## @end deftypefn
     function [C, ib] = join (A, B, varargin)
-      %JOIN Combine two tables by rows using key variables
-      %
-      % This is not a "real" relational join operation. It has the restrictions
-      % that:
-      %  1) The key values in B must be unique. 
-      %  2) Every key value in A must map to a key value in B.
-      % These are restrictions inherited from the Matlab definition of table.join.
-      %
-      % You probably don't want to use this method. You probably want to use
-      % innerjoin or outerjoin instead.
-      %
-      % See also: INNERJOIN, OUTERJOIN, REALJOIN
-      
       % TODO: Implement options
       
       % Input munging
@@ -1513,22 +1579,26 @@ classdef table
       out.varNamesB = varNamesB;
     endfunction
 
-    function [out, ixa, ixb] = innerjoin(A, B, varargin)
-      %INNERJOIN Relational inner join between two tables
-      %
-      % [out, ixa, ixb] = innerjoin(A, B, varargin)
-      %
-      % Computes the relational inner join between two tables. "Inner" means that
-      % only rows which had matching rows in the other input are kept in the
-      % output.
-      %
-      % TODO: Document options.
-      %
-      % Returns:
-      %   out - A table that is the result of joining A and B
-      %   ix - Indexes into A for each row in out
-      %   ixb - Indexes into B for each row in out
-      
+    ## -*- texinfo -*-
+    ## @node table.innerjoin
+    ## @deftypefn {Method} {[@var{out}, @var{ixa}, @var{ixb}] =} innerjoin (@var{A}, @var{B})
+    ## @deftypefnx {Method} {[@dots{}] =} innerjoin (@var{A}, @var{B}, @dots{})
+    ##
+    ## Combine two tables by rows using key variables.
+    ##
+    ## Computes the relational inner join between two tables. “Inner” means that
+    ## only rows which had matching rows in the other input are kept in the
+    ## output.
+    ##
+    ## TODO: Document options.
+    ##
+    ## Returns:
+    ##   @var{out} - A table that is the result of joining A and B
+    ##   @var{ix} - Indexes into A for each row in out
+    ##   @var{ixb} - Indexes into B for each row in out
+    ##
+    ## @end deftypefn
+    function [out, ixa, ixb] = innerjoin(A, B, varargin)      
       % Input munging
       optNames = {'Keys', 'LeftKeys', 'RightKeys', ...
         'LeftVariables', 'RightVariables'};
@@ -1604,23 +1674,28 @@ classdef table
 
     endfunction
   
+    ## -*- texinfo -*-
+    ## @node table.outerjoin
+    ## @deftypefn {Method} {[@var{out}, @var{ixa}, @var{ixb}] =} outerjoin (@var{A}, @var{B})
+    ## @deftypefnx {Method} {[@dots{}] =} outerjoin (@var{A}, @var{B}, @dots{})
+    ##
+    ## Combine two tables by rows using key variables, retaining unmatched rows.
+    ##
+    ## Computes the relational outer join of tables A and B. This is like a
+    ## regular join, but also includes rows in each input which did not have
+    ## matching rows in the other input; the columns from the missing side are
+    ## filled in with placeholder values.
+    ##
+    ## TODO: Document options.
+    ##
+    ## Returns:
+    ##   @var{out} - A table that is the result of the outer join of A and B
+    ##   @var{ixa} - indexes into A for each row in out
+    ##   @var{ixb} - indexes into B for each row in out
+    ##
+    ## @end deftypefn
     function [out, ixa, ixb] = outerjoin (A, B, varargin)
-      %OUTERJOIN Relational outer join
-      %
-      % [out, ixa, ixb] = outerjoin (A, B, varargin)
-      %
-      % Computes the relational outer join of tables A and B. This is like a
-      % regular join, but also includes rows in each input which did not have
-      % matching rows in the other input; the columns from the missing side are
-      % filled in with placeholder values.
-      %
-      % TODO: Document options.
-      %
-      % Returns:
-      % out - A table that is the result of the outer join of A and B
-      % ixa - indexes into A for each row in out
-      % ixb - indexes into B for each row in out
-      
+
       % Input handling
       if !istable (A)
         A = table (A);
@@ -1702,14 +1777,18 @@ classdef table
 
     endfunction
 
+    ## -*- texinfo -*-
+    ## @node table.outerfillvals
+    ## @deftypefn {Method} {@var{out} =} outerfillvals (@var{obj})
+    ##
+    ## Get fill values for outer join.
+    ##
+    ## Returns a table with the same variables as this, but containing only
+    ## a single row whose variable values are the values to use as fill values
+    ## when doing an outer join.
+    ##
+    ## @end deftypefn
     function out = outerfillvals (this)
-      %OUTERFILLVALS Fill values for outer join
-      %
-      % out = outerfillvals (this)
-      %
-      % Returns a table with the same variables as this, but containing only
-      % a single row whose variable values are the values to use as fill values
-      % when doing an outer join.
       fillVals = cell (1, width (this));
       for iCol = 1:width (this)
         x = this.VariableValues{iCol};
@@ -1718,24 +1797,27 @@ classdef table
       out = table (fillVals{:}, 'VariableNames', this.VariableNames);
     endfunction
     
+    ## -*- texinfo -*-
+    ## @node table.semijoin
+    ## @deftypefn {Method} {[@var{outA}, @var{ixA}, @var{outB}, @var{ixB}] =} semijoin @
+    ##   (@var{A}, @var{B})
+    ##
+    ## Natural semijoin.
+    ##
+    ## Computes the natural semijoin of tables A and B. The semi-join of tables
+    ## A and B is the set of all rows in A which have matching rows in B, based
+    ## on comparing the values of variables with the same names.
+    ##
+    ## This method also computes the semijoin of B and A, for convenience.
+    ##
+    ## Returns:
+    ##   @var{outA} - all the rows in A with matching row(s) in B
+    ##   @var{ixA} - the row indexes into A which produced @var{outA}
+    ##   @var{outB} - all the rows in B with matching row(s) in A
+    ##   @var{ixB} - the row indexes into B which produced @var{outB}
+    ##
+    ## @end deftypefn
     function [outA, ixA, outB, ixB] = semijoin (A, B)
-      %SEMIJOIN Natural semijoin
-      %
-      % [outA, ixA, outB, ixB] = semijoin (A, B)
-      %
-      % Computes the natural semijoin of tables A and B. The semi-join of tables
-      % A and B is the set of all rows in A which have matching rows in B, based
-      % on comparing the values of variables with the same names.
-      %
-      % This method also computes the semijoin of B and A, for convenience.
-      %
-      % This is an Octave extension.
-      %
-      % Returns:
-      %   outA - all the rows in A with matching row(s) in B
-      %   ixA - the row indexes into A which produced outA
-      %   outB - all the rows in B with matching row(s) in A
-      %   ixB - the row indexes into B which produced outB
       
       % Developer note: This is almost exactly the same as antijoin, just with
       % inverted ismember() tests. See if the implementations can be refactored
@@ -1768,22 +1850,24 @@ classdef table
       endif
     endfunction
     
+    ## -*- texinfo -*-
+    ## @node table.antijoin
+    ## @deftypefn {Method} {[@var{outA}, @var{ixA}, @var{outB}, @var{ixB}] =} antijoin @
+    ##   (@var{A}, @var{B})
+    ##
+    ## Natural antijoin (AKA “semidifference”).
+    ##
+    ## Computes the anti-join of A and B. The anti-join is defined as all the
+    ## rows from one input which do not have matching rows in the other input.
+    ##
+    ## Returns:
+    ##   @var{outA} - all the rows in A with no matching row in B
+    ##   @var{ixA} - the row indexes into A which produced @var{outA}
+    ##   @var{outB} - all the rows in B with no matching row in A
+    ##   @var{ixB} - the row indexes into B which produced @var{outB}
+    ##
+    ## @end deftypefn
     function [outA, ixA, outB, ixB] = antijoin (A, B)
-      %ANTIJOIN Natural antijoin (AKI semi-difference)
-      %
-      % [outA, ixA, outB, ixB] = antijoin (A, B)
-      %
-      % Computes the anti-join of A and B. The anti-join is defined as all the
-      % rows from one input which do not have matching rows in the other input.
-      %
-      % This is an Octave extension.
-      %
-      % Returns:
-      %   outA - all the rows in A with no matching row in B
-      %   ixA - the row indexes into A which produced outA
-      %   outB - all the rows in B with no matching row in A
-      %   ixB - the row indexes into B which produced outB
-      
       
       % Input handling
       if !istable (A)
@@ -1812,31 +1896,33 @@ classdef table
       endif
     endfunction
     
+    ## -*- texinfo -*-
+    ## @node table.cartesian
+    ## @deftypefn {Method} {[@var{out}, @var{ixs}] =} cartesian (@var{A}, @var{B})
+    ##
+    ## Cartesian product of two tables.
+    ##
+    ## Computes the Cartesian product of two tables. The Cartesian product is
+    ## each row in A combined with each row in B.
+    ##
+    ## Due to the definition and structural constraints of table, the two inputs
+    ## must have no variable names in common. It is an error if they do.
+    ##
+    ## The Cartesian product is seldom used in practice. If you find yourself
+    ## calling this method, you should step back and re-evaluate what you are
+    ## doing, asking yourself if that is really what you want to happen. If nothing
+    ## else, writing a function that calls cartesian() is usually much less
+    ## efficient than alternate ways of arriving at the same result.
+    ##
+    ## This implementation does not remove duplicate values.
+    ## TODO: Determine whether this duplicate-removing behavior is correct.
+    ##
+    ## The ordering of the rows in the output is not specified, and may be implementation-
+    ## dependent. TODO: Determine if we can lock this behavior down to a fixed,
+    ## defined ordering, without killing performance.
+    ## 
+    ## @end deftypefn
     function [out, ixs] = cartesian (A, B)
-      %CARTESIAN Cartesian product of two tables
-      %
-      % [out, ixs] = cartesian (A, B)
-      %
-      % Computes the Cartesian product of two tables. The Cartesian product is
-      % each row in A combined with each row in B.
-      %
-      % Due to the definition and structural constraints of table, the two inputs
-      % must have no variable names in common. It is an error if they do.
-      %
-      % The Cartesian product is seldom used in practice. If you find yourself
-      % calling this method, you should step back and re-evaluate what you are
-      % doing, asking yourself if that is really what you want to happen. If nothing
-      % else, writing a function that calls cartesian() is usually much less
-      % efficient than alternate ways of arriving at the same result.
-      %
-      % This implementation does not remove duplicate values.
-      % TODO: Determine whether this duplicate-removing behavior is correct.
-      %
-      % The ordering of the rows in the result is undefined, and may be implementation-
-      % dependent. TODO: Determine if we can lock this behavior down to a fixed,
-      % defined ordering, without killing performance.
-      %
-      % This is an Octave extension.
       
       % Developer's note: The second argout, ixs, is for table's internal use,
       % and is thus undocumented.
@@ -1862,23 +1948,27 @@ classdef table
       out = [outA outB];
     endfunction
     
+    ## -*- texinfo -*-
+    ## @node table.groupby
+    ## @deftypefn {Method} {[@var{out}] =} groupby (@var{obj}, @var{groupvars}, @var{aggcalcs})
+    ##
+    ## Find groups in table data and apply functions to variables within groups.
+    ##
+    ## This works like an SQL @code{"SELECT ... GROUP BY ..."} statement.
+    ##
+    ## @var{groupvars} (cellstr, numeric) is a list of the grouping variables, 
+    ## identified by name or index.
+    ##
+    ## @var{aggcalcs} is a specification of the aggregate calculations to perform
+    ## on them, in the form @code{@{}@var{out_var}@code{,} @var{fcn}@code{,} @var{in_vars}@code{; ...@}}, where:
+    ##   @var{out_var} (char) is the name of the output variable
+    ##   @var{fcn} (function handle) is the function to apply to produce it
+    ##   @var{in_vars} (cellstr) is a list of the input variables to pass to fcn
+    ##
+    ## Returns a table.      
+    ##
+    ## @end deftypefn    
     function out = groupby (this, groupvars, aggcalcs)
-      %GROUPBY Find groups and apply functions to variables within groups
-      %
-      % out = groupby (this, groupvars, aggcalcs)
-      %
-      % This works like an SQL "SELECT ... GROUP BY ..." statement.
-      %
-      % groupvars (cellstr, numeric) is a list of the grouping variables, 
-      % identified by name or index.
-      %
-      % aggcalcs is a specification of the aggregate calculations to perform
-      % on them, in the form {out_var, fcn, in_vars; ...}, where:
-      %   out_var (char) is the name of the output variable
-      %   fcn (function handle) is the function to apply to produce it
-      %   in_vars (cellstr) is a list of the input variables to pass to fcn
-      %
-      % Returns a table.      
       narginchk (2, 3);
       if nargin < 3 || isempty (aggcalcs);  aggcalcs = cell(0, 3); end
       mustBeA (aggcalcs, 'cell');
@@ -1917,10 +2007,17 @@ classdef table
       out = [groups_tbl agg_out_tbl];
     endfunction
     
+    ## -*- texinfo -*-
+    ## @node table.grpstats
+    ## @deftypefn {Method} {[@var{out}] =} grpstats (@var{obj}, @var{groupvar})
+    ## @deftypefnx {Method} {[@var{out}] =} grpstats (@dots{}, @code{'DataVars'}, @var{DataVars})
+    ##
+    ## Statistics by group.
+    ##
+    ## See also: @ref{table.groupby}.
+    ##
+    ## @end deftypefn
     function out = grpstats (this, groupvar, varargin)
-      %GRPSTATS Statistics by group
-      %
-      % See also: GROUPBY
       [opts, args] = peelOffNameValueOptions (varargin, {'DataVars'});
       if numel (args) > 1
         error ('table.grpstats: too many inputs');
