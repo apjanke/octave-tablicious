@@ -16,7 +16,7 @@ Missing Data
  fillmissing
  ismissing
  rmmissing
- standardizemissing
+ standardizeMissing
  missing
  isnannish
 Miscellaneous
