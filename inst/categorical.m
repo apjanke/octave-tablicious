@@ -23,14 +23,63 @@
 # it silently produce another NaN, so you'll still have to mask a lot of your
 # operations (in this implementation) with (ismissing(this)).
 
+## -*- texinfo -*-
+## @deftp {Class} categorical
+##
+## Categorical variable array.
+##
+## A @code{categorical} array represents an array of values of a categorical
+## variable. Each @code{categorical} array stores the element values along
+## with a list of the categories, and indicators of whether the categories
+## are ordinal (that is, they have a meaningful mathematical ordering), and
+## whether the set of categories is protected (preventing new categories
+## from being added to the array).
+##
+## In addition to the categories defined in the array, a categorical array
+## may have elements of "undefined" value. This is not considered a
+## category; rather, it is the absence of any known value. It is
+## analagous to a @code{NaN} value.
+##
+## This class is not fully implemented yet. Missing stuff:
+##   - gt, ge, lt, le
+##   - Ordinal support in general
+##   - countcats
+##   - summary
+##
+## @end deftp
+##
+## @deftypeivar categorical @code{uint16} code
+##
+## The numeric codes of the array element values. These are indexes into the
+## @code{cats} category list.
+##
+## This is a planar property.
+##
+## @end deftypeivar
+##
+## @deftypeivar categorical @code{logical} tfMissing
+##
+## A logical mask indicating whether each element of the array is missing
+## (that is, undefined).
+##
+## This is a planar property.
+##
+## @end deftypeivar
+##
+## @deftypeivar categorical @code{cellstr} cats
+##
+## The names of the categories in this array. This is the list into which
+## the @code{code} values are indexes.
+##
+## @end deftypeivar
+##
+## @deftypeivar categorical @code{scalar_logical} isOrdinal
+##
+## A scalar logical indicating whether the categories in this array have an
+## ordinal relationship.
+##
+## @end deftypeivar
 classdef categorical
-  %CATEGORICAL Categorical variable array
-  %
-  % This class is not fully implemented yet. Missing stuff:
-  %   gt, ge, lt, le
-  %   Ordinal support in general
-  %   countcats
-  %   summary
   
   properties (SetAccess = private)
     % Code for each element. Codes are an index into cats.

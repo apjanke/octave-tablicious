@@ -13,8 +13,28 @@
 ## You should have received a copy of the GNU General Public License
 ## along with this program; If not, see <http://www.gnu.org/licenses/>.
 
+## -*- texinfo -*-
+## @deftypefn {Function} {@var{out} =} array2table (@var{c})
+## @deftypefnx {Function} {@var{out} =} array2table (@dots{}, @code{'VariableNames'}, @var{VariableNames})
+## @deftypefnx {Function} {@var{out} =} array2table (@dots{}, @code{'RowNames'}, @var{RowNames})
+##
+## Convert an array to a table.
+##
+## Converts an array to a table, with columns in the array becoming variables in
+## the output table. This is typically used on numeric arrays, but it can
+## be applied to any type of array.
+##
+## You may not want to use this on cell arrays, though, because you will
+## end up with a table that has all its variables of type cell. If you use
+## @code{cell2table} instead, columns of the cell array which can be 
+## condensed into primitive arrays will be. With @code{array2table}, they
+## won't be.
+##
+## See also: @ref{cell2table}, @ref{table}, @ref{struct2table}
+##
+## @end deftypefn
 function out = array2table(c, varargin)
-  %CELL2TABLE Convert a cell array to a table
+  %ARRAY2TABLE Convert an array to a table
 
   if ndims (c) > 2
     error ('array2table: Input must be 2-D; got %d-D', ndims (c));

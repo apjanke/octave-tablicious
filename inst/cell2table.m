@@ -13,6 +13,22 @@
 ## You should have received a copy of the GNU General Public License
 ## along with this program; If not, see <http://www.gnu.org/licenses/>.
 
+## -*- texinfo -*-
+## @deftypefn {Function} {@var{out} =} cell2table (@var{c})
+## @deftypefnx {Function} {@var{out} =} cell2table (@dots{}, @code{'VariableNames'}, @var{VariableNames})
+## @deftypefnx {Function} {@var{out} =} cell2table (@dots{}, @code{'RowNames'}, @var{RowNames})
+##
+## Convert a cell array to a table.
+##
+## Converts a 2-dimensional cell matrix into a table. Each column in the
+## input @var{c} becomes a variable in @var{out}. For columns that contain
+## all scalar values of @code{cat}-compatible types, they are “popped out”
+## of their cells and condensed into a homogeneous array of the contained
+## type.
+##
+## See also: @ref{array2table}, @ref{table}, @ref{struct2table}
+##
+## @end deftypefn
 function out = cell2table(c, varargin)
   %CELL2TABLE Convert a cell array to a table
 
