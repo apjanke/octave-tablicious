@@ -2242,22 +2242,26 @@ classdef table
     
     % Missing values
     
+    ## -*- texinfo -*-
+    ## @node table.ismissing
+    ## @deftypefn {Method} {@var{out} =} ismissing (@var{obj})
+    ## @deftypefnx {Method} {@var{out} =} ismissing (@var{obj}, @var{indicator})
+    ##
+    ## Find missing values.
+    ##
+    ## Finds missing values in @var{obj}’s variables.
+    ##
+    ## If indicator is not supplied, uses the standard missing values for each
+    ## variable’s data type. If indicator is supplied, the same indicator list is
+    ## applied across all variables.
+    ##
+    ## All variables in this must be vectors. (This is due to the requirement
+    ## that @code{size(out) == size(obj)}.)
+    ##
+    ## Returns a logical array the same size as @var{obj}.
+    ##
+    ## @end deftypefn
     function out = ismissing (this, indicator)
-      %ISMISSING Find missing values
-      %
-      % out = ismissing (this)
-      % out = ismissing (this, indicator)
-      %
-      % Finds missing values in this' variables.
-      %
-      % If indicator is not supplied, uses the standard missing values for each
-      % variable's data type. If indicator is supplied, the same indicator is
-      % applied across all variables.
-      %
-      % All variables in this must be vectors. (This is due to the requirement
-      % that size(out) == size(this).)
-      %
-      % Returns a logical array the same size as this.
       mustBeA (this, 'table');
       hasIndicator = false;
       if nargin > 1
@@ -2274,22 +2278,26 @@ classdef table
       endfor
     endfunction
     
+    ## -*- texinfo -*-
+    ## @node table.rmmissing
+    ## @deftypefn {Method} {[@var{out}, @var{tf}] =} rmmissing (@var{obj})
+    ## @deftypefnx {Method} {[@var{out}, @var{tf}] =} rmmissing (@var{obj}, @var{indicator})
+    ## @deftypefnx {Method} {[@var{out}, @var{tf}] =} rmmissing (@dots{}, @code{'DataVariables'}, @var{vars})
+    ## @deftypefnx {Method} {[@var{out}, @var{tf}] =} rmmissing (@dots{}, @code{'MinNumMissing'}, @var{minNumMissing})
+    ##
+    ## Remove rows with missing values.
+    ##
+    ## Removes the rows from @var{obj} that have missing values.
+    ##
+    ## If the 'DataVariables' option is given, only the data in the specified
+    ## variables is considered.
+    ##
+    ## Returns:
+    ##   @var{out} - A table the same as @var{obj}, but with rows with missing values removed.
+    ##   @var{tf} - A logical index vector indicating which rows were removed.
+    ##
+    ## @end deftypefn
     function [out, tf] = rmmissing (this, varargin)
-      %RMMISSING Remove rows with missing values
-      %
-      % [out, tf] = rmmissing (this)
-      % [out, tf] = rmmissing (this, indicator)
-      % [out, tf] = rmmissing (..., 'DataVariables',vars)
-      % [out, tf] = rmmissing (..., 'MinNumMissing',minNumMissing)
-      %
-      % Removes rows with missing values.
-      %
-      % If the 'DataVariables' option is given, only the data in the specified
-      % variables is considered.
-      %
-      % Returns:
-      % out - A table the same as this, but with rows with missing values removed.
-      % tf - A logical index vector indicating which rows were removed.
       [opts, args] = peelOffNameValueOptions (varargin, {'DataVariables','MinNumMissing'});
       hasIndicator = false;
       if numel (args) > 1
@@ -2326,25 +2334,29 @@ classdef table
       tf = tfRowHasMissing;
     endfunction
 
+    ## -*- texinfo -*-
+    ## @node table.standardizeMissing
+    ## @deftypefn {Method} {@var{out} =} standardizeMissing (@var{obj}, @var{indicator})
+    ## @deftypefnx {Method} {@var{out} =} standardizeMissing (@dots{}, @code{'DataVariables'}, @var{vars})
+    ##
+    ## Insert standard missing values.
+    ##
+    ## Standardizes missing values in variable data.
+    ##
+    ## If the @var{DataVariables} option is supplied, only the indicated variables are 
+    ## standardized.
+    ##
+    ## @var{indicator} is passed along to @code{standardizeMissing} when it is called on each
+    ## of the data variables in turn. The same indicator is used for all
+    ## variables. You can mix and match indicator types by just passing in 
+    ## mixed indicator types in a cell array; indicators that don't match the
+    ## type of the column they are operating on are just ignored.
+    ##
+    ## Returns a table with same variable names and types as @var{obj}, but with variable
+    ## values standardized.
+    ##
+    ## @end deftypefn
     function out = standardizeMissing (this, indicator, varargin)
-      %STANDARDIZEMISSING Insert standard missing values
-      %
-      % out = standardizeMissing (this, indicator)
-      % out = standardizeMissing (this, indicator, 'DataVariables', varNamesOrIndexes)
-      %
-      % Standardizes missing values in variable data.
-      %
-      % If DataVariables option is supplied, only the indicated variables are 
-      % standardized.
-      %
-      % Indicator is passed along to standardizeMissing when it is called on each
-      % of the data variables in turn. The same indicator is used for all
-      % variables. You can mix and match indicator types by just passing in 
-      % mixed indicator types in a cell array; indicators that don't match the
-      % type of the column they are operating on are just ignored.
-      %
-      % Returns table with same variable names and types as this, but with variable
-      % values standardized.
       narginchk (2, 4);
       mustBeA (this, 'table');
       [opts, args] = peelOffNameValueOptions (varargin, {'DataVariables'});
@@ -2375,13 +2387,20 @@ classdef table
 
     % Function application
     
+    ## -*- texinfo -*-
+    ## @node table.varfun
+    ## @deftypefn {Method} {@var{out} =} varfun (@var{fcn}, @var{obj})
+    ## @deftypefnx {Method} {@var{out} =} varfun (@dots{}, @code{'OutputFormat'}, @var{outputFormat})
+    ## @deftypefnx {Method} {@var{out} =} varfun (@dots{}, @code{'InputVariables'}, @var{vars})
+    ## @deftypefnx {Method} {@var{out} =} varfun (@dots{}, @code{'ErrorHandler'}, @var{errorFcn})
+    ##
+    ## Apply function to table variables.
+    ##
+    ## Applies the given function @var{fcn} to each variable in @var{obj},
+    ## collecting the output in a table, cell array, or array of another type.
+    ##
+    ## @end deftypefn
     function out = varfun (func, A, varargin)
-      %VARFUN Apply function to table variables
-      %
-      % out = varfun (func, A)
-      % out = varfun (..., 'OutputFormat', outputFormat)
-      % out = varfun (..., 'InputVariables', vars)
-      % out = varfun (..., 'ErrorHandler', errorFcn)
       mustBeA (A, 'table');
       validOptions = {'InputVariables', 'GroupingVariables', 'OutputFormat', 'ErrorHandler'};
       [opts, args] = peelOffNameValueOptions (varargin, validOptions);
@@ -2459,14 +2478,15 @@ classdef table
       endswitch
     endfunction
     
+    ## -*- texinfo -*-
+    ## @node table.rowfun
+    ## @deftypefn {Method} {@var{out} =} varfun (@var{fcn}, @var{obj})
+    ## @deftypefnx {Method} {@var{out} =} varfun (@dots{}, @code{'OptionName'}, @var{OptionValue}, @dots{})
+    ##
+    ## This method is currently unimplemented. Sorry.
+    ##
+    ## @end deftypefn
     function out = rowfun (func, A, varargin)
-      %ROWFUN Apply function to table rows
-      %
-      % out = rowfun (func, A)
-      % out = rowfun (..., Name,Value, ...)
-      %
-      % This method is currently unimplemented. Sorry.
-      %
       % TODO: Document all the Name/Value options; there's a bunch of them.
       
       % Input handling
@@ -2513,6 +2533,20 @@ classdef table
       
     endfunction
     
+    ## -*- texinfo -*-
+    ## @node table.findgroups
+    ## @deftypefn {Method} {[@var{G}, @var{TID}] =} findgroups (@var{obj})
+    ##
+    ## Find groups within a table’s row values.
+    ##
+    ## Finds groups within a table’s row values and get group numbers. A group
+    ## is a set of rows that have the same values in all their variable elements.
+    ##
+    ## Returns:
+    ##   @var{G} - A double column vector of group numbers created from @var{obj}.
+    ##   @var{TID} - A table containing the row values corresponding to the group numbers.
+    ##
+    ## @end deftypefn
     function [G, TID] = findgroups (this)
       %FINDGROUPS Find groups within a table's row values and get group numbers
       %
@@ -2524,56 +2558,69 @@ classdef table
       [TID, ~, G] = unique (this);
     endfunction
     
+    ## -*- texinfo -*-
+    ## @node table.evalWithVars
+    ## @deftypefn {Method} {@var{out} =} evalWithVars (@var{obj}, @var{expr})
+    ##
+    ## Evaluate an expression against table’s variables.
+    ##
+    ## Evaluates the M-code expression @var{expr} in a workspace where all of @var{obj}’s
+    ## variables have been assigned to workspace variables.
+    ##
+    ## @var{expr} is a charvec containing an Octave expression.
+    ##
+    ## As an implementation detail, the workspace will also contain some variables
+    ## that are prefixed and suffixed with "__". So try to avoid those in your
+    ## table variable names.
+    ##
+    ## Returns the result of the evaluation.
+    ##
+    ## Examples:
+    ##
+    ## @example
+    ## [s,p,sp] = table_examples.SpDb
+    ## tmp = join (sp, p);
+    ## shipment_weight = evalWithVars (tmp, "Qty .* Weight")
+    ## @end example
+    ##
+    ## @end deftypefn
     function out = evalWithVars (this, expr)
-      %EVALWITHVARS Evaluate an expression with this' variables in a workspace
-      %
-      % out = evalWithVars (this, expr)
-      %
-      % Evaluates the M-code expression expr in a workspace where all of this'
-      % variables have been assigned to workspace variables.
-      %
-      % As an implementation detail, the workspace will also contain some variables
-      % that are prefixed and suffixed with "__". So try to avoid those in your
-      % table variable names.
-      %
-      % This is an Octave extension.
-      %
-      % Examples:
-      % [s,p,sp] = table_examples.SpDb
-      % tmp = join (sp, p);
-      % shipment_weight = evalWithVars (tmp, "Qty .* Weight")
       if ~ischar (expr)
         error ('table.evalWithVars: expr must be char; got a %s', class (expr));
       endif
       out = __eval_expr_with_table_vars_in_workspace__ (this, expr);
     endfunction
     
+    ## -*- texinfo -*-
+    ## @node table.restrict
+    ## @deftypefn {Method} {@var{out} =} restrict (@var{obj}, @var{expr})
+    ## @deftypefnx {Method} {@var{out} =} restrict (@var{obj}, @var{ix})
+    ##
+    ## Subset rows using variable expression or index.
+    ##
+    ## Subsets a table row-wise, using either an index vector or an expression
+    ## involving @var{obj}’s variables.
+    ##
+    ## If the argument is a numeric or logical vector, it is interpreted as an
+    ## index into the rows of this. (Just as with `subsetRows (this, index)`.)
+    ##
+    ## If the argument is a char, then it is evaulated as an M-code expression,
+    ## with all of this’ variables available as workspace variables, as with
+    ## @code{evalWithVars}. The output of expr must be a numeric or logical index
+    ## vector (This form is a shorthand for 
+    ## @code{out = subsetRows (this, evalWithVars (this, expr))}.)
+    ##
+    ## TODO: Decide whether to name this to "where" to be more like SQL instead
+    ## of relational algebra.
+    ##
+    ## Examples:
+    ## @example
+    ## [s,p,sp] = table_examples.SpDb;
+    ## prettyprint (restrict (p, 'Weight >= 14 & strcmp(Color, "Red")'))
+    ## @end example
+    ##
+    ## @end deftypefn
     function out = restrict (this, arg)
-      %RESTRICT Subset rows based on index or variable expression
-      %
-      % out = restrict (this, index)
-      % out = restrict (this, expr)
-      %
-      % Subsets this table row-wise, using either an index vector or an expression
-      % involving this' variables.
-      %
-      % If the argument is a numeric or logical vector, it is interpreted as an
-      % index into the rows of this. (Just as with `subsetRows (this, index)`.)
-      %
-      % If the argument is a char, then it is evaulated as an M-code expression,
-      % with all of this' variables available as workspace variables, as with
-      % `evalWithVars`. The output of expr must be a numeric or logical index
-      % vector (This form is a shorthand for 
-      % `out = subsetRows (this, evalWithVars (this, expr))`.)
-      %
-      % TODO: Decide whether to name this to "where" to be more like SQL instead
-      % of relational algebra.
-      %
-      % This is an Octave extension.
-      %
-      % Examples:
-      % [s,p,sp] = table_examples.SpDb;
-      % prettyprint (restrict (p, 'Weight >= 14 & strcmp(Color, "Red")'))
       if ischar (arg)
         rowIx = evalWithVars (this, arg);
         out = subsetRows (this, rowIx);
