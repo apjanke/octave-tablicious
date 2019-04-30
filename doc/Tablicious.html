@@ -108,7 +108,7 @@ ul.no-bullet {list-style: none}
       <li><a id="toc-missing-1" href="#missing">5.2.12 missing</a></li>
       <li><a id="toc-pp-1" href="#pp">5.2.13 pp</a></li>
       <li><a id="toc-rmmissing-1" href="#rmmissing">5.2.14 rmmissing</a></li>
-      <li><a id="toc-standardizemissing-1" href="#standardizemissing">5.2.15 standardizemissing</a></li>
+      <li><a id="toc-standardizeMissing-1" href="#standardizeMissing">5.2.15 standardizeMissing</a></li>
       <li><a id="toc-startsWith-1" href="#startsWith">5.2.16 startsWith</a></li>
       <li><a id="toc-string-1" href="#string">5.2.17 string</a></li>
       <li><a id="toc-struct2table-1" href="#struct2table">5.2.18 struct2table</a></li>
@@ -118,6 +118,63 @@ ul.no-bullet {list-style: none}
         <li><a id="toc-table_002esummary-1" href="#table_002esummary">5.2.19.2 table.summary</a></li>
         <li><a id="toc-table_002eprettyprint-1" href="#table_002eprettyprint">5.2.19.3 table.prettyprint</a></li>
         <li><a id="toc-table_002etable2cell-1" href="#table_002etable2cell">5.2.19.4 table.table2cell</a></li>
+        <li><a id="toc-table_002etable2struct-1" href="#table_002etable2struct">5.2.19.5 table.table2struct</a></li>
+        <li><a id="toc-table_002etable2array-1" href="#table_002etable2array">5.2.19.6 table.table2array</a></li>
+        <li><a id="toc-table_002evarnames-1" href="#table_002evarnames">5.2.19.7 table.varnames</a></li>
+        <li><a id="toc-table_002eistable-1" href="#table_002eistable">5.2.19.8 table.istable</a></li>
+        <li><a id="toc-table_002esize-1" href="#table_002esize">5.2.19.9 table.size</a></li>
+        <li><a id="toc-table_002elength-1" href="#table_002elength">5.2.19.10 table.length</a></li>
+        <li><a id="toc-table_002endims-1" href="#table_002endims">5.2.19.11 table.ndims</a></li>
+        <li><a id="toc-table_002esqueeze-1" href="#table_002esqueeze">5.2.19.12 table.squeeze</a></li>
+        <li><a id="toc-table_002esizeof-1" href="#table_002esizeof">5.2.19.13 table.sizeof</a></li>
+        <li><a id="toc-table_002eheight-1" href="#table_002eheight">5.2.19.14 table.height</a></li>
+        <li><a id="toc-table_002erows-1" href="#table_002erows">5.2.19.15 table.rows</a></li>
+        <li><a id="toc-table_002ewidth-1" href="#table_002ewidth">5.2.19.16 table.width</a></li>
+        <li><a id="toc-table_002ecolumns-1" href="#table_002ecolumns">5.2.19.17 table.columns</a></li>
+        <li><a id="toc-table_002enumel-1" href="#table_002enumel">5.2.19.18 table.numel</a></li>
+        <li><a id="toc-table_002eisempty-1" href="#table_002eisempty">5.2.19.19 table.isempty</a></li>
+        <li><a id="toc-table_002eismatrix-1" href="#table_002eismatrix">5.2.19.20 table.ismatrix</a></li>
+        <li><a id="toc-table_002eisrow-1" href="#table_002eisrow">5.2.19.21 table.isrow</a></li>
+        <li><a id="toc-table_002eiscol-1" href="#table_002eiscol">5.2.19.22 table.iscol</a></li>
+        <li><a id="toc-table_002eisvector-1" href="#table_002eisvector">5.2.19.23 table.isvector</a></li>
+        <li><a id="toc-table_002eisscalar-1" href="#table_002eisscalar">5.2.19.24 table.isscalar</a></li>
+        <li><a id="toc-table_002ehasrownames-1" href="#table_002ehasrownames">5.2.19.25 table.hasrownames</a></li>
+        <li><a id="toc-table_002evertcat-1" href="#table_002evertcat">5.2.19.26 table.vertcat</a></li>
+        <li><a id="toc-table_002ehorzcat-1" href="#table_002ehorzcat">5.2.19.27 table.horzcat</a></li>
+        <li><a id="toc-table_002erepmat-1" href="#table_002erepmat">5.2.19.28 table.repmat</a></li>
+        <li><a id="toc-table_002esetVariableNames-1" href="#table_002esetVariableNames">5.2.19.29 table.setVariableNames</a></li>
+        <li><a id="toc-table_002esetRowNames-1" href="#table_002esetRowNames">5.2.19.30 table.setRowNames</a></li>
+        <li><a id="toc-table_002eresolveVarRef-1" href="#table_002eresolveVarRef">5.2.19.31 table.resolveVarRef</a></li>
+        <li><a id="toc-table_002esubsetRows-1" href="#table_002esubsetRows">5.2.19.32 table.subsetRows</a></li>
+        <li><a id="toc-table_002esubsetvars-1" href="#table_002esubsetvars">5.2.19.33 table.subsetvars</a></li>
+        <li><a id="toc-table_002eremovevars-1" href="#table_002eremovevars">5.2.19.34 table.removevars</a></li>
+        <li><a id="toc-table_002emovevars-1" href="#table_002emovevars">5.2.19.35 table.movevars</a></li>
+        <li><a id="toc-table_002esetvar-1" href="#table_002esetvar">5.2.19.36 table.setvar</a></li>
+        <li><a id="toc-table_002econvertvars-1" href="#table_002econvertvars">5.2.19.37 table.convertvars</a></li>
+        <li><a id="toc-table_002ehead-1" href="#table_002ehead">5.2.19.38 table.head</a></li>
+        <li><a id="toc-table_002etail-1" href="#table_002etail">5.2.19.39 table.tail</a></li>
+        <li><a id="toc-table_002ejoin-1" href="#table_002ejoin">5.2.19.40 table.join</a></li>
+        <li><a id="toc-table_002einnerjoin-1" href="#table_002einnerjoin">5.2.19.41 table.innerjoin</a></li>
+        <li><a id="toc-table_002eouterjoin-1" href="#table_002eouterjoin">5.2.19.42 table.outerjoin</a></li>
+        <li><a id="toc-table_002eouterfillvals-1" href="#table_002eouterfillvals">5.2.19.43 table.outerfillvals</a></li>
+        <li><a id="toc-table_002esemijoin-1" href="#table_002esemijoin">5.2.19.44 table.semijoin</a></li>
+        <li><a id="toc-table_002eantijoin-1" href="#table_002eantijoin">5.2.19.45 table.antijoin</a></li>
+        <li><a id="toc-table_002ecartesian-1" href="#table_002ecartesian">5.2.19.46 table.cartesian</a></li>
+        <li><a id="toc-table_002egroupby-1" href="#table_002egroupby">5.2.19.47 table.groupby</a></li>
+        <li><a id="toc-table_002egrpstats-1" href="#table_002egrpstats">5.2.19.48 table.grpstats</a></li>
+        <li><a id="toc-table_002eunion-1" href="#table_002eunion">5.2.19.49 table.union</a></li>
+        <li><a id="toc-table_002eintersect-1" href="#table_002eintersect">5.2.19.50 table.intersect</a></li>
+        <li><a id="toc-table_002esetxor-1" href="#table_002esetxor">5.2.19.51 table.setxor</a></li>
+        <li><a id="toc-table_002esetdiff-1" href="#table_002esetdiff">5.2.19.52 table.setdiff</a></li>
+        <li><a id="toc-table_002eismember-1" href="#table_002eismember">5.2.19.53 table.ismember</a></li>
+        <li><a id="toc-table_002eismissing-1" href="#table_002eismissing">5.2.19.54 table.ismissing</a></li>
+        <li><a id="toc-table_002ermmissing-1" href="#table_002ermmissing">5.2.19.55 table.rmmissing</a></li>
+        <li><a id="toc-table_002estandardizeMissing-1" href="#table_002estandardizeMissing">5.2.19.56 table.standardizeMissing</a></li>
+        <li><a id="toc-table_002evarfun-1" href="#table_002evarfun">5.2.19.57 table.varfun</a></li>
+        <li><a id="toc-table_002erowfun-1" href="#table_002erowfun">5.2.19.58 table.rowfun</a></li>
+        <li><a id="toc-table_002efindgroups-1" href="#table_002efindgroups">5.2.19.59 table.findgroups</a></li>
+        <li><a id="toc-table_002eevalWithVars-1" href="#table_002eevalWithVars">5.2.19.60 table.evalWithVars</a></li>
+        <li><a id="toc-table_002erestrict-1" href="#table_002erestrict">5.2.19.61 table.restrict</a></li>
       </ul></li>
       <li><a id="toc-tableOuterFillValue-1" href="#tableOuterFillValue">5.2.20 tableOuterFillValue</a></li>
     </ul></li>
@@ -279,7 +336,13 @@ Next: <a href="#Functions-Alphabetically" accesskey="n" rel="next">Functions Alp
 </p>
 </dd>
 <dt><a href="#array2table">array2table</a></dt>
+<dd><p>Convert an array to a table.
+</p>
+</dd>
 <dt><a href="#cell2table">cell2table</a></dt>
+<dd><p>Convert a cell array to a table.
+</p>
+</dd>
 <dt><a href="#struct2table">struct2table</a></dt>
 <dt><a href="#tableOuterFillValue">tableOuterFillValue</a></dt>
 </dl>
@@ -290,6 +353,9 @@ Next: <a href="#Functions-Alphabetically" accesskey="n" rel="next">Functions Alp
 <dt><a href="#endsWith">endsWith</a></dt>
 <dt><a href="#contains">contains</a></dt>
 <dt><a href="#categorical">categorical</a></dt>
+<dd><p>Categorical variable array.
+</p>
+</dd>
 <dt><a href="#discretize">discretize</a></dt>
 </dl>
 <span id="Missing-Data"></span><h4 class="subsection">5.1.3 Missing Data</h4>
@@ -297,7 +363,7 @@ Next: <a href="#Functions-Alphabetically" accesskey="n" rel="next">Functions Alp
 <dt><a href="#fillmissing">fillmissing</a></dt>
 <dt><a href="#ismissing">ismissing</a></dt>
 <dt><a href="#rmmissing">rmmissing</a></dt>
-<dt><a href="#standardizemissing">standardizemissing</a></dt>
+<dt><a href="#standardizeMissing">standardizeMissing</a></dt>
 <dt><a href="#missing">missing</a></dt>
 <dt><a href="#isnannish">isnannish</a></dt>
 </dl>
@@ -315,11 +381,11 @@ Previous: <a href="#Functions-by-Category" accesskey="p" rel="prev">Functions by
 </div>
 <span id="Functions-Alphabetically-1"></span><h3 class="section">5.2 Functions Alphabetically</h3>
 <table class="menu" border="0" cellspacing="0">
-<tr><td align="left" valign="top">&bull; <a href="#array2table" accesskey="1">array2table</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+<tr><td align="left" valign="top">&bull; <a href="#array2table" accesskey="1">array2table</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">Convert an array to a table.
 </td></tr>
-<tr><td align="left" valign="top">&bull; <a href="#categorical" accesskey="2">categorical</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+<tr><td align="left" valign="top">&bull; <a href="#categorical" accesskey="2">categorical</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">Categorical variable array.
 </td></tr>
-<tr><td align="left" valign="top">&bull; <a href="#cell2table" accesskey="3">cell2table</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+<tr><td align="left" valign="top">&bull; <a href="#cell2table" accesskey="3">cell2table</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">Convert a cell array to a table.
 </td></tr>
 <tr><td align="left" valign="top">&bull; <a href="#colvecfun" accesskey="4">colvecfun</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
@@ -343,7 +409,7 @@ Previous: <a href="#Functions-by-Category" accesskey="p" rel="prev">Functions by
 </td></tr>
 <tr><td align="left" valign="top">&bull; <a href="#rmmissing">rmmissing</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
-<tr><td align="left" valign="top">&bull; <a href="#standardizemissing">standardizemissing</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+<tr><td align="left" valign="top">&bull; <a href="#standardizeMissing">standardizeMissing</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
 <tr><td align="left" valign="top">&bull; <a href="#startsWith">startsWith</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
@@ -363,22 +429,121 @@ Previous: <a href="#Functions-by-Category" accesskey="p" rel="prev">Functions by
 Next: <a href="#categorical" accesskey="n" rel="next">categorical</a>, Up: <a href="#Functions-Alphabetically" accesskey="u" rel="up">Functions Alphabetically</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
 </div>
 <span id="array2table-1"></span><h4 class="subsection">5.2.1 array2table</h4>
-<p><em>Not documented</em>
-</p><hr>
+<dl>
+<dt id="index-array2table">Function: <em><var>out</var> =</em> <strong>array2table</strong> <em>(<var>c</var>)</em></dt>
+<dt id="index-array2table-1">Function: <em><var>out</var> =</em> <strong>array2table</strong> <em>(&hellip;, <code>'VariableNames'</code>, <var>VariableNames</var>)</em></dt>
+<dt id="index-array2table-2">Function: <em><var>out</var> =</em> <strong>array2table</strong> <em>(&hellip;, <code>'RowNames'</code>, <var>RowNames</var>)</em></dt>
+<dd>
+<p>Convert an array to a table.
+</p>
+<p>Converts an array to a table, with columns in the array becoming variables in
+the output table. This is typically used on numeric arrays, but it can
+be applied to any type of array.
+</p>
+<p>You may not want to use this on cell arrays, though, because you will
+end up with a table that has all its variables of type cell. If you use
+<code>cell2table</code> instead, columns of the cell array which can be
+condensed into primitive arrays will be. With <code>array2table</code>, they
+won&rsquo;t be.
+</p>
+<p>See also: <a href="#cell2table">cell2table</a>, <a href="#table">table</a>, <a href="#struct2table">struct2table</a>
+</p>
+</dd></dl>
+
+
+<hr>
 <span id="categorical"></span><div class="header">
 <p>
 Next: <a href="#cell2table" accesskey="n" rel="next">cell2table</a>, Previous: <a href="#array2table" accesskey="p" rel="prev">array2table</a>, Up: <a href="#Functions-Alphabetically" accesskey="u" rel="up">Functions Alphabetically</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
 </div>
 <span id="categorical-1"></span><h4 class="subsection">5.2.2 categorical</h4>
-<p><em>Not documented</em>
-</p><hr>
+<dl>
+<dt id="index-categorical">Class: <strong>categorical</strong></dt>
+<dd>
+<p>Categorical variable array.
+</p>
+<p>A <code>categorical</code> array represents an array of values of a categorical
+variable. Each <code>categorical</code> array stores the element values along
+with a list of the categories, and indicators of whether the categories
+are ordinal (that is, they have a meaningful mathematical ordering), and
+whether the set of categories is protected (preventing new categories
+from being added to the array).
+</p>
+<p>In addition to the categories defined in the array, a categorical array
+may have elements of &quot;undefined&quot; value. This is not considered a
+category; rather, it is the absence of any known value. It is
+analagous to a <code>NaN</code> value.
+</p>
+<p>This class is not fully implemented yet. Missing stuff:
+  - gt, ge, lt, le
+  - Ordinal support in general
+  - countcats
+  - summary
+</p>
+</dd></dl>
+
+<dl>
+<dt id="index-code-of-categorical">Instance Variable of categorical: <em><code>uint16</code></em> <strong>code</strong></dt>
+<dd>
+<p>The numeric codes of the array element values. These are indexes into the
+<code>cats</code> category list.
+</p>
+<p>This is a planar property.
+</p>
+</dd></dl>
+
+<dl>
+<dt id="index-tfMissing-of-categorical">Instance Variable of categorical: <em><code>logical</code></em> <strong>tfMissing</strong></dt>
+<dd>
+<p>A logical mask indicating whether each element of the array is missing
+(that is, undefined).
+</p>
+<p>This is a planar property.
+</p>
+</dd></dl>
+
+<dl>
+<dt id="index-cats-of-categorical">Instance Variable of categorical: <em><code>cellstr</code></em> <strong>cats</strong></dt>
+<dd>
+<p>The names of the categories in this array. This is the list into which
+the <code>code</code> values are indexes.
+</p>
+</dd></dl>
+
+<dl>
+<dt id="index-isOrdinal-of-categorical">Instance Variable of categorical: <em><code>scalar_logical</code></em> <strong>isOrdinal</strong></dt>
+<dd>
+<p>A scalar logical indicating whether the categories in this array have an
+ordinal relationship.
+</p>
+</dd></dl>
+
+
+<hr>
 <span id="cell2table"></span><div class="header">
 <p>
 Next: <a href="#colvecfun" accesskey="n" rel="next">colvecfun</a>, Previous: <a href="#categorical" accesskey="p" rel="prev">categorical</a>, Up: <a href="#Functions-Alphabetically" accesskey="u" rel="up">Functions Alphabetically</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
 </div>
 <span id="cell2table-1"></span><h4 class="subsection">5.2.3 cell2table</h4>
-<p><em>Not documented</em>
-</p><hr>
+<dl>
+<dt id="index-cell2table">Function: <em><var>out</var> =</em> <strong>cell2table</strong> <em>(<var>c</var>)</em></dt>
+<dt id="index-cell2table-1">Function: <em><var>out</var> =</em> <strong>cell2table</strong> <em>(&hellip;, <code>'VariableNames'</code>, <var>VariableNames</var>)</em></dt>
+<dt id="index-cell2table-2">Function: <em><var>out</var> =</em> <strong>cell2table</strong> <em>(&hellip;, <code>'RowNames'</code>, <var>RowNames</var>)</em></dt>
+<dd>
+<p>Convert a cell array to a table.
+</p>
+<p>Converts a 2-dimensional cell matrix into a table. Each column in the
+input <var>c</var> becomes a variable in <var>out</var>. For columns that contain
+all scalar values of <code>cat</code>-compatible types, they are “popped out”
+of their cells and condensed into a homogeneous array of the contained
+type.
+</p>
+<p>See also: <a href="#array2table">array2table</a>, <a href="#table">table</a>, <a href="#struct2table">struct2table</a>
+</p>
+</dd></dl>
+
+
+<hr>
 <span id="colvecfun"></span><div class="header">
 <p>
 Next: <a href="#contains" accesskey="n" rel="next">contains</a>, Previous: <a href="#cell2table" accesskey="p" rel="prev">cell2table</a>, Up: <a href="#Functions-Alphabetically" accesskey="u" rel="up">Functions Alphabetically</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
@@ -451,21 +616,21 @@ Next: <a href="#rmmissing" accesskey="n" rel="next">rmmissing</a>, Previous: <a 
 </p><hr>
 <span id="rmmissing"></span><div class="header">
 <p>
-Next: <a href="#standardizemissing" accesskey="n" rel="next">standardizemissing</a>, Previous: <a href="#pp" accesskey="p" rel="prev">pp</a>, Up: <a href="#Functions-Alphabetically" accesskey="u" rel="up">Functions Alphabetically</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+Next: <a href="#standardizeMissing" accesskey="n" rel="next">standardizeMissing</a>, Previous: <a href="#pp" accesskey="p" rel="prev">pp</a>, Up: <a href="#Functions-Alphabetically" accesskey="u" rel="up">Functions Alphabetically</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
 </div>
 <span id="rmmissing-1"></span><h4 class="subsection">5.2.14 rmmissing</h4>
 <p><em>Not documented</em>
 </p><hr>
-<span id="standardizemissing"></span><div class="header">
+<span id="standardizeMissing"></span><div class="header">
 <p>
 Next: <a href="#startsWith" accesskey="n" rel="next">startsWith</a>, Previous: <a href="#rmmissing" accesskey="p" rel="prev">rmmissing</a>, Up: <a href="#Functions-Alphabetically" accesskey="u" rel="up">Functions Alphabetically</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
 </div>
-<span id="standardizemissing-1"></span><h4 class="subsection">5.2.15 standardizemissing</h4>
+<span id="standardizeMissing-1"></span><h4 class="subsection">5.2.15 standardizeMissing</h4>
 <p><em>Not documented</em>
 </p><hr>
 <span id="startsWith"></span><div class="header">
 <p>
-Next: <a href="#string" accesskey="n" rel="next">string</a>, Previous: <a href="#standardizemissing" accesskey="p" rel="prev">standardizemissing</a>, Up: <a href="#Functions-Alphabetically" accesskey="u" rel="up">Functions Alphabetically</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+Next: <a href="#string" accesskey="n" rel="next">string</a>, Previous: <a href="#standardizeMissing" accesskey="p" rel="prev">standardizeMissing</a>, Up: <a href="#Functions-Alphabetically" accesskey="u" rel="up">Functions Alphabetically</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
 </div>
 <span id="startsWith-1"></span><h4 class="subsection">5.2.16 startsWith</h4>
 <p><em>Not documented</em>
@@ -541,6 +706,120 @@ is a cellstr column vector, if present.
 <tr><td align="left" valign="top">&bull; <a href="#table_002eprettyprint" accesskey="3">table.prettyprint</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
 <tr><td align="left" valign="top">&bull; <a href="#table_002etable2cell" accesskey="4">table.table2cell</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="#table_002etable2struct" accesskey="5">table.table2struct</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="#table_002etable2array" accesskey="6">table.table2array</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="#table_002evarnames" accesskey="7">table.varnames</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="#table_002eistable" accesskey="8">table.istable</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="#table_002esize" accesskey="9">table.size</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="#table_002elength">table.length</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="#table_002endims">table.ndims</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="#table_002esqueeze">table.squeeze</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="#table_002esizeof">table.sizeof</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="#table_002eheight">table.height</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="#table_002erows">table.rows</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="#table_002ewidth">table.width</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="#table_002ecolumns">table.columns</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="#table_002enumel">table.numel</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="#table_002eisempty">table.isempty</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="#table_002eismatrix">table.ismatrix</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="#table_002eisrow">table.isrow</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="#table_002eiscol">table.iscol</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="#table_002eisvector">table.isvector</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="#table_002eisscalar">table.isscalar</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="#table_002ehasrownames">table.hasrownames</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="#table_002evertcat">table.vertcat</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="#table_002ehorzcat">table.horzcat</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="#table_002erepmat">table.repmat</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="#table_002esetVariableNames">table.setVariableNames</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="#table_002esetRowNames">table.setRowNames</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="#table_002eresolveVarRef">table.resolveVarRef</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="#table_002esubsetRows">table.subsetRows</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="#table_002esubsetvars">table.subsetvars</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="#table_002eremovevars">table.removevars</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="#table_002emovevars">table.movevars</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="#table_002esetvar">table.setvar</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="#table_002econvertvars">table.convertvars</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="#table_002ehead">table.head</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="#table_002etail">table.tail</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="#table_002ejoin">table.join</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="#table_002einnerjoin">table.innerjoin</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="#table_002eouterjoin">table.outerjoin</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="#table_002eouterfillvals">table.outerfillvals</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="#table_002esemijoin">table.semijoin</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="#table_002eantijoin">table.antijoin</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="#table_002ecartesian">table.cartesian</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="#table_002egroupby">table.groupby</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="#table_002egrpstats">table.grpstats</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="#table_002eunion">table.union</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="#table_002eintersect">table.intersect</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="#table_002esetxor">table.setxor</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="#table_002esetdiff">table.setdiff</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="#table_002eismember">table.ismember</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="#table_002eismissing">table.ismissing</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="#table_002ermmissing">table.rmmissing</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="#table_002estandardizeMissing">table.standardizeMissing</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="#table_002evarfun">table.varfun</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="#table_002erowfun">table.rowfun</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="#table_002efindgroups">table.findgroups</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="#table_002eevalWithVars">table.evalWithVars</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="#table_002erestrict">table.restrict</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
 </table>
 
@@ -625,7 +904,7 @@ returned by their <code>dispstrs</code> method, if they define one.
 <hr>
 <span id="table_002etable2cell"></span><div class="header">
 <p>
-Previous: <a href="#table_002eprettyprint" accesskey="p" rel="prev">table.prettyprint</a>, Up: <a href="#table" accesskey="u" rel="up">table</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+Next: <a href="#table_002etable2struct" accesskey="n" rel="next">table.table2struct</a>, Previous: <a href="#table_002eprettyprint" accesskey="p" rel="prev">table.prettyprint</a>, Up: <a href="#table" accesskey="u" rel="up">table</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
 </div>
 <span id="table_002etable2cell-1"></span><h4 class="subsubsection">5.2.19.4 table.table2cell</h4>
 
@@ -639,6 +918,1185 @@ that variable has.
 <p>Returns a cell array with the same number of rows as <var>obj</var>, and
 with as many or more columns as <var>obj</var> has variables.
 </p>
+</dd></dl>
+
+<hr>
+<span id="table_002etable2struct"></span><div class="header">
+<p>
+Next: <a href="#table_002etable2array" accesskey="n" rel="next">table.table2array</a>, Previous: <a href="#table_002etable2cell" accesskey="p" rel="prev">table.table2cell</a>, Up: <a href="#table" accesskey="u" rel="up">table</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<span id="table_002etable2struct-1"></span><h4 class="subsubsection">5.2.19.5 table.table2struct</h4>
+
+<dl>
+<dt id="index-table2struct">Method: <em><var>s</var> =</em> <strong>table2struct</strong> <em>(<var>obj</var>)</em></dt>
+<dt id="index-table2struct-1">Method: <em><var>s</var> =</em> <strong>table2struct</strong> <em>(&hellip;, <code>'ToScalar'</code>, <var>trueOrFalse</var>)</em></dt>
+<dd>
+<p>Converts <var>obj</var> to a scalar structure or structure array.
+</p>
+<p>Row names are not included in the output struct. To include them, you
+must add them manually:
+  s = table2struct (tbl, &rsquo;ToScalar&rsquo;, true);
+  s.RowNames = tbl.Properties.RowNames;
+</p>
+<p>Returns a scalar struct or struct array, depending on the value of the
+<code>ToScalar</code> option.
+</p>
+</dd></dl>
+
+<hr>
+<span id="table_002etable2array"></span><div class="header">
+<p>
+Next: <a href="#table_002evarnames" accesskey="n" rel="next">table.varnames</a>, Previous: <a href="#table_002etable2struct" accesskey="p" rel="prev">table.table2struct</a>, Up: <a href="#table" accesskey="u" rel="up">table</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<span id="table_002etable2array-1"></span><h4 class="subsubsection">5.2.19.6 table.table2array</h4>
+
+<dl>
+<dt id="index-table2struct-2">Method: <em><var>s</var> =</em> <strong>table2struct</strong> <em>(<var>obj</var>)</em></dt>
+<dd>
+<p>Converts <var>obj</var> to a homogeneous array.
+</p>
+</dd></dl>
+
+<hr>
+<span id="table_002evarnames"></span><div class="header">
+<p>
+Next: <a href="#table_002eistable" accesskey="n" rel="next">table.istable</a>, Previous: <a href="#table_002etable2array" accesskey="p" rel="prev">table.table2array</a>, Up: <a href="#table" accesskey="u" rel="up">table</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<span id="table_002evarnames-1"></span><h4 class="subsubsection">5.2.19.7 table.varnames</h4>
+
+<dl>
+<dt id="index-varnames">Method: <em><var>out</var> =</em> <strong>varnames</strong> <em>(<var>obj</var>)</em></dt>
+<dd>
+<p>Get variable names for a table.
+</p>
+<p>Returns cellstr.
+</p>
+</dd></dl>
+
+<hr>
+<span id="table_002eistable"></span><div class="header">
+<p>
+Next: <a href="#table_002esize" accesskey="n" rel="next">table.size</a>, Previous: <a href="#table_002evarnames" accesskey="p" rel="prev">table.varnames</a>, Up: <a href="#table" accesskey="u" rel="up">table</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<span id="table_002eistable-1"></span><h4 class="subsubsection">5.2.19.8 table.istable</h4>
+
+<dl>
+<dt id="index-istable">Method: <em><var>tf</var> =</em> <strong>istable</strong> <em>(<var>obj</var>)</em></dt>
+<dd>
+<p>True if input is a table.
+</p>
+</dd></dl>
+
+<hr>
+<span id="table_002esize"></span><div class="header">
+<p>
+Next: <a href="#table_002elength" accesskey="n" rel="next">table.length</a>, Previous: <a href="#table_002eistable" accesskey="p" rel="prev">table.istable</a>, Up: <a href="#table" accesskey="u" rel="up">table</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<span id="table_002esize-1"></span><h4 class="subsubsection">5.2.19.9 table.size</h4>
+
+<dl>
+<dt id="index-size">Method: <em><var>sz</var> =</em> <strong>size</strong> <em>(<var>obj</var>)</em></dt>
+<dd>
+<p>Gets the size of a table.
+</p>
+<p>For tables, the size is [number-of-rows x number-of-variables].
+This is the same as <code>[height(obj), width(obj)]</code>.
+</p>
+</dd></dl>
+
+<hr>
+<span id="table_002elength"></span><div class="header">
+<p>
+Next: <a href="#table_002endims" accesskey="n" rel="next">table.ndims</a>, Previous: <a href="#table_002esize" accesskey="p" rel="prev">table.size</a>, Up: <a href="#table" accesskey="u" rel="up">table</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<span id="table_002elength-1"></span><h4 class="subsubsection">5.2.19.10 table.length</h4>
+
+<dl>
+<dt id="index-length">Method: <em><var>out</var> =</em> <strong>length</strong> <em>(<var>obj</var>)</em></dt>
+<dd>
+<p>Length along longest dimension
+</p>
+<p>Use of <code>length</code> is not recommended. Use <code>numel</code>
+or <code>size</code> instead.
+</p>
+</dd></dl>
+
+<hr>
+<span id="table_002endims"></span><div class="header">
+<p>
+Next: <a href="#table_002esqueeze" accesskey="n" rel="next">table.squeeze</a>, Previous: <a href="#table_002elength" accesskey="p" rel="prev">table.length</a>, Up: <a href="#table" accesskey="u" rel="up">table</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<span id="table_002endims-1"></span><h4 class="subsubsection">5.2.19.11 table.ndims</h4>
+
+<dl>
+<dt id="index-ndims">Method: <em><var>out</var> =</em> <strong>ndims</strong> <em>(<var>obj</var>)</em></dt>
+<dd>
+<p>Number of dimensions
+</p>
+<p>For tables, <code>ndims(obj)</code> is always 2.
+</p>
+</dd></dl>
+
+<hr>
+<span id="table_002esqueeze"></span><div class="header">
+<p>
+Next: <a href="#table_002esizeof" accesskey="n" rel="next">table.sizeof</a>, Previous: <a href="#table_002endims" accesskey="p" rel="prev">table.ndims</a>, Up: <a href="#table" accesskey="u" rel="up">table</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<span id="table_002esqueeze-1"></span><h4 class="subsubsection">5.2.19.12 table.squeeze</h4>
+
+<dl>
+<dt id="index-squeeze">Method: <em><var>obj</var> =</em> <strong>squeeze</strong> <em>(<var>obj</var>)</em></dt>
+<dd>
+<p>Remove singleton dimensions.
+</p>
+<p>For tables, this is always a no-op that returns the input
+unmodified, because tables always have exactly 2 dimensions.
+</p>
+</dd></dl>
+
+<hr>
+<span id="table_002esizeof"></span><div class="header">
+<p>
+Next: <a href="#table_002eheight" accesskey="n" rel="next">table.height</a>, Previous: <a href="#table_002esqueeze" accesskey="p" rel="prev">table.squeeze</a>, Up: <a href="#table" accesskey="u" rel="up">table</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<span id="table_002esizeof-1"></span><h4 class="subsubsection">5.2.19.13 table.sizeof</h4>
+
+<dl>
+<dt id="index-sizeof">Method: <em><var>out</var> =</em> <strong>sizeof</strong> <em>(<var>obj</var>)</em></dt>
+<dd>
+<p>Approximate size of array in bytes. For tables, this returns the sume
+of <code>sizeof</code> for all of its variables’ arrays, plus the size of the
+VariableNames and any other metadata stored in <var>obj</var>.
+</p>
+<p>This is currently unimplemented.
+</p>
+</dd></dl>
+
+<hr>
+<span id="table_002eheight"></span><div class="header">
+<p>
+Next: <a href="#table_002erows" accesskey="n" rel="next">table.rows</a>, Previous: <a href="#table_002esizeof" accesskey="p" rel="prev">table.sizeof</a>, Up: <a href="#table" accesskey="u" rel="up">table</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<span id="table_002eheight-1"></span><h4 class="subsubsection">5.2.19.14 table.height</h4>
+
+<dl>
+<dt id="index-height">Method: <em><var>out</var> =</em> <strong>height</strong> <em>(<var>obj</var>)</em></dt>
+<dd>
+<p>Number of rows in table.
+</p>
+</dd></dl>
+
+<hr>
+<span id="table_002erows"></span><div class="header">
+<p>
+Next: <a href="#table_002ewidth" accesskey="n" rel="next">table.width</a>, Previous: <a href="#table_002eheight" accesskey="p" rel="prev">table.height</a>, Up: <a href="#table" accesskey="u" rel="up">table</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<span id="table_002erows-1"></span><h4 class="subsubsection">5.2.19.15 table.rows</h4>
+
+<dl>
+<dt id="index-rows">Method: <em><var>out</var> =</em> <strong>rows</strong> <em>(<var>obj</var>)</em></dt>
+<dd>
+<p>Number of rows in table.
+</p>
+</dd></dl>
+
+<hr>
+<span id="table_002ewidth"></span><div class="header">
+<p>
+Next: <a href="#table_002ecolumns" accesskey="n" rel="next">table.columns</a>, Previous: <a href="#table_002erows" accesskey="p" rel="prev">table.rows</a>, Up: <a href="#table" accesskey="u" rel="up">table</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<span id="table_002ewidth-1"></span><h4 class="subsubsection">5.2.19.16 table.width</h4>
+
+<dl>
+<dt id="index-width">Method: <em><var>out</var> =</em> <strong>width</strong> <em>(<var>obj</var>)</em></dt>
+<dd>
+<p>Number of variables in table.
+</p>
+<p>Note that this is not the sum of the number of columns in each variable.
+It is just the number of variables.
+</p>
+</dd></dl>
+
+<hr>
+<span id="table_002ecolumns"></span><div class="header">
+<p>
+Next: <a href="#table_002enumel" accesskey="n" rel="next">table.numel</a>, Previous: <a href="#table_002ewidth" accesskey="p" rel="prev">table.width</a>, Up: <a href="#table" accesskey="u" rel="up">table</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<span id="table_002ecolumns-1"></span><h4 class="subsubsection">5.2.19.17 table.columns</h4>
+
+<dl>
+<dt id="index-columns">Method: <em><var>out</var> =</em> <strong>columns</strong> <em>(<var>obj</var>)</em></dt>
+<dd>
+<p>Number of variables in table.
+</p>
+<p>Note that this is not the sum of the number of columns in each variable.
+It is just the number of variables.
+</p>
+</dd></dl>
+
+<hr>
+<span id="table_002enumel"></span><div class="header">
+<p>
+Next: <a href="#table_002eisempty" accesskey="n" rel="next">table.isempty</a>, Previous: <a href="#table_002ecolumns" accesskey="p" rel="prev">table.columns</a>, Up: <a href="#table" accesskey="u" rel="up">table</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<span id="table_002enumel-1"></span><h4 class="subsubsection">5.2.19.18 table.numel</h4>
+
+<dl>
+<dt id="index-numel">Method: <em><var>out</var> =</em> <strong>numel</strong> <em>(<var>obj</var>)</em></dt>
+<dd>
+<p>Total number of elements in table.
+</p>
+<p>This is the total number of elements in this table. This is calculated
+as the sum of numel for each variable.
+</p>
+<p>NOTE: Those semantics may be wrong. This may actually need to be defined
+as <code>height(obj) * width(obj)</code>. The behavior of <code>numel</code> may
+change in the future.
+</p>
+</dd></dl>
+
+<hr>
+<span id="table_002eisempty"></span><div class="header">
+<p>
+Next: <a href="#table_002eismatrix" accesskey="n" rel="next">table.ismatrix</a>, Previous: <a href="#table_002enumel" accesskey="p" rel="prev">table.numel</a>, Up: <a href="#table" accesskey="u" rel="up">table</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<span id="table_002eisempty-1"></span><h4 class="subsubsection">5.2.19.19 table.isempty</h4>
+
+<dl>
+<dt id="index-isempty">Method: <em><var>out</var> =</em> <strong>isempty</strong> <em>(<var>obj</var>)</em></dt>
+<dd>
+<p>Test whether array is empty.
+</p>
+<p>For tables, <code>isempty</code> is true if the number of rows is 0 or the number
+of variables is 0.
+</p>
+</dd></dl>
+
+<hr>
+<span id="table_002eismatrix"></span><div class="header">
+<p>
+Next: <a href="#table_002eisrow" accesskey="n" rel="next">table.isrow</a>, Previous: <a href="#table_002eisempty" accesskey="p" rel="prev">table.isempty</a>, Up: <a href="#table" accesskey="u" rel="up">table</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<span id="table_002eismatrix-1"></span><h4 class="subsubsection">5.2.19.20 table.ismatrix</h4>
+
+<dl>
+<dt id="index-ismatrix">Method: <em><var>out</var> =</em> <strong>ismatrix</strong> <em>(<var>obj</var>)</em></dt>
+<dd>
+<p>Test whether array is a matrix.
+</p>
+<p>For tables, <code>ismatrix</code> is always true, by definition.
+</p>
+</dd></dl>
+
+<hr>
+<span id="table_002eisrow"></span><div class="header">
+<p>
+Next: <a href="#table_002eiscol" accesskey="n" rel="next">table.iscol</a>, Previous: <a href="#table_002eismatrix" accesskey="p" rel="prev">table.ismatrix</a>, Up: <a href="#table" accesskey="u" rel="up">table</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<span id="table_002eisrow-1"></span><h4 class="subsubsection">5.2.19.21 table.isrow</h4>
+
+<dl>
+<dt id="index-isrow">Method: <em><var>out</var> =</em> <strong>isrow</strong> <em>(<var>obj</var>)</em></dt>
+<dd>
+<p>Test whether array is a row vector.
+</p>
+</dd></dl>
+
+<hr>
+<span id="table_002eiscol"></span><div class="header">
+<p>
+Next: <a href="#table_002eisvector" accesskey="n" rel="next">table.isvector</a>, Previous: <a href="#table_002eisrow" accesskey="p" rel="prev">table.isrow</a>, Up: <a href="#table" accesskey="u" rel="up">table</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<span id="table_002eiscol-1"></span><h4 class="subsubsection">5.2.19.22 table.iscol</h4>
+
+<dl>
+<dt id="index-iscol">Method: <em><var>out</var> =</em> <strong>iscol</strong> <em>(<var>obj</var>)</em></dt>
+<dd>
+<p>Test whether array is a column vector.
+</p>
+<p>For tables, <code>iscol</code> is true if the input has a single variable.
+The number of columns within that variable does not matter.
+</p>
+</dd></dl>
+
+<hr>
+<span id="table_002eisvector"></span><div class="header">
+<p>
+Next: <a href="#table_002eisscalar" accesskey="n" rel="next">table.isscalar</a>, Previous: <a href="#table_002eiscol" accesskey="p" rel="prev">table.iscol</a>, Up: <a href="#table" accesskey="u" rel="up">table</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<span id="table_002eisvector-1"></span><h4 class="subsubsection">5.2.19.23 table.isvector</h4>
+
+<dl>
+<dt id="index-isvector">Method: <em><var>out</var> =</em> <strong>isvector</strong> <em>(<var>obj</var>)</em></dt>
+<dd>
+<p>Test whether array is a vector.
+</p>
+</dd></dl>
+
+<hr>
+<span id="table_002eisscalar"></span><div class="header">
+<p>
+Next: <a href="#table_002ehasrownames" accesskey="n" rel="next">table.hasrownames</a>, Previous: <a href="#table_002eisvector" accesskey="p" rel="prev">table.isvector</a>, Up: <a href="#table" accesskey="u" rel="up">table</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<span id="table_002eisscalar-1"></span><h4 class="subsubsection">5.2.19.24 table.isscalar</h4>
+
+<dl>
+<dt id="index-isscalar">Method: <em><var>out</var> =</em> <strong>isscalar</strong> <em>(<var>obj</var>)</em></dt>
+<dd>
+<p>Test whether array is scalar.
+</p>
+</dd></dl>
+
+<hr>
+<span id="table_002ehasrownames"></span><div class="header">
+<p>
+Next: <a href="#table_002evertcat" accesskey="n" rel="next">table.vertcat</a>, Previous: <a href="#table_002eisscalar" accesskey="p" rel="prev">table.isscalar</a>, Up: <a href="#table" accesskey="u" rel="up">table</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<span id="table_002ehasrownames-1"></span><h4 class="subsubsection">5.2.19.25 table.hasrownames</h4>
+
+<dl>
+<dt id="index-hasrownames">Method: <em><var>out</var> =</em> <strong>hasrownames</strong> <em>(<var>obj</var>)</em></dt>
+<dd>
+<p>True if this table has row names defined.
+</p>
+</dd></dl>
+
+<hr>
+<span id="table_002evertcat"></span><div class="header">
+<p>
+Next: <a href="#table_002ehorzcat" accesskey="n" rel="next">table.horzcat</a>, Previous: <a href="#table_002ehasrownames" accesskey="p" rel="prev">table.hasrownames</a>, Up: <a href="#table" accesskey="u" rel="up">table</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<span id="table_002evertcat-1"></span><h4 class="subsubsection">5.2.19.26 table.vertcat</h4>
+
+<dl>
+<dt id="index-vertcat">Method: <em><var>out</var> =</em> <strong>vertcat</strong> <em>(<var>varargin</var>)</em></dt>
+<dd>
+<p>Vertical concatenation.
+</p>
+<p>Combines tables by vertically concatenating them.
+</p>
+<p>Inputs that are not tables are automatically converted to tables by calling
+table() on them.
+</p>
+<p>The inputs must have the same number and names of variables, and their
+variable value types and sizes must be cat-compatible.
+</p>
+</dd></dl>
+
+<hr>
+<span id="table_002ehorzcat"></span><div class="header">
+<p>
+Next: <a href="#table_002erepmat" accesskey="n" rel="next">table.repmat</a>, Previous: <a href="#table_002evertcat" accesskey="p" rel="prev">table.vertcat</a>, Up: <a href="#table" accesskey="u" rel="up">table</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<span id="table_002ehorzcat-1"></span><h4 class="subsubsection">5.2.19.27 table.horzcat</h4>
+
+<dl>
+<dt id="index-horzcat">Method: <em><var>out</var> =</em> <strong>horzcat</strong> <em>(<var>varargin</var>)</em></dt>
+<dd>
+<p>Horizontal concatenation.
+</p>
+<p>Combines tables by horizontally concatenating them.
+Inputs that are not tables are automatically converted to tables by calling
+table() on them.
+Inputs must have all distinct variable names.
+</p>
+<p>Output has the same RowNames as <code>varargin{1}</code>. The variable names and values
+are the result of the concatenation of the variable names and values lists
+from the inputs.
+</p>
+</dd></dl>
+
+<hr>
+<span id="table_002erepmat"></span><div class="header">
+<p>
+Next: <a href="#table_002esetVariableNames" accesskey="n" rel="next">table.setVariableNames</a>, Previous: <a href="#table_002ehorzcat" accesskey="p" rel="prev">table.horzcat</a>, Up: <a href="#table" accesskey="u" rel="up">table</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<span id="table_002erepmat-1"></span><h4 class="subsubsection">5.2.19.28 table.repmat</h4>
+
+<dl>
+<dt id="index-repmat">Method: <em><var>out</var> =</em> <strong>repmat</strong> <em>(<var>obj</var>, <var>sz</var>)</em></dt>
+<dd>
+<p>Replicate matrix.
+</p>
+<p>Repmats a table by repmatting each of its variables vertically.
+</p>
+<p>For tables, repmatting is only supported along dimension 1. That is, the
+values of sz(2:end) must all be exactly 1.
+</p>
+<p>Returns a new table with the same variable names and types as tbl, but
+with a possibly different row count.
+</p>
+</dd></dl>
+
+<hr>
+<span id="table_002esetVariableNames"></span><div class="header">
+<p>
+Next: <a href="#table_002esetRowNames" accesskey="n" rel="next">table.setRowNames</a>, Previous: <a href="#table_002erepmat" accesskey="p" rel="prev">table.repmat</a>, Up: <a href="#table" accesskey="u" rel="up">table</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<span id="table_002esetVariableNames-1"></span><h4 class="subsubsection">5.2.19.29 table.setVariableNames</h4>
+
+<dl>
+<dt id="index-setVariableNames">Method: <em><var>out</var> =</em> <strong>setVariableNames</strong> <em>(<var>obj</var>, <var>names</var>)</em></dt>
+<dd>
+<p>Set variable names.
+</p>
+<p>Sets the <code>VariableNames</code> for this table to a new list of names.
+</p>
+<p><var>names</var> is a cellstr vector. It must have the same number of elements
+as the number of variables in <var>obj</var>.
+</p>
+</dd></dl>
+
+<hr>
+<span id="table_002esetRowNames"></span><div class="header">
+<p>
+Next: <a href="#table_002eresolveVarRef" accesskey="n" rel="next">table.resolveVarRef</a>, Previous: <a href="#table_002esetVariableNames" accesskey="p" rel="prev">table.setVariableNames</a>, Up: <a href="#table" accesskey="u" rel="up">table</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<span id="table_002esetRowNames-1"></span><h4 class="subsubsection">5.2.19.30 table.setRowNames</h4>
+
+<dl>
+<dt id="index-setRowNames">Method: <em><var>out</var> =</em> <strong>setRowNames</strong> <em>(<var>obj</var>, <var>names</var>)</em></dt>
+<dd>
+<p>Set row names.
+</p>
+<p>Sets the row names on <var>obj</var> to <var>names</var>.
+</p>
+<p><var>names</var> is a cellstr column vector, with the same number of rows as
+<var>obj</var> has.
+</p>
+</dd></dl>
+
+<hr>
+<span id="table_002eresolveVarRef"></span><div class="header">
+<p>
+Next: <a href="#table_002esubsetRows" accesskey="n" rel="next">table.subsetRows</a>, Previous: <a href="#table_002esetRowNames" accesskey="p" rel="prev">table.setRowNames</a>, Up: <a href="#table" accesskey="u" rel="up">table</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<span id="table_002eresolveVarRef-1"></span><h4 class="subsubsection">5.2.19.31 table.resolveVarRef</h4>
+
+<dl>
+<dt id="index-resolveVarREf">Method: <em>[<var>ixVar</var>, <var>varNames</var>] =</em> <strong>resolveVarREf</strong> <em>(<var>obj</var>, <var>varRef</var>)</em></dt>
+<dd>
+<p>Resolve a variable reference against this table.
+</p>
+<p>A <var>varRef</var> is a numeric or char/cellstr indicator of which variables within
+<var>obj</var> are being referenced.
+</p>
+<p>Returns:
+  <var>ixVar</var> - the indexes of the variables in <var>obj</var>
+  <var>varNames</var> - a cellstr of the names of the variables in <var>obj</var>
+</p>
+<p>Raises an error if any of the specified variables could not be resolved.
+</p>
+</dd></dl>
+
+<hr>
+<span id="table_002esubsetRows"></span><div class="header">
+<p>
+Next: <a href="#table_002esubsetvars" accesskey="n" rel="next">table.subsetvars</a>, Previous: <a href="#table_002eresolveVarRef" accesskey="p" rel="prev">table.resolveVarRef</a>, Up: <a href="#table" accesskey="u" rel="up">table</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<span id="table_002esubsetRows-1"></span><h4 class="subsubsection">5.2.19.32 table.subsetRows</h4>
+
+<dl>
+<dt id="index-subsetRows">Method: <em><var>out</var> =</em> <strong>subsetRows</strong> <em>(<var>obj</var>, <var>ixRows</var>)</em></dt>
+<dd>
+<p>Subset table by rows.
+</p>
+<p>Subsets this table by rows.
+</p>
+<p><var>ixRows</var> may be a numeric or logical index into the rows of <var>obj</var>.
+</p>
+</dd></dl>
+
+<hr>
+<span id="table_002esubsetvars"></span><div class="header">
+<p>
+Next: <a href="#table_002eremovevars" accesskey="n" rel="next">table.removevars</a>, Previous: <a href="#table_002esubsetRows" accesskey="p" rel="prev">table.subsetRows</a>, Up: <a href="#table" accesskey="u" rel="up">table</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<span id="table_002esubsetvars-1"></span><h4 class="subsubsection">5.2.19.33 table.subsetvars</h4>
+
+<dl>
+<dt id="index-subsetvars">Method: <em><var>out</var> =</em> <strong>subsetvars</strong> <em>(<var>obj</var>, <var>ixVars</var>)</em></dt>
+<dd>
+<p>Subset table by variables.
+</p>
+<p>Subsets table <var>obj</var> by subsetting it along its variables.
+</p>
+<p>ixVars may be:
+  - a numeric index vector
+  - a logical index vector
+  - &quot;:&quot;
+  - a cellstr vector of variable names
+</p>
+<p>The resulting table will have its variables reordered to match ixVars.
+</p>
+</dd></dl>
+
+<hr>
+<span id="table_002eremovevars"></span><div class="header">
+<p>
+Next: <a href="#table_002emovevars" accesskey="n" rel="next">table.movevars</a>, Previous: <a href="#table_002esubsetvars" accesskey="p" rel="prev">table.subsetvars</a>, Up: <a href="#table" accesskey="u" rel="up">table</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<span id="table_002eremovevars-1"></span><h4 class="subsubsection">5.2.19.34 table.removevars</h4>
+
+<dl>
+<dt id="index-removevars">Method: <em><var>out</var> =</em> <strong>removevars</strong> <em>(<var>obj</var>, <var>vars</var>)</em></dt>
+<dd>
+<p>Remove variables from table.
+</p>
+<p>Deletes the variables specified by <var>vars</var> from <var>obj</var>.
+</p>
+<p><var>vars</var> may be a char, cellstr, numeric index vector, or logical
+index vector.
+</p>
+</dd></dl>
+
+<hr>
+<span id="table_002emovevars"></span><div class="header">
+<p>
+Next: <a href="#table_002esetvar" accesskey="n" rel="next">table.setvar</a>, Previous: <a href="#table_002eremovevars" accesskey="p" rel="prev">table.removevars</a>, Up: <a href="#table" accesskey="u" rel="up">table</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<span id="table_002emovevars-1"></span><h4 class="subsubsection">5.2.19.35 table.movevars</h4>
+
+<dl>
+<dt id="index-movevars">Method: <em><var>out</var> =</em> <strong>movevars</strong> <em>(<var>obj</var>, <var>vars</var>, <var>relLocation</var>, <var>location</var>)</em></dt>
+<dd>
+<p>Move around variables in a table.
+</p>
+<p><var>vars</var> is a list of variables to move, specified by name or index.
+</p>
+<p><var>relLocation</var> is <code>'Before'</code> or <code>'After'</code>.
+</p>
+<p><var>location</var> indicates a single variable to use as the target location,
+specified by name or index. If it is specified by index, it is the index
+into the list of *unmoved* variables from <var>obj</var>, not the original full
+list of variables in <var>obj</var>.
+</p>
+<p>Returns a table with the same variables as <var>obj</var>, but in a different order.
+</p>
+</dd></dl>
+
+<hr>
+<span id="table_002esetvar"></span><div class="header">
+<p>
+Next: <a href="#table_002econvertvars" accesskey="n" rel="next">table.convertvars</a>, Previous: <a href="#table_002emovevars" accesskey="p" rel="prev">table.movevars</a>, Up: <a href="#table" accesskey="u" rel="up">table</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<span id="table_002esetvar-1"></span><h4 class="subsubsection">5.2.19.36 table.setvar</h4>
+
+<dl>
+<dt id="index-setvar">Method: <em><var>out</var> =</em> <strong>setvar</strong> <em>(<var>obj</var>, <var>varRef</var>, <var>value</var>)</em></dt>
+<dd>
+<p>Set value for a variable in table.
+</p>
+<p>This sets (replaces) the value for a variable that already exists in <var>obj</var>.
+It cannot be used to add a new variable.
+</p>
+</dd></dl>
+
+<hr>
+<span id="table_002econvertvars"></span><div class="header">
+<p>
+Next: <a href="#table_002ehead" accesskey="n" rel="next">table.head</a>, Previous: <a href="#table_002esetvar" accesskey="p" rel="prev">table.setvar</a>, Up: <a href="#table" accesskey="u" rel="up">table</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<span id="table_002econvertvars-1"></span><h4 class="subsubsection">5.2.19.37 table.convertvars</h4>
+
+<dl>
+<dt id="index-convertvars">Method: <em><var>out</var> =</em> <strong>convertvars</strong> <em>(<var>obj</var>, <var>vars</var>, <var>dataType</var>)</em></dt>
+<dd>
+<p>Convert variables to specified data type.
+</p>
+<p>Converts the variables in <var>obj</var> specified by <var>vars</var> to the specified data type.
+</p>
+<p><var>vars</var> is a cellstr or numeric vector specifying which variables to convert.
+</p>
+<p><var>dataType</var> specifies the data type to convert those variables to. It is either
+a char holding the name of the data type, or a function handle which will
+perform the conversion. If it is the name of the data type, there must
+either be a one-arg constructor of that type which accepts the specified
+variables&rsquo; current types as input, or a conversion method of that name
+defined on the specified variables&rsquo; current type.
+</p>
+<p>Returns a table with the same variable names as <var>obj</var>, but with converted
+types.
+</p>
+</dd></dl>
+
+<hr>
+<span id="table_002ehead"></span><div class="header">
+<p>
+Next: <a href="#table_002etail" accesskey="n" rel="next">table.tail</a>, Previous: <a href="#table_002econvertvars" accesskey="p" rel="prev">table.convertvars</a>, Up: <a href="#table" accesskey="u" rel="up">table</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<span id="table_002ehead-1"></span><h4 class="subsubsection">5.2.19.38 table.head</h4>
+
+<dl>
+<dt id="index-head">Method: <em><var>out</var> =</em> <strong>head</strong> <em>(<var>obj</var>)</em></dt>
+<dt id="index-head-1">Method: <em><var>out</var> =</em> <strong>head</strong> <em>(<var>obj</var>, <var>k</var>)</em></dt>
+<dd>
+<p>Get first K rows of table.
+</p>
+<p>Returns the first <var>k</var> rows of <var>obj</var>, as a table.
+</p>
+<p><var>k</var> defaults to 8.
+</p>
+<p>If there are less than <var>k</var> rows in <var>obj</var>, returns all rows.
+</p>
+</dd></dl>
+
+<hr>
+<span id="table_002etail"></span><div class="header">
+<p>
+Next: <a href="#table_002ejoin" accesskey="n" rel="next">table.join</a>, Previous: <a href="#table_002ehead" accesskey="p" rel="prev">table.head</a>, Up: <a href="#table" accesskey="u" rel="up">table</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<span id="table_002etail-1"></span><h4 class="subsubsection">5.2.19.39 table.tail</h4>
+
+<dl>
+<dt id="index-tail">Method: <em><var>out</var> =</em> <strong>tail</strong> <em>(<var>obj</var>)</em></dt>
+<dt id="index-tail-1">Method: <em><var>out</var> =</em> <strong>tail</strong> <em>(<var>obj</var>, <var>k</var>)</em></dt>
+<dd>
+<p>Get last K rows of table.
+</p>
+<p>Returns the last <var>k</var> rows of <var>obj</var>, as a table.
+</p>
+<p><var>k</var> defaults to 8.
+</p>
+<p>If there are less than <var>k</var> rows in <var>obj</var>, returns all rows.
+</p>
+</dd></dl>
+
+<hr>
+<span id="table_002ejoin"></span><div class="header">
+<p>
+Next: <a href="#table_002einnerjoin" accesskey="n" rel="next">table.innerjoin</a>, Previous: <a href="#table_002etail" accesskey="p" rel="prev">table.tail</a>, Up: <a href="#table" accesskey="u" rel="up">table</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<span id="table_002ejoin-1"></span><h4 class="subsubsection">5.2.19.40 table.join</h4>
+
+<dl>
+<dt id="index-join">Method: <em>[<var>C</var>, <var>ib</var>] =</em> <strong>join</strong> <em>(<var>A</var>, <var>B</var>)</em></dt>
+<dt id="index-join-1">Method: <em>[<var>C</var>, <var>ib</var>] =</em> <strong>join</strong> <em>(<var>A</var>, <var>B</var>, &hellip;)</em></dt>
+<dd>
+<p>Combine two tables by rows using key variables, in a restricted form.
+</p>
+<p>This is not a &quot;real&quot; relational join operation. It has the restrictions
+that:
+ 1) The key values in B must be unique.
+ 2) Every key value in A must map to a key value in B.
+These are restrictions inherited from the Matlab definition of table.join.
+</p>
+<p>You probably don’t want to use this method. You probably want to use
+innerjoin or outerjoin instead.
+</p>
+<p>See also: <a href="#table_002einnerjoin">table.innerjoin</a>, <a href="#table_002eouterjoin">table.outerjoin</a>
+</p>
+</dd></dl>
+
+<hr>
+<span id="table_002einnerjoin"></span><div class="header">
+<p>
+Next: <a href="#table_002eouterjoin" accesskey="n" rel="next">table.outerjoin</a>, Previous: <a href="#table_002ejoin" accesskey="p" rel="prev">table.join</a>, Up: <a href="#table" accesskey="u" rel="up">table</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<span id="table_002einnerjoin-1"></span><h4 class="subsubsection">5.2.19.41 table.innerjoin</h4>
+
+<dl>
+<dt id="index-innerjoin">Method: <em>[<var>out</var>, <var>ixa</var>, <var>ixb</var>] =</em> <strong>innerjoin</strong> <em>(<var>A</var>, <var>B</var>)</em></dt>
+<dt id="index-innerjoin-1">Method: <em>[&hellip;] =</em> <strong>innerjoin</strong> <em>(<var>A</var>, <var>B</var>, &hellip;)</em></dt>
+<dd>
+<p>Combine two tables by rows using key variables.
+</p>
+<p>Computes the relational inner join between two tables. “Inner” means that
+only rows which had matching rows in the other input are kept in the
+output.
+</p>
+<p>TODO: Document options.
+</p>
+<p>Returns:
+  <var>out</var> - A table that is the result of joining A and B
+  <var>ix</var> - Indexes into A for each row in out
+  <var>ixb</var> - Indexes into B for each row in out
+</p>
+</dd></dl>
+
+<hr>
+<span id="table_002eouterjoin"></span><div class="header">
+<p>
+Next: <a href="#table_002eouterfillvals" accesskey="n" rel="next">table.outerfillvals</a>, Previous: <a href="#table_002einnerjoin" accesskey="p" rel="prev">table.innerjoin</a>, Up: <a href="#table" accesskey="u" rel="up">table</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<span id="table_002eouterjoin-1"></span><h4 class="subsubsection">5.2.19.42 table.outerjoin</h4>
+
+<dl>
+<dt id="index-outerjoin">Method: <em>[<var>out</var>, <var>ixa</var>, <var>ixb</var>] =</em> <strong>outerjoin</strong> <em>(<var>A</var>, <var>B</var>)</em></dt>
+<dt id="index-outerjoin-1">Method: <em>[&hellip;] =</em> <strong>outerjoin</strong> <em>(<var>A</var>, <var>B</var>, &hellip;)</em></dt>
+<dd>
+<p>Combine two tables by rows using key variables, retaining unmatched rows.
+</p>
+<p>Computes the relational outer join of tables A and B. This is like a
+regular join, but also includes rows in each input which did not have
+matching rows in the other input; the columns from the missing side are
+filled in with placeholder values.
+</p>
+<p>TODO: Document options.
+</p>
+<p>Returns:
+  <var>out</var> - A table that is the result of the outer join of A and B
+  <var>ixa</var> - indexes into A for each row in out
+  <var>ixb</var> - indexes into B for each row in out
+</p>
+</dd></dl>
+
+<hr>
+<span id="table_002eouterfillvals"></span><div class="header">
+<p>
+Next: <a href="#table_002esemijoin" accesskey="n" rel="next">table.semijoin</a>, Previous: <a href="#table_002eouterjoin" accesskey="p" rel="prev">table.outerjoin</a>, Up: <a href="#table" accesskey="u" rel="up">table</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<span id="table_002eouterfillvals-1"></span><h4 class="subsubsection">5.2.19.43 table.outerfillvals</h4>
+
+<dl>
+<dt id="index-outerfillvals">Method: <em><var>out</var> =</em> <strong>outerfillvals</strong> <em>(<var>obj</var>)</em></dt>
+<dd>
+<p>Get fill values for outer join.
+</p>
+<p>Returns a table with the same variables as this, but containing only
+a single row whose variable values are the values to use as fill values
+when doing an outer join.
+</p>
+</dd></dl>
+
+<hr>
+<span id="table_002esemijoin"></span><div class="header">
+<p>
+Next: <a href="#table_002eantijoin" accesskey="n" rel="next">table.antijoin</a>, Previous: <a href="#table_002eouterfillvals" accesskey="p" rel="prev">table.outerfillvals</a>, Up: <a href="#table" accesskey="u" rel="up">table</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<span id="table_002esemijoin-1"></span><h4 class="subsubsection">5.2.19.44 table.semijoin</h4>
+
+<dl>
+<dt id="index-semijoin">Method: <em>[<var>outA</var>, <var>ixA</var>, <var>outB</var>, <var>ixB</var>] =</em> <strong>semijoin</strong> <em>(<var>A</var>, <var>B</var>)</em></dt>
+<dd>
+<p>Natural semijoin.
+</p>
+<p>Computes the natural semijoin of tables A and B. The semi-join of tables
+A and B is the set of all rows in A which have matching rows in B, based
+on comparing the values of variables with the same names.
+</p>
+<p>This method also computes the semijoin of B and A, for convenience.
+</p>
+<p>Returns:
+  <var>outA</var> - all the rows in A with matching row(s) in B
+  <var>ixA</var> - the row indexes into A which produced <var>outA</var>
+  <var>outB</var> - all the rows in B with matching row(s) in A
+  <var>ixB</var> - the row indexes into B which produced <var>outB</var>
+</p>
+</dd></dl>
+
+<hr>
+<span id="table_002eantijoin"></span><div class="header">
+<p>
+Next: <a href="#table_002ecartesian" accesskey="n" rel="next">table.cartesian</a>, Previous: <a href="#table_002esemijoin" accesskey="p" rel="prev">table.semijoin</a>, Up: <a href="#table" accesskey="u" rel="up">table</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<span id="table_002eantijoin-1"></span><h4 class="subsubsection">5.2.19.45 table.antijoin</h4>
+
+<dl>
+<dt id="index-antijoin">Method: <em>[<var>outA</var>, <var>ixA</var>, <var>outB</var>, <var>ixB</var>] =</em> <strong>antijoin</strong> <em>(<var>A</var>, <var>B</var>)</em></dt>
+<dd>
+<p>Natural antijoin (AKA “semidifference”).
+</p>
+<p>Computes the anti-join of A and B. The anti-join is defined as all the
+rows from one input which do not have matching rows in the other input.
+</p>
+<p>Returns:
+  <var>outA</var> - all the rows in A with no matching row in B
+  <var>ixA</var> - the row indexes into A which produced <var>outA</var>
+  <var>outB</var> - all the rows in B with no matching row in A
+  <var>ixB</var> - the row indexes into B which produced <var>outB</var>
+</p>
+</dd></dl>
+
+<hr>
+<span id="table_002ecartesian"></span><div class="header">
+<p>
+Next: <a href="#table_002egroupby" accesskey="n" rel="next">table.groupby</a>, Previous: <a href="#table_002eantijoin" accesskey="p" rel="prev">table.antijoin</a>, Up: <a href="#table" accesskey="u" rel="up">table</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<span id="table_002ecartesian-1"></span><h4 class="subsubsection">5.2.19.46 table.cartesian</h4>
+
+<dl>
+<dt id="index-cartesian">Method: <em>[<var>out</var>, <var>ixs</var>] =</em> <strong>cartesian</strong> <em>(<var>A</var>, <var>B</var>)</em></dt>
+<dd>
+<p>Cartesian product of two tables.
+</p>
+<p>Computes the Cartesian product of two tables. The Cartesian product is
+each row in A combined with each row in B.
+</p>
+<p>Due to the definition and structural constraints of table, the two inputs
+must have no variable names in common. It is an error if they do.
+</p>
+<p>The Cartesian product is seldom used in practice. If you find yourself
+calling this method, you should step back and re-evaluate what you are
+doing, asking yourself if that is really what you want to happen. If nothing
+else, writing a function that calls cartesian() is usually much less
+efficient than alternate ways of arriving at the same result.
+</p>
+<p>This implementation does not remove duplicate values.
+TODO: Determine whether this duplicate-removing behavior is correct.
+</p>
+<p>The ordering of the rows in the output is not specified, and may be implementation-
+dependent. TODO: Determine if we can lock this behavior down to a fixed,
+defined ordering, without killing performance.
+</p>
+</dd></dl>
+
+<hr>
+<span id="table_002egroupby"></span><div class="header">
+<p>
+Next: <a href="#table_002egrpstats" accesskey="n" rel="next">table.grpstats</a>, Previous: <a href="#table_002ecartesian" accesskey="p" rel="prev">table.cartesian</a>, Up: <a href="#table" accesskey="u" rel="up">table</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<span id="table_002egroupby-1"></span><h4 class="subsubsection">5.2.19.47 table.groupby</h4>
+
+<dl>
+<dt id="index-groupby">Method: <em>[<var>out</var>] =</em> <strong>groupby</strong> <em>(<var>obj</var>, <var>groupvars</var>, <var>aggcalcs</var>)</em></dt>
+<dd>
+<p>Find groups in table data and apply functions to variables within groups.
+</p>
+<p>This works like an SQL <code>&quot;SELECT ... GROUP BY ...&quot;</code> statement.
+</p>
+<p><var>groupvars</var> (cellstr, numeric) is a list of the grouping variables,
+identified by name or index.
+</p>
+<p><var>aggcalcs</var> is a specification of the aggregate calculations to perform
+on them, in the form <code>{</code><var>out_var</var><code>,</code> <var>fcn</var><code>,</code> <var>in_vars</var><code>; ...}</code>, where:
+  <var>out_var</var> (char) is the name of the output variable
+  <var>fcn</var> (function handle) is the function to apply to produce it
+  <var>in_vars</var> (cellstr) is a list of the input variables to pass to fcn
+</p>
+<p>Returns a table.
+</p>
+</dd></dl>
+
+<hr>
+<span id="table_002egrpstats"></span><div class="header">
+<p>
+Next: <a href="#table_002eunion" accesskey="n" rel="next">table.union</a>, Previous: <a href="#table_002egroupby" accesskey="p" rel="prev">table.groupby</a>, Up: <a href="#table" accesskey="u" rel="up">table</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<span id="table_002egrpstats-1"></span><h4 class="subsubsection">5.2.19.48 table.grpstats</h4>
+
+<dl>
+<dt id="index-grpstats">Method: <em>[<var>out</var>] =</em> <strong>grpstats</strong> <em>(<var>obj</var>, <var>groupvar</var>)</em></dt>
+<dt id="index-grpstats-1">Method: <em>[<var>out</var>] =</em> <strong>grpstats</strong> <em>(&hellip;, <code>'DataVars'</code>, <var>DataVars</var>)</em></dt>
+<dd>
+<p>Statistics by group.
+</p>
+<p>See also: <a href="#table_002egroupby">table.groupby</a>.
+</p>
+</dd></dl>
+
+<hr>
+<span id="table_002eunion"></span><div class="header">
+<p>
+Next: <a href="#table_002eintersect" accesskey="n" rel="next">table.intersect</a>, Previous: <a href="#table_002egrpstats" accesskey="p" rel="prev">table.grpstats</a>, Up: <a href="#table" accesskey="u" rel="up">table</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<span id="table_002eunion-1"></span><h4 class="subsubsection">5.2.19.49 table.union</h4>
+
+<dl>
+<dt id="index-union">Method: <em>[<var>C</var>, <var>ia</var>, <var>ib</var>] =</em> <strong>union</strong> <em>(<var>A</var>, <var>B</var>)</em></dt>
+<dd>
+<p>Set union.
+</p>
+<p>Computes the union of two tables. The union is defined to be the unique
+row values which are present in either of the two input tables.
+</p>
+<p>Returns:
+  <var>C</var> - A table containing all the unique row values present in A or B.
+  <var>ia</var> - Row indexes into A of the rows from A included in C.
+  <var>ib</var> - Row indexes into B of the rows from B included in C.
+</p>
+</dd></dl>
+
+<hr>
+<span id="table_002eintersect"></span><div class="header">
+<p>
+Next: <a href="#table_002esetxor" accesskey="n" rel="next">table.setxor</a>, Previous: <a href="#table_002eunion" accesskey="p" rel="prev">table.union</a>, Up: <a href="#table" accesskey="u" rel="up">table</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<span id="table_002eintersect-1"></span><h4 class="subsubsection">5.2.19.50 table.intersect</h4>
+
+<dl>
+<dt id="index-intersect">Method: <em>[<var>C</var>, <var>ia</var>, <var>ib</var>] =</em> <strong>intersect</strong> <em>(<var>A</var>, <var>B</var>)</em></dt>
+<dd>
+<p>Set intersection.
+</p>
+<p>Computes the intersection of two tables. The intersection is defined to be the unique
+row values which are present in both of the two input tables.
+</p>
+<p>Returns:
+  <var>C</var> - A table containing all the unique row values present in both A and B.
+  <var>ia</var> - Row indexes into A of the rows from A included in C.
+  <var>ib</var> - Row indexes into B of the rows from B included in C.
+</p>
+</dd></dl>
+
+<hr>
+<span id="table_002esetxor"></span><div class="header">
+<p>
+Next: <a href="#table_002esetdiff" accesskey="n" rel="next">table.setdiff</a>, Previous: <a href="#table_002eintersect" accesskey="p" rel="prev">table.intersect</a>, Up: <a href="#table" accesskey="u" rel="up">table</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<span id="table_002esetxor-1"></span><h4 class="subsubsection">5.2.19.51 table.setxor</h4>
+
+<dl>
+<dt id="index-setxor">Method: <em>[<var>C</var>, <var>ia</var>, <var>ib</var>] =</em> <strong>setxor</strong> <em>(<var>A</var>, <var>B</var>)</em></dt>
+<dd>
+<p>Set exclusive OR.
+</p>
+<p>Computes the setwise exclusive OR of two tables. The set XOR is defined to be
+the unique row values which are present in one or the other of the two input
+tables, but not in both.
+</p>
+<p>Returns:
+  <var>C</var> - A table containing all the unique row values in the set XOR of A and B.
+  <var>ia</var> - Row indexes into A of the rows from A included in C.
+  <var>ib</var> - Row indexes into B of the rows from B included in C.
+</p>
+</dd></dl>
+
+<hr>
+<span id="table_002esetdiff"></span><div class="header">
+<p>
+Next: <a href="#table_002eismember" accesskey="n" rel="next">table.ismember</a>, Previous: <a href="#table_002esetxor" accesskey="p" rel="prev">table.setxor</a>, Up: <a href="#table" accesskey="u" rel="up">table</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<span id="table_002esetdiff-1"></span><h4 class="subsubsection">5.2.19.52 table.setdiff</h4>
+
+<dl>
+<dt id="index-setdiff">Method: <em>[<var>C</var>, <var>ia</var>] =</em> <strong>setdiff</strong> <em>(<var>A</var>, <var>B</var>)</em></dt>
+<dd>
+<p>Set difference.
+</p>
+<p>Computes the set difference of two tables. The set difference is defined to be
+the unique row values which are present in table A that are not in table B.
+</p>
+<p>Returns:
+  <var>C</var> - A table containing the unique row values in A that were not in B.
+  <var>ia</var> - Row indexes into A of the rows from A included in C.
+</p>
+</dd></dl>
+
+<hr>
+<span id="table_002eismember"></span><div class="header">
+<p>
+Next: <a href="#table_002eismissing" accesskey="n" rel="next">table.ismissing</a>, Previous: <a href="#table_002esetdiff" accesskey="p" rel="prev">table.setdiff</a>, Up: <a href="#table" accesskey="u" rel="up">table</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<span id="table_002eismember-1"></span><h4 class="subsubsection">5.2.19.53 table.ismember</h4>
+
+<dl>
+<dt id="index-ismember">Method: <em>[<var>tf</var>, <var>loc</var>] =</em> <strong>ismember</strong> <em>(<var>A</var>, <var>B</var>)</em></dt>
+<dd>
+<p>Set membership.
+</p>
+<p>Finds rows in A that are members of B.
+</p>
+<p>Returns:
+  <var>tf</var> - A logical vector indicating whether each A(i,:) was present in B.
+  <var>loc</var> - Indexes into B of rows that were found.
+</p>
+</dd></dl>
+
+<hr>
+<span id="table_002eismissing"></span><div class="header">
+<p>
+Next: <a href="#table_002ermmissing" accesskey="n" rel="next">table.rmmissing</a>, Previous: <a href="#table_002eismember" accesskey="p" rel="prev">table.ismember</a>, Up: <a href="#table" accesskey="u" rel="up">table</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<span id="table_002eismissing-1"></span><h4 class="subsubsection">5.2.19.54 table.ismissing</h4>
+
+<dl>
+<dt id="index-ismissing">Method: <em><var>out</var> =</em> <strong>ismissing</strong> <em>(<var>obj</var>)</em></dt>
+<dt id="index-ismissing-1">Method: <em><var>out</var> =</em> <strong>ismissing</strong> <em>(<var>obj</var>, <var>indicator</var>)</em></dt>
+<dd>
+<p>Find missing values.
+</p>
+<p>Finds missing values in <var>obj</var>’s variables.
+</p>
+<p>If indicator is not supplied, uses the standard missing values for each
+variable’s data type. If indicator is supplied, the same indicator list is
+applied across all variables.
+</p>
+<p>All variables in this must be vectors. (This is due to the requirement
+that <code>size(out) == size(obj)</code>.)
+</p>
+<p>Returns a logical array the same size as <var>obj</var>.
+</p>
+</dd></dl>
+
+<hr>
+<span id="table_002ermmissing"></span><div class="header">
+<p>
+Next: <a href="#table_002estandardizeMissing" accesskey="n" rel="next">table.standardizeMissing</a>, Previous: <a href="#table_002eismissing" accesskey="p" rel="prev">table.ismissing</a>, Up: <a href="#table" accesskey="u" rel="up">table</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<span id="table_002ermmissing-1"></span><h4 class="subsubsection">5.2.19.55 table.rmmissing</h4>
+
+<dl>
+<dt id="index-rmmissing">Method: <em>[<var>out</var>, <var>tf</var>] =</em> <strong>rmmissing</strong> <em>(<var>obj</var>)</em></dt>
+<dt id="index-rmmissing-1">Method: <em>[<var>out</var>, <var>tf</var>] =</em> <strong>rmmissing</strong> <em>(<var>obj</var>, <var>indicator</var>)</em></dt>
+<dt id="index-rmmissing-2">Method: <em>[<var>out</var>, <var>tf</var>] =</em> <strong>rmmissing</strong> <em>(&hellip;, <code>'DataVariables'</code>, <var>vars</var>)</em></dt>
+<dt id="index-rmmissing-3">Method: <em>[<var>out</var>, <var>tf</var>] =</em> <strong>rmmissing</strong> <em>(&hellip;, <code>'MinNumMissing'</code>, <var>minNumMissing</var>)</em></dt>
+<dd>
+<p>Remove rows with missing values.
+</p>
+<p>Removes the rows from <var>obj</var> that have missing values.
+</p>
+<p>If the &rsquo;DataVariables&rsquo; option is given, only the data in the specified
+variables is considered.
+</p>
+<p>Returns:
+  <var>out</var> - A table the same as <var>obj</var>, but with rows with missing values removed.
+  <var>tf</var> - A logical index vector indicating which rows were removed.
+</p>
+</dd></dl>
+
+<hr>
+<span id="table_002estandardizeMissing"></span><div class="header">
+<p>
+Next: <a href="#table_002evarfun" accesskey="n" rel="next">table.varfun</a>, Previous: <a href="#table_002ermmissing" accesskey="p" rel="prev">table.rmmissing</a>, Up: <a href="#table" accesskey="u" rel="up">table</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<span id="table_002estandardizeMissing-1"></span><h4 class="subsubsection">5.2.19.56 table.standardizeMissing</h4>
+
+<dl>
+<dt id="index-standardizeMissing">Method: <em><var>out</var> =</em> <strong>standardizeMissing</strong> <em>(<var>obj</var>, <var>indicator</var>)</em></dt>
+<dt id="index-standardizeMissing-1">Method: <em><var>out</var> =</em> <strong>standardizeMissing</strong> <em>(&hellip;, <code>'DataVariables'</code>, <var>vars</var>)</em></dt>
+<dd>
+<p>Insert standard missing values.
+</p>
+<p>Standardizes missing values in variable data.
+</p>
+<p>If the <var>DataVariables</var> option is supplied, only the indicated variables are
+standardized.
+</p>
+<p><var>indicator</var> is passed along to <code>standardizeMissing</code> when it is called on each
+of the data variables in turn. The same indicator is used for all
+variables. You can mix and match indicator types by just passing in
+mixed indicator types in a cell array; indicators that don&rsquo;t match the
+type of the column they are operating on are just ignored.
+</p>
+<p>Returns a table with same variable names and types as <var>obj</var>, but with variable
+values standardized.
+</p>
+</dd></dl>
+
+<hr>
+<span id="table_002evarfun"></span><div class="header">
+<p>
+Next: <a href="#table_002erowfun" accesskey="n" rel="next">table.rowfun</a>, Previous: <a href="#table_002estandardizeMissing" accesskey="p" rel="prev">table.standardizeMissing</a>, Up: <a href="#table" accesskey="u" rel="up">table</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<span id="table_002evarfun-1"></span><h4 class="subsubsection">5.2.19.57 table.varfun</h4>
+
+<dl>
+<dt id="index-varfun">Method: <em><var>out</var> =</em> <strong>varfun</strong> <em>(<var>fcn</var>, <var>obj</var>)</em></dt>
+<dt id="index-varfun-1">Method: <em><var>out</var> =</em> <strong>varfun</strong> <em>(&hellip;, <code>'OutputFormat'</code>, <var>outputFormat</var>)</em></dt>
+<dt id="index-varfun-2">Method: <em><var>out</var> =</em> <strong>varfun</strong> <em>(&hellip;, <code>'InputVariables'</code>, <var>vars</var>)</em></dt>
+<dt id="index-varfun-3">Method: <em><var>out</var> =</em> <strong>varfun</strong> <em>(&hellip;, <code>'ErrorHandler'</code>, <var>errorFcn</var>)</em></dt>
+<dd>
+<p>Apply function to table variables.
+</p>
+<p>Applies the given function <var>fcn</var> to each variable in <var>obj</var>,
+collecting the output in a table, cell array, or array of another type.
+</p>
+</dd></dl>
+
+<hr>
+<span id="table_002erowfun"></span><div class="header">
+<p>
+Next: <a href="#table_002efindgroups" accesskey="n" rel="next">table.findgroups</a>, Previous: <a href="#table_002evarfun" accesskey="p" rel="prev">table.varfun</a>, Up: <a href="#table" accesskey="u" rel="up">table</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<span id="table_002erowfun-1"></span><h4 class="subsubsection">5.2.19.58 table.rowfun</h4>
+
+<dl>
+<dt id="index-varfun-4">Method: <em><var>out</var> =</em> <strong>varfun</strong> <em>(<var>fcn</var>, <var>obj</var>)</em></dt>
+<dt id="index-varfun-5">Method: <em><var>out</var> =</em> <strong>varfun</strong> <em>(&hellip;, <code>'OptionName'</code>, <var>OptionValue</var>, &hellip;)</em></dt>
+<dd>
+<p>This method is currently unimplemented. Sorry.
+</p>
+</dd></dl>
+
+<hr>
+<span id="table_002efindgroups"></span><div class="header">
+<p>
+Next: <a href="#table_002eevalWithVars" accesskey="n" rel="next">table.evalWithVars</a>, Previous: <a href="#table_002erowfun" accesskey="p" rel="prev">table.rowfun</a>, Up: <a href="#table" accesskey="u" rel="up">table</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<span id="table_002efindgroups-1"></span><h4 class="subsubsection">5.2.19.59 table.findgroups</h4>
+
+<dl>
+<dt id="index-findgroups">Method: <em>[<var>G</var>, <var>TID</var>] =</em> <strong>findgroups</strong> <em>(<var>obj</var>)</em></dt>
+<dd>
+<p>Find groups within a table’s row values.
+</p>
+<p>Finds groups within a table’s row values and get group numbers. A group
+is a set of rows that have the same values in all their variable elements.
+</p>
+<p>Returns:
+  <var>G</var> - A double column vector of group numbers created from <var>obj</var>.
+  <var>TID</var> - A table containing the row values corresponding to the group numbers.
+</p>
+</dd></dl>
+
+<hr>
+<span id="table_002eevalWithVars"></span><div class="header">
+<p>
+Next: <a href="#table_002erestrict" accesskey="n" rel="next">table.restrict</a>, Previous: <a href="#table_002efindgroups" accesskey="p" rel="prev">table.findgroups</a>, Up: <a href="#table" accesskey="u" rel="up">table</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<span id="table_002eevalWithVars-1"></span><h4 class="subsubsection">5.2.19.60 table.evalWithVars</h4>
+
+<dl>
+<dt id="index-evalWithVars">Method: <em><var>out</var> =</em> <strong>evalWithVars</strong> <em>(<var>obj</var>, <var>expr</var>)</em></dt>
+<dd>
+<p>Evaluate an expression against table’s variables.
+</p>
+<p>Evaluates the M-code expression <var>expr</var> in a workspace where all of <var>obj</var>’s
+variables have been assigned to workspace variables.
+</p>
+<p><var>expr</var> is a charvec containing an Octave expression.
+</p>
+<p>As an implementation detail, the workspace will also contain some variables
+that are prefixed and suffixed with &quot;__&quot;. So try to avoid those in your
+table variable names.
+</p>
+<p>Returns the result of the evaluation.
+</p>
+<p>Examples:
+</p>
+<div class="example">
+<pre class="example">[s,p,sp] = table_examples.SpDb
+tmp = join (sp, p);
+shipment_weight = evalWithVars (tmp, &quot;Qty .* Weight&quot;)
+</pre></div>
+
+</dd></dl>
+
+<hr>
+<span id="table_002erestrict"></span><div class="header">
+<p>
+Previous: <a href="#table_002eevalWithVars" accesskey="p" rel="prev">table.evalWithVars</a>, Up: <a href="#table" accesskey="u" rel="up">table</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<span id="table_002erestrict-1"></span><h4 class="subsubsection">5.2.19.61 table.restrict</h4>
+
+<dl>
+<dt id="index-restrict">Method: <em><var>out</var> =</em> <strong>restrict</strong> <em>(<var>obj</var>, <var>expr</var>)</em></dt>
+<dt id="index-restrict-1">Method: <em><var>out</var> =</em> <strong>restrict</strong> <em>(<var>obj</var>, <var>ix</var>)</em></dt>
+<dd>
+<p>Subset rows using variable expression or index.
+</p>
+<p>Subsets a table row-wise, using either an index vector or an expression
+involving <var>obj</var>’s variables.
+</p>
+<p>If the argument is a numeric or logical vector, it is interpreted as an
+index into the rows of this. (Just as with &lsquo;subsetRows (this, index)&lsquo;.)
+</p>
+<p>If the argument is a char, then it is evaulated as an M-code expression,
+with all of this’ variables available as workspace variables, as with
+<code>evalWithVars</code>. The output of expr must be a numeric or logical index
+vector (This form is a shorthand for
+<code>out = subsetRows (this, evalWithVars (this, expr))</code>.)
+</p>
+<p>TODO: Decide whether to name this to &quot;where&quot; to be more like SQL instead
+of relational algebra.
+</p>
+<p>Examples:
+</p><div class="example">
+<pre class="example">[s,p,sp] = table_examples.SpDb;
+prettyprint (restrict (p, 'Weight &gt;= 14 &amp; strcmp(Color, &quot;Red&quot;)'))
+</pre></div>
+
 </dd></dl>
 
 <hr>

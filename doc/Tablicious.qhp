@@ -47,7 +47,7 @@
                         </section>
                         <section title="rmmissing" ref="html/rmmissing.html">
                         </section>
-                        <section title="standardizemissing" ref="html/standardizemissing.html">
+                        <section title="standardizeMissing" ref="html/standardizeMissing.html">
                         </section>
                         <section title="startsWith" ref="html/startsWith.html">
                         </section>
@@ -64,6 +64,120 @@
                             </section>
                             <section title="table.table2cell" ref="html/table_002etable2cell.html">
                             </section>
+                            <section title="table.table2struct" ref="html/table_002etable2struct.html">
+                            </section>
+                            <section title="table.table2array" ref="html/table_002etable2array.html">
+                            </section>
+                            <section title="table.varnames" ref="html/table_002evarnames.html">
+                            </section>
+                            <section title="table.istable" ref="html/table_002eistable.html">
+                            </section>
+                            <section title="table.size" ref="html/table_002esize.html">
+                            </section>
+                            <section title="table.length" ref="html/table_002elength.html">
+                            </section>
+                            <section title="table.ndims" ref="html/table_002endims.html">
+                            </section>
+                            <section title="table.squeeze" ref="html/table_002esqueeze.html">
+                            </section>
+                            <section title="table.sizeof" ref="html/table_002esizeof.html">
+                            </section>
+                            <section title="table.height" ref="html/table_002eheight.html">
+                            </section>
+                            <section title="table.rows" ref="html/table_002erows.html">
+                            </section>
+                            <section title="table.width" ref="html/table_002ewidth.html">
+                            </section>
+                            <section title="table.columns" ref="html/table_002ecolumns.html">
+                            </section>
+                            <section title="table.numel" ref="html/table_002enumel.html">
+                            </section>
+                            <section title="table.isempty" ref="html/table_002eisempty.html">
+                            </section>
+                            <section title="table.ismatrix" ref="html/table_002eismatrix.html">
+                            </section>
+                            <section title="table.isrow" ref="html/table_002eisrow.html">
+                            </section>
+                            <section title="table.iscol" ref="html/table_002eiscol.html">
+                            </section>
+                            <section title="table.isvector" ref="html/table_002eisvector.html">
+                            </section>
+                            <section title="table.isscalar" ref="html/table_002eisscalar.html">
+                            </section>
+                            <section title="table.hasrownames" ref="html/table_002ehasrownames.html">
+                            </section>
+                            <section title="table.vertcat" ref="html/table_002evertcat.html">
+                            </section>
+                            <section title="table.horzcat" ref="html/table_002ehorzcat.html">
+                            </section>
+                            <section title="table.repmat" ref="html/table_002erepmat.html">
+                            </section>
+                            <section title="table.setVariableNames" ref="html/table_002esetVariableNames.html">
+                            </section>
+                            <section title="table.setRowNames" ref="html/table_002esetRowNames.html">
+                            </section>
+                            <section title="table.resolveVarRef" ref="html/table_002eresolveVarRef.html">
+                            </section>
+                            <section title="table.subsetRows" ref="html/table_002esubsetRows.html">
+                            </section>
+                            <section title="table.subsetvars" ref="html/table_002esubsetvars.html">
+                            </section>
+                            <section title="table.removevars" ref="html/table_002eremovevars.html">
+                            </section>
+                            <section title="table.movevars" ref="html/table_002emovevars.html">
+                            </section>
+                            <section title="table.setvar" ref="html/table_002esetvar.html">
+                            </section>
+                            <section title="table.convertvars" ref="html/table_002econvertvars.html">
+                            </section>
+                            <section title="table.head" ref="html/table_002ehead.html">
+                            </section>
+                            <section title="table.tail" ref="html/table_002etail.html">
+                            </section>
+                            <section title="table.join" ref="html/table_002ejoin.html">
+                            </section>
+                            <section title="table.innerjoin" ref="html/table_002einnerjoin.html">
+                            </section>
+                            <section title="table.outerjoin" ref="html/table_002eouterjoin.html">
+                            </section>
+                            <section title="table.outerfillvals" ref="html/table_002eouterfillvals.html">
+                            </section>
+                            <section title="table.semijoin" ref="html/table_002esemijoin.html">
+                            </section>
+                            <section title="table.antijoin" ref="html/table_002eantijoin.html">
+                            </section>
+                            <section title="table.cartesian" ref="html/table_002ecartesian.html">
+                            </section>
+                            <section title="table.groupby" ref="html/table_002egroupby.html">
+                            </section>
+                            <section title="table.grpstats" ref="html/table_002egrpstats.html">
+                            </section>
+                            <section title="table.union" ref="html/table_002eunion.html">
+                            </section>
+                            <section title="table.intersect" ref="html/table_002eintersect.html">
+                            </section>
+                            <section title="table.setxor" ref="html/table_002esetxor.html">
+                            </section>
+                            <section title="table.setdiff" ref="html/table_002esetdiff.html">
+                            </section>
+                            <section title="table.ismember" ref="html/table_002eismember.html">
+                            </section>
+                            <section title="table.ismissing" ref="html/table_002eismissing.html">
+                            </section>
+                            <section title="table.rmmissing" ref="html/table_002ermmissing.html">
+                            </section>
+                            <section title="table.standardizeMissing" ref="html/table_002estandardizeMissing.html">
+                            </section>
+                            <section title="table.varfun" ref="html/table_002evarfun.html">
+                            </section>
+                            <section title="table.rowfun" ref="html/table_002erowfun.html">
+                            </section>
+                            <section title="table.findgroups" ref="html/table_002efindgroups.html">
+                            </section>
+                            <section title="table.evalWithVars" ref="html/table_002eevalWithVars.html">
+                            </section>
+                            <section title="table.restrict" ref="html/table_002erestrict.html">
+                            </section>
                         </section>
                         <section title="tableOuterFillValue" ref="html/tableOuterFillValue.html">
                         </section>
@@ -75,16 +189,133 @@
         </section>
         </toc>
         <keywords>
+            <keyword name="array2table" id="array2table" ref="html/array2table.html"/>
+            <keyword name="categorical" id="categorical" ref="html/categorical.html"/>
+            <keyword name="cell2table" id="cell2table" ref="html/cell2table.html"/>
             <keyword name="table" id="table" ref="html/table.html"/>
+            <keyword name="table.antijoin" id="table.antijoin" ref="html/table_002eantijoin.html"/>
+            <keyword name="table.cartesian" id="table.cartesian" ref="html/table_002ecartesian.html"/>
+            <keyword name="table.columns" id="table.columns" ref="html/table_002ecolumns.html"/>
+            <keyword name="table.convertvars" id="table.convertvars" ref="html/table_002econvertvars.html"/>
+            <keyword name="table.evalWithVars" id="table.evalWithVars" ref="html/table_002eevalWithVars.html"/>
+            <keyword name="table.findgroups" id="table.findgroups" ref="html/table_002efindgroups.html"/>
+            <keyword name="table.groupby" id="table.groupby" ref="html/table_002egroupby.html"/>
+            <keyword name="table.grpstats" id="table.grpstats" ref="html/table_002egrpstats.html"/>
+            <keyword name="table.hasrownames" id="table.hasrownames" ref="html/table_002ehasrownames.html"/>
+            <keyword name="table.head" id="table.head" ref="html/table_002ehead.html"/>
+            <keyword name="table.height" id="table.height" ref="html/table_002eheight.html"/>
+            <keyword name="table.horzcat" id="table.horzcat" ref="html/table_002ehorzcat.html"/>
+            <keyword name="table.innerjoin" id="table.innerjoin" ref="html/table_002einnerjoin.html"/>
+            <keyword name="table.intersect" id="table.intersect" ref="html/table_002eintersect.html"/>
+            <keyword name="table.iscol" id="table.iscol" ref="html/table_002eiscol.html"/>
+            <keyword name="table.isempty" id="table.isempty" ref="html/table_002eisempty.html"/>
+            <keyword name="table.ismatrix" id="table.ismatrix" ref="html/table_002eismatrix.html"/>
+            <keyword name="table.ismember" id="table.ismember" ref="html/table_002eismember.html"/>
+            <keyword name="table.ismissing" id="table.ismissing" ref="html/table_002eismissing.html"/>
+            <keyword name="table.isrow" id="table.isrow" ref="html/table_002eisrow.html"/>
+            <keyword name="table.isscalar" id="table.isscalar" ref="html/table_002eisscalar.html"/>
+            <keyword name="table.istable" id="table.istable" ref="html/table_002eistable.html"/>
+            <keyword name="table.isvector" id="table.isvector" ref="html/table_002eisvector.html"/>
+            <keyword name="table.join" id="table.join" ref="html/table_002ejoin.html"/>
+            <keyword name="table.length" id="table.length" ref="html/table_002elength.html"/>
+            <keyword name="table.movevars" id="table.movevars" ref="html/table_002emovevars.html"/>
+            <keyword name="table.ndims" id="table.ndims" ref="html/table_002endims.html"/>
+            <keyword name="table.numel" id="table.numel" ref="html/table_002enumel.html"/>
+            <keyword name="table.outerfillvals" id="table.outerfillvals" ref="html/table_002eouterfillvals.html"/>
+            <keyword name="table.outerjoin" id="table.outerjoin" ref="html/table_002eouterjoin.html"/>
             <keyword name="table.prettyprint" id="table.prettyprint" ref="html/table_002eprettyprint.html"/>
+            <keyword name="table.removevars" id="table.removevars" ref="html/table_002eremovevars.html"/>
+            <keyword name="table.repmat" id="table.repmat" ref="html/table_002erepmat.html"/>
+            <keyword name="table.resolveVarRef" id="table.resolveVarRef" ref="html/table_002eresolveVarRef.html"/>
+            <keyword name="table.restrict" id="table.restrict" ref="html/table_002erestrict.html"/>
+            <keyword name="table.rmmissing" id="table.rmmissing" ref="html/table_002ermmissing.html"/>
+            <keyword name="table.rowfun" id="table.rowfun" ref="html/table_002erowfun.html"/>
+            <keyword name="table.rows" id="table.rows" ref="html/table_002erows.html"/>
+            <keyword name="table.semijoin" id="table.semijoin" ref="html/table_002esemijoin.html"/>
+            <keyword name="table.setRowNames" id="table.setRowNames" ref="html/table_002esetRowNames.html"/>
+            <keyword name="table.setVariableNames" id="table.setVariableNames" ref="html/table_002esetVariableNames.html"/>
+            <keyword name="table.setdiff" id="table.setdiff" ref="html/table_002esetdiff.html"/>
+            <keyword name="table.setvar" id="table.setvar" ref="html/table_002esetvar.html"/>
+            <keyword name="table.setxor" id="table.setxor" ref="html/table_002esetxor.html"/>
+            <keyword name="table.size" id="table.size" ref="html/table_002esize.html"/>
+            <keyword name="table.sizeof" id="table.sizeof" ref="html/table_002esizeof.html"/>
+            <keyword name="table.squeeze" id="table.squeeze" ref="html/table_002esqueeze.html"/>
+            <keyword name="table.standardizeMissing" id="table.standardizeMissing" ref="html/table_002estandardizeMissing.html"/>
+            <keyword name="table.subsetRows" id="table.subsetRows" ref="html/table_002esubsetRows.html"/>
+            <keyword name="table.subsetvars" id="table.subsetvars" ref="html/table_002esubsetvars.html"/>
             <keyword name="table.summary" id="table.summary" ref="html/table_002esummary.html"/>
             <keyword name="table.table" id="table.table" ref="html/table_002etable.html"/>
+            <keyword name="table.table2array" id="table.table2array" ref="html/table_002etable2array.html"/>
             <keyword name="table.table2cell" id="table.table2cell" ref="html/table_002etable2cell.html"/>
+            <keyword name="table.table2struct" id="table.table2struct" ref="html/table_002etable2struct.html"/>
+            <keyword name="table.tail" id="table.tail" ref="html/table_002etail.html"/>
+            <keyword name="table.union" id="table.union" ref="html/table_002eunion.html"/>
+            <keyword name="table.varfun" id="table.varfun" ref="html/table_002evarfun.html"/>
+            <keyword name="table.varnames" id="table.varnames" ref="html/table_002evarnames.html"/>
+            <keyword name="table.vertcat" id="table.vertcat" ref="html/table_002evertcat.html"/>
+            <keyword name="table.width" id="table.width" ref="html/table_002ewidth.html"/>
         </keywords>
         <files>
             <file>Tablicious.html</file>
             <file>html/Copying.html</file>
             <file>html/tableOuterFillValue.html</file>
+            <file>html/table_002erestrict.html</file>
+            <file>html/table_002eevalWithVars.html</file>
+            <file>html/table_002efindgroups.html</file>
+            <file>html/table_002erowfun.html</file>
+            <file>html/table_002evarfun.html</file>
+            <file>html/table_002estandardizeMissing.html</file>
+            <file>html/table_002ermmissing.html</file>
+            <file>html/table_002eismissing.html</file>
+            <file>html/table_002eismember.html</file>
+            <file>html/table_002esetdiff.html</file>
+            <file>html/table_002esetxor.html</file>
+            <file>html/table_002eintersect.html</file>
+            <file>html/table_002eunion.html</file>
+            <file>html/table_002egrpstats.html</file>
+            <file>html/table_002egroupby.html</file>
+            <file>html/table_002ecartesian.html</file>
+            <file>html/table_002eantijoin.html</file>
+            <file>html/table_002esemijoin.html</file>
+            <file>html/table_002eouterfillvals.html</file>
+            <file>html/table_002eouterjoin.html</file>
+            <file>html/table_002einnerjoin.html</file>
+            <file>html/table_002ejoin.html</file>
+            <file>html/table_002etail.html</file>
+            <file>html/table_002ehead.html</file>
+            <file>html/table_002econvertvars.html</file>
+            <file>html/table_002esetvar.html</file>
+            <file>html/table_002emovevars.html</file>
+            <file>html/table_002eremovevars.html</file>
+            <file>html/table_002esubsetvars.html</file>
+            <file>html/table_002esubsetRows.html</file>
+            <file>html/table_002eresolveVarRef.html</file>
+            <file>html/table_002esetRowNames.html</file>
+            <file>html/table_002esetVariableNames.html</file>
+            <file>html/table_002erepmat.html</file>
+            <file>html/table_002ehorzcat.html</file>
+            <file>html/table_002evertcat.html</file>
+            <file>html/table_002ehasrownames.html</file>
+            <file>html/table_002eisscalar.html</file>
+            <file>html/table_002eisvector.html</file>
+            <file>html/table_002eiscol.html</file>
+            <file>html/table_002eisrow.html</file>
+            <file>html/table_002eismatrix.html</file>
+            <file>html/table_002eisempty.html</file>
+            <file>html/table_002enumel.html</file>
+            <file>html/table_002ecolumns.html</file>
+            <file>html/table_002ewidth.html</file>
+            <file>html/table_002erows.html</file>
+            <file>html/table_002eheight.html</file>
+            <file>html/table_002esizeof.html</file>
+            <file>html/table_002esqueeze.html</file>
+            <file>html/table_002endims.html</file>
+            <file>html/table_002elength.html</file>
+            <file>html/table_002esize.html</file>
+            <file>html/table_002eistable.html</file>
+            <file>html/table_002evarnames.html</file>
+            <file>html/table_002etable2array.html</file>
+            <file>html/table_002etable2struct.html</file>
             <file>html/table_002etable2cell.html</file>
             <file>html/table_002eprettyprint.html</file>
             <file>html/table_002esummary.html</file>
@@ -93,7 +324,7 @@
             <file>html/struct2table.html</file>
             <file>html/string.html</file>
             <file>html/startsWith.html</file>
-            <file>html/standardizemissing.html</file>
+            <file>html/standardizeMissing.html</file>
             <file>html/rmmissing.html</file>
             <file>html/pp.html</file>
             <file>html/missing.html</file>

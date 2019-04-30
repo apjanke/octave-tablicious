@@ -142,8 +142,10 @@ File: Tablicious.info,  Node: Functions by Category,  Next: Functions Alphabetic
      Tabular data array containing multiple columnar variables.
 
 *note array2table::
+     Convert an array to a table.
 
 *note cell2table::
+     Convert a cell array to a table.
 
 *note struct2table::
 
@@ -161,6 +163,7 @@ File: Tablicious.info,  Node: Functions by Category,  Next: Functions Alphabetic
 *note contains::
 
 *note categorical::
+     Categorical variable array.
 
 *note discretize::
 
@@ -173,7 +176,7 @@ File: Tablicious.info,  Node: Functions by Category,  Next: Functions Alphabetic
 
 *note rmmissing::
 
-*note standardizemissing::
+*note standardizeMissing::
 
 *note missing::
 
@@ -196,9 +199,9 @@ File: Tablicious.info,  Node: Functions Alphabetically,  Prev: Functions by Cate
 
 * Menu:
 
-* array2table::
-* categorical::
-* cell2table::
+* array2table:: Convert an array to a table.
+* categorical:: Categorical variable array.
+* cell2table::	Convert a cell array to a table.
 * colvecfun::
 * contains::
 * discretize::
@@ -210,7 +213,7 @@ File: Tablicious.info,  Node: Functions Alphabetically,  Prev: Functions by Cate
 * missing::
 * pp::
 * rmmissing::
-* standardizemissing::
+* standardizeMissing::
 * startsWith::
 * string::
 * struct2table::
@@ -223,7 +226,23 @@ File: Tablicious.info,  Node: array2table,  Next: categorical,  Up: Functions Al
 5.2.1 array2table
 -----------------
 
-_Not documented_
+ -- Function: OUT = array2table (C)
+ -- Function: OUT = array2table (..., ‘'VariableNames'’, VARIABLENAMES)
+ -- Function: OUT = array2table (..., ‘'RowNames'’, ROWNAMES)
+
+     Convert an array to a table.
+
+     Converts an array to a table, with columns in the array becoming
+     variables in the output table.  This is typically used on numeric
+     arrays, but it can be applied to any type of array.
+
+     You may not want to use this on cell arrays, though, because you
+     will end up with a table that has all its variables of type cell.
+     If you use ‘cell2table’ instead, columns of the cell array which
+     can be condensed into primitive arrays will be.  With
+     ‘array2table’, they won’t be.
+
+     See also: *note cell2table::, *note table::, *note struct2table::
 
 
 File: Tablicious.info,  Node: categorical,  Next: cell2table,  Prev: array2table,  Up: Functions Alphabetically
@@ -231,7 +250,49 @@ File: Tablicious.info,  Node: categorical,  Next: cell2table,  Prev: array2table
 5.2.2 categorical
 -----------------
 
-_Not documented_
+ -- Class: categorical
+
+     Categorical variable array.
+
+     A ‘categorical’ array represents an array of values of a
+     categorical variable.  Each ‘categorical’ array stores the element
+     values along with a list of the categories, and indicators of
+     whether the categories are ordinal (that is, they have a meaningful
+     mathematical ordering), and whether the set of categories is
+     protected (preventing new categories from being added to the
+     array).
+
+     In addition to the categories defined in the array, a categorical
+     array may have elements of "undefined" value.  This is not
+     considered a category; rather, it is the absence of any known
+     value.  It is analagous to a ‘NaN’ value.
+
+     This class is not fully implemented yet.  Missing stuff: - gt, ge,
+     lt, le - Ordinal support in general - countcats - summary
+
+ -- Instance Variable of categorical: ‘uint16’ code
+
+     The numeric codes of the array element values.  These are indexes
+     into the ‘cats’ category list.
+
+     This is a planar property.
+
+ -- Instance Variable of categorical: ‘logical’ tfMissing
+
+     A logical mask indicating whether each element of the array is
+     missing (that is, undefined).
+
+     This is a planar property.
+
+ -- Instance Variable of categorical: ‘cellstr’ cats
+
+     The names of the categories in this array.  This is the list into
+     which the ‘code’ values are indexes.
+
+ -- Instance Variable of categorical: ‘scalar_logical’ isOrdinal
+
+     A scalar logical indicating whether the categories in this array
+     have an ordinal relationship.
 
 
 File: Tablicious.info,  Node: cell2table,  Next: colvecfun,  Prev: categorical,  Up: Functions Alphabetically
@@ -239,7 +300,19 @@ File: Tablicious.info,  Node: cell2table,  Next: colvecfun,  Prev: categorical, 
 5.2.3 cell2table
 ----------------
 
-_Not documented_
+ -- Function: OUT = cell2table (C)
+ -- Function: OUT = cell2table (..., ‘'VariableNames'’, VARIABLENAMES)
+ -- Function: OUT = cell2table (..., ‘'RowNames'’, ROWNAMES)
+
+     Convert a cell array to a table.
+
+     Converts a 2-dimensional cell matrix into a table.  Each column in
+     the input C becomes a variable in OUT.  For columns that contain
+     all scalar values of ‘cat’-compatible types, they are “popped out”
+     of their cells and condensed into a homogeneous array of the
+     contained type.
+
+     See also: *note array2table::, *note table::, *note struct2table::
 
 
 File: Tablicious.info,  Node: colvecfun,  Next: contains,  Prev: cell2table,  Up: Functions Alphabetically
@@ -322,7 +395,7 @@ File: Tablicious.info,  Node: pp,  Next: rmmissing,  Prev: missing,  Up: Functio
 _Not documented_
 
 
-File: Tablicious.info,  Node: rmmissing,  Next: standardizemissing,  Prev: pp,  Up: Functions Alphabetically
+File: Tablicious.info,  Node: rmmissing,  Next: standardizeMissing,  Prev: pp,  Up: Functions Alphabetically
 
 5.2.14 rmmissing
 ----------------
@@ -330,15 +403,15 @@ File: Tablicious.info,  Node: rmmissing,  Next: standardizemissing,  Prev: pp,  
 _Not documented_
 
 
-File: Tablicious.info,  Node: standardizemissing,  Next: startsWith,  Prev: rmmissing,  Up: Functions Alphabetically
+File: Tablicious.info,  Node: standardizeMissing,  Next: startsWith,  Prev: rmmissing,  Up: Functions Alphabetically
 
-5.2.15 standardizemissing
+5.2.15 standardizeMissing
 -------------------------
 
 _Not documented_
 
 
-File: Tablicious.info,  Node: startsWith,  Next: string,  Prev: standardizemissing,  Up: Functions Alphabetically
+File: Tablicious.info,  Node: startsWith,  Next: string,  Prev: standardizeMissing,  Up: Functions Alphabetically
 
 5.2.16 startsWith
 -----------------
@@ -403,6 +476,63 @@ File: Tablicious.info,  Node: table,  Next: tableOuterFillValue,  Prev: struct2t
 * table.summary::
 * table.prettyprint::
 * table.table2cell::
+* table.table2struct::
+* table.table2array::
+* table.varnames::
+* table.istable::
+* table.size::
+* table.length::
+* table.ndims::
+* table.squeeze::
+* table.sizeof::
+* table.height::
+* table.rows::
+* table.width::
+* table.columns::
+* table.numel::
+* table.isempty::
+* table.ismatrix::
+* table.isrow::
+* table.iscol::
+* table.isvector::
+* table.isscalar::
+* table.hasrownames::
+* table.vertcat::
+* table.horzcat::
+* table.repmat::
+* table.setVariableNames::
+* table.setRowNames::
+* table.resolveVarRef::
+* table.subsetRows::
+* table.subsetvars::
+* table.removevars::
+* table.movevars::
+* table.setvar::
+* table.convertvars::
+* table.head::
+* table.tail::
+* table.join::
+* table.innerjoin::
+* table.outerjoin::
+* table.outerfillvals::
+* table.semijoin::
+* table.antijoin::
+* table.cartesian::
+* table.groupby::
+* table.grpstats::
+* table.union::
+* table.intersect::
+* table.setxor::
+* table.setdiff::
+* table.ismember::
+* table.ismissing::
+* table.rmmissing::
+* table.standardizeMissing::
+* table.varfun::
+* table.rowfun::
+* table.findgroups::
+* table.evalWithVars::
+* table.restrict::
 
 
 File: Tablicious.info,  Node: table.table,  Next: table.summary,  Up: table
@@ -465,7 +595,7 @@ File: Tablicious.info,  Node: table.prettyprint,  Next: table.table2cell,  Prev:
      returned by their ‘dispstrs’ method, if they define one.
 
 
-File: Tablicious.info,  Node: table.table2cell,  Prev: table.prettyprint,  Up: table
+File: Tablicious.info,  Node: table.table2cell,  Next: table.table2struct,  Prev: table.prettyprint,  Up: table
 
 5.2.19.4 table.table2cell
 .........................
@@ -478,6 +608,960 @@ File: Tablicious.info,  Node: table.table2cell,  Prev: table.prettyprint,  Up: t
 
      Returns a cell array with the same number of rows as OBJ, and with
      as many or more columns as OBJ has variables.
+
+
+File: Tablicious.info,  Node: table.table2struct,  Next: table.table2array,  Prev: table.table2cell,  Up: table
+
+5.2.19.5 table.table2struct
+...........................
+
+ -- Method: S = table2struct (OBJ)
+ -- Method: S = table2struct (..., ‘'ToScalar'’, TRUEORFALSE)
+
+     Converts OBJ to a scalar structure or structure array.
+
+     Row names are not included in the output struct.  To include them,
+     you must add them manually: s = table2struct (tbl, ’ToScalar’,
+     true); s.RowNames = tbl.Properties.RowNames;
+
+     Returns a scalar struct or struct array, depending on the value of
+     the ‘ToScalar’ option.
+
+
+File: Tablicious.info,  Node: table.table2array,  Next: table.varnames,  Prev: table.table2struct,  Up: table
+
+5.2.19.6 table.table2array
+..........................
+
+ -- Method: S = table2struct (OBJ)
+
+     Converts OBJ to a homogeneous array.
+
+
+File: Tablicious.info,  Node: table.varnames,  Next: table.istable,  Prev: table.table2array,  Up: table
+
+5.2.19.7 table.varnames
+.......................
+
+ -- Method: OUT = varnames (OBJ)
+
+     Get variable names for a table.
+
+     Returns cellstr.
+
+
+File: Tablicious.info,  Node: table.istable,  Next: table.size,  Prev: table.varnames,  Up: table
+
+5.2.19.8 table.istable
+......................
+
+ -- Method: TF = istable (OBJ)
+
+     True if input is a table.
+
+
+File: Tablicious.info,  Node: table.size,  Next: table.length,  Prev: table.istable,  Up: table
+
+5.2.19.9 table.size
+...................
+
+ -- Method: SZ = size (OBJ)
+
+     Gets the size of a table.
+
+     For tables, the size is [number-of-rows x number-of-variables].
+     This is the same as ‘[height(obj), width(obj)]’.
+
+
+File: Tablicious.info,  Node: table.length,  Next: table.ndims,  Prev: table.size,  Up: table
+
+5.2.19.10 table.length
+......................
+
+ -- Method: OUT = length (OBJ)
+
+     Length along longest dimension
+
+     Use of ‘length’ is not recommended.  Use ‘numel’ or ‘size’ instead.
+
+
+File: Tablicious.info,  Node: table.ndims,  Next: table.squeeze,  Prev: table.length,  Up: table
+
+5.2.19.11 table.ndims
+.....................
+
+ -- Method: OUT = ndims (OBJ)
+
+     Number of dimensions
+
+     For tables, ‘ndims(obj)’ is always 2.
+
+
+File: Tablicious.info,  Node: table.squeeze,  Next: table.sizeof,  Prev: table.ndims,  Up: table
+
+5.2.19.12 table.squeeze
+.......................
+
+ -- Method: OBJ = squeeze (OBJ)
+
+     Remove singleton dimensions.
+
+     For tables, this is always a no-op that returns the input
+     unmodified, because tables always have exactly 2 dimensions.
+
+
+File: Tablicious.info,  Node: table.sizeof,  Next: table.height,  Prev: table.squeeze,  Up: table
+
+5.2.19.13 table.sizeof
+......................
+
+ -- Method: OUT = sizeof (OBJ)
+
+     Approximate size of array in bytes.  For tables, this returns the
+     sume of ‘sizeof’ for all of its variables’ arrays, plus the size of
+     the VariableNames and any other metadata stored in OBJ.
+
+     This is currently unimplemented.
+
+
+File: Tablicious.info,  Node: table.height,  Next: table.rows,  Prev: table.sizeof,  Up: table
+
+5.2.19.14 table.height
+......................
+
+ -- Method: OUT = height (OBJ)
+
+     Number of rows in table.
+
+
+File: Tablicious.info,  Node: table.rows,  Next: table.width,  Prev: table.height,  Up: table
+
+5.2.19.15 table.rows
+....................
+
+ -- Method: OUT = rows (OBJ)
+
+     Number of rows in table.
+
+
+File: Tablicious.info,  Node: table.width,  Next: table.columns,  Prev: table.rows,  Up: table
+
+5.2.19.16 table.width
+.....................
+
+ -- Method: OUT = width (OBJ)
+
+     Number of variables in table.
+
+     Note that this is not the sum of the number of columns in each
+     variable.  It is just the number of variables.
+
+
+File: Tablicious.info,  Node: table.columns,  Next: table.numel,  Prev: table.width,  Up: table
+
+5.2.19.17 table.columns
+.......................
+
+ -- Method: OUT = columns (OBJ)
+
+     Number of variables in table.
+
+     Note that this is not the sum of the number of columns in each
+     variable.  It is just the number of variables.
+
+
+File: Tablicious.info,  Node: table.numel,  Next: table.isempty,  Prev: table.columns,  Up: table
+
+5.2.19.18 table.numel
+.....................
+
+ -- Method: OUT = numel (OBJ)
+
+     Total number of elements in table.
+
+     This is the total number of elements in this table.  This is
+     calculated as the sum of numel for each variable.
+
+     NOTE: Those semantics may be wrong.  This may actually need to be
+     defined as ‘height(obj) * width(obj)’.  The behavior of ‘numel’ may
+     change in the future.
+
+
+File: Tablicious.info,  Node: table.isempty,  Next: table.ismatrix,  Prev: table.numel,  Up: table
+
+5.2.19.19 table.isempty
+.......................
+
+ -- Method: OUT = isempty (OBJ)
+
+     Test whether array is empty.
+
+     For tables, ‘isempty’ is true if the number of rows is 0 or the
+     number of variables is 0.
+
+
+File: Tablicious.info,  Node: table.ismatrix,  Next: table.isrow,  Prev: table.isempty,  Up: table
+
+5.2.19.20 table.ismatrix
+........................
+
+ -- Method: OUT = ismatrix (OBJ)
+
+     Test whether array is a matrix.
+
+     For tables, ‘ismatrix’ is always true, by definition.
+
+
+File: Tablicious.info,  Node: table.isrow,  Next: table.iscol,  Prev: table.ismatrix,  Up: table
+
+5.2.19.21 table.isrow
+.....................
+
+ -- Method: OUT = isrow (OBJ)
+
+     Test whether array is a row vector.
+
+
+File: Tablicious.info,  Node: table.iscol,  Next: table.isvector,  Prev: table.isrow,  Up: table
+
+5.2.19.22 table.iscol
+.....................
+
+ -- Method: OUT = iscol (OBJ)
+
+     Test whether array is a column vector.
+
+     For tables, ‘iscol’ is true if the input has a single variable.
+     The number of columns within that variable does not matter.
+
+
+File: Tablicious.info,  Node: table.isvector,  Next: table.isscalar,  Prev: table.iscol,  Up: table
+
+5.2.19.23 table.isvector
+........................
+
+ -- Method: OUT = isvector (OBJ)
+
+     Test whether array is a vector.
+
+
+File: Tablicious.info,  Node: table.isscalar,  Next: table.hasrownames,  Prev: table.isvector,  Up: table
+
+5.2.19.24 table.isscalar
+........................
+
+ -- Method: OUT = isscalar (OBJ)
+
+     Test whether array is scalar.
+
+
+File: Tablicious.info,  Node: table.hasrownames,  Next: table.vertcat,  Prev: table.isscalar,  Up: table
+
+5.2.19.25 table.hasrownames
+...........................
+
+ -- Method: OUT = hasrownames (OBJ)
+
+     True if this table has row names defined.
+
+
+File: Tablicious.info,  Node: table.vertcat,  Next: table.horzcat,  Prev: table.hasrownames,  Up: table
+
+5.2.19.26 table.vertcat
+.......................
+
+ -- Method: OUT = vertcat (VARARGIN)
+
+     Vertical concatenation.
+
+     Combines tables by vertically concatenating them.
+
+     Inputs that are not tables are automatically converted to tables by
+     calling table() on them.
+
+     The inputs must have the same number and names of variables, and
+     their variable value types and sizes must be cat-compatible.
+
+
+File: Tablicious.info,  Node: table.horzcat,  Next: table.repmat,  Prev: table.vertcat,  Up: table
+
+5.2.19.27 table.horzcat
+.......................
+
+ -- Method: OUT = horzcat (VARARGIN)
+
+     Horizontal concatenation.
+
+     Combines tables by horizontally concatenating them.  Inputs that
+     are not tables are automatically converted to tables by calling
+     table() on them.  Inputs must have all distinct variable names.
+
+     Output has the same RowNames as ‘varargin{1}’.  The variable names
+     and values are the result of the concatenation of the variable
+     names and values lists from the inputs.
+
+
+File: Tablicious.info,  Node: table.repmat,  Next: table.setVariableNames,  Prev: table.horzcat,  Up: table
+
+5.2.19.28 table.repmat
+......................
+
+ -- Method: OUT = repmat (OBJ, SZ)
+
+     Replicate matrix.
+
+     Repmats a table by repmatting each of its variables vertically.
+
+     For tables, repmatting is only supported along dimension 1.  That
+     is, the values of sz(2:end) must all be exactly 1.
+
+     Returns a new table with the same variable names and types as tbl,
+     but with a possibly different row count.
+
+
+File: Tablicious.info,  Node: table.setVariableNames,  Next: table.setRowNames,  Prev: table.repmat,  Up: table
+
+5.2.19.29 table.setVariableNames
+................................
+
+ -- Method: OUT = setVariableNames (OBJ, NAMES)
+
+     Set variable names.
+
+     Sets the ‘VariableNames’ for this table to a new list of names.
+
+     NAMES is a cellstr vector.  It must have the same number of
+     elements as the number of variables in OBJ.
+
+
+File: Tablicious.info,  Node: table.setRowNames,  Next: table.resolveVarRef,  Prev: table.setVariableNames,  Up: table
+
+5.2.19.30 table.setRowNames
+...........................
+
+ -- Method: OUT = setRowNames (OBJ, NAMES)
+
+     Set row names.
+
+     Sets the row names on OBJ to NAMES.
+
+     NAMES is a cellstr column vector, with the same number of rows as
+     OBJ has.
+
+
+File: Tablicious.info,  Node: table.resolveVarRef,  Next: table.subsetRows,  Prev: table.setRowNames,  Up: table
+
+5.2.19.31 table.resolveVarRef
+.............................
+
+ -- Method: [IXVAR, VARNAMES] = resolveVarREf (OBJ, VARREF)
+
+     Resolve a variable reference against this table.
+
+     A VARREF is a numeric or char/cellstr indicator of which variables
+     within OBJ are being referenced.
+
+     Returns: IXVAR - the indexes of the variables in OBJ VARNAMES - a
+     cellstr of the names of the variables in OBJ
+
+     Raises an error if any of the specified variables could not be
+     resolved.
+
+
+File: Tablicious.info,  Node: table.subsetRows,  Next: table.subsetvars,  Prev: table.resolveVarRef,  Up: table
+
+5.2.19.32 table.subsetRows
+..........................
+
+ -- Method: OUT = subsetRows (OBJ, IXROWS)
+
+     Subset table by rows.
+
+     Subsets this table by rows.
+
+     IXROWS may be a numeric or logical index into the rows of OBJ.
+
+
+File: Tablicious.info,  Node: table.subsetvars,  Next: table.removevars,  Prev: table.subsetRows,  Up: table
+
+5.2.19.33 table.subsetvars
+..........................
+
+ -- Method: OUT = subsetvars (OBJ, IXVARS)
+
+     Subset table by variables.
+
+     Subsets table OBJ by subsetting it along its variables.
+
+     ixVars may be: - a numeric index vector - a logical index vector -
+     ":" - a cellstr vector of variable names
+
+     The resulting table will have its variables reordered to match
+     ixVars.
+
+
+File: Tablicious.info,  Node: table.removevars,  Next: table.movevars,  Prev: table.subsetvars,  Up: table
+
+5.2.19.34 table.removevars
+..........................
+
+ -- Method: OUT = removevars (OBJ, VARS)
+
+     Remove variables from table.
+
+     Deletes the variables specified by VARS from OBJ.
+
+     VARS may be a char, cellstr, numeric index vector, or logical index
+     vector.
+
+
+File: Tablicious.info,  Node: table.movevars,  Next: table.setvar,  Prev: table.removevars,  Up: table
+
+5.2.19.35 table.movevars
+........................
+
+ -- Method: OUT = movevars (OBJ, VARS, RELLOCATION, LOCATION)
+
+     Move around variables in a table.
+
+     VARS is a list of variables to move, specified by name or index.
+
+     RELLOCATION is ‘'Before'’ or ‘'After'’.
+
+     LOCATION indicates a single variable to use as the target location,
+     specified by name or index.  If it is specified by index, it is the
+     index into the list of *unmoved* variables from OBJ, not the
+     original full list of variables in OBJ.
+
+     Returns a table with the same variables as OBJ, but in a different
+     order.
+
+
+File: Tablicious.info,  Node: table.setvar,  Next: table.convertvars,  Prev: table.movevars,  Up: table
+
+5.2.19.36 table.setvar
+......................
+
+ -- Method: OUT = setvar (OBJ, VARREF, VALUE)
+
+     Set value for a variable in table.
+
+     This sets (replaces) the value for a variable that already exists
+     in OBJ.  It cannot be used to add a new variable.
+
+
+File: Tablicious.info,  Node: table.convertvars,  Next: table.head,  Prev: table.setvar,  Up: table
+
+5.2.19.37 table.convertvars
+...........................
+
+ -- Method: OUT = convertvars (OBJ, VARS, DATATYPE)
+
+     Convert variables to specified data type.
+
+     Converts the variables in OBJ specified by VARS to the specified
+     data type.
+
+     VARS is a cellstr or numeric vector specifying which variables to
+     convert.
+
+     DATATYPE specifies the data type to convert those variables to.  It
+     is either a char holding the name of the data type, or a function
+     handle which will perform the conversion.  If it is the name of the
+     data type, there must either be a one-arg constructor of that type
+     which accepts the specified variables’ current types as input, or a
+     conversion method of that name defined on the specified variables’
+     current type.
+
+     Returns a table with the same variable names as OBJ, but with
+     converted types.
+
+
+File: Tablicious.info,  Node: table.head,  Next: table.tail,  Prev: table.convertvars,  Up: table
+
+5.2.19.38 table.head
+....................
+
+ -- Method: OUT = head (OBJ)
+ -- Method: OUT = head (OBJ, K)
+
+     Get first K rows of table.
+
+     Returns the first K rows of OBJ, as a table.
+
+     K defaults to 8.
+
+     If there are less than K rows in OBJ, returns all rows.
+
+
+File: Tablicious.info,  Node: table.tail,  Next: table.join,  Prev: table.head,  Up: table
+
+5.2.19.39 table.tail
+....................
+
+ -- Method: OUT = tail (OBJ)
+ -- Method: OUT = tail (OBJ, K)
+
+     Get last K rows of table.
+
+     Returns the last K rows of OBJ, as a table.
+
+     K defaults to 8.
+
+     If there are less than K rows in OBJ, returns all rows.
+
+
+File: Tablicious.info,  Node: table.join,  Next: table.innerjoin,  Prev: table.tail,  Up: table
+
+5.2.19.40 table.join
+....................
+
+ -- Method: [C, IB] = join (A, B)
+ -- Method: [C, IB] = join (A, B, ...)
+
+     Combine two tables by rows using key variables, in a restricted
+     form.
+
+     This is not a "real" relational join operation.  It has the
+     restrictions that: 1) The key values in B must be unique.  2) Every
+     key value in A must map to a key value in B. These are restrictions
+     inherited from the Matlab definition of table.join.
+
+     You probably don’t want to use this method.  You probably want to
+     use innerjoin or outerjoin instead.
+
+     See also: *note table.innerjoin::, *note table.outerjoin::
+
+
+File: Tablicious.info,  Node: table.innerjoin,  Next: table.outerjoin,  Prev: table.join,  Up: table
+
+5.2.19.41 table.innerjoin
+.........................
+
+ -- Method: [OUT, IXA, IXB] = innerjoin (A, B)
+ -- Method: [...] = innerjoin (A, B, ...)
+
+     Combine two tables by rows using key variables.
+
+     Computes the relational inner join between two tables.  “Inner”
+     means that only rows which had matching rows in the other input are
+     kept in the output.
+
+     TODO: Document options.
+
+     Returns: OUT - A table that is the result of joining A and B IX -
+     Indexes into A for each row in out IXB - Indexes into B for each
+     row in out
+
+
+File: Tablicious.info,  Node: table.outerjoin,  Next: table.outerfillvals,  Prev: table.innerjoin,  Up: table
+
+5.2.19.42 table.outerjoin
+.........................
+
+ -- Method: [OUT, IXA, IXB] = outerjoin (A, B)
+ -- Method: [...] = outerjoin (A, B, ...)
+
+     Combine two tables by rows using key variables, retaining unmatched
+     rows.
+
+     Computes the relational outer join of tables A and B. This is like
+     a regular join, but also includes rows in each input which did not
+     have matching rows in the other input; the columns from the missing
+     side are filled in with placeholder values.
+
+     TODO: Document options.
+
+     Returns: OUT - A table that is the result of the outer join of A
+     and B IXA - indexes into A for each row in out IXB - indexes into B
+     for each row in out
+
+
+File: Tablicious.info,  Node: table.outerfillvals,  Next: table.semijoin,  Prev: table.outerjoin,  Up: table
+
+5.2.19.43 table.outerfillvals
+.............................
+
+ -- Method: OUT = outerfillvals (OBJ)
+
+     Get fill values for outer join.
+
+     Returns a table with the same variables as this, but containing
+     only a single row whose variable values are the values to use as
+     fill values when doing an outer join.
+
+
+File: Tablicious.info,  Node: table.semijoin,  Next: table.antijoin,  Prev: table.outerfillvals,  Up: table
+
+5.2.19.44 table.semijoin
+........................
+
+ -- Method: [OUTA, IXA, OUTB, IXB] = semijoin (A, B)
+
+     Natural semijoin.
+
+     Computes the natural semijoin of tables A and B. The semi-join of
+     tables A and B is the set of all rows in A which have matching rows
+     in B, based on comparing the values of variables with the same
+     names.
+
+     This method also computes the semijoin of B and A, for convenience.
+
+     Returns: OUTA - all the rows in A with matching row(s) in B IXA -
+     the row indexes into A which produced OUTA OUTB - all the rows in B
+     with matching row(s) in A IXB - the row indexes into B which
+     produced OUTB
+
+
+File: Tablicious.info,  Node: table.antijoin,  Next: table.cartesian,  Prev: table.semijoin,  Up: table
+
+5.2.19.45 table.antijoin
+........................
+
+ -- Method: [OUTA, IXA, OUTB, IXB] = antijoin (A, B)
+
+     Natural antijoin (AKA “semidifference”).
+
+     Computes the anti-join of A and B. The anti-join is defined as all
+     the rows from one input which do not have matching rows in the
+     other input.
+
+     Returns: OUTA - all the rows in A with no matching row in B IXA -
+     the row indexes into A which produced OUTA OUTB - all the rows in B
+     with no matching row in A IXB - the row indexes into B which
+     produced OUTB
+
+
+File: Tablicious.info,  Node: table.cartesian,  Next: table.groupby,  Prev: table.antijoin,  Up: table
+
+5.2.19.46 table.cartesian
+.........................
+
+ -- Method: [OUT, IXS] = cartesian (A, B)
+
+     Cartesian product of two tables.
+
+     Computes the Cartesian product of two tables.  The Cartesian
+     product is each row in A combined with each row in B.
+
+     Due to the definition and structural constraints of table, the two
+     inputs must have no variable names in common.  It is an error if
+     they do.
+
+     The Cartesian product is seldom used in practice.  If you find
+     yourself calling this method, you should step back and re-evaluate
+     what you are doing, asking yourself if that is really what you want
+     to happen.  If nothing else, writing a function that calls
+     cartesian() is usually much less efficient than alternate ways of
+     arriving at the same result.
+
+     This implementation does not remove duplicate values.  TODO:
+     Determine whether this duplicate-removing behavior is correct.
+
+     The ordering of the rows in the output is not specified, and may be
+     implementation- dependent.  TODO: Determine if we can lock this
+     behavior down to a fixed, defined ordering, without killing
+     performance.
+
+
+File: Tablicious.info,  Node: table.groupby,  Next: table.grpstats,  Prev: table.cartesian,  Up: table
+
+5.2.19.47 table.groupby
+.......................
+
+ -- Method: [OUT] = groupby (OBJ, GROUPVARS, AGGCALCS)
+
+     Find groups in table data and apply functions to variables within
+     groups.
+
+     This works like an SQL ‘"SELECT ... GROUP BY ..."’ statement.
+
+     GROUPVARS (cellstr, numeric) is a list of the grouping variables,
+     identified by name or index.
+
+     AGGCALCS is a specification of the aggregate calculations to
+     perform on them, in the form ‘{’OUT_VAR‘,’ FCN‘,’ IN_VARS‘; ...}’,
+     where: OUT_VAR (char) is the name of the output variable FCN
+     (function handle) is the function to apply to produce it IN_VARS
+     (cellstr) is a list of the input variables to pass to fcn
+
+     Returns a table.
+
+
+File: Tablicious.info,  Node: table.grpstats,  Next: table.union,  Prev: table.groupby,  Up: table
+
+5.2.19.48 table.grpstats
+........................
+
+ -- Method: [OUT] = grpstats (OBJ, GROUPVAR)
+ -- Method: [OUT] = grpstats (..., ‘'DataVars'’, DATAVARS)
+
+     Statistics by group.
+
+     See also: *note table.groupby::.
+
+
+File: Tablicious.info,  Node: table.union,  Next: table.intersect,  Prev: table.grpstats,  Up: table
+
+5.2.19.49 table.union
+.....................
+
+ -- Method: [C, IA, IB] = union (A, B)
+
+     Set union.
+
+     Computes the union of two tables.  The union is defined to be the
+     unique row values which are present in either of the two input
+     tables.
+
+     Returns: C - A table containing all the unique row values present
+     in A or B. IA - Row indexes into A of the rows from A included in
+     C. IB - Row indexes into B of the rows from B included in C.
+
+
+File: Tablicious.info,  Node: table.intersect,  Next: table.setxor,  Prev: table.union,  Up: table
+
+5.2.19.50 table.intersect
+.........................
+
+ -- Method: [C, IA, IB] = intersect (A, B)
+
+     Set intersection.
+
+     Computes the intersection of two tables.  The intersection is
+     defined to be the unique row values which are present in both of
+     the two input tables.
+
+     Returns: C - A table containing all the unique row values present
+     in both A and B. IA - Row indexes into A of the rows from A
+     included in C. IB - Row indexes into B of the rows from B included
+     in C.
+
+
+File: Tablicious.info,  Node: table.setxor,  Next: table.setdiff,  Prev: table.intersect,  Up: table
+
+5.2.19.51 table.setxor
+......................
+
+ -- Method: [C, IA, IB] = setxor (A, B)
+
+     Set exclusive OR.
+
+     Computes the setwise exclusive OR of two tables.  The set XOR is
+     defined to be the unique row values which are present in one or the
+     other of the two input tables, but not in both.
+
+     Returns: C - A table containing all the unique row values in the
+     set XOR of A and B. IA - Row indexes into A of the rows from A
+     included in C. IB - Row indexes into B of the rows from B included
+     in C.
+
+
+File: Tablicious.info,  Node: table.setdiff,  Next: table.ismember,  Prev: table.setxor,  Up: table
+
+5.2.19.52 table.setdiff
+.......................
+
+ -- Method: [C, IA] = setdiff (A, B)
+
+     Set difference.
+
+     Computes the set difference of two tables.  The set difference is
+     defined to be the unique row values which are present in table A
+     that are not in table B.
+
+     Returns: C - A table containing the unique row values in A that
+     were not in B. IA - Row indexes into A of the rows from A included
+     in C.
+
+
+File: Tablicious.info,  Node: table.ismember,  Next: table.ismissing,  Prev: table.setdiff,  Up: table
+
+5.2.19.53 table.ismember
+........................
+
+ -- Method: [TF, LOC] = ismember (A, B)
+
+     Set membership.
+
+     Finds rows in A that are members of B.
+
+     Returns: TF - A logical vector indicating whether each A(i,:) was
+     present in B. LOC - Indexes into B of rows that were found.
+
+
+File: Tablicious.info,  Node: table.ismissing,  Next: table.rmmissing,  Prev: table.ismember,  Up: table
+
+5.2.19.54 table.ismissing
+.........................
+
+ -- Method: OUT = ismissing (OBJ)
+ -- Method: OUT = ismissing (OBJ, INDICATOR)
+
+     Find missing values.
+
+     Finds missing values in OBJ’s variables.
+
+     If indicator is not supplied, uses the standard missing values for
+     each variable’s data type.  If indicator is supplied, the same
+     indicator list is applied across all variables.
+
+     All variables in this must be vectors.  (This is due to the
+     requirement that ‘size(out) == size(obj)’.)
+
+     Returns a logical array the same size as OBJ.
+
+
+File: Tablicious.info,  Node: table.rmmissing,  Next: table.standardizeMissing,  Prev: table.ismissing,  Up: table
+
+5.2.19.55 table.rmmissing
+.........................
+
+ -- Method: [OUT, TF] = rmmissing (OBJ)
+ -- Method: [OUT, TF] = rmmissing (OBJ, INDICATOR)
+ -- Method: [OUT, TF] = rmmissing (..., ‘'DataVariables'’, VARS)
+ -- Method: [OUT, TF] = rmmissing (..., ‘'MinNumMissing'’,
+          MINNUMMISSING)
+
+     Remove rows with missing values.
+
+     Removes the rows from OBJ that have missing values.
+
+     If the ’DataVariables’ option is given, only the data in the
+     specified variables is considered.
+
+     Returns: OUT - A table the same as OBJ, but with rows with missing
+     values removed.  TF - A logical index vector indicating which rows
+     were removed.
+
+
+File: Tablicious.info,  Node: table.standardizeMissing,  Next: table.varfun,  Prev: table.rmmissing,  Up: table
+
+5.2.19.56 table.standardizeMissing
+..................................
+
+ -- Method: OUT = standardizeMissing (OBJ, INDICATOR)
+ -- Method: OUT = standardizeMissing (..., ‘'DataVariables'’, VARS)
+
+     Insert standard missing values.
+
+     Standardizes missing values in variable data.
+
+     If the DATAVARIABLES option is supplied, only the indicated
+     variables are standardized.
+
+     INDICATOR is passed along to ‘standardizeMissing’ when it is called
+     on each of the data variables in turn.  The same indicator is used
+     for all variables.  You can mix and match indicator types by just
+     passing in mixed indicator types in a cell array; indicators that
+     don’t match the type of the column they are operating on are just
+     ignored.
+
+     Returns a table with same variable names and types as OBJ, but with
+     variable values standardized.
+
+
+File: Tablicious.info,  Node: table.varfun,  Next: table.rowfun,  Prev: table.standardizeMissing,  Up: table
+
+5.2.19.57 table.varfun
+......................
+
+ -- Method: OUT = varfun (FCN, OBJ)
+ -- Method: OUT = varfun (..., ‘'OutputFormat'’, OUTPUTFORMAT)
+ -- Method: OUT = varfun (..., ‘'InputVariables'’, VARS)
+ -- Method: OUT = varfun (..., ‘'ErrorHandler'’, ERRORFCN)
+
+     Apply function to table variables.
+
+     Applies the given function FCN to each variable in OBJ, collecting
+     the output in a table, cell array, or array of another type.
+
+
+File: Tablicious.info,  Node: table.rowfun,  Next: table.findgroups,  Prev: table.varfun,  Up: table
+
+5.2.19.58 table.rowfun
+......................
+
+ -- Method: OUT = varfun (FCN, OBJ)
+ -- Method: OUT = varfun (..., ‘'OptionName'’, OPTIONVALUE, ...)
+
+     This method is currently unimplemented.  Sorry.
+
+
+File: Tablicious.info,  Node: table.findgroups,  Next: table.evalWithVars,  Prev: table.rowfun,  Up: table
+
+5.2.19.59 table.findgroups
+..........................
+
+ -- Method: [G, TID] = findgroups (OBJ)
+
+     Find groups within a table’s row values.
+
+     Finds groups within a table’s row values and get group numbers.  A
+     group is a set of rows that have the same values in all their
+     variable elements.
+
+     Returns: G - A double column vector of group numbers created from
+     OBJ.  TID - A table containing the row values corresponding to the
+     group numbers.
+
+
+File: Tablicious.info,  Node: table.evalWithVars,  Next: table.restrict,  Prev: table.findgroups,  Up: table
+
+5.2.19.60 table.evalWithVars
+............................
+
+ -- Method: OUT = evalWithVars (OBJ, EXPR)
+
+     Evaluate an expression against table’s variables.
+
+     Evaluates the M-code expression EXPR in a workspace where all of
+     OBJ’s variables have been assigned to workspace variables.
+
+     EXPR is a charvec containing an Octave expression.
+
+     As an implementation detail, the workspace will also contain some
+     variables that are prefixed and suffixed with "__".  So try to
+     avoid those in your table variable names.
+
+     Returns the result of the evaluation.
+
+     Examples:
+
+          [s,p,sp] = table_examples.SpDb
+          tmp = join (sp, p);
+          shipment_weight = evalWithVars (tmp, "Qty .* Weight")
+
+
+File: Tablicious.info,  Node: table.restrict,  Prev: table.evalWithVars,  Up: table
+
+5.2.19.61 table.restrict
+........................
+
+ -- Method: OUT = restrict (OBJ, EXPR)
+ -- Method: OUT = restrict (OBJ, IX)
+
+     Subset rows using variable expression or index.
+
+     Subsets a table row-wise, using either an index vector or an
+     expression involving OBJ’s variables.
+
+     If the argument is a numeric or logical vector, it is interpreted
+     as an index into the rows of this.  (Just as with ‘subsetRows
+     (this, index)‘.)
+
+     If the argument is a char, then it is evaulated as an M-code
+     expression, with all of this’ variables available as workspace
+     variables, as with ‘evalWithVars’.  The output of expr must be a
+     numeric or logical index vector (This form is a shorthand for ‘out
+     = subsetRows (this, evalWithVars (this, expr))’.)
+
+     TODO: Decide whether to name this to "where" to be more like SQL
+     instead of relational algebra.
+
+     Examples:
+          [s,p,sp] = table_examples.SpDb;
+          prettyprint (restrict (p, 'Weight >= 14 & strcmp(Color, "Red")'))
 
 
 File: Tablicious.info,  Node: tableOuterFillValue,  Prev: table,  Up: Functions Alphabetically
@@ -533,32 +1617,89 @@ Node: table Class2880
 Node: Missing Functionality3192
 Node: Function Reference3858
 Node: Functions by Category4074
-Node: Functions Alphabetically4838
-Node: array2table5371
-Node: categorical5522
-Node: cell2table5692
-Node: colvecfun5858
-Node: contains6019
-Node: discretize6178
-Node: dispstrs6340
-Node: endsWith6498
-Node: fillmissing6657
-Node: ismissing6823
-Node: isnannish6988
-Node: missing7149
-Node: pp7299
-Node: rmmissing7439
-Node: standardizemissing7604
-Node: startsWith7795
-Node: string7967
-Node: struct2table8125
-Node: table8290
-Node: table.table9657
-Node: table.summary10709
-Node: table.prettyprint11136
-Node: table.table2cell11595
-Node: tableOuterFillValue12056
-Node: Copying12227
+Node: Functions Alphabetically4943
+Node: array2table5566
+Node: categorical6500
+Node: cell2table8282
+Node: colvecfun9028
+Node: contains9189
+Node: discretize9348
+Node: dispstrs9510
+Node: endsWith9668
+Node: fillmissing9827
+Node: ismissing9993
+Node: isnannish10158
+Node: missing10319
+Node: pp10469
+Node: rmmissing10609
+Node: standardizeMissing10774
+Node: startsWith10965
+Node: string11137
+Node: struct2table11295
+Node: table11460
+Node: table.table13910
+Node: table.summary14962
+Node: table.prettyprint15389
+Node: table.table2cell15848
+Node: table.table2struct16336
+Node: table.table2array16971
+Node: table.varnames17218
+Node: table.istable17470
+Node: table.size17682
+Node: table.length18011
+Node: table.ndims18310
+Node: table.squeeze18561
+Node: table.sizeof18908
+Node: table.height19339
+Node: table.rows19547
+Node: table.width19748
+Node: table.columns20079
+Node: table.numel20417
+Node: table.isempty20937
+Node: table.ismatrix21261
+Node: table.isrow21550
+Node: table.iscol21768
+Node: table.isvector22128
+Node: table.isscalar22354
+Node: table.hasrownames22584
+Node: table.vertcat22834
+Node: table.horzcat23355
+Node: table.repmat23975
+Node: table.setVariableNames24510
+Node: table.setRowNames24956
+Node: table.resolveVarRef25328
+Node: table.subsetRows25938
+Node: table.subsetvars26283
+Node: table.removevars26790
+Node: table.movevars27175
+Node: table.setvar27903
+Node: table.convertvars28272
+Node: table.head29254
+Node: table.tail29629
+Node: table.join29995
+Node: table.innerjoin30741
+Node: table.outerjoin31402
+Node: table.outerfillvals32209
+Node: table.semijoin32642
+Node: table.antijoin33411
+Node: table.cartesian34063
+Node: table.groupby35331
+Node: table.grpstats36182
+Node: table.union36510
+Node: table.intersect37078
+Node: table.setxor37686
+Node: table.setdiff38321
+Node: table.ismember38858
+Node: table.ismissing39260
+Node: table.rmmissing39944
+Node: table.standardizeMissing40736
+Node: table.varfun41726
+Node: table.rowfun42293
+Node: table.findgroups42604
+Node: table.evalWithVars43189
+Node: table.restrict44039
+Node: tableOuterFillValue45168
+Node: Copying45339
 
 End Tag Table
 
