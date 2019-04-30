@@ -156,64 +156,73 @@ Convert an array to a table.
 Convert a cell array to a table.
 
 @item @ref{struct2table}
-
+Convert struct to a table.
 
 @item @ref{tableOuterFillValue}
-
+Outer fill value for variable within a table.
 
 @end table
 @subsection Data Types
 @table @asis
 @item @ref{string}
-
+A string array of Unicode strings.
 
 @item @ref{startsWith}
-
+Test if strings start with a pattern.
 
 @item @ref{endsWith}
-
+Test if strings end with a pattern.
 
 @item @ref{contains}
-
+Test if strings contain a pattern.
 
 @item @ref{categorical}
 Categorical variable array.
 
 @item @ref{discretize}
-
+Group data into discrete bins or categories.
 
 @end table
 @subsection Missing Data
 @table @asis
 @item @ref{fillmissing}
-
+Fill missing values.
 
 @item @ref{ismissing}
-
+Find missing values.
 
 @item @ref{rmmissing}
-
+Remove missing values.
 
 @item @ref{standardizeMissing}
-
+Insert standard missing values.
 
 @item @ref{missing}
-
+Generic auto-converting missing value.
 
 @item @ref{isnannish}
-
+Test if elements are NaN or NaN-like
 
 @end table
 @subsection Miscellaneous
 @table @asis
 @item @ref{colvecfun}
-
+Apply a function to column vectors in array.
 
 @item @ref{dispstrs}
-
+Display strings for array.
 
 @item @ref{pp}
+Alias for prettyprint, for interactive use.
 
+@end table
+@subsection Uncategorized
+@table @asis
+@item @ref{eqn}
+Determine element-wise equality, treating NaNs as equal
+
+@item @ref{vecfun}
+Apply function to vectors in array along arbitrary dimension.
 
 @end table
 
@@ -223,23 +232,26 @@ Categorical variable array.
 * array2table:: Convert an array to a table.
 * categorical:: Categorical variable array.
 * cell2table::	Convert a cell array to a table.
-* colvecfun::	
-* contains::	
-* discretize::	
-* dispstrs::	
-* endsWith::	
-* fillmissing:: 
-* ismissing::	
-* isnannish::	
-* missing::	
-* pp::	
-* rmmissing::	
-* standardizeMissing::	
-* startsWith::	
-* string::	
-* struct2table::	
+* colvecfun::	Apply a function to column vectors in array.
+* contains::	Test if strings contain a pattern.
+* discretize::	Group data into discrete bins or categories.
+* dispstrs::	Display strings for array.
+* endsWith::	Test if strings end with a pattern.
+* eqn:: Determine element-wise equality, treating NaNs as equal
+* fillmissing:: Fill missing values.
+* ismissing::	Find missing values.
+* isnannish::	Test if elements are NaN or NaN-like
+* missing::	Generic auto-converting missing value.
+* pp::	Alias for prettyprint, for interactive use.
+* rmmissing::	Remove missing values.
+* standardizeMissing::	Insert standard missing values.
+* startsWith::	Test if strings start with a pattern.
+* string::	A string array of Unicode strings.
+* struct2table::	Convert struct to a table.
 * table::	Tabular data array containing multiple columnar variables.
-* tableOuterFillValue:: 
+* tableOuterFillValue:: Outer fill value for variable within a table.
+* vecfun::	Apply function to vectors in array along arbitrary
+		dimension.
 @end menu
 
 @node array2table
@@ -250,7 +262,7 @@ Categorical variable array.
 
 Convert an array to a table.
 
-Converts an array to a table, with columns in the array becoming variables in
+Converts a 2-D array to a table, with columns in the array becoming variables in
 the output table. This is typically used on numeric arrays, but it can
 be applied to any type of array.
 
@@ -324,6 +336,293 @@ ordinal relationship.
 @end deftypeivar
 
 
+@node categorical.categorical
+@subsubsection categorical.categorical
+
+@deftypefn {Constructor} {@var{obj} =} categorical ()
+
+Constructs a new scalar categorical whose value is undefined.
+
+@end deftypefn
+
+@deftypefn {Constructor} {@var{obj} =} categorical (@var{vals})
+@deftypefnx {Constructor} {@var{obj} =} categorical (@var{vals}, @var{valueset})
+@deftypefnx {Constructor} {@var{obj} =} categorical (@var{vals}, @var{valueset}, @var{category_names})
+@deftypefnx {Constructor} {@var{obj} =} categorical (@dots{}, @code{'Ordinal'}, @var{Ordinal})
+@deftypefnx {Constructor} {@var{obj} =} categorical (@dots{}, @code{'Protected'}, @var{Protected})
+
+Constructs a new categorical array from the given values.
+
+@var{vals} is the array of values to convert to categoricals.
+
+@var{valueset} is the set of all values from which @var{vals} is drawn.
+If omitted, it defaults to the unique values in @var{vals}.
+
+@var{category_names} is a list of category names corresponding to
+@var{valueset}. If omitted, it defaults to @var{valueset}, converted
+to strings.
+
+@var{Ordinal} is a logical indicating whether the category values in
+@var{obj} have a numeric ordering relationship. Defaults to false.
+
+@var{Protected} indicates whether @var{obj} should be protected, which
+prevents the addition of new categories to the array. Defaults to
+false.
+
+@end deftypefn
+
+@node categorical.categories
+@subsubsection categorical.categories
+
+@deftypefn {Method} {@var{out} =} categories (@var{obj})
+
+Get a list of the categories in @var{obj}.
+
+Gets a list of the categories in @var{obj}, identified by their
+category names.
+
+Returns a cellstr column vector.
+
+@end deftypefn
+
+@node categorical.iscategory
+@subsubsection categorical.iscategory
+
+@deftypefn {Method} {@var{out} =} iscategory (@var{obj}, @var{catnames})
+
+Test whether input is a category on a categorical array.
+
+@var{catnames} is a cellstr listing the category names to check against
+@var{obj}.
+
+Returns a logical array the same size as @var{catnames}.
+
+@end deftypefn
+
+@node categorical.isordinal
+@subsubsection categorical.isordinal
+
+@deftypefn {Method} {@var{out} =} isordinal (@var{obj})
+
+Whether @var{obj} is ordinal.
+
+Returns true if @var{obj} is ordinal (as determined by its
+@code{IsOrdinal} property), and false otherwise.
+
+@end deftypefn
+
+@node categorical.string
+@subsubsection categorical.string
+
+@deftypefn {Method} {@var{out} =} string (@var{obj})
+
+Convert to string array.
+
+Converts @var{obj} to a string array. The strings will be the
+category names for corresponding values, or <missing> for undefined
+values.
+
+Returns a @code{string} array the same size as @var{obj}.
+
+@end deftypefn
+
+@node categorical.cellstr
+@subsubsection categorical.cellstr
+
+@deftypefn {Method} {@var{out} =} cellstr (@var{obj})
+
+Convert to cellstr.
+
+Converts @var{obj} to a cellstr array. The strings will be the
+category names for corresponding values, or @code{''} for undefined
+values.
+
+Returns a cellstr array the same size as @var{obj}.
+
+@end deftypefn
+
+@node categorical.dispstrs
+@subsubsection categorical.dispstrs
+
+@deftypefn {Method} {@var{out} =} dispstrs (@var{obj})
+
+Display strings.
+
+Gets display strings for each element in @var{obj}. The display strings are
+either the category string, or @code{'<undefined>'} for undefined values.
+
+Returns a cellstr array the same size as @var{obj}.
+
+@end deftypefn
+
+@node categorical.summary
+@subsubsection categorical.summary
+
+@deftypefn {Method} summary (@var{obj})
+
+Display summary of array’s values.
+
+Displays a summary of the values in this categorical array. The output
+may contain info like the number of categories, number of undefined values,
+and frequency of each category.
+
+@end deftypefn
+
+@node categorical.addcats
+@subsubsection categorical.addcats
+
+@deftypefn {Method} {@var{out} =} addcats (@var{obj}, @var{newcats})
+
+Add categories to categorical array.
+
+Adds the specified categories to @var{obj}, without changing any of
+its values.
+
+@var{newcats} is a cellstr listing the category names to add to
+@var{obj}.
+
+@end deftypefn
+
+@node categorical.removecats
+@subsubsection categorical.removecats
+
+@deftypefn {Method} {@var{out} =} removecats (@var{obj})
+
+Removes all unused categories from @var{obj}. This is equivalent to
+@code{out = squeezecats (obj)}.
+
+@end deftypefn
+
+@deftypefn {Method} {@var{out} =} removecats (@var{obj}, @var{oldcats})
+
+Remove categories from categorical array.
+
+Removes the specified categories from @var{obj}. Elements of @var{obj}
+whose values belonged to those categories are replaced with undefined.
+
+@var{newcats} is a cellstr listing the category names to add to
+@var{obj}.
+
+@end deftypefn
+
+@node categorical.mergecats
+@subsubsection categorical.mergecats
+
+@deftypefn {Method} {@var{out} =} mergecats (@var{obj}, @var{oldcats})
+@deftypefnx {Method} {@var{out} =} mergecats (@var{obj}, @var{oldcats}, @var{newcat})
+
+Merge multiple categories.
+
+Merges the categories @var{oldcats} into a single category. If @var{newcat}
+is specified, that new category is added if necessary, and all of @var{oldcats}
+are merged into it. @var{newcat} must be an existing category in @var{obj} if
+@var{obj} is ordinal.
+
+If @var{newcat} is not provided, all of @var{odcats} are merged into
+@code{oldcats@{1@}}.
+
+@end deftypefn
+
+@node categorical.renamecats
+@subsubsection categorical.renamecats
+
+@deftypefn {Method} {@var{out} =} renamecats (@var{obj}, @var{newcats})
+@deftypefnx {Method} {@var{out} =} renamecats (@var{obj}, @var{oldcats}, @var{newcats})
+
+Rename categories.
+
+Renames some or all of the categories in @var{obj}, without changing
+any of its values.
+
+@end deftypefn
+
+@node categorical.reordercats
+@subsubsection categorical.reordercats
+
+@deftypefn {Method} {@var{out} =} reordercats (@var{obj})
+@deftypefnx {Method} {@var{out} =} reordercats (@var{obj}, @var{newcats})
+
+Reorder categories.
+
+Reorders the categories in @var{obj} to match @var{newcats}.
+
+@var{newcats} is a cellstr that must be a reordering of @var{obj}’s existing
+category list. If @var{newcats} is not supplied, sorts the categories
+in alphabetical order.
+
+@end deftypefn
+
+@node categorical.setcats
+@subsubsection categorical.setcats
+
+@deftypefn {Method} {@var{out} =} setcats (@var{obj}, @var{newcats})
+
+Set categories for categorical array.
+
+Sets the categories to use for @var{obj}. If any current categories
+are absent from the @var{newcats} list, current values of those
+categories become undefined.
+
+@end deftypefn
+
+@node categorical.isundefined
+@subsubsection categorical.isundefined
+
+@deftypefn {Method} {@var{out} =} isundefined (@var{obj})
+
+Test whether elements are undefined.
+
+Checks whether each element in @var{obj} is undefined. "Undefined" is
+a special value defined by @code{categorical}. It is equivalent to
+a @code{NaN} or a @code{missing} value.
+
+Returns a logical array the same size as @var{obj}.
+
+@end deftypefn
+
+@node categorical.ismissing
+@subsubsection categorical.ismissing
+
+@deftypefn {Method} {@var{out} =} ismissing (@var{obj})
+
+Test whether elements are missing.
+
+For categorical arrays, undefined elements are considered to be
+missing.
+
+Returns a logical array the same size as @var{obj}.
+
+@end deftypefn
+
+@node categorical.isnannish
+@subsubsection categorical.isnannish
+
+@deftypefn {Method} {@var{out} =} isnannish (@var{obj})
+
+Test whethere elements are NaN-ish.
+
+Checks where each element in @var{obj} is NaN-ish. For categorical
+arrays, undefined values are considered NaN-ish; any other
+value is not.
+
+Returns a logical array the same size as @var{obj}.
+
+@end deftypefn
+
+@node categorical.squeezecats
+@subsubsection categorical.squeezecats
+
+@deftypefn {Method} {@var{out} =} squeezecats (@var{obj})
+
+Remove unused categories.
+
+Removes all categories which have no corresponding values in @var{obj}’s
+elements.
+
+This is currently unimplemented.
+
+@end deftypefn
+
 @node cell2table
 @subsection cell2table
 @deftypefn {Function} {@var{out} =} cell2table (@var{c})
@@ -345,49 +644,917 @@ See also: @ref{array2table}, @ref{table}, @ref{struct2table}
 
 @node colvecfun
 @subsection colvecfun
-@emph{Not documented}
+@deftypefn {Function} {@var{out} =} colvecfun (@var{fcn}, @var{x})
+
+Apply a function to column vectors in array.
+
+Applies the given function @var{fcn} to each column vector in the
+array @var{x}, by iterating over the indexes along all dimensions except
+dimension 1. Collects the function return values in an output array.
+
+@var{fcn} must be a function which takes a column vector and returns a column
+vector of the same size. It does not have to return the same type as
+@var{x}.
+
+Returns the result of applying fcn to each column in x, all concatenated
+together in the same shape as x.
+
+@end deftypefn
+
+
 @node contains
 @subsection contains
-@emph{Not documented}
+@deftypefn {Function} {@var{out} =} colvecfun (@var{str}, @var{pattern})
+@deftypefnx {Function} {@var{out} =} colvecfun (@dots{}, @code{'IgnoreCase'}, @var{IgnoreCase})
+
+Test if strings contain a pattern.
+
+Tests whether the given strings contain the given pattern(s).
+
+@var{str} (char, cellstr, or string) is a list of strings to compare against
+pattern.
+
+@var{pattern} (char, cellstr, or string) is a list of patterns to match. These are
+literal plain string patterns, not regex patterns. If more than one pattern
+is supplied, the return value is true if the string matched any of them.
+
+Returns a logical array of the same size as the string array represented by
+@var{str}.
+
+@end deftypefn
+
+
 @node discretize
 @subsection discretize
-@emph{Not documented}
+@deftypefn {Function} {[@var{Y}, @var{E}] =} discretize (@var{X}, @var{n})
+@deftypefnx {Function} {[@var{Y}, @var{E}] =} discretize (@var{X}, @var{edges})
+@deftypefnx {Function} {[@var{Y}, @var{E}] =} discretize (@var{X}, @var{dur})
+@deftypefnx {Function} {[@var{Y}, @var{E}] =} discretize (@dots{}, @code{'categorical'})
+@deftypefnx {Function} {[@var{Y}, @var{E}] =} discretize (@dots{}, @code{'IncludedEdge'}, @var{IncludedEdge})
+
+Group data into discrete bins or categories.
+
+@var{n} is the number of bins to group the values into.
+
+@var{edges} is an array of edge values defining the bins.
+
+@var{dur} is a @code{duration} value indicating the length of time of each
+bin.
+
+If @code{'categorical'} is specified, the resulting values are a @code{categorical}
+array instead of a numeric array of bin indexes.
+
+Returns:
+ @var{Y} - the bin index or category of each value from @var{X}
+ @var{E} - the list of bin edge values
+
+@end deftypefn
+
+
 @node dispstrs
 @subsection dispstrs
-@emph{Not documented}
+@deftypefn {Function} {@var{out} =} dispstrs (@var{x})
+
+Display strings for array.
+
+Gets the display strings for each element of @var{x}. The display strings
+should be short, one-line, human-presentable strings describing the
+value of that element.
+
+The default implementation of @code{dispstrs} can accept input of any
+type, and has decent implementations for Octave’s standard built-in types,
+but will have opaque displays for most user-defined objects.
+
+This is a polymorphic method that user-defined classes may override
+with their own custom display that is more informative.
+
+Returns a cell array the same size as @var{x}.
+
+@end deftypefn
+
+
 @node endsWith
 @subsection endsWith
-@emph{Not documented}
+@deftypefn {Function} {@var{out} =} endsWith (@var{str}, @var{pattern})
+@deftypefnx {Function} {@var{out} =} endsWith (@dots{}, @code{'IgnoreCase'}, @var{IgnoreCase})
+
+Test if strings end with a pattern.
+
+Tests whether the given strings end with the given pattern(s).
+
+@var{str} (char, cellstr, or string) is a list of strings to compare against
+@var{pattern}.
+
+@var{pattern} (char, cellstr, or string) is a list of patterns to match. These are
+literal plain string patterns, not regex patterns. If more than one pattern
+is supplied, the return value is true if the string matched any of them.
+
+Returns a logical array of the same size as the string array represented by
+@var{str}.
+
+@end deftypefn
+
+
+@node eqn
+@subsection eqn
+@deftypefn {Function} {@var{out} =} eqn (@var{A}, @var{B})
+
+Determine element-wise equality, treating NaNs as equal
+
+out = eqn (A, B)
+
+@code{eqn} is just like @code{eq} (the function that implements the
+@code{==} operator), except
+that it considers NaN and NaN-like values to be equal. This is the element-wise
+equivalent of @code{isequaln}.
+
+@code{eqn} uses @code{isnannish} to test for NaN and NaN-like values,
+which means that NaNs and NaTs are considered to be NaN-like, and
+string arrays’ “missing” and categorical objects’ “undefined” values
+are considered equal, because they are NaN-ish.
+
+Developer's note: the name “@code{eqn}” is a little unfortunate,
+because “eqn” could also be an abbreviation for “equation”. But this
+name follows the @code{isequaln} pattern of appending an “n” to the
+corresponding non-NaN-equivocating function.
+
+See also: @code{eq}, @code{isequaln}, @ref{isnannish}
+
+@end deftypefn
+
+
 @node fillmissing
 @subsection fillmissing
-@emph{Not documented}
+@deftypefn {Function} {[@var{out}, @var{tfFilled}] =} fillmissing (@var{X}, @var{method})
+@deftypefnx {Function} {[@var{out}, @var{tfFilled}] =} fillmissing (@var{X}, @code{'constant'}, @var{fill_val})
+@deftypefnx {Function} {[@var{out}, @var{tfFilled}] =} fillmissing (@var{X}, @var{movmethod}, @var{window})
+
+Fill missing values.
+
+Fills missing values in @var{X} according to the method specified by
+@var{method}.
+
+This method is only partially implemented.
+
+@var{method} may be:
+   @code{'constant'}
+   @code{'previous'}
+   @code{'next'}
+   @code{'nearest'}
+   @code{'linear'}
+   @code{'spline'}
+   @code{'pchip'}
+@var{movmethod} may be:
+   @code{'movmean'}
+   @code{'movmedian'}
+
+Returns @var{out}, which is @var{X} but with missing values filled in, and
+@var{tfFilled}, a logical array the same size as @var{X} which indicates
+which elements were filled.
+
+@end deftypefn
+
+
 @node ismissing
 @subsection ismissing
-@emph{Not documented}
+@deftypefn {Function} {@var{out} =} ismissing (@var{X})
+@deftypefnx {Function} {@var{out} =} ismissing (@var{X}, @var{indicator})
+
+Find missing values.
+
+Determines which elements of @var{X} contain missing values. If an indicator input is
+not provided, standard missing values depending on the input type of @var{X} are
+used.
+
+Standard missing values depend on the data type:
+  * NaN for double, single, duration, and calendarDuration
+  * NaT for datetime
+  * @code{' '} for char
+  * @code{@{''@}} for cellstrs
+  * Integer numeric types have no standard missing value; they are never
+    considered missing.
+  * Structs are never considered missing.
+  * Logicals are never considered missing.
+  * Other types have no standard missing value; it is currently an error to
+    call @code{ismissing} on them without providing an indicator.
+    * This includes cells which are not cellstrs; calling @code{ismissing} on them
+      results in an error.
+    * TODO: Determine whether this should really be an error, or if it should
+      default to never considering those types as missing.
+    * TODO: Decide whether, for classdef objects, @code{ismissing} should polymorphically
+      detect isnan()/isnat()/isnannish() methods and use those, or whether we should
+      require classes to override ismissing() itself.
+
+If @var{indicator} is supplied, it is an array containing multiple values, all of
+which are considered to be missing values. Only indicator values that are
+type-compatible with the input are considered; other indicator value types are
+silently ignored. This is by design, so you can pass an indicator that holds
+sentinel values for disparate types in to ismissing() used for any type, or
+for compound types like table.
+
+Indicators are currently not supported for struct or logical inputs. This is
+probably a bug.
+
+Table defines its own ismissing() method which respects individual variables’
+data types; see @ref{table.ismissing}.
+
+@end deftypefn
+
+
 @node isnannish
 @subsection isnannish
-@emph{Not documented}
+@deftypefn {Function} {@var{out} =} isnannish (@var{X})
+
+Test if elements are NaN or NaN-like
+
+Tests if input elements are NaN, NaT, or otherwise NaN-like. This is true
+if isnan() or isnat() returns true, and is false for types that do not support
+isnan() or isnat().
+
+This function only exists because:
+
+a) Matlab decided to call their NaN values for datetime "NaT" instead, and
+test for them with a different "isnat()" function, and
+b) isnan() errors out for some types that do not support isnan(), like cells.
+
+isnannish() smooths over those differences so you can call it polymorphically on
+any input type.
+
+Under normal operation, isnannish() should not throw an error for any type or
+value of input.
+
+See also: @code{isnan}, @code{isnat}, @ref{ismissing}, @ref{eqn}, @code{isequaln}
+
+@end deftypefn
+
+
 @node missing
 @subsection missing
-@emph{Not documented}
+@deftp {Class} missing
+
+Generic auto-converting missing value.
+
+@code{missing} is a generic missing value that auto-converts to other
+types.
+
+A @code{missing} array indicates a missing value, of no particular type. It auto-
+converts to other types when it is combined with them via concatenation or
+other array combination operations.
+
+This class is currently EXPERIMENTAL. Use at your own risk.
+
+Note: This class does not actually work for assignment. If you do this:
+
+@example
+  x = 1:5
+  x(3) = missing
+@end example
+
+It’s supposed to work, but I can’t figure out how to do this in a normal
+classdef object, because there doesn’t seem to be any function that’s implicitly
+called for type conversion in that assignment. Darn it.
+
+@end deftp
+
+
+@node missing.missing
+@subsubsection missing.missing
+
+@deftypefn {Constructor} {@var{obj} =} missing ()
+
+Constructs a scalar @code{missing} array.
+
+The constructor takes no arguments, since there’s only one
+@code{missing} value.
+
+@end deftypefn
+
+@node missing.dispstrs
+@subsubsection missing.dispstrs
+
+@deftypefn {Method} {@var{out} =} dispstrs (@var{obj})
+
+Display strings.
+
+Gets display strings for each element in @var{obj}.
+
+For @code{missing}, the display strings are always @code{'<missing>'}.
+
+Returns a cellstr the same size as @var{obj}.
+
+@end deftypefn
+
+@node missing.ismissing
+@subsubsection missing.ismissing
+
+@deftypefn {Method} {@var{out} =} ismissing (@var{obj})
+
+Test whether elements are missing values.
+
+@code{ismissing} is always true for @code{missing} arrays.
+
+Returns a logical array the same size as @var{obj}.
+
+@end deftypefn
+
+@node missing.isnan
+@subsubsection missing.isnan
+
+@deftypefn {Method} {@var{out} =} isnan (@var{obj})
+
+Test whether elements are NaN.
+
+@code{isnan} is always true for @code{missing} arrays.
+
+Returns a logical array the same size as @var{obj}.
+
+@end deftypefn
+
+@node missing.isnannish
+@subsubsection missing.isnannish
+
+@deftypefn {Method} {@var{out} =} isnannish (@var{obj})
+
+Test whether elements are NaN-like.
+
+@code{isnannish} is always true for @code{missing} arrays.
+
+Returns a logical array the same size as @var{obj}.
+
+@end deftypefn
+
 @node pp
 @subsection pp
-@emph{Not documented}
+@deftypefn {Function} pp (@var{X})
+@deftypefnx {Function} pp (@var{A}, @var{B}, @var{C}, @dots{})
+@deftypefnx {Function} pp (@code{'A'}, @code{'B'}, @code{'C'}, @dots{})
+@deftypefnx {Function} pp @code{A} @code{B} @code{C} @dots{}
+
+Alias for prettyprint, for interactive use.
+
+This is an alias for prettyprint(), with additional name-conversion magic.
+
+If you pass in a char, instead of pretty-printing that directly, it will
+grab and pretty-print the variable of that name from the caller’s workspace.
+This is so you can conveniently run it from the command line.
+
+@end deftypefn
+
+
 @node rmmissing
 @subsection rmmissing
-@emph{Not documented}
+@deftypefn {Function} {[@var{out}, @var{tf}] =} rmmissing (@var{X})
+@deftypefnx {Function} {[@var{out}, @var{tf}] =} rmmissing (@var{X}, @var{dim})
+@deftypefnx {Function} {[@var{out}, @var{tf}] =} rmmissing (@dots{}, @code{'MinNumMissing'}, @var{MinNumMissing})
+
+Remove missing values.
+
+If @var{x} is a vector, removes elements with missing values. If @var{x} is a matrix,
+removes rows or columns with missing data elements.
+
+@var{dim} is the dimension to operate along. Specifying a dimension forces @code{rmmissing}
+to operate in matrix instead of vector mode.
+
+@var{MinNumMissing} indicates how many missing element values there must be in a
+row or column for it to be considered missing and this removed. This option
+is only used in matrix mode; it is silently ignored in vector mode.
+
+Returns:
+  @var{out} - the input, with missing elements or rows or columns removed
+  @var{tf} - a logical index vector indicating which elements, rows, or columns were removed
+
+@end deftypefn
+
+
 @node standardizeMissing
 @subsection standardizeMissing
-@emph{Not documented}
+@deftypefn {Function} {@var{out} =} standardizeMissing (@var{X}, @var{indicator})
+
+Insert standard missing values.
+
+Standardizes missing values in @var{X} by replacing the values listed in
+@var{indicator} with the standard missing values for the type of @var{X}.
+
+Standard missing values depend on the data type:
+  * NaN for double, single, duration, and calendarDuration
+  * NaT for datetime
+  * @code{' '} for char
+  * @code{@{''@}} for cellstrs
+  * Integer numeric types have no standard missing value; they are never
+    considered missing.
+  * Structs are never considered missing.
+  * Logicals are never considered missing.
+
+See also: @ref{table.standardizeMissing}
+
+@end deftypefn
+
+
 @node startsWith
 @subsection startsWith
-@emph{Not documented}
+@deftypefn {Function} {@var{out} =} startsWith (@var{str}, @var{pattern})
+@deftypefnx {Function} {@var{out} =} startsWith (@dots{}, @code{'IgnoreCase'}, @var{IgnoreCase})
+
+Test if strings start with a pattern.
+
+Tests whether the given strings start with the given pattern(s).
+
+@var{str} (char, cellstr, or string) is a list of strings to compare against
+@var{pattern}.
+
+@var{pattern} (char, cellstr, or string) is a list of patterns to match. These are
+literal plain string patterns, not regex patterns. If more than one pattern
+is supplied, the return value is true if the string matched any of them.
+
+Returns a logical array of the same size as the string array represented by
+@var{str}.
+
+@end deftypefn
+
+
 @node string
 @subsection string
-@emph{Not documented}
+@deftp {Class} string
+
+A string array of Unicode strings.
+
+A string array is an array of strings, where each array element is a single
+string.
+
+The string class represents strings, where:
+  - Each element of a string array is a single string
+  - A single string is a 1-dimensional row vector of Unicode characters
+  - Those characters are encoded in UTF-8
+
+This should correspond pretty well to what people think of as strings, and
+is pretty compatible with people’s typical notion of strings in Octave.
+
+String arrays also have a special “missing” value, that is like the string
+equivalent of NaN for doubles or “undefined” for categoricals, or SQL NULL.
+
+This is a slightly higher-level and more strongly-typed way of representing
+strings than cellstrs are. (A cellstr array is of type cell, not a text-
+specific type, and allows assignment of non-string data into it.)
+
+Be aware that while string arrays interconvert with Octave chars and cellstrs,
+Octave char elements represent 8-bit UTF-8 code units, not Unicode code points.
+
+This class really serves three roles.
+  - It is an object wrapper around Octave’s base primitive character types.
+  - It adds ismissing() semantics.
+  - And it introduces Unicode support.
+Not clear whether it’s a good fit to have the Unicode support wrapped
+up in this. Maybe it should just be a simple object wrapper
+wrapper, and defer Unicode semantics to when core Octave adopts them for
+char and cellstr. On the other hand, because Octave chars are UTF-8, not UCS-2,
+some methods like strlength() and reverse() are just going to be wrong if
+they delegate straight to chars.
+
+“Missing” string values work like NaNs. They are never considered equal,
+less than, or greater to any other string, including other missing strings.
+This applies to set membership and other equivalence tests.
+
+The current implementation depends on Java for its Unicode and encoding
+support. This means your Octave session must be running Java to call those
+methods. This should be changed in the future to use a native C/C++ library
+and avoid the Java dependency, especially before this class is merged into
+core Octave.
+
+TODO: Need to decide how far to go with Unicode semantics, and how much to
+just make this an object wrapper over cellstr and defer to Octave's existing
+char/string-handling functions.
+
+TODO: demote_strings should probably be static or global, so that other
+functions can use it to hack themselves into being string-aware.
+
+@end deftp
+
+
+@node string.string
+@subsubsection string.string
+
+@deftypefn {Constructor} {@var{obj} =} string ()
+@deftypefnx {Constructor} {@var{obj} =} string (@var{in})
+
+Construct a new string array.
+
+The zero-argument constructor creates a new scalar string array
+whose value is the empty string. TODO: Determine if this should
+actually return a “missing” string instead.
+
+The other constructors construct a new string array by converting
+various types of inputs.
+  - chars and cellstrs are converted via cellstr()
+  - numerics are converted via num2str()
+  - datetimes are converted via datestr()
+
+@end deftypefn
+
+@node string.isstring
+@subsubsection string.isstring
+
+@deftypefn {Method} {@var{out} =} isstring (@var{obj})
+
+Test if input is a string array.
+
+@code{isstring} is always true for @code{string} inputs.
+
+Returns a scalar logical.
+
+@end deftypefn
+
+@node string.dispstrs
+@subsubsection string.dispstrs
+
+@deftypefn {Method} {@var{out} =} dispstrs (@var{obj})
+
+Display strings for array elements.
+
+Gets display strings for all the elements in @var{obj}. These display strings
+will either be the string contents of the element, enclosed in @code{"..."},
+and with CR/LF characters replaced with @code{'\r'} and @code{'\n'} escape sequences,
+or @code{"<missing>"} for missing values.
+
+Returns a cellstr of the same size as @var{obj}.
+
+@end deftypefn
+
+@node string.ismissing
+@subsubsection string.ismissing
+
+@deftypefn {Method} {@var{out} =} ismissing (@var{obj})
+
+Test whether array elements are missing.
+
+For @code{string} arrays, only the special “missing” value is
+considered missing. Empty strings are not considered missing,
+the way they are with cellstrs.
+
+Returns a logical array the same size as @code{obj}.
+
+@end deftypefn
+
+@node string.isnannish
+@subsubsection string.isnannish
+
+@deftypefn {Method} {@var{out} =} isnannish (@var{obj})
+
+Test whether array elements are NaN-like.
+
+Missing values are considered nannish; any other string value is not.
+
+Returns a logical array of the same size as @var{obj}.
+
+@end deftypefn
+
+@node string.cellstr
+@subsubsection string.cellstr
+
+@deftypefn {Method} {@var{out} =} cellstr (@var{obj})
+
+Convert to cellstr.
+
+Converts @var{obj} to a cellstr. Missing values are converted to @code{''}.
+
+Returns a cellstr array of the same size as @var{obj}.
+
+@end deftypefn
+
+@node string.cell
+@subsubsection string.cell
+
+@deftypefn {Method} {@var{out} =} cell (@var{obj})
+
+Convert to cell array.
+
+Converts this to a cell, which will be a cellstr. Missing values are
+converted to @code{''}.
+
+This method returns the same values as @code{cellstr(obj)}; it is just provided
+for interface compatibility purposes.
+
+Returns a cell array of the same size as @var{obj}.
+
+@end deftypefn
+
+@node string.char
+@subsubsection string.char
+
+@deftypefn {Method} {@var{out} =} char (@var{obj})
+
+Convert to char array.
+
+Converts @var{obj} to a 2-D char array. It will have as many rows
+as @var{obj} has elements.
+
+It is an error to convert missing-valued @code{string} arrays to
+char. (NOTE: This may change in the future; it may be more appropriate)
+to convert them to space-padded empty strings.)
+
+Returns 2-D char array.
+
+@end deftypefn
+
+@node string.encode
+@subsubsection string.encode
+
+@deftypefn {Method} {@var{out} =} encode (@var{obj}, @var{charsetName})
+
+Encode string in a given character encoding.
+
+@var{obj} must be scalar.
+
+@var{charsetName} (charvec) is the name of a character encoding.
+(TODO: Document what determines the set of valid encoding names.)
+
+Returns the encoded string as a @code{uint8} vector.
+
+See also: @ref{string.decode}.
+
+@end deftypefn
+
+@node string.strlength_bytes
+@subsubsection string.strlength_bytes
+
+@deftypefn {Method} {@var{out} =} strlength_bytes (@var{obj})
+
+String length in bytes.
+
+Gets the length of each string in @var{obj}, counted in Unicode UTF-8
+code units (bytes). This is the same as @code{numel(str)} for the corresponding
+Octave char vector for each string, but may not be what you
+actually want to use. You may want @code{strlength} instead.
+
+Returns double array of the same size as @var{obj}. Returns NaNs for missing
+strings.
+
+See also: @ref{string.strlength}
+
+@end deftypefn
+
+@node string.strlength
+@subsubsection string.strlength
+
+@deftypefn {Method} {@var{out} =} strlength (@var{obj})
+
+String length in characters.
+
+Gets the length of each string, counted in Unicode characters (code
+points). This is the string length method you probably want to use,
+not @code{strlength_bytes}.
+
+Returns double array of the same size as @var{obj}. Returns NaNs for missing
+strings.
+
+See also: @ref{string.strlength_bytes}
+
+@end deftypefn
+
+@node string.reverse_bytes
+@subsubsection string.reverse_bytes
+
+@deftypefn {Method} {@var{out} =} reverse_bytes (@var{obj})
+
+Reverse string, byte-wise.
+
+Reverses the bytes in each string in @var{obj}. This operates on bytes
+(Unicode code units), not characters.
+
+This may well produce invalid strings as a result, because reversing a
+UTF-8 byte sequence does not necessarily produce another valid UTF-8
+byte sequence.
+
+You probably do not want to use this method. You probably want to use
+@code{string.reverse} instead.
+
+Returns a string array the same size as @var{obj}.
+
+See also: @ref{string.reverse}
+
+@end deftypefn
+
+@node string.reverse
+@subsubsection string.reverse
+
+@deftypefn {Method} {@var{out} =} reverse (@var{obj})
+
+Reverse string, character-wise.
+
+Reverses the characters in each string in @var{obj}. This operates on
+Unicode characters (code points), not on bytes, so it is guaranteed
+to produce valid UTF-8 as its output.
+
+Returns a string array the same size as @var{obj}.
+
+@end deftypefn
+
+@node string.strcat
+@subsubsection string.strcat
+
+@deftypefn {Method} {@var{out} =} strcat (@var{varargin})
+
+String concatenation.
+
+Concatenates the corresponding elements of all the input arrays,
+string-wise. Inputs that are not string arrays are converted to
+string arrays.
+
+The semantics of concatenating missing strings with non-missing
+strings has not been determined yet.
+
+Returns a string array the same size as the scalar expansion of its
+inputs.
+
+@end deftypefn
+
+@node string.lower
+@subsubsection string.lower
+
+@deftypefn {Method} {@var{out} =} lower (@var{obj})
+
+Convert to lower case.
+
+Converts all the characters in all the strings in @var{obj} to lower case.
+
+This currently delegates to Octave’s own @code{lower()} function to
+do the conversion, so whatever character class handling it has, this
+has.
+
+Returns a string array of the same size as @var{obj}.
+
+@end deftypefn
+
+@node string.upper
+@subsubsection string.upper
+
+@deftypefn {Method} {@var{out} =} upper (@var{obj})
+
+Convert to upper case.
+
+Converts all the characters in all the strings in @var{obj} to upper case.
+
+This currently delegates to Octave’s own @code{upper()} function to
+do the conversion, so whatever character class handling it has, this
+has.
+
+Returns a string array of the same size as @var{obj}.
+
+@end deftypefn
+
+@node string.erase
+@subsubsection string.erase
+
+@deftypefn {Method} {@var{out} =} erase (@var{obj}, @var{match})
+
+Erase matching substring.
+
+Erases the substrings in @var{obj} which match the @var{match} input.
+
+Returns a string array of the same size as @var{obj}.
+
+@end deftypefn
+
+@node string.strrep
+@subsubsection string.strrep
+
+@deftypefn {Method} {@var{out} =} strrep (@var{obj}, @var{match}, @var{replacement})
+@deftypefnx {Method} {@var{out} =} strrep (@dots{}, @var{varargin})
+
+Replace occurrences of pattern with other string.
+
+Replaces matching substrings in @var{obj} with a given replacement string.
+
+@var{varargin} is passed along to the core Octave @code{strrep} function. This
+supports whatever options it does.
+TODO: Maybe document what those options are.
+
+Returns a string array of the same size as @var{obj}.
+
+@end deftypefn
+
+@node string.strfind
+@subsubsection string.strfind
+
+@deftypefn {Method} {@var{out} =} strfind (@var{obj}, @var{pattern})
+@deftypefnx {Method} {@var{out} =} strfind (@dots{}, @var{varargin})
+
+Find pattern in string.
+
+Finds the locations where @var{pattern} occurs in the strings of @var{obj}.
+
+TODO: It’s ambiguous whether a scalar this should result in a numeric
+out or a cell array out.
+
+Returns either an index vector, or a cell array of index vectors.
+
+@end deftypefn
+
+@node string.regexprep
+@subsubsection string.regexprep
+
+@deftypefn {Method} {@var{out} =} regexprep (@var{obj}, @var{pat}, @var{repstr})
+@deftypefnx {Method} {@var{out} =} regexprep (@dots{}, @var{varargin})
+
+Replace based on regular expression matching.
+
+Replaces all the substrings matching a given regexp pattern @var{pat} with
+the given replacement text @var{repstr}.
+
+Returns a string array of the same size as @var{obj}.
+
+@end deftypefn
+
+@node string.strcmp
+@subsubsection string.strcmp
+
+@deftypefn {Method} {@var{out} =} strcmp (@var{A}, @var{B})
+
+String comparison.
+
+Tests whether each element in A is exactly equal to the corresponding
+element in B. Missing values are not considered equal to each other.
+
+This does the same comparison as @code{A == B}, but is not polymorphic.
+Generally, there is no reason to use @code{strcmp} instead of @code{==}
+or @code{eq} on string arrays, unless you want to be compatible with
+cellstr inputs as well.
+
+Returns logical array the size of the scalar expansion of A and B.
+
+@end deftypefn
+
+@node string.cmp
+@subsubsection string.cmp
+
+@deftypefn {Method} {[@var{out}, @var{outA}, @var{outB}] =} cmp (@var{A}, @var{B})
+
+Value ordering comparison, returning -1/0/+1.
+
+Compares each element of @var{A} and @var{B}, returning for
+each element @code{i} whether @code{A(i)} was less than (-1),
+equal to (0), or greater than (1) the corresponding @code{B(i)}.
+
+TODO: What to do about missing values? Should missings sort to the end
+(preserving total ordering over the full domain), or should their comparisons
+result in a fourth "null"/"undef" return value, probably represented by NaN?
+FIXME: The current implementation does not handle missings.
+
+Returns a numeric array @var{out} of the same size as the scalar expansion
+of @var{A} and @var{B}. Each value in it will be -1, 0, or 1.
+
+Also returns scalar-expanded copies of @var{A} and @var{B} as @var{outA} and
+@var{outB}, as a programming convenience.
+
+@end deftypefn
+
+@node string.missing
+@subsubsection string.missing
+
+@deftypefn {Static Method} {@var{out} = } string.missing (@var{sz})
+
+Missing string value.
+
+Creates a string array of all-missing values of the specified size @var{sz}.
+If @var{sz} is omitted, creates a scalar missing string.
+
+Returns a string array of size @var{sz}.
+
+@end deftypefn
+
+@node string.decode
+@subsubsection string.decode
+
+@deftypefn {Static Method} {@var{out} =} string.decode (@var{bytes}, @var{charsetName})
+
+Decode encoded text from bytes.
+
+Decodes the given encoded text in @var{bytes} according to the specified
+encoding, given by @var{charsetName}.
+
+Returns a scalar string.
+
+See also: @ref{string.encode}
+
+@end deftypefn
+
 @node struct2table
 @subsection struct2table
-@emph{Not documented}
+@deftypefn {Function} {@var{out} =} struct2table (@var{s})
+@deftypefnx {Function} {@var{out} =} struct2table (@dots{}, @code{'AsArray'}, @var{AsArray})
+
+Convert struct to a table.
+
+Converts the input struct @var{s} to a @code{table}.
+
+@var{s} may be a scalar struct or a nonscalar struct array.
+
+The @var{AsArray} option is not implemented yet.
+
+Returns a @code{table}.
+
+@end deftypefn
+
+
 @node table
 @subsection table
 @deftp {Class} table
@@ -1403,7 +2570,55 @@ prettyprint (restrict (p, 'Weight >= 14 & strcmp(Color, "Red")'))
 
 @node tableOuterFillValue
 @subsection tableOuterFillValue
-@emph{Not documented}
+@deftypefn {Function} {@var{out} =} tableOuterFillValue (@var{x})
+
+Outer fill value for variable within a table.
+
+Determines the fill value to usse for a given variable value @var{x}
+when that value is used as a variable in a table that is involved in
+an outer join.
+
+The default implementation for @code{tableOuterFillValue} has support for
+all Octave primitive types, plus cellstrs, datetime & friends, strings,
+and @code{table}-valued variables.
+
+This function may become private to table before version 1.0. It is currently
+global to make debugging more convenient. It (or an equivalent) will remain
+global if we want to allow user-defined classes to customize their fill value.
+It also has default logic that will determine the fill value for an arbitrary
+type by detecting the value used to fill elements during array expansion
+operations. This will be appropriate for most data types.
+
+Returns a 1-by-ncols value of the same type as x, which may be any type, where
+ncols is the number of columns in the input.
+
+@end deftypefn
+
+
+@node vecfun
+@subsection vecfun
+@deftypefn {Function} {@var{out} =} vecfun (@var{fcn}, @var{x}, @var{dim})
+
+Apply function to vectors in array along arbitrary dimension.
+
+This function is not implemented yet.
+
+Applies a given function to the vector slices of an N-dimensional array, where
+those slices are along a given dimension.
+
+@var{fcn} is a function handle to apply.
+
+@var{x} is an array of arbitrary type which is to be sliced and passed
+in to @var{fcn}.
+
+@var{dim} is the dimension along which the vector slices lay.
+
+Returns the collected output of the @var{fcn} calls, which will be
+the same size as @var{x}, but not necessarily the same type.
+
+@end deftypefn
+
+
 
 
 

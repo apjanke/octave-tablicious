@@ -148,48 +148,73 @@ File: Tablicious.info,  Node: Functions by Category,  Next: Functions Alphabetic
      Convert a cell array to a table.
 
 *note struct2table::
+     Convert struct to a table.
 
 *note tableOuterFillValue::
+     Outer fill value for variable within a table.
 
 5.1.2 Data Types
 ----------------
 
 *note string::
+     A string array of Unicode strings.
 
 *note startsWith::
+     Test if strings start with a pattern.
 
 *note endsWith::
+     Test if strings end with a pattern.
 
 *note contains::
+     Test if strings contain a pattern.
 
 *note categorical::
      Categorical variable array.
 
 *note discretize::
+     Group data into discrete bins or categories.
 
 5.1.3 Missing Data
 ------------------
 
 *note fillmissing::
+     Fill missing values.
 
 *note ismissing::
+     Find missing values.
 
 *note rmmissing::
+     Remove missing values.
 
 *note standardizeMissing::
+     Insert standard missing values.
 
 *note missing::
+     Generic auto-converting missing value.
 
 *note isnannish::
+     Test if elements are NaN or NaN-like
 
 5.1.4 Miscellaneous
 -------------------
 
 *note colvecfun::
+     Apply a function to column vectors in array.
 
 *note dispstrs::
+     Display strings for array.
 
 *note pp::
+     Alias for prettyprint, for interactive use.
+
+5.1.5 Uncategorized
+-------------------
+
+*note eqn::
+     Determine element-wise equality, treating NaNs as equal
+
+*note vecfun::
+     Apply function to vectors in array along arbitrary dimension.
 
 
 File: Tablicious.info,  Node: Functions Alphabetically,  Prev: Functions by Category,  Up: Function Reference
@@ -202,23 +227,26 @@ File: Tablicious.info,  Node: Functions Alphabetically,  Prev: Functions by Cate
 * array2table:: Convert an array to a table.
 * categorical:: Categorical variable array.
 * cell2table::	Convert a cell array to a table.
-* colvecfun::
-* contains::
-* discretize::
-* dispstrs::
-* endsWith::
-* fillmissing::
-* ismissing::
-* isnannish::
-* missing::
-* pp::
-* rmmissing::
-* standardizeMissing::
-* startsWith::
-* string::
-* struct2table::
+* colvecfun::	Apply a function to column vectors in array.
+* contains::	Test if strings contain a pattern.
+* discretize::	Group data into discrete bins or categories.
+* dispstrs::	Display strings for array.
+* endsWith::	Test if strings end with a pattern.
+* eqn:: Determine element-wise equality, treating NaNs as equal
+* fillmissing:: Fill missing values.
+* ismissing::	Find missing values.
+* isnannish::	Test if elements are NaN or NaN-like
+* missing::	Generic auto-converting missing value.
+* pp::	Alias for prettyprint, for interactive use.
+* rmmissing::	Remove missing values.
+* standardizeMissing::	Insert standard missing values.
+* startsWith::	Test if strings start with a pattern.
+* string::	A string array of Unicode strings.
+* struct2table::	Convert struct to a table.
 * table::	Tabular data array containing multiple columnar variables.
-* tableOuterFillValue::
+* tableOuterFillValue:: Outer fill value for variable within a table.
+* vecfun::	Apply function to vectors in array along arbitrary
+		dimension.
 
 
 File: Tablicious.info,  Node: array2table,  Next: categorical,  Up: Functions Alphabetically
@@ -232,7 +260,7 @@ File: Tablicious.info,  Node: array2table,  Next: categorical,  Up: Functions Al
 
      Convert an array to a table.
 
-     Converts an array to a table, with columns in the array becoming
+     Converts a 2-D array to a table, with columns in the array becoming
      variables in the output table.  This is typically used on numeric
      arrays, but it can be applied to any type of array.
 
@@ -294,6 +322,324 @@ File: Tablicious.info,  Node: categorical,  Next: cell2table,  Prev: array2table
      A scalar logical indicating whether the categories in this array
      have an ordinal relationship.
 
+* Menu:
+
+* categorical.categorical::
+* categorical.categories::
+* categorical.iscategory::
+* categorical.isordinal::
+* categorical.string::
+* categorical.cellstr::
+* categorical.dispstrs::
+* categorical.summary::
+* categorical.addcats::
+* categorical.removecats::
+* categorical.mergecats::
+* categorical.renamecats::
+* categorical.reordercats::
+* categorical.setcats::
+* categorical.isundefined::
+* categorical.ismissing::
+* categorical.isnannish::
+* categorical.squeezecats::
+
+
+File: Tablicious.info,  Node: categorical.categorical,  Next: categorical.categories,  Up: categorical
+
+5.2.2.1 categorical.categorical
+...............................
+
+ -- Constructor: OBJ = categorical ()
+
+     Constructs a new scalar categorical whose value is undefined.
+
+ -- Constructor: OBJ = categorical (VALS)
+ -- Constructor: OBJ = categorical (VALS, VALUESET)
+ -- Constructor: OBJ = categorical (VALS, VALUESET, CATEGORY_NAMES)
+ -- Constructor: OBJ = categorical (..., ‘'Ordinal'’, ORDINAL)
+ -- Constructor: OBJ = categorical (..., ‘'Protected'’, PROTECTED)
+
+     Constructs a new categorical array from the given values.
+
+     VALS is the array of values to convert to categoricals.
+
+     VALUESET is the set of all values from which VALS is drawn.  If
+     omitted, it defaults to the unique values in VALS.
+
+     CATEGORY_NAMES is a list of category names corresponding to
+     VALUESET.  If omitted, it defaults to VALUESET, converted to
+     strings.
+
+     ORDINAL is a logical indicating whether the category values in OBJ
+     have a numeric ordering relationship.  Defaults to false.
+
+     PROTECTED indicates whether OBJ should be protected, which prevents
+     the addition of new categories to the array.  Defaults to false.
+
+
+File: Tablicious.info,  Node: categorical.categories,  Next: categorical.iscategory,  Prev: categorical.categorical,  Up: categorical
+
+5.2.2.2 categorical.categories
+..............................
+
+ -- Method: OUT = categories (OBJ)
+
+     Get a list of the categories in OBJ.
+
+     Gets a list of the categories in OBJ, identified by their category
+     names.
+
+     Returns a cellstr column vector.
+
+
+File: Tablicious.info,  Node: categorical.iscategory,  Next: categorical.isordinal,  Prev: categorical.categories,  Up: categorical
+
+5.2.2.3 categorical.iscategory
+..............................
+
+ -- Method: OUT = iscategory (OBJ, CATNAMES)
+
+     Test whether input is a category on a categorical array.
+
+     CATNAMES is a cellstr listing the category names to check against
+     OBJ.
+
+     Returns a logical array the same size as CATNAMES.
+
+
+File: Tablicious.info,  Node: categorical.isordinal,  Next: categorical.string,  Prev: categorical.iscategory,  Up: categorical
+
+5.2.2.4 categorical.isordinal
+.............................
+
+ -- Method: OUT = isordinal (OBJ)
+
+     Whether OBJ is ordinal.
+
+     Returns true if OBJ is ordinal (as determined by its ‘IsOrdinal’
+     property), and false otherwise.
+
+
+File: Tablicious.info,  Node: categorical.string,  Next: categorical.cellstr,  Prev: categorical.isordinal,  Up: categorical
+
+5.2.2.5 categorical.string
+..........................
+
+ -- Method: OUT = string (OBJ)
+
+     Convert to string array.
+
+     Converts OBJ to a string array.  The strings will be the category
+     names for corresponding values, or <missing> for undefined values.
+
+     Returns a ‘string’ array the same size as OBJ.
+
+
+File: Tablicious.info,  Node: categorical.cellstr,  Next: categorical.dispstrs,  Prev: categorical.string,  Up: categorical
+
+5.2.2.6 categorical.cellstr
+...........................
+
+ -- Method: OUT = cellstr (OBJ)
+
+     Convert to cellstr.
+
+     Converts OBJ to a cellstr array.  The strings will be the category
+     names for corresponding values, or ‘''’ for undefined values.
+
+     Returns a cellstr array the same size as OBJ.
+
+
+File: Tablicious.info,  Node: categorical.dispstrs,  Next: categorical.summary,  Prev: categorical.cellstr,  Up: categorical
+
+5.2.2.7 categorical.dispstrs
+............................
+
+ -- Method: OUT = dispstrs (OBJ)
+
+     Display strings.
+
+     Gets display strings for each element in OBJ.  The display strings
+     are either the category string, or ‘'<undefined>'’ for undefined
+     values.
+
+     Returns a cellstr array the same size as OBJ.
+
+
+File: Tablicious.info,  Node: categorical.summary,  Next: categorical.addcats,  Prev: categorical.dispstrs,  Up: categorical
+
+5.2.2.8 categorical.summary
+...........................
+
+ -- Method: summary (OBJ)
+
+     Display summary of array’s values.
+
+     Displays a summary of the values in this categorical array.  The
+     output may contain info like the number of categories, number of
+     undefined values, and frequency of each category.
+
+
+File: Tablicious.info,  Node: categorical.addcats,  Next: categorical.removecats,  Prev: categorical.summary,  Up: categorical
+
+5.2.2.9 categorical.addcats
+...........................
+
+ -- Method: OUT = addcats (OBJ, NEWCATS)
+
+     Add categories to categorical array.
+
+     Adds the specified categories to OBJ, without changing any of its
+     values.
+
+     NEWCATS is a cellstr listing the category names to add to OBJ.
+
+
+File: Tablicious.info,  Node: categorical.removecats,  Next: categorical.mergecats,  Prev: categorical.addcats,  Up: categorical
+
+5.2.2.10 categorical.removecats
+...............................
+
+ -- Method: OUT = removecats (OBJ)
+
+     Removes all unused categories from OBJ.  This is equivalent to ‘out
+     = squeezecats (obj)’.
+
+ -- Method: OUT = removecats (OBJ, OLDCATS)
+
+     Remove categories from categorical array.
+
+     Removes the specified categories from OBJ.  Elements of OBJ whose
+     values belonged to those categories are replaced with undefined.
+
+     NEWCATS is a cellstr listing the category names to add to OBJ.
+
+
+File: Tablicious.info,  Node: categorical.mergecats,  Next: categorical.renamecats,  Prev: categorical.removecats,  Up: categorical
+
+5.2.2.11 categorical.mergecats
+..............................
+
+ -- Method: OUT = mergecats (OBJ, OLDCATS)
+ -- Method: OUT = mergecats (OBJ, OLDCATS, NEWCAT)
+
+     Merge multiple categories.
+
+     Merges the categories OLDCATS into a single category.  If NEWCAT is
+     specified, that new category is added if necessary, and all of
+     OLDCATS are merged into it.  NEWCAT must be an existing category in
+     OBJ if OBJ is ordinal.
+
+     If NEWCAT is not provided, all of ODCATS are merged into
+     ‘oldcats{1}’.
+
+
+File: Tablicious.info,  Node: categorical.renamecats,  Next: categorical.reordercats,  Prev: categorical.mergecats,  Up: categorical
+
+5.2.2.12 categorical.renamecats
+...............................
+
+ -- Method: OUT = renamecats (OBJ, NEWCATS)
+ -- Method: OUT = renamecats (OBJ, OLDCATS, NEWCATS)
+
+     Rename categories.
+
+     Renames some or all of the categories in OBJ, without changing any
+     of its values.
+
+
+File: Tablicious.info,  Node: categorical.reordercats,  Next: categorical.setcats,  Prev: categorical.renamecats,  Up: categorical
+
+5.2.2.13 categorical.reordercats
+................................
+
+ -- Method: OUT = reordercats (OBJ)
+ -- Method: OUT = reordercats (OBJ, NEWCATS)
+
+     Reorder categories.
+
+     Reorders the categories in OBJ to match NEWCATS.
+
+     NEWCATS is a cellstr that must be a reordering of OBJ’s existing
+     category list.  If NEWCATS is not supplied, sorts the categories in
+     alphabetical order.
+
+
+File: Tablicious.info,  Node: categorical.setcats,  Next: categorical.isundefined,  Prev: categorical.reordercats,  Up: categorical
+
+5.2.2.14 categorical.setcats
+............................
+
+ -- Method: OUT = setcats (OBJ, NEWCATS)
+
+     Set categories for categorical array.
+
+     Sets the categories to use for OBJ.  If any current categories are
+     absent from the NEWCATS list, current values of those categories
+     become undefined.
+
+
+File: Tablicious.info,  Node: categorical.isundefined,  Next: categorical.ismissing,  Prev: categorical.setcats,  Up: categorical
+
+5.2.2.15 categorical.isundefined
+................................
+
+ -- Method: OUT = isundefined (OBJ)
+
+     Test whether elements are undefined.
+
+     Checks whether each element in OBJ is undefined.  "Undefined" is a
+     special value defined by ‘categorical’.  It is equivalent to a
+     ‘NaN’ or a ‘missing’ value.
+
+     Returns a logical array the same size as OBJ.
+
+
+File: Tablicious.info,  Node: categorical.ismissing,  Next: categorical.isnannish,  Prev: categorical.isundefined,  Up: categorical
+
+5.2.2.16 categorical.ismissing
+..............................
+
+ -- Method: OUT = ismissing (OBJ)
+
+     Test whether elements are missing.
+
+     For categorical arrays, undefined elements are considered to be
+     missing.
+
+     Returns a logical array the same size as OBJ.
+
+
+File: Tablicious.info,  Node: categorical.isnannish,  Next: categorical.squeezecats,  Prev: categorical.ismissing,  Up: categorical
+
+5.2.2.17 categorical.isnannish
+..............................
+
+ -- Method: OUT = isnannish (OBJ)
+
+     Test whethere elements are NaN-ish.
+
+     Checks where each element in OBJ is NaN-ish.  For categorical
+     arrays, undefined values are considered NaN-ish; any other value is
+     not.
+
+     Returns a logical array the same size as OBJ.
+
+
+File: Tablicious.info,  Node: categorical.squeezecats,  Prev: categorical.isnannish,  Up: categorical
+
+5.2.2.18 categorical.squeezecats
+................................
+
+ -- Method: OUT = squeezecats (OBJ)
+
+     Remove unused categories.
+
+     Removes all categories which have no corresponding values in OBJ’s
+     elements.
+
+     This is currently unimplemented.
+
 
 File: Tablicious.info,  Node: cell2table,  Next: colvecfun,  Prev: categorical,  Up: Functions Alphabetically
 
@@ -320,7 +666,21 @@ File: Tablicious.info,  Node: colvecfun,  Next: contains,  Prev: cell2table,  Up
 5.2.4 colvecfun
 ---------------
 
-_Not documented_
+ -- Function: OUT = colvecfun (FCN, X)
+
+     Apply a function to column vectors in array.
+
+     Applies the given function FCN to each column vector in the array
+     X, by iterating over the indexes along all dimensions except
+     dimension 1.  Collects the function return values in an output
+     array.
+
+     FCN must be a function which takes a column vector and returns a
+     column vector of the same size.  It does not have to return the
+     same type as X.
+
+     Returns the result of applying fcn to each column in x, all
+     concatenated together in the same shape as x.
 
 
 File: Tablicious.info,  Node: contains,  Next: discretize,  Prev: colvecfun,  Up: Functions Alphabetically
@@ -328,7 +688,23 @@ File: Tablicious.info,  Node: contains,  Next: discretize,  Prev: colvecfun,  Up
 5.2.5 contains
 --------------
 
-_Not documented_
+ -- Function: OUT = colvecfun (STR, PATTERN)
+ -- Function: OUT = colvecfun (..., ‘'IgnoreCase'’, IGNORECASE)
+
+     Test if strings contain a pattern.
+
+     Tests whether the given strings contain the given pattern(s).
+
+     STR (char, cellstr, or string) is a list of strings to compare
+     against pattern.
+
+     PATTERN (char, cellstr, or string) is a list of patterns to match.
+     These are literal plain string patterns, not regex patterns.  If
+     more than one pattern is supplied, the return value is true if the
+     string matched any of them.
+
+     Returns a logical array of the same size as the string array
+     represented by STR.
 
 
 File: Tablicious.info,  Node: discretize,  Next: dispstrs,  Prev: contains,  Up: Functions Alphabetically
@@ -336,7 +712,26 @@ File: Tablicious.info,  Node: discretize,  Next: dispstrs,  Prev: contains,  Up:
 5.2.6 discretize
 ----------------
 
-_Not documented_
+ -- Function: [Y, E] = discretize (X, N)
+ -- Function: [Y, E] = discretize (X, EDGES)
+ -- Function: [Y, E] = discretize (X, DUR)
+ -- Function: [Y, E] = discretize (..., ‘'categorical'’)
+ -- Function: [Y, E] = discretize (..., ‘'IncludedEdge'’, INCLUDEDEDGE)
+
+     Group data into discrete bins or categories.
+
+     N is the number of bins to group the values into.
+
+     EDGES is an array of edge values defining the bins.
+
+     DUR is a ‘duration’ value indicating the length of time of each
+     bin.
+
+     If ‘'categorical'’ is specified, the resulting values are a
+     ‘categorical’ array instead of a numeric array of bin indexes.
+
+     Returns: Y - the bin index or category of each value from X E - the
+     list of bin edge values
 
 
 File: Tablicious.info,  Node: dispstrs,  Next: endsWith,  Prev: discretize,  Up: Functions Alphabetically
@@ -344,100 +739,929 @@ File: Tablicious.info,  Node: dispstrs,  Next: endsWith,  Prev: discretize,  Up:
 5.2.7 dispstrs
 --------------
 
-_Not documented_
+ -- Function: OUT = dispstrs (X)
+
+     Display strings for array.
+
+     Gets the display strings for each element of X.  The display
+     strings should be short, one-line, human-presentable strings
+     describing the value of that element.
+
+     The default implementation of ‘dispstrs’ can accept input of any
+     type, and has decent implementations for Octave’s standard built-in
+     types, but will have opaque displays for most user-defined objects.
+
+     This is a polymorphic method that user-defined classes may override
+     with their own custom display that is more informative.
+
+     Returns a cell array the same size as X.
 
 
-File: Tablicious.info,  Node: endsWith,  Next: fillmissing,  Prev: dispstrs,  Up: Functions Alphabetically
+File: Tablicious.info,  Node: endsWith,  Next: eqn,  Prev: dispstrs,  Up: Functions Alphabetically
 
 5.2.8 endsWith
 --------------
 
-_Not documented_
+ -- Function: OUT = endsWith (STR, PATTERN)
+ -- Function: OUT = endsWith (..., ‘'IgnoreCase'’, IGNORECASE)
+
+     Test if strings end with a pattern.
+
+     Tests whether the given strings end with the given pattern(s).
+
+     STR (char, cellstr, or string) is a list of strings to compare
+     against PATTERN.
+
+     PATTERN (char, cellstr, or string) is a list of patterns to match.
+     These are literal plain string patterns, not regex patterns.  If
+     more than one pattern is supplied, the return value is true if the
+     string matched any of them.
+
+     Returns a logical array of the same size as the string array
+     represented by STR.
 
 
-File: Tablicious.info,  Node: fillmissing,  Next: ismissing,  Prev: endsWith,  Up: Functions Alphabetically
+File: Tablicious.info,  Node: eqn,  Next: fillmissing,  Prev: endsWith,  Up: Functions Alphabetically
 
-5.2.9 fillmissing
------------------
+5.2.9 eqn
+---------
 
-_Not documented_
+ -- Function: OUT = eqn (A, B)
+
+     Determine element-wise equality, treating NaNs as equal
+
+     out = eqn (A, B)
+
+     ‘eqn’ is just like ‘eq’ (the function that implements the ‘==’
+     operator), except that it considers NaN and NaN-like values to be
+     equal.  This is the element-wise equivalent of ‘isequaln’.
+
+     ‘eqn’ uses ‘isnannish’ to test for NaN and NaN-like values, which
+     means that NaNs and NaTs are considered to be NaN-like, and string
+     arrays’ “missing” and categorical objects’ “undefined” values are
+     considered equal, because they are NaN-ish.
+
+     Developer’s note: the name “‘eqn’” is a little unfortunate, because
+     “eqn” could also be an abbreviation for “equation”.  But this name
+     follows the ‘isequaln’ pattern of appending an “n” to the
+     corresponding non-NaN-equivocating function.
+
+     See also: ‘eq’, ‘isequaln’, *note isnannish::
+
+
+File: Tablicious.info,  Node: fillmissing,  Next: ismissing,  Prev: eqn,  Up: Functions Alphabetically
+
+5.2.10 fillmissing
+------------------
+
+ -- Function: [OUT, TFFILLED] = fillmissing (X, METHOD)
+ -- Function: [OUT, TFFILLED] = fillmissing (X, ‘'constant'’, FILL_VAL)
+ -- Function: [OUT, TFFILLED] = fillmissing (X, MOVMETHOD, WINDOW)
+
+     Fill missing values.
+
+     Fills missing values in X according to the method specified by
+     METHOD.
+
+     This method is only partially implemented.
+
+     METHOD may be: ‘'constant'’ ‘'previous'’ ‘'next'’ ‘'nearest'’
+     ‘'linear'’ ‘'spline'’ ‘'pchip'’ MOVMETHOD may be: ‘'movmean'’
+     ‘'movmedian'’
+
+     Returns OUT, which is X but with missing values filled in, and
+     TFFILLED, a logical array the same size as X which indicates which
+     elements were filled.
 
 
 File: Tablicious.info,  Node: ismissing,  Next: isnannish,  Prev: fillmissing,  Up: Functions Alphabetically
 
-5.2.10 ismissing
+5.2.11 ismissing
 ----------------
 
-_Not documented_
+ -- Function: OUT = ismissing (X)
+ -- Function: OUT = ismissing (X, INDICATOR)
+
+     Find missing values.
+
+     Determines which elements of X contain missing values.  If an
+     indicator input is not provided, standard missing values depending
+     on the input type of X are used.
+
+     Standard missing values depend on the data type: * NaN for double,
+     single, duration, and calendarDuration * NaT for datetime * ‘' '’
+     for char * ‘{''}’ for cellstrs * Integer numeric types have no
+     standard missing value; they are never considered missing.  *
+     Structs are never considered missing.  * Logicals are never
+     considered missing.  * Other types have no standard missing value;
+     it is currently an error to call ‘ismissing’ on them without
+     providing an indicator.  * This includes cells which are not
+     cellstrs; calling ‘ismissing’ on them results in an error.  * TODO:
+     Determine whether this should really be an error, or if it should
+     default to never considering those types as missing.  * TODO:
+     Decide whether, for classdef objects, ‘ismissing’ should
+     polymorphically detect isnan()/isnat()/isnannish() methods and use
+     those, or whether we should require classes to override ismissing()
+     itself.
+
+     If INDICATOR is supplied, it is an array containing multiple
+     values, all of which are considered to be missing values.  Only
+     indicator values that are type-compatible with the input are
+     considered; other indicator value types are silently ignored.  This
+     is by design, so you can pass an indicator that holds sentinel
+     values for disparate types in to ismissing() used for any type, or
+     for compound types like table.
+
+     Indicators are currently not supported for struct or logical
+     inputs.  This is probably a bug.
+
+     Table defines its own ismissing() method which respects individual
+     variables’ data types; see *note table.ismissing::.
 
 
 File: Tablicious.info,  Node: isnannish,  Next: missing,  Prev: ismissing,  Up: Functions Alphabetically
 
-5.2.11 isnannish
+5.2.12 isnannish
 ----------------
 
-_Not documented_
+ -- Function: OUT = isnannish (X)
+
+     Test if elements are NaN or NaN-like
+
+     Tests if input elements are NaN, NaT, or otherwise NaN-like.  This
+     is true if isnan() or isnat() returns true, and is false for types
+     that do not support isnan() or isnat().
+
+     This function only exists because:
+
+     a) Matlab decided to call their NaN values for datetime "NaT"
+     instead, and test for them with a different "isnat()" function, and
+     b) isnan() errors out for some types that do not support isnan(),
+     like cells.
+
+     isnannish() smooths over those differences so you can call it
+     polymorphically on any input type.
+
+     Under normal operation, isnannish() should not throw an error for
+     any type or value of input.
+
+     See also: ‘isnan’, ‘isnat’, *note ismissing::, *note eqn::,
+     ‘isequaln’
 
 
 File: Tablicious.info,  Node: missing,  Next: pp,  Prev: isnannish,  Up: Functions Alphabetically
 
-5.2.12 missing
+5.2.13 missing
 --------------
 
-_Not documented_
+ -- Class: missing
+
+     Generic auto-converting missing value.
+
+     ‘missing’ is a generic missing value that auto-converts to other
+     types.
+
+     A ‘missing’ array indicates a missing value, of no particular type.
+     It auto- converts to other types when it is combined with them via
+     concatenation or other array combination operations.
+
+     This class is currently EXPERIMENTAL. Use at your own risk.
+
+     Note: This class does not actually work for assignment.  If you do
+     this:
+
+            x = 1:5
+            x(3) = missing
+
+     It’s supposed to work, but I can’t figure out how to do this in a
+     normal classdef object, because there doesn’t seem to be any
+     function that’s implicitly called for type conversion in that
+     assignment.  Darn it.
+
+* Menu:
+
+* missing.missing::
+* missing.dispstrs::
+* missing.ismissing::
+* missing.isnan::
+* missing.isnannish::
+
+
+File: Tablicious.info,  Node: missing.missing,  Next: missing.dispstrs,  Up: missing
+
+5.2.13.1 missing.missing
+........................
+
+ -- Constructor: OBJ = missing ()
+
+     Constructs a scalar ‘missing’ array.
+
+     The constructor takes no arguments, since there’s only one
+     ‘missing’ value.
+
+
+File: Tablicious.info,  Node: missing.dispstrs,  Next: missing.ismissing,  Prev: missing.missing,  Up: missing
+
+5.2.13.2 missing.dispstrs
+.........................
+
+ -- Method: OUT = dispstrs (OBJ)
+
+     Display strings.
+
+     Gets display strings for each element in OBJ.
+
+     For ‘missing’, the display strings are always ‘'<missing>'’.
+
+     Returns a cellstr the same size as OBJ.
+
+
+File: Tablicious.info,  Node: missing.ismissing,  Next: missing.isnan,  Prev: missing.dispstrs,  Up: missing
+
+5.2.13.3 missing.ismissing
+..........................
+
+ -- Method: OUT = ismissing (OBJ)
+
+     Test whether elements are missing values.
+
+     ‘ismissing’ is always true for ‘missing’ arrays.
+
+     Returns a logical array the same size as OBJ.
+
+
+File: Tablicious.info,  Node: missing.isnan,  Next: missing.isnannish,  Prev: missing.ismissing,  Up: missing
+
+5.2.13.4 missing.isnan
+......................
+
+ -- Method: OUT = isnan (OBJ)
+
+     Test whether elements are NaN.
+
+     ‘isnan’ is always true for ‘missing’ arrays.
+
+     Returns a logical array the same size as OBJ.
+
+
+File: Tablicious.info,  Node: missing.isnannish,  Prev: missing.isnan,  Up: missing
+
+5.2.13.5 missing.isnannish
+..........................
+
+ -- Method: OUT = isnannish (OBJ)
+
+     Test whether elements are NaN-like.
+
+     ‘isnannish’ is always true for ‘missing’ arrays.
+
+     Returns a logical array the same size as OBJ.
 
 
 File: Tablicious.info,  Node: pp,  Next: rmmissing,  Prev: missing,  Up: Functions Alphabetically
 
-5.2.13 pp
+5.2.14 pp
 ---------
 
-_Not documented_
+ -- Function: pp (X)
+ -- Function: pp (A, B, C, ...)
+ -- Function: pp (‘'A'’, ‘'B'’, ‘'C'’, ...)
+ -- Function: pp ‘A’ ‘B’ ‘C’ ...
+
+     Alias for prettyprint, for interactive use.
+
+     This is an alias for prettyprint(), with additional name-conversion
+     magic.
+
+     If you pass in a char, instead of pretty-printing that directly, it
+     will grab and pretty-print the variable of that name from the
+     caller’s workspace.  This is so you can conveniently run it from
+     the command line.
 
 
 File: Tablicious.info,  Node: rmmissing,  Next: standardizeMissing,  Prev: pp,  Up: Functions Alphabetically
 
-5.2.14 rmmissing
+5.2.15 rmmissing
 ----------------
 
-_Not documented_
+ -- Function: [OUT, TF] = rmmissing (X)
+ -- Function: [OUT, TF] = rmmissing (X, DIM)
+ -- Function: [OUT, TF] = rmmissing (..., ‘'MinNumMissing'’,
+          MINNUMMISSING)
+
+     Remove missing values.
+
+     If X is a vector, removes elements with missing values.  If X is a
+     matrix, removes rows or columns with missing data elements.
+
+     DIM is the dimension to operate along.  Specifying a dimension
+     forces ‘rmmissing’ to operate in matrix instead of vector mode.
+
+     MINNUMMISSING indicates how many missing element values there must
+     be in a row or column for it to be considered missing and this
+     removed.  This option is only used in matrix mode; it is silently
+     ignored in vector mode.
+
+     Returns: OUT - the input, with missing elements or rows or columns
+     removed TF - a logical index vector indicating which elements,
+     rows, or columns were removed
 
 
 File: Tablicious.info,  Node: standardizeMissing,  Next: startsWith,  Prev: rmmissing,  Up: Functions Alphabetically
 
-5.2.15 standardizeMissing
+5.2.16 standardizeMissing
 -------------------------
 
-_Not documented_
+ -- Function: OUT = standardizeMissing (X, INDICATOR)
+
+     Insert standard missing values.
+
+     Standardizes missing values in X by replacing the values listed in
+     INDICATOR with the standard missing values for the type of X.
+
+     Standard missing values depend on the data type: * NaN for double,
+     single, duration, and calendarDuration * NaT for datetime * ‘' '’
+     for char * ‘{''}’ for cellstrs * Integer numeric types have no
+     standard missing value; they are never considered missing.  *
+     Structs are never considered missing.  * Logicals are never
+     considered missing.
+
+     See also: *note table.standardizeMissing::
 
 
 File: Tablicious.info,  Node: startsWith,  Next: string,  Prev: standardizeMissing,  Up: Functions Alphabetically
 
-5.2.16 startsWith
+5.2.17 startsWith
 -----------------
 
-_Not documented_
+ -- Function: OUT = startsWith (STR, PATTERN)
+ -- Function: OUT = startsWith (..., ‘'IgnoreCase'’, IGNORECASE)
+
+     Test if strings start with a pattern.
+
+     Tests whether the given strings start with the given pattern(s).
+
+     STR (char, cellstr, or string) is a list of strings to compare
+     against PATTERN.
+
+     PATTERN (char, cellstr, or string) is a list of patterns to match.
+     These are literal plain string patterns, not regex patterns.  If
+     more than one pattern is supplied, the return value is true if the
+     string matched any of them.
+
+     Returns a logical array of the same size as the string array
+     represented by STR.
 
 
 File: Tablicious.info,  Node: string,  Next: struct2table,  Prev: startsWith,  Up: Functions Alphabetically
 
-5.2.17 string
+5.2.18 string
 -------------
 
-_Not documented_
+ -- Class: string
+
+     A string array of Unicode strings.
+
+     A string array is an array of strings, where each array element is
+     a single string.
+
+     The string class represents strings, where: - Each element of a
+     string array is a single string - A single string is a
+     1-dimensional row vector of Unicode characters - Those characters
+     are encoded in UTF-8
+
+     This should correspond pretty well to what people think of as
+     strings, and is pretty compatible with people’s typical notion of
+     strings in Octave.
+
+     String arrays also have a special “missing” value, that is like the
+     string equivalent of NaN for doubles or “undefined” for
+     categoricals, or SQL NULL.
+
+     This is a slightly higher-level and more strongly-typed way of
+     representing strings than cellstrs are.  (A cellstr array is of
+     type cell, not a text- specific type, and allows assignment of
+     non-string data into it.)
+
+     Be aware that while string arrays interconvert with Octave chars
+     and cellstrs, Octave char elements represent 8-bit UTF-8 code
+     units, not Unicode code points.
+
+     This class really serves three roles.  - It is an object wrapper
+     around Octave’s base primitive character types.  - It adds
+     ismissing() semantics.  - And it introduces Unicode support.  Not
+     clear whether it’s a good fit to have the Unicode support wrapped
+     up in this.  Maybe it should just be a simple object wrapper
+     wrapper, and defer Unicode semantics to when core Octave adopts
+     them for char and cellstr.  On the other hand, because Octave chars
+     are UTF-8, not UCS-2, some methods like strlength() and reverse()
+     are just going to be wrong if they delegate straight to chars.
+
+     “Missing” string values work like NaNs.  They are never considered
+     equal, less than, or greater to any other string, including other
+     missing strings.  This applies to set membership and other
+     equivalence tests.
+
+     The current implementation depends on Java for its Unicode and
+     encoding support.  This means your Octave session must be running
+     Java to call those methods.  This should be changed in the future
+     to use a native C/C++ library and avoid the Java dependency,
+     especially before this class is merged into core Octave.
+
+     TODO: Need to decide how far to go with Unicode semantics, and how
+     much to just make this an object wrapper over cellstr and defer to
+     Octave’s existing char/string-handling functions.
+
+     TODO: demote_strings should probably be static or global, so that
+     other functions can use it to hack themselves into being
+     string-aware.
+
+* Menu:
+
+* string.string::
+* string.isstring::
+* string.dispstrs::
+* string.ismissing::
+* string.isnannish::
+* string.cellstr::
+* string.cell::
+* string.char::
+* string.encode::
+* string.strlength_bytes::
+* string.strlength::
+* string.reverse_bytes::
+* string.reverse::
+* string.strcat::
+* string.lower::
+* string.upper::
+* string.erase::
+* string.strrep::
+* string.strfind::
+* string.regexprep::
+* string.strcmp::
+* string.cmp::
+* string.missing::
+* string.decode::
+
+
+File: Tablicious.info,  Node: string.string,  Next: string.isstring,  Up: string
+
+5.2.18.1 string.string
+......................
+
+ -- Constructor: OBJ = string ()
+ -- Constructor: OBJ = string (IN)
+
+     Construct a new string array.
+
+     The zero-argument constructor creates a new scalar string array
+     whose value is the empty string.  TODO: Determine if this should
+     actually return a “missing” string instead.
+
+     The other constructors construct a new string array by converting
+     various types of inputs.  - chars and cellstrs are converted via
+     cellstr() - numerics are converted via num2str() - datetimes are
+     converted via datestr()
+
+
+File: Tablicious.info,  Node: string.isstring,  Next: string.dispstrs,  Prev: string.string,  Up: string
+
+5.2.18.2 string.isstring
+........................
+
+ -- Method: OUT = isstring (OBJ)
+
+     Test if input is a string array.
+
+     ‘isstring’ is always true for ‘string’ inputs.
+
+     Returns a scalar logical.
+
+
+File: Tablicious.info,  Node: string.dispstrs,  Next: string.ismissing,  Prev: string.isstring,  Up: string
+
+5.2.18.3 string.dispstrs
+........................
+
+ -- Method: OUT = dispstrs (OBJ)
+
+     Display strings for array elements.
+
+     Gets display strings for all the elements in OBJ.  These display
+     strings will either be the string contents of the element, enclosed
+     in ‘"..."’, and with CR/LF characters replaced with ‘'\r'’ and
+     ‘'\n'’ escape sequences, or ‘"<missing>"’ for missing values.
+
+     Returns a cellstr of the same size as OBJ.
+
+
+File: Tablicious.info,  Node: string.ismissing,  Next: string.isnannish,  Prev: string.dispstrs,  Up: string
+
+5.2.18.4 string.ismissing
+.........................
+
+ -- Method: OUT = ismissing (OBJ)
+
+     Test whether array elements are missing.
+
+     For ‘string’ arrays, only the special “missing” value is considered
+     missing.  Empty strings are not considered missing, the way they
+     are with cellstrs.
+
+     Returns a logical array the same size as ‘obj’.
+
+
+File: Tablicious.info,  Node: string.isnannish,  Next: string.cellstr,  Prev: string.ismissing,  Up: string
+
+5.2.18.5 string.isnannish
+.........................
+
+ -- Method: OUT = isnannish (OBJ)
+
+     Test whether array elements are NaN-like.
+
+     Missing values are considered nannish; any other string value is
+     not.
+
+     Returns a logical array of the same size as OBJ.
+
+
+File: Tablicious.info,  Node: string.cellstr,  Next: string.cell,  Prev: string.isnannish,  Up: string
+
+5.2.18.6 string.cellstr
+.......................
+
+ -- Method: OUT = cellstr (OBJ)
+
+     Convert to cellstr.
+
+     Converts OBJ to a cellstr.  Missing values are converted to ‘''’.
+
+     Returns a cellstr array of the same size as OBJ.
+
+
+File: Tablicious.info,  Node: string.cell,  Next: string.char,  Prev: string.cellstr,  Up: string
+
+5.2.18.7 string.cell
+....................
+
+ -- Method: OUT = cell (OBJ)
+
+     Convert to cell array.
+
+     Converts this to a cell, which will be a cellstr.  Missing values
+     are converted to ‘''’.
+
+     This method returns the same values as ‘cellstr(obj)’; it is just
+     provided for interface compatibility purposes.
+
+     Returns a cell array of the same size as OBJ.
+
+
+File: Tablicious.info,  Node: string.char,  Next: string.encode,  Prev: string.cell,  Up: string
+
+5.2.18.8 string.char
+....................
+
+ -- Method: OUT = char (OBJ)
+
+     Convert to char array.
+
+     Converts OBJ to a 2-D char array.  It will have as many rows as OBJ
+     has elements.
+
+     It is an error to convert missing-valued ‘string’ arrays to char.
+     (NOTE: This may change in the future; it may be more appropriate)
+     to convert them to space-padded empty strings.)
+
+     Returns 2-D char array.
+
+
+File: Tablicious.info,  Node: string.encode,  Next: string.strlength_bytes,  Prev: string.char,  Up: string
+
+5.2.18.9 string.encode
+......................
+
+ -- Method: OUT = encode (OBJ, CHARSETNAME)
+
+     Encode string in a given character encoding.
+
+     OBJ must be scalar.
+
+     CHARSETNAME (charvec) is the name of a character encoding.  (TODO:
+     Document what determines the set of valid encoding names.)
+
+     Returns the encoded string as a ‘uint8’ vector.
+
+     See also: *note string.decode::.
+
+
+File: Tablicious.info,  Node: string.strlength_bytes,  Next: string.strlength,  Prev: string.encode,  Up: string
+
+5.2.18.10 string.strlength_bytes
+................................
+
+ -- Method: OUT = strlength_bytes (OBJ)
+
+     String length in bytes.
+
+     Gets the length of each string in OBJ, counted in Unicode UTF-8
+     code units (bytes).  This is the same as ‘numel(str)’ for the
+     corresponding Octave char vector for each string, but may not be
+     what you actually want to use.  You may want ‘strlength’ instead.
+
+     Returns double array of the same size as OBJ.  Returns NaNs for
+     missing strings.
+
+     See also: *note string.strlength::
+
+
+File: Tablicious.info,  Node: string.strlength,  Next: string.reverse_bytes,  Prev: string.strlength_bytes,  Up: string
+
+5.2.18.11 string.strlength
+..........................
+
+ -- Method: OUT = strlength (OBJ)
+
+     String length in characters.
+
+     Gets the length of each string, counted in Unicode characters (code
+     points).  This is the string length method you probably want to
+     use, not ‘strlength_bytes’.
+
+     Returns double array of the same size as OBJ.  Returns NaNs for
+     missing strings.
+
+     See also: *note string.strlength_bytes::
+
+
+File: Tablicious.info,  Node: string.reverse_bytes,  Next: string.reverse,  Prev: string.strlength,  Up: string
+
+5.2.18.12 string.reverse_bytes
+..............................
+
+ -- Method: OUT = reverse_bytes (OBJ)
+
+     Reverse string, byte-wise.
+
+     Reverses the bytes in each string in OBJ.  This operates on bytes
+     (Unicode code units), not characters.
+
+     This may well produce invalid strings as a result, because
+     reversing a UTF-8 byte sequence does not necessarily produce
+     another valid UTF-8 byte sequence.
+
+     You probably do not want to use this method.  You probably want to
+     use ‘string.reverse’ instead.
+
+     Returns a string array the same size as OBJ.
+
+     See also: *note string.reverse::
+
+
+File: Tablicious.info,  Node: string.reverse,  Next: string.strcat,  Prev: string.reverse_bytes,  Up: string
+
+5.2.18.13 string.reverse
+........................
+
+ -- Method: OUT = reverse (OBJ)
+
+     Reverse string, character-wise.
+
+     Reverses the characters in each string in OBJ.  This operates on
+     Unicode characters (code points), not on bytes, so it is guaranteed
+     to produce valid UTF-8 as its output.
+
+     Returns a string array the same size as OBJ.
+
+
+File: Tablicious.info,  Node: string.strcat,  Next: string.lower,  Prev: string.reverse,  Up: string
+
+5.2.18.14 string.strcat
+.......................
+
+ -- Method: OUT = strcat (VARARGIN)
+
+     String concatenation.
+
+     Concatenates the corresponding elements of all the input arrays,
+     string-wise.  Inputs that are not string arrays are converted to
+     string arrays.
+
+     The semantics of concatenating missing strings with non-missing
+     strings has not been determined yet.
+
+     Returns a string array the same size as the scalar expansion of its
+     inputs.
+
+
+File: Tablicious.info,  Node: string.lower,  Next: string.upper,  Prev: string.strcat,  Up: string
+
+5.2.18.15 string.lower
+......................
+
+ -- Method: OUT = lower (OBJ)
+
+     Convert to lower case.
+
+     Converts all the characters in all the strings in OBJ to lower
+     case.
+
+     This currently delegates to Octave’s own ‘lower()’ function to do
+     the conversion, so whatever character class handling it has, this
+     has.
+
+     Returns a string array of the same size as OBJ.
+
+
+File: Tablicious.info,  Node: string.upper,  Next: string.erase,  Prev: string.lower,  Up: string
+
+5.2.18.16 string.upper
+......................
+
+ -- Method: OUT = upper (OBJ)
+
+     Convert to upper case.
+
+     Converts all the characters in all the strings in OBJ to upper
+     case.
+
+     This currently delegates to Octave’s own ‘upper()’ function to do
+     the conversion, so whatever character class handling it has, this
+     has.
+
+     Returns a string array of the same size as OBJ.
+
+
+File: Tablicious.info,  Node: string.erase,  Next: string.strrep,  Prev: string.upper,  Up: string
+
+5.2.18.17 string.erase
+......................
+
+ -- Method: OUT = erase (OBJ, MATCH)
+
+     Erase matching substring.
+
+     Erases the substrings in OBJ which match the MATCH input.
+
+     Returns a string array of the same size as OBJ.
+
+
+File: Tablicious.info,  Node: string.strrep,  Next: string.strfind,  Prev: string.erase,  Up: string
+
+5.2.18.18 string.strrep
+.......................
+
+ -- Method: OUT = strrep (OBJ, MATCH, REPLACEMENT)
+ -- Method: OUT = strrep (..., VARARGIN)
+
+     Replace occurrences of pattern with other string.
+
+     Replaces matching substrings in OBJ with a given replacement
+     string.
+
+     VARARGIN is passed along to the core Octave ‘strrep’ function.
+     This supports whatever options it does.  TODO: Maybe document what
+     those options are.
+
+     Returns a string array of the same size as OBJ.
+
+
+File: Tablicious.info,  Node: string.strfind,  Next: string.regexprep,  Prev: string.strrep,  Up: string
+
+5.2.18.19 string.strfind
+........................
+
+ -- Method: OUT = strfind (OBJ, PATTERN)
+ -- Method: OUT = strfind (..., VARARGIN)
+
+     Find pattern in string.
+
+     Finds the locations where PATTERN occurs in the strings of OBJ.
+
+     TODO: It’s ambiguous whether a scalar this should result in a
+     numeric out or a cell array out.
+
+     Returns either an index vector, or a cell array of index vectors.
+
+
+File: Tablicious.info,  Node: string.regexprep,  Next: string.strcmp,  Prev: string.strfind,  Up: string
+
+5.2.18.20 string.regexprep
+..........................
+
+ -- Method: OUT = regexprep (OBJ, PAT, REPSTR)
+ -- Method: OUT = regexprep (..., VARARGIN)
+
+     Replace based on regular expression matching.
+
+     Replaces all the substrings matching a given regexp pattern PAT
+     with the given replacement text REPSTR.
+
+     Returns a string array of the same size as OBJ.
+
+
+File: Tablicious.info,  Node: string.strcmp,  Next: string.cmp,  Prev: string.regexprep,  Up: string
+
+5.2.18.21 string.strcmp
+.......................
+
+ -- Method: OUT = strcmp (A, B)
+
+     String comparison.
+
+     Tests whether each element in A is exactly equal to the
+     corresponding element in B. Missing values are not considered equal
+     to each other.
+
+     This does the same comparison as ‘A == B’, but is not polymorphic.
+     Generally, there is no reason to use ‘strcmp’ instead of ‘==’ or
+     ‘eq’ on string arrays, unless you want to be compatible with
+     cellstr inputs as well.
+
+     Returns logical array the size of the scalar expansion of A and B.
+
+
+File: Tablicious.info,  Node: string.cmp,  Next: string.missing,  Prev: string.strcmp,  Up: string
+
+5.2.18.22 string.cmp
+....................
+
+ -- Method: [OUT, OUTA, OUTB] = cmp (A, B)
+
+     Value ordering comparison, returning -1/0/+1.
+
+     Compares each element of A and B, returning for each element ‘i’
+     whether ‘A(i)’ was less than (-1), equal to (0), or greater than
+     (1) the corresponding ‘B(i)’.
+
+     TODO: What to do about missing values?  Should missings sort to the
+     end (preserving total ordering over the full domain), or should
+     their comparisons result in a fourth "null"/"undef" return value,
+     probably represented by NaN? FIXME: The current implementation does
+     not handle missings.
+
+     Returns a numeric array OUT of the same size as the scalar
+     expansion of A and B.  Each value in it will be -1, 0, or 1.
+
+     Also returns scalar-expanded copies of A and B as OUTA and OUTB, as
+     a programming convenience.
+
+
+File: Tablicious.info,  Node: string.missing,  Next: string.decode,  Prev: string.cmp,  Up: string
+
+5.2.18.23 string.missing
+........................
+
+ -- Static Method: OUT = string.missing (SZ)
+
+     Missing string value.
+
+     Creates a string array of all-missing values of the specified size
+     SZ.  If SZ is omitted, creates a scalar missing string.
+
+     Returns a string array of size SZ.
+
+
+File: Tablicious.info,  Node: string.decode,  Prev: string.missing,  Up: string
+
+5.2.18.24 string.decode
+.......................
+
+ -- Static Method: OUT = string.decode (BYTES, CHARSETNAME)
+
+     Decode encoded text from bytes.
+
+     Decodes the given encoded text in BYTES according to the specified
+     encoding, given by CHARSETNAME.
+
+     Returns a scalar string.
+
+     See also: *note string.encode::
 
 
 File: Tablicious.info,  Node: struct2table,  Next: table,  Prev: string,  Up: Functions Alphabetically
 
-5.2.18 struct2table
+5.2.19 struct2table
 -------------------
 
-_Not documented_
+ -- Function: OUT = struct2table (S)
+ -- Function: OUT = struct2table (..., ‘'AsArray'’, ASARRAY)
+
+     Convert struct to a table.
+
+     Converts the input struct S to a ‘table’.
+
+     S may be a scalar struct or a nonscalar struct array.
+
+     The ASARRAY option is not implemented yet.
+
+     Returns a ‘table’.
 
 
 File: Tablicious.info,  Node: table,  Next: tableOuterFillValue,  Prev: struct2table,  Up: Functions Alphabetically
 
-5.2.19 table
+5.2.20 table
 ------------
 
  -- Class: table
@@ -537,7 +1761,7 @@ File: Tablicious.info,  Node: table,  Next: tableOuterFillValue,  Prev: struct2t
 
 File: Tablicious.info,  Node: table.table,  Next: table.summary,  Up: table
 
-5.2.19.1 table.table
+5.2.20.1 table.table
 ....................
 
  -- Constructor: OBJ = table ()
@@ -567,7 +1791,7 @@ File: Tablicious.info,  Node: table.table,  Next: table.summary,  Up: table
 
 File: Tablicious.info,  Node: table.summary,  Next: table.prettyprint,  Prev: table.table,  Up: table
 
-5.2.19.2 table.summary
+5.2.20.2 table.summary
 ......................
 
  -- Method: summary (OBJ)
@@ -583,7 +1807,7 @@ File: Tablicious.info,  Node: table.summary,  Next: table.prettyprint,  Prev: ta
 
 File: Tablicious.info,  Node: table.prettyprint,  Next: table.table2cell,  Prev: table.summary,  Up: table
 
-5.2.19.3 table.prettyprint
+5.2.20.3 table.prettyprint
 ..........................
 
  -- Method: prettyprint (OBJ)
@@ -597,7 +1821,7 @@ File: Tablicious.info,  Node: table.prettyprint,  Next: table.table2cell,  Prev:
 
 File: Tablicious.info,  Node: table.table2cell,  Next: table.table2struct,  Prev: table.prettyprint,  Up: table
 
-5.2.19.4 table.table2cell
+5.2.20.4 table.table2cell
 .........................
 
  -- Method: C = table2cell (OBJ)
@@ -612,7 +1836,7 @@ File: Tablicious.info,  Node: table.table2cell,  Next: table.table2struct,  Prev
 
 File: Tablicious.info,  Node: table.table2struct,  Next: table.table2array,  Prev: table.table2cell,  Up: table
 
-5.2.19.5 table.table2struct
+5.2.20.5 table.table2struct
 ...........................
 
  -- Method: S = table2struct (OBJ)
@@ -630,7 +1854,7 @@ File: Tablicious.info,  Node: table.table2struct,  Next: table.table2array,  Pre
 
 File: Tablicious.info,  Node: table.table2array,  Next: table.varnames,  Prev: table.table2struct,  Up: table
 
-5.2.19.6 table.table2array
+5.2.20.6 table.table2array
 ..........................
 
  -- Method: S = table2struct (OBJ)
@@ -640,7 +1864,7 @@ File: Tablicious.info,  Node: table.table2array,  Next: table.varnames,  Prev: t
 
 File: Tablicious.info,  Node: table.varnames,  Next: table.istable,  Prev: table.table2array,  Up: table
 
-5.2.19.7 table.varnames
+5.2.20.7 table.varnames
 .......................
 
  -- Method: OUT = varnames (OBJ)
@@ -652,7 +1876,7 @@ File: Tablicious.info,  Node: table.varnames,  Next: table.istable,  Prev: table
 
 File: Tablicious.info,  Node: table.istable,  Next: table.size,  Prev: table.varnames,  Up: table
 
-5.2.19.8 table.istable
+5.2.20.8 table.istable
 ......................
 
  -- Method: TF = istable (OBJ)
@@ -662,7 +1886,7 @@ File: Tablicious.info,  Node: table.istable,  Next: table.size,  Prev: table.var
 
 File: Tablicious.info,  Node: table.size,  Next: table.length,  Prev: table.istable,  Up: table
 
-5.2.19.9 table.size
+5.2.20.9 table.size
 ...................
 
  -- Method: SZ = size (OBJ)
@@ -675,7 +1899,7 @@ File: Tablicious.info,  Node: table.size,  Next: table.length,  Prev: table.ista
 
 File: Tablicious.info,  Node: table.length,  Next: table.ndims,  Prev: table.size,  Up: table
 
-5.2.19.10 table.length
+5.2.20.10 table.length
 ......................
 
  -- Method: OUT = length (OBJ)
@@ -687,7 +1911,7 @@ File: Tablicious.info,  Node: table.length,  Next: table.ndims,  Prev: table.siz
 
 File: Tablicious.info,  Node: table.ndims,  Next: table.squeeze,  Prev: table.length,  Up: table
 
-5.2.19.11 table.ndims
+5.2.20.11 table.ndims
 .....................
 
  -- Method: OUT = ndims (OBJ)
@@ -699,7 +1923,7 @@ File: Tablicious.info,  Node: table.ndims,  Next: table.squeeze,  Prev: table.le
 
 File: Tablicious.info,  Node: table.squeeze,  Next: table.sizeof,  Prev: table.ndims,  Up: table
 
-5.2.19.12 table.squeeze
+5.2.20.12 table.squeeze
 .......................
 
  -- Method: OBJ = squeeze (OBJ)
@@ -712,7 +1936,7 @@ File: Tablicious.info,  Node: table.squeeze,  Next: table.sizeof,  Prev: table.n
 
 File: Tablicious.info,  Node: table.sizeof,  Next: table.height,  Prev: table.squeeze,  Up: table
 
-5.2.19.13 table.sizeof
+5.2.20.13 table.sizeof
 ......................
 
  -- Method: OUT = sizeof (OBJ)
@@ -726,7 +1950,7 @@ File: Tablicious.info,  Node: table.sizeof,  Next: table.height,  Prev: table.sq
 
 File: Tablicious.info,  Node: table.height,  Next: table.rows,  Prev: table.sizeof,  Up: table
 
-5.2.19.14 table.height
+5.2.20.14 table.height
 ......................
 
  -- Method: OUT = height (OBJ)
@@ -736,7 +1960,7 @@ File: Tablicious.info,  Node: table.height,  Next: table.rows,  Prev: table.size
 
 File: Tablicious.info,  Node: table.rows,  Next: table.width,  Prev: table.height,  Up: table
 
-5.2.19.15 table.rows
+5.2.20.15 table.rows
 ....................
 
  -- Method: OUT = rows (OBJ)
@@ -746,7 +1970,7 @@ File: Tablicious.info,  Node: table.rows,  Next: table.width,  Prev: table.heigh
 
 File: Tablicious.info,  Node: table.width,  Next: table.columns,  Prev: table.rows,  Up: table
 
-5.2.19.16 table.width
+5.2.20.16 table.width
 .....................
 
  -- Method: OUT = width (OBJ)
@@ -759,7 +1983,7 @@ File: Tablicious.info,  Node: table.width,  Next: table.columns,  Prev: table.ro
 
 File: Tablicious.info,  Node: table.columns,  Next: table.numel,  Prev: table.width,  Up: table
 
-5.2.19.17 table.columns
+5.2.20.17 table.columns
 .......................
 
  -- Method: OUT = columns (OBJ)
@@ -772,7 +1996,7 @@ File: Tablicious.info,  Node: table.columns,  Next: table.numel,  Prev: table.wi
 
 File: Tablicious.info,  Node: table.numel,  Next: table.isempty,  Prev: table.columns,  Up: table
 
-5.2.19.18 table.numel
+5.2.20.18 table.numel
 .....................
 
  -- Method: OUT = numel (OBJ)
@@ -789,7 +2013,7 @@ File: Tablicious.info,  Node: table.numel,  Next: table.isempty,  Prev: table.co
 
 File: Tablicious.info,  Node: table.isempty,  Next: table.ismatrix,  Prev: table.numel,  Up: table
 
-5.2.19.19 table.isempty
+5.2.20.19 table.isempty
 .......................
 
  -- Method: OUT = isempty (OBJ)
@@ -802,7 +2026,7 @@ File: Tablicious.info,  Node: table.isempty,  Next: table.ismatrix,  Prev: table
 
 File: Tablicious.info,  Node: table.ismatrix,  Next: table.isrow,  Prev: table.isempty,  Up: table
 
-5.2.19.20 table.ismatrix
+5.2.20.20 table.ismatrix
 ........................
 
  -- Method: OUT = ismatrix (OBJ)
@@ -814,7 +2038,7 @@ File: Tablicious.info,  Node: table.ismatrix,  Next: table.isrow,  Prev: table.i
 
 File: Tablicious.info,  Node: table.isrow,  Next: table.iscol,  Prev: table.ismatrix,  Up: table
 
-5.2.19.21 table.isrow
+5.2.20.21 table.isrow
 .....................
 
  -- Method: OUT = isrow (OBJ)
@@ -824,7 +2048,7 @@ File: Tablicious.info,  Node: table.isrow,  Next: table.iscol,  Prev: table.isma
 
 File: Tablicious.info,  Node: table.iscol,  Next: table.isvector,  Prev: table.isrow,  Up: table
 
-5.2.19.22 table.iscol
+5.2.20.22 table.iscol
 .....................
 
  -- Method: OUT = iscol (OBJ)
@@ -837,7 +2061,7 @@ File: Tablicious.info,  Node: table.iscol,  Next: table.isvector,  Prev: table.i
 
 File: Tablicious.info,  Node: table.isvector,  Next: table.isscalar,  Prev: table.iscol,  Up: table
 
-5.2.19.23 table.isvector
+5.2.20.23 table.isvector
 ........................
 
  -- Method: OUT = isvector (OBJ)
@@ -847,7 +2071,7 @@ File: Tablicious.info,  Node: table.isvector,  Next: table.isscalar,  Prev: tabl
 
 File: Tablicious.info,  Node: table.isscalar,  Next: table.hasrownames,  Prev: table.isvector,  Up: table
 
-5.2.19.24 table.isscalar
+5.2.20.24 table.isscalar
 ........................
 
  -- Method: OUT = isscalar (OBJ)
@@ -857,7 +2081,7 @@ File: Tablicious.info,  Node: table.isscalar,  Next: table.hasrownames,  Prev: t
 
 File: Tablicious.info,  Node: table.hasrownames,  Next: table.vertcat,  Prev: table.isscalar,  Up: table
 
-5.2.19.25 table.hasrownames
+5.2.20.25 table.hasrownames
 ...........................
 
  -- Method: OUT = hasrownames (OBJ)
@@ -867,7 +2091,7 @@ File: Tablicious.info,  Node: table.hasrownames,  Next: table.vertcat,  Prev: ta
 
 File: Tablicious.info,  Node: table.vertcat,  Next: table.horzcat,  Prev: table.hasrownames,  Up: table
 
-5.2.19.26 table.vertcat
+5.2.20.26 table.vertcat
 .......................
 
  -- Method: OUT = vertcat (VARARGIN)
@@ -885,7 +2109,7 @@ File: Tablicious.info,  Node: table.vertcat,  Next: table.horzcat,  Prev: table.
 
 File: Tablicious.info,  Node: table.horzcat,  Next: table.repmat,  Prev: table.vertcat,  Up: table
 
-5.2.19.27 table.horzcat
+5.2.20.27 table.horzcat
 .......................
 
  -- Method: OUT = horzcat (VARARGIN)
@@ -903,7 +2127,7 @@ File: Tablicious.info,  Node: table.horzcat,  Next: table.repmat,  Prev: table.v
 
 File: Tablicious.info,  Node: table.repmat,  Next: table.setVariableNames,  Prev: table.horzcat,  Up: table
 
-5.2.19.28 table.repmat
+5.2.20.28 table.repmat
 ......................
 
  -- Method: OUT = repmat (OBJ, SZ)
@@ -921,7 +2145,7 @@ File: Tablicious.info,  Node: table.repmat,  Next: table.setVariableNames,  Prev
 
 File: Tablicious.info,  Node: table.setVariableNames,  Next: table.setRowNames,  Prev: table.repmat,  Up: table
 
-5.2.19.29 table.setVariableNames
+5.2.20.29 table.setVariableNames
 ................................
 
  -- Method: OUT = setVariableNames (OBJ, NAMES)
@@ -936,7 +2160,7 @@ File: Tablicious.info,  Node: table.setVariableNames,  Next: table.setRowNames, 
 
 File: Tablicious.info,  Node: table.setRowNames,  Next: table.resolveVarRef,  Prev: table.setVariableNames,  Up: table
 
-5.2.19.30 table.setRowNames
+5.2.20.30 table.setRowNames
 ...........................
 
  -- Method: OUT = setRowNames (OBJ, NAMES)
@@ -951,7 +2175,7 @@ File: Tablicious.info,  Node: table.setRowNames,  Next: table.resolveVarRef,  Pr
 
 File: Tablicious.info,  Node: table.resolveVarRef,  Next: table.subsetRows,  Prev: table.setRowNames,  Up: table
 
-5.2.19.31 table.resolveVarRef
+5.2.20.31 table.resolveVarRef
 .............................
 
  -- Method: [IXVAR, VARNAMES] = resolveVarREf (OBJ, VARREF)
@@ -970,7 +2194,7 @@ File: Tablicious.info,  Node: table.resolveVarRef,  Next: table.subsetRows,  Pre
 
 File: Tablicious.info,  Node: table.subsetRows,  Next: table.subsetvars,  Prev: table.resolveVarRef,  Up: table
 
-5.2.19.32 table.subsetRows
+5.2.20.32 table.subsetRows
 ..........................
 
  -- Method: OUT = subsetRows (OBJ, IXROWS)
@@ -984,7 +2208,7 @@ File: Tablicious.info,  Node: table.subsetRows,  Next: table.subsetvars,  Prev: 
 
 File: Tablicious.info,  Node: table.subsetvars,  Next: table.removevars,  Prev: table.subsetRows,  Up: table
 
-5.2.19.33 table.subsetvars
+5.2.20.33 table.subsetvars
 ..........................
 
  -- Method: OUT = subsetvars (OBJ, IXVARS)
@@ -1002,7 +2226,7 @@ File: Tablicious.info,  Node: table.subsetvars,  Next: table.removevars,  Prev: 
 
 File: Tablicious.info,  Node: table.removevars,  Next: table.movevars,  Prev: table.subsetvars,  Up: table
 
-5.2.19.34 table.removevars
+5.2.20.34 table.removevars
 ..........................
 
  -- Method: OUT = removevars (OBJ, VARS)
@@ -1017,7 +2241,7 @@ File: Tablicious.info,  Node: table.removevars,  Next: table.movevars,  Prev: ta
 
 File: Tablicious.info,  Node: table.movevars,  Next: table.setvar,  Prev: table.removevars,  Up: table
 
-5.2.19.35 table.movevars
+5.2.20.35 table.movevars
 ........................
 
  -- Method: OUT = movevars (OBJ, VARS, RELLOCATION, LOCATION)
@@ -1039,7 +2263,7 @@ File: Tablicious.info,  Node: table.movevars,  Next: table.setvar,  Prev: table.
 
 File: Tablicious.info,  Node: table.setvar,  Next: table.convertvars,  Prev: table.movevars,  Up: table
 
-5.2.19.36 table.setvar
+5.2.20.36 table.setvar
 ......................
 
  -- Method: OUT = setvar (OBJ, VARREF, VALUE)
@@ -1052,7 +2276,7 @@ File: Tablicious.info,  Node: table.setvar,  Next: table.convertvars,  Prev: tab
 
 File: Tablicious.info,  Node: table.convertvars,  Next: table.head,  Prev: table.setvar,  Up: table
 
-5.2.19.37 table.convertvars
+5.2.20.37 table.convertvars
 ...........................
 
  -- Method: OUT = convertvars (OBJ, VARS, DATATYPE)
@@ -1079,7 +2303,7 @@ File: Tablicious.info,  Node: table.convertvars,  Next: table.head,  Prev: table
 
 File: Tablicious.info,  Node: table.head,  Next: table.tail,  Prev: table.convertvars,  Up: table
 
-5.2.19.38 table.head
+5.2.20.38 table.head
 ....................
 
  -- Method: OUT = head (OBJ)
@@ -1096,7 +2320,7 @@ File: Tablicious.info,  Node: table.head,  Next: table.tail,  Prev: table.conver
 
 File: Tablicious.info,  Node: table.tail,  Next: table.join,  Prev: table.head,  Up: table
 
-5.2.19.39 table.tail
+5.2.20.39 table.tail
 ....................
 
  -- Method: OUT = tail (OBJ)
@@ -1113,7 +2337,7 @@ File: Tablicious.info,  Node: table.tail,  Next: table.join,  Prev: table.head, 
 
 File: Tablicious.info,  Node: table.join,  Next: table.innerjoin,  Prev: table.tail,  Up: table
 
-5.2.19.40 table.join
+5.2.20.40 table.join
 ....................
 
  -- Method: [C, IB] = join (A, B)
@@ -1135,7 +2359,7 @@ File: Tablicious.info,  Node: table.join,  Next: table.innerjoin,  Prev: table.t
 
 File: Tablicious.info,  Node: table.innerjoin,  Next: table.outerjoin,  Prev: table.join,  Up: table
 
-5.2.19.41 table.innerjoin
+5.2.20.41 table.innerjoin
 .........................
 
  -- Method: [OUT, IXA, IXB] = innerjoin (A, B)
@@ -1156,7 +2380,7 @@ File: Tablicious.info,  Node: table.innerjoin,  Next: table.outerjoin,  Prev: ta
 
 File: Tablicious.info,  Node: table.outerjoin,  Next: table.outerfillvals,  Prev: table.innerjoin,  Up: table
 
-5.2.19.42 table.outerjoin
+5.2.20.42 table.outerjoin
 .........................
 
  -- Method: [OUT, IXA, IXB] = outerjoin (A, B)
@@ -1179,7 +2403,7 @@ File: Tablicious.info,  Node: table.outerjoin,  Next: table.outerfillvals,  Prev
 
 File: Tablicious.info,  Node: table.outerfillvals,  Next: table.semijoin,  Prev: table.outerjoin,  Up: table
 
-5.2.19.43 table.outerfillvals
+5.2.20.43 table.outerfillvals
 .............................
 
  -- Method: OUT = outerfillvals (OBJ)
@@ -1193,7 +2417,7 @@ File: Tablicious.info,  Node: table.outerfillvals,  Next: table.semijoin,  Prev:
 
 File: Tablicious.info,  Node: table.semijoin,  Next: table.antijoin,  Prev: table.outerfillvals,  Up: table
 
-5.2.19.44 table.semijoin
+5.2.20.44 table.semijoin
 ........................
 
  -- Method: [OUTA, IXA, OUTB, IXB] = semijoin (A, B)
@@ -1215,7 +2439,7 @@ File: Tablicious.info,  Node: table.semijoin,  Next: table.antijoin,  Prev: tabl
 
 File: Tablicious.info,  Node: table.antijoin,  Next: table.cartesian,  Prev: table.semijoin,  Up: table
 
-5.2.19.45 table.antijoin
+5.2.20.45 table.antijoin
 ........................
 
  -- Method: [OUTA, IXA, OUTB, IXB] = antijoin (A, B)
@@ -1234,7 +2458,7 @@ File: Tablicious.info,  Node: table.antijoin,  Next: table.cartesian,  Prev: tab
 
 File: Tablicious.info,  Node: table.cartesian,  Next: table.groupby,  Prev: table.antijoin,  Up: table
 
-5.2.19.46 table.cartesian
+5.2.20.46 table.cartesian
 .........................
 
  -- Method: [OUT, IXS] = cartesian (A, B)
@@ -1266,7 +2490,7 @@ File: Tablicious.info,  Node: table.cartesian,  Next: table.groupby,  Prev: tabl
 
 File: Tablicious.info,  Node: table.groupby,  Next: table.grpstats,  Prev: table.cartesian,  Up: table
 
-5.2.19.47 table.groupby
+5.2.20.47 table.groupby
 .......................
 
  -- Method: [OUT] = groupby (OBJ, GROUPVARS, AGGCALCS)
@@ -1290,7 +2514,7 @@ File: Tablicious.info,  Node: table.groupby,  Next: table.grpstats,  Prev: table
 
 File: Tablicious.info,  Node: table.grpstats,  Next: table.union,  Prev: table.groupby,  Up: table
 
-5.2.19.48 table.grpstats
+5.2.20.48 table.grpstats
 ........................
 
  -- Method: [OUT] = grpstats (OBJ, GROUPVAR)
@@ -1303,7 +2527,7 @@ File: Tablicious.info,  Node: table.grpstats,  Next: table.union,  Prev: table.g
 
 File: Tablicious.info,  Node: table.union,  Next: table.intersect,  Prev: table.grpstats,  Up: table
 
-5.2.19.49 table.union
+5.2.20.49 table.union
 .....................
 
  -- Method: [C, IA, IB] = union (A, B)
@@ -1321,7 +2545,7 @@ File: Tablicious.info,  Node: table.union,  Next: table.intersect,  Prev: table.
 
 File: Tablicious.info,  Node: table.intersect,  Next: table.setxor,  Prev: table.union,  Up: table
 
-5.2.19.50 table.intersect
+5.2.20.50 table.intersect
 .........................
 
  -- Method: [C, IA, IB] = intersect (A, B)
@@ -1340,7 +2564,7 @@ File: Tablicious.info,  Node: table.intersect,  Next: table.setxor,  Prev: table
 
 File: Tablicious.info,  Node: table.setxor,  Next: table.setdiff,  Prev: table.intersect,  Up: table
 
-5.2.19.51 table.setxor
+5.2.20.51 table.setxor
 ......................
 
  -- Method: [C, IA, IB] = setxor (A, B)
@@ -1359,7 +2583,7 @@ File: Tablicious.info,  Node: table.setxor,  Next: table.setdiff,  Prev: table.i
 
 File: Tablicious.info,  Node: table.setdiff,  Next: table.ismember,  Prev: table.setxor,  Up: table
 
-5.2.19.52 table.setdiff
+5.2.20.52 table.setdiff
 .......................
 
  -- Method: [C, IA] = setdiff (A, B)
@@ -1377,7 +2601,7 @@ File: Tablicious.info,  Node: table.setdiff,  Next: table.ismember,  Prev: table
 
 File: Tablicious.info,  Node: table.ismember,  Next: table.ismissing,  Prev: table.setdiff,  Up: table
 
-5.2.19.53 table.ismember
+5.2.20.53 table.ismember
 ........................
 
  -- Method: [TF, LOC] = ismember (A, B)
@@ -1392,7 +2616,7 @@ File: Tablicious.info,  Node: table.ismember,  Next: table.ismissing,  Prev: tab
 
 File: Tablicious.info,  Node: table.ismissing,  Next: table.rmmissing,  Prev: table.ismember,  Up: table
 
-5.2.19.54 table.ismissing
+5.2.20.54 table.ismissing
 .........................
 
  -- Method: OUT = ismissing (OBJ)
@@ -1414,7 +2638,7 @@ File: Tablicious.info,  Node: table.ismissing,  Next: table.rmmissing,  Prev: ta
 
 File: Tablicious.info,  Node: table.rmmissing,  Next: table.standardizeMissing,  Prev: table.ismissing,  Up: table
 
-5.2.19.55 table.rmmissing
+5.2.20.55 table.rmmissing
 .........................
 
  -- Method: [OUT, TF] = rmmissing (OBJ)
@@ -1437,7 +2661,7 @@ File: Tablicious.info,  Node: table.rmmissing,  Next: table.standardizeMissing, 
 
 File: Tablicious.info,  Node: table.standardizeMissing,  Next: table.varfun,  Prev: table.rmmissing,  Up: table
 
-5.2.19.56 table.standardizeMissing
+5.2.20.56 table.standardizeMissing
 ..................................
 
  -- Method: OUT = standardizeMissing (OBJ, INDICATOR)
@@ -1463,7 +2687,7 @@ File: Tablicious.info,  Node: table.standardizeMissing,  Next: table.varfun,  Pr
 
 File: Tablicious.info,  Node: table.varfun,  Next: table.rowfun,  Prev: table.standardizeMissing,  Up: table
 
-5.2.19.57 table.varfun
+5.2.20.57 table.varfun
 ......................
 
  -- Method: OUT = varfun (FCN, OBJ)
@@ -1479,7 +2703,7 @@ File: Tablicious.info,  Node: table.varfun,  Next: table.rowfun,  Prev: table.st
 
 File: Tablicious.info,  Node: table.rowfun,  Next: table.findgroups,  Prev: table.varfun,  Up: table
 
-5.2.19.58 table.rowfun
+5.2.20.58 table.rowfun
 ......................
 
  -- Method: OUT = varfun (FCN, OBJ)
@@ -1490,7 +2714,7 @@ File: Tablicious.info,  Node: table.rowfun,  Next: table.findgroups,  Prev: tabl
 
 File: Tablicious.info,  Node: table.findgroups,  Next: table.evalWithVars,  Prev: table.rowfun,  Up: table
 
-5.2.19.59 table.findgroups
+5.2.20.59 table.findgroups
 ..........................
 
  -- Method: [G, TID] = findgroups (OBJ)
@@ -1508,7 +2732,7 @@ File: Tablicious.info,  Node: table.findgroups,  Next: table.evalWithVars,  Prev
 
 File: Tablicious.info,  Node: table.evalWithVars,  Next: table.restrict,  Prev: table.findgroups,  Up: table
 
-5.2.19.60 table.evalWithVars
+5.2.20.60 table.evalWithVars
 ............................
 
  -- Method: OUT = evalWithVars (OBJ, EXPR)
@@ -1535,7 +2759,7 @@ File: Tablicious.info,  Node: table.evalWithVars,  Next: table.restrict,  Prev: 
 
 File: Tablicious.info,  Node: table.restrict,  Prev: table.evalWithVars,  Up: table
 
-5.2.19.61 table.restrict
+5.2.20.61 table.restrict
 ........................
 
  -- Method: OUT = restrict (OBJ, EXPR)
@@ -1564,12 +2788,58 @@ File: Tablicious.info,  Node: table.restrict,  Prev: table.evalWithVars,  Up: ta
           prettyprint (restrict (p, 'Weight >= 14 & strcmp(Color, "Red")'))
 
 
-File: Tablicious.info,  Node: tableOuterFillValue,  Prev: table,  Up: Functions Alphabetically
+File: Tablicious.info,  Node: tableOuterFillValue,  Next: vecfun,  Prev: table,  Up: Functions Alphabetically
 
-5.2.20 tableOuterFillValue
+5.2.21 tableOuterFillValue
 --------------------------
 
-_Not documented_
+ -- Function: OUT = tableOuterFillValue (X)
+
+     Outer fill value for variable within a table.
+
+     Determines the fill value to usse for a given variable value X when
+     that value is used as a variable in a table that is involved in an
+     outer join.
+
+     The default implementation for ‘tableOuterFillValue’ has support
+     for all Octave primitive types, plus cellstrs, datetime & friends,
+     strings, and ‘table’-valued variables.
+
+     This function may become private to table before version 1.0.  It
+     is currently global to make debugging more convenient.  It (or an
+     equivalent) will remain global if we want to allow user-defined
+     classes to customize their fill value.  It also has default logic
+     that will determine the fill value for an arbitrary type by
+     detecting the value used to fill elements during array expansion
+     operations.  This will be appropriate for most data types.
+
+     Returns a 1-by-ncols value of the same type as x, which may be any
+     type, where ncols is the number of columns in the input.
+
+
+File: Tablicious.info,  Node: vecfun,  Prev: tableOuterFillValue,  Up: Functions Alphabetically
+
+5.2.22 vecfun
+-------------
+
+ -- Function: OUT = vecfun (FCN, X, DIM)
+
+     Apply function to vectors in array along arbitrary dimension.
+
+     This function is not implemented yet.
+
+     Applies a given function to the vector slices of an N-dimensional
+     array, where those slices are along a given dimension.
+
+     FCN is a function handle to apply.
+
+     X is an array of arbitrary type which is to be sliced and passed in
+     to FCN.
+
+     DIM is the dimension along which the vector slices lay.
+
+     Returns the collected output of the FCN calls, which will be the
+     same size as X, but not necessarily the same type.
 
 
 File: Tablicious.info,  Node: Copying,  Prev: Function Reference,  Up: Top
@@ -1617,89 +2887,138 @@ Node: table Class2880
 Node: Missing Functionality3192
 Node: Function Reference3858
 Node: Functions by Category4074
-Node: Functions Alphabetically4943
-Node: array2table5566
-Node: categorical6500
-Node: cell2table8282
-Node: colvecfun9028
-Node: contains9189
-Node: discretize9348
-Node: dispstrs9510
-Node: endsWith9668
-Node: fillmissing9827
-Node: ismissing9993
-Node: isnannish10158
-Node: missing10319
-Node: pp10469
-Node: rmmissing10609
-Node: standardizeMissing10774
-Node: startsWith10965
-Node: string11137
-Node: struct2table11295
-Node: table11460
-Node: table.table13910
-Node: table.summary14962
-Node: table.prettyprint15389
-Node: table.table2cell15848
-Node: table.table2struct16336
-Node: table.table2array16971
-Node: table.varnames17218
-Node: table.istable17470
-Node: table.size17682
-Node: table.length18011
-Node: table.ndims18310
-Node: table.squeeze18561
-Node: table.sizeof18908
-Node: table.height19339
-Node: table.rows19547
-Node: table.width19748
-Node: table.columns20079
-Node: table.numel20417
-Node: table.isempty20937
-Node: table.ismatrix21261
-Node: table.isrow21550
-Node: table.iscol21768
-Node: table.isvector22128
-Node: table.isscalar22354
-Node: table.hasrownames22584
-Node: table.vertcat22834
-Node: table.horzcat23355
-Node: table.repmat23975
-Node: table.setVariableNames24510
-Node: table.setRowNames24956
-Node: table.resolveVarRef25328
-Node: table.subsetRows25938
-Node: table.subsetvars26283
-Node: table.removevars26790
-Node: table.movevars27175
-Node: table.setvar27903
-Node: table.convertvars28272
-Node: table.head29254
-Node: table.tail29629
-Node: table.join29995
-Node: table.innerjoin30741
-Node: table.outerjoin31402
-Node: table.outerfillvals32209
-Node: table.semijoin32642
-Node: table.antijoin33411
-Node: table.cartesian34063
-Node: table.groupby35331
-Node: table.grpstats36182
-Node: table.union36510
-Node: table.intersect37078
-Node: table.setxor37686
-Node: table.setdiff38321
-Node: table.ismember38858
-Node: table.ismissing39260
-Node: table.rmmissing39944
-Node: table.standardizeMissing40736
-Node: table.varfun41726
-Node: table.rowfun42293
-Node: table.findgroups42604
-Node: table.evalWithVars43189
-Node: table.restrict44039
-Node: tableOuterFillValue45168
-Node: Copying45339
+Node: Functions Alphabetically5772
+Node: array2table7085
+Node: categorical8022
+Node: categorical.categorical10282
+Node: categorical.categories11539
+Node: categorical.iscategory11942
+Node: categorical.isordinal12388
+Node: categorical.string12757
+Node: categorical.cellstr13204
+Node: categorical.dispstrs13643
+Node: categorical.summary14099
+Node: categorical.addcats14550
+Node: categorical.removecats14976
+Node: categorical.mergecats15618
+Node: categorical.renamecats16273
+Node: categorical.reordercats16690
+Node: categorical.setcats17225
+Node: categorical.isundefined17671
+Node: categorical.ismissing18189
+Node: categorical.isnannish18599
+Node: categorical.squeezecats19077
+Node: cell2table19447
+Node: colvecfun20193
+Node: contains20923
+Node: discretize21718
+Node: dispstrs22623
+Node: endsWith23411
+Node: eqn24198
+Node: fillmissing25290
+Node: ismissing26151
+Node: isnannish28270
+Node: missing29258
+Node: missing.missing30301
+Node: missing.dispstrs30615
+Node: missing.ismissing31012
+Node: missing.isnan31377
+Node: missing.isnannish31716
+Node: pp32050
+Node: rmmissing32699
+Node: standardizeMissing33748
+Node: startsWith34580
+Node: string35396
+Node: string.string38696
+Node: string.isstring39366
+Node: string.dispstrs39691
+Node: string.ismissing40273
+Node: string.isnannish40754
+Node: string.cellstr41137
+Node: string.cell41482
+Node: string.char41969
+Node: string.encode42494
+Node: string.strlength_bytes43008
+Node: string.strlength43681
+Node: string.reverse_bytes44248
+Node: string.reverse44986
+Node: string.strcat45458
+Node: string.lower46036
+Node: string.upper46538
+Node: string.erase47039
+Node: string.strrep47376
+Node: string.strfind47981
+Node: string.regexprep48504
+Node: string.strcmp48980
+Node: string.cmp49673
+Node: string.missing50652
+Node: string.decode51054
+Node: struct2table51464
+Node: table51937
+Node: table.table54387
+Node: table.summary55439
+Node: table.prettyprint55866
+Node: table.table2cell56325
+Node: table.table2struct56813
+Node: table.table2array57448
+Node: table.varnames57695
+Node: table.istable57947
+Node: table.size58159
+Node: table.length58488
+Node: table.ndims58787
+Node: table.squeeze59038
+Node: table.sizeof59385
+Node: table.height59816
+Node: table.rows60024
+Node: table.width60225
+Node: table.columns60556
+Node: table.numel60894
+Node: table.isempty61414
+Node: table.ismatrix61738
+Node: table.isrow62027
+Node: table.iscol62245
+Node: table.isvector62605
+Node: table.isscalar62831
+Node: table.hasrownames63061
+Node: table.vertcat63311
+Node: table.horzcat63832
+Node: table.repmat64452
+Node: table.setVariableNames64987
+Node: table.setRowNames65433
+Node: table.resolveVarRef65805
+Node: table.subsetRows66415
+Node: table.subsetvars66760
+Node: table.removevars67267
+Node: table.movevars67652
+Node: table.setvar68380
+Node: table.convertvars68749
+Node: table.head69731
+Node: table.tail70106
+Node: table.join70472
+Node: table.innerjoin71218
+Node: table.outerjoin71879
+Node: table.outerfillvals72686
+Node: table.semijoin73119
+Node: table.antijoin73888
+Node: table.cartesian74540
+Node: table.groupby75808
+Node: table.grpstats76659
+Node: table.union76987
+Node: table.intersect77555
+Node: table.setxor78163
+Node: table.setdiff78798
+Node: table.ismember79335
+Node: table.ismissing79737
+Node: table.rmmissing80421
+Node: table.standardizeMissing81213
+Node: table.varfun82203
+Node: table.rowfun82770
+Node: table.findgroups83081
+Node: table.evalWithVars83666
+Node: table.restrict84516
+Node: tableOuterFillValue85645
+Node: vecfun86885
+Node: Copying87616
 
 End Tag Table
 
