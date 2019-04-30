@@ -2118,19 +2118,22 @@ classdef table
       
       endfunction
 
-    function [C, ia, ib] = union (A, B)
-      %UNION Set union
-      %
-      % [C, ia, ib] = union (A, B)
-      %
-      % Computes the union of two tables. The union is defined to be the unique
-      % values which are present in either of the the two input tables.
-      %
-      % Returns:
-      % C - A table containing all the unique row values present in A or B.
-      % ia - Row indexes into A of the rows from A included in C.
-      % ib - Row indexes into B of the rows from B included in C.
-      
+    ## -*- texinfo -*-
+    ## @node table.union
+    ## @deftypefn {Method} {[@var{C}, @var{ia}, @var{ib}] =} union (@var{A}, @var{B})
+    ##
+    ## Set union.
+    ##
+    ## Computes the union of two tables. The union is defined to be the unique
+    ## row values which are present in either of the two input tables.
+    ##
+    ## Returns:
+    ##   @var{C} - A table containing all the unique row values present in A or B.
+    ##   @var{ia} - Row indexes into A of the rows from A included in C.
+    ##   @var{ib} - Row indexes into B of the rows from B included in C.
+    ##
+    ## @end deftypefn
+    function [C, ia, ib] = union (A, B)      
       % Input handling
       [A, B] = congruentize (A, B);
             
@@ -2140,19 +2143,22 @@ classdef table
       C = [subsetRows(A, ia); subsetRows(B, ib)];      
     endfunction
     
+    ## -*- texinfo -*-
+    ## @node table.intersect
+    ## @deftypefn {Method} {[@var{C}, @var{ia}, @var{ib}] =} intersect (@var{A}, @var{B})
+    ##
+    ## Set intersection.
+    ##
+    ## Computes the intersection of two tables. The intersection is defined to be the unique
+    ## row values which are present in both of the two input tables.
+    ##
+    ## Returns:
+    ##   @var{C} - A table containing all the unique row values present in both A and B.
+    ##   @var{ia} - Row indexes into A of the rows from A included in C.
+    ##   @var{ib} - Row indexes into B of the rows from B included in C.
+    ##
+    ## @end deftypefn
     function [C, ia, ib] = intersect (A, B)
-      %INTERSECT Set intersection
-      %
-      % [C, ia, ib] = intersect (A, B)
-      %
-      % Computes the intersection of two tables. The intersection is defined to 
-      % be the unique values which are present in both of the two input tables.
-      %
-      % Returns:
-      % C - A table containing all the unique row values present in A and B.
-      % ia - Row indexes into A of the rows from A included in C.
-      % ib - Row indexes into B of the rows from B included in C.
-      
       % Input handling
       [A, B] = congruentize (A, B);
             
@@ -2162,20 +2168,23 @@ classdef table
       C = [subsetRows(A, ia); subsetRows(B, ib)];      
     endfunction
     
+    ## -*- texinfo -*-
+    ## @node table.setxor
+    ## @deftypefn {Method} {[@var{C}, @var{ia}, @var{ib}] =} setxor (@var{A}, @var{B})
+    ##
+    ## Set exclusive OR.
+    ##
+    ## Computes the setwise exclusive OR of two tables. The set XOR is defined to be 
+    ## the unique row values which are present in one or the other of the two input
+    ## tables, but not in both.
+    ##
+    ## Returns:
+    ##   @var{C} - A table containing all the unique row values in the set XOR of A and B.
+    ##   @var{ia} - Row indexes into A of the rows from A included in C.
+    ##   @var{ib} - Row indexes into B of the rows from B included in C.
+    ##
+    ## @end deftypefn
     function [C, ia, ib] = setxor (A, B)
-      %SETXOR Set exclusive OR
-      %
-      % [C, ia, ib] = setxor (A, B)
-      %
-      % Computes the setwise exclusive OR of two tables. The set XOR is defined
-      % as the set of rows that are present in one array or another, but not in
-      % both.
-      %
-      % Returns:
-      % C - A table containing the row values in the set XOR of A and B.
-      % ia - Row indexes into A of the rows from A included in C.
-      % ib - Row indexes into B of the rows from B included in C.
-      
       % Input handling
       [A, B] = congruentize (A, B);
             
@@ -2185,18 +2194,21 @@ classdef table
       C = [subsetRows(A, ia); subsetRows(B, ib)];      
     endfunction
     
+    ## -*- texinfo -*-
+    ## @node table.setdiff
+    ## @deftypefn {Method} {[@var{C}, @var{ia}] =} setdiff (@var{A}, @var{B})
+    ##
+    ## Set difference.
+    ##
+    ## Computes the set difference of two tables. The set difference is defined to be 
+    ## the unique row values which are present in table A that are not in table B.
+    ##
+    ## Returns:
+    ##   @var{C} - A table containing the unique row values in A that were not in B.
+    ##   @var{ia} - Row indexes into A of the rows from A included in C.
+    ##
+    ## @end deftypefn
     function [C, ia] = setdiff (A, B)
-      %SETDIFF Set difference
-      %
-      % [C, ia] = setdiff (A, B)
-      %
-      % Computes the set difference of two tables. The set difference is defined 
-      % as the set of rows in A that are not in B.
-      %
-      % Returns:
-      % C - A table containing the rows in A that were not in B.
-      % ia - Row indexes into A of the rows that are in C.
-      
       % Input handling
       [A, B] = congruentize (A, B);
             
@@ -2206,17 +2218,20 @@ classdef table
       C = subsetRows (A, ia);
     endfunction
     
-    function [tf, loc] = ismember (A, B)
-      %ISMEMBER Set membership (table rows that are members of another table)
-      %
-      % [tf, loc] = ismember (A, B)
-      %
-      % Finds rows in A that are members of B.
-      %
-      % Returns:
-      % tf - A logical vector indicating whether each A(i,:) was present in B.
-      % loc - Indexes into B of rows that were found.
-      
+    ## -*- texinfo -*-
+    ## @node table.ismember
+    ## @deftypefn {Method} {[@var{tf}, @var{loc}] =} ismember (@var{A}, @var{B})
+    ##
+    ## Set membership.
+    ##
+    ## Finds rows in A that are members of B.
+    ##
+    ## Returns:
+    ##   @var{tf} - A logical vector indicating whether each A(i,:) was present in B.
+    ##   @var{loc} - Indexes into B of rows that were found.
+    ##
+    ## @end deftypefn
+    function [tf, loc] = ismember (A, B)      
       % Input handling
       [A, B] = congruentize (A, B);
             
