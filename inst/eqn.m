@@ -45,6 +45,6 @@ function out = eqn (A, B)
   % of appending an "N" to the corresponding non-NaN-aware function.
   
   out = A == B;
-  out(isnannish (A) & isnany (B)) = true;
+  out(isnannish (A) & isnannish (B)) = true;
 
 endfunction
