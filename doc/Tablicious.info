@@ -1,0 +1,568 @@
+This is Tablicious.info, produced by makeinfo version 6.6 from
+Tablicious.texi.
+
+This manual is for Tablicious, version 0.1.0-SNAPSHOT.
+
+   Copyright © 2019 Andrew Janke
+
+     Permission is granted to make and distribute verbatim copies of
+     this manual provided the copyright notice and this permission
+     notice are preserved on all copies.
+
+     Permission is granted to copy and distribute modified versions of
+     this manual under the conditions for verbatim copying, provided
+     that the entire resulting derived work is distributed under the
+     terms of a permission notice identical to this one.
+
+     Permission is granted to copy and distribute translations of this
+     manual into another language, under the same conditions as for
+     modified versions.
+
+
+File: Tablicious.info,  Node: Top,  Next: Introduction
+
+Tablicious for GNU Octave
+*************************
+
+This manual is for Tablicious, version 0.1.0-SNAPSHOT.
+
+* Menu:
+
+* Introduction::
+* Getting Started::
+* Table Representation::
+* Missing Functionality::
+* Function Reference::
+* Copying::
+
+
+File: Tablicious.info,  Node: Introduction,  Next: Getting Started,  Up: Top
+
+1 Introduction
+**************
+
+This is the manual for the Tablicious package version 0.1.0-SNAPSHOT for
+GNU Octave.
+
+   Tablicious provides Matlab-compatible tabular data support for GNU
+Octave.  This includes a ‘table’ class with support for filtering and
+join operations, Missing Data support, and ‘string’ and ‘categorical’
+data types.
+
+   This document is a work in progress.  You are invited to help improve
+it and submit patches.
+
+   Tablicious was written by Andrew Janke <<floss@apjanke.net>>.
+Support can be found on the Tablicious project GitHub page
+(https://github.com/apjanke/octave-tablicious).
+
+
+File: Tablicious.info,  Node: Getting Started,  Next: Table Representation,  Prev: Introduction,  Up: Top
+
+2 Getting Started
+*****************
+
+The easiest way to obtain Tablicious is by using Octave’s ‘pkg’ package
+manager.  To install the development prerelease of Tablicious, run this
+in Octave:
+
+     pkg install https://github.com/apjanke/octave-tablicious/releases/download/v0.1.0-SNAPSHOT/tablicious-0.1.0-SNAPSHOT.tar.gz
+
+   (Check the releases page at
+<https://github.com/apjanke/octave-tablicious/releases> to find out what
+the actual latest release number is.)
+
+   For development, you can obtain the source code for Tablicious from
+the project repo on GitHub at
+<https://github.com/apjanke/octave-tablicious>.  Make a local clone of
+the repo.  Then add the ‘inst’ directory in the repo to your Octave
+path.
+
+
+File: Tablicious.info,  Node: Table Representation,  Next: Missing Functionality,  Prev: Getting Started,  Up: Top
+
+3 Table Representation
+**********************
+
+Tablicious provides the ‘table’ class for representing tabular data.
+
+* Menu:
+
+* table Class::
+
+
+File: Tablicious.info,  Node: table Class,  Up: Table Representation
+
+3.1 ‘table’ Class
+=================
+
+A ‘table’ is an array object that represents a tabular data structure.
+It holds multiple named “variables”, each of which is a column vector,
+or a 2-D matrix whose rows are read as records.
+
+
+File: Tablicious.info,  Node: Missing Functionality,  Next: Function Reference,  Prev: Table Representation,  Up: Top
+
+4 Missing Functionality
+***********************
+
+Tablicious is based on Matlab’s table API and supports most of its major
+functionality.  But not all of it is implemented yet.  The missing parts
+are currently:
+
+   • ‘timetable’
+   • Moving window methods in ‘fillmissing’
+   • ‘summary()’ for ‘table’ and ‘categorical’
+   • Assignment to table variables using ‘.’-indexing
+   • File I/O like ‘readtable()’ and ‘writetable()’
+
+   It is the author’s hope that all these will be implemented some day.
+
+
+File: Tablicious.info,  Node: Function Reference,  Next: Copying,  Prev: Missing Functionality,  Up: Top
+
+5 Function Reference
+********************
+
+* Menu:
+
+* Functions by Category::
+* Functions Alphabetically::
+
+
+File: Tablicious.info,  Node: Functions by Category,  Next: Functions Alphabetically,  Up: Function Reference
+
+5.1 Functions by Category
+=========================
+
+5.1.1 Tables
+------------
+
+*note table::
+     Tabular data array containing multiple columnar variables.
+
+*note array2table::
+
+*note cell2table::
+
+*note struct2table::
+
+*note tableOuterFillValue::
+
+5.1.2 Data Types
+----------------
+
+*note string::
+
+*note startsWith::
+
+*note endsWith::
+
+*note contains::
+
+*note categorical::
+
+*note discretize::
+
+5.1.3 Missing Data
+------------------
+
+*note fillmissing::
+
+*note ismissing::
+
+*note rmmissing::
+
+*note standardizemissing::
+
+*note missing::
+
+*note isnannish::
+
+5.1.4 Miscellaneous
+-------------------
+
+*note colvecfun::
+
+*note dispstrs::
+
+*note pp::
+
+
+File: Tablicious.info,  Node: Functions Alphabetically,  Prev: Functions by Category,  Up: Function Reference
+
+5.2 Functions Alphabetically
+============================
+
+* Menu:
+
+* array2table::
+* categorical::
+* cell2table::
+* colvecfun::
+* contains::
+* discretize::
+* dispstrs::
+* endsWith::
+* fillmissing::
+* ismissing::
+* isnannish::
+* missing::
+* pp::
+* rmmissing::
+* standardizemissing::
+* startsWith::
+* string::
+* struct2table::
+* table::	Tabular data array containing multiple columnar variables.
+* tableOuterFillValue::
+
+
+File: Tablicious.info,  Node: array2table,  Next: categorical,  Up: Functions Alphabetically
+
+5.2.1 array2table
+-----------------
+
+_Not documented_
+
+
+File: Tablicious.info,  Node: categorical,  Next: cell2table,  Prev: array2table,  Up: Functions Alphabetically
+
+5.2.2 categorical
+-----------------
+
+_Not documented_
+
+
+File: Tablicious.info,  Node: cell2table,  Next: colvecfun,  Prev: categorical,  Up: Functions Alphabetically
+
+5.2.3 cell2table
+----------------
+
+_Not documented_
+
+
+File: Tablicious.info,  Node: colvecfun,  Next: contains,  Prev: cell2table,  Up: Functions Alphabetically
+
+5.2.4 colvecfun
+---------------
+
+_Not documented_
+
+
+File: Tablicious.info,  Node: contains,  Next: discretize,  Prev: colvecfun,  Up: Functions Alphabetically
+
+5.2.5 contains
+--------------
+
+_Not documented_
+
+
+File: Tablicious.info,  Node: discretize,  Next: dispstrs,  Prev: contains,  Up: Functions Alphabetically
+
+5.2.6 discretize
+----------------
+
+_Not documented_
+
+
+File: Tablicious.info,  Node: dispstrs,  Next: endsWith,  Prev: discretize,  Up: Functions Alphabetically
+
+5.2.7 dispstrs
+--------------
+
+_Not documented_
+
+
+File: Tablicious.info,  Node: endsWith,  Next: fillmissing,  Prev: dispstrs,  Up: Functions Alphabetically
+
+5.2.8 endsWith
+--------------
+
+_Not documented_
+
+
+File: Tablicious.info,  Node: fillmissing,  Next: ismissing,  Prev: endsWith,  Up: Functions Alphabetically
+
+5.2.9 fillmissing
+-----------------
+
+_Not documented_
+
+
+File: Tablicious.info,  Node: ismissing,  Next: isnannish,  Prev: fillmissing,  Up: Functions Alphabetically
+
+5.2.10 ismissing
+----------------
+
+_Not documented_
+
+
+File: Tablicious.info,  Node: isnannish,  Next: missing,  Prev: ismissing,  Up: Functions Alphabetically
+
+5.2.11 isnannish
+----------------
+
+_Not documented_
+
+
+File: Tablicious.info,  Node: missing,  Next: pp,  Prev: isnannish,  Up: Functions Alphabetically
+
+5.2.12 missing
+--------------
+
+_Not documented_
+
+
+File: Tablicious.info,  Node: pp,  Next: rmmissing,  Prev: missing,  Up: Functions Alphabetically
+
+5.2.13 pp
+---------
+
+_Not documented_
+
+
+File: Tablicious.info,  Node: rmmissing,  Next: standardizemissing,  Prev: pp,  Up: Functions Alphabetically
+
+5.2.14 rmmissing
+----------------
+
+_Not documented_
+
+
+File: Tablicious.info,  Node: standardizemissing,  Next: startsWith,  Prev: rmmissing,  Up: Functions Alphabetically
+
+5.2.15 standardizemissing
+-------------------------
+
+_Not documented_
+
+
+File: Tablicious.info,  Node: startsWith,  Next: string,  Prev: standardizemissing,  Up: Functions Alphabetically
+
+5.2.16 startsWith
+-----------------
+
+_Not documented_
+
+
+File: Tablicious.info,  Node: string,  Next: struct2table,  Prev: startsWith,  Up: Functions Alphabetically
+
+5.2.17 string
+-------------
+
+_Not documented_
+
+
+File: Tablicious.info,  Node: struct2table,  Next: table,  Prev: string,  Up: Functions Alphabetically
+
+5.2.18 struct2table
+-------------------
+
+_Not documented_
+
+
+File: Tablicious.info,  Node: table,  Next: tableOuterFillValue,  Prev: struct2table,  Up: Functions Alphabetically
+
+5.2.19 table
+------------
+
+ -- Class: table
+
+     Tabular data array containing multiple columnar variables.
+
+     A ‘table’ is a tabular data structure that collects multiple
+     parallel named variables.  Each variable is treated like a column.
+     (Possibly a multi-columned column, if that makes sense.)  The types
+     of variables may be heterogeneous.
+
+     A table object is like an SQL table or resultset, or a relation, or
+     a DataFrame in R or Pandas.
+
+     A table is an array in itself: its size is NROWS-by-NVARIABLES, and
+     you can index along the rows and variables by indexing into the
+     table along dimensions 1 and 2.
+
+ -- Instance Variable of table: ‘cellstr’ VariableNames
+
+     The names of the variables in the table, as a cellstr row vector.
+
+ -- Instance Variable of table: ‘cell’ VariableValues
+
+     A cell vector containing the values for each of the variables.
+     ‘VariableValues(i)’ corresponds to ‘VariableNames(i)’.
+
+ -- Instance Variable of table: ‘cellstr’ RowNames
+
+     An optional list of row names that identify each row in the table.
+     This is a cellstr column vector, if present.
+
+* Menu:
+
+* table.table::
+* table.summary::
+* table.prettyprint::
+* table.table2cell::
+
+
+File: Tablicious.info,  Node: table.table,  Next: table.summary,  Up: table
+
+5.2.19.1 table.table
+....................
+
+ -- Constructor: OBJ = table ()
+
+     Constructs a new empty (0 rows by 0 variables) table.
+
+ -- Constructor: OBJ = table (VAR1, VAR2, ..., VARN)
+
+     Constructs a new table from the given variables.  The variables
+     passed as inputs to this constructor become the variables of the
+     table.  Their names are automatically detected from the input
+     variable names that you used.
+
+ -- Constructor: OBJ = table (‘'Size'’, SZ, ‘'VariableTypes'’, VARTYPES)
+
+     Constructs a new table of the given size, and with the given
+     variable types.  The variables will contain the default value for
+     elements of that type.
+
+ -- Constructor: OBJ = table (..., ‘'VariableNames'’, VARNAMES)
+ -- Constructor: OBJ = table (..., ‘'RowNames'’, ROWNAMES)
+
+     Specifies the variable names or row names to use in the constructed
+     table.  Overrides the implicit names garnered from the input
+     variable names.
+
+
+File: Tablicious.info,  Node: table.summary,  Next: table.prettyprint,  Prev: table.table,  Up: table
+
+5.2.19.2 table.summary
+......................
+
+ -- Method: summary (OBJ)
+ -- Method: S = summary (OBJ)
+
+     Summary of table’s data.
+
+     Displays or returns a summary of data in the input table.  This
+     will contain some statistical information on each of its variables.
+
+     This method is not implemented yet.
+
+
+File: Tablicious.info,  Node: table.prettyprint,  Next: table.table2cell,  Prev: table.summary,  Up: table
+
+5.2.19.3 table.prettyprint
+..........................
+
+ -- Method: prettyprint (OBJ)
+
+     Display table’s values in tabular format.  This prints the contents
+     of the table in human-readable, tabular form.
+
+     Variables which contain objects are displayed using the strings
+     returned by their ‘dispstrs’ method, if they define one.
+
+
+File: Tablicious.info,  Node: table.table2cell,  Prev: table.prettyprint,  Up: table
+
+5.2.19.4 table.table2cell
+.........................
+
+ -- Method: C = table2cell (OBJ)
+
+     Converts table to a cell array.  Each variable in OBJ becomes one
+     or more columns in the output, depending on how many columns that
+     variable has.
+
+     Returns a cell array with the same number of rows as OBJ, and with
+     as many or more columns as OBJ has variables.
+
+
+File: Tablicious.info,  Node: tableOuterFillValue,  Prev: table,  Up: Functions Alphabetically
+
+5.2.20 tableOuterFillValue
+--------------------------
+
+_Not documented_
+
+
+File: Tablicious.info,  Node: Copying,  Prev: Function Reference,  Up: Top
+
+6 Copying
+*********
+
+6.1 Package Copyright
+=====================
+
+Tablicious for Octave is covered by the GNU GPLv3.
+
+   All the code in the package is GNU GPLv3.
+
+   The Fisher Iris dataset is Public Domain.
+
+6.2 Manual Copyright
+====================
+
+This manual is for Tablicious, version 0.1.0-SNAPSHOT.
+
+   Copyright © 2019 Andrew Janke
+
+     Permission is granted to make and distribute verbatim copies of
+     this manual provided the copyright notice and this permission
+     notice are preserved on all copies.
+
+     Permission is granted to copy and distribute modified versions of
+     this manual under the conditions for verbatim copying, provided
+     that the entire resulting derived work is distributed under the
+     terms of a permission notice identical to this one.
+
+     Permission is granted to copy and distribute translations of this
+     manual into another language, under the same conditions as for
+     modified versions.
+
+
+
+Tag Table:
+Node: Top781
+Node: Introduction1081
+Node: Getting Started1783
+Node: Table Representation2615
+Node: table Class2880
+Node: Missing Functionality3192
+Node: Function Reference3858
+Node: Functions by Category4074
+Node: Functions Alphabetically4838
+Node: array2table5371
+Node: categorical5522
+Node: cell2table5692
+Node: colvecfun5858
+Node: contains6019
+Node: discretize6178
+Node: dispstrs6340
+Node: endsWith6498
+Node: fillmissing6657
+Node: ismissing6823
+Node: isnannish6988
+Node: missing7149
+Node: pp7299
+Node: rmmissing7439
+Node: standardizemissing7604
+Node: startsWith7795
+Node: string7967
+Node: struct2table8125
+Node: table8290
+Node: table.table9657
+Node: table.summary10709
+Node: table.prettyprint11136
+Node: table.table2cell11595
+Node: tableOuterFillValue12056
+Node: Copying12227
+
+End Tag Table
+
+
+Local Variables:
+coding: utf-8
+End:

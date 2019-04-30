@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QtHelpProject version="1.0">
+    <namespace>octave.community.Tablicious</namespace>
+    <virtualFolder>doc</virtualFolder>
+    <filterSection>
+        <toc>
+            <section title="Tablicious for GNU Octave" ref="html/index.html">
+                <section title="Introduction" ref="html/Introduction.html">
+                </section>
+                <section title="Getting Started" ref="html/Getting-Started.html">
+                </section>
+                <section title="Table Representation" ref="html/Table-Representation.html">
+                    <section title="table Class" ref="html/table-Class.html">
+                    </section>
+                </section>
+                <section title="Missing Functionality" ref="html/Missing-Functionality.html">
+                </section>
+                <section title="Function Reference" ref="html/Function-Reference.html">
+                    <section title="Functions by Category" ref="html/Functions-by-Category.html">
+                    </section>
+                    <section title="Functions Alphabetically" ref="html/Functions-Alphabetically.html">
+                        <section title="array2table" ref="html/array2table.html">
+                        </section>
+                        <section title="categorical" ref="html/categorical.html">
+                        </section>
+                        <section title="cell2table" ref="html/cell2table.html">
+                        </section>
+                        <section title="colvecfun" ref="html/colvecfun.html">
+                        </section>
+                        <section title="contains" ref="html/contains.html">
+                        </section>
+                        <section title="discretize" ref="html/discretize.html">
+                        </section>
+                        <section title="dispstrs" ref="html/dispstrs.html">
+                        </section>
+                        <section title="endsWith" ref="html/endsWith.html">
+                        </section>
+                        <section title="fillmissing" ref="html/fillmissing.html">
+                        </section>
+                        <section title="ismissing" ref="html/ismissing.html">
+                        </section>
+                        <section title="isnannish" ref="html/isnannish.html">
+                        </section>
+                        <section title="missing" ref="html/missing.html">
+                        </section>
+                        <section title="pp" ref="html/pp.html">
+                        </section>
+                        <section title="rmmissing" ref="html/rmmissing.html">
+                        </section>
+                        <section title="standardizemissing" ref="html/standardizemissing.html">
+                        </section>
+                        <section title="startsWith" ref="html/startsWith.html">
+                        </section>
+                        <section title="string" ref="html/string.html">
+                        </section>
+                        <section title="struct2table" ref="html/struct2table.html">
+                        </section>
+                        <section title="table" ref="html/table.html">
+                            <section title="table.table" ref="html/table_002etable.html">
+                            </section>
+                            <section title="table.summary" ref="html/table_002esummary.html">
+                            </section>
+                            <section title="table.prettyprint" ref="html/table_002eprettyprint.html">
+                            </section>
+                            <section title="table.table2cell" ref="html/table_002etable2cell.html">
+                            </section>
+                        </section>
+                        <section title="tableOuterFillValue" ref="html/tableOuterFillValue.html">
+                        </section>
+                    </section>
+                </section>
+                <section title="Copying" ref="html/Copying.html">
+                </section>
+            <section title="Entire Manual in One Page" ref="Tablicious.html"/>
+        </section>
+        </toc>
+        <keywords>
+            <keyword name="table" id="table" ref="html/table.html"/>
+            <keyword name="table.prettyprint" id="table.prettyprint" ref="html/table_002eprettyprint.html"/>
+            <keyword name="table.summary" id="table.summary" ref="html/table_002esummary.html"/>
+            <keyword name="table.table" id="table.table" ref="html/table_002etable.html"/>
+            <keyword name="table.table2cell" id="table.table2cell" ref="html/table_002etable2cell.html"/>
+        </keywords>
+        <files>
+            <file>Tablicious.html</file>
+            <file>html/Copying.html</file>
+            <file>html/tableOuterFillValue.html</file>
+            <file>html/table_002etable2cell.html</file>
+            <file>html/table_002eprettyprint.html</file>
+            <file>html/table_002esummary.html</file>
+            <file>html/table_002etable.html</file>
+            <file>html/table.html</file>
+            <file>html/struct2table.html</file>
+            <file>html/string.html</file>
+            <file>html/startsWith.html</file>
+            <file>html/standardizemissing.html</file>
+            <file>html/rmmissing.html</file>
+            <file>html/pp.html</file>
+            <file>html/missing.html</file>
+            <file>html/isnannish.html</file>
+            <file>html/ismissing.html</file>
+            <file>html/fillmissing.html</file>
+            <file>html/endsWith.html</file>
+            <file>html/dispstrs.html</file>
+            <file>html/discretize.html</file>
+            <file>html/contains.html</file>
+            <file>html/colvecfun.html</file>
+            <file>html/cell2table.html</file>
+            <file>html/categorical.html</file>
+            <file>html/array2table.html</file>
+            <file>html/Functions-Alphabetically.html</file>
+            <file>html/Functions-by-Category.html</file>
+            <file>html/Function-Reference.html</file>
+            <file>html/Missing-Functionality.html</file>
+            <file>html/table-Class.html</file>
+            <file>html/Table-Representation.html</file>
+            <file>html/Getting-Started.html</file>
+            <file>html/Introduction.html</file>
+            <file>html/index.html</file>
+        </files>
+    </filterSection>
+</QtHelpProject>
+

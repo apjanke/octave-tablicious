@@ -1,0 +1,165 @@
+\input texinfo    @c -*-texinfo-*-
+
+@c %**start of header
+
+@set VERSION %%%%PACKAGE_VERSION%%%%
+
+@setfilename tablicious.info
+@settitle Octave Tablicious v@value{VERSION}
+@documentencoding UTF-8
+
+@c %**end of header
+
+@copying
+This manual is for Tablicious, version @value{VERSION}.
+
+Copyright @copyright{} 2019 Andrew Janke
+
+@quotation
+Permission is granted to make and distribute verbatim copies of
+this manual provided the copyright notice and this permission notice
+are preserved on all copies.
+
+Permission is granted to copy and distribute modified versions of this
+manual under the conditions for verbatim copying, provided that the entire
+resulting derived work is distributed under the terms of a permission
+notice identical to this one.
+
+Permission is granted to copy and distribute translations of this manual
+into another language, under the same conditions as for modified versions.
+@end quotation
+@end copying
+
+@documentdescription
+User manual for Tablicious for Octave.
+@end documentdescription
+
+@titlepage
+@title  Tablicious for Octave
+@subtitle version @value{VERSION}, %%%%PACKAGE_DATE_YEARMONTH%%%%
+@author Andrew Janke
+@page
+@vskip 0pt plus 1filll
+@insertcopying
+@end titlepage
+
+@shortcontents
+@contents
+
+@ifnottex
+@node Top, Introduction
+@top Tablicious for GNU Octave
+
+This manual is for Tablicious, version @value{VERSION}.
+@end ifnottex
+
+@menu
+* Introduction::
+* Getting Started::
+* Table Representation::
+* Missing Functionality::
+* Function Reference::
+* Copying::
+@end menu
+
+
+
+
+@node Introduction
+@chapter Introduction
+
+This is the manual for the Tablicious package version @value{VERSION} for GNU Octave.
+
+Tablicious provides Matlab-compatible tabular data support for GNU Octave.
+This includes a @code{table} class with support for filtering and join operations,
+Missing Data support, and @code{string} and @code{categorical} data types.
+
+
+This document is a work in progress. You are invited to help improve it and
+submit patches.
+
+
+Tablicious was written by Andrew Janke <@email{floss@@apjanke.net}>. Support can be
+found on the @url{https://github.com/apjanke/octave-tablicious, Tablicious project
+GitHub page}.
+
+
+
+@node Getting Started
+@chapter Getting Started
+
+The easiest way to obtain Tablicious is by using Octave's @code{pkg} package manager. 
+To install the development prerelease of Tablicious, run this in Octave:
+
+@example
+pkg install https://github.com/apjanke/octave-tablicious/releases/download/v%%%%PACKAGE_VERSION%%%%/tablicious-%%%%PACKAGE_VERSION%%%%.tar.gz
+@end example
+
+(Check the releases page at @url{https://github.com/apjanke/octave-tablicious/releases} to
+find out what the actual latest release number is.)
+
+For development, you can obtain the source code for Tablicious from the project repo on GitHub at 
+@url{https://github.com/apjanke/octave-tablicious}. Make a local clone of the repo.
+Then add the @file{inst} directory in the repo to your Octave path.
+
+
+
+@node Table Representation
+@chapter Table Representation
+
+Tablicious provides the @code{table} class for representing tabular data.
+
+@menu
+* table Class::
+@end menu
+
+@node table Class
+@section @code{table} Class
+
+A @code{table} is an array object that represents a tabular data structure. It holds
+multiple named “variables”, each of which is a column vector, or a 2-D matrix whose
+rows are read as records.
+
+@node Missing Functionality
+@chapter Missing Functionality
+
+Tablicious is based on Matlab's table API and supports most of its major functionality.
+But not all of it is implemented yet. The missing parts are currently:
+
+@itemize
+@item @code{timetable}
+@item Moving window methods in @code{fillmissing}
+@item @code{summary()} for @code{table} and @code{categorical}
+@item Assignment to table variables using @code{.}-indexing
+@item File I/O like @code{readtable()} and @code{writetable()}
+@end itemize
+
+It is the author's hope that all these will be implemented some day.
+
+
+
+
+@node Function Reference
+@chapter Function Reference
+
+@REFERENCE_SECTION(Tablicious)
+
+
+
+@node Copying
+@chapter Copying
+
+
+@section Package Copyright
+
+Tablicious for Octave is covered by the GNU GPLv3.
+
+All the code in the package is GNU GPLv3.
+
+The Fisher Iris dataset is Public Domain.
+
+@section Manual Copyright
+
+@insertcopying
+
+@bye

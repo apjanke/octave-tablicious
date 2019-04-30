@@ -1,0 +1,29 @@
+% Unregister package's QHelp with the doc browser
+
+% PKG_DEL is run in the base workspace, not in a function. So use "__" variable
+% names to reduce risk of collision with user variables, and clear them all 
+% at the end.
+
+% Have to hardcode this since it's not available from context
+__my_pkg_name = 'Tablicious';
+
+% See PKG_ADD for commentary
+
+__this_dir = fileparts (mfilename ('fullpath'));
+if exist (fullfile (__this_dir, "doc", [__my_pkg_name ".qch"]), "file")
+  __my_qhelp_file = fullfile (__this_dir, "doc", [__my_pkg_name ".qch"]);
+elseif exist (fullfile (fileparts (__this_dir), "doc", [__my_pkg_name ".qch"]), "file")
+  __my_qhelp_file = fullfile (fileparts (__this_dir), "doc", [__my_pkg_name ".qch"]);
+else
+  % Couldn't find doc file. Oh well.
+  clear __my_pkg_name __this_dir
+  return
+endif
+
+% We can only do this on Octave 4.4 and newer, because 4.2 has no
+% __octave_link_register_doc___
+if compare_versions (version, '4.4.0', '>=')
+  __octave_link_unregister_doc__ (__my_qhelp_file);
+endif
+
+clear __my_pkg_name __this_dir __my_qhelp_file

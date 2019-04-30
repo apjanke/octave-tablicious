@@ -13,19 +13,51 @@
 ## You should have received a copy of the GNU General Public License
 ## along with this program; If not, see <http://www.gnu.org/licenses/>.
 
+## -*- texinfo -*-
+## @deftp {Class} table
+##
+## Tabular data array containing multiple columnar variables.
+##
+## A @code{table} is a tabular data structure that collects multiple parallel 
+## named variables.
+## Each variable is treated like a column. (Possibly a multi-columned column, if
+## that makes sense.)
+## The types of variables may be heterogeneous.
+##
+## A table object is like an SQL table or resultset, or a relation, or a 
+## DataFrame in R or Pandas.
+##
+## A table is an array in itself: its size is @var{nrows}-by-@var{nvariables},
+## and you can index along the rows and variables by indexing into the table
+## along dimensions 1 and 2.
+##
+## @end deftp
+##
+## @deftypeivar table @code{cellstr} VariableNames
+##
+## The names of the variables in the table, as a cellstr row vector.
+##
+## @end deftypeivar
+##
+## @deftypeivar table @code{cell} VariableValues
+##
+## A cell vector containing the values for each of the variables.
+## @code{VariableValues(i)} corresponds to @code{VariableNames(i)}.
+##
+## @end deftypeivar
+##
+## @deftypeivar table @code{cellstr} RowNames
+##
+## An optional list of row names that identify each row in the table. This
+## is a cellstr column vector, if present.
+##
+## @end deftypeivar
+
+% Developer's notes:
+% - Wherever you see the abbreviation "pk" here, that means "proxy keys", not
+%   "primary keys".
+
 classdef table
-  %TABLE Tabular data array
-  %
-  % A tabular data structure that collects multiple parallel named variables.
-  % Each variable is treated like a column (possibly a multi-column column).
-  % The types of variables may be heterogeneous.
-  %
-  % A table object is like an SQL table or resultset, or a relation, or a 
-  % DataFrame in R or Pandas.
-  
-  % Developer's notes:
-  % - Wherever you see the abbreviation "pk", that means "proxy keys", not
-  %   "primary keys".
 
   properties
     % The names of the variables (columns), as cellstr
@@ -37,14 +69,38 @@ classdef table
   end
   
   methods
+    ## -*- texinfo -*-
+    ## @node table.table
+    ## @deftypefn {Constructor} {@var{obj} =} table ()
+    ##
+    ## Constructs a new empty (0 rows by 0 variables) table.
+    ##
+    ## @end deftypefn
+    ##
+    ## @deftypefn {Constructor} {@var{obj} =} table (@var{var1}, @var{var2}, @dots{}, @var{varN})
+    ##
+    ## Constructs a new table from the given variables. The variables passed as
+    ## inputs to this constructor become the variables of the table. Their names
+    ## are automatically detected from the input variable names that you used.
+    ##
+    ## @end deftypefn
+    ##
+    ## @deftypefn {Constructor} {@var{obj} =} table (@code{'Size'}, @var{sz}, @
+    ##   @code{'VariableTypes'}, @var{varTypes})
+    ##
+    ## Constructs a new table of the given size, and with the given variable types.
+    ## The variables will contain the default value for elements of that type.
+    ##
+    ## @end deftypefn
+    ##
+    ## @deftypefn {Constructor} {@var{obj} =} table (@dots{}, @code{'VariableNames'}, @var{varNames})
+    ## @deftypefnx {Constructor} {@var{obj} =} table (@dots{}, @code{'RowNames'}, @var{rowNames})
+    ##
+    ## Specifies the variable names or row names to use in the constructed table.
+    ## Overrides the implicit names garnered from the input variable names.
+    ##
+    ## @end deftypefn
     function this = table (varargin)
-      %TABLE Construct a new table
-      %
-      % t = table (var1, var2, ... varN)
-      % t = table ('Size', sz, 'VariableTypes', varTypes)
-      % t = table (..., 'VariableNames', varNames)
-      % t = table (..., 'RowNames', rowNames)
-      % t = table
       
       % Peel off trailing options
       [opts, args] = peelOffNameValueOptions (varargin, {'VariableNames', 'RowNames'});
@@ -138,16 +194,21 @@ classdef table
         fprintf ('  VariableNames: %s\n', strjoin (this.VariableNames, ', '));
       end
     end
-    
+
+    ## -*- texinfo -*-
+    ## @node table.summary
+    ## @deftypefn {Method} summary (@var{obj})
+    ## @deftypefnx {Method} {@var{s} =} summary (@var{obj})
+    ##
+    ## Summary of table's data.
+    ##
+    ## Displays or returns a summary of data in the input table. This will
+    ## contain some statistical information on each of its variables.
+    ##
+    ## This method is not implemented yet.
+    ##
+    ## @end deftypefn
     function out = summary (this)
-      %SUMMARY Summary of table
-      %
-      % summary (this)
-      % s = summary (this)
-      %
-      % Prints or returns a summary of the data in this table.
-      %
-      % This is a work in progress.
       
       % Common summary things:
       % Size, Type, Description, Units, CustomProperties
@@ -169,6 +230,17 @@ classdef table
       endif
     endfunction
     
+    ## -*- texinfo -*-
+    ## @node table.prettyprint
+    ## @deftypefn {Method} prettyprint (@var{obj})
+    ##
+    ## Display table's values in tabular format. This prints the contents
+    ## of the table in human-readable, tabular form.
+    ##
+    ## Variables which contain objects are displayed using the strings
+    ## returned by their @code{dispstrs} method, if they define one.
+    ##
+    ## @end deftypefn
     function prettyprint (this)
       %PRETTYPRINT Display table values, formatted as a table
       if isempty (this)
@@ -215,14 +287,19 @@ classdef table
     
     % Type conversion
     
+    ## -*- texinfo -*-
+    ## @node table.table2cell
+    ## @deftypefn {Method} {@var{c} =} table2cell (@var{obj})
+    ##
+    ## Converts table to a cell array. Each variable in @var{obj} becomes
+    ## one or more columns in the output, depending on how many columns
+    ## that variable has.
+    ##
+    ## Returns a cell array with the same number of rows as @var{obj}, and
+    ## with as many or more columns as @var{obj} has variables.
+    ##
+    ## @end deftypefn
     function out = table2cell (this)
-      %TABLE2CELL Convert table to cell
-      %
-      % out = table2cell (this)
-      %
-      % Each variable in this becomes a column in the output.
-      %
-      % Returns a cell array the same size as this.
       out = cell (size (this));
       for i = 1:width (this)
         varVal = this.VariableValues{i};

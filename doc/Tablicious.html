@@ -1,0 +1,695 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- This manual is for Tablicious, version 0.1.0-SNAPSHOT.
+
+Copyright (C) 2019 Andrew Janke
+
+Permission is granted to make and distribute verbatim copies of
+this manual provided the copyright notice and this permission notice
+are preserved on all copies.
+
+Permission is granted to copy and distribute modified versions of this
+manual under the conditions for verbatim copying, provided that the entire
+resulting derived work is distributed under the terms of a permission
+notice identical to this one.
+
+Permission is granted to copy and distribute translations of this manual
+into another language, under the same conditions as for modified versions. -->
+<!-- Created by GNU Texinfo 6.6, http://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Octave Tablicious v0.1.0-SNAPSHOT</title>
+
+<meta name="description" content="User manual for Tablicious for Octave.">
+<meta name="keywords" content="Octave Tablicious v0.1.0-SNAPSHOT">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<link href="#Top" rel="start" title="Top">
+<link href="#SEC_Contents" rel="contents" title="Table of Contents">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<h1 class="settitle" align="center">Octave Tablicious v0.1.0-SNAPSHOT</h1>
+
+
+
+
+
+<span id="SEC_Overview"></span>
+<h2 class="shortcontents-heading">Short Table of Contents</h2>
+
+<div class="shortcontents">
+<ul class="no-bullet">
+<li><a id="stoc-Introduction-1" href="#toc-Introduction-1">1 Introduction</a></li>
+<li><a id="stoc-Getting-Started-1" href="#toc-Getting-Started-1">2 Getting Started</a></li>
+<li><a id="stoc-Table-Representation-1" href="#toc-Table-Representation-1">3 Table Representation</a></li>
+<li><a id="stoc-Missing-Functionality-1" href="#toc-Missing-Functionality-1">4 Missing Functionality</a></li>
+<li><a id="stoc-Function-Reference-1" href="#toc-Function-Reference-1">5 Function Reference</a></li>
+<li><a id="stoc-Copying-1" href="#toc-Copying-1">6 Copying</a></li>
+</ul>
+</div>
+
+<span id="SEC_Contents"></span>
+<h2 class="contents-heading">Table of Contents</h2>
+
+<div class="contents">
+
+<ul class="no-bullet">
+  <li><a id="toc-Introduction-1" href="#Introduction">1 Introduction</a></li>
+  <li><a id="toc-Getting-Started-1" href="#Getting-Started">2 Getting Started</a></li>
+  <li><a id="toc-Table-Representation-1" href="#Table-Representation">3 Table Representation</a>
+  <ul class="no-bullet">
+    <li><a id="toc-table-Class-1" href="#table-Class">3.1 <code>table</code> Class</a></li>
+  </ul></li>
+  <li><a id="toc-Missing-Functionality-1" href="#Missing-Functionality">4 Missing Functionality</a></li>
+  <li><a id="toc-Function-Reference-1" href="#Function-Reference">5 Function Reference</a>
+  <ul class="no-bullet">
+    <li><a id="toc-Functions-by-Category-1" href="#Functions-by-Category">5.1 Functions by Category</a>
+    <ul class="no-bullet">
+      <li><a id="toc-Tables" href="#Tables">5.1.1 Tables</a></li>
+      <li><a id="toc-Data-Types" href="#Data-Types">5.1.2 Data Types</a></li>
+      <li><a id="toc-Missing-Data" href="#Missing-Data">5.1.3 Missing Data</a></li>
+      <li><a id="toc-Miscellaneous" href="#Miscellaneous">5.1.4 Miscellaneous</a></li>
+    </ul></li>
+    <li><a id="toc-Functions-Alphabetically-1" href="#Functions-Alphabetically">5.2 Functions Alphabetically</a>
+    <ul class="no-bullet">
+      <li><a id="toc-array2table-1" href="#array2table">5.2.1 array2table</a></li>
+      <li><a id="toc-categorical-1" href="#categorical">5.2.2 categorical</a></li>
+      <li><a id="toc-cell2table-1" href="#cell2table">5.2.3 cell2table</a></li>
+      <li><a id="toc-colvecfun-1" href="#colvecfun">5.2.4 colvecfun</a></li>
+      <li><a id="toc-contains-1" href="#contains">5.2.5 contains</a></li>
+      <li><a id="toc-discretize-1" href="#discretize">5.2.6 discretize</a></li>
+      <li><a id="toc-dispstrs-1" href="#dispstrs">5.2.7 dispstrs</a></li>
+      <li><a id="toc-endsWith-1" href="#endsWith">5.2.8 endsWith</a></li>
+      <li><a id="toc-fillmissing-1" href="#fillmissing">5.2.9 fillmissing</a></li>
+      <li><a id="toc-ismissing-1" href="#ismissing">5.2.10 ismissing</a></li>
+      <li><a id="toc-isnannish-1" href="#isnannish">5.2.11 isnannish</a></li>
+      <li><a id="toc-missing-1" href="#missing">5.2.12 missing</a></li>
+      <li><a id="toc-pp-1" href="#pp">5.2.13 pp</a></li>
+      <li><a id="toc-rmmissing-1" href="#rmmissing">5.2.14 rmmissing</a></li>
+      <li><a id="toc-standardizemissing-1" href="#standardizemissing">5.2.15 standardizemissing</a></li>
+      <li><a id="toc-startsWith-1" href="#startsWith">5.2.16 startsWith</a></li>
+      <li><a id="toc-string-1" href="#string">5.2.17 string</a></li>
+      <li><a id="toc-struct2table-1" href="#struct2table">5.2.18 struct2table</a></li>
+      <li><a id="toc-table-1" href="#table">5.2.19 table</a>
+      <ul class="no-bullet">
+        <li><a id="toc-table_002etable-1" href="#table_002etable">5.2.19.1 table.table</a></li>
+        <li><a id="toc-table_002esummary-1" href="#table_002esummary">5.2.19.2 table.summary</a></li>
+        <li><a id="toc-table_002eprettyprint-1" href="#table_002eprettyprint">5.2.19.3 table.prettyprint</a></li>
+        <li><a id="toc-table_002etable2cell-1" href="#table_002etable2cell">5.2.19.4 table.table2cell</a></li>
+      </ul></li>
+      <li><a id="toc-tableOuterFillValue-1" href="#tableOuterFillValue">5.2.20 tableOuterFillValue</a></li>
+    </ul></li>
+  </ul></li>
+  <li><a id="toc-Copying-1" href="#Copying">6 Copying</a>
+  <ul class="no-bullet">
+    <li><a id="toc-Package-Copyright" href="#Package-Copyright">6.1 Package Copyright</a></li>
+    <li><a id="toc-Manual-Copyright" href="#Manual-Copyright">6.2 Manual Copyright</a></li>
+  </ul></li>
+</ul>
+</div>
+
+
+<span id="Top"></span><div class="header">
+<p>
+Next: <a href="#Introduction" accesskey="n" rel="next">Introduction</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<span id="Tablicious-for-GNU-Octave"></span><h1 class="top">Tablicious for GNU Octave</h1>
+
+<p>This manual is for Tablicious, version 0.1.0-SNAPSHOT.
+</p>
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top">&bull; <a href="#Introduction" accesskey="1">Introduction</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="#Getting-Started" accesskey="2">Getting Started</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="#Table-Representation" accesskey="3">Table Representation</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="#Missing-Functionality" accesskey="4">Missing Functionality</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="#Function-Reference" accesskey="5">Function Reference</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="#Copying" accesskey="6">Copying</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+</table>
+
+
+
+
+<hr>
+<span id="Introduction"></span><div class="header">
+<p>
+Next: <a href="#Getting-Started" accesskey="n" rel="next">Getting Started</a>, Up: <a href="#Top" accesskey="u" rel="up">Top</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<span id="Introduction-1"></span><h2 class="chapter">1 Introduction</h2>
+
+<p>This is the manual for the Tablicious package version 0.1.0-SNAPSHOT for GNU Octave.
+</p>
+<p>Tablicious provides Matlab-compatible tabular data support for GNU Octave.
+This includes a <code>table</code> class with support for filtering and join operations,
+Missing Data support, and <code>string</code> and <code>categorical</code> data types.
+</p>
+
+<p>This document is a work in progress. You are invited to help improve it and
+submit patches.
+</p>
+
+<p>Tablicious was written by Andrew Janke &lt;<a href="mailto:floss@apjanke.net">floss@apjanke.net</a>&gt;. Support can be
+found on the <a href="https://github.com/apjanke/octave-tablicious">Tablicious project
+GitHub page</a>.
+</p>
+
+
+<hr>
+<span id="Getting-Started"></span><div class="header">
+<p>
+Next: <a href="#Table-Representation" accesskey="n" rel="next">Table Representation</a>, Previous: <a href="#Introduction" accesskey="p" rel="prev">Introduction</a>, Up: <a href="#Top" accesskey="u" rel="up">Top</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<span id="Getting-Started-1"></span><h2 class="chapter">2 Getting Started</h2>
+
+<p>The easiest way to obtain Tablicious is by using Octave&rsquo;s <code>pkg</code> package manager. 
+To install the development prerelease of Tablicious, run this in Octave:
+</p>
+<div class="example">
+<pre class="example">pkg install https://github.com/apjanke/octave-tablicious/releases/download/v0.1.0-SNAPSHOT/tablicious-0.1.0-SNAPSHOT.tar.gz
+</pre></div>
+
+<p>(Check the releases page at <a href="https://github.com/apjanke/octave-tablicious/releases">https://github.com/apjanke/octave-tablicious/releases</a> to
+find out what the actual latest release number is.)
+</p>
+<p>For development, you can obtain the source code for Tablicious from the project repo on GitHub at 
+<a href="https://github.com/apjanke/octave-tablicious">https://github.com/apjanke/octave-tablicious</a>. Make a local clone of the repo.
+Then add the <samp>inst</samp> directory in the repo to your Octave path.
+</p>
+
+
+<hr>
+<span id="Table-Representation"></span><div class="header">
+<p>
+Next: <a href="#Missing-Functionality" accesskey="n" rel="next">Missing Functionality</a>, Previous: <a href="#Getting-Started" accesskey="p" rel="prev">Getting Started</a>, Up: <a href="#Top" accesskey="u" rel="up">Top</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<span id="Table-Representation-1"></span><h2 class="chapter">3 Table Representation</h2>
+
+<p>Tablicious provides the <code>table</code> class for representing tabular data.
+</p>
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top">&bull; <a href="#table-Class" accesskey="1">table Class</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+</table>
+
+<hr>
+<span id="table-Class"></span><div class="header">
+<p>
+Up: <a href="#Table-Representation" accesskey="u" rel="up">Table Representation</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<span id="table-Class-1"></span><h3 class="section">3.1 <code>table</code> Class</h3>
+
+<p>A <code>table</code> is an array object that represents a tabular data structure. It holds
+multiple named “variables”, each of which is a column vector, or a 2-D matrix whose
+rows are read as records.
+</p>
+<hr>
+<span id="Missing-Functionality"></span><div class="header">
+<p>
+Next: <a href="#Function-Reference" accesskey="n" rel="next">Function Reference</a>, Previous: <a href="#Table-Representation" accesskey="p" rel="prev">Table Representation</a>, Up: <a href="#Top" accesskey="u" rel="up">Top</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<span id="Missing-Functionality-1"></span><h2 class="chapter">4 Missing Functionality</h2>
+
+<p>Tablicious is based on Matlab&rsquo;s table API and supports most of its major functionality.
+But not all of it is implemented yet. The missing parts are currently:
+</p>
+<ul>
+<li> <code>timetable</code>
+</li><li> Moving window methods in <code>fillmissing</code>
+</li><li> <code>summary()</code> for <code>table</code> and <code>categorical</code>
+</li><li> Assignment to table variables using <code>.</code>-indexing
+</li><li> File I/O like <code>readtable()</code> and <code>writetable()</code>
+</li></ul>
+
+<p>It is the author&rsquo;s hope that all these will be implemented some day.
+</p>
+
+
+
+<hr>
+<span id="Function-Reference"></span><div class="header">
+<p>
+Next: <a href="#Copying" accesskey="n" rel="next">Copying</a>, Previous: <a href="#Missing-Functionality" accesskey="p" rel="prev">Missing Functionality</a>, Up: <a href="#Top" accesskey="u" rel="up">Top</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<span id="Function-Reference-1"></span><h2 class="chapter">5 Function Reference</h2>
+
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top">&bull; <a href="#Functions-by-Category" accesskey="1">Functions by Category</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="#Functions-Alphabetically" accesskey="2">Functions Alphabetically</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+</table>
+
+<hr>
+<span id="Functions-by-Category"></span><div class="header">
+<p>
+Next: <a href="#Functions-Alphabetically" accesskey="n" rel="next">Functions Alphabetically</a>, Up: <a href="#Function-Reference" accesskey="u" rel="up">Function Reference</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<span id="Functions-by-Category-1"></span><h3 class="section">5.1 Functions by Category</h3>
+<span id="Tables"></span><h4 class="subsection">5.1.1 Tables</h4>
+<dl compact="compact">
+<dt><a href="#table">table</a></dt>
+<dd><p>Tabular data array containing multiple columnar variables.
+</p>
+</dd>
+<dt><a href="#array2table">array2table</a></dt>
+<dt><a href="#cell2table">cell2table</a></dt>
+<dt><a href="#struct2table">struct2table</a></dt>
+<dt><a href="#tableOuterFillValue">tableOuterFillValue</a></dt>
+</dl>
+<span id="Data-Types"></span><h4 class="subsection">5.1.2 Data Types</h4>
+<dl compact="compact">
+<dt><a href="#string">string</a></dt>
+<dt><a href="#startsWith">startsWith</a></dt>
+<dt><a href="#endsWith">endsWith</a></dt>
+<dt><a href="#contains">contains</a></dt>
+<dt><a href="#categorical">categorical</a></dt>
+<dt><a href="#discretize">discretize</a></dt>
+</dl>
+<span id="Missing-Data"></span><h4 class="subsection">5.1.3 Missing Data</h4>
+<dl compact="compact">
+<dt><a href="#fillmissing">fillmissing</a></dt>
+<dt><a href="#ismissing">ismissing</a></dt>
+<dt><a href="#rmmissing">rmmissing</a></dt>
+<dt><a href="#standardizemissing">standardizemissing</a></dt>
+<dt><a href="#missing">missing</a></dt>
+<dt><a href="#isnannish">isnannish</a></dt>
+</dl>
+<span id="Miscellaneous"></span><h4 class="subsection">5.1.4 Miscellaneous</h4>
+<dl compact="compact">
+<dt><a href="#colvecfun">colvecfun</a></dt>
+<dt><a href="#dispstrs">dispstrs</a></dt>
+<dt><a href="#pp">pp</a></dt>
+</dl>
+
+<hr>
+<span id="Functions-Alphabetically"></span><div class="header">
+<p>
+Previous: <a href="#Functions-by-Category" accesskey="p" rel="prev">Functions by Category</a>, Up: <a href="#Function-Reference" accesskey="u" rel="up">Function Reference</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<span id="Functions-Alphabetically-1"></span><h3 class="section">5.2 Functions Alphabetically</h3>
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top">&bull; <a href="#array2table" accesskey="1">array2table</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="#categorical" accesskey="2">categorical</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="#cell2table" accesskey="3">cell2table</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="#colvecfun" accesskey="4">colvecfun</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="#contains" accesskey="5">contains</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="#discretize" accesskey="6">discretize</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="#dispstrs" accesskey="7">dispstrs</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="#endsWith" accesskey="8">endsWith</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="#fillmissing" accesskey="9">fillmissing</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="#ismissing">ismissing</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="#isnannish">isnannish</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="#missing">missing</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="#pp">pp</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="#rmmissing">rmmissing</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="#standardizemissing">standardizemissing</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="#startsWith">startsWith</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="#string">string</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="#struct2table">struct2table</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="#table">table</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">Tabular data array containing multiple columnar variables.
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="#tableOuterFillValue">tableOuterFillValue</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+</table>
+
+<hr>
+<span id="array2table"></span><div class="header">
+<p>
+Next: <a href="#categorical" accesskey="n" rel="next">categorical</a>, Up: <a href="#Functions-Alphabetically" accesskey="u" rel="up">Functions Alphabetically</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<span id="array2table-1"></span><h4 class="subsection">5.2.1 array2table</h4>
+<p><em>Not documented</em>
+</p><hr>
+<span id="categorical"></span><div class="header">
+<p>
+Next: <a href="#cell2table" accesskey="n" rel="next">cell2table</a>, Previous: <a href="#array2table" accesskey="p" rel="prev">array2table</a>, Up: <a href="#Functions-Alphabetically" accesskey="u" rel="up">Functions Alphabetically</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<span id="categorical-1"></span><h4 class="subsection">5.2.2 categorical</h4>
+<p><em>Not documented</em>
+</p><hr>
+<span id="cell2table"></span><div class="header">
+<p>
+Next: <a href="#colvecfun" accesskey="n" rel="next">colvecfun</a>, Previous: <a href="#categorical" accesskey="p" rel="prev">categorical</a>, Up: <a href="#Functions-Alphabetically" accesskey="u" rel="up">Functions Alphabetically</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<span id="cell2table-1"></span><h4 class="subsection">5.2.3 cell2table</h4>
+<p><em>Not documented</em>
+</p><hr>
+<span id="colvecfun"></span><div class="header">
+<p>
+Next: <a href="#contains" accesskey="n" rel="next">contains</a>, Previous: <a href="#cell2table" accesskey="p" rel="prev">cell2table</a>, Up: <a href="#Functions-Alphabetically" accesskey="u" rel="up">Functions Alphabetically</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<span id="colvecfun-1"></span><h4 class="subsection">5.2.4 colvecfun</h4>
+<p><em>Not documented</em>
+</p><hr>
+<span id="contains"></span><div class="header">
+<p>
+Next: <a href="#discretize" accesskey="n" rel="next">discretize</a>, Previous: <a href="#colvecfun" accesskey="p" rel="prev">colvecfun</a>, Up: <a href="#Functions-Alphabetically" accesskey="u" rel="up">Functions Alphabetically</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<span id="contains-1"></span><h4 class="subsection">5.2.5 contains</h4>
+<p><em>Not documented</em>
+</p><hr>
+<span id="discretize"></span><div class="header">
+<p>
+Next: <a href="#dispstrs" accesskey="n" rel="next">dispstrs</a>, Previous: <a href="#contains" accesskey="p" rel="prev">contains</a>, Up: <a href="#Functions-Alphabetically" accesskey="u" rel="up">Functions Alphabetically</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<span id="discretize-1"></span><h4 class="subsection">5.2.6 discretize</h4>
+<p><em>Not documented</em>
+</p><hr>
+<span id="dispstrs"></span><div class="header">
+<p>
+Next: <a href="#endsWith" accesskey="n" rel="next">endsWith</a>, Previous: <a href="#discretize" accesskey="p" rel="prev">discretize</a>, Up: <a href="#Functions-Alphabetically" accesskey="u" rel="up">Functions Alphabetically</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<span id="dispstrs-1"></span><h4 class="subsection">5.2.7 dispstrs</h4>
+<p><em>Not documented</em>
+</p><hr>
+<span id="endsWith"></span><div class="header">
+<p>
+Next: <a href="#fillmissing" accesskey="n" rel="next">fillmissing</a>, Previous: <a href="#dispstrs" accesskey="p" rel="prev">dispstrs</a>, Up: <a href="#Functions-Alphabetically" accesskey="u" rel="up">Functions Alphabetically</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<span id="endsWith-1"></span><h4 class="subsection">5.2.8 endsWith</h4>
+<p><em>Not documented</em>
+</p><hr>
+<span id="fillmissing"></span><div class="header">
+<p>
+Next: <a href="#ismissing" accesskey="n" rel="next">ismissing</a>, Previous: <a href="#endsWith" accesskey="p" rel="prev">endsWith</a>, Up: <a href="#Functions-Alphabetically" accesskey="u" rel="up">Functions Alphabetically</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<span id="fillmissing-1"></span><h4 class="subsection">5.2.9 fillmissing</h4>
+<p><em>Not documented</em>
+</p><hr>
+<span id="ismissing"></span><div class="header">
+<p>
+Next: <a href="#isnannish" accesskey="n" rel="next">isnannish</a>, Previous: <a href="#fillmissing" accesskey="p" rel="prev">fillmissing</a>, Up: <a href="#Functions-Alphabetically" accesskey="u" rel="up">Functions Alphabetically</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<span id="ismissing-1"></span><h4 class="subsection">5.2.10 ismissing</h4>
+<p><em>Not documented</em>
+</p><hr>
+<span id="isnannish"></span><div class="header">
+<p>
+Next: <a href="#missing" accesskey="n" rel="next">missing</a>, Previous: <a href="#ismissing" accesskey="p" rel="prev">ismissing</a>, Up: <a href="#Functions-Alphabetically" accesskey="u" rel="up">Functions Alphabetically</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<span id="isnannish-1"></span><h4 class="subsection">5.2.11 isnannish</h4>
+<p><em>Not documented</em>
+</p><hr>
+<span id="missing"></span><div class="header">
+<p>
+Next: <a href="#pp" accesskey="n" rel="next">pp</a>, Previous: <a href="#isnannish" accesskey="p" rel="prev">isnannish</a>, Up: <a href="#Functions-Alphabetically" accesskey="u" rel="up">Functions Alphabetically</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<span id="missing-1"></span><h4 class="subsection">5.2.12 missing</h4>
+<p><em>Not documented</em>
+</p><hr>
+<span id="pp"></span><div class="header">
+<p>
+Next: <a href="#rmmissing" accesskey="n" rel="next">rmmissing</a>, Previous: <a href="#missing" accesskey="p" rel="prev">missing</a>, Up: <a href="#Functions-Alphabetically" accesskey="u" rel="up">Functions Alphabetically</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<span id="pp-1"></span><h4 class="subsection">5.2.13 pp</h4>
+<p><em>Not documented</em>
+</p><hr>
+<span id="rmmissing"></span><div class="header">
+<p>
+Next: <a href="#standardizemissing" accesskey="n" rel="next">standardizemissing</a>, Previous: <a href="#pp" accesskey="p" rel="prev">pp</a>, Up: <a href="#Functions-Alphabetically" accesskey="u" rel="up">Functions Alphabetically</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<span id="rmmissing-1"></span><h4 class="subsection">5.2.14 rmmissing</h4>
+<p><em>Not documented</em>
+</p><hr>
+<span id="standardizemissing"></span><div class="header">
+<p>
+Next: <a href="#startsWith" accesskey="n" rel="next">startsWith</a>, Previous: <a href="#rmmissing" accesskey="p" rel="prev">rmmissing</a>, Up: <a href="#Functions-Alphabetically" accesskey="u" rel="up">Functions Alphabetically</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<span id="standardizemissing-1"></span><h4 class="subsection">5.2.15 standardizemissing</h4>
+<p><em>Not documented</em>
+</p><hr>
+<span id="startsWith"></span><div class="header">
+<p>
+Next: <a href="#string" accesskey="n" rel="next">string</a>, Previous: <a href="#standardizemissing" accesskey="p" rel="prev">standardizemissing</a>, Up: <a href="#Functions-Alphabetically" accesskey="u" rel="up">Functions Alphabetically</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<span id="startsWith-1"></span><h4 class="subsection">5.2.16 startsWith</h4>
+<p><em>Not documented</em>
+</p><hr>
+<span id="string"></span><div class="header">
+<p>
+Next: <a href="#struct2table" accesskey="n" rel="next">struct2table</a>, Previous: <a href="#startsWith" accesskey="p" rel="prev">startsWith</a>, Up: <a href="#Functions-Alphabetically" accesskey="u" rel="up">Functions Alphabetically</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<span id="string-1"></span><h4 class="subsection">5.2.17 string</h4>
+<p><em>Not documented</em>
+</p><hr>
+<span id="struct2table"></span><div class="header">
+<p>
+Next: <a href="#table" accesskey="n" rel="next">table</a>, Previous: <a href="#string" accesskey="p" rel="prev">string</a>, Up: <a href="#Functions-Alphabetically" accesskey="u" rel="up">Functions Alphabetically</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<span id="struct2table-1"></span><h4 class="subsection">5.2.18 struct2table</h4>
+<p><em>Not documented</em>
+</p><hr>
+<span id="table"></span><div class="header">
+<p>
+Next: <a href="#tableOuterFillValue" accesskey="n" rel="next">tableOuterFillValue</a>, Previous: <a href="#struct2table" accesskey="p" rel="prev">struct2table</a>, Up: <a href="#Functions-Alphabetically" accesskey="u" rel="up">Functions Alphabetically</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<span id="table-1"></span><h4 class="subsection">5.2.19 table</h4>
+<dl>
+<dt id="index-table-5">Class: <strong>table</strong></dt>
+<dd>
+<p>Tabular data array containing multiple columnar variables.
+</p>
+<p>A <code>table</code> is a tabular data structure that collects multiple parallel
+named variables.
+Each variable is treated like a column. (Possibly a multi-columned column, if
+that makes sense.)
+The types of variables may be heterogeneous.
+</p>
+<p>A table object is like an SQL table or resultset, or a relation, or a
+DataFrame in R or Pandas.
+</p>
+<p>A table is an array in itself: its size is <var>nrows</var>-by-<var>nvariables</var>,
+and you can index along the rows and variables by indexing into the table
+along dimensions 1 and 2.
+</p>
+</dd></dl>
+
+<dl>
+<dt id="index-VariableNames-of-table">Instance Variable of table: <em><code>cellstr</code></em> <strong>VariableNames</strong></dt>
+<dd>
+<p>The names of the variables in the table, as a cellstr row vector.
+</p>
+</dd></dl>
+
+<dl>
+<dt id="index-VariableValues-of-table">Instance Variable of table: <em><code>cell</code></em> <strong>VariableValues</strong></dt>
+<dd>
+<p>A cell vector containing the values for each of the variables.
+<code>VariableValues(i)</code> corresponds to <code>VariableNames(i)</code>.
+</p>
+</dd></dl>
+
+<dl>
+<dt id="index-RowNames-of-table">Instance Variable of table: <em><code>cellstr</code></em> <strong>RowNames</strong></dt>
+<dd>
+<p>An optional list of row names that identify each row in the table. This
+is a cellstr column vector, if present.
+</p>
+</dd></dl>
+
+
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top">&bull; <a href="#table_002etable" accesskey="1">table.table</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="#table_002esummary" accesskey="2">table.summary</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="#table_002eprettyprint" accesskey="3">table.prettyprint</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="#table_002etable2cell" accesskey="4">table.table2cell</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+</table>
+
+<hr>
+<span id="table_002etable"></span><div class="header">
+<p>
+Next: <a href="#table_002esummary" accesskey="n" rel="next">table.summary</a>, Up: <a href="#table" accesskey="u" rel="up">table</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<span id="table_002etable-1"></span><h4 class="subsubsection">5.2.19.1 table.table</h4>
+
+<dl>
+<dt id="index-table">Constructor: <em><var>obj</var> =</em> <strong>table</strong> <em>()</em></dt>
+<dd>
+<p>Constructs a new empty (0 rows by 0 variables) table.
+</p>
+</dd></dl>
+
+<dl>
+<dt id="index-table-1">Constructor: <em><var>obj</var> =</em> <strong>table</strong> <em>(<var>var1</var>, <var>var2</var>, &hellip;, <var>varN</var>)</em></dt>
+<dd>
+<p>Constructs a new table from the given variables. The variables passed as
+inputs to this constructor become the variables of the table. Their names
+are automatically detected from the input variable names that you used.
+</p>
+</dd></dl>
+
+<dl>
+<dt id="index-table-2">Constructor: <em><var>obj</var> =</em> <strong>table</strong> <em>(<code>'Size'</code>, <var>sz</var>,   <code>'VariableTypes'</code>, <var>varTypes</var>)</em></dt>
+<dd>
+<p>Constructs a new table of the given size, and with the given variable types.
+The variables will contain the default value for elements of that type.
+</p>
+</dd></dl>
+
+<dl>
+<dt id="index-table-3">Constructor: <em><var>obj</var> =</em> <strong>table</strong> <em>(&hellip;, <code>'VariableNames'</code>, <var>varNames</var>)</em></dt>
+<dt id="index-table-4">Constructor: <em><var>obj</var> =</em> <strong>table</strong> <em>(&hellip;, <code>'RowNames'</code>, <var>rowNames</var>)</em></dt>
+<dd>
+<p>Specifies the variable names or row names to use in the constructed table.
+Overrides the implicit names garnered from the input variable names.
+</p>
+</dd></dl>
+
+<hr>
+<span id="table_002esummary"></span><div class="header">
+<p>
+Next: <a href="#table_002eprettyprint" accesskey="n" rel="next">table.prettyprint</a>, Previous: <a href="#table_002etable" accesskey="p" rel="prev">table.table</a>, Up: <a href="#table" accesskey="u" rel="up">table</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<span id="table_002esummary-1"></span><h4 class="subsubsection">5.2.19.2 table.summary</h4>
+
+<dl>
+<dt id="index-_0028obj_0029">Method: <em>summary</em> <strong>(<var>obj</var>)</strong></dt>
+<dt id="index-summary">Method: <em><var>s</var> =</em> <strong>summary</strong> <em>(<var>obj</var>)</em></dt>
+<dd>
+<p>Summary of table&rsquo;s data.
+</p>
+<p>Displays or returns a summary of data in the input table. This will
+contain some statistical information on each of its variables.
+</p>
+<p>This method is not implemented yet.
+</p>
+</dd></dl>
+
+<hr>
+<span id="table_002eprettyprint"></span><div class="header">
+<p>
+Next: <a href="#table_002etable2cell" accesskey="n" rel="next">table.table2cell</a>, Previous: <a href="#table_002esummary" accesskey="p" rel="prev">table.summary</a>, Up: <a href="#table" accesskey="u" rel="up">table</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<span id="table_002eprettyprint-1"></span><h4 class="subsubsection">5.2.19.3 table.prettyprint</h4>
+
+<dl>
+<dt id="index-_0028obj_0029-1">Method: <em>prettyprint</em> <strong>(<var>obj</var>)</strong></dt>
+<dd>
+<p>Display table&rsquo;s values in tabular format. This prints the contents
+of the table in human-readable, tabular form.
+</p>
+<p>Variables which contain objects are displayed using the strings
+returned by their <code>dispstrs</code> method, if they define one.
+</p>
+</dd></dl>
+
+<hr>
+<span id="table_002etable2cell"></span><div class="header">
+<p>
+Previous: <a href="#table_002eprettyprint" accesskey="p" rel="prev">table.prettyprint</a>, Up: <a href="#table" accesskey="u" rel="up">table</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<span id="table_002etable2cell-1"></span><h4 class="subsubsection">5.2.19.4 table.table2cell</h4>
+
+<dl>
+<dt id="index-table2cell">Method: <em><var>c</var> =</em> <strong>table2cell</strong> <em>(<var>obj</var>)</em></dt>
+<dd>
+<p>Converts table to a cell array. Each variable in <var>obj</var> becomes
+one or more columns in the output, depending on how many columns
+that variable has.
+</p>
+<p>Returns a cell array with the same number of rows as <var>obj</var>, and
+with as many or more columns as <var>obj</var> has variables.
+</p>
+</dd></dl>
+
+<hr>
+<span id="tableOuterFillValue"></span><div class="header">
+<p>
+Previous: <a href="#table" accesskey="p" rel="prev">table</a>, Up: <a href="#Functions-Alphabetically" accesskey="u" rel="up">Functions Alphabetically</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<span id="tableOuterFillValue-1"></span><h4 class="subsection">5.2.20 tableOuterFillValue</h4>
+<p><em>Not documented</em>
+</p>
+
+
+<hr>
+<span id="Copying"></span><div class="header">
+<p>
+Previous: <a href="#Function-Reference" accesskey="p" rel="prev">Function Reference</a>, Up: <a href="#Top" accesskey="u" rel="up">Top</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<span id="Copying-1"></span><h2 class="chapter">6 Copying</h2>
+
+
+<span id="Package-Copyright"></span><h3 class="section">6.1 Package Copyright</h3>
+
+<p>Tablicious for Octave is covered by the GNU GPLv3.
+</p>
+<p>All the code in the package is GNU GPLv3.
+</p>
+<p>The Fisher Iris dataset is Public Domain.
+</p>
+<span id="Manual-Copyright"></span><h3 class="section">6.2 Manual Copyright</h3>
+
+<p>This manual is for Tablicious, version 0.1.0-SNAPSHOT.
+</p>
+<p>Copyright &copy; 2019 Andrew Janke
+</p>
+<blockquote>
+<p>Permission is granted to make and distribute verbatim copies of
+this manual provided the copyright notice and this permission notice
+are preserved on all copies.
+</p>
+<p>Permission is granted to copy and distribute modified versions of this
+manual under the conditions for verbatim copying, provided that the entire
+resulting derived work is distributed under the terms of a permission
+notice identical to this one.
+</p>
+<p>Permission is granted to copy and distribute translations of this manual
+into another language, under the same conditions as for modified versions.
+</p></blockquote>
+
+<hr>
+
+
+
+</body>
+</html>
