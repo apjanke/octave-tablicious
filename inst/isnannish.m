@@ -13,31 +13,31 @@
 ## You should have received a copy of the GNU General Public License
 ## along with this program; If not, see <http://www.gnu.org/licenses/>.
 
-function out = isnannish (x)
-  %ISNANNISH Test if elements are NaN or NaN-like
-  %
-  % Tests if input elements are NaN, NaT, or otherwise NaN-like. This is true
-  % if isnan() or isnat() returns true, and is false for types that do not support
-  % isnan() or isnat().
-  %
-  % This function only exists because:
-  %
-  % a) Matlab decided to call their NaN values for datetime "NaT" instead, and
-  % test for them with a different "isnat()" function, and
-  % b) isnan() errors out for some types that do not support isnan(), like cells.
-  %
-  % isnannish() smooths over those differences so you can call it polymorphically on
-  % any input type.
-  %
-  % Under normal operation, isnannish() should not throw an error for any type or
-  % value of input.
-  %
-  % The function name "isnannish" should be read as "is NaN-y" (that is, "is like a
-  % NaN"), not "is nanny" (that is, "is like someone who is hired to take care of
-  % young children").
-  %
-  % See also: ISNAN, ISNAT, ISMISSING, EQN, ISEQUALN
-  
+## -*- texinfo -*-
+## @deftypefn {Function} {@var{out} =} isnannish (@var{X})
+##
+## Test if elements are NaN or NaN-like
+##
+## Tests if input elements are NaN, NaT, or otherwise NaN-like. This is true
+## if isnan() or isnat() returns true, and is false for types that do not support
+## isnan() or isnat().
+##
+## This function only exists because:
+##
+## a) Matlab decided to call their NaN values for datetime "NaT" instead, and
+## test for them with a different "isnat()" function, and
+## b) isnan() errors out for some types that do not support isnan(), like cells.
+##
+## isnannish() smooths over those differences so you can call it polymorphically on
+## any input type.
+##
+## Under normal operation, isnannish() should not throw an error for any type or
+## value of input.
+##
+## See also: @code{isnan}, @code{isnat}, @ref{ismissing}, @ref{eqn}, @code{isequaln}
+##
+## @end deftypefn
+function out = isnannish (x)  
   if isnumeric (x)
     out = isnan (x);
   elseif isa (x, 'datetime')

@@ -13,31 +13,49 @@
 ## You should have received a copy of the GNU General Public License
 ## along with this program; If not, see <http://www.gnu.org/licenses/>.
 
+## -*- texinfo -*-
+## @deftp {Class} missing
+##
+## Generic auto-converting missing value.
+##
+## @code{missing} is a generic missing value that auto-converts to other 
+## types.
+##
+## A @code{missing} array indicates a missing value, of no particular type. It auto-
+## converts to other types when it is combined with them via concatenation or
+## other array combination operations.
+##
+## This class is currently EXPERIMENTAL. Use at your own risk.
+##
+## Note: This class does not actually work for assignment. If you do this:
+##
+## @example
+##   x = 1:5
+##   x(3) = missing
+## @end example
+##
+## It’s supposed to work, but I can’t figure out how to do this in a normal
+## classdef object, because there doesn’t seem to be any function that’s implicitly
+## called for type conversion in that assignment. Darn it.
+##
+## @end deftp
 classdef missing
-  %MISSING A generic missing value that auto-converts to other types
-  %
-  % A missing array indicates a missing value, of no particular type. It auto-
-  % converts to other types when it is combined with them via concatenation or
-  % other array combination operations.
-  %
-  % This class is currently EXPERIMENTAL. Use at your own risk.
-  %
-  % Note: This class does not actually work for assignment. If you do this:
-  %
-  %   x = 1:5
-  %   x(3) = missing
-  %
-  % It's supposed to work, but I can't figure out how to do this in a normal
-  % classdef object, because there doesn't seem to be any function that's implicitly
-  % called for type conversion in that assignment. Darn it.
-  
+
   properties
     data = NaN
   endproperties
   
   methods
-    % There's no constructor. There's only one @missing value.
-    
+    ## -*- texinfo -*-
+    ## @node missing.missing
+    ## @deftypefn {Constructor} {@var{obj} =} missing ()
+    ##
+    ## Constructs a scalar @code{missing} array.
+    ##
+    ## The constructor takes no arguments, since there’s only one
+    ## @code{missing} value.
+    ##
+    ## @end deftypefn
     function display (this)
       %DISPLAY Custom display.
       in_name = inputname (1);
@@ -59,20 +77,66 @@ classdef missing
       endif
     endfunction
 
+    ## -*- texinfo -*-
+    ## @node missing.dispstrs
+    ## @deftypefn {Method} {@var{out} =} dispstrs (@var{obj})
+    ##
+    ## Display strings.
+    ##
+    ## Gets display strings for each element in @var{obj}.
+    ##
+    ## For @code{missing}, the display strings are always @code{'<missing>'}.
+    ##
+    ## Returns a cellstr the same size as @var{obj}.
+    ##
+    ## @end deftypefn
     function out = dispstrs (this)
       out = repmat ({'<missing>'}, size (this));
     endfunction
     
     % Semantics
     
+    ## -*- texinfo -*-
+    ## @node missing.ismissing
+    ## @deftypefn {Method} {@var{out} =} ismissing (@var{obj})
+    ##
+    ## Test whether elements are missing values.
+    ##
+    ## @code{ismissing} is always true for @code{missing} arrays.
+    ##
+    ## Returns a logical array the same size as @var{obj}.
+    ##
+    ## @end deftypefn
     function out = ismissing (this)
       out = true (size (this));
     endfunction
     
+    ## -*- texinfo -*-
+    ## @node missing.isnan
+    ## @deftypefn {Method} {@var{out} =} isnan (@var{obj})
+    ##
+    ## Test whether elements are NaN.
+    ##
+    ## @code{isnan} is always true for @code{missing} arrays.
+    ##
+    ## Returns a logical array the same size as @var{obj}.
+    ##
+    ## @end deftypefn
     function out = isnan (this)
       out = true (size (this));
     endfunction
     
+    ## -*- texinfo -*-
+    ## @node missing.isnannish
+    ## @deftypefn {Method} {@var{out} =} isnannish (@var{obj})
+    ##
+    ## Test whether elements are NaN-like.
+    ##
+    ## @code{isnannish} is always true for @code{missing} arrays.
+    ##
+    ## Returns a logical array the same size as @var{obj}.
+    ##
+    ## @end deftypefn
     function out = isnannish (this)
       out = true (size (this));
     endfunction

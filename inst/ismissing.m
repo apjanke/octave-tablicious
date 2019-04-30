@@ -13,54 +13,55 @@
 ## You should have received a copy of the GNU General Public License
 ## along with this program; If not, see <http://www.gnu.org/licenses/>.
 
+## -*- texinfo -*-
+## @deftypefn {Function} {@var{out} =} ismissing (@var{X})
+## @deftypefnx {Function} {@var{out} =} ismissing (@var{X}, @var{indicator})
+##
+## Find missing values.
+##
+## Determines which elements of @var{X} contain missing values. If an indicator input is
+## not provided, standard missing values depending on the input type of @var{X} are
+## used.
+##
+## Standard missing values depend on the data type:
+##   * NaN for double, single, duration, and calendarDuration
+##   * NaT for datetime
+##   * @code{' '} for char
+##   * @code{@{''@}} for cellstrs
+##   * Integer numeric types have no standard missing value; they are never 
+##     considered missing.
+##   * Structs are never considered missing.
+##   * Logicals are never considered missing.
+##   * Other types have no standard missing value; it is currently an error to
+##     call @code{ismissing} on them without providing an indicator.
+##     * This includes cells which are not cellstrs; calling @code{ismissing} on them
+##       results in an error.
+##     * TODO: Determine whether this should really be an error, or if it should
+##       default to never considering those types as missing.
+##     * TODO: Decide whether, for classdef objects, @code{ismissing} should polymorphically
+##       detect isnan()/isnat()/isnannish() methods and use those, or whether we should
+##       require classes to override ismissing() itself.
+##
+## If @var{indicator} is supplied, it is an array containing multiple values, all of
+## which are considered to be missing values. Only indicator values that are
+## type-compatible with the input are considered; other indicator value types are
+## silently ignored. This is by design, so you can pass an indicator that holds
+## sentinel values for disparate types in to ismissing() used for any type, or
+## for compound types like table.
+##
+## Indicators are currently not supported for struct or logical inputs. This is
+## probably a bug.
+##
+## Table defines its own ismissing() method which respects individual variables’
+## data types; see @ref{table.ismissing}.
+##
+## @end deftypefn
 function out = ismissing (x, indicator)
-  %ISMISSING Find missing values
-  %
-  % tf = ismissing (x)
-  % tf = ismissing (x, indicator)
-  %
-  % Determines which elements of x contain missing values. If an indicator input is
-  % not provided, standard missing values depending on the input type of x are
-  % used.
-  %
-  % Standard missing values depend on the data type:
-  %   * NaN for double, single, duration, and calendarDuration
-  %   * NaT for datetime
-  %   * ' ' for char
-  %   * {''} for cellstrs
-  %   * Integer numeric types have no standard missing value; they are never 
-  %     considered missing.
-  %   * Structs are never considered missing.
-  %   * Logicals are never considered missing.
-  %   * Other types have no standard missing value; it is currently an error to
-  %     call ismissing() on them without providing an indicator.
-  %     * This includes cells which are not cellstrs; calling ismissing() on them
-  %       results in an error.
-  %     * TODO: Determine whether this should really be an error, or if it should
-  %       default to never considering those types as missing.
-  %     * TODO: Decide whether, for classdef objects, ismissing() should polymorphically
-  %       detect isnan()/isnat()/isnannish() methods and use those, or whether we should
-  %       require classes to override ismissing() itself.
-  %
-  % If indicator is supplied, it is an array containing multiple values, all of
-  % which are considered to be missing values. Only indicator values that are
-  % type-compatible with the input are considered; other indicator value types are
-  % silently ignored. This is by design, so you can pass an indicator that holds
-  % sentinel values for disparate types in to ismissing() used for any type, or
-  % for compound types like table.
-  %
-  % Indicators are currently not supported for struct or logical inputs. This is
-  % probably a bug.
-  %
-  % Table defines its own ismissing() methods which respects individual variables'
-  % data types; see TABLE.ISMISSING.
-  
   if nargin == 1
     out = ismissing_standard (x);
   else
     out = ismissing_indicator (x, indicator);
   endif
-
 endfunction
 
 function out = ismissing_standard (x)

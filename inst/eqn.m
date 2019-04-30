@@ -35,7 +35,7 @@
 ## name follows the @code{isequaln} pattern of appending an “n” to the
 ## corresponding non-NaN-equivocating function.
 ##
-## See also: @ref{eq}, @ref{isequaln}, @ref{isnannish}
+## See also: @code{eq}, @code{isequaln}, @ref{isnannish}
 ##
 ## @end deftypefn
 function out = eqn (A, B)
