@@ -315,18 +315,23 @@ classdef table
       endfor
     endfunction
     
+    ## -*- texinfo -*-
+    ## @node table.table2struct
+    ## @deftypefn {Method} {@var{s} =} table2struct (@var{obj})
+    ## @deftypefnx {Method} {@var{s} =} table2struct (@dots{}, @code{'ToScalar'}, @var{trueOrFalse})
+    ##
+    ## Converts @var{obj} to a scalar structure or structure array.
+    ##
+    ## Row names are not included in the output struct. To include them, you
+    ## must add them manually:
+    ##   s = table2struct (tbl, 'ToScalar', true);
+    ##   s.RowNames = tbl.Properties.RowNames;
+    ##
+    ## Returns a scalar struct or struct array, depending on the value of the
+    ## @code{ToScalar} option.
+    ##
+    ## @end deftypefn
     function out = table2struct (this, varargin)
-      %TABLE2STRUCT Convert table to structure array
-      %
-      % Converts this to a scalar structure or structure array.
-      %
-      % Row names are not included in the output struct. To include them, you
-      % must add them manually:
-      %   s = table2struct (tbl, 'ToScalar', true);
-      %   s.RowNames = tbl.Properties.RowNames;
-      %
-      % Returns a scalar struct or struct array, depending on the value of the
-      % ToScalar option.
       [opts, args] = peelOffNameValueOptions (varargin, {'ToScalar'});
       toScalar = false;
       if isfield (opts, 'ToScalar')
@@ -361,6 +366,13 @@ classdef table
       endif
     endfunction
     
+    ## -*- texinfo -*-
+    ## @node table.table2array
+    ## @deftypefn {Method} {@var{s} =} table2struct (@var{obj})
+    ##
+    ## Converts @var{obj} to a homogeneous array.
+    ##
+    ## @end deftypefn
     function out = table2array (this)
       %TABLE2ARRAY Convert table to homogeneous array
       if isempty (this)
@@ -376,26 +388,42 @@ classdef table
 
     % Structural stuff
     
+    ## -*- texinfo -*-
+    ## @node table.varnames
+    ## @deftypefn {Method} {@var{out} =} varnames (@var{obj})
+    ##
+    ## Get variable names for a table.
+    ##
+    ## Returns cellstr.
+    ##
+    ## @end deftypefn
     function out = varnames (this)
-      %VARNAMES Variable names in table
-      %
-      % Gets the list of variable names in this.
-      %
-      % Returns cellstr.
-      %
-      % This is an Octave extension.
       out = this.VariableNames;
     endfunction
 
+    ## -*- texinfo -*-
+    ## @node table.istable
+    ## @deftypefn {Method} {@var{tf} =} istable (@var{obj})
+    ##
+    ## True if input is a table.
+    ##
+    ## @end deftypefn
     function out = istable (this)
       %ISTABLE True if input is a table
       out = true;
     endfunction
 
+    ## -*- texinfo -*-
+    ## @node table.size
+    ## @deftypefn {Method} {@var{sz} =} size (@var{obj})
+    ##
+    ## Gets the size of a table.
+    ##
+    ## For tables, the size is [number-of-rows x number-of-variables].
+    ## This is the same as @code{[height(obj), width(obj)]}.
+    ##
+    ## @end deftypefn
     function out = size (this, dim)
-      %SIZE Size of array
-      %
-      % For tables, the size is [number-of-rows x number-of-variables].
       if nargin == 1
         out = [height(this), width(this)];
       else
@@ -404,13 +432,29 @@ classdef table
       end
     end
     
+    ## -*- texinfo -*-
+    ## @node table.length
+    ## @deftypefn {Method} {@var{out} =} length (@var{obj})
+    ##
+    ## Length along longest dimension
+    ##
+    ## Use of @code{length} is not recommended. Use @code{numel}
+    ## or @code{size} instead.
+    ##
+    ## @end deftypefn
     function out = length (this, varargin)
-      %LENGTH Length along longest dimension
-      %
-      % Use of LENGTH is not recommended. Use NUMEL or SIZE instead.
       out = max (size (this));
     end
 
+    ## -*- texinfo -*-
+    ## @node table.ndims
+    ## @deftypefn {Method} {@var{out} =} ndims (@var{obj})
+    ##
+    ## Number of dimensions
+    ##
+    ## For tables, @code{ndims(obj)} is always 2.
+    ##
+    ## @end deftypefn
     function out = ndims (this)
       %NDIMS Number of dimensions
       %
@@ -418,6 +462,16 @@ classdef table
       out = 2;
     end
     
+    ## -*- texinfo -*-
+    ## @node table.squeeze
+    ## @deftypefn {Method} {@var{obj} =} squeeze (@var{obj})
+    ##
+    ## Remove singleton dimensions.
+    ##
+    ## For tables, this is always a no-op that returns the input 
+    ## unmodified, because tables always have exactly 2 dimensions.
+    ##
+    ## @end deftypefn
     function out = squeeze (this)
       %SQUEEZE Remove singleton dimensions from this.
       %
@@ -431,6 +485,17 @@ classdef table
       error ('table.size_equal: size_equal is not yet implemented for tables');
     endfunction
   
+    ## -*- texinfo -*-
+    ## @node table.sizeof
+    ## @deftypefn {Method} {@var{out} =} sizeof (@var{obj})
+    ##
+    ## Approximate size of array in bytes. For tables, this returns the sume
+    ## of @code{sizeof} for all of its variables’ arrays, plus the size of the 
+    ## VariableNames and any other metadata stored in @var{obj}.
+    ##
+    ## This is currently unimplemented.
+    ##
+    ## @end deftypefn
     function out = sizeof (this)
       %SIZEOF Size of this in bytes.
       %
@@ -439,6 +504,13 @@ classdef table
       error ('table.sizeof: sizeof is not yet implemented for tables');
     endfunction
 
+    ## -*- texinfo -*-
+    ## @node table.height
+    ## @deftypefn {Method} {@var{out} =} height (@var{obj})
+    ##
+    ## Number of rows in table.
+    ##
+    ## @end deftypefn
     function out = height (this)
       %HEIGHT Number of rows in table
       if isempty (this.VariableValues)
@@ -448,11 +520,28 @@ classdef table
       end
     end
     
+    ## -*- texinfo -*-
+    ## @node table.rows
+    ## @deftypefn {Method} {@var{out} =} rows (@var{obj})
+    ##
+    ## Number of rows in table.
+    ##
+    ## @end deftypefn
     function out = rows (this)
       %ROWS Number of rows in table
       out = height (this);
     endfunction
     
+    ## -*- texinfo -*-
+    ## @node table.width
+    ## @deftypefn {Method} {@var{out} =} width (@var{obj})
+    ##
+    ## Number of variables in table.
+    ##
+    ## Note that this is not the sum of the number of columns in each variable.
+    ## It is just the number of variables.
+    ##
+    ## @end deftypefn
     function out = width (this)
       %WIDTH Number of variables in table
       %
@@ -461,6 +550,16 @@ classdef table
       out = numel (this.VariableNames);
     end
     
+    ## -*- texinfo -*-
+    ## @node table.columns
+    ## @deftypefn {Method} {@var{out} =} columns (@var{obj})
+    ##
+    ## Number of variables in table.
+    ##
+    ## Note that this is not the sum of the number of columns in each variable.
+    ## It is just the number of variables.
+    ##
+    ## @end deftypefn
     function out = columns (this)
       %COLUMNS Number of columns (variables) in table
       %
@@ -469,14 +568,21 @@ classdef table
       out = width (this);
     endfunction
     
+    ## -*- texinfo -*-
+    ## @node table.numel
+    ## @deftypefn {Method} {@var{out} =} numel (@var{obj})
+    ##
+    ## Total number of elements in table.
+    ##
+    ## This is the total number of elements in this table. This is calculated
+    ## as the sum of numel for each variable.
+    ##
+    ## NOTE: Those semantics may be wrong. This may actually need to be defined
+    ## as @code{height(obj) * width(obj)}. The behavior of @code{numel} may
+    ## change in the future.
+    ##
+    ## @end deftypefn
     function out = numel (this)
-      %NUMEL Total number of elements in table
-      %
-      % This is the total number of elements in this table. This is calculated
-      % as the sum of numel for each variable.
-      %
-      % TODO: Those semantics may be wrong. This may actually need to be defined
-      % as height(this) * width(this).
       n = 0;
       for i = 1:numel (this.VariableValues)
         n = n + numel (this.VariableValues{i});
@@ -484,14 +590,29 @@ classdef table
       out = n;
     end
     
+    ## -*- texinfo -*-
+    ## @node table.isempty
+    ## @deftypefn {Method} {@var{out} =} isempty (@var{obj})
+    ##
+    ## Test whether array is empty.
+    ##
+    ## For tables, @code{isempty} is true if the number of rows is 0 or the number
+    ## of variables is 0.
+    ##
+    ## @end deftypefn
     function out = isempty (this)
-      %ISEMPTY True if array is empty
-      %
-      % For tables, isempty() is true if the number of rows is 0 or the number
-      % of variables is 0.
       out = isempty (this.VariableNames);
     end
     
+    ## -*- texinfo -*-
+    ## @node table.ismatrix
+    ## @deftypefn {Method} {@var{out} =} ismatrix (@var{obj})
+    ##
+    ## Test whether array is a matrix.
+    ##
+    ## For tables, @code{ismatrix} is always true, by definition.
+    ##
+    ## @end deftypefn
     function out = ismatrix (this)
       %ISMATRIX True if input is a matrix
       %
@@ -499,44 +620,84 @@ classdef table
       out = true;
     end
     
+    ## -*- texinfo -*-
+    ## @node table.isrow
+    ## @deftypefn {Method} {@var{out} =} isrow (@var{obj})
+    ##
+    ## Test whether array is a row vector.
+    ##
+    ## @end deftypefn
     function out = isrow (this)
       %ISROW True if input is a row vector
       out = height (this) == 1;
     end
     
+    ## -*- texinfo -*-
+    ## @node table.iscol
+    ## @deftypefn {Method} {@var{out} =} iscol (@var{obj})
+    ##
+    ## Test whether array is a column vector.
+    ##
+    ## For tables, @code{iscol} is true if the input has a single variable.
+    ## The number of columns within that variable does not matter.
+    ##
+    ## @end deftypefn
     function out = iscol (this)
-      %ISCOL True if input is a column vector
-      %
-      % For tables, iscol() is true if the input has a single variable. The number
-      % of columns within that variable do not matter.
       out = width (this) == 1;
     end
     
+    ## -*- texinfo -*-
+    ## @node table.isvector
+    ## @deftypefn {Method} {@var{out} =} isvector (@var{obj})
+    ##
+    ## Test whether array is a vector.
+    ##
+    ## @end deftypefn
     function out = isvector (this)
       %ISVECTOR True if input is a vector
       out = isrow (this) || iscol (this);
     end
     
+    ## -*- texinfo -*-
+    ## @node table.isscalar
+    ## @deftypefn {Method} {@var{out} =} isscalar (@var{obj})
+    ##
+    ## Test whether array is scalar.
+    ##
+    ## @end deftypefn
     function out = isscalar (this)
       %ISSCALAR True if input is a scalar
       out = height (this) == 1 && width (this) == 1;
     end
     
+    ## -*- texinfo -*-
+    ## @node table.hasrownames
+    ## @deftypefn {Method} {@var{out} =} hasrownames (@var{obj})
+    ##
+    ## True if this table has row names defined.
+    ##
+    ## @end deftypefn
     function out = hasrownames (this)
       %HASROWNAMES True if this table has row names defined
       out = ~isempty (this.RowNames);
     endfunction
     
+    ## -*- texinfo -*-
+    ## @node table.vertcat
+    ## @deftypefn {Method} {@var{out} =} vertcat (@var{varargin})
+    ##
+    ## Vertical concatenation.
+    ##
+    ## Combines tables by vertically concatenating them.
+    ##
+    ## Inputs that are not tables are automatically converted to tables by calling
+    ## table() on them.
+    ##
+    ## The inputs must have the same number and names of variables, and their
+    ## variable value types and sizes must be cat-compatible.
+    ##
+    ## @end deftypefn
     function out = vertcat (varargin)
-      %VERTCAT Vertical concatenation
-      %
-      % Combines tables by vertically concatenating them.
-      %
-      % Inputs that are not tables are automatically converted to tables by calling
-      % table() on them.
-      %
-      % The inputs must have the same number and names of variables, and their
-      % variable value types and sizes must be cat-compatible.
       args = varargin;
       for i = 1:numel (args)
         if ~istable (args{i})
@@ -559,14 +720,23 @@ classdef table
       end
     end
     
+    ## -*- texinfo -*-
+    ## @node table.horzcat
+    ## @deftypefn {Method} {@var{out} =} horzcat (@var{varargin})
+    ##
+    ## Horizontal concatenation.
+    ## 
+    ## Combines tables by horizontally concatenating them.
+    ## Inputs that are not tables are automatically converted to tables by calling
+    ## table() on them.
+    ## Inputs must have all distinct variable names.
+    ##
+    ## Output has the same RowNames as @code{varargin@{1@}}. The variable names and values
+    ## are the result of the concatenation of the variable names and values lists
+    ## from the inputs.
+    ##
+    ## @end deftypefn
     function out = horzcat (varargin)
-      %HORZCAT Horizontal concatenation
-      %
-      % Inputs must have all distinct variable names.
-      %
-      % Output has the same RowNames as varargin{1}. The variable names and values
-      % are the result of the concatenation of the variable names and values lists
-      % from the inputs.
       args = varargin;
       seen_names = args{1}.VariableNames;
       for i = 2:numel (args)
@@ -588,18 +758,22 @@ classdef table
       out.VariableValues = cat (2, varValses{:});
     end
     
+    ## -*- texinfo -*-
+    ## @node table.repmat
+    ## @deftypefn {Method} {@var{out} =} repmat (@var{obj}, @var{sz})
+    ##
+    ## Replicate matrix.
+    ##
+    ## Repmats a table by repmatting each of its variables vertically.
+    ##
+    ## For tables, repmatting is only supported along dimension 1. That is, the
+    ## values of sz(2:end) must all be exactly 1.
+    ##
+    ## Returns a new table with the same variable names and types as tbl, but
+    ## with a possibly different row count.
+    ##
+    ## @end deftypefn
     function out = repmat (this, sz)
-      %REPMAT Replicate matrix
-      %
-      % out = repmat (tbl, sz)
-      %
-      % Repmats a table by repmatting each of its variables vertically.
-      %
-      % For tables, repmatting is only supported along dimension 1. That is, the
-      % values of sz(2:end) must all be exactly 1.
-      %
-      % Returns a new table with the same variable names and types as tbl, but
-      % with a possibly different row count.
       mustBeA (this, 'table');
       mustBeNumeric (sz);
       if any (sz(2:end) != 1)
@@ -714,6 +888,18 @@ classdef table
       end
     end
     
+    ## -*- texinfo -*-
+    ## @node table.setVariableNames
+    ## @deftypefn {Method} {@var{out} =} setVariableNames (@var{obj}, @var{names})
+    ##
+    ## Set variable names.
+    ##
+    ## Sets the @code{VariableNames} for this table to a new list of names.
+    ##
+    ## @var{names} is a cellstr vector. It must have the same number of elements
+    ## as the number of variables in @var{obj}.
+    ##
+    ## @end deftypefn
     function this = setVariableNames (this, names)
       %SETVARIABLENAMES Set VariableNames
       if ~iscellstr (names)
@@ -729,6 +915,18 @@ classdef table
       this.VariableNames = names;
     endfunction
     
+    ## -*- texinfo -*-
+    ## @node table.setRowNames
+    ## @deftypefn {Method} {@var{out} =} setRowNames (@var{obj}, @var{names})
+    ##
+    ## Set row names.
+    ##
+    ## Sets the row names on @var{obj} to @var{names}.
+    ##
+    ## @var{names} is a cellstr column vector, with the same number of rows as
+    ## @var{obj} has.
+    ##
+    ## @end deftypefn
     function this = setRowNames (this, names)
       %SETROWNAMES Set RowNames
       if isempty (names)
