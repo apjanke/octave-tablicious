@@ -1835,9 +1835,12 @@ classdef table
       keyVarNames = intersect_stable (A.VariableNames, B.VariableNames);
       nonKeyVarsB = setdiff_stable (B.VariableNames, keyVarNames);
       if isempty (keyVarNames)
-        % TODO: There's probably a correct degenerate output for this, but I don't
-        % know if it should be "all rows" or "no rows" - apjanke
-        error ('table.semijoin: Cannot semijoin: inputs have no variable names in common');
+        % The degenerate case of no common variable names is to keep all the rows.
+        outA = A;
+        ixA = 1:height (A);
+        outB = B;
+        ixB = 1:height (B);
+        return
       endif
       keysA = subsetvars (A, keyVarNames);
       keysB = subsetvars (B, keyVarNames);
@@ -1881,9 +1884,12 @@ classdef table
       keyVarNames = intersect_stable (A.VariableNames, B.VariableNames);
       nonKeyVarsB = setdiff_stable (B.VariableNames, keyVarNames);
       if isempty (keyVarNames)
-        % TODO: There's probably a correct degenerate output for this, but I don't
-        % know if it should be "all rows" or "no rows" - apjanke
-        error ('table.antijoin: Cannot antijoin: inputs have no variable names in common');
+        % The degenerate case when there are no common variable names is the empty set
+        outA = subsetrows (A, []);
+        ixA = [];
+        outB = subsetrows (B, []);
+        ixB = [];
+        return
       endif
       keysA = subsetvars (A, keyVarNames);
       keysB = subsetvars (B, keyVarNames);
