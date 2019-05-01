@@ -58,7 +58,7 @@ This manual is for Tablicious, version @value{VERSION}.
 * Getting Started::
 * Table Representation::
 * Missing Functionality::
-* Function Reference::
+* API Reference::
 * Copying::
 @end menu
 
@@ -139,8 +139,8 @@ It is the author's hope that all these will be implemented some day.
 
 
 
-@node Function Reference
-@chapter Function Reference
+@node API Reference
+@chapter API Reference
 
 @REFERENCE_SECTION(Tablicious)
 

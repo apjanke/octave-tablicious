@@ -1,7 +1,7 @@
 This is Tablicious.info, produced by makeinfo version 6.6 from
 Tablicious.texi.
 
-This manual is for Tablicious, version 0.1.0-SNAPSHOT.
+This manual is for Tablicious, version 0.1.0.
 
    Copyright © 2019 Andrew Janke
 
@@ -24,7 +24,7 @@ File: Tablicious.info,  Node: Top,  Next: Introduction
 Tablicious for GNU Octave
 *************************
 
-This manual is for Tablicious, version 0.1.0-SNAPSHOT.
+This manual is for Tablicious, version 0.1.0.
 
 * Menu:
 
@@ -32,7 +32,7 @@ This manual is for Tablicious, version 0.1.0-SNAPSHOT.
 * Getting Started::
 * Table Representation::
 * Missing Functionality::
-* Function Reference::
+* API Reference::
 * Copying::
 
 
@@ -41,8 +41,8 @@ File: Tablicious.info,  Node: Introduction,  Next: Getting Started,  Up: Top
 1 Introduction
 **************
 
-This is the manual for the Tablicious package version 0.1.0-SNAPSHOT for
-GNU Octave.
+This is the manual for the Tablicious package version 0.1.0 for GNU
+Octave.
 
    Tablicious provides Matlab-compatible tabular data support for GNU
 Octave.  This includes a ‘table’ class with support for filtering and
@@ -66,7 +66,7 @@ The easiest way to obtain Tablicious is by using Octave’s ‘pkg’ package
 manager.  To install the development prerelease of Tablicious, run this
 in Octave:
 
-     pkg install https://github.com/apjanke/octave-tablicious/releases/download/v0.1.0-SNAPSHOT/tablicious-0.1.0-SNAPSHOT.tar.gz
+     pkg install https://github.com/apjanke/octave-tablicious/releases/download/v0.1.0/tablicious-0.1.0.tar.gz
 
    (Check the releases page at
 <https://github.com/apjanke/octave-tablicious/releases> to find out what
@@ -101,7 +101,7 @@ It holds multiple named “variables”, each of which is a column vector,
 or a 2-D matrix whose rows are read as records.
 
 
-File: Tablicious.info,  Node: Missing Functionality,  Next: Function Reference,  Prev: Table Representation,  Up: Top
+File: Tablicious.info,  Node: Missing Functionality,  Next: API Reference,  Prev: Table Representation,  Up: Top
 
 4 Missing Functionality
 ***********************
@@ -119,21 +119,21 @@ are currently:
    It is the author’s hope that all these will be implemented some day.
 
 
-File: Tablicious.info,  Node: Function Reference,  Next: Copying,  Prev: Missing Functionality,  Up: Top
+File: Tablicious.info,  Node: API Reference,  Next: Copying,  Prev: Missing Functionality,  Up: Top
 
-5 Function Reference
-********************
+5 API Reference
+***************
 
 * Menu:
 
-* Functions by Category::
-* Functions Alphabetically::
+* API by Category::
+* API Alphabetically::
 
 
-File: Tablicious.info,  Node: Functions by Category,  Next: Functions Alphabetically,  Up: Function Reference
+File: Tablicious.info,  Node: API by Category,  Next: API Alphabetically,  Up: API Reference
 
-5.1 Functions by Category
-=========================
+5.1 API by Category
+===================
 
 5.1.1 Tables
 ------------
@@ -217,10 +217,10 @@ File: Tablicious.info,  Node: Functions by Category,  Next: Functions Alphabetic
      Apply function to vectors in array along arbitrary dimension.
 
 
-File: Tablicious.info,  Node: Functions Alphabetically,  Prev: Functions by Category,  Up: Function Reference
+File: Tablicious.info,  Node: API Alphabetically,  Prev: API by Category,  Up: API Reference
 
-5.2 Functions Alphabetically
-============================
+5.2 API Alphabetically
+======================
 
 * Menu:
 
@@ -249,7 +249,7 @@ File: Tablicious.info,  Node: Functions Alphabetically,  Prev: Functions by Cate
 		dimension.
 
 
-File: Tablicious.info,  Node: array2table,  Next: categorical,  Up: Functions Alphabetically
+File: Tablicious.info,  Node: array2table,  Next: categorical,  Up: API Alphabetically
 
 5.2.1 array2table
 -----------------
@@ -273,7 +273,7 @@ File: Tablicious.info,  Node: array2table,  Next: categorical,  Up: Functions Al
      See also: *note cell2table::, *note table::, *note struct2table::
 
 
-File: Tablicious.info,  Node: categorical,  Next: cell2table,  Prev: array2table,  Up: Functions Alphabetically
+File: Tablicious.info,  Node: categorical,  Next: cell2table,  Prev: array2table,  Up: API Alphabetically
 
 5.2.2 categorical
 -----------------
@@ -641,7 +641,7 @@ File: Tablicious.info,  Node: categorical.squeezecats,  Prev: categorical.isnann
      This is currently unimplemented.
 
 
-File: Tablicious.info,  Node: cell2table,  Next: colvecfun,  Prev: categorical,  Up: Functions Alphabetically
+File: Tablicious.info,  Node: cell2table,  Next: colvecfun,  Prev: categorical,  Up: API Alphabetically
 
 5.2.3 cell2table
 ----------------
@@ -661,7 +661,7 @@ File: Tablicious.info,  Node: cell2table,  Next: colvecfun,  Prev: categorical, 
      See also: *note array2table::, *note table::, *note struct2table::
 
 
-File: Tablicious.info,  Node: colvecfun,  Next: contains,  Prev: cell2table,  Up: Functions Alphabetically
+File: Tablicious.info,  Node: colvecfun,  Next: contains,  Prev: cell2table,  Up: API Alphabetically
 
 5.2.4 colvecfun
 ---------------
@@ -683,7 +683,7 @@ File: Tablicious.info,  Node: colvecfun,  Next: contains,  Prev: cell2table,  Up
      concatenated together in the same shape as x.
 
 
-File: Tablicious.info,  Node: contains,  Next: discretize,  Prev: colvecfun,  Up: Functions Alphabetically
+File: Tablicious.info,  Node: contains,  Next: discretize,  Prev: colvecfun,  Up: API Alphabetically
 
 5.2.5 contains
 --------------
@@ -707,7 +707,7 @@ File: Tablicious.info,  Node: contains,  Next: discretize,  Prev: colvecfun,  Up
      represented by STR.
 
 
-File: Tablicious.info,  Node: discretize,  Next: dispstrs,  Prev: contains,  Up: Functions Alphabetically
+File: Tablicious.info,  Node: discretize,  Next: dispstrs,  Prev: contains,  Up: API Alphabetically
 
 5.2.6 discretize
 ----------------
@@ -734,7 +734,7 @@ File: Tablicious.info,  Node: discretize,  Next: dispstrs,  Prev: contains,  Up:
      list of bin edge values
 
 
-File: Tablicious.info,  Node: dispstrs,  Next: endsWith,  Prev: discretize,  Up: Functions Alphabetically
+File: Tablicious.info,  Node: dispstrs,  Next: endsWith,  Prev: discretize,  Up: API Alphabetically
 
 5.2.7 dispstrs
 --------------
@@ -757,7 +757,7 @@ File: Tablicious.info,  Node: dispstrs,  Next: endsWith,  Prev: discretize,  Up:
      Returns a cell array the same size as X.
 
 
-File: Tablicious.info,  Node: endsWith,  Next: eqn,  Prev: dispstrs,  Up: Functions Alphabetically
+File: Tablicious.info,  Node: endsWith,  Next: eqn,  Prev: dispstrs,  Up: API Alphabetically
 
 5.2.8 endsWith
 --------------
@@ -781,7 +781,7 @@ File: Tablicious.info,  Node: endsWith,  Next: eqn,  Prev: dispstrs,  Up: Functi
      represented by STR.
 
 
-File: Tablicious.info,  Node: eqn,  Next: fillmissing,  Prev: endsWith,  Up: Functions Alphabetically
+File: Tablicious.info,  Node: eqn,  Next: fillmissing,  Prev: endsWith,  Up: API Alphabetically
 
 5.2.9 eqn
 ---------
@@ -809,7 +809,7 @@ File: Tablicious.info,  Node: eqn,  Next: fillmissing,  Prev: endsWith,  Up: Fun
      See also: ‘eq’, ‘isequaln’, *note isnannish::
 
 
-File: Tablicious.info,  Node: fillmissing,  Next: ismissing,  Prev: eqn,  Up: Functions Alphabetically
+File: Tablicious.info,  Node: fillmissing,  Next: ismissing,  Prev: eqn,  Up: API Alphabetically
 
 5.2.10 fillmissing
 ------------------
@@ -834,7 +834,7 @@ File: Tablicious.info,  Node: fillmissing,  Next: ismissing,  Prev: eqn,  Up: Fu
      elements were filled.
 
 
-File: Tablicious.info,  Node: ismissing,  Next: isnannish,  Prev: fillmissing,  Up: Functions Alphabetically
+File: Tablicious.info,  Node: ismissing,  Next: isnannish,  Prev: fillmissing,  Up: API Alphabetically
 
 5.2.11 ismissing
 ----------------
@@ -879,7 +879,7 @@ File: Tablicious.info,  Node: ismissing,  Next: isnannish,  Prev: fillmissing,  
      variables’ data types; see *note table.ismissing::.
 
 
-File: Tablicious.info,  Node: isnannish,  Next: missing,  Prev: ismissing,  Up: Functions Alphabetically
+File: Tablicious.info,  Node: isnannish,  Next: missing,  Prev: ismissing,  Up: API Alphabetically
 
 5.2.12 isnannish
 ----------------
@@ -909,7 +909,7 @@ File: Tablicious.info,  Node: isnannish,  Next: missing,  Prev: ismissing,  Up: 
      ‘isequaln’
 
 
-File: Tablicious.info,  Node: missing,  Next: pp,  Prev: isnannish,  Up: Functions Alphabetically
+File: Tablicious.info,  Node: missing,  Next: pp,  Prev: isnannish,  Up: API Alphabetically
 
 5.2.13 missing
 --------------
@@ -1018,7 +1018,7 @@ File: Tablicious.info,  Node: missing.isnannish,  Prev: missing.isnan,  Up: miss
      Returns a logical array the same size as OBJ.
 
 
-File: Tablicious.info,  Node: pp,  Next: rmmissing,  Prev: missing,  Up: Functions Alphabetically
+File: Tablicious.info,  Node: pp,  Next: rmmissing,  Prev: missing,  Up: API Alphabetically
 
 5.2.14 pp
 ---------
@@ -1039,7 +1039,7 @@ File: Tablicious.info,  Node: pp,  Next: rmmissing,  Prev: missing,  Up: Functio
      the command line.
 
 
-File: Tablicious.info,  Node: rmmissing,  Next: standardizeMissing,  Prev: pp,  Up: Functions Alphabetically
+File: Tablicious.info,  Node: rmmissing,  Next: standardizeMissing,  Prev: pp,  Up: API Alphabetically
 
 5.2.15 rmmissing
 ----------------
@@ -1067,7 +1067,7 @@ File: Tablicious.info,  Node: rmmissing,  Next: standardizeMissing,  Prev: pp,  
      rows, or columns were removed
 
 
-File: Tablicious.info,  Node: standardizeMissing,  Next: startsWith,  Prev: rmmissing,  Up: Functions Alphabetically
+File: Tablicious.info,  Node: standardizeMissing,  Next: startsWith,  Prev: rmmissing,  Up: API Alphabetically
 
 5.2.16 standardizeMissing
 -------------------------
@@ -1089,7 +1089,7 @@ File: Tablicious.info,  Node: standardizeMissing,  Next: startsWith,  Prev: rmmi
      See also: *note table.standardizeMissing::
 
 
-File: Tablicious.info,  Node: startsWith,  Next: string,  Prev: standardizeMissing,  Up: Functions Alphabetically
+File: Tablicious.info,  Node: startsWith,  Next: string,  Prev: standardizeMissing,  Up: API Alphabetically
 
 5.2.17 startsWith
 -----------------
@@ -1113,7 +1113,7 @@ File: Tablicious.info,  Node: startsWith,  Next: string,  Prev: standardizeMissi
      represented by STR.
 
 
-File: Tablicious.info,  Node: string,  Next: struct2table,  Prev: startsWith,  Up: Functions Alphabetically
+File: Tablicious.info,  Node: string,  Next: struct2table,  Prev: startsWith,  Up: API Alphabetically
 
 5.2.18 string
 -------------
@@ -1640,7 +1640,7 @@ File: Tablicious.info,  Node: string.decode,  Prev: string.missing,  Up: string
      See also: *note string.encode::
 
 
-File: Tablicious.info,  Node: struct2table,  Next: table,  Prev: string,  Up: Functions Alphabetically
+File: Tablicious.info,  Node: struct2table,  Next: table,  Prev: string,  Up: API Alphabetically
 
 5.2.19 struct2table
 -------------------
@@ -1659,7 +1659,7 @@ File: Tablicious.info,  Node: struct2table,  Next: table,  Prev: string,  Up: Fu
      Returns a ‘table’.
 
 
-File: Tablicious.info,  Node: table,  Next: tableOuterFillValue,  Prev: struct2table,  Up: Functions Alphabetically
+File: Tablicious.info,  Node: table,  Next: tableOuterFillValue,  Prev: struct2table,  Up: API Alphabetically
 
 5.2.20 table
 ------------
@@ -2788,7 +2788,7 @@ File: Tablicious.info,  Node: table.restrict,  Prev: table.evalWithVars,  Up: ta
           prettyprint (restrict (p, 'Weight >= 14 & strcmp(Color, "Red")'))
 
 
-File: Tablicious.info,  Node: tableOuterFillValue,  Next: vecfun,  Prev: table,  Up: Functions Alphabetically
+File: Tablicious.info,  Node: tableOuterFillValue,  Next: vecfun,  Prev: table,  Up: API Alphabetically
 
 5.2.21 tableOuterFillValue
 --------------------------
@@ -2817,7 +2817,7 @@ File: Tablicious.info,  Node: tableOuterFillValue,  Next: vecfun,  Prev: table, 
      type, where ncols is the number of columns in the input.
 
 
-File: Tablicious.info,  Node: vecfun,  Prev: tableOuterFillValue,  Up: Functions Alphabetically
+File: Tablicious.info,  Node: vecfun,  Prev: tableOuterFillValue,  Up: API Alphabetically
 
 5.2.22 vecfun
 -------------
@@ -2842,7 +2842,7 @@ File: Tablicious.info,  Node: vecfun,  Prev: tableOuterFillValue,  Up: Functions
      same size as X, but not necessarily the same type.
 
 
-File: Tablicious.info,  Node: Copying,  Prev: Function Reference,  Up: Top
+File: Tablicious.info,  Node: Copying,  Prev: API Reference,  Up: Top
 
 6 Copying
 *********
@@ -2859,7 +2859,7 @@ Tablicious for Octave is covered by the GNU GPLv3.
 6.2 Manual Copyright
 ====================
 
-This manual is for Tablicious, version 0.1.0-SNAPSHOT.
+This manual is for Tablicious, version 0.1.0.
 
    Copyright © 2019 Andrew Janke
 
@@ -2879,146 +2879,146 @@ This manual is for Tablicious, version 0.1.0-SNAPSHOT.
 
 
 Tag Table:
-Node: Top781
-Node: Introduction1081
-Node: Getting Started1783
-Node: Table Representation2615
-Node: table Class2880
-Node: Missing Functionality3192
-Node: Function Reference3858
-Node: Functions by Category4074
-Node: Functions Alphabetically5772
-Node: array2table7085
-Node: categorical8022
-Node: categorical.categorical10282
-Node: categorical.categories11539
-Node: categorical.iscategory11942
-Node: categorical.isordinal12388
-Node: categorical.string12757
-Node: categorical.cellstr13204
-Node: categorical.dispstrs13643
-Node: categorical.summary14099
-Node: categorical.addcats14550
-Node: categorical.removecats14976
-Node: categorical.mergecats15618
-Node: categorical.renamecats16273
-Node: categorical.reordercats16690
-Node: categorical.setcats17225
-Node: categorical.isundefined17671
-Node: categorical.ismissing18189
-Node: categorical.isnannish18599
-Node: categorical.squeezecats19077
-Node: cell2table19447
-Node: colvecfun20193
-Node: contains20923
-Node: discretize21718
-Node: dispstrs22623
-Node: endsWith23411
-Node: eqn24198
-Node: fillmissing25290
-Node: ismissing26151
-Node: isnannish28270
-Node: missing29258
-Node: missing.missing30301
-Node: missing.dispstrs30615
-Node: missing.ismissing31012
-Node: missing.isnan31377
-Node: missing.isnannish31716
-Node: pp32050
-Node: rmmissing32699
-Node: standardizeMissing33748
-Node: startsWith34580
-Node: string35396
-Node: string.string38696
-Node: string.isstring39366
-Node: string.dispstrs39691
-Node: string.ismissing40273
-Node: string.isnannish40754
-Node: string.cellstr41137
-Node: string.cell41482
-Node: string.char41969
-Node: string.encode42494
-Node: string.strlength_bytes43008
-Node: string.strlength43681
-Node: string.reverse_bytes44248
-Node: string.reverse44986
-Node: string.strcat45458
-Node: string.lower46036
-Node: string.upper46538
-Node: string.erase47039
-Node: string.strrep47376
-Node: string.strfind47981
-Node: string.regexprep48504
-Node: string.strcmp48980
-Node: string.cmp49673
-Node: string.missing50652
-Node: string.decode51054
-Node: struct2table51464
-Node: table51937
-Node: table.table54387
-Node: table.summary55439
-Node: table.prettyprint55866
-Node: table.table2cell56325
-Node: table.table2struct56813
-Node: table.table2array57448
-Node: table.varnames57695
-Node: table.istable57947
-Node: table.size58159
-Node: table.length58488
-Node: table.ndims58787
-Node: table.squeeze59038
-Node: table.sizeof59385
-Node: table.height59816
-Node: table.rows60024
-Node: table.width60225
-Node: table.columns60556
-Node: table.numel60894
-Node: table.isempty61414
-Node: table.ismatrix61738
-Node: table.isrow62027
-Node: table.iscol62245
-Node: table.isvector62605
-Node: table.isscalar62831
-Node: table.hasrownames63061
-Node: table.vertcat63311
-Node: table.horzcat63832
-Node: table.repmat64452
-Node: table.setVariableNames64987
-Node: table.setRowNames65433
-Node: table.resolveVarRef65805
-Node: table.subsetRows66415
-Node: table.subsetvars66760
-Node: table.removevars67267
-Node: table.movevars67652
-Node: table.setvar68380
-Node: table.convertvars68749
-Node: table.head69731
-Node: table.tail70106
-Node: table.join70472
-Node: table.innerjoin71218
-Node: table.outerjoin71879
-Node: table.outerfillvals72686
-Node: table.semijoin73119
-Node: table.antijoin73888
-Node: table.cartesian74540
-Node: table.groupby75808
-Node: table.grpstats76659
-Node: table.union76987
-Node: table.intersect77555
-Node: table.setxor78163
-Node: table.setdiff78798
-Node: table.ismember79335
-Node: table.ismissing79737
-Node: table.rmmissing80421
-Node: table.standardizeMissing81213
-Node: table.varfun82203
-Node: table.rowfun82770
-Node: table.findgroups83081
-Node: table.evalWithVars83666
-Node: table.restrict84516
-Node: tableOuterFillValue85645
-Node: vecfun86885
-Node: Copying87616
+Node: Top772
+Node: Introduction1058
+Node: Getting Started1751
+Node: Table Representation2565
+Node: table Class2830
+Node: Missing Functionality3142
+Node: API Reference3803
+Node: API by Category3992
+Node: API Alphabetically5661
+Node: array2table6945
+Node: categorical7876
+Node: categorical.categorical10130
+Node: categorical.categories11387
+Node: categorical.iscategory11790
+Node: categorical.isordinal12236
+Node: categorical.string12605
+Node: categorical.cellstr13052
+Node: categorical.dispstrs13491
+Node: categorical.summary13947
+Node: categorical.addcats14398
+Node: categorical.removecats14824
+Node: categorical.mergecats15466
+Node: categorical.renamecats16121
+Node: categorical.reordercats16538
+Node: categorical.setcats17073
+Node: categorical.isundefined17519
+Node: categorical.ismissing18037
+Node: categorical.isnannish18447
+Node: categorical.squeezecats18925
+Node: cell2table19295
+Node: colvecfun20035
+Node: contains20759
+Node: discretize21548
+Node: dispstrs22447
+Node: endsWith23229
+Node: eqn24010
+Node: fillmissing25096
+Node: ismissing25951
+Node: isnannish28064
+Node: missing29046
+Node: missing.missing30083
+Node: missing.dispstrs30397
+Node: missing.ismissing30794
+Node: missing.isnan31159
+Node: missing.isnannish31498
+Node: pp31832
+Node: rmmissing32475
+Node: standardizeMissing33518
+Node: startsWith34344
+Node: string35154
+Node: string.string38448
+Node: string.isstring39118
+Node: string.dispstrs39443
+Node: string.ismissing40025
+Node: string.isnannish40506
+Node: string.cellstr40889
+Node: string.cell41234
+Node: string.char41721
+Node: string.encode42246
+Node: string.strlength_bytes42760
+Node: string.strlength43433
+Node: string.reverse_bytes44000
+Node: string.reverse44738
+Node: string.strcat45210
+Node: string.lower45788
+Node: string.upper46290
+Node: string.erase46791
+Node: string.strrep47128
+Node: string.strfind47733
+Node: string.regexprep48256
+Node: string.strcmp48732
+Node: string.cmp49425
+Node: string.missing50404
+Node: string.decode50806
+Node: struct2table51216
+Node: table51683
+Node: table.table54127
+Node: table.summary55179
+Node: table.prettyprint55606
+Node: table.table2cell56065
+Node: table.table2struct56553
+Node: table.table2array57188
+Node: table.varnames57435
+Node: table.istable57687
+Node: table.size57899
+Node: table.length58228
+Node: table.ndims58527
+Node: table.squeeze58778
+Node: table.sizeof59125
+Node: table.height59556
+Node: table.rows59764
+Node: table.width59965
+Node: table.columns60296
+Node: table.numel60634
+Node: table.isempty61154
+Node: table.ismatrix61478
+Node: table.isrow61767
+Node: table.iscol61985
+Node: table.isvector62345
+Node: table.isscalar62571
+Node: table.hasrownames62801
+Node: table.vertcat63051
+Node: table.horzcat63572
+Node: table.repmat64192
+Node: table.setVariableNames64727
+Node: table.setRowNames65173
+Node: table.resolveVarRef65545
+Node: table.subsetRows66155
+Node: table.subsetvars66500
+Node: table.removevars67007
+Node: table.movevars67392
+Node: table.setvar68120
+Node: table.convertvars68489
+Node: table.head69471
+Node: table.tail69846
+Node: table.join70212
+Node: table.innerjoin70958
+Node: table.outerjoin71619
+Node: table.outerfillvals72426
+Node: table.semijoin72859
+Node: table.antijoin73628
+Node: table.cartesian74280
+Node: table.groupby75548
+Node: table.grpstats76399
+Node: table.union76727
+Node: table.intersect77295
+Node: table.setxor77903
+Node: table.setdiff78538
+Node: table.ismember79075
+Node: table.ismissing79477
+Node: table.rmmissing80161
+Node: table.standardizeMissing80953
+Node: table.varfun81943
+Node: table.rowfun82510
+Node: table.findgroups82821
+Node: table.evalWithVars83406
+Node: table.restrict84256
+Node: tableOuterFillValue85385
+Node: vecfun86619
+Node: Copying87344
 
 End Tag Table
 

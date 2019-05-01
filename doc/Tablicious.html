@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<!-- This manual is for Tablicious, version 0.1.0-SNAPSHOT.
+<!-- This manual is for Tablicious, version 0.1.0.
 
 Copyright (C) 2019 Andrew Janke
 
@@ -18,10 +18,10 @@ into another language, under the same conditions as for modified versions. -->
 <!-- Created by GNU Texinfo 6.6, http://www.gnu.org/software/texinfo/ -->
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>Octave Tablicious v0.1.0-SNAPSHOT</title>
+<title>Octave Tablicious v0.1.0</title>
 
 <meta name="description" content="User manual for Tablicious for Octave.">
-<meta name="keywords" content="Octave Tablicious v0.1.0-SNAPSHOT">
+<meta name="keywords" content="Octave Tablicious v0.1.0">
 <meta name="resource-type" content="document">
 <meta name="distribution" content="global">
 <meta name="Generator" content="makeinfo">
@@ -50,7 +50,7 @@ ul.no-bullet {list-style: none}
 </head>
 
 <body lang="en">
-<h1 class="settitle" align="center">Octave Tablicious v0.1.0-SNAPSHOT</h1>
+<h1 class="settitle" align="center">Octave Tablicious v0.1.0</h1>
 
 
 
@@ -65,7 +65,7 @@ ul.no-bullet {list-style: none}
 <li><a id="stoc-Getting-Started-1" href="#toc-Getting-Started-1">2 Getting Started</a></li>
 <li><a id="stoc-Table-Representation-1" href="#toc-Table-Representation-1">3 Table Representation</a></li>
 <li><a id="stoc-Missing-Functionality-1" href="#toc-Missing-Functionality-1">4 Missing Functionality</a></li>
-<li><a id="stoc-Function-Reference-1" href="#toc-Function-Reference-1">5 Function Reference</a></li>
+<li><a id="stoc-API-Reference-1" href="#toc-API-Reference-1">5 API Reference</a></li>
 <li><a id="stoc-Copying-1" href="#toc-Copying-1">6 Copying</a></li>
 </ul>
 </div>
@@ -83,9 +83,9 @@ ul.no-bullet {list-style: none}
     <li><a id="toc-table-Class-1" href="#table-Class">3.1 <code>table</code> Class</a></li>
   </ul></li>
   <li><a id="toc-Missing-Functionality-1" href="#Missing-Functionality">4 Missing Functionality</a></li>
-  <li><a id="toc-Function-Reference-1" href="#Function-Reference">5 Function Reference</a>
+  <li><a id="toc-API-Reference-1" href="#API-Reference">5 API Reference</a>
   <ul class="no-bullet">
-    <li><a id="toc-Functions-by-Category-1" href="#Functions-by-Category">5.1 Functions by Category</a>
+    <li><a id="toc-API-by-Category-1" href="#API-by-Category">5.1 API by Category</a>
     <ul class="no-bullet">
       <li><a id="toc-Tables" href="#Tables">5.1.1 Tables</a></li>
       <li><a id="toc-Data-Types" href="#Data-Types">5.1.2 Data Types</a></li>
@@ -93,7 +93,7 @@ ul.no-bullet {list-style: none}
       <li><a id="toc-Miscellaneous" href="#Miscellaneous">5.1.4 Miscellaneous</a></li>
       <li><a id="toc-Uncategorized" href="#Uncategorized">5.1.5 Uncategorized</a></li>
     </ul></li>
-    <li><a id="toc-Functions-Alphabetically-1" href="#Functions-Alphabetically">5.2 Functions Alphabetically</a>
+    <li><a id="toc-API-Alphabetically-1" href="#API-Alphabetically">5.2 API Alphabetically</a>
     <ul class="no-bullet">
       <li><a id="toc-array2table-1" href="#array2table">5.2.1 array2table</a></li>
       <li><a id="toc-categorical-1" href="#categorical">5.2.2 categorical</a>
@@ -250,7 +250,7 @@ Next: <a href="#Introduction" accesskey="n" rel="next">Introduction</a> &nbsp; [
 </div>
 <span id="Tablicious-for-GNU-Octave"></span><h1 class="top">Tablicious for GNU Octave</h1>
 
-<p>This manual is for Tablicious, version 0.1.0-SNAPSHOT.
+<p>This manual is for Tablicious, version 0.1.0.
 </p>
 <table class="menu" border="0" cellspacing="0">
 <tr><td align="left" valign="top">&bull; <a href="#Introduction" accesskey="1">Introduction</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
@@ -261,7 +261,7 @@ Next: <a href="#Introduction" accesskey="n" rel="next">Introduction</a> &nbsp; [
 </td></tr>
 <tr><td align="left" valign="top">&bull; <a href="#Missing-Functionality" accesskey="4">Missing Functionality</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
-<tr><td align="left" valign="top">&bull; <a href="#Function-Reference" accesskey="5">Function Reference</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+<tr><td align="left" valign="top">&bull; <a href="#API-Reference" accesskey="5">API Reference</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
 <tr><td align="left" valign="top">&bull; <a href="#Copying" accesskey="6">Copying</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
@@ -277,7 +277,7 @@ Next: <a href="#Getting-Started" accesskey="n" rel="next">Getting Started</a>, U
 </div>
 <span id="Introduction-1"></span><h2 class="chapter">1 Introduction</h2>
 
-<p>This is the manual for the Tablicious package version 0.1.0-SNAPSHOT for GNU Octave.
+<p>This is the manual for the Tablicious package version 0.1.0 for GNU Octave.
 </p>
 <p>Tablicious provides Matlab-compatible tabular data support for GNU Octave.
 This includes a <code>table</code> class with support for filtering and join operations,
@@ -305,7 +305,7 @@ Next: <a href="#Table-Representation" accesskey="n" rel="next">Table Representat
 To install the development prerelease of Tablicious, run this in Octave:
 </p>
 <div class="example">
-<pre class="example">pkg install https://github.com/apjanke/octave-tablicious/releases/download/v0.1.0-SNAPSHOT/tablicious-0.1.0-SNAPSHOT.tar.gz
+<pre class="example">pkg install https://github.com/apjanke/octave-tablicious/releases/download/v0.1.0/tablicious-0.1.0.tar.gz
 </pre></div>
 
 <p>(Check the releases page at <a href="https://github.com/apjanke/octave-tablicious/releases">https://github.com/apjanke/octave-tablicious/releases</a> to
@@ -345,7 +345,7 @@ rows are read as records.
 <hr>
 <span id="Missing-Functionality"></span><div class="header">
 <p>
-Next: <a href="#Function-Reference" accesskey="n" rel="next">Function Reference</a>, Previous: <a href="#Table-Representation" accesskey="p" rel="prev">Table Representation</a>, Up: <a href="#Top" accesskey="u" rel="up">Top</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+Next: <a href="#API-Reference" accesskey="n" rel="next">API Reference</a>, Previous: <a href="#Table-Representation" accesskey="p" rel="prev">Table Representation</a>, Up: <a href="#Top" accesskey="u" rel="up">Top</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
 </div>
 <span id="Missing-Functionality-1"></span><h2 class="chapter">4 Missing Functionality</h2>
 
@@ -366,25 +366,25 @@ But not all of it is implemented yet. The missing parts are currently:
 
 
 <hr>
-<span id="Function-Reference"></span><div class="header">
+<span id="API-Reference"></span><div class="header">
 <p>
 Next: <a href="#Copying" accesskey="n" rel="next">Copying</a>, Previous: <a href="#Missing-Functionality" accesskey="p" rel="prev">Missing Functionality</a>, Up: <a href="#Top" accesskey="u" rel="up">Top</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
 </div>
-<span id="Function-Reference-1"></span><h2 class="chapter">5 Function Reference</h2>
+<span id="API-Reference-1"></span><h2 class="chapter">5 API Reference</h2>
 
 <table class="menu" border="0" cellspacing="0">
-<tr><td align="left" valign="top">&bull; <a href="#Functions-by-Category" accesskey="1">Functions by Category</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+<tr><td align="left" valign="top">&bull; <a href="#API-by-Category" accesskey="1">API by Category</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
-<tr><td align="left" valign="top">&bull; <a href="#Functions-Alphabetically" accesskey="2">Functions Alphabetically</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+<tr><td align="left" valign="top">&bull; <a href="#API-Alphabetically" accesskey="2">API Alphabetically</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
 </table>
 
 <hr>
-<span id="Functions-by-Category"></span><div class="header">
+<span id="API-by-Category"></span><div class="header">
 <p>
-Next: <a href="#Functions-Alphabetically" accesskey="n" rel="next">Functions Alphabetically</a>, Up: <a href="#Function-Reference" accesskey="u" rel="up">Function Reference</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+Next: <a href="#API-Alphabetically" accesskey="n" rel="next">API Alphabetically</a>, Up: <a href="#API-Reference" accesskey="u" rel="up">API Reference</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
 </div>
-<span id="Functions-by-Category-1"></span><h3 class="section">5.1 Functions by Category</h3>
+<span id="API-by-Category-1"></span><h3 class="section">5.1 API by Category</h3>
 <span id="Tables"></span><h4 class="subsection">5.1.1 Tables</h4>
 <dl compact="compact">
 <dt><a href="#table">table</a></dt>
@@ -490,11 +490,11 @@ Next: <a href="#Functions-Alphabetically" accesskey="n" rel="next">Functions Alp
 </dl>
 
 <hr>
-<span id="Functions-Alphabetically"></span><div class="header">
+<span id="API-Alphabetically"></span><div class="header">
 <p>
-Previous: <a href="#Functions-by-Category" accesskey="p" rel="prev">Functions by Category</a>, Up: <a href="#Function-Reference" accesskey="u" rel="up">Function Reference</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+Previous: <a href="#API-by-Category" accesskey="p" rel="prev">API by Category</a>, Up: <a href="#API-Reference" accesskey="u" rel="up">API Reference</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
 </div>
-<span id="Functions-Alphabetically-1"></span><h3 class="section">5.2 Functions Alphabetically</h3>
+<span id="API-Alphabetically-1"></span><h3 class="section">5.2 API Alphabetically</h3>
 <table class="menu" border="0" cellspacing="0">
 <tr><td align="left" valign="top">&bull; <a href="#array2table" accesskey="1">array2table</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">Convert an array to a table.
 </td></tr>
@@ -546,7 +546,7 @@ Previous: <a href="#Functions-by-Category" accesskey="p" rel="prev">Functions by
 <hr>
 <span id="array2table"></span><div class="header">
 <p>
-Next: <a href="#categorical" accesskey="n" rel="next">categorical</a>, Up: <a href="#Functions-Alphabetically" accesskey="u" rel="up">Functions Alphabetically</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+Next: <a href="#categorical" accesskey="n" rel="next">categorical</a>, Up: <a href="#API-Alphabetically" accesskey="u" rel="up">API Alphabetically</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
 </div>
 <span id="array2table-1"></span><h4 class="subsection">5.2.1 array2table</h4>
 <dl>
@@ -574,7 +574,7 @@ won&rsquo;t be.
 <hr>
 <span id="categorical"></span><div class="header">
 <p>
-Next: <a href="#cell2table" accesskey="n" rel="next">cell2table</a>, Previous: <a href="#array2table" accesskey="p" rel="prev">array2table</a>, Up: <a href="#Functions-Alphabetically" accesskey="u" rel="up">Functions Alphabetically</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+Next: <a href="#cell2table" accesskey="n" rel="next">cell2table</a>, Previous: <a href="#array2table" accesskey="p" rel="prev">array2table</a>, Up: <a href="#API-Alphabetically" accesskey="u" rel="up">API Alphabetically</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
 </div>
 <span id="categorical-1"></span><h4 class="subsection">5.2.2 categorical</h4>
 <dl>
@@ -1060,7 +1060,7 @@ elements.
 <hr>
 <span id="cell2table"></span><div class="header">
 <p>
-Next: <a href="#colvecfun" accesskey="n" rel="next">colvecfun</a>, Previous: <a href="#categorical" accesskey="p" rel="prev">categorical</a>, Up: <a href="#Functions-Alphabetically" accesskey="u" rel="up">Functions Alphabetically</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+Next: <a href="#colvecfun" accesskey="n" rel="next">colvecfun</a>, Previous: <a href="#categorical" accesskey="p" rel="prev">categorical</a>, Up: <a href="#API-Alphabetically" accesskey="u" rel="up">API Alphabetically</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
 </div>
 <span id="cell2table-1"></span><h4 class="subsection">5.2.3 cell2table</h4>
 <dl>
@@ -1084,7 +1084,7 @@ type.
 <hr>
 <span id="colvecfun"></span><div class="header">
 <p>
-Next: <a href="#contains" accesskey="n" rel="next">contains</a>, Previous: <a href="#cell2table" accesskey="p" rel="prev">cell2table</a>, Up: <a href="#Functions-Alphabetically" accesskey="u" rel="up">Functions Alphabetically</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+Next: <a href="#contains" accesskey="n" rel="next">contains</a>, Previous: <a href="#cell2table" accesskey="p" rel="prev">cell2table</a>, Up: <a href="#API-Alphabetically" accesskey="u" rel="up">API Alphabetically</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
 </div>
 <span id="colvecfun-1"></span><h4 class="subsection">5.2.4 colvecfun</h4>
 <dl>
@@ -1109,7 +1109,7 @@ together in the same shape as x.
 <hr>
 <span id="contains"></span><div class="header">
 <p>
-Next: <a href="#discretize" accesskey="n" rel="next">discretize</a>, Previous: <a href="#colvecfun" accesskey="p" rel="prev">colvecfun</a>, Up: <a href="#Functions-Alphabetically" accesskey="u" rel="up">Functions Alphabetically</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+Next: <a href="#discretize" accesskey="n" rel="next">discretize</a>, Previous: <a href="#colvecfun" accesskey="p" rel="prev">colvecfun</a>, Up: <a href="#API-Alphabetically" accesskey="u" rel="up">API Alphabetically</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
 </div>
 <span id="contains-1"></span><h4 class="subsection">5.2.5 contains</h4>
 <dl>
@@ -1136,7 +1136,7 @@ is supplied, the return value is true if the string matched any of them.
 <hr>
 <span id="discretize"></span><div class="header">
 <p>
-Next: <a href="#dispstrs" accesskey="n" rel="next">dispstrs</a>, Previous: <a href="#contains" accesskey="p" rel="prev">contains</a>, Up: <a href="#Functions-Alphabetically" accesskey="u" rel="up">Functions Alphabetically</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+Next: <a href="#dispstrs" accesskey="n" rel="next">dispstrs</a>, Previous: <a href="#contains" accesskey="p" rel="prev">contains</a>, Up: <a href="#API-Alphabetically" accesskey="u" rel="up">API Alphabetically</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
 </div>
 <span id="discretize-1"></span><h4 class="subsection">5.2.6 discretize</h4>
 <dl>
@@ -1168,7 +1168,7 @@ array instead of a numeric array of bin indexes.
 <hr>
 <span id="dispstrs"></span><div class="header">
 <p>
-Next: <a href="#endsWith" accesskey="n" rel="next">endsWith</a>, Previous: <a href="#discretize" accesskey="p" rel="prev">discretize</a>, Up: <a href="#Functions-Alphabetically" accesskey="u" rel="up">Functions Alphabetically</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+Next: <a href="#endsWith" accesskey="n" rel="next">endsWith</a>, Previous: <a href="#discretize" accesskey="p" rel="prev">discretize</a>, Up: <a href="#API-Alphabetically" accesskey="u" rel="up">API Alphabetically</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
 </div>
 <span id="dispstrs-1"></span><h4 class="subsection">5.2.7 dispstrs</h4>
 <dl>
@@ -1195,7 +1195,7 @@ with their own custom display that is more informative.
 <hr>
 <span id="endsWith"></span><div class="header">
 <p>
-Next: <a href="#eqn" accesskey="n" rel="next">eqn</a>, Previous: <a href="#dispstrs" accesskey="p" rel="prev">dispstrs</a>, Up: <a href="#Functions-Alphabetically" accesskey="u" rel="up">Functions Alphabetically</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+Next: <a href="#eqn" accesskey="n" rel="next">eqn</a>, Previous: <a href="#dispstrs" accesskey="p" rel="prev">dispstrs</a>, Up: <a href="#API-Alphabetically" accesskey="u" rel="up">API Alphabetically</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
 </div>
 <span id="endsWith-1"></span><h4 class="subsection">5.2.8 endsWith</h4>
 <dl>
@@ -1222,7 +1222,7 @@ is supplied, the return value is true if the string matched any of them.
 <hr>
 <span id="eqn"></span><div class="header">
 <p>
-Next: <a href="#fillmissing" accesskey="n" rel="next">fillmissing</a>, Previous: <a href="#endsWith" accesskey="p" rel="prev">endsWith</a>, Up: <a href="#Functions-Alphabetically" accesskey="u" rel="up">Functions Alphabetically</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+Next: <a href="#fillmissing" accesskey="n" rel="next">fillmissing</a>, Previous: <a href="#endsWith" accesskey="p" rel="prev">endsWith</a>, Up: <a href="#API-Alphabetically" accesskey="u" rel="up">API Alphabetically</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
 </div>
 <span id="eqn-1"></span><h4 class="subsection">5.2.9 eqn</h4>
 <dl>
@@ -1255,7 +1255,7 @@ corresponding non-NaN-equivocating function.
 <hr>
 <span id="fillmissing"></span><div class="header">
 <p>
-Next: <a href="#ismissing" accesskey="n" rel="next">ismissing</a>, Previous: <a href="#eqn" accesskey="p" rel="prev">eqn</a>, Up: <a href="#Functions-Alphabetically" accesskey="u" rel="up">Functions Alphabetically</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+Next: <a href="#ismissing" accesskey="n" rel="next">ismissing</a>, Previous: <a href="#eqn" accesskey="p" rel="prev">eqn</a>, Up: <a href="#API-Alphabetically" accesskey="u" rel="up">API Alphabetically</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
 </div>
 <span id="fillmissing-1"></span><h4 class="subsection">5.2.10 fillmissing</h4>
 <dl>
@@ -1292,7 +1292,7 @@ which elements were filled.
 <hr>
 <span id="ismissing"></span><div class="header">
 <p>
-Next: <a href="#isnannish" accesskey="n" rel="next">isnannish</a>, Previous: <a href="#fillmissing" accesskey="p" rel="prev">fillmissing</a>, Up: <a href="#Functions-Alphabetically" accesskey="u" rel="up">Functions Alphabetically</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+Next: <a href="#isnannish" accesskey="n" rel="next">isnannish</a>, Previous: <a href="#fillmissing" accesskey="p" rel="prev">fillmissing</a>, Up: <a href="#API-Alphabetically" accesskey="u" rel="up">API Alphabetically</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
 </div>
 <span id="ismissing-1"></span><h4 class="subsection">5.2.11 ismissing</h4>
 <dl>
@@ -1343,7 +1343,7 @@ data types; see <a href="#table_002eismissing">table.ismissing</a>.
 <hr>
 <span id="isnannish"></span><div class="header">
 <p>
-Next: <a href="#missing" accesskey="n" rel="next">missing</a>, Previous: <a href="#ismissing" accesskey="p" rel="prev">ismissing</a>, Up: <a href="#Functions-Alphabetically" accesskey="u" rel="up">Functions Alphabetically</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+Next: <a href="#missing" accesskey="n" rel="next">missing</a>, Previous: <a href="#ismissing" accesskey="p" rel="prev">ismissing</a>, Up: <a href="#API-Alphabetically" accesskey="u" rel="up">API Alphabetically</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
 </div>
 <span id="isnannish-1"></span><h4 class="subsection">5.2.12 isnannish</h4>
 <dl>
@@ -1375,7 +1375,7 @@ value of input.
 <hr>
 <span id="missing"></span><div class="header">
 <p>
-Next: <a href="#pp" accesskey="n" rel="next">pp</a>, Previous: <a href="#isnannish" accesskey="p" rel="prev">isnannish</a>, Up: <a href="#Functions-Alphabetically" accesskey="u" rel="up">Functions Alphabetically</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+Next: <a href="#pp" accesskey="n" rel="next">pp</a>, Previous: <a href="#isnannish" accesskey="p" rel="prev">isnannish</a>, Up: <a href="#API-Alphabetically" accesskey="u" rel="up">API Alphabetically</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
 </div>
 <span id="missing-1"></span><h4 class="subsection">5.2.13 missing</h4>
 <dl>
@@ -1513,7 +1513,7 @@ Previous: <a href="#missing_002eisnan" accesskey="p" rel="prev">missing.isnan</a
 <hr>
 <span id="pp"></span><div class="header">
 <p>
-Next: <a href="#rmmissing" accesskey="n" rel="next">rmmissing</a>, Previous: <a href="#missing" accesskey="p" rel="prev">missing</a>, Up: <a href="#Functions-Alphabetically" accesskey="u" rel="up">Functions Alphabetically</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+Next: <a href="#rmmissing" accesskey="n" rel="next">rmmissing</a>, Previous: <a href="#missing" accesskey="p" rel="prev">missing</a>, Up: <a href="#API-Alphabetically" accesskey="u" rel="up">API Alphabetically</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
 </div>
 <span id="pp-1"></span><h4 class="subsection">5.2.14 pp</h4>
 <dl>
@@ -1536,7 +1536,7 @@ This is so you can conveniently run it from the command line.
 <hr>
 <span id="rmmissing"></span><div class="header">
 <p>
-Next: <a href="#standardizeMissing" accesskey="n" rel="next">standardizeMissing</a>, Previous: <a href="#pp" accesskey="p" rel="prev">pp</a>, Up: <a href="#Functions-Alphabetically" accesskey="u" rel="up">Functions Alphabetically</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+Next: <a href="#standardizeMissing" accesskey="n" rel="next">standardizeMissing</a>, Previous: <a href="#pp" accesskey="p" rel="prev">pp</a>, Up: <a href="#API-Alphabetically" accesskey="u" rel="up">API Alphabetically</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
 </div>
 <span id="rmmissing-1"></span><h4 class="subsection">5.2.15 rmmissing</h4>
 <dl>
@@ -1566,7 +1566,7 @@ is only used in matrix mode; it is silently ignored in vector mode.
 <hr>
 <span id="standardizeMissing"></span><div class="header">
 <p>
-Next: <a href="#startsWith" accesskey="n" rel="next">startsWith</a>, Previous: <a href="#rmmissing" accesskey="p" rel="prev">rmmissing</a>, Up: <a href="#Functions-Alphabetically" accesskey="u" rel="up">Functions Alphabetically</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+Next: <a href="#startsWith" accesskey="n" rel="next">startsWith</a>, Previous: <a href="#rmmissing" accesskey="p" rel="prev">rmmissing</a>, Up: <a href="#API-Alphabetically" accesskey="u" rel="up">API Alphabetically</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
 </div>
 <span id="standardizeMissing-1"></span><h4 class="subsection">5.2.16 standardizeMissing</h4>
 <dl>
@@ -1595,7 +1595,7 @@ Next: <a href="#startsWith" accesskey="n" rel="next">startsWith</a>, Previous: <
 <hr>
 <span id="startsWith"></span><div class="header">
 <p>
-Next: <a href="#string" accesskey="n" rel="next">string</a>, Previous: <a href="#standardizeMissing" accesskey="p" rel="prev">standardizeMissing</a>, Up: <a href="#Functions-Alphabetically" accesskey="u" rel="up">Functions Alphabetically</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+Next: <a href="#string" accesskey="n" rel="next">string</a>, Previous: <a href="#standardizeMissing" accesskey="p" rel="prev">standardizeMissing</a>, Up: <a href="#API-Alphabetically" accesskey="u" rel="up">API Alphabetically</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
 </div>
 <span id="startsWith-1"></span><h4 class="subsection">5.2.17 startsWith</h4>
 <dl>
@@ -1622,7 +1622,7 @@ is supplied, the return value is true if the string matched any of them.
 <hr>
 <span id="string"></span><div class="header">
 <p>
-Next: <a href="#struct2table" accesskey="n" rel="next">struct2table</a>, Previous: <a href="#startsWith" accesskey="p" rel="prev">startsWith</a>, Up: <a href="#Functions-Alphabetically" accesskey="u" rel="up">Functions Alphabetically</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+Next: <a href="#struct2table" accesskey="n" rel="next">struct2table</a>, Previous: <a href="#startsWith" accesskey="p" rel="prev">startsWith</a>, Up: <a href="#API-Alphabetically" accesskey="u" rel="up">API Alphabetically</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
 </div>
 <span id="string-1"></span><h4 class="subsection">5.2.18 string</h4>
 <dl>
@@ -2263,7 +2263,7 @@ encoding, given by <var>charsetName</var>.
 <hr>
 <span id="struct2table"></span><div class="header">
 <p>
-Next: <a href="#table" accesskey="n" rel="next">table</a>, Previous: <a href="#string" accesskey="p" rel="prev">string</a>, Up: <a href="#Functions-Alphabetically" accesskey="u" rel="up">Functions Alphabetically</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+Next: <a href="#table" accesskey="n" rel="next">table</a>, Previous: <a href="#string" accesskey="p" rel="prev">string</a>, Up: <a href="#API-Alphabetically" accesskey="u" rel="up">API Alphabetically</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
 </div>
 <span id="struct2table-1"></span><h4 class="subsection">5.2.19 struct2table</h4>
 <dl>
@@ -2286,7 +2286,7 @@ Next: <a href="#table" accesskey="n" rel="next">table</a>, Previous: <a href="#s
 <hr>
 <span id="table"></span><div class="header">
 <p>
-Next: <a href="#tableOuterFillValue" accesskey="n" rel="next">tableOuterFillValue</a>, Previous: <a href="#struct2table" accesskey="p" rel="prev">struct2table</a>, Up: <a href="#Functions-Alphabetically" accesskey="u" rel="up">Functions Alphabetically</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+Next: <a href="#tableOuterFillValue" accesskey="n" rel="next">tableOuterFillValue</a>, Previous: <a href="#struct2table" accesskey="p" rel="prev">struct2table</a>, Up: <a href="#API-Alphabetically" accesskey="u" rel="up">API Alphabetically</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
 </div>
 <span id="table-1"></span><h4 class="subsection">5.2.20 table</h4>
 <dl>
@@ -3737,7 +3737,7 @@ prettyprint (restrict (p, 'Weight &gt;= 14 &amp; strcmp(Color, &quot;Red&quot;)'
 <hr>
 <span id="tableOuterFillValue"></span><div class="header">
 <p>
-Next: <a href="#vecfun" accesskey="n" rel="next">vecfun</a>, Previous: <a href="#table" accesskey="p" rel="prev">table</a>, Up: <a href="#Functions-Alphabetically" accesskey="u" rel="up">Functions Alphabetically</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+Next: <a href="#vecfun" accesskey="n" rel="next">vecfun</a>, Previous: <a href="#table" accesskey="p" rel="prev">table</a>, Up: <a href="#API-Alphabetically" accesskey="u" rel="up">API Alphabetically</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
 </div>
 <span id="tableOuterFillValue-1"></span><h4 class="subsection">5.2.21 tableOuterFillValue</h4>
 <dl>
@@ -3769,7 +3769,7 @@ ncols is the number of columns in the input.
 <hr>
 <span id="vecfun"></span><div class="header">
 <p>
-Previous: <a href="#tableOuterFillValue" accesskey="p" rel="prev">tableOuterFillValue</a>, Up: <a href="#Functions-Alphabetically" accesskey="u" rel="up">Functions Alphabetically</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+Previous: <a href="#tableOuterFillValue" accesskey="p" rel="prev">tableOuterFillValue</a>, Up: <a href="#API-Alphabetically" accesskey="u" rel="up">API Alphabetically</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
 </div>
 <span id="vecfun-1"></span><h4 class="subsection">5.2.22 vecfun</h4>
 <dl>
@@ -3801,7 +3801,7 @@ the same size as <var>x</var>, but not necessarily the same type.
 <hr>
 <span id="Copying"></span><div class="header">
 <p>
-Previous: <a href="#Function-Reference" accesskey="p" rel="prev">Function Reference</a>, Up: <a href="#Top" accesskey="u" rel="up">Top</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+Previous: <a href="#API-Reference" accesskey="p" rel="prev">API Reference</a>, Up: <a href="#Top" accesskey="u" rel="up">Top</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
 </div>
 <span id="Copying-1"></span><h2 class="chapter">6 Copying</h2>
 
@@ -3816,7 +3816,7 @@ Previous: <a href="#Function-Reference" accesskey="p" rel="prev">Function Refere
 </p>
 <span id="Manual-Copyright"></span><h3 class="section">6.2 Manual Copyright</h3>
 
-<p>This manual is for Tablicious, version 0.1.0-SNAPSHOT.
+<p>This manual is for Tablicious, version 0.1.0.
 </p>
 <p>Copyright &copy; 2019 Andrew Janke
 </p>

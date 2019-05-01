@@ -2,7 +2,7 @@
 
 @c %**start of header
 
-@set VERSION 0.1.0-SNAPSHOT
+@set VERSION 0.1.0
 
 @setfilename tablicious.info
 @settitle Octave Tablicious v@value{VERSION}
@@ -58,7 +58,7 @@ This manual is for Tablicious, version @value{VERSION}.
 * Getting Started::
 * Table Representation::
 * Missing Functionality::
-* Function Reference::
+* API Reference::
 * Copying::
 @end menu
 
@@ -92,7 +92,7 @@ The easiest way to obtain Tablicious is by using Octave's @code{pkg} package man
 To install the development prerelease of Tablicious, run this in Octave:
 
 @example
-pkg install https://github.com/apjanke/octave-tablicious/releases/download/v0.1.0-SNAPSHOT/tablicious-0.1.0-SNAPSHOT.tar.gz
+pkg install https://github.com/apjanke/octave-tablicious/releases/download/v0.1.0/tablicious-0.1.0.tar.gz
 @end example
 
 (Check the releases page at @url{https://github.com/apjanke/octave-tablicious/releases} to
@@ -139,11 +139,11 @@ It is the author's hope that all these will be implemented some day.
 
 
 
-@node Function Reference
-@chapter Function Reference
+@node API Reference
+@chapter API Reference
 
-@node Functions by Category
-@section Functions by Category
+@node API by Category
+@section API by Category
 @subsection Tables
 @table @asis
 @item @ref{table}
@@ -226,8 +226,8 @@ Apply function to vectors in array along arbitrary dimension.
 
 @end table
 
-@node Functions Alphabetically
-@section Functions Alphabetically
+@node API Alphabetically
+@section API Alphabetically
 @menu
 * array2table:: Convert an array to a table.
 * categorical:: Categorical variable array.

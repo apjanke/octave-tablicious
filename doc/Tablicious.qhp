@@ -15,10 +15,10 @@
                 </section>
                 <section title="Missing Functionality" ref="html/Missing-Functionality.html">
                 </section>
-                <section title="Function Reference" ref="html/Function-Reference.html">
-                    <section title="Functions by Category" ref="html/Functions-by-Category.html">
+                <section title="API Reference" ref="html/API-Reference.html">
+                    <section title="API by Category" ref="html/API-by-Category.html">
                     </section>
-                    <section title="Functions Alphabetically" ref="html/Functions-Alphabetically.html">
+                    <section title="API Alphabetically" ref="html/API-Alphabetically.html">
                         <section title="array2table" ref="html/array2table.html">
                         </section>
                         <section title="categorical" ref="html/categorical.html">
@@ -118,11 +118,11 @@
                             </section>
                             <section title="string.encode" ref="html/string_002eencode.html">
                             </section>
-                            <section title="string.strlength_bytes" ref="html/string_002estrlength_bytes.html">
+                            <section title="string.strlength_bytes" ref="html/string_002estrlength_005fbytes.html">
                             </section>
                             <section title="string.strlength" ref="html/string_002estrlength.html">
                             </section>
-                            <section title="string.reverse_bytes" ref="html/string_002ereverse_bytes.html">
+                            <section title="string.reverse_bytes" ref="html/string_002ereverse_005fbytes.html">
                             </section>
                             <section title="string.reverse" ref="html/string_002ereverse.html">
                             </section>
@@ -343,13 +343,13 @@
             <keyword name="string.missing" id="string.missing" ref="html/string_002emissing.html"/>
             <keyword name="string.regexprep" id="string.regexprep" ref="html/string_002eregexprep.html"/>
             <keyword name="string.reverse" id="string.reverse" ref="html/string_002ereverse.html"/>
-            <keyword name="string.reverse_bytes" id="string.reverse_bytes" ref="html/string_002ereverse_bytes.html"/>
+            <keyword name="string.reverse_bytes" id="string.reverse_bytes" ref="html/string_002ereverse_005fbytes.html"/>
             <keyword name="string.strcat" id="string.strcat" ref="html/string_002estrcat.html"/>
             <keyword name="string.strcmp" id="string.strcmp" ref="html/string_002estrcmp.html"/>
             <keyword name="string.strfind" id="string.strfind" ref="html/string_002estrfind.html"/>
             <keyword name="string.string" id="string.string" ref="html/string_002estring.html"/>
             <keyword name="string.strlength" id="string.strlength" ref="html/string_002estrlength.html"/>
-            <keyword name="string.strlength_bytes" id="string.strlength_bytes" ref="html/string_002estrlength_bytes.html"/>
+            <keyword name="string.strlength_bytes" id="string.strlength_bytes" ref="html/string_002estrlength_005fbytes.html"/>
             <keyword name="string.strrep" id="string.strrep" ref="html/string_002estrrep.html"/>
             <keyword name="string.upper" id="string.upper" ref="html/string_002eupper.html"/>
             <keyword name="struct2table" id="struct2table" ref="html/struct2table.html"/>
@@ -498,9 +498,9 @@
             <file>html/string_002elower.html</file>
             <file>html/string_002estrcat.html</file>
             <file>html/string_002ereverse.html</file>
-            <file>html/string_002ereverse_bytes.html</file>
+            <file>html/string_002ereverse_005fbytes.html</file>
             <file>html/string_002estrlength.html</file>
-            <file>html/string_002estrlength_bytes.html</file>
+            <file>html/string_002estrlength_005fbytes.html</file>
             <file>html/string_002eencode.html</file>
             <file>html/string_002echar.html</file>
             <file>html/string_002ecell.html</file>
@@ -551,9 +551,9 @@
             <file>html/categorical_002ecategorical.html</file>
             <file>html/categorical.html</file>
             <file>html/array2table.html</file>
-            <file>html/Functions-Alphabetically.html</file>
-            <file>html/Functions-by-Category.html</file>
-            <file>html/Function-Reference.html</file>
+            <file>html/API-Alphabetically.html</file>
+            <file>html/API-by-Category.html</file>
+            <file>html/API-Reference.html</file>
             <file>html/Missing-Functionality.html</file>
             <file>html/table-Class.html</file>
             <file>html/Table-Representation.html</file>
