@@ -149,8 +149,8 @@ while (my $line = <IN>) {
         my %descriptions = %{$$fcn_index{"descriptions"}};
 
         # Build "by Category" index based on INDEX listing
-        emit "\@node Functions by Category\n";
-        emit "\@section Functions by Category\n";
+        emit "\@node API by Category\n";
+        emit "\@section API by Category\n";
         my @all_ctg_fcns;
         for my $category (@{$$fcn_index{"categories"}}) {
             my @ctg_fcns = @{$categories{$category}};
@@ -180,8 +180,8 @@ while (my $line = <IN>) {
         emit "\n";
 
         # Build "Alphabetically" listing based on seen nodes + INDEX listing
-        emit "\@node Functions Alphabetically\n";
-        emit "\@section Functions Alphabetically\n";
+        emit "\@node API Alphabetically\n";
+        emit "\@section API Alphabetically\n";
         emit "\@menu\n";
         for my $node (@all_topics) {
             my $description = $descriptions{$node} || $docs->get_node_summary($node);
@@ -279,7 +279,8 @@ while (my $line = <TEXI>) {
 	my $section_qhelp_title = $section_title =~ s/@\w+{(.*?)}/\1/rg;
 	my $html_title = $node_name =~ s/\s/-/gr;
 	$html_title = "index" if $html_title eq "Top";
-	my $html_file_base = $html_title =~ s/\./_002e/gr; # I don't know why this happens -apj
+	my $html_file_base = $html_title =~ s/_/_005f/gr; # I don't know why this happens -apj
+    $html_file_base =~ s/\./_002e/g;
 	my $html_file = "$html_file_base.html";
 	unshift @files, $html_file;
 	print "Node: '$node_name' ($section_type): \"$section_title\" => \"$section_qhelp_title\""
@@ -329,6 +330,7 @@ my @node_names = keys %$node_index;
 qhp "        <keywords>\n";
 for my $node (@node_names) {
 	my $file_base = $node;
+    $file_base =~ s/_/_005f/g;
 	$file_base =~ s/\./_002e/g; # I don't know why this happens -apj
 	qhp "            <keyword name=\"$node\" id=\"$node\" ref=\"html/$file_base.html\"/>\n";
 }
