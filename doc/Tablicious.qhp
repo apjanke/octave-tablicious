@@ -75,6 +75,10 @@
                         </section>
                         <section title="fillmissing" ref="html/fillmissing.html">
                         </section>
+                        <section title="isfile" ref="html/isfile.html">
+                        </section>
+                        <section title="isfolder" ref="html/isfolder.html">
+                        </section>
                         <section title="ismissing" ref="html/ismissing.html">
                         </section>
                         <section title="isnannish" ref="html/isnannish.html">
@@ -315,6 +319,8 @@
             <keyword name="endsWith" id="endsWith" ref="html/endsWith.html"/>
             <keyword name="eqn" id="eqn" ref="html/eqn.html"/>
             <keyword name="fillmissing" id="fillmissing" ref="html/fillmissing.html"/>
+            <keyword name="isfile" id="isfile" ref="html/isfile.html"/>
+            <keyword name="isfolder" id="isfolder" ref="html/isfolder.html"/>
             <keyword name="ismissing" id="ismissing" ref="html/ismissing.html"/>
             <keyword name="isnannish" id="isnannish" ref="html/isnannish.html"/>
             <keyword name="missing" id="missing" ref="html/missing.html"/>
@@ -523,6 +529,8 @@
             <file>html/missing.html</file>
             <file>html/isnannish.html</file>
             <file>html/ismissing.html</file>
+            <file>html/isfolder.html</file>
+            <file>html/isfile.html</file>
             <file>html/fillmissing.html</file>
             <file>html/eqn.html</file>
             <file>html/endsWith.html</file>
