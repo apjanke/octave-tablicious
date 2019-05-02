@@ -282,6 +282,8 @@
                         <section title="tableOuterFillValue" ref="html/tableOuterFillValue.html">
                         </section>
                         <section title="tablicious.dataset" ref="html/tablicious_002edataset.html">
+                            <section title="tablicious.dataset.AirPassengers" ref="html/tablicious_002edataset_002eAirPassengers.html">
+                            </section>
                             <section title="tablicious.dataset.airmiles" ref="html/tablicious_002edataset_002eairmiles.html">
                             </section>
                             <section title="tablicious.dataset.beavers" ref="html/tablicious_002edataset_002ebeavers.html">
@@ -437,6 +439,7 @@
             <keyword name="table.width" id="table.width" ref="html/table_002ewidth.html"/>
             <keyword name="tableOuterFillValue" id="tableOuterFillValue" ref="html/tableOuterFillValue.html"/>
             <keyword name="tablicious.dataset" id="tablicious.dataset" ref="html/tablicious_002edataset.html"/>
+            <keyword name="tablicious.dataset.AirPassengers" id="tablicious.dataset.AirPassengers" ref="html/tablicious_002edataset_002eAirPassengers.html"/>
             <keyword name="tablicious.dataset.airmiles" id="tablicious.dataset.airmiles" ref="html/tablicious_002edataset_002eairmiles.html"/>
             <keyword name="tablicious.dataset.beavers" id="tablicious.dataset.beavers" ref="html/tablicious_002edataset_002ebeavers.html"/>
             <keyword name="tablicious.dataset.iris" id="tablicious.dataset.iris" ref="html/tablicious_002edataset_002eiris.html"/>
@@ -455,6 +458,7 @@
             <file>html/tablicious_002edataset_002eiris.html</file>
             <file>html/tablicious_002edataset_002ebeavers.html</file>
             <file>html/tablicious_002edataset_002eairmiles.html</file>
+            <file>html/tablicious_002edataset_002eAirPassengers.html</file>
             <file>html/tablicious_002edataset.html</file>
             <file>html/tableOuterFillValue.html</file>
             <file>html/table_002erestrict.html</file>

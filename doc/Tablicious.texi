@@ -224,23 +224,17 @@ Test whether file exists and is a folder.
 @item @ref{pp}
 Alias for prettyprint, for interactive use.
 
-<<<<<<< HEAD
-=======
+@item @ref{vecfun}
+Apply function to vectors in array along arbitrary dimension.
+
 @end table
 @subsection Uncategorized
 @table @asis
-@item @ref{eqn}
-Determine element-wise equality, treating NaNs as equal
-
 @item @ref{tablicious.dataset}
 The 'dataset' class provides convenient access to the various datasets included with Tablicious.
 
 @item @ref{tablicious.datasets}
 Example dataset collection.
-
->>>>>>> Add AirPassengers dataset
-@item @ref{vecfun}
-Apply function to vectors in array along arbitrary dimension.
 
 @end table
 
@@ -2687,7 +2681,7 @@ ncols is the number of columns in the input.
 
 @node tablicious.dataset
 @subsection tablicious.dataset
-@deftp dataset
+@deftp {Class} dataset
 
 The @code{dataset} class provides convenient access to the various
 datasets included with Tablicious.
@@ -2698,6 +2692,15 @@ on the dataset list.
 
 @end deftp
 
+
+@node tablicious.dataset.AirPassengers
+@subsubsection tablicious.dataset.AirPassengers
+
+@deftypefn {Static Method} {@var{out} =} AirPassengers ()
+
+Monthly Airline Passenger Numbers 1949-1960
+
+@end deftypefn
 
 @node tablicious.dataset.airmiles
 @subsubsection tablicious.dataset.airmiles

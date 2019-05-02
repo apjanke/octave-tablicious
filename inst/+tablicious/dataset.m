@@ -14,7 +14,7 @@
 ## along with this program; If not, see <http://www.gnu.org/licenses/>.
 
 ## -*- texinfo -*-
-## @deftyp dataset
+## @deftp {Class} dataset
 ##
 ## The @code{dataset} class provides convenient access to the various
 ## datasets included with Tablicious.
