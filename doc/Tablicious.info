@@ -2868,17 +2868,17 @@ File: Tablicious.info,  Node: mustBeCellstr,  Next: mustBeCharvec,  Prev: mustBe
 8.2.29 mustBeCellstr
 --------------------
 
- -- Function File: ‘x’ = mustBeCellstr (‘x’, ‘label’)
+ -- Function File: ‘x’ = mustBeCellstr (X, LABEL)
 
      Requires that input is a cellstr.
 
-     Raises an error if the input ‘x’ is not a cellstr (a cell array of
-     ‘char’ arrays.
+     Raises an error if the input X is not a cellstr (a cell array of
+     ‘char’ arrays).
 
      TODO: Decide whether to require the contained char arrays be
      rowvec/empty.
 
-     ‘label’ is an optional input that determines how the input will be
+     LABEL is an optional input that determines how the input will be
      described in error messages.  If not supplied, ‘inputname (1)’ is
      used, and if that is empty, it falls back to "input".
 
@@ -2888,11 +2888,11 @@ File: Tablicious.info,  Node: mustBeCharvec,  Next: mustBeFinite,  Prev: mustBeC
 8.2.30 mustBeCharvec
 --------------------
 
- -- Function File: ‘x’ = mustBeCharvec (‘x’, ‘label’)
+ -- Function File: X = mustBeCharvec (X, LABEL)
 
      Requires that input is a char row vector.
 
-     Raises an error if the input ‘x’ is not a row vector of ‘char’s.
+     Raises an error if the input X is not a row vector of ‘char’s.
      ‘char’ row vectors are Octave’s normal representation of single
      strings.  (They are what are produced by ‘'...'’ string literals.)
      As a special case, 0-by-0 empty chars (what is produced by the
@@ -2901,7 +2901,7 @@ File: Tablicious.info,  Node: mustBeCharvec,  Next: mustBeFinite,  Prev: mustBeC
      This does not differentiate between single-quoted and double-quoted
      strings.
 
-     ‘label’ is an optional input that determines how the input will be
+     LABEL is an optional input that determines how the input will be
      described in error messages.  If not supplied, ‘inputname (1)’ is
      used, and if that is empty, it falls back to "input".
 
@@ -2911,14 +2911,14 @@ File: Tablicious.info,  Node: mustBeFinite,  Next: mustBeInteger,  Prev: mustBeC
 8.2.31 mustBeFinite
 -------------------
 
- -- Function File: ‘x’ = mustBeFinite (‘x’, ‘label’)
+ -- Function File: X = mustBeFinite (X, LABEL)
 
      Requires that input is finite.
 
-     Raises an error if the input ‘x’ is not finite, as determined by
+     Raises an error if the input X is not finite, as determined by
      ‘isfinite (x)’.
 
-     ‘label’ is an optional input that determines how the input will be
+     LABEL is an optional input that determines how the input will be
      described in error messages.  If not supplied, ‘inputname (1)’ is
      used, and if that is empty, it falls back to "input".
 
@@ -2928,16 +2928,16 @@ File: Tablicious.info,  Node: mustBeInteger,  Next: mustBeMember,  Prev: mustBeF
 8.2.32 mustBeInteger
 --------------------
 
- -- Function File: ‘x’ = mustBeInteger (‘x’, ‘label’)
+ -- Function File: X = mustBeInteger (X, LABEL)
 
      Requires that input is integer-valued (but not necessarily
      integer-typed).
 
-     Raises an error if any element of the input ‘x’ is not a finite,
+     Raises an error if any element of the input X is not a finite,
      real, integer-valued numeric value, as determined by various
      checks.
 
-     ‘label’ is an optional input that determines how the input will be
+     LABEL is an optional input that determines how the input will be
      described in error messages.  If not supplied, ‘inputname (1)’ is
      used, and if that is empty, it falls back to "input".
 
@@ -2947,19 +2947,19 @@ File: Tablicious.info,  Node: mustBeMember,  Next: mustBeNonempty,  Prev: mustBe
 8.2.33 mustBeMember
 -------------------
 
- -- Function File: ‘x’ = mustBeMember (‘x’, ‘valid’, ‘label’)
+ -- Function File: X = mustBeMember (X, VALID, LABEL)
 
      Requires that input is a member of a set of given valid values.
 
-     Raises an error if any element of the input ‘x’ is not a member of
-     ‘valid’, as determined by ‘ismember (x)’.
+     Raises an error if any element of the input X is not a member of
+     VALID, as determined by ‘ismember (x)’.
 
      Note that char inputs may behave weirdly, because of the
      interaction between chars and cellstrs when calling ismember() on
      them.  But it will probably "do what you mean" if you just use it
      naturally.
 
-     ‘label’ is an optional input that determines how the input will be
+     LABEL is an optional input that determines how the input will be
      described in error messages.  If not supplied, ‘inputname (1)’ is
      used, and if that is empty, it falls back to "input".
 
@@ -2986,14 +2986,14 @@ File: Tablicious.info,  Node: mustBeNumeric,  Next: mustBeReal,  Prev: mustBeNon
 8.2.35 mustBeNumeric
 --------------------
 
- -- Function File: ‘x’ = mustBeNumeric (‘x’, ‘label’)
+ -- Function File: X = mustBeNumeric (X, LABEL)
 
      Requires that input is numeric.
 
-     Raises an error if the input ‘x’ is not numeric, as determined by
+     Raises an error if the input X is not numeric, as determined by
      ‘isnumeric (x)’.
 
-     ‘label’ is an optional input that determines how the input will be
+     LABEL is an optional input that determines how the input will be
      described in error messages.  If not supplied, ‘inputname (1)’ is
      used, and if that is empty, it falls back to "input".
 
@@ -3003,14 +3003,14 @@ File: Tablicious.info,  Node: mustBeReal,  Next: mustBeSameSize,  Prev: mustBeNu
 8.2.36 mustBeReal
 -----------------
 
- -- Function File: ‘x’ = mustBeReal (‘x’, ‘label’)
+ -- Function File: X = mustBeReal (X, LABEL)
 
      Requires that input is finite.
 
-     Raises an error if the input ‘x’ is not real, as determined by
+     Raises an error if the input X is not real, as determined by
      ‘isreal (x)’.
 
-     ‘label’ is an optional input that determines how the input will be
+     LABEL is an optional input that determines how the input will be
      described in error messages.  If not supplied, ‘inputname (1)’ is
      used, and if that is empty, it falls back to "input".
 
@@ -3020,18 +3020,17 @@ File: Tablicious.info,  Node: mustBeSameSize,  Next: mustBeScalar,  Prev: mustBe
 8.2.37 mustBeSameSize
 ---------------------
 
- -- Function File: [‘a’, ‘b’] = mustBeSameSize (‘a’, ‘b’, ‘labelA’,
-          ‘labelB’)
+ -- Function File: [A, B] = mustBeSameSize (A, B, LABELA, LABELB)
 
      Requires that the inputs are the same size.
 
-     Raises an error if the inputs ‘a’ and ‘b’ are not the same size, as
+     Raises an error if the inputs A and B are not the same size, as
      determined by ‘isequal (size (a), size (b))’.
 
-     ‘labelA’ and ‘labelB’ are optional inputs that determine how the
-     input will be described in error messages.  If not supplied,
-     ‘inputname (...)’ is used, and if that is empty, it falls back to
-     "input 1" and "input 2".
+     LABELA and LABELB are optional inputs that determine how the input
+     will be described in error messages.  If not supplied, ‘inputname
+     (...)’ is used, and if that is empty, it falls back to "input 1"
+     and "input 2".
 
 
 File: Tablicious.info,  Node: mustBeScalar,  Next: mustBeScalarLogical,  Prev: mustBeSameSize,  Up: API Alphabetically
@@ -3047,14 +3046,14 @@ File: Tablicious.info,  Node: mustBeScalarLogical,  Next: mustBeVector,  Prev: m
 8.2.39 mustBeScalarLogical
 --------------------------
 
- -- Function File: ‘x’ = mustBeScalarLogical (‘x’, ‘label’)
+ -- Function File: X = mustBeScalarLogical (X, LABEL)
 
      Requires that input is a scalar logical.
 
-     Raises an error if the input ‘x’ is not scalar, as determined by
+     Raises an error if the input X is not scalar, as determined by
      ‘isscalar (x) && islogical (x)’.
 
-     ‘label’ is an optional input that determines how the input will be
+     LABEL is an optional input that determines how the input will be
      described in error messages.  If not supplied, ‘inputname (1)’ is
      used, and if that is empty, it falls back to "input".
 
@@ -3064,14 +3063,14 @@ File: Tablicious.info,  Node: mustBeVector,  Next: NaT,  Prev: mustBeScalarLogic
 8.2.40 mustBeVector
 -------------------
 
- -- Function File: ‘x’ = mustBeVector (‘x’, ‘label’)
+ -- Function File: X = mustBeVector (X, LABEL)
 
      Requires that input is a vector or empty.
 
-     Raises an error if the input ‘x’ is not a row vector and is not
+     Raises an error if the input X is not a row vector and is not
      0-by-0 empty.
 
-     ‘label’ is an optional input that determines how the input will be
+     LABEL is an optional input that determines how the input will be
      described in error messages.  If not supplied, ‘inputname (1)’ is
      used, and if that is empty, it falls back to "input".
 
@@ -5262,123 +5261,123 @@ Node: missing.isnan87211
 Node: missing.isnannish87550
 Node: mustBeA87884
 Node: mustBeCellstr88461
-Node: mustBeCharvec89119
-Node: mustBeFinite90049
-Node: mustBeInteger90619
-Node: mustBeMember91294
-Node: mustBeNonempty92164
-Node: mustBeNumeric92713
-Node: mustBeReal93288
-Node: mustBeSameSize93847
-Node: mustBeScalar94555
-Node: mustBeScalarLogical94736
-Node: mustBeVector95359
-Node: NaT95929
-Node: octave.chrono.dummy_function96645
-Node: octave.chrono.DummyClass97177
-Node: octave.chrono.DummyClass.DummyClass97967
-Node: octave.chrono.DummyClass.foo98438
-Node: octave.chrono.DummyClass.bar98977
-Node: pp99472
-Node: rmmissing100132
-Node: scalarexpand101169
-Node: seconds101333
-Node: size2str101832
-Node: standardizeMissing101993
-Node: startsWith102818
-Node: string103628
-Node: string.string106922
-Node: string.isstring107592
-Node: string.dispstrs107917
-Node: string.ismissing108499
-Node: string.isnannish108980
-Node: string.cellstr109363
-Node: string.cell109708
-Node: string.char110195
-Node: string.encode110720
-Node: string.strlength_bytes111234
-Node: string.strlength111907
-Node: string.reverse_bytes112474
-Node: string.reverse113212
-Node: string.strcat113684
-Node: string.lower114262
-Node: string.upper114764
-Node: string.erase115265
-Node: string.strrep115602
-Node: string.strfind116207
-Node: string.regexprep116730
-Node: string.strcmp117206
-Node: string.cmp117899
-Node: string.missing118878
-Node: string.decode119280
-Node: struct2table119690
-Node: table120157
-Node: table.table122601
-Node: table.summary123653
-Node: table.prettyprint124080
-Node: table.table2cell124539
-Node: table.table2struct125027
-Node: table.table2array125662
-Node: table.varnames125909
-Node: table.istable126161
-Node: table.size126373
-Node: table.length126702
-Node: table.ndims127001
-Node: table.squeeze127252
-Node: table.sizeof127599
-Node: table.height128030
-Node: table.rows128238
-Node: table.width128439
-Node: table.columns128770
-Node: table.numel129108
-Node: table.isempty129628
-Node: table.ismatrix129952
-Node: table.isrow130241
-Node: table.iscol130459
-Node: table.isvector130819
-Node: table.isscalar131045
-Node: table.hasrownames131275
-Node: table.vertcat131525
-Node: table.horzcat132046
-Node: table.repmat132666
-Node: table.setVariableNames133201
-Node: table.setRowNames133647
-Node: table.resolveVarRef134019
-Node: table.subsetRows134629
-Node: table.subsetvars134974
-Node: table.removevars135481
-Node: table.movevars135866
-Node: table.setvar136594
-Node: table.convertvars136963
-Node: table.head137945
-Node: table.tail138320
-Node: table.join138686
-Node: table.innerjoin139432
-Node: table.outerjoin140093
-Node: table.outerfillvals140900
-Node: table.semijoin141333
-Node: table.antijoin142102
-Node: table.cartesian142754
-Node: table.groupby144022
-Node: table.grpstats144873
-Node: table.union145201
-Node: table.intersect145769
-Node: table.setxor146377
-Node: table.setdiff147012
-Node: table.ismember147549
-Node: table.ismissing147951
-Node: table.rmmissing148635
-Node: table.standardizeMissing149427
-Node: table.varfun150417
-Node: table.rowfun150984
-Node: table.findgroups151295
-Node: table.evalWithVars151880
-Node: table.restrict152730
-Node: tableOuterFillValue153859
-Node: timezones155096
-Node: vecfun156140
-Node: years156869
-Node: Copying157546
+Node: mustBeCharvec89096
+Node: mustBeFinite89996
+Node: mustBeInteger90536
+Node: mustBeMember91181
+Node: mustBeNonempty92009
+Node: mustBeNumeric92558
+Node: mustBeReal93103
+Node: mustBeSameSize93632
+Node: mustBeScalar94270
+Node: mustBeScalarLogical94451
+Node: mustBeVector95044
+Node: NaT95584
+Node: octave.chrono.dummy_function96300
+Node: octave.chrono.DummyClass96832
+Node: octave.chrono.DummyClass.DummyClass97622
+Node: octave.chrono.DummyClass.foo98093
+Node: octave.chrono.DummyClass.bar98632
+Node: pp99127
+Node: rmmissing99787
+Node: scalarexpand100824
+Node: seconds100988
+Node: size2str101487
+Node: standardizeMissing101648
+Node: startsWith102473
+Node: string103283
+Node: string.string106577
+Node: string.isstring107247
+Node: string.dispstrs107572
+Node: string.ismissing108154
+Node: string.isnannish108635
+Node: string.cellstr109018
+Node: string.cell109363
+Node: string.char109850
+Node: string.encode110375
+Node: string.strlength_bytes110889
+Node: string.strlength111562
+Node: string.reverse_bytes112129
+Node: string.reverse112867
+Node: string.strcat113339
+Node: string.lower113917
+Node: string.upper114419
+Node: string.erase114920
+Node: string.strrep115257
+Node: string.strfind115862
+Node: string.regexprep116385
+Node: string.strcmp116861
+Node: string.cmp117554
+Node: string.missing118533
+Node: string.decode118935
+Node: struct2table119345
+Node: table119812
+Node: table.table122256
+Node: table.summary123308
+Node: table.prettyprint123735
+Node: table.table2cell124194
+Node: table.table2struct124682
+Node: table.table2array125317
+Node: table.varnames125564
+Node: table.istable125816
+Node: table.size126028
+Node: table.length126357
+Node: table.ndims126656
+Node: table.squeeze126907
+Node: table.sizeof127254
+Node: table.height127685
+Node: table.rows127893
+Node: table.width128094
+Node: table.columns128425
+Node: table.numel128763
+Node: table.isempty129283
+Node: table.ismatrix129607
+Node: table.isrow129896
+Node: table.iscol130114
+Node: table.isvector130474
+Node: table.isscalar130700
+Node: table.hasrownames130930
+Node: table.vertcat131180
+Node: table.horzcat131701
+Node: table.repmat132321
+Node: table.setVariableNames132856
+Node: table.setRowNames133302
+Node: table.resolveVarRef133674
+Node: table.subsetRows134284
+Node: table.subsetvars134629
+Node: table.removevars135136
+Node: table.movevars135521
+Node: table.setvar136249
+Node: table.convertvars136618
+Node: table.head137600
+Node: table.tail137975
+Node: table.join138341
+Node: table.innerjoin139087
+Node: table.outerjoin139748
+Node: table.outerfillvals140555
+Node: table.semijoin140988
+Node: table.antijoin141757
+Node: table.cartesian142409
+Node: table.groupby143677
+Node: table.grpstats144528
+Node: table.union144856
+Node: table.intersect145424
+Node: table.setxor146032
+Node: table.setdiff146667
+Node: table.ismember147204
+Node: table.ismissing147606
+Node: table.rmmissing148290
+Node: table.standardizeMissing149082
+Node: table.varfun150072
+Node: table.rowfun150639
+Node: table.findgroups150950
+Node: table.evalWithVars151535
+Node: table.restrict152385
+Node: tableOuterFillValue153514
+Node: timezones154751
+Node: vecfun155795
+Node: years156524
+Node: Copying157201
 
 End Tag Table
 

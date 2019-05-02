@@ -3952,16 +3952,16 @@ Next: <a href="#mustBeCharvec" accesskey="n" rel="next">mustBeCharvec</a>, Previ
 </div>
 <span id="mustBeCellstr-1"></span><h4 class="subsection">8.2.29 mustBeCellstr</h4>
 <dl>
-<dt id="index-mustBeCellstr">Function File: <em><code>x</code> =</em> <strong>mustBeCellstr</strong> <em>(<code>x</code>, <code>label</code>)</em></dt>
+<dt id="index-mustBeCellstr">Function File: <em><code>x</code> =</em> <strong>mustBeCellstr</strong> <em>(<var>x</var>, <var>label</var>)</em></dt>
 <dd>
 <p>Requires that input is a cellstr.
 </p>
-<p>Raises an error if the input <code>x</code> is not a cellstr (a cell array
-of <code>char</code> arrays.
+<p>Raises an error if the input <var>x</var> is not a cellstr (a cell array
+of <code>char</code> arrays).
 </p>
 <p>TODO: Decide whether to require the contained char arrays be rowvec/empty.
 </p>
-<p><code>label</code> is an optional input that determines how the input will be described in
+<p><var>label</var> is an optional input that determines how the input will be described in
 error messages. If not supplied, <code>inputname (1)</code> is used, and if that is
 empty, it falls back to &quot;input&quot;.
 </p>
@@ -3975,11 +3975,11 @@ Next: <a href="#mustBeFinite" accesskey="n" rel="next">mustBeFinite</a>, Previou
 </div>
 <span id="mustBeCharvec-1"></span><h4 class="subsection">8.2.30 mustBeCharvec</h4>
 <dl>
-<dt id="index-mustBeCharvec">Function File: <em><code>x</code> =</em> <strong>mustBeCharvec</strong> <em>(<code>x</code>, <code>label</code>)</em></dt>
+<dt id="index-mustBeCharvec">Function File: <em><var>x</var> =</em> <strong>mustBeCharvec</strong> <em>(<var>x</var>, <var>label</var>)</em></dt>
 <dd>
 <p>Requires that input is a char row vector.
 </p>
-<p>Raises an error if the input <code>x</code> is not a row vector of <code>char</code>s.
+<p>Raises an error if the input <var>x</var> is not a row vector of <code>char</code>s.
 <code>char</code> row vectors are Octave&rsquo;s normal representation of single strings.
 (They are what are produced by <code>'...'</code> string literals.) As a special
 case, 0-by-0 empty chars (what is produced by the string literal <code>''</code>)
@@ -3987,7 +3987,7 @@ are also considered charvecs.
 </p>
 <p>This does not differentiate between single-quoted and double-quoted strings.
 </p>
-<p><code>label</code> is an optional input that determines how the input will be described in
+<p><var>label</var> is an optional input that determines how the input will be described in
 error messages. If not supplied, <code>inputname (1)</code> is used, and if that is
 empty, it falls back to &quot;input&quot;.
 </p>
@@ -4001,14 +4001,14 @@ Next: <a href="#mustBeInteger" accesskey="n" rel="next">mustBeInteger</a>, Previ
 </div>
 <span id="mustBeFinite-1"></span><h4 class="subsection">8.2.31 mustBeFinite</h4>
 <dl>
-<dt id="index-mustBeFinite">Function File: <em><code>x</code> =</em> <strong>mustBeFinite</strong> <em>(<code>x</code>, <code>label</code>)</em></dt>
+<dt id="index-mustBeFinite">Function File: <em><var>x</var> =</em> <strong>mustBeFinite</strong> <em>(<var>x</var>, <var>label</var>)</em></dt>
 <dd>
 <p>Requires that input is finite.
 </p>
-<p>Raises an error if the input <code>x</code> is not finite, as determined by
+<p>Raises an error if the input <var>x</var> is not finite, as determined by
 <code>isfinite (x)</code>.
 </p>
-<p><code>label</code> is an optional input that determines how the input will be described in
+<p><var>label</var> is an optional input that determines how the input will be described in
 error messages. If not supplied, <code>inputname (1)</code> is used, and if that is
 empty, it falls back to &quot;input&quot;.
 </p>
@@ -4022,14 +4022,14 @@ Next: <a href="#mustBeMember" accesskey="n" rel="next">mustBeMember</a>, Previou
 </div>
 <span id="mustBeInteger-1"></span><h4 class="subsection">8.2.32 mustBeInteger</h4>
 <dl>
-<dt id="index-mustBeInteger">Function File: <em><code>x</code> =</em> <strong>mustBeInteger</strong> <em>(<code>x</code>, <code>label</code>)</em></dt>
+<dt id="index-mustBeInteger">Function File: <em><var>x</var> =</em> <strong>mustBeInteger</strong> <em>(<var>x</var>, <var>label</var>)</em></dt>
 <dd>
 <p>Requires that input is integer-valued (but not necessarily integer-typed).
 </p>
-<p>Raises an error if any element of the input <code>x</code> is not a finite,
+<p>Raises an error if any element of the input <var>x</var> is not a finite,
 real, integer-valued numeric value, as determined by various checks.
 </p>
-<p><code>label</code> is an optional input that determines how the input will be described in
+<p><var>label</var> is an optional input that determines how the input will be described in
 error messages. If not supplied, <code>inputname (1)</code> is used, and if that is
 empty, it falls back to &quot;input&quot;.
 </p>
@@ -4043,18 +4043,18 @@ Next: <a href="#mustBeNonempty" accesskey="n" rel="next">mustBeNonempty</a>, Pre
 </div>
 <span id="mustBeMember-1"></span><h4 class="subsection">8.2.33 mustBeMember</h4>
 <dl>
-<dt id="index-mustBeMember">Function File: <em><code>x</code> =</em> <strong>mustBeMember</strong> <em>(<code>x</code>, <code>valid</code>, <code>label</code>)</em></dt>
+<dt id="index-mustBeMember">Function File: <em><var>x</var> =</em> <strong>mustBeMember</strong> <em>(<var>x</var>, <var>valid</var>, <var>label</var>)</em></dt>
 <dd>
 <p>Requires that input is a member of a set of given valid values.
 </p>
-<p>Raises an error if any element of the input <code>x</code> is not a member
-of <code>valid</code>, as determined by <code>ismember (x)</code>.
+<p>Raises an error if any element of the input <var>x</var> is not a member
+of <var>valid</var>, as determined by <code>ismember (x)</code>.
 </p>
 <p>Note that char inputs may behave weirdly, because of the interaction between
 chars and cellstrs when calling ismember() on them. But it will probably
 &quot;do what you mean&quot; if you just use it naturally.
 </p>
-<p><code>label</code> is an optional input that determines how the input will be described in
+<p><var>label</var> is an optional input that determines how the input will be described in
 error messages. If not supplied, <code>inputname (1)</code> is used, and if that is
 empty, it falls back to &quot;input&quot;.
 </p>
@@ -4089,14 +4089,14 @@ Next: <a href="#mustBeReal" accesskey="n" rel="next">mustBeReal</a>, Previous: <
 </div>
 <span id="mustBeNumeric-1"></span><h4 class="subsection">8.2.35 mustBeNumeric</h4>
 <dl>
-<dt id="index-mustBeNumeric">Function File: <em><code>x</code> =</em> <strong>mustBeNumeric</strong> <em>(<code>x</code>, <code>label</code>)</em></dt>
+<dt id="index-mustBeNumeric">Function File: <em><var>x</var> =</em> <strong>mustBeNumeric</strong> <em>(<var>x</var>, <var>label</var>)</em></dt>
 <dd>
 <p>Requires that input is numeric.
 </p>
-<p>Raises an error if the input <code>x</code> is not numeric, as determined by
+<p>Raises an error if the input <var>x</var> is not numeric, as determined by
 <code>isnumeric (x)</code>.
 </p>
-<p><code>label</code> is an optional input that determines how the input will be described in
+<p><var>label</var> is an optional input that determines how the input will be described in
 error messages. If not supplied, <code>inputname (1)</code> is used, and if that is
 empty, it falls back to &quot;input&quot;.
 </p>
@@ -4110,14 +4110,14 @@ Next: <a href="#mustBeSameSize" accesskey="n" rel="next">mustBeSameSize</a>, Pre
 </div>
 <span id="mustBeReal-1"></span><h4 class="subsection">8.2.36 mustBeReal</h4>
 <dl>
-<dt id="index-mustBeReal">Function File: <em><code>x</code> =</em> <strong>mustBeReal</strong> <em>(<code>x</code>, <code>label</code>)</em></dt>
+<dt id="index-mustBeReal">Function File: <em><var>x</var> =</em> <strong>mustBeReal</strong> <em>(<var>x</var>, <var>label</var>)</em></dt>
 <dd>
 <p>Requires that input is finite.
 </p>
-<p>Raises an error if the input <code>x</code> is not real, as determined by
+<p>Raises an error if the input <var>x</var> is not real, as determined by
 <code>isreal (x)</code>.
 </p>
-<p><code>label</code> is an optional input that determines how the input will be described in
+<p><var>label</var> is an optional input that determines how the input will be described in
 error messages. If not supplied, <code>inputname (1)</code> is used, and if that is
 empty, it falls back to &quot;input&quot;.
 </p>
@@ -4131,14 +4131,14 @@ Next: <a href="#mustBeScalar" accesskey="n" rel="next">mustBeScalar</a>, Previou
 </div>
 <span id="mustBeSameSize-1"></span><h4 class="subsection">8.2.37 mustBeSameSize</h4>
 <dl>
-<dt id="index-mustBeSameSize">Function File: <em>[<code>a</code>, <code>b</code>] =</em> <strong>mustBeSameSize</strong> <em>(<code>a</code>, <code>b</code>, <code>labelA</code>, <code>labelB</code>)</em></dt>
+<dt id="index-mustBeSameSize">Function File: <em>[<var>a</var>, <var>b</var>] =</em> <strong>mustBeSameSize</strong> <em>(<var>a</var>, <var>b</var>, <var>labelA</var>, <var>labelB</var>)</em></dt>
 <dd>
 <p>Requires that the inputs are the same size.
 </p>
-<p>Raises an error if the inputs <code>a</code> and <code>b</code> are not the same size,
+<p>Raises an error if the inputs <var>a</var> and <var>b</var> are not the same size,
 as determined by <code>isequal (size (a), size (b))</code>.
 </p>
-<p><code>labelA</code> and <code>labelB</code> are optional inputs that determine how
+<p><var>labelA</var> and <var>labelB</var> are optional inputs that determine how
 the input will be described in error messages. If not supplied,
 <code>inputname (...)</code> is used, and if that is empty, it falls back to
 &quot;input 1&quot; and &quot;input 2&quot;.
@@ -4160,14 +4160,14 @@ Next: <a href="#mustBeVector" accesskey="n" rel="next">mustBeVector</a>, Previou
 </div>
 <span id="mustBeScalarLogical-1"></span><h4 class="subsection">8.2.39 mustBeScalarLogical</h4>
 <dl>
-<dt id="index-mustBeScalarLogical">Function File: <em><code>x</code> =</em> <strong>mustBeScalarLogical</strong> <em>(<code>x</code>, <code>label</code>)</em></dt>
+<dt id="index-mustBeScalarLogical">Function File: <em><var>x</var> =</em> <strong>mustBeScalarLogical</strong> <em>(<var>x</var>, <var>label</var>)</em></dt>
 <dd>
 <p>Requires that input is a scalar logical.
 </p>
-<p>Raises an error if the input <code>x</code> is not scalar, as determined by
+<p>Raises an error if the input <var>x</var> is not scalar, as determined by
 <code>isscalar (x) &amp;&amp; islogical (x)</code>.
 </p>
-<p><code>label</code> is an optional input that determines how the input will be described in
+<p><var>label</var> is an optional input that determines how the input will be described in
 error messages. If not supplied, <code>inputname (1)</code> is used, and if that is
 empty, it falls back to &quot;input&quot;.
 </p>
@@ -4181,13 +4181,13 @@ Next: <a href="#NaT" accesskey="n" rel="next">NaT</a>, Previous: <a href="#mustB
 </div>
 <span id="mustBeVector-1"></span><h4 class="subsection">8.2.40 mustBeVector</h4>
 <dl>
-<dt id="index-mustBeVector">Function File: <em><code>x</code> =</em> <strong>mustBeVector</strong> <em>(<code>x</code>, <code>label</code>)</em></dt>
+<dt id="index-mustBeVector">Function File: <em><var>x</var> =</em> <strong>mustBeVector</strong> <em>(<var>x</var>, <var>label</var>)</em></dt>
 <dd>
 <p>Requires that input is a vector or empty.
 </p>
-<p>Raises an error if the input <code>x</code> is not a row vector and is not 0-by-0 empty.
+<p>Raises an error if the input <var>x</var> is not a row vector and is not 0-by-0 empty.
 </p>
-<p><code>label</code> is an optional input that determines how the input will be described in
+<p><var>label</var> is an optional input that determines how the input will be described in
 error messages. If not supplied, <code>inputname (1)</code> is used, and if that is
 empty, it falls back to &quot;input&quot;.
 </p>

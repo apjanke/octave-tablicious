@@ -2632,16 +2632,16 @@ empty, it falls back to "input".
 
 @node mustBeCellstr
 @subsection mustBeCellstr
-@deftypefn {Function File} {@code{x} =} mustBeCellstr (@code{x}, @code{label})
+@deftypefn {Function File} {@code{x} =} mustBeCellstr (@var{x}, @var{label})
 
 Requires that input is a cellstr.
 
-Raises an error if the input @code{x} is not a cellstr (a cell array
-of @code{char} arrays.
+Raises an error if the input @var{x} is not a cellstr (a cell array
+of @code{char} arrays).
 
 TODO: Decide whether to require the contained char arrays be rowvec/empty.
 
-@code{label} is an optional input that determines how the input will be described in
+@var{label} is an optional input that determines how the input will be described in
 error messages. If not supplied, @code{inputname (1)} is used, and if that is
 empty, it falls back to "input".
 
@@ -2650,11 +2650,11 @@ empty, it falls back to "input".
 
 @node mustBeCharvec
 @subsection mustBeCharvec
-@deftypefn {Function File} {@code{x} =} mustBeCharvec (@code{x}, @code{label})
+@deftypefn {Function File} {@var{x} =} mustBeCharvec (@var{x}, @var{label})
 
 Requires that input is a char row vector.
 
-Raises an error if the input @code{x} is not a row vector of @code{char}s.
+Raises an error if the input @var{x} is not a row vector of @code{char}s.
 @code{char} row vectors are Octave's normal representation of single strings.
 (They are what are produced by @code{'...'} string literals.) As a special
 case, 0-by-0 empty chars (what is produced by the string literal @code{''})
@@ -2662,7 +2662,7 @@ are also considered charvecs.
 
 This does not differentiate between single-quoted and double-quoted strings.
 
-@code{label} is an optional input that determines how the input will be described in
+@var{label} is an optional input that determines how the input will be described in
 error messages. If not supplied, @code{inputname (1)} is used, and if that is
 empty, it falls back to "input".
 
@@ -2671,14 +2671,14 @@ empty, it falls back to "input".
 
 @node mustBeFinite
 @subsection mustBeFinite
-@deftypefn {Function File} {@code{x} =} mustBeFinite (@code{x}, @code{label})
+@deftypefn {Function File} {@var{x} =} mustBeFinite (@var{x}, @var{label})
 
 Requires that input is finite.
 
-Raises an error if the input @code{x} is not finite, as determined by
+Raises an error if the input @var{x} is not finite, as determined by
 @code{isfinite (x)}.
 
-@code{label} is an optional input that determines how the input will be described in
+@var{label} is an optional input that determines how the input will be described in
 error messages. If not supplied, @code{inputname (1)} is used, and if that is
 empty, it falls back to "input".
 
@@ -2687,14 +2687,14 @@ empty, it falls back to "input".
 
 @node mustBeInteger
 @subsection mustBeInteger
-@deftypefn {Function File} {@code{x} =} mustBeInteger (@code{x}, @code{label})
+@deftypefn {Function File} {@var{x} =} mustBeInteger (@var{x}, @var{label})
 
 Requires that input is integer-valued (but not necessarily integer-typed).
 
-Raises an error if any element of the input @code{x} is not a finite,
+Raises an error if any element of the input @var{x} is not a finite,
 real, integer-valued numeric value, as determined by various checks.
 
-@code{label} is an optional input that determines how the input will be described in
+@var{label} is an optional input that determines how the input will be described in
 error messages. If not supplied, @code{inputname (1)} is used, and if that is
 empty, it falls back to "input".
 
@@ -2703,18 +2703,18 @@ empty, it falls back to "input".
 
 @node mustBeMember
 @subsection mustBeMember
-@deftypefn {Function File} {@code{x} =} mustBeMember (@code{x}, @code{valid}, @code{label})
+@deftypefn {Function File} {@var{x} =} mustBeMember (@var{x}, @var{valid}, @var{label})
 
 Requires that input is a member of a set of given valid values.
 
-Raises an error if any element of the input @code{x} is not a member
-of @code{valid}, as determined by @code{ismember (x)}.
+Raises an error if any element of the input @var{x} is not a member
+of @var{valid}, as determined by @code{ismember (x)}.
 
 Note that char inputs may behave weirdly, because of the interaction between
 chars and cellstrs when calling ismember() on them. But it will probably
 "do what you mean" if you just use it naturally.
 
-@code{label} is an optional input that determines how the input will be described in
+@var{label} is an optional input that determines how the input will be described in
 error messages. If not supplied, @code{inputname (1)} is used, and if that is
 empty, it falls back to "input".
 
@@ -2739,14 +2739,14 @@ empty, it falls back to "input".
 
 @node mustBeNumeric
 @subsection mustBeNumeric
-@deftypefn {Function File} {@code{x} =} mustBeNumeric (@code{x}, @code{label})
+@deftypefn {Function File} {@var{x} =} mustBeNumeric (@var{x}, @var{label})
 
 Requires that input is numeric.
 
-Raises an error if the input @code{x} is not numeric, as determined by
+Raises an error if the input @var{x} is not numeric, as determined by
 @code{isnumeric (x)}.
 
-@code{label} is an optional input that determines how the input will be described in
+@var{label} is an optional input that determines how the input will be described in
 error messages. If not supplied, @code{inputname (1)} is used, and if that is
 empty, it falls back to "input".
 
@@ -2755,14 +2755,14 @@ empty, it falls back to "input".
 
 @node mustBeReal
 @subsection mustBeReal
-@deftypefn {Function File} {@code{x} =} mustBeReal (@code{x}, @code{label})
+@deftypefn {Function File} {@var{x} =} mustBeReal (@var{x}, @var{label})
 
 Requires that input is finite.
 
-Raises an error if the input @code{x} is not real, as determined by
+Raises an error if the input @var{x} is not real, as determined by
 @code{isreal (x)}.
 
-@code{label} is an optional input that determines how the input will be described in
+@var{label} is an optional input that determines how the input will be described in
 error messages. If not supplied, @code{inputname (1)} is used, and if that is
 empty, it falls back to "input".
 
@@ -2771,14 +2771,14 @@ empty, it falls back to "input".
 
 @node mustBeSameSize
 @subsection mustBeSameSize
-@deftypefn {Function File} {[@code{a}, @code{b}] =} mustBeSameSize (@code{a}, @code{b}, @code{labelA}, @code{labelB})
+@deftypefn {Function File} {[@var{a}, @var{b}] =} mustBeSameSize (@var{a}, @var{b}, @var{labelA}, @var{labelB})
 
 Requires that the inputs are the same size.
 
-Raises an error if the inputs @code{a} and @code{b} are not the same size,
+Raises an error if the inputs @var{a} and @var{b} are not the same size,
 as determined by @code{isequal (size (a), size (b))}.
 
-@code{labelA} and @code{labelB} are optional inputs that determine how
+@var{labelA} and @var{labelB} are optional inputs that determine how
 the input will be described in error messages. If not supplied,
 @code{inputname (...)} is used, and if that is empty, it falls back to
 "input 1" and "input 2".
@@ -2791,14 +2791,14 @@ the input will be described in error messages. If not supplied,
 @emph{Not documented}
 @node mustBeScalarLogical
 @subsection mustBeScalarLogical
-@deftypefn {Function File} {@code{x} =} mustBeScalarLogical (@code{x}, @code{label})
+@deftypefn {Function File} {@var{x} =} mustBeScalarLogical (@var{x}, @var{label})
 
 Requires that input is a scalar logical.
 
-Raises an error if the input @code{x} is not scalar, as determined by
+Raises an error if the input @var{x} is not scalar, as determined by
 @code{isscalar (x) && islogical (x)}.
 
-@code{label} is an optional input that determines how the input will be described in
+@var{label} is an optional input that determines how the input will be described in
 error messages. If not supplied, @code{inputname (1)} is used, and if that is
 empty, it falls back to "input".
 
@@ -2807,13 +2807,13 @@ empty, it falls back to "input".
 
 @node mustBeVector
 @subsection mustBeVector
-@deftypefn {Function File} {@code{x} =} mustBeVector (@code{x}, @code{label})
+@deftypefn {Function File} {@var{x} =} mustBeVector (@var{x}, @var{label})
 
 Requires that input is a vector or empty.
 
-Raises an error if the input @code{x} is not a row vector and is not 0-by-0 empty.
+Raises an error if the input @var{x} is not a row vector and is not 0-by-0 empty.
 
-@code{label} is an optional input that determines how the input will be described in
+@var{label} is an optional input that determines how the input will be described in
 error messages. If not supplied, @code{inputname (1)} is used, and if that is
 empty, it falls back to "input".
 
