@@ -19,9 +19,11 @@ Missing Data
  standardizeMissing
  missing
  isnannish
+ eqn
 Miscellaneous
  colvecfun
  dispstrs
  isfile
  isfolder
  pp
+ vecfun
