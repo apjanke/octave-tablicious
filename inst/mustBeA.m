@@ -13,6 +13,20 @@
 ## You should have received a copy of the GNU General Public License
 ## along with this program; If not, see <http://www.gnu.org/licenses/>.
 
+## -*- texinfo -*-
+## @deftypefn {Function File} {@code{x} =} mustBeA (@code{x}, @code{type})
+##
+## Requires that input is of a given type.
+##
+## Raises an error if the input @code{x} is not of type @code{ty[e]}, as determined by
+## @code{isa (x, type)}.
+##
+## @code{label} is an optional input that determines how the input will be described in
+## error messages. If not supplied, @code{inputname (1)} is used, and if that is
+## empty, it falls back to "input".
+##
+## @end deftypefn
+
 function mustBeA (x, type)
   if isa (x, type)
     return

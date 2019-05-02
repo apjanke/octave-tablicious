@@ -13,6 +13,20 @@
 ## You should have received a copy of the GNU General Public License
 ## along with this program; If not, see <http://www.gnu.org/licenses/>.
 
+## -*- texinfo -*-
+## @deftypefn {Function File} {@code{x} =} mustBeNumeric (@code{x}, @code{label})
+##
+## Requires that input is numeric.
+##
+## Raises an error if the input @code{x} is not numeric, as determined by
+## @code{isnumeric (x)}.
+##
+## @code{label} is an optional input that determines how the input will be described in
+## error messages. If not supplied, @code{inputname (1)} is used, and if that is
+## empty, it falls back to "input".
+##
+## @end deftypefn
+
 function mustBeNumeric (x)
   if ~isnumeric (x)
     name = inputname (1);
