@@ -14,18 +14,18 @@
 ## along with this program; If not, see <http://www.gnu.org/licenses/>.
 
 ## -*- texinfo -*-
-## @deftypefn {Function File} {@code{x} =} mustBeMember (@code{x}, @code{valid}, @code{label})
+## @deftypefn {Function File} {@var{x} =} mustBeMember (@var{x}, @var{valid}, @var{label})
 ##
 ## Requires that input is a member of a set of given valid values.
 ##
-## Raises an error if any element of the input @code{x} is not a member 
-## of @code{valid}, as determined by @code{ismember (x)}.
+## Raises an error if any element of the input @var{x} is not a member 
+## of @var{valid}, as determined by @code{ismember (x)}.
 ##
 ## Note that char inputs may behave weirdly, because of the interaction between
 ## chars and cellstrs when calling ismember() on them. But it will probably
 ## "do what you mean" if you just use it naturally.
 ##
-## @code{label} is an optional input that determines how the input will be described in
+## @var{label} is an optional input that determines how the input will be described in
 ## error messages. If not supplied, @code{inputname (1)} is used, and if that is
 ## empty, it falls back to "input".
 ##

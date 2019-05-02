@@ -14,11 +14,11 @@
 ## along with this program; If not, see <http://www.gnu.org/licenses/>.
 
 ## -*- texinfo -*-
-## @deftypefn {Function File} {@code{x} =} mustBeCharvec (@code{x}, @code{label})
+## @deftypefn {Function File} {@var{x} =} mustBeCharvec (@var{x}, @var{label})
 ##
 ## Requires that input is a char row vector.
 ##
-## Raises an error if the input @code{x} is not a row vector of @code{char}s.
+## Raises an error if the input @var{x} is not a row vector of @code{char}s.
 ## @code{char} row vectors are Octave's normal representation of single strings.
 ## (They are what are produced by @code{'...'} string literals.) As a special
 ## case, 0-by-0 empty chars (what is produced by the string literal @code{''})
@@ -26,7 +26,7 @@
 ##
 ## This does not differentiate between single-quoted and double-quoted strings.
 ##
-## @code{label} is an optional input that determines how the input will be described in
+## @var{label} is an optional input that determines how the input will be described in
 ## error messages. If not supplied, @code{inputname (1)} is used, and if that is
 ## empty, it falls back to "input".
 ##

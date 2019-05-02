@@ -14,16 +14,16 @@
 ## along with this program; If not, see <http://www.gnu.org/licenses/>.
 
 ## -*- texinfo -*-
-## @deftypefn {Function File} {@code{x} =} mustBeCellstr (@code{x}, @code{label})
+## @deftypefn {Function File} {@code{x} =} mustBeCellstr (@var{x}, @var{label})
 ##
 ## Requires that input is a cellstr.
 ##
-## Raises an error if the input @code{x} is not a cellstr (a cell array
-## of @code{char} arrays.
+## Raises an error if the input @var{x} is not a cellstr (a cell array
+## of @code{char} arrays).
 ##
 ## TODO: Decide whether to require the contained char arrays be rowvec/empty.
 ##
-## @code{label} is an optional input that determines how the input will be described in
+## @var{label} is an optional input that determines how the input will be described in
 ## error messages. If not supplied, @code{inputname (1)} is used, and if that is
 ## empty, it falls back to "input".
 ##

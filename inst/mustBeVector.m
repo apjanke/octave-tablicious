@@ -14,13 +14,13 @@
 ## along with this program; If not, see <http://www.gnu.org/licenses/>.
 
 ## -*- texinfo -*-
-## @deftypefn {Function File} {@code{x} =} mustBeVector (@code{x}, @code{label})
+## @deftypefn {Function File} {@var{x} =} mustBeVector (@var{x}, @var{label})
 ##
 ## Requires that input is a vector or empty.
 ##
-## Raises an error if the input @code{x} is not a row vector and is not 0-by-0 empty.
+## Raises an error if the input @var{x} is not a row vector and is not 0-by-0 empty.
 ##
-## @code{label} is an optional input that determines how the input will be described in
+## @var{label} is an optional input that determines how the input will be described in
 ## error messages. If not supplied, @code{inputname (1)} is used, and if that is
 ## empty, it falls back to "input".
 ##

@@ -14,14 +14,14 @@
 ## along with this program; If not, see <http://www.gnu.org/licenses/>.
 
 ## -*- texinfo -*-
-## @deftypefn {Function File} {@code{x} =} mustBeInteger (@code{x}, @code{label})
+## @deftypefn {Function File} {@var{x} =} mustBeInteger (@var{x}, @var{label})
 ##
 ## Requires that input is integer-valued (but not necessarily integer-typed).
 ##
-## Raises an error if any element of the input @code{x} is not a finite,
+## Raises an error if any element of the input @var{x} is not a finite,
 ## real, integer-valued numeric value, as determined by various checks.
 ##
-## @code{label} is an optional input that determines how the input will be described in
+## @var{label} is an optional input that determines how the input will be described in
 ## error messages. If not supplied, @code{inputname (1)} is used, and if that is
 ## empty, it falls back to "input".
 ##
