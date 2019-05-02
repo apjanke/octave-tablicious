@@ -473,6 +473,48 @@ Test if elements are NaN or NaN-like
 Determine element-wise equality, treating NaNs as equal
 
 @end table
+@subsection Validation
+@table @asis
+@item @ref{mustBeA}
+Requires that input is of a given type.
+
+@item @ref{mustBeCellstr}
+Requires that input is a cellstr.
+
+@item @ref{mustBeCharvec}
+Requires that input is a char row vector.
+
+@item @ref{mustBeFinite}
+Requires that input is finite.
+
+@item @ref{mustBeInteger}
+Requires that input is integer-valued (but not necessarily integer-typed).
+
+@item @ref{mustBeMember}
+Requires that input is a member of a set of given valid values.
+
+@item @ref{mustBeNonempty}
+Requires that input is nonempty.
+
+@item @ref{mustBeNumeric}
+Requires that input is numeric.
+
+@item @ref{mustBeReal}
+Requires that input is finite.
+
+@item @ref{mustBeSameSize}
+Requires that the inputs are the same size.
+
+@item @ref{mustBeScalar}
+
+
+@item @ref{mustBeScalarLogical}
+Requires that input is a scalar logical.
+
+@item @ref{mustBeVector}
+Requires that input is a vector or empty.
+
+@end table
 @subsection Miscellaneous
 @table @asis
 @item @ref{colvecfun}
@@ -489,6 +531,12 @@ Test whether file exists and is a folder.
 
 @item @ref{pp}
 Alias for prettyprint, for interactive use.
+
+@item @ref{scalarexpand}
+
+
+@item @ref{size2str}
+
 
 @item @ref{vecfun}
 Apply function to vectors in array along arbitrary dimension.
@@ -542,6 +590,21 @@ A do-nothing class just for testing the doco tools.
 * minutes::	Create a 'duration' X hours long, or get the hours in a
 		'duration' X.
 * missing::	Generic auto-converting missing value.
+* mustBeA::	Requires that input is of a given type.
+* mustBeCellstr::	Requires that input is a cellstr.
+* mustBeCharvec::	Requires that input is a char row vector.
+* mustBeFinite::	Requires that input is finite.
+* mustBeInteger::	Requires that input is integer-valued (but not
+		necessarily integer-typed).
+* mustBeMember::	Requires that input is a member of a set of given
+		valid values.
+* mustBeNonempty::	Requires that input is nonempty.
+* mustBeNumeric::	Requires that input is numeric.
+* mustBeReal::	Requires that input is finite.
+* mustBeSameSize::	Requires that the inputs are the same size.
+* mustBeScalar::	
+* mustBeScalarLogical:: Requires that input is a scalar logical.
+* mustBeVector::	Requires that input is a vector or empty.
 * NaT:: “Not-a-Time”.
 * octave.chrono.dummy_function::	A dummy function just for testing
 		the doco tools.
@@ -549,8 +612,10 @@ A do-nothing class just for testing the doco tools.
 		doco tools.
 * pp::	Alias for prettyprint, for interactive use.
 * rmmissing::	Remove missing values.
+* scalarexpand::	
 * seconds::	Create a 'duration' X seconds long, or get the seconds in a
 		'duration' X.
+* size2str::	
 * standardizeMissing::	Insert standard missing values.
 * startsWith::	Test if strings start with a pattern.
 * string::	A string array of Unicode strings.
@@ -2548,6 +2613,213 @@ Returns a logical array the same size as @var{obj}.
 
 @end deftypefn
 
+@node mustBeA
+@subsection mustBeA
+@deftypefn {Function File} {@var{x} =} mustBeA (@var{x}, @var{type})
+@deftypefnx {Function File} {@var{x} =} mustBeA (@var{x}, @var{type}, @var{label})
+
+Requires that input is of a given type.
+
+Raises an error if the input @var{x} is not of type @var{type}, as determined by
+@code{isa (x, type)}.
+
+@var{label} is an optional input that determines how the input will be described in
+error messages. If not supplied, @code{inputname (1)} is used, and if that is
+empty, it falls back to "input".
+
+@end deftypefn
+
+
+@node mustBeCellstr
+@subsection mustBeCellstr
+@deftypefn {Function File} {@code{x} =} mustBeCellstr (@code{x}, @code{label})
+
+Requires that input is a cellstr.
+
+Raises an error if the input @code{x} is not a cellstr (a cell array
+of @code{char} arrays.
+
+TODO: Decide whether to require the contained char arrays be rowvec/empty.
+
+@code{label} is an optional input that determines how the input will be described in
+error messages. If not supplied, @code{inputname (1)} is used, and if that is
+empty, it falls back to "input".
+
+@end deftypefn
+
+
+@node mustBeCharvec
+@subsection mustBeCharvec
+@deftypefn {Function File} {@code{x} =} mustBeCharvec (@code{x}, @code{label})
+
+Requires that input is a char row vector.
+
+Raises an error if the input @code{x} is not a row vector of @code{char}s.
+@code{char} row vectors are Octave's normal representation of single strings.
+(They are what are produced by @code{'...'} string literals.) As a special
+case, 0-by-0 empty chars (what is produced by the string literal @code{''})
+are also considered charvecs.
+
+This does not differentiate between single-quoted and double-quoted strings.
+
+@code{label} is an optional input that determines how the input will be described in
+error messages. If not supplied, @code{inputname (1)} is used, and if that is
+empty, it falls back to "input".
+
+@end deftypefn
+
+
+@node mustBeFinite
+@subsection mustBeFinite
+@deftypefn {Function File} {@code{x} =} mustBeFinite (@code{x}, @code{label})
+
+Requires that input is finite.
+
+Raises an error if the input @code{x} is not finite, as determined by
+@code{isfinite (x)}.
+
+@code{label} is an optional input that determines how the input will be described in
+error messages. If not supplied, @code{inputname (1)} is used, and if that is
+empty, it falls back to "input".
+
+@end deftypefn
+
+
+@node mustBeInteger
+@subsection mustBeInteger
+@deftypefn {Function File} {@code{x} =} mustBeInteger (@code{x}, @code{label})
+
+Requires that input is integer-valued (but not necessarily integer-typed).
+
+Raises an error if any element of the input @code{x} is not a finite,
+real, integer-valued numeric value, as determined by various checks.
+
+@code{label} is an optional input that determines how the input will be described in
+error messages. If not supplied, @code{inputname (1)} is used, and if that is
+empty, it falls back to "input".
+
+@end deftypefn
+
+
+@node mustBeMember
+@subsection mustBeMember
+@deftypefn {Function File} {@code{x} =} mustBeMember (@code{x}, @code{valid}, @code{label})
+
+Requires that input is a member of a set of given valid values.
+
+Raises an error if any element of the input @code{x} is not a member
+of @code{valid}, as determined by @code{ismember (x)}.
+
+Note that char inputs may behave weirdly, because of the interaction between
+chars and cellstrs when calling ismember() on them. But it will probably
+"do what you mean" if you just use it naturally.
+
+@code{label} is an optional input that determines how the input will be described in
+error messages. If not supplied, @code{inputname (1)} is used, and if that is
+empty, it falls back to "input".
+
+@end deftypefn
+
+
+@node mustBeNonempty
+@subsection mustBeNonempty
+@deftypefn {Function File} {@var{x} =} mustBeNonempty (@var{x}, @var{label})
+
+Requires that input is nonempty.
+
+Raises an error if the input @var{x} is not empty, as determined by
+@code{! isempty (x)}.
+
+@var{label} is an optional input that determines how the input will be described in
+error messages. If not supplied, @code{inputname (1)} is used, and if that is
+empty, it falls back to "input".
+
+@end deftypefn
+
+
+@node mustBeNumeric
+@subsection mustBeNumeric
+@deftypefn {Function File} {@code{x} =} mustBeNumeric (@code{x}, @code{label})
+
+Requires that input is numeric.
+
+Raises an error if the input @code{x} is not numeric, as determined by
+@code{isnumeric (x)}.
+
+@code{label} is an optional input that determines how the input will be described in
+error messages. If not supplied, @code{inputname (1)} is used, and if that is
+empty, it falls back to "input".
+
+@end deftypefn
+
+
+@node mustBeReal
+@subsection mustBeReal
+@deftypefn {Function File} {@code{x} =} mustBeReal (@code{x}, @code{label})
+
+Requires that input is finite.
+
+Raises an error if the input @code{x} is not real, as determined by
+@code{isreal (x)}.
+
+@code{label} is an optional input that determines how the input will be described in
+error messages. If not supplied, @code{inputname (1)} is used, and if that is
+empty, it falls back to "input".
+
+@end deftypefn
+
+
+@node mustBeSameSize
+@subsection mustBeSameSize
+@deftypefn {Function File} {[@code{a}, @code{b}] =} mustBeSameSize (@code{a}, @code{b}, @code{labelA}, @code{labelB})
+
+Requires that the inputs are the same size.
+
+Raises an error if the inputs @code{a} and @code{b} are not the same size,
+as determined by @code{isequal (size (a), size (b))}.
+
+@code{labelA} and @code{labelB} are optional inputs that determine how
+the input will be described in error messages. If not supplied,
+@code{inputname (...)} is used, and if that is empty, it falls back to
+"input 1" and "input 2".
+
+@end deftypefn
+
+
+@node mustBeScalar
+@subsection mustBeScalar
+@emph{Not documented}
+@node mustBeScalarLogical
+@subsection mustBeScalarLogical
+@deftypefn {Function File} {@code{x} =} mustBeScalarLogical (@code{x}, @code{label})
+
+Requires that input is a scalar logical.
+
+Raises an error if the input @code{x} is not scalar, as determined by
+@code{isscalar (x) && islogical (x)}.
+
+@code{label} is an optional input that determines how the input will be described in
+error messages. If not supplied, @code{inputname (1)} is used, and if that is
+empty, it falls back to "input".
+
+@end deftypefn
+
+
+@node mustBeVector
+@subsection mustBeVector
+@deftypefn {Function File} {@code{x} =} mustBeVector (@code{x}, @code{label})
+
+Requires that input is a vector or empty.
+
+Raises an error if the input @code{x} is not a row vector and is not 0-by-0 empty.
+
+@code{label} is an optional input that determines how the input will be described in
+error messages. If not supplied, @code{inputname (1)} is used, and if that is
+empty, it falls back to "input".
+
+@end deftypefn
+
+
 @node NaT
 @subsection NaT
 @deftypefn {Function} {@var{out} =} NaT ()
@@ -2688,6 +2960,9 @@ Returns:
 @end deftypefn
 
 
+@node scalarexpand
+@subsection scalarexpand
+@emph{Not documented}
 @node seconds
 @subsection seconds
 @deftypefn {Function File} {@var{out} =} seconds (@var{x})
@@ -2703,6 +2978,9 @@ Returns an array the same size as @var{x}.
 @end deftypefn
 
 
+@node size2str
+@subsection size2str
+@emph{Not documented}
 @node standardizeMissing
 @subsection standardizeMissing
 @deftypefn {Function} {@var{out} =} standardizeMissing (@var{X}, @var{indicator})

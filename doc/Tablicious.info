@@ -502,7 +502,49 @@ File: Tablicious.info,  Node: API by Category,  Next: API Alphabetically,  Up: A
 *note eqn::
      Determine element-wise equality, treating NaNs as equal
 
-8.1.6 Miscellaneous
+8.1.6 Validation
+----------------
+
+*note mustBeA::
+     Requires that input is of a given type.
+
+*note mustBeCellstr::
+     Requires that input is a cellstr.
+
+*note mustBeCharvec::
+     Requires that input is a char row vector.
+
+*note mustBeFinite::
+     Requires that input is finite.
+
+*note mustBeInteger::
+     Requires that input is integer-valued (but not necessarily
+     integer-typed).
+
+*note mustBeMember::
+     Requires that input is a member of a set of given valid values.
+
+*note mustBeNonempty::
+     Requires that input is nonempty.
+
+*note mustBeNumeric::
+     Requires that input is numeric.
+
+*note mustBeReal::
+     Requires that input is finite.
+
+*note mustBeSameSize::
+     Requires that the inputs are the same size.
+
+*note mustBeScalar::
+
+*note mustBeScalarLogical::
+     Requires that input is a scalar logical.
+
+*note mustBeVector::
+     Requires that input is a vector or empty.
+
+8.1.7 Miscellaneous
 -------------------
 
 *note colvecfun::
@@ -520,10 +562,14 @@ File: Tablicious.info,  Node: API by Category,  Next: API Alphabetically,  Up: A
 *note pp::
      Alias for prettyprint, for interactive use.
 
+*note scalarexpand::
+
+*note size2str::
+
 *note vecfun::
      Apply function to vectors in array along arbitrary dimension.
 
-8.1.7 Uncategorized
+8.1.8 Uncategorized
 -------------------
 
 *note octave.chrono.dummy_function::
@@ -575,6 +621,21 @@ File: Tablicious.info,  Node: API Alphabetically,  Prev: API by Category,  Up: A
 * minutes::	Create a ’duration’ X hours long, or get the hours in a
 		’duration’ X.
 * missing::	Generic auto-converting missing value.
+* mustBeA::	Requires that input is of a given type.
+* mustBeCellstr::	Requires that input is a cellstr.
+* mustBeCharvec::	Requires that input is a char row vector.
+* mustBeFinite::	Requires that input is finite.
+* mustBeInteger::	Requires that input is integer-valued (but not
+		necessarily integer-typed).
+* mustBeMember::	Requires that input is a member of a set of given
+		valid values.
+* mustBeNonempty::	Requires that input is nonempty.
+* mustBeNumeric::	Requires that input is numeric.
+* mustBeReal::	Requires that input is finite.
+* mustBeSameSize::	Requires that the inputs are the same size.
+* mustBeScalar::
+* mustBeScalarLogical:: Requires that input is a scalar logical.
+* mustBeVector::	Requires that input is a vector or empty.
 * NaT:: “Not-a-Time”.
 * octave.chrono.dummy_function::	A dummy function just for testing
 		the doco tools.
@@ -582,8 +643,10 @@ File: Tablicious.info,  Node: API Alphabetically,  Prev: API by Category,  Up: A
 		doco tools.
 * pp::	Alias for prettyprint, for interactive use.
 * rmmissing::	Remove missing values.
+* scalarexpand::
 * seconds::	Create a ’duration’ X seconds long, or get the seconds in a
 		’duration’ X.
+* size2str::
 * standardizeMissing::	Insert standard missing values.
 * startsWith::	Test if strings start with a pattern.
 * string::	A string array of Unicode strings.
@@ -2673,7 +2736,7 @@ File: Tablicious.info,  Node: minutes,  Next: missing,  Prev: milliseconds,  Up:
      X.
 
 
-File: Tablicious.info,  Node: missing,  Next: NaT,  Prev: minutes,  Up: API Alphabetically
+File: Tablicious.info,  Node: missing,  Next: mustBeA,  Prev: minutes,  Up: API Alphabetically
 
 8.2.27 missing
 --------------
@@ -2782,9 +2845,240 @@ File: Tablicious.info,  Node: missing.isnannish,  Prev: missing.isnan,  Up: miss
      Returns a logical array the same size as OBJ.
 
 
-File: Tablicious.info,  Node: NaT,  Next: octave.chrono.dummy_function,  Prev: missing,  Up: API Alphabetically
+File: Tablicious.info,  Node: mustBeA,  Next: mustBeCellstr,  Prev: missing,  Up: API Alphabetically
 
-8.2.28 NaT
+8.2.28 mustBeA
+--------------
+
+ -- Function File: X = mustBeA (X, TYPE)
+ -- Function File: X = mustBeA (X, TYPE, LABEL)
+
+     Requires that input is of a given type.
+
+     Raises an error if the input X is not of type TYPE, as determined
+     by ‘isa (x, type)’.
+
+     LABEL is an optional input that determines how the input will be
+     described in error messages.  If not supplied, ‘inputname (1)’ is
+     used, and if that is empty, it falls back to "input".
+
+
+File: Tablicious.info,  Node: mustBeCellstr,  Next: mustBeCharvec,  Prev: mustBeA,  Up: API Alphabetically
+
+8.2.29 mustBeCellstr
+--------------------
+
+ -- Function File: ‘x’ = mustBeCellstr (‘x’, ‘label’)
+
+     Requires that input is a cellstr.
+
+     Raises an error if the input ‘x’ is not a cellstr (a cell array of
+     ‘char’ arrays.
+
+     TODO: Decide whether to require the contained char arrays be
+     rowvec/empty.
+
+     ‘label’ is an optional input that determines how the input will be
+     described in error messages.  If not supplied, ‘inputname (1)’ is
+     used, and if that is empty, it falls back to "input".
+
+
+File: Tablicious.info,  Node: mustBeCharvec,  Next: mustBeFinite,  Prev: mustBeCellstr,  Up: API Alphabetically
+
+8.2.30 mustBeCharvec
+--------------------
+
+ -- Function File: ‘x’ = mustBeCharvec (‘x’, ‘label’)
+
+     Requires that input is a char row vector.
+
+     Raises an error if the input ‘x’ is not a row vector of ‘char’s.
+     ‘char’ row vectors are Octave’s normal representation of single
+     strings.  (They are what are produced by ‘'...'’ string literals.)
+     As a special case, 0-by-0 empty chars (what is produced by the
+     string literal ‘''’) are also considered charvecs.
+
+     This does not differentiate between single-quoted and double-quoted
+     strings.
+
+     ‘label’ is an optional input that determines how the input will be
+     described in error messages.  If not supplied, ‘inputname (1)’ is
+     used, and if that is empty, it falls back to "input".
+
+
+File: Tablicious.info,  Node: mustBeFinite,  Next: mustBeInteger,  Prev: mustBeCharvec,  Up: API Alphabetically
+
+8.2.31 mustBeFinite
+-------------------
+
+ -- Function File: ‘x’ = mustBeFinite (‘x’, ‘label’)
+
+     Requires that input is finite.
+
+     Raises an error if the input ‘x’ is not finite, as determined by
+     ‘isfinite (x)’.
+
+     ‘label’ is an optional input that determines how the input will be
+     described in error messages.  If not supplied, ‘inputname (1)’ is
+     used, and if that is empty, it falls back to "input".
+
+
+File: Tablicious.info,  Node: mustBeInteger,  Next: mustBeMember,  Prev: mustBeFinite,  Up: API Alphabetically
+
+8.2.32 mustBeInteger
+--------------------
+
+ -- Function File: ‘x’ = mustBeInteger (‘x’, ‘label’)
+
+     Requires that input is integer-valued (but not necessarily
+     integer-typed).
+
+     Raises an error if any element of the input ‘x’ is not a finite,
+     real, integer-valued numeric value, as determined by various
+     checks.
+
+     ‘label’ is an optional input that determines how the input will be
+     described in error messages.  If not supplied, ‘inputname (1)’ is
+     used, and if that is empty, it falls back to "input".
+
+
+File: Tablicious.info,  Node: mustBeMember,  Next: mustBeNonempty,  Prev: mustBeInteger,  Up: API Alphabetically
+
+8.2.33 mustBeMember
+-------------------
+
+ -- Function File: ‘x’ = mustBeMember (‘x’, ‘valid’, ‘label’)
+
+     Requires that input is a member of a set of given valid values.
+
+     Raises an error if any element of the input ‘x’ is not a member of
+     ‘valid’, as determined by ‘ismember (x)’.
+
+     Note that char inputs may behave weirdly, because of the
+     interaction between chars and cellstrs when calling ismember() on
+     them.  But it will probably "do what you mean" if you just use it
+     naturally.
+
+     ‘label’ is an optional input that determines how the input will be
+     described in error messages.  If not supplied, ‘inputname (1)’ is
+     used, and if that is empty, it falls back to "input".
+
+
+File: Tablicious.info,  Node: mustBeNonempty,  Next: mustBeNumeric,  Prev: mustBeMember,  Up: API Alphabetically
+
+8.2.34 mustBeNonempty
+---------------------
+
+ -- Function File: X = mustBeNonempty (X, LABEL)
+
+     Requires that input is nonempty.
+
+     Raises an error if the input X is not empty, as determined by ‘!
+     isempty (x)’.
+
+     LABEL is an optional input that determines how the input will be
+     described in error messages.  If not supplied, ‘inputname (1)’ is
+     used, and if that is empty, it falls back to "input".
+
+
+File: Tablicious.info,  Node: mustBeNumeric,  Next: mustBeReal,  Prev: mustBeNonempty,  Up: API Alphabetically
+
+8.2.35 mustBeNumeric
+--------------------
+
+ -- Function File: ‘x’ = mustBeNumeric (‘x’, ‘label’)
+
+     Requires that input is numeric.
+
+     Raises an error if the input ‘x’ is not numeric, as determined by
+     ‘isnumeric (x)’.
+
+     ‘label’ is an optional input that determines how the input will be
+     described in error messages.  If not supplied, ‘inputname (1)’ is
+     used, and if that is empty, it falls back to "input".
+
+
+File: Tablicious.info,  Node: mustBeReal,  Next: mustBeSameSize,  Prev: mustBeNumeric,  Up: API Alphabetically
+
+8.2.36 mustBeReal
+-----------------
+
+ -- Function File: ‘x’ = mustBeReal (‘x’, ‘label’)
+
+     Requires that input is finite.
+
+     Raises an error if the input ‘x’ is not real, as determined by
+     ‘isreal (x)’.
+
+     ‘label’ is an optional input that determines how the input will be
+     described in error messages.  If not supplied, ‘inputname (1)’ is
+     used, and if that is empty, it falls back to "input".
+
+
+File: Tablicious.info,  Node: mustBeSameSize,  Next: mustBeScalar,  Prev: mustBeReal,  Up: API Alphabetically
+
+8.2.37 mustBeSameSize
+---------------------
+
+ -- Function File: [‘a’, ‘b’] = mustBeSameSize (‘a’, ‘b’, ‘labelA’,
+          ‘labelB’)
+
+     Requires that the inputs are the same size.
+
+     Raises an error if the inputs ‘a’ and ‘b’ are not the same size, as
+     determined by ‘isequal (size (a), size (b))’.
+
+     ‘labelA’ and ‘labelB’ are optional inputs that determine how the
+     input will be described in error messages.  If not supplied,
+     ‘inputname (...)’ is used, and if that is empty, it falls back to
+     "input 1" and "input 2".
+
+
+File: Tablicious.info,  Node: mustBeScalar,  Next: mustBeScalarLogical,  Prev: mustBeSameSize,  Up: API Alphabetically
+
+8.2.38 mustBeScalar
+-------------------
+
+_Not documented_
+
+
+File: Tablicious.info,  Node: mustBeScalarLogical,  Next: mustBeVector,  Prev: mustBeScalar,  Up: API Alphabetically
+
+8.2.39 mustBeScalarLogical
+--------------------------
+
+ -- Function File: ‘x’ = mustBeScalarLogical (‘x’, ‘label’)
+
+     Requires that input is a scalar logical.
+
+     Raises an error if the input ‘x’ is not scalar, as determined by
+     ‘isscalar (x) && islogical (x)’.
+
+     ‘label’ is an optional input that determines how the input will be
+     described in error messages.  If not supplied, ‘inputname (1)’ is
+     used, and if that is empty, it falls back to "input".
+
+
+File: Tablicious.info,  Node: mustBeVector,  Next: NaT,  Prev: mustBeScalarLogical,  Up: API Alphabetically
+
+8.2.40 mustBeVector
+-------------------
+
+ -- Function File: ‘x’ = mustBeVector (‘x’, ‘label’)
+
+     Requires that input is a vector or empty.
+
+     Raises an error if the input ‘x’ is not a row vector and is not
+     0-by-0 empty.
+
+     ‘label’ is an optional input that determines how the input will be
+     described in error messages.  If not supplied, ‘inputname (1)’ is
+     used, and if that is empty, it falls back to "input".
+
+
+File: Tablicious.info,  Node: NaT,  Next: octave.chrono.dummy_function,  Prev: mustBeVector,  Up: API Alphabetically
+
+8.2.41 NaT
 ----------
 
  -- Function: OUT = NaT ()
@@ -2804,7 +3098,7 @@ File: Tablicious.info,  Node: NaT,  Next: octave.chrono.dummy_function,  Prev: m
 
 File: Tablicious.info,  Node: octave.chrono.dummy_function,  Next: octave.chrono.DummyClass,  Prev: NaT,  Up: API Alphabetically
 
-8.2.29 octave.chrono.dummy_function
+8.2.42 octave.chrono.dummy_function
 -----------------------------------
 
  -- Function: OUT = dummy_function (X)
@@ -2819,7 +3113,7 @@ File: Tablicious.info,  Node: octave.chrono.dummy_function,  Next: octave.chrono
 
 File: Tablicious.info,  Node: octave.chrono.DummyClass,  Next: pp,  Prev: octave.chrono.dummy_function,  Up: API Alphabetically
 
-8.2.30 octave.chrono.DummyClass
+8.2.43 octave.chrono.DummyClass
 -------------------------------
 
  -- Class: DummyClass
@@ -2848,7 +3142,7 @@ File: Tablicious.info,  Node: octave.chrono.DummyClass,  Next: pp,  Prev: octave
 
 File: Tablicious.info,  Node: octave.chrono.DummyClass.DummyClass,  Next: octave.chrono.DummyClass.foo,  Up: octave.chrono.DummyClass
 
-8.2.30.1 octave.chrono.DummyClass.DummyClass
+8.2.43.1 octave.chrono.DummyClass.DummyClass
 ............................................
 
  -- Constructor: OBJ = octave.chrono.DummyClass ()
@@ -2862,7 +3156,7 @@ File: Tablicious.info,  Node: octave.chrono.DummyClass.DummyClass,  Next: octave
 
 File: Tablicious.info,  Node: octave.chrono.DummyClass.foo,  Next: octave.chrono.DummyClass.bar,  Prev: octave.chrono.DummyClass.DummyClass,  Up: octave.chrono.DummyClass
 
-8.2.30.2 octave.chrono.DummyClass.foo
+8.2.43.2 octave.chrono.DummyClass.foo
 .....................................
 
  -- Method: OUT = foo (OBJ)
@@ -2877,7 +3171,7 @@ File: Tablicious.info,  Node: octave.chrono.DummyClass.foo,  Next: octave.chrono
 
 File: Tablicious.info,  Node: octave.chrono.DummyClass.bar,  Prev: octave.chrono.DummyClass.foo,  Up: octave.chrono.DummyClass
 
-8.2.30.3 octave.chrono.DummyClass.bar
+8.2.43.3 octave.chrono.DummyClass.bar
 .....................................
 
  -- Method: OUT = bar (OBJ)
@@ -2892,7 +3186,7 @@ File: Tablicious.info,  Node: octave.chrono.DummyClass.bar,  Prev: octave.chrono
 
 File: Tablicious.info,  Node: pp,  Next: rmmissing,  Prev: octave.chrono.DummyClass,  Up: API Alphabetically
 
-8.2.31 pp
+8.2.44 pp
 ---------
 
  -- Function: pp (X)
@@ -2911,9 +3205,9 @@ File: Tablicious.info,  Node: pp,  Next: rmmissing,  Prev: octave.chrono.DummyCl
      the command line.
 
 
-File: Tablicious.info,  Node: rmmissing,  Next: seconds,  Prev: pp,  Up: API Alphabetically
+File: Tablicious.info,  Node: rmmissing,  Next: scalarexpand,  Prev: pp,  Up: API Alphabetically
 
-8.2.32 rmmissing
+8.2.45 rmmissing
 ----------------
 
  -- Function: [OUT, TF] = rmmissing (X)
@@ -2939,9 +3233,17 @@ File: Tablicious.info,  Node: rmmissing,  Next: seconds,  Prev: pp,  Up: API Alp
      rows, or columns were removed
 
 
-File: Tablicious.info,  Node: seconds,  Next: standardizeMissing,  Prev: rmmissing,  Up: API Alphabetically
+File: Tablicious.info,  Node: scalarexpand,  Next: seconds,  Prev: rmmissing,  Up: API Alphabetically
 
-8.2.33 seconds
+8.2.46 scalarexpand
+-------------------
+
+_Not documented_
+
+
+File: Tablicious.info,  Node: seconds,  Next: size2str,  Prev: scalarexpand,  Up: API Alphabetically
+
+8.2.47 seconds
 --------------
 
  -- Function File: OUT = seconds (X)
@@ -2957,9 +3259,17 @@ File: Tablicious.info,  Node: seconds,  Next: standardizeMissing,  Prev: rmmissi
      Returns an array the same size as X.
 
 
-File: Tablicious.info,  Node: standardizeMissing,  Next: startsWith,  Prev: seconds,  Up: API Alphabetically
+File: Tablicious.info,  Node: size2str,  Next: standardizeMissing,  Prev: seconds,  Up: API Alphabetically
 
-8.2.34 standardizeMissing
+8.2.48 size2str
+---------------
+
+_Not documented_
+
+
+File: Tablicious.info,  Node: standardizeMissing,  Next: startsWith,  Prev: size2str,  Up: API Alphabetically
+
+8.2.49 standardizeMissing
 -------------------------
 
  -- Function: OUT = standardizeMissing (X, INDICATOR)
@@ -2981,7 +3291,7 @@ File: Tablicious.info,  Node: standardizeMissing,  Next: startsWith,  Prev: seco
 
 File: Tablicious.info,  Node: startsWith,  Next: string,  Prev: standardizeMissing,  Up: API Alphabetically
 
-8.2.35 startsWith
+8.2.50 startsWith
 -----------------
 
  -- Function: OUT = startsWith (STR, PATTERN)
@@ -3005,7 +3315,7 @@ File: Tablicious.info,  Node: startsWith,  Next: string,  Prev: standardizeMissi
 
 File: Tablicious.info,  Node: string,  Next: struct2table,  Prev: startsWith,  Up: API Alphabetically
 
-8.2.36 string
+8.2.51 string
 -------------
 
  -- Class: string
@@ -3096,7 +3406,7 @@ File: Tablicious.info,  Node: string,  Next: struct2table,  Prev: startsWith,  U
 
 File: Tablicious.info,  Node: string.string,  Next: string.isstring,  Up: string
 
-8.2.36.1 string.string
+8.2.51.1 string.string
 ......................
 
  -- Constructor: OBJ = string ()
@@ -3116,7 +3426,7 @@ File: Tablicious.info,  Node: string.string,  Next: string.isstring,  Up: string
 
 File: Tablicious.info,  Node: string.isstring,  Next: string.dispstrs,  Prev: string.string,  Up: string
 
-8.2.36.2 string.isstring
+8.2.51.2 string.isstring
 ........................
 
  -- Method: OUT = isstring (OBJ)
@@ -3130,7 +3440,7 @@ File: Tablicious.info,  Node: string.isstring,  Next: string.dispstrs,  Prev: st
 
 File: Tablicious.info,  Node: string.dispstrs,  Next: string.ismissing,  Prev: string.isstring,  Up: string
 
-8.2.36.3 string.dispstrs
+8.2.51.3 string.dispstrs
 ........................
 
  -- Method: OUT = dispstrs (OBJ)
@@ -3147,7 +3457,7 @@ File: Tablicious.info,  Node: string.dispstrs,  Next: string.ismissing,  Prev: s
 
 File: Tablicious.info,  Node: string.ismissing,  Next: string.isnannish,  Prev: string.dispstrs,  Up: string
 
-8.2.36.4 string.ismissing
+8.2.51.4 string.ismissing
 .........................
 
  -- Method: OUT = ismissing (OBJ)
@@ -3163,7 +3473,7 @@ File: Tablicious.info,  Node: string.ismissing,  Next: string.isnannish,  Prev: 
 
 File: Tablicious.info,  Node: string.isnannish,  Next: string.cellstr,  Prev: string.ismissing,  Up: string
 
-8.2.36.5 string.isnannish
+8.2.51.5 string.isnannish
 .........................
 
  -- Method: OUT = isnannish (OBJ)
@@ -3178,7 +3488,7 @@ File: Tablicious.info,  Node: string.isnannish,  Next: string.cellstr,  Prev: st
 
 File: Tablicious.info,  Node: string.cellstr,  Next: string.cell,  Prev: string.isnannish,  Up: string
 
-8.2.36.6 string.cellstr
+8.2.51.6 string.cellstr
 .......................
 
  -- Method: OUT = cellstr (OBJ)
@@ -3192,7 +3502,7 @@ File: Tablicious.info,  Node: string.cellstr,  Next: string.cell,  Prev: string.
 
 File: Tablicious.info,  Node: string.cell,  Next: string.char,  Prev: string.cellstr,  Up: string
 
-8.2.36.7 string.cell
+8.2.51.7 string.cell
 ....................
 
  -- Method: OUT = cell (OBJ)
@@ -3210,7 +3520,7 @@ File: Tablicious.info,  Node: string.cell,  Next: string.char,  Prev: string.cel
 
 File: Tablicious.info,  Node: string.char,  Next: string.encode,  Prev: string.cell,  Up: string
 
-8.2.36.8 string.char
+8.2.51.8 string.char
 ....................
 
  -- Method: OUT = char (OBJ)
@@ -3229,7 +3539,7 @@ File: Tablicious.info,  Node: string.char,  Next: string.encode,  Prev: string.c
 
 File: Tablicious.info,  Node: string.encode,  Next: string.strlength_bytes,  Prev: string.char,  Up: string
 
-8.2.36.9 string.encode
+8.2.51.9 string.encode
 ......................
 
  -- Method: OUT = encode (OBJ, CHARSETNAME)
@@ -3248,7 +3558,7 @@ File: Tablicious.info,  Node: string.encode,  Next: string.strlength_bytes,  Pre
 
 File: Tablicious.info,  Node: string.strlength_bytes,  Next: string.strlength,  Prev: string.encode,  Up: string
 
-8.2.36.10 string.strlength_bytes
+8.2.51.10 string.strlength_bytes
 ................................
 
  -- Method: OUT = strlength_bytes (OBJ)
@@ -3268,7 +3578,7 @@ File: Tablicious.info,  Node: string.strlength_bytes,  Next: string.strlength,  
 
 File: Tablicious.info,  Node: string.strlength,  Next: string.reverse_bytes,  Prev: string.strlength_bytes,  Up: string
 
-8.2.36.11 string.strlength
+8.2.51.11 string.strlength
 ..........................
 
  -- Method: OUT = strlength (OBJ)
@@ -3287,7 +3597,7 @@ File: Tablicious.info,  Node: string.strlength,  Next: string.reverse_bytes,  Pr
 
 File: Tablicious.info,  Node: string.reverse_bytes,  Next: string.reverse,  Prev: string.strlength,  Up: string
 
-8.2.36.12 string.reverse_bytes
+8.2.51.12 string.reverse_bytes
 ..............................
 
  -- Method: OUT = reverse_bytes (OBJ)
@@ -3311,7 +3621,7 @@ File: Tablicious.info,  Node: string.reverse_bytes,  Next: string.reverse,  Prev
 
 File: Tablicious.info,  Node: string.reverse,  Next: string.strcat,  Prev: string.reverse_bytes,  Up: string
 
-8.2.36.13 string.reverse
+8.2.51.13 string.reverse
 ........................
 
  -- Method: OUT = reverse (OBJ)
@@ -3327,7 +3637,7 @@ File: Tablicious.info,  Node: string.reverse,  Next: string.strcat,  Prev: strin
 
 File: Tablicious.info,  Node: string.strcat,  Next: string.lower,  Prev: string.reverse,  Up: string
 
-8.2.36.14 string.strcat
+8.2.51.14 string.strcat
 .......................
 
  -- Method: OUT = strcat (VARARGIN)
@@ -3347,7 +3657,7 @@ File: Tablicious.info,  Node: string.strcat,  Next: string.lower,  Prev: string.
 
 File: Tablicious.info,  Node: string.lower,  Next: string.upper,  Prev: string.strcat,  Up: string
 
-8.2.36.15 string.lower
+8.2.51.15 string.lower
 ......................
 
  -- Method: OUT = lower (OBJ)
@@ -3366,7 +3676,7 @@ File: Tablicious.info,  Node: string.lower,  Next: string.upper,  Prev: string.s
 
 File: Tablicious.info,  Node: string.upper,  Next: string.erase,  Prev: string.lower,  Up: string
 
-8.2.36.16 string.upper
+8.2.51.16 string.upper
 ......................
 
  -- Method: OUT = upper (OBJ)
@@ -3385,7 +3695,7 @@ File: Tablicious.info,  Node: string.upper,  Next: string.erase,  Prev: string.l
 
 File: Tablicious.info,  Node: string.erase,  Next: string.strrep,  Prev: string.upper,  Up: string
 
-8.2.36.17 string.erase
+8.2.51.17 string.erase
 ......................
 
  -- Method: OUT = erase (OBJ, MATCH)
@@ -3399,7 +3709,7 @@ File: Tablicious.info,  Node: string.erase,  Next: string.strrep,  Prev: string.
 
 File: Tablicious.info,  Node: string.strrep,  Next: string.strfind,  Prev: string.erase,  Up: string
 
-8.2.36.18 string.strrep
+8.2.51.18 string.strrep
 .......................
 
  -- Method: OUT = strrep (OBJ, MATCH, REPLACEMENT)
@@ -3419,7 +3729,7 @@ File: Tablicious.info,  Node: string.strrep,  Next: string.strfind,  Prev: strin
 
 File: Tablicious.info,  Node: string.strfind,  Next: string.regexprep,  Prev: string.strrep,  Up: string
 
-8.2.36.19 string.strfind
+8.2.51.19 string.strfind
 ........................
 
  -- Method: OUT = strfind (OBJ, PATTERN)
@@ -3437,7 +3747,7 @@ File: Tablicious.info,  Node: string.strfind,  Next: string.regexprep,  Prev: st
 
 File: Tablicious.info,  Node: string.regexprep,  Next: string.strcmp,  Prev: string.strfind,  Up: string
 
-8.2.36.20 string.regexprep
+8.2.51.20 string.regexprep
 ..........................
 
  -- Method: OUT = regexprep (OBJ, PAT, REPSTR)
@@ -3453,7 +3763,7 @@ File: Tablicious.info,  Node: string.regexprep,  Next: string.strcmp,  Prev: str
 
 File: Tablicious.info,  Node: string.strcmp,  Next: string.cmp,  Prev: string.regexprep,  Up: string
 
-8.2.36.21 string.strcmp
+8.2.51.21 string.strcmp
 .......................
 
  -- Method: OUT = strcmp (A, B)
@@ -3474,7 +3784,7 @@ File: Tablicious.info,  Node: string.strcmp,  Next: string.cmp,  Prev: string.re
 
 File: Tablicious.info,  Node: string.cmp,  Next: string.missing,  Prev: string.strcmp,  Up: string
 
-8.2.36.22 string.cmp
+8.2.51.22 string.cmp
 ....................
 
  -- Method: [OUT, OUTA, OUTB] = cmp (A, B)
@@ -3500,7 +3810,7 @@ File: Tablicious.info,  Node: string.cmp,  Next: string.missing,  Prev: string.s
 
 File: Tablicious.info,  Node: string.missing,  Next: string.decode,  Prev: string.cmp,  Up: string
 
-8.2.36.23 string.missing
+8.2.51.23 string.missing
 ........................
 
  -- Static Method: OUT = string.missing (SZ)
@@ -3515,7 +3825,7 @@ File: Tablicious.info,  Node: string.missing,  Next: string.decode,  Prev: strin
 
 File: Tablicious.info,  Node: string.decode,  Prev: string.missing,  Up: string
 
-8.2.36.24 string.decode
+8.2.51.24 string.decode
 .......................
 
  -- Static Method: OUT = string.decode (BYTES, CHARSETNAME)
@@ -3532,7 +3842,7 @@ File: Tablicious.info,  Node: string.decode,  Prev: string.missing,  Up: string
 
 File: Tablicious.info,  Node: struct2table,  Next: table,  Prev: string,  Up: API Alphabetically
 
-8.2.37 struct2table
+8.2.52 struct2table
 -------------------
 
  -- Function: OUT = struct2table (S)
@@ -3551,7 +3861,7 @@ File: Tablicious.info,  Node: struct2table,  Next: table,  Prev: string,  Up: AP
 
 File: Tablicious.info,  Node: table,  Next: tableOuterFillValue,  Prev: struct2table,  Up: API Alphabetically
 
-8.2.38 table
+8.2.53 table
 ------------
 
  -- Class: table
@@ -3651,7 +3961,7 @@ File: Tablicious.info,  Node: table,  Next: tableOuterFillValue,  Prev: struct2t
 
 File: Tablicious.info,  Node: table.table,  Next: table.summary,  Up: table
 
-8.2.38.1 table.table
+8.2.53.1 table.table
 ....................
 
  -- Constructor: OBJ = table ()
@@ -3681,7 +3991,7 @@ File: Tablicious.info,  Node: table.table,  Next: table.summary,  Up: table
 
 File: Tablicious.info,  Node: table.summary,  Next: table.prettyprint,  Prev: table.table,  Up: table
 
-8.2.38.2 table.summary
+8.2.53.2 table.summary
 ......................
 
  -- Method: summary (OBJ)
@@ -3697,7 +4007,7 @@ File: Tablicious.info,  Node: table.summary,  Next: table.prettyprint,  Prev: ta
 
 File: Tablicious.info,  Node: table.prettyprint,  Next: table.table2cell,  Prev: table.summary,  Up: table
 
-8.2.38.3 table.prettyprint
+8.2.53.3 table.prettyprint
 ..........................
 
  -- Method: prettyprint (OBJ)
@@ -3711,7 +4021,7 @@ File: Tablicious.info,  Node: table.prettyprint,  Next: table.table2cell,  Prev:
 
 File: Tablicious.info,  Node: table.table2cell,  Next: table.table2struct,  Prev: table.prettyprint,  Up: table
 
-8.2.38.4 table.table2cell
+8.2.53.4 table.table2cell
 .........................
 
  -- Method: C = table2cell (OBJ)
@@ -3726,7 +4036,7 @@ File: Tablicious.info,  Node: table.table2cell,  Next: table.table2struct,  Prev
 
 File: Tablicious.info,  Node: table.table2struct,  Next: table.table2array,  Prev: table.table2cell,  Up: table
 
-8.2.38.5 table.table2struct
+8.2.53.5 table.table2struct
 ...........................
 
  -- Method: S = table2struct (OBJ)
@@ -3744,7 +4054,7 @@ File: Tablicious.info,  Node: table.table2struct,  Next: table.table2array,  Pre
 
 File: Tablicious.info,  Node: table.table2array,  Next: table.varnames,  Prev: table.table2struct,  Up: table
 
-8.2.38.6 table.table2array
+8.2.53.6 table.table2array
 ..........................
 
  -- Method: S = table2struct (OBJ)
@@ -3754,7 +4064,7 @@ File: Tablicious.info,  Node: table.table2array,  Next: table.varnames,  Prev: t
 
 File: Tablicious.info,  Node: table.varnames,  Next: table.istable,  Prev: table.table2array,  Up: table
 
-8.2.38.7 table.varnames
+8.2.53.7 table.varnames
 .......................
 
  -- Method: OUT = varnames (OBJ)
@@ -3766,7 +4076,7 @@ File: Tablicious.info,  Node: table.varnames,  Next: table.istable,  Prev: table
 
 File: Tablicious.info,  Node: table.istable,  Next: table.size,  Prev: table.varnames,  Up: table
 
-8.2.38.8 table.istable
+8.2.53.8 table.istable
 ......................
 
  -- Method: TF = istable (OBJ)
@@ -3776,7 +4086,7 @@ File: Tablicious.info,  Node: table.istable,  Next: table.size,  Prev: table.var
 
 File: Tablicious.info,  Node: table.size,  Next: table.length,  Prev: table.istable,  Up: table
 
-8.2.38.9 table.size
+8.2.53.9 table.size
 ...................
 
  -- Method: SZ = size (OBJ)
@@ -3789,7 +4099,7 @@ File: Tablicious.info,  Node: table.size,  Next: table.length,  Prev: table.ista
 
 File: Tablicious.info,  Node: table.length,  Next: table.ndims,  Prev: table.size,  Up: table
 
-8.2.38.10 table.length
+8.2.53.10 table.length
 ......................
 
  -- Method: OUT = length (OBJ)
@@ -3801,7 +4111,7 @@ File: Tablicious.info,  Node: table.length,  Next: table.ndims,  Prev: table.siz
 
 File: Tablicious.info,  Node: table.ndims,  Next: table.squeeze,  Prev: table.length,  Up: table
 
-8.2.38.11 table.ndims
+8.2.53.11 table.ndims
 .....................
 
  -- Method: OUT = ndims (OBJ)
@@ -3813,7 +4123,7 @@ File: Tablicious.info,  Node: table.ndims,  Next: table.squeeze,  Prev: table.le
 
 File: Tablicious.info,  Node: table.squeeze,  Next: table.sizeof,  Prev: table.ndims,  Up: table
 
-8.2.38.12 table.squeeze
+8.2.53.12 table.squeeze
 .......................
 
  -- Method: OBJ = squeeze (OBJ)
@@ -3826,7 +4136,7 @@ File: Tablicious.info,  Node: table.squeeze,  Next: table.sizeof,  Prev: table.n
 
 File: Tablicious.info,  Node: table.sizeof,  Next: table.height,  Prev: table.squeeze,  Up: table
 
-8.2.38.13 table.sizeof
+8.2.53.13 table.sizeof
 ......................
 
  -- Method: OUT = sizeof (OBJ)
@@ -3840,7 +4150,7 @@ File: Tablicious.info,  Node: table.sizeof,  Next: table.height,  Prev: table.sq
 
 File: Tablicious.info,  Node: table.height,  Next: table.rows,  Prev: table.sizeof,  Up: table
 
-8.2.38.14 table.height
+8.2.53.14 table.height
 ......................
 
  -- Method: OUT = height (OBJ)
@@ -3850,7 +4160,7 @@ File: Tablicious.info,  Node: table.height,  Next: table.rows,  Prev: table.size
 
 File: Tablicious.info,  Node: table.rows,  Next: table.width,  Prev: table.height,  Up: table
 
-8.2.38.15 table.rows
+8.2.53.15 table.rows
 ....................
 
  -- Method: OUT = rows (OBJ)
@@ -3860,7 +4170,7 @@ File: Tablicious.info,  Node: table.rows,  Next: table.width,  Prev: table.heigh
 
 File: Tablicious.info,  Node: table.width,  Next: table.columns,  Prev: table.rows,  Up: table
 
-8.2.38.16 table.width
+8.2.53.16 table.width
 .....................
 
  -- Method: OUT = width (OBJ)
@@ -3873,7 +4183,7 @@ File: Tablicious.info,  Node: table.width,  Next: table.columns,  Prev: table.ro
 
 File: Tablicious.info,  Node: table.columns,  Next: table.numel,  Prev: table.width,  Up: table
 
-8.2.38.17 table.columns
+8.2.53.17 table.columns
 .......................
 
  -- Method: OUT = columns (OBJ)
@@ -3886,7 +4196,7 @@ File: Tablicious.info,  Node: table.columns,  Next: table.numel,  Prev: table.wi
 
 File: Tablicious.info,  Node: table.numel,  Next: table.isempty,  Prev: table.columns,  Up: table
 
-8.2.38.18 table.numel
+8.2.53.18 table.numel
 .....................
 
  -- Method: OUT = numel (OBJ)
@@ -3903,7 +4213,7 @@ File: Tablicious.info,  Node: table.numel,  Next: table.isempty,  Prev: table.co
 
 File: Tablicious.info,  Node: table.isempty,  Next: table.ismatrix,  Prev: table.numel,  Up: table
 
-8.2.38.19 table.isempty
+8.2.53.19 table.isempty
 .......................
 
  -- Method: OUT = isempty (OBJ)
@@ -3916,7 +4226,7 @@ File: Tablicious.info,  Node: table.isempty,  Next: table.ismatrix,  Prev: table
 
 File: Tablicious.info,  Node: table.ismatrix,  Next: table.isrow,  Prev: table.isempty,  Up: table
 
-8.2.38.20 table.ismatrix
+8.2.53.20 table.ismatrix
 ........................
 
  -- Method: OUT = ismatrix (OBJ)
@@ -3928,7 +4238,7 @@ File: Tablicious.info,  Node: table.ismatrix,  Next: table.isrow,  Prev: table.i
 
 File: Tablicious.info,  Node: table.isrow,  Next: table.iscol,  Prev: table.ismatrix,  Up: table
 
-8.2.38.21 table.isrow
+8.2.53.21 table.isrow
 .....................
 
  -- Method: OUT = isrow (OBJ)
@@ -3938,7 +4248,7 @@ File: Tablicious.info,  Node: table.isrow,  Next: table.iscol,  Prev: table.isma
 
 File: Tablicious.info,  Node: table.iscol,  Next: table.isvector,  Prev: table.isrow,  Up: table
 
-8.2.38.22 table.iscol
+8.2.53.22 table.iscol
 .....................
 
  -- Method: OUT = iscol (OBJ)
@@ -3951,7 +4261,7 @@ File: Tablicious.info,  Node: table.iscol,  Next: table.isvector,  Prev: table.i
 
 File: Tablicious.info,  Node: table.isvector,  Next: table.isscalar,  Prev: table.iscol,  Up: table
 
-8.2.38.23 table.isvector
+8.2.53.23 table.isvector
 ........................
 
  -- Method: OUT = isvector (OBJ)
@@ -3961,7 +4271,7 @@ File: Tablicious.info,  Node: table.isvector,  Next: table.isscalar,  Prev: tabl
 
 File: Tablicious.info,  Node: table.isscalar,  Next: table.hasrownames,  Prev: table.isvector,  Up: table
 
-8.2.38.24 table.isscalar
+8.2.53.24 table.isscalar
 ........................
 
  -- Method: OUT = isscalar (OBJ)
@@ -3971,7 +4281,7 @@ File: Tablicious.info,  Node: table.isscalar,  Next: table.hasrownames,  Prev: t
 
 File: Tablicious.info,  Node: table.hasrownames,  Next: table.vertcat,  Prev: table.isscalar,  Up: table
 
-8.2.38.25 table.hasrownames
+8.2.53.25 table.hasrownames
 ...........................
 
  -- Method: OUT = hasrownames (OBJ)
@@ -3981,7 +4291,7 @@ File: Tablicious.info,  Node: table.hasrownames,  Next: table.vertcat,  Prev: ta
 
 File: Tablicious.info,  Node: table.vertcat,  Next: table.horzcat,  Prev: table.hasrownames,  Up: table
 
-8.2.38.26 table.vertcat
+8.2.53.26 table.vertcat
 .......................
 
  -- Method: OUT = vertcat (VARARGIN)
@@ -3999,7 +4309,7 @@ File: Tablicious.info,  Node: table.vertcat,  Next: table.horzcat,  Prev: table.
 
 File: Tablicious.info,  Node: table.horzcat,  Next: table.repmat,  Prev: table.vertcat,  Up: table
 
-8.2.38.27 table.horzcat
+8.2.53.27 table.horzcat
 .......................
 
  -- Method: OUT = horzcat (VARARGIN)
@@ -4017,7 +4327,7 @@ File: Tablicious.info,  Node: table.horzcat,  Next: table.repmat,  Prev: table.v
 
 File: Tablicious.info,  Node: table.repmat,  Next: table.setVariableNames,  Prev: table.horzcat,  Up: table
 
-8.2.38.28 table.repmat
+8.2.53.28 table.repmat
 ......................
 
  -- Method: OUT = repmat (OBJ, SZ)
@@ -4035,7 +4345,7 @@ File: Tablicious.info,  Node: table.repmat,  Next: table.setVariableNames,  Prev
 
 File: Tablicious.info,  Node: table.setVariableNames,  Next: table.setRowNames,  Prev: table.repmat,  Up: table
 
-8.2.38.29 table.setVariableNames
+8.2.53.29 table.setVariableNames
 ................................
 
  -- Method: OUT = setVariableNames (OBJ, NAMES)
@@ -4050,7 +4360,7 @@ File: Tablicious.info,  Node: table.setVariableNames,  Next: table.setRowNames, 
 
 File: Tablicious.info,  Node: table.setRowNames,  Next: table.resolveVarRef,  Prev: table.setVariableNames,  Up: table
 
-8.2.38.30 table.setRowNames
+8.2.53.30 table.setRowNames
 ...........................
 
  -- Method: OUT = setRowNames (OBJ, NAMES)
@@ -4065,7 +4375,7 @@ File: Tablicious.info,  Node: table.setRowNames,  Next: table.resolveVarRef,  Pr
 
 File: Tablicious.info,  Node: table.resolveVarRef,  Next: table.subsetRows,  Prev: table.setRowNames,  Up: table
 
-8.2.38.31 table.resolveVarRef
+8.2.53.31 table.resolveVarRef
 .............................
 
  -- Method: [IXVAR, VARNAMES] = resolveVarREf (OBJ, VARREF)
@@ -4084,7 +4394,7 @@ File: Tablicious.info,  Node: table.resolveVarRef,  Next: table.subsetRows,  Pre
 
 File: Tablicious.info,  Node: table.subsetRows,  Next: table.subsetvars,  Prev: table.resolveVarRef,  Up: table
 
-8.2.38.32 table.subsetRows
+8.2.53.32 table.subsetRows
 ..........................
 
  -- Method: OUT = subsetRows (OBJ, IXROWS)
@@ -4098,7 +4408,7 @@ File: Tablicious.info,  Node: table.subsetRows,  Next: table.subsetvars,  Prev: 
 
 File: Tablicious.info,  Node: table.subsetvars,  Next: table.removevars,  Prev: table.subsetRows,  Up: table
 
-8.2.38.33 table.subsetvars
+8.2.53.33 table.subsetvars
 ..........................
 
  -- Method: OUT = subsetvars (OBJ, IXVARS)
@@ -4116,7 +4426,7 @@ File: Tablicious.info,  Node: table.subsetvars,  Next: table.removevars,  Prev: 
 
 File: Tablicious.info,  Node: table.removevars,  Next: table.movevars,  Prev: table.subsetvars,  Up: table
 
-8.2.38.34 table.removevars
+8.2.53.34 table.removevars
 ..........................
 
  -- Method: OUT = removevars (OBJ, VARS)
@@ -4131,7 +4441,7 @@ File: Tablicious.info,  Node: table.removevars,  Next: table.movevars,  Prev: ta
 
 File: Tablicious.info,  Node: table.movevars,  Next: table.setvar,  Prev: table.removevars,  Up: table
 
-8.2.38.35 table.movevars
+8.2.53.35 table.movevars
 ........................
 
  -- Method: OUT = movevars (OBJ, VARS, RELLOCATION, LOCATION)
@@ -4153,7 +4463,7 @@ File: Tablicious.info,  Node: table.movevars,  Next: table.setvar,  Prev: table.
 
 File: Tablicious.info,  Node: table.setvar,  Next: table.convertvars,  Prev: table.movevars,  Up: table
 
-8.2.38.36 table.setvar
+8.2.53.36 table.setvar
 ......................
 
  -- Method: OUT = setvar (OBJ, VARREF, VALUE)
@@ -4166,7 +4476,7 @@ File: Tablicious.info,  Node: table.setvar,  Next: table.convertvars,  Prev: tab
 
 File: Tablicious.info,  Node: table.convertvars,  Next: table.head,  Prev: table.setvar,  Up: table
 
-8.2.38.37 table.convertvars
+8.2.53.37 table.convertvars
 ...........................
 
  -- Method: OUT = convertvars (OBJ, VARS, DATATYPE)
@@ -4193,7 +4503,7 @@ File: Tablicious.info,  Node: table.convertvars,  Next: table.head,  Prev: table
 
 File: Tablicious.info,  Node: table.head,  Next: table.tail,  Prev: table.convertvars,  Up: table
 
-8.2.38.38 table.head
+8.2.53.38 table.head
 ....................
 
  -- Method: OUT = head (OBJ)
@@ -4210,7 +4520,7 @@ File: Tablicious.info,  Node: table.head,  Next: table.tail,  Prev: table.conver
 
 File: Tablicious.info,  Node: table.tail,  Next: table.join,  Prev: table.head,  Up: table
 
-8.2.38.39 table.tail
+8.2.53.39 table.tail
 ....................
 
  -- Method: OUT = tail (OBJ)
@@ -4227,7 +4537,7 @@ File: Tablicious.info,  Node: table.tail,  Next: table.join,  Prev: table.head, 
 
 File: Tablicious.info,  Node: table.join,  Next: table.innerjoin,  Prev: table.tail,  Up: table
 
-8.2.38.40 table.join
+8.2.53.40 table.join
 ....................
 
  -- Method: [C, IB] = join (A, B)
@@ -4249,7 +4559,7 @@ File: Tablicious.info,  Node: table.join,  Next: table.innerjoin,  Prev: table.t
 
 File: Tablicious.info,  Node: table.innerjoin,  Next: table.outerjoin,  Prev: table.join,  Up: table
 
-8.2.38.41 table.innerjoin
+8.2.53.41 table.innerjoin
 .........................
 
  -- Method: [OUT, IXA, IXB] = innerjoin (A, B)
@@ -4270,7 +4580,7 @@ File: Tablicious.info,  Node: table.innerjoin,  Next: table.outerjoin,  Prev: ta
 
 File: Tablicious.info,  Node: table.outerjoin,  Next: table.outerfillvals,  Prev: table.innerjoin,  Up: table
 
-8.2.38.42 table.outerjoin
+8.2.53.42 table.outerjoin
 .........................
 
  -- Method: [OUT, IXA, IXB] = outerjoin (A, B)
@@ -4293,7 +4603,7 @@ File: Tablicious.info,  Node: table.outerjoin,  Next: table.outerfillvals,  Prev
 
 File: Tablicious.info,  Node: table.outerfillvals,  Next: table.semijoin,  Prev: table.outerjoin,  Up: table
 
-8.2.38.43 table.outerfillvals
+8.2.53.43 table.outerfillvals
 .............................
 
  -- Method: OUT = outerfillvals (OBJ)
@@ -4307,7 +4617,7 @@ File: Tablicious.info,  Node: table.outerfillvals,  Next: table.semijoin,  Prev:
 
 File: Tablicious.info,  Node: table.semijoin,  Next: table.antijoin,  Prev: table.outerfillvals,  Up: table
 
-8.2.38.44 table.semijoin
+8.2.53.44 table.semijoin
 ........................
 
  -- Method: [OUTA, IXA, OUTB, IXB] = semijoin (A, B)
@@ -4329,7 +4639,7 @@ File: Tablicious.info,  Node: table.semijoin,  Next: table.antijoin,  Prev: tabl
 
 File: Tablicious.info,  Node: table.antijoin,  Next: table.cartesian,  Prev: table.semijoin,  Up: table
 
-8.2.38.45 table.antijoin
+8.2.53.45 table.antijoin
 ........................
 
  -- Method: [OUTA, IXA, OUTB, IXB] = antijoin (A, B)
@@ -4348,7 +4658,7 @@ File: Tablicious.info,  Node: table.antijoin,  Next: table.cartesian,  Prev: tab
 
 File: Tablicious.info,  Node: table.cartesian,  Next: table.groupby,  Prev: table.antijoin,  Up: table
 
-8.2.38.46 table.cartesian
+8.2.53.46 table.cartesian
 .........................
 
  -- Method: [OUT, IXS] = cartesian (A, B)
@@ -4380,7 +4690,7 @@ File: Tablicious.info,  Node: table.cartesian,  Next: table.groupby,  Prev: tabl
 
 File: Tablicious.info,  Node: table.groupby,  Next: table.grpstats,  Prev: table.cartesian,  Up: table
 
-8.2.38.47 table.groupby
+8.2.53.47 table.groupby
 .......................
 
  -- Method: [OUT] = groupby (OBJ, GROUPVARS, AGGCALCS)
@@ -4404,7 +4714,7 @@ File: Tablicious.info,  Node: table.groupby,  Next: table.grpstats,  Prev: table
 
 File: Tablicious.info,  Node: table.grpstats,  Next: table.union,  Prev: table.groupby,  Up: table
 
-8.2.38.48 table.grpstats
+8.2.53.48 table.grpstats
 ........................
 
  -- Method: [OUT] = grpstats (OBJ, GROUPVAR)
@@ -4417,7 +4727,7 @@ File: Tablicious.info,  Node: table.grpstats,  Next: table.union,  Prev: table.g
 
 File: Tablicious.info,  Node: table.union,  Next: table.intersect,  Prev: table.grpstats,  Up: table
 
-8.2.38.49 table.union
+8.2.53.49 table.union
 .....................
 
  -- Method: [C, IA, IB] = union (A, B)
@@ -4435,7 +4745,7 @@ File: Tablicious.info,  Node: table.union,  Next: table.intersect,  Prev: table.
 
 File: Tablicious.info,  Node: table.intersect,  Next: table.setxor,  Prev: table.union,  Up: table
 
-8.2.38.50 table.intersect
+8.2.53.50 table.intersect
 .........................
 
  -- Method: [C, IA, IB] = intersect (A, B)
@@ -4454,7 +4764,7 @@ File: Tablicious.info,  Node: table.intersect,  Next: table.setxor,  Prev: table
 
 File: Tablicious.info,  Node: table.setxor,  Next: table.setdiff,  Prev: table.intersect,  Up: table
 
-8.2.38.51 table.setxor
+8.2.53.51 table.setxor
 ......................
 
  -- Method: [C, IA, IB] = setxor (A, B)
@@ -4473,7 +4783,7 @@ File: Tablicious.info,  Node: table.setxor,  Next: table.setdiff,  Prev: table.i
 
 File: Tablicious.info,  Node: table.setdiff,  Next: table.ismember,  Prev: table.setxor,  Up: table
 
-8.2.38.52 table.setdiff
+8.2.53.52 table.setdiff
 .......................
 
  -- Method: [C, IA] = setdiff (A, B)
@@ -4491,7 +4801,7 @@ File: Tablicious.info,  Node: table.setdiff,  Next: table.ismember,  Prev: table
 
 File: Tablicious.info,  Node: table.ismember,  Next: table.ismissing,  Prev: table.setdiff,  Up: table
 
-8.2.38.53 table.ismember
+8.2.53.53 table.ismember
 ........................
 
  -- Method: [TF, LOC] = ismember (A, B)
@@ -4506,7 +4816,7 @@ File: Tablicious.info,  Node: table.ismember,  Next: table.ismissing,  Prev: tab
 
 File: Tablicious.info,  Node: table.ismissing,  Next: table.rmmissing,  Prev: table.ismember,  Up: table
 
-8.2.38.54 table.ismissing
+8.2.53.54 table.ismissing
 .........................
 
  -- Method: OUT = ismissing (OBJ)
@@ -4528,7 +4838,7 @@ File: Tablicious.info,  Node: table.ismissing,  Next: table.rmmissing,  Prev: ta
 
 File: Tablicious.info,  Node: table.rmmissing,  Next: table.standardizeMissing,  Prev: table.ismissing,  Up: table
 
-8.2.38.55 table.rmmissing
+8.2.53.55 table.rmmissing
 .........................
 
  -- Method: [OUT, TF] = rmmissing (OBJ)
@@ -4551,7 +4861,7 @@ File: Tablicious.info,  Node: table.rmmissing,  Next: table.standardizeMissing, 
 
 File: Tablicious.info,  Node: table.standardizeMissing,  Next: table.varfun,  Prev: table.rmmissing,  Up: table
 
-8.2.38.56 table.standardizeMissing
+8.2.53.56 table.standardizeMissing
 ..................................
 
  -- Method: OUT = standardizeMissing (OBJ, INDICATOR)
@@ -4577,7 +4887,7 @@ File: Tablicious.info,  Node: table.standardizeMissing,  Next: table.varfun,  Pr
 
 File: Tablicious.info,  Node: table.varfun,  Next: table.rowfun,  Prev: table.standardizeMissing,  Up: table
 
-8.2.38.57 table.varfun
+8.2.53.57 table.varfun
 ......................
 
  -- Method: OUT = varfun (FCN, OBJ)
@@ -4593,7 +4903,7 @@ File: Tablicious.info,  Node: table.varfun,  Next: table.rowfun,  Prev: table.st
 
 File: Tablicious.info,  Node: table.rowfun,  Next: table.findgroups,  Prev: table.varfun,  Up: table
 
-8.2.38.58 table.rowfun
+8.2.53.58 table.rowfun
 ......................
 
  -- Method: OUT = varfun (FCN, OBJ)
@@ -4604,7 +4914,7 @@ File: Tablicious.info,  Node: table.rowfun,  Next: table.findgroups,  Prev: tabl
 
 File: Tablicious.info,  Node: table.findgroups,  Next: table.evalWithVars,  Prev: table.rowfun,  Up: table
 
-8.2.38.59 table.findgroups
+8.2.53.59 table.findgroups
 ..........................
 
  -- Method: [G, TID] = findgroups (OBJ)
@@ -4622,7 +4932,7 @@ File: Tablicious.info,  Node: table.findgroups,  Next: table.evalWithVars,  Prev
 
 File: Tablicious.info,  Node: table.evalWithVars,  Next: table.restrict,  Prev: table.findgroups,  Up: table
 
-8.2.38.60 table.evalWithVars
+8.2.53.60 table.evalWithVars
 ............................
 
  -- Method: OUT = evalWithVars (OBJ, EXPR)
@@ -4649,7 +4959,7 @@ File: Tablicious.info,  Node: table.evalWithVars,  Next: table.restrict,  Prev: 
 
 File: Tablicious.info,  Node: table.restrict,  Prev: table.evalWithVars,  Up: table
 
-8.2.38.61 table.restrict
+8.2.53.61 table.restrict
 ........................
 
  -- Method: OUT = restrict (OBJ, EXPR)
@@ -4680,7 +4990,7 @@ File: Tablicious.info,  Node: table.restrict,  Prev: table.evalWithVars,  Up: ta
 
 File: Tablicious.info,  Node: tableOuterFillValue,  Next: timezones,  Prev: table,  Up: API Alphabetically
 
-8.2.39 tableOuterFillValue
+8.2.54 tableOuterFillValue
 --------------------------
 
  -- Function: OUT = tableOuterFillValue (X)
@@ -4709,7 +5019,7 @@ File: Tablicious.info,  Node: tableOuterFillValue,  Next: timezones,  Prev: tabl
 
 File: Tablicious.info,  Node: timezones,  Next: vecfun,  Prev: tableOuterFillValue,  Up: API Alphabetically
 
-8.2.40 timezones
+8.2.55 timezones
 ----------------
 
  -- Function: OUT = timezones ()
@@ -4738,7 +5048,7 @@ File: Tablicious.info,  Node: timezones,  Next: vecfun,  Prev: tableOuterFillVal
 
 File: Tablicious.info,  Node: vecfun,  Next: years,  Prev: timezones,  Up: API Alphabetically
 
-8.2.41 vecfun
+8.2.56 vecfun
 -------------
 
  -- Function: OUT = vecfun (FCN, X, DIM)
@@ -4763,7 +5073,7 @@ File: Tablicious.info,  Node: vecfun,  Next: years,  Prev: timezones,  Up: API A
 
 File: Tablicious.info,  Node: years,  Prev: vecfun,  Up: API Alphabetically
 
-8.2.42 years
+8.2.57 years
 ------------
 
  -- Function File: OUT = years (X)
@@ -4836,224 +5146,239 @@ Node: calendarDuration Class11250
 Node: Missing Functionality12155
 Node: API Reference13396
 Node: API by Category13585
-Node: API Alphabetically17110
-Node: array2table19976
-Node: calendarDuration20912
-Node: calendarDuration.calendarDuration22816
-Node: calendarDuration.isnat23326
-Node: calendarDuration.uminus23661
-Node: calendarDuration.plus23944
-Node: calendarDuration.times24553
-Node: calendarDuration.minus24914
-Node: calendarDuration.dispstrs25263
-Node: calendarDuration.isnan25607
-Node: calmonths26011
-Node: calyears26600
-Node: categorical26944
-Node: categorical.categorical29195
-Node: categorical.categories30452
-Node: categorical.iscategory30855
-Node: categorical.isordinal31301
-Node: categorical.string31670
-Node: categorical.cellstr32117
-Node: categorical.dispstrs32556
-Node: categorical.summary33012
-Node: categorical.addcats33463
-Node: categorical.removecats33889
-Node: categorical.mergecats34531
-Node: categorical.renamecats35186
-Node: categorical.reordercats35603
-Node: categorical.setcats36138
-Node: categorical.isundefined36584
-Node: categorical.ismissing37102
-Node: categorical.isnannish37512
-Node: categorical.squeezecats37990
-Node: cell2table38360
-Node: colvecfun39100
-Node: contains39824
-Node: datetime40611
-Node: datetime.datetime42983
-Node: datetime.ofDatenum43805
-Node: datetime.ofDatestruct44165
-Node: datetime.NaT44668
-Node: datetime.posix2datenum45433
-Node: datetime.datenum2posix45910
-Node: datetime.proxyKeys46315
-Node: datetime.ymd46959
-Node: datetime.hms47349
-Node: datetime.ymdhms47742
-Node: datetime.timeofday48185
-Node: datetime.week48605
-Node: datetime.dispstrs48865
-Node: datetime.datestr49164
-Node: datetime.datestrs49556
-Node: datetime.datestruct49977
-Node: datetime.posixtime50779
-Node: datetime.datenum51313
-Node: datetime.gmtime51630
-Node: datetime.localtime52071
-Node: datetime.isnat52793
-Node: datetime.isnan53074
-Node: datetime.lt53445
-Node: datetime.le53876
-Node: datetime.ne54316
-Node: datetime.eq54748
-Node: datetime.ge55176
-Node: datetime.gt55620
-Node: datetime.plus56053
-Node: datetime.minus56549
-Node: datetime.diff57194
-Node: datetime.isbetween57574
-Node: datetime.linspace58062
-Node: datetime.convertDatenumTimeZone58675
-Node: days59329
-Node: discretize59795
-Node: dispstrs60692
-Node: duration61476
-Node: duration.duration62683
-Node: duration.ofDays63227
-Node: duration.years63740
-Node: duration.hours64114
-Node: duration.minutes64485
-Node: duration.seconds64872
-Node: duration.milliseconds65235
-Node: duration.dispstrs65643
-Node: duration.char65954
-Node: duration.linspace66382
-Node: endsWith66991
-Node: eqn67774
-Node: fillmissing68862
-Node: hours69713
-Node: isdatetime70197
-Node: isduration70485
-Node: isfile70774
-Node: isfolder71884
-Node: ismissing72851
-Node: isnannish74961
-Node: localdate75945
-Node: localdate.localdate77268
-Node: localdate.NaT77804
-Node: localdate.ymd78692
-Node: localdate.dispstrs78996
-Node: localdate.datestr79300
-Node: localdate.datestrs79698
-Node: localdate.datestruct80125
-Node: localdate.posixtime81043
-Node: localdate.datenum81614
-Node: localdate.isnat81942
-Node: localdate.isnan82229
-Node: milliseconds82587
-Node: minutes83122
-Node: missing83380
-Node: missing.missing84416
-Node: missing.dispstrs84730
-Node: missing.ismissing85127
-Node: missing.isnan85492
-Node: missing.isnannish85831
-Node: NaT86165
-Node: octave.chrono.dummy_function86876
-Node: octave.chrono.DummyClass87408
-Node: octave.chrono.DummyClass.DummyClass88198
-Node: octave.chrono.DummyClass.foo88669
-Node: octave.chrono.DummyClass.bar89208
-Node: pp89703
-Node: rmmissing90363
-Node: seconds91395
-Node: standardizeMissing91901
-Node: startsWith92725
-Node: string93535
-Node: string.string96829
-Node: string.isstring97499
-Node: string.dispstrs97824
-Node: string.ismissing98406
-Node: string.isnannish98887
-Node: string.cellstr99270
-Node: string.cell99615
-Node: string.char100102
-Node: string.encode100627
-Node: string.strlength_bytes101141
-Node: string.strlength101814
-Node: string.reverse_bytes102381
-Node: string.reverse103119
-Node: string.strcat103591
-Node: string.lower104169
-Node: string.upper104671
-Node: string.erase105172
-Node: string.strrep105509
-Node: string.strfind106114
-Node: string.regexprep106637
-Node: string.strcmp107113
-Node: string.cmp107806
-Node: string.missing108785
-Node: string.decode109187
-Node: struct2table109597
-Node: table110064
-Node: table.table112508
-Node: table.summary113560
-Node: table.prettyprint113987
-Node: table.table2cell114446
-Node: table.table2struct114934
-Node: table.table2array115569
-Node: table.varnames115816
-Node: table.istable116068
-Node: table.size116280
-Node: table.length116609
-Node: table.ndims116908
-Node: table.squeeze117159
-Node: table.sizeof117506
-Node: table.height117937
-Node: table.rows118145
-Node: table.width118346
-Node: table.columns118677
-Node: table.numel119015
-Node: table.isempty119535
-Node: table.ismatrix119859
-Node: table.isrow120148
-Node: table.iscol120366
-Node: table.isvector120726
-Node: table.isscalar120952
-Node: table.hasrownames121182
-Node: table.vertcat121432
-Node: table.horzcat121953
-Node: table.repmat122573
-Node: table.setVariableNames123108
-Node: table.setRowNames123554
-Node: table.resolveVarRef123926
-Node: table.subsetRows124536
-Node: table.subsetvars124881
-Node: table.removevars125388
-Node: table.movevars125773
-Node: table.setvar126501
-Node: table.convertvars126870
-Node: table.head127852
-Node: table.tail128227
-Node: table.join128593
-Node: table.innerjoin129339
-Node: table.outerjoin130000
-Node: table.outerfillvals130807
-Node: table.semijoin131240
-Node: table.antijoin132009
-Node: table.cartesian132661
-Node: table.groupby133929
-Node: table.grpstats134780
-Node: table.union135108
-Node: table.intersect135676
-Node: table.setxor136284
-Node: table.setdiff136919
-Node: table.ismember137456
-Node: table.ismissing137858
-Node: table.rmmissing138542
-Node: table.standardizeMissing139334
-Node: table.varfun140324
-Node: table.rowfun140891
-Node: table.findgroups141202
-Node: table.evalWithVars141787
-Node: table.restrict142637
-Node: tableOuterFillValue143766
-Node: timezones145003
-Node: vecfun146047
-Node: years146776
-Node: Copying147453
+Node: API Alphabetically18053
+Node: array2table21691
+Node: calendarDuration22627
+Node: calendarDuration.calendarDuration24531
+Node: calendarDuration.isnat25041
+Node: calendarDuration.uminus25376
+Node: calendarDuration.plus25659
+Node: calendarDuration.times26268
+Node: calendarDuration.minus26629
+Node: calendarDuration.dispstrs26978
+Node: calendarDuration.isnan27322
+Node: calmonths27726
+Node: calyears28315
+Node: categorical28659
+Node: categorical.categorical30910
+Node: categorical.categories32167
+Node: categorical.iscategory32570
+Node: categorical.isordinal33016
+Node: categorical.string33385
+Node: categorical.cellstr33832
+Node: categorical.dispstrs34271
+Node: categorical.summary34727
+Node: categorical.addcats35178
+Node: categorical.removecats35604
+Node: categorical.mergecats36246
+Node: categorical.renamecats36901
+Node: categorical.reordercats37318
+Node: categorical.setcats37853
+Node: categorical.isundefined38299
+Node: categorical.ismissing38817
+Node: categorical.isnannish39227
+Node: categorical.squeezecats39705
+Node: cell2table40075
+Node: colvecfun40815
+Node: contains41539
+Node: datetime42326
+Node: datetime.datetime44698
+Node: datetime.ofDatenum45520
+Node: datetime.ofDatestruct45880
+Node: datetime.NaT46383
+Node: datetime.posix2datenum47148
+Node: datetime.datenum2posix47625
+Node: datetime.proxyKeys48030
+Node: datetime.ymd48674
+Node: datetime.hms49064
+Node: datetime.ymdhms49457
+Node: datetime.timeofday49900
+Node: datetime.week50320
+Node: datetime.dispstrs50580
+Node: datetime.datestr50879
+Node: datetime.datestrs51271
+Node: datetime.datestruct51692
+Node: datetime.posixtime52494
+Node: datetime.datenum53028
+Node: datetime.gmtime53345
+Node: datetime.localtime53786
+Node: datetime.isnat54508
+Node: datetime.isnan54789
+Node: datetime.lt55160
+Node: datetime.le55591
+Node: datetime.ne56031
+Node: datetime.eq56463
+Node: datetime.ge56891
+Node: datetime.gt57335
+Node: datetime.plus57768
+Node: datetime.minus58264
+Node: datetime.diff58909
+Node: datetime.isbetween59289
+Node: datetime.linspace59777
+Node: datetime.convertDatenumTimeZone60390
+Node: days61044
+Node: discretize61510
+Node: dispstrs62407
+Node: duration63191
+Node: duration.duration64398
+Node: duration.ofDays64942
+Node: duration.years65455
+Node: duration.hours65829
+Node: duration.minutes66200
+Node: duration.seconds66587
+Node: duration.milliseconds66950
+Node: duration.dispstrs67358
+Node: duration.char67669
+Node: duration.linspace68097
+Node: endsWith68706
+Node: eqn69489
+Node: fillmissing70577
+Node: hours71428
+Node: isdatetime71912
+Node: isduration72200
+Node: isfile72489
+Node: isfolder73599
+Node: ismissing74566
+Node: isnannish76676
+Node: localdate77660
+Node: localdate.localdate78983
+Node: localdate.NaT79519
+Node: localdate.ymd80407
+Node: localdate.dispstrs80711
+Node: localdate.datestr81015
+Node: localdate.datestrs81413
+Node: localdate.datestruct81840
+Node: localdate.posixtime82758
+Node: localdate.datenum83329
+Node: localdate.isnat83657
+Node: localdate.isnan83944
+Node: milliseconds84302
+Node: minutes84837
+Node: missing85095
+Node: missing.missing86135
+Node: missing.dispstrs86449
+Node: missing.ismissing86846
+Node: missing.isnan87211
+Node: missing.isnannish87550
+Node: mustBeA87884
+Node: mustBeCellstr88461
+Node: mustBeCharvec89119
+Node: mustBeFinite90049
+Node: mustBeInteger90619
+Node: mustBeMember91294
+Node: mustBeNonempty92164
+Node: mustBeNumeric92713
+Node: mustBeReal93288
+Node: mustBeSameSize93847
+Node: mustBeScalar94555
+Node: mustBeScalarLogical94736
+Node: mustBeVector95359
+Node: NaT95929
+Node: octave.chrono.dummy_function96645
+Node: octave.chrono.DummyClass97177
+Node: octave.chrono.DummyClass.DummyClass97967
+Node: octave.chrono.DummyClass.foo98438
+Node: octave.chrono.DummyClass.bar98977
+Node: pp99472
+Node: rmmissing100132
+Node: scalarexpand101169
+Node: seconds101333
+Node: size2str101832
+Node: standardizeMissing101993
+Node: startsWith102818
+Node: string103628
+Node: string.string106922
+Node: string.isstring107592
+Node: string.dispstrs107917
+Node: string.ismissing108499
+Node: string.isnannish108980
+Node: string.cellstr109363
+Node: string.cell109708
+Node: string.char110195
+Node: string.encode110720
+Node: string.strlength_bytes111234
+Node: string.strlength111907
+Node: string.reverse_bytes112474
+Node: string.reverse113212
+Node: string.strcat113684
+Node: string.lower114262
+Node: string.upper114764
+Node: string.erase115265
+Node: string.strrep115602
+Node: string.strfind116207
+Node: string.regexprep116730
+Node: string.strcmp117206
+Node: string.cmp117899
+Node: string.missing118878
+Node: string.decode119280
+Node: struct2table119690
+Node: table120157
+Node: table.table122601
+Node: table.summary123653
+Node: table.prettyprint124080
+Node: table.table2cell124539
+Node: table.table2struct125027
+Node: table.table2array125662
+Node: table.varnames125909
+Node: table.istable126161
+Node: table.size126373
+Node: table.length126702
+Node: table.ndims127001
+Node: table.squeeze127252
+Node: table.sizeof127599
+Node: table.height128030
+Node: table.rows128238
+Node: table.width128439
+Node: table.columns128770
+Node: table.numel129108
+Node: table.isempty129628
+Node: table.ismatrix129952
+Node: table.isrow130241
+Node: table.iscol130459
+Node: table.isvector130819
+Node: table.isscalar131045
+Node: table.hasrownames131275
+Node: table.vertcat131525
+Node: table.horzcat132046
+Node: table.repmat132666
+Node: table.setVariableNames133201
+Node: table.setRowNames133647
+Node: table.resolveVarRef134019
+Node: table.subsetRows134629
+Node: table.subsetvars134974
+Node: table.removevars135481
+Node: table.movevars135866
+Node: table.setvar136594
+Node: table.convertvars136963
+Node: table.head137945
+Node: table.tail138320
+Node: table.join138686
+Node: table.innerjoin139432
+Node: table.outerjoin140093
+Node: table.outerfillvals140900
+Node: table.semijoin141333
+Node: table.antijoin142102
+Node: table.cartesian142754
+Node: table.groupby144022
+Node: table.grpstats144873
+Node: table.union145201
+Node: table.intersect145769
+Node: table.setxor146377
+Node: table.setdiff147012
+Node: table.ismember147549
+Node: table.ismissing147951
+Node: table.rmmissing148635
+Node: table.standardizeMissing149427
+Node: table.varfun150417
+Node: table.rowfun150984
+Node: table.findgroups151295
+Node: table.evalWithVars151880
+Node: table.restrict152730
+Node: tableOuterFillValue153859
+Node: timezones155096
+Node: vecfun156140
+Node: years156869
+Node: Copying157546
 
 End Tag Table
 

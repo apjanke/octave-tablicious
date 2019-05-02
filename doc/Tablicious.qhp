@@ -261,6 +261,32 @@
                             <section title="missing.isnannish" ref="html/missing_002eisnannish.html">
                             </section>
                         </section>
+                        <section title="mustBeA" ref="html/mustBeA.html">
+                        </section>
+                        <section title="mustBeCellstr" ref="html/mustBeCellstr.html">
+                        </section>
+                        <section title="mustBeCharvec" ref="html/mustBeCharvec.html">
+                        </section>
+                        <section title="mustBeFinite" ref="html/mustBeFinite.html">
+                        </section>
+                        <section title="mustBeInteger" ref="html/mustBeInteger.html">
+                        </section>
+                        <section title="mustBeMember" ref="html/mustBeMember.html">
+                        </section>
+                        <section title="mustBeNonempty" ref="html/mustBeNonempty.html">
+                        </section>
+                        <section title="mustBeNumeric" ref="html/mustBeNumeric.html">
+                        </section>
+                        <section title="mustBeReal" ref="html/mustBeReal.html">
+                        </section>
+                        <section title="mustBeSameSize" ref="html/mustBeSameSize.html">
+                        </section>
+                        <section title="mustBeScalar" ref="html/mustBeScalar.html">
+                        </section>
+                        <section title="mustBeScalarLogical" ref="html/mustBeScalarLogical.html">
+                        </section>
+                        <section title="mustBeVector" ref="html/mustBeVector.html">
+                        </section>
                         <section title="NaT" ref="html/NaT.html">
                         </section>
                         <section title="octave.chrono.dummy_function" ref="html/octave_002echrono_002edummy_005ffunction.html">
@@ -277,7 +303,11 @@
                         </section>
                         <section title="rmmissing" ref="html/rmmissing.html">
                         </section>
+                        <section title="scalarexpand" ref="html/scalarexpand.html">
+                        </section>
                         <section title="seconds" ref="html/seconds.html">
+                        </section>
+                        <section title="size2str" ref="html/size2str.html">
                         </section>
                         <section title="standardizeMissing" ref="html/standardizeMissing.html">
                         </section>
@@ -588,6 +618,18 @@
             <keyword name="missing.isnan" id="missing.isnan" ref="html/missing_002eisnan.html"/>
             <keyword name="missing.isnannish" id="missing.isnannish" ref="html/missing_002eisnannish.html"/>
             <keyword name="missing.missing" id="missing.missing" ref="html/missing_002emissing.html"/>
+            <keyword name="mustBeA" id="mustBeA" ref="html/mustBeA.html"/>
+            <keyword name="mustBeCellstr" id="mustBeCellstr" ref="html/mustBeCellstr.html"/>
+            <keyword name="mustBeCharvec" id="mustBeCharvec" ref="html/mustBeCharvec.html"/>
+            <keyword name="mustBeFinite" id="mustBeFinite" ref="html/mustBeFinite.html"/>
+            <keyword name="mustBeInteger" id="mustBeInteger" ref="html/mustBeInteger.html"/>
+            <keyword name="mustBeMember" id="mustBeMember" ref="html/mustBeMember.html"/>
+            <keyword name="mustBeNonempty" id="mustBeNonempty" ref="html/mustBeNonempty.html"/>
+            <keyword name="mustBeNumeric" id="mustBeNumeric" ref="html/mustBeNumeric.html"/>
+            <keyword name="mustBeReal" id="mustBeReal" ref="html/mustBeReal.html"/>
+            <keyword name="mustBeSameSize" id="mustBeSameSize" ref="html/mustBeSameSize.html"/>
+            <keyword name="mustBeScalarLogical" id="mustBeScalarLogical" ref="html/mustBeScalarLogical.html"/>
+            <keyword name="mustBeVector" id="mustBeVector" ref="html/mustBeVector.html"/>
             <keyword name="octave.chrono.DummyClass" id="octave.chrono.DummyClass" ref="html/octave_002echrono_002eDummyClass.html"/>
             <keyword name="octave.chrono.DummyClass.DummyClass" id="octave.chrono.DummyClass.DummyClass" ref="html/octave_002echrono_002eDummyClass_002eDummyClass.html"/>
             <keyword name="octave.chrono.DummyClass.bar" id="octave.chrono.DummyClass.bar" ref="html/octave_002echrono_002eDummyClass_002ebar.html"/>
@@ -788,7 +830,9 @@
             <file>html/string.html</file>
             <file>html/startsWith.html</file>
             <file>html/standardizeMissing.html</file>
+            <file>html/size2str.html</file>
             <file>html/seconds.html</file>
+            <file>html/scalarexpand.html</file>
             <file>html/rmmissing.html</file>
             <file>html/pp.html</file>
             <file>html/octave_002echrono_002eDummyClass_002ebar.html</file>
@@ -797,6 +841,19 @@
             <file>html/octave_002echrono_002eDummyClass.html</file>
             <file>html/octave_002echrono_002edummy_005ffunction.html</file>
             <file>html/NaT.html</file>
+            <file>html/mustBeVector.html</file>
+            <file>html/mustBeScalarLogical.html</file>
+            <file>html/mustBeScalar.html</file>
+            <file>html/mustBeSameSize.html</file>
+            <file>html/mustBeReal.html</file>
+            <file>html/mustBeNumeric.html</file>
+            <file>html/mustBeNonempty.html</file>
+            <file>html/mustBeMember.html</file>
+            <file>html/mustBeInteger.html</file>
+            <file>html/mustBeFinite.html</file>
+            <file>html/mustBeCharvec.html</file>
+            <file>html/mustBeCellstr.html</file>
+            <file>html/mustBeA.html</file>
             <file>html/missing_002eisnannish.html</file>
             <file>html/missing_002eisnan.html</file>
             <file>html/missing_002eismissing.html</file>
