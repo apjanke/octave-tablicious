@@ -224,6 +224,21 @@ Test whether file exists and is a folder.
 @item @ref{pp}
 Alias for prettyprint, for interactive use.
 
+<<<<<<< HEAD
+=======
+@end table
+@subsection Uncategorized
+@table @asis
+@item @ref{eqn}
+Determine element-wise equality, treating NaNs as equal
+
+@item @ref{tablicious.dataset}
+The 'dataset' class provides convenient access to the various datasets included with Tablicious.
+
+@item @ref{tablicious.datasets}
+Example dataset collection.
+
+>>>>>>> Add AirPassengers dataset
 @item @ref{vecfun}
 Apply function to vectors in array along arbitrary dimension.
 
@@ -255,6 +270,9 @@ Apply function to vectors in array along arbitrary dimension.
 * struct2table::	Convert struct to a table.
 * table::	Tabular data array containing multiple columnar variables.
 * tableOuterFillValue:: Outer fill value for variable within a table.
+* tablicious.dataset::	The 'dataset' class provides convenient access to
+		the various datasets included with Tablicious.
+* tablicious.datasets:: Example dataset collection.
 * vecfun::	Apply function to vectors in array along arbitrary
 		dimension.
 @end menu
@@ -2049,18 +2067,24 @@ Sets the row names on @var{obj} to @var{names}.
 @node table.resolveVarRef
 @subsubsection table.resolveVarRef
 
-@deftypefn {Method} {[@var{ixVar}, @var{varNames}] =} resolveVarREf (@var{obj}, @var{varRef})
+@deftypefn {Method} {[@var{ixVar}, @var{varNames}] =} resolveVarRef (@var{obj}, @var{varRef})
+@deftypefnx {Method} {[@var{ixVar}, @var{varNames}] =} resolveVarRef (@var{obj}, @var{varRef}, @var{strictness})
 
 Resolve a variable reference against this table.
 
 A @var{varRef} is a numeric or char/cellstr indicator of which variables within
 @var{obj} are being referenced.
 
+@var{strictness} controls what to do when the given variable references
+could not be resolved. It may be 'strict' (the default) or 'lenient'.
+
 Returns:
   @var{ixVar} - the indexes of the variables in @var{obj}
   @var{varNames} - a cellstr of the names of the variables in @var{obj}
 
-Raises an error if any of the specified variables could not be resolved.
+Raises an error if any of the specified variables could not be resolved,
+unless strictness is 'lenient', in which case it will return 0 for the
+index and '' for the name for each variable which could not be resolved.
 
 @end deftypefn
 
@@ -2137,8 +2161,16 @@ Returns a table with the same variables as @var{obj}, but in a different order.
 
 Set value for a variable in table.
 
-This sets (replaces) the value for a variable that already exists in @var{obj}.
-It cannot be used to add a new variable.
+This sets (adds or replaces) the value for a variable in @var{obj}. It
+may be used to change the value of an existing variable, or add a new
+variable.
+
+@var{varRef} is a variable reference, either the index or name of a variable.
+If you are adding a new variable, it must be a name, and not an index.
+
+@var{value} is the value to set the variable to. If it is scalar or
+a single string as charvec, it is scalar-expanded to match the number
+of rows in @var{obj}.
 
 @end deftypefn
 
@@ -2652,6 +2684,91 @@ ncols is the number of columns in the input.
 
 @end deftypefn
 
+
+@node tablicious.dataset
+@subsection tablicious.dataset
+@deftp dataset
+
+The @code{dataset} class provides convenient access to the various
+datasets included with Tablicious.
+
+This class just contains a bunch of static methods, each of which loads
+the dataset of that name. It’s provided so you can use tab completion
+on the dataset list.
+
+@end deftp
+
+
+@node tablicious.dataset.airmiles
+@subsubsection tablicious.dataset.airmiles
+
+@deftypefn {Static Method} {@var{out} =} airmiles ()
+
+Passenger Miles on Commercial US Airlines, 1937-1960
+
+@end deftypefn
+
+@node tablicious.dataset.beavers
+@subsubsection tablicious.dataset.beavers
+
+@deftypefn {Static Method} {@var{out} =} beavers ()
+
+Body Temperature Series of Two Beavers
+
+@end deftypefn
+
+@node tablicious.dataset.iris
+@subsubsection tablicious.dataset.iris
+
+@deftypefn {Static Method} {@var{out} =} iris ()
+
+The Fisher Iris set: measurements for various flowers
+
+@end deftypefn
+
+@node tablicious.datasets
+@subsection tablicious.datasets
+@deftp {Class} datasets
+
+Example dataset collection.
+
+@code{datasets} is a collection of example datasets to go with the
+Tablicious package.
+
+The @code{datasets} class provides methods for listing and loading
+the example datasets.
+
+@end deftp
+
+
+@node tablicious.datasets.list
+@subsubsection tablicious.datasets.list
+
+@deftypefn {Static Method} list ()
+@deftypefnx {Static Method} {@var{out} =} list ()
+
+List all datasets.
+
+Lists all the example datasets known to this class. If the output is
+captured, returns the list as a table. If the output is not captured,
+displays the list.
+
+Returns a table with variables Name, Description, and possibly more.
+
+@end deftypefn
+
+@node tablicious.datasets.load
+@subsubsection tablicious.datasets.load
+
+@deftypefn {Static Method} load (@var{datasetName})
+@deftypefnx {Static Method} {@var{out} =} load (@var{datasetName})
+
+Load a specified dataset.
+
+@var{datasetName} is the name of the dataset to load, as found in the
+@code{Name} column of the dataset list.
+
+@end deftypefn
 
 @node vecfun
 @subsection vecfun

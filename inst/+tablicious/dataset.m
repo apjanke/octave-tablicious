@@ -29,6 +29,19 @@ classdef dataset
   methods (Static)
 
     ## -*- texinfo -*-
+    ## @node dataset.AirPassengers
+    ## @deftypefn {Static Method} {@var{out} =} AirPassengers ()
+    ##
+    ## Monthly Airline Passenger Numbers 1949-1960
+    ##
+    ## @end deftypefn
+    function out = AirPassengers ()
+      name = 'AirPassengers';
+      out = tablicious.datasets.load(name);
+    endfunction
+
+    ## -*- texinfo -*-
+    ## @node dataset.airmiles
     ## @deftypefn {Static Method} {@var{out} =} airmiles ()
     ##
     ## Passenger Miles on Commercial US Airlines, 1937-1960
@@ -40,6 +53,7 @@ classdef dataset
     endfunction
 
     ## -*- texinfo -*-
+    ## @node dataset.beavers
     ## @deftypefn {Static Method} {@var{out} =} beavers ()
     ##
     ## Body Temperature Series of Two Beavers
@@ -51,6 +65,7 @@ classdef dataset
     endfunction
 
     ## -*- texinfo -*-
+    ## @node dataset.iris
     ## @deftypefn {Static Method} {@var{out} =} iris ()
     ##
     ## The Fisher Iris set: measurements for various flowers

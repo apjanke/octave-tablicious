@@ -232,7 +232,22 @@ ul.no-bullet {list-style: none}
         <li><a id="toc-table_002eevalWithVars-1" href="#table_002eevalWithVars">5.2.22.60 table.evalWithVars</a></li>
         <li><a id="toc-table_002erestrict-1" href="#table_002erestrict">5.2.22.61 table.restrict</a></li>
       </ul></li>
+<<<<<<< HEAD
       <li><a id="toc-tableOuterFillValue-1" href="#tableOuterFillValue">5.2.23 tableOuterFillValue</a></li>
+=======
+      <li><a id="toc-tableOuterFillValue-1" href="#tableOuterFillValue">5.2.21 tableOuterFillValue</a></li>
+      <li><a id="toc-tablicious_002edataset-1" href="#tablicious_002edataset">5.2.22 tablicious.dataset</a>
+      <ul class="no-bullet">
+        <li><a id="toc-tablicious_002edataset_002eairmiles-1" href="#tablicious_002edataset_002eairmiles">5.2.22.1 tablicious.dataset.airmiles</a></li>
+        <li><a id="toc-tablicious_002edataset_002ebeavers-1" href="#tablicious_002edataset_002ebeavers">5.2.22.2 tablicious.dataset.beavers</a></li>
+        <li><a id="toc-tablicious_002edataset_002eiris-1" href="#tablicious_002edataset_002eiris">5.2.22.3 tablicious.dataset.iris</a></li>
+      </ul></li>
+      <li><a id="toc-tablicious_002edatasets-1" href="#tablicious_002edatasets">5.2.23 tablicious.datasets</a>
+      <ul class="no-bullet">
+        <li><a id="toc-tablicious_002edatasets_002elist-1" href="#tablicious_002edatasets_002elist">5.2.23.1 tablicious.datasets.list</a></li>
+        <li><a id="toc-tablicious_002edatasets_002eload-1" href="#tablicious_002edatasets_002eload">5.2.23.2 tablicious.datasets.load</a></li>
+      </ul></li>
+>>>>>>> Add AirPassengers dataset
       <li><a id="toc-vecfun-1" href="#vecfun">5.2.24 vecfun</a></li>
     </ul></li>
   </ul></li>
@@ -489,6 +504,14 @@ Next: <a href="#API-Alphabetically" accesskey="n" rel="next">API Alphabetically<
 <dd><p>Alias for prettyprint, for interactive use.
 </p>
 </dd>
+<dt><a href="#tablicious_002edataset">tablicious.dataset</a></dt>
+<dd><p>The &rsquo;dataset&rsquo; class provides convenient access to the various datasets included with Tablicious.
+</p>
+</dd>
+<dt><a href="#tablicious_002edatasets">tablicious.datasets</a></dt>
+<dd><p>Example dataset collection.
+</p>
+</dd>
 <dt><a href="#vecfun">vecfun</a></dt>
 <dd><p>Apply function to vectors in array along arbitrary dimension.
 </p>
@@ -547,6 +570,11 @@ Previous: <a href="#API-by-Category" accesskey="p" rel="prev">API by Category</a
 <tr><td align="left" valign="top">&bull; <a href="#table">table</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">Tabular data array containing multiple columnar variables.
 </td></tr>
 <tr><td align="left" valign="top">&bull; <a href="#tableOuterFillValue">tableOuterFillValue</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">Outer fill value for variable within a table.
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="#tablicious_002edataset">tablicious.dataset</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">The &rsquo;dataset&rsquo; class provides convenient access to
+		the various datasets included with Tablicious.
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="#tablicious_002edatasets">tablicious.datasets</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">Example dataset collection.
 </td></tr>
 <tr><td align="left" valign="top">&bull; <a href="#vecfun">vecfun</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">Apply function to vectors in array along arbitrary
 		dimension.
@@ -3082,18 +3110,24 @@ Next: <a href="#table_002esubsetRows" accesskey="n" rel="next">table.subsetRows<
 <span id="table_002eresolveVarRef-1"></span><h4 class="subsubsection">5.2.22.31 table.resolveVarRef</h4>
 
 <dl>
-<dt id="index-resolveVarREf">Method: <em>[<var>ixVar</var>, <var>varNames</var>] =</em> <strong>resolveVarREf</strong> <em>(<var>obj</var>, <var>varRef</var>)</em></dt>
+<dt id="index-resolveVarRef">Method: <em>[<var>ixVar</var>, <var>varNames</var>] =</em> <strong>resolveVarRef</strong> <em>(<var>obj</var>, <var>varRef</var>)</em></dt>
+<dt id="index-resolveVarRef-1">Method: <em>[<var>ixVar</var>, <var>varNames</var>] =</em> <strong>resolveVarRef</strong> <em>(<var>obj</var>, <var>varRef</var>, <var>strictness</var>)</em></dt>
 <dd>
 <p>Resolve a variable reference against this table.
 </p>
 <p>A <var>varRef</var> is a numeric or char/cellstr indicator of which variables within
 <var>obj</var> are being referenced.
 </p>
+<p><var>strictness</var> controls what to do when the given variable references
+could not be resolved. It may be &rsquo;strict&rsquo; (the default) or &rsquo;lenient&rsquo;.
+</p>
 <p>Returns:
   <var>ixVar</var> - the indexes of the variables in <var>obj</var>
   <var>varNames</var> - a cellstr of the names of the variables in <var>obj</var>
 </p>
-<p>Raises an error if any of the specified variables could not be resolved.
+<p>Raises an error if any of the specified variables could not be resolved,
+unless strictness is &rsquo;lenient&rsquo;, in which case it will return 0 for the
+index and &rdquo; for the name for each variable which could not be resolved.
 </p>
 </dd></dl>
 
@@ -3195,8 +3229,16 @@ Next: <a href="#table_002econvertvars" accesskey="n" rel="next">table.convertvar
 <dd>
 <p>Set value for a variable in table.
 </p>
-<p>This sets (replaces) the value for a variable that already exists in <var>obj</var>.
-It cannot be used to add a new variable.
+<p>This sets (adds or replaces) the value for a variable in <var>obj</var>. It
+may be used to change the value of an existing variable, or add a new
+variable.
+</p>
+<p><var>varRef</var> is a variable reference, either the index or name of a variable.
+If you are adding a new variable, it must be a name, and not an index.
+</p>
+<p><var>value</var> is the value to set the variable to. If it is scalar or
+a single string as charvec, it is scalar-expanded to match the number
+of rows in <var>obj</var>.
 </p>
 </dd></dl>
 
@@ -3810,7 +3852,7 @@ prettyprint (restrict (p, 'Weight &gt;= 14 &amp; strcmp(Color, &quot;Red&quot;)'
 <hr>
 <span id="tableOuterFillValue"></span><div class="header">
 <p>
-Next: <a href="#vecfun" accesskey="n" rel="next">vecfun</a>, Previous: <a href="#table" accesskey="p" rel="prev">table</a>, Up: <a href="#API-Alphabetically" accesskey="u" rel="up">API Alphabetically</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+Next: <a href="#tablicious_002edataset" accesskey="n" rel="next">tablicious.dataset</a>, Previous: <a href="#table" accesskey="p" rel="prev">table</a>, Up: <a href="#API-Alphabetically" accesskey="u" rel="up">API Alphabetically</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
 </div>
 <span id="tableOuterFillValue-1"></span><h4 class="subsection">5.2.23 tableOuterFillValue</h4>
 <dl>
@@ -3840,9 +3882,145 @@ ncols is the number of columns in the input.
 
 
 <hr>
+<span id="tablicious_002edataset"></span><div class="header">
+<p>
+Next: <a href="#tablicious_002edatasets" accesskey="n" rel="next">tablicious.datasets</a>, Previous: <a href="#tableOuterFillValue" accesskey="p" rel="prev">tableOuterFillValue</a>, Up: <a href="#API-Alphabetically" accesskey="u" rel="up">API Alphabetically</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<span id="tablicious_002edataset-1"></span><h4 class="subsection">5.2.22 tablicious.dataset</h4>
+<dl>
+<dt>dataset: <strong></strong></dt>
+<dd>
+<p>The <code>dataset</code> class provides convenient access to the various
+datasets included with Tablicious.
+</p>
+<p>This class just contains a bunch of static methods, each of which loads
+the dataset of that name. It’s provided so you can use tab completion
+on the dataset list.
+</p>
+</dd></dl>
+
+
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top">&bull; <a href="#tablicious_002edataset_002eairmiles" accesskey="1">tablicious.dataset.airmiles</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="#tablicious_002edataset_002ebeavers" accesskey="2">tablicious.dataset.beavers</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="#tablicious_002edataset_002eiris" accesskey="3">tablicious.dataset.iris</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+</table>
+
+<hr>
+<span id="tablicious_002edataset_002eairmiles"></span><div class="header">
+<p>
+Next: <a href="#tablicious_002edataset_002ebeavers" accesskey="n" rel="next">tablicious.dataset.beavers</a>, Up: <a href="#tablicious_002edataset" accesskey="u" rel="up">tablicious.dataset</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<span id="tablicious_002edataset_002eairmiles-1"></span><h4 class="subsubsection">5.2.22.1 tablicious.dataset.airmiles</h4>
+
+<dl>
+<dt id="index-airmiles">Static Method: <em><var>out</var> =</em> <strong>airmiles</strong> <em>()</em></dt>
+<dd>
+<p>Passenger Miles on Commercial US Airlines, 1937-1960
+</p>
+</dd></dl>
+
+<hr>
+<span id="tablicious_002edataset_002ebeavers"></span><div class="header">
+<p>
+Next: <a href="#tablicious_002edataset_002eiris" accesskey="n" rel="next">tablicious.dataset.iris</a>, Previous: <a href="#tablicious_002edataset_002eairmiles" accesskey="p" rel="prev">tablicious.dataset.airmiles</a>, Up: <a href="#tablicious_002edataset" accesskey="u" rel="up">tablicious.dataset</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<span id="tablicious_002edataset_002ebeavers-1"></span><h4 class="subsubsection">5.2.22.2 tablicious.dataset.beavers</h4>
+
+<dl>
+<dt id="index-beavers">Static Method: <em><var>out</var> =</em> <strong>beavers</strong> <em>()</em></dt>
+<dd>
+<p>Body Temperature Series of Two Beavers
+</p>
+</dd></dl>
+
+<hr>
+<span id="tablicious_002edataset_002eiris"></span><div class="header">
+<p>
+Previous: <a href="#tablicious_002edataset_002ebeavers" accesskey="p" rel="prev">tablicious.dataset.beavers</a>, Up: <a href="#tablicious_002edataset" accesskey="u" rel="up">tablicious.dataset</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<span id="tablicious_002edataset_002eiris-1"></span><h4 class="subsubsection">5.2.22.3 tablicious.dataset.iris</h4>
+
+<dl>
+<dt id="index-iris">Static Method: <em><var>out</var> =</em> <strong>iris</strong> <em>()</em></dt>
+<dd>
+<p>The Fisher Iris set: measurements for various flowers
+</p>
+</dd></dl>
+
+<hr>
+<span id="tablicious_002edatasets"></span><div class="header">
+<p>
+Next: <a href="#vecfun" accesskey="n" rel="next">vecfun</a>, Previous: <a href="#tablicious_002edataset" accesskey="p" rel="prev">tablicious.dataset</a>, Up: <a href="#API-Alphabetically" accesskey="u" rel="up">API Alphabetically</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<span id="tablicious_002edatasets-1"></span><h4 class="subsection">5.2.23 tablicious.datasets</h4>
+<dl>
+<dt id="index-datasets">Class: <strong>datasets</strong></dt>
+<dd>
+<p>Example dataset collection.
+</p>
+<p><code>datasets</code> is a collection of example datasets to go with the
+Tablicious package.
+</p>
+<p>The <code>datasets</code> class provides methods for listing and loading
+the example datasets.
+</p>
+</dd></dl>
+
+
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top">&bull; <a href="#tablicious_002edatasets_002elist" accesskey="1">tablicious.datasets.list</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="#tablicious_002edatasets_002eload" accesskey="2">tablicious.datasets.load</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+</table>
+
+<hr>
+<span id="tablicious_002edatasets_002elist"></span><div class="header">
+<p>
+Next: <a href="#tablicious_002edatasets_002eload" accesskey="n" rel="next">tablicious.datasets.load</a>, Up: <a href="#tablicious_002edatasets" accesskey="u" rel="up">tablicious.datasets</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<span id="tablicious_002edatasets_002elist-1"></span><h4 class="subsubsection">5.2.23.1 tablicious.datasets.list</h4>
+
+<dl>
+<dt id="index-_0028_0029">Static Method: <em>list</em> <strong>()</strong></dt>
+<dt id="index-list">Static Method: <em><var>out</var> =</em> <strong>list</strong> <em>()</em></dt>
+<dd>
+<p>List all datasets.
+</p>
+<p>Lists all the example datasets known to this class. If the output is
+captured, returns the list as a table. If the output is not captured,
+displays the list.
+</p>
+<p>Returns a table with variables Name, Description, and possibly more.
+</p>
+</dd></dl>
+
+<hr>
+<span id="tablicious_002edatasets_002eload"></span><div class="header">
+<p>
+Previous: <a href="#tablicious_002edatasets_002elist" accesskey="p" rel="prev">tablicious.datasets.list</a>, Up: <a href="#tablicious_002edatasets" accesskey="u" rel="up">tablicious.datasets</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<span id="tablicious_002edatasets_002eload-1"></span><h4 class="subsubsection">5.2.23.2 tablicious.datasets.load</h4>
+
+<dl>
+<dt id="index-_0028datasetName_0029">Static Method: <em>load</em> <strong>(<var>datasetName</var>)</strong></dt>
+<dt id="index-load">Static Method: <em><var>out</var> =</em> <strong>load</strong> <em>(<var>datasetName</var>)</em></dt>
+<dd>
+<p>Load a specified dataset.
+</p>
+<p><var>datasetName</var> is the name of the dataset to load, as found in the
+<code>Name</code> column of the dataset list.
+</p>
+</dd></dl>
+
+<hr>
 <span id="vecfun"></span><div class="header">
 <p>
-Previous: <a href="#tableOuterFillValue" accesskey="p" rel="prev">tableOuterFillValue</a>, Up: <a href="#API-Alphabetically" accesskey="u" rel="up">API Alphabetically</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+Previous: <a href="#tablicious_002edatasets" accesskey="p" rel="prev">tablicious.datasets</a>, Up: <a href="#API-Alphabetically" accesskey="u" rel="up">API Alphabetically</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
 </div>
 <span id="vecfun-1"></span><h4 class="subsection">5.2.24 vecfun</h4>
 <dl>

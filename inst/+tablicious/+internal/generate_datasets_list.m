@@ -32,6 +32,7 @@ function generate_datasets_list ()
     name = names{i_dataset};
     dset = tablicious.internal.dataset.lookup (name);
     p ("    ## -*- texinfo -*-");
+    p ("    ## @node dataset.%s", name);
     p ("    ## @deftypefn {Static Method} {@var{out} =} %s ()", name);
     p ("    ##");
     p ("    ## %s", dset.description);

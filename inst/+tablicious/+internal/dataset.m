@@ -35,6 +35,7 @@ classdef (Abstract) dataset
     %
     % Keep this list in asciibetical order, for tidiness.
     included_datasets = {
+      'AirPassengers'
       'airmiles'
       'beavers'
       'iris'

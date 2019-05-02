@@ -216,6 +216,13 @@ File: Tablicious.info,  Node: API by Category,  Next: API Alphabetically,  Up: A
 *note pp::
      Alias for prettyprint, for interactive use.
 
+*note tablicious.dataset::
+     The ’dataset’ class provides convenient access to the various
+     datasets included with Tablicious.
+
+*note tablicious.datasets::
+     Example dataset collection.
+
 *note vecfun::
      Apply function to vectors in array along arbitrary dimension.
 
@@ -250,6 +257,9 @@ File: Tablicious.info,  Node: API Alphabetically,  Prev: API by Category,  Up: A
 * struct2table::	Convert struct to a table.
 * table::	Tabular data array containing multiple columnar variables.
 * tableOuterFillValue:: Outer fill value for variable within a table.
+* tablicious.dataset::	The ’dataset’ class provides convenient access to
+		the various datasets included with Tablicious.
+* tablicious.datasets:: Example dataset collection.
 * vecfun::	Apply function to vectors in array along arbitrary
 		dimension.
 
@@ -2241,18 +2251,25 @@ File: Tablicious.info,  Node: table.resolveVarRef,  Next: table.subsetRows,  Pre
 5.2.22.31 table.resolveVarRef
 .............................
 
- -- Method: [IXVAR, VARNAMES] = resolveVarREf (OBJ, VARREF)
+ -- Method: [IXVAR, VARNAMES] = resolveVarRef (OBJ, VARREF)
+ -- Method: [IXVAR, VARNAMES] = resolveVarRef (OBJ, VARREF, STRICTNESS)
 
      Resolve a variable reference against this table.
 
      A VARREF is a numeric or char/cellstr indicator of which variables
      within OBJ are being referenced.
 
+     STRICTNESS controls what to do when the given variable references
+     could not be resolved.  It may be ’strict’ (the default) or
+     ’lenient’.
+
      Returns: IXVAR - the indexes of the variables in OBJ VARNAMES - a
      cellstr of the names of the variables in OBJ
 
      Raises an error if any of the specified variables could not be
-     resolved.
+     resolved, unless strictness is ’lenient’, in which case it will
+     return 0 for the index and ” for the name for each variable which
+     could not be resolved.
 
 
 File: Tablicious.info,  Node: table.subsetRows,  Next: table.subsetvars,  Prev: table.resolveVarRef,  Up: table
@@ -2333,8 +2350,17 @@ File: Tablicious.info,  Node: table.setvar,  Next: table.convertvars,  Prev: tab
 
      Set value for a variable in table.
 
-     This sets (replaces) the value for a variable that already exists
-     in OBJ.  It cannot be used to add a new variable.
+     This sets (adds or replaces) the value for a variable in OBJ.  It
+     may be used to change the value of an existing variable, or add a
+     new variable.
+
+     VARREF is a variable reference, either the index or name of a
+     variable.  If you are adding a new variable, it must be a name, and
+     not an index.
+
+     VALUE is the value to set the variable to.  If it is scalar or a
+     single string as charvec, it is scalar-expanded to match the number
+     of rows in OBJ.
 
 
 File: Tablicious.info,  Node: table.convertvars,  Next: table.head,  Prev: table.setvar,  Up: table
@@ -2851,7 +2877,7 @@ File: Tablicious.info,  Node: table.restrict,  Prev: table.evalWithVars,  Up: ta
           prettyprint (restrict (p, 'Weight >= 14 & strcmp(Color, "Red")'))
 
 
-File: Tablicious.info,  Node: tableOuterFillValue,  Next: vecfun,  Prev: table,  Up: API Alphabetically
+File: Tablicious.info,  Node: tableOuterFillValue,  Next: tablicious.dataset,  Prev: table,  Up: API Alphabetically
 
 5.2.23 tableOuterFillValue
 --------------------------
@@ -2880,7 +2906,111 @@ File: Tablicious.info,  Node: tableOuterFillValue,  Next: vecfun,  Prev: table, 
      type, where ncols is the number of columns in the input.
 
 
-File: Tablicious.info,  Node: vecfun,  Prev: tableOuterFillValue,  Up: API Alphabetically
+File: Tablicious.info,  Node: tablicious.dataset,  Next: tablicious.datasets,  Prev: tableOuterFillValue,  Up: API Alphabetically
+
+5.2.22 tablicious.dataset
+-------------------------
+
+ -- dataset:
+
+     The ‘dataset’ class provides convenient access to the various
+     datasets included with Tablicious.
+
+     This class just contains a bunch of static methods, each of which
+     loads the dataset of that name.  It’s provided so you can use tab
+     completion on the dataset list.
+
+* Menu:
+
+* tablicious.dataset.airmiles::
+* tablicious.dataset.beavers::
+* tablicious.dataset.iris::
+
+
+File: Tablicious.info,  Node: tablicious.dataset.airmiles,  Next: tablicious.dataset.beavers,  Up: tablicious.dataset
+
+5.2.22.1 tablicious.dataset.airmiles
+....................................
+
+ -- Static Method: OUT = airmiles ()
+
+     Passenger Miles on Commercial US Airlines, 1937-1960
+
+
+File: Tablicious.info,  Node: tablicious.dataset.beavers,  Next: tablicious.dataset.iris,  Prev: tablicious.dataset.airmiles,  Up: tablicious.dataset
+
+5.2.22.2 tablicious.dataset.beavers
+...................................
+
+ -- Static Method: OUT = beavers ()
+
+     Body Temperature Series of Two Beavers
+
+
+File: Tablicious.info,  Node: tablicious.dataset.iris,  Prev: tablicious.dataset.beavers,  Up: tablicious.dataset
+
+5.2.22.3 tablicious.dataset.iris
+................................
+
+ -- Static Method: OUT = iris ()
+
+     The Fisher Iris set: measurements for various flowers
+
+
+File: Tablicious.info,  Node: tablicious.datasets,  Next: vecfun,  Prev: tablicious.dataset,  Up: API Alphabetically
+
+5.2.23 tablicious.datasets
+--------------------------
+
+ -- Class: datasets
+
+     Example dataset collection.
+
+     ‘datasets’ is a collection of example datasets to go with the
+     Tablicious package.
+
+     The ‘datasets’ class provides methods for listing and loading the
+     example datasets.
+
+* Menu:
+
+* tablicious.datasets.list::
+* tablicious.datasets.load::
+
+
+File: Tablicious.info,  Node: tablicious.datasets.list,  Next: tablicious.datasets.load,  Up: tablicious.datasets
+
+5.2.23.1 tablicious.datasets.list
+.................................
+
+ -- Static Method: list ()
+ -- Static Method: OUT = list ()
+
+     List all datasets.
+
+     Lists all the example datasets known to this class.  If the output
+     is captured, returns the list as a table.  If the output is not
+     captured, displays the list.
+
+     Returns a table with variables Name, Description, and possibly
+     more.
+
+
+File: Tablicious.info,  Node: tablicious.datasets.load,  Prev: tablicious.datasets.list,  Up: tablicious.datasets
+
+5.2.23.2 tablicious.datasets.load
+.................................
+
+ -- Static Method: load (DATASETNAME)
+ -- Static Method: OUT = load (DATASETNAME)
+
+     Load a specified dataset.
+
+     DATASETNAME is the name of the dataset to load, as found in the
+     ‘Name’ column of the dataset list.
+
+
+File: Tablicious.info,  Node: vecfun,  Prev: tablicious.datasets,  Up: API Alphabetically
 
 5.2.24 vecfun
 -------------
@@ -2950,6 +3080,7 @@ Node: table Class2830
 Node: Missing Functionality3142
 Node: API Reference3803
 Node: API by Category3992
+<<<<<<< HEAD
 Node: API Alphabetically5752
 Node: array2table7148
 Node: categorical8079
@@ -3084,6 +3215,147 @@ Node: table.restrict86531
 Node: tableOuterFillValue87660
 Node: vecfun88894
 Node: Copying89619
+=======
+Node: API Alphabetically5862
+Node: array2table7324
+Node: categorical8255
+Node: categorical.categorical10509
+Node: categorical.categories11766
+Node: categorical.iscategory12169
+Node: categorical.isordinal12615
+Node: categorical.string12984
+Node: categorical.cellstr13431
+Node: categorical.dispstrs13870
+Node: categorical.summary14326
+Node: categorical.addcats14777
+Node: categorical.removecats15203
+Node: categorical.mergecats15845
+Node: categorical.renamecats16500
+Node: categorical.reordercats16917
+Node: categorical.setcats17452
+Node: categorical.isundefined17898
+Node: categorical.ismissing18416
+Node: categorical.isnannish18826
+Node: categorical.squeezecats19304
+Node: cell2table19674
+Node: colvecfun20414
+Node: contains21138
+Node: discretize21927
+Node: dispstrs22826
+Node: endsWith23608
+Node: eqn24389
+Node: fillmissing25475
+Node: ismissing26330
+Node: isnannish28443
+Node: missing29425
+Node: missing.missing30462
+Node: missing.dispstrs30776
+Node: missing.ismissing31173
+Node: missing.isnan31538
+Node: missing.isnannish31877
+Node: pp32211
+Node: rmmissing32854
+Node: standardizeMissing33897
+Node: startsWith34723
+Node: string35533
+Node: string.string38827
+Node: string.isstring39497
+Node: string.dispstrs39822
+Node: string.ismissing40404
+Node: string.isnannish40885
+Node: string.cellstr41268
+Node: string.cell41613
+Node: string.char42100
+Node: string.encode42625
+Node: string.strlength_bytes43139
+Node: string.strlength43812
+Node: string.reverse_bytes44379
+Node: string.reverse45117
+Node: string.strcat45589
+Node: string.lower46167
+Node: string.upper46669
+Node: string.erase47170
+Node: string.strrep47507
+Node: string.strfind48112
+Node: string.regexprep48635
+Node: string.strcmp49111
+Node: string.cmp49804
+Node: string.missing50783
+Node: string.decode51185
+Node: struct2table51595
+Node: table52062
+Node: table.table54506
+Node: table.summary55558
+Node: table.prettyprint55985
+Node: table.table2cell56444
+Node: table.table2struct56932
+Node: table.table2array57567
+Node: table.varnames57814
+Node: table.istable58066
+Node: table.size58278
+Node: table.length58607
+Node: table.ndims58906
+Node: table.squeeze59157
+Node: table.sizeof59504
+Node: table.height59935
+Node: table.rows60143
+Node: table.width60344
+Node: table.columns60675
+Node: table.numel61013
+Node: table.isempty61533
+Node: table.ismatrix61857
+Node: table.isrow62146
+Node: table.iscol62364
+Node: table.isvector62724
+Node: table.isscalar62950
+Node: table.hasrownames63180
+Node: table.vertcat63430
+Node: table.horzcat63951
+Node: table.repmat64571
+Node: table.setVariableNames65106
+Node: table.setRowNames65552
+Node: table.resolveVarRef65924
+Node: table.subsetRows66926
+Node: table.subsetvars67271
+Node: table.removevars67778
+Node: table.movevars68163
+Node: table.setvar68891
+Node: table.convertvars69620
+Node: table.head70602
+Node: table.tail70977
+Node: table.join71343
+Node: table.innerjoin72089
+Node: table.outerjoin72750
+Node: table.outerfillvals73557
+Node: table.semijoin73990
+Node: table.antijoin74759
+Node: table.cartesian75411
+Node: table.groupby76679
+Node: table.grpstats77530
+Node: table.union77858
+Node: table.intersect78426
+Node: table.setxor79034
+Node: table.setdiff79669
+Node: table.ismember80206
+Node: table.ismissing80608
+Node: table.rmmissing81292
+Node: table.standardizeMissing82084
+Node: table.varfun83074
+Node: table.rowfun83641
+Node: table.findgroups83952
+Node: table.evalWithVars84537
+Node: table.restrict85387
+Node: tableOuterFillValue86516
+Node: tablicious.dataset87762
+Node: tablicious.dataset.airmiles88357
+Node: tablicious.dataset.beavers88650
+Node: tablicious.dataset.iris88958
+Node: tablicious.datasets89236
+Node: tablicious.datasets.list89730
+Node: tablicious.datasets.load90258
+Node: vecfun90673
+Node: Copying91398
+>>>>>>> Add AirPassengers dataset
 
 End Tag Table
 

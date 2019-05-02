@@ -281,6 +281,20 @@
                         </section>
                         <section title="tableOuterFillValue" ref="html/tableOuterFillValue.html">
                         </section>
+                        <section title="tablicious.dataset" ref="html/tablicious_002edataset.html">
+                            <section title="tablicious.dataset.airmiles" ref="html/tablicious_002edataset_002eairmiles.html">
+                            </section>
+                            <section title="tablicious.dataset.beavers" ref="html/tablicious_002edataset_002ebeavers.html">
+                            </section>
+                            <section title="tablicious.dataset.iris" ref="html/tablicious_002edataset_002eiris.html">
+                            </section>
+                        </section>
+                        <section title="tablicious.datasets" ref="html/tablicious_002edatasets.html">
+                            <section title="tablicious.datasets.list" ref="html/tablicious_002edatasets_002elist.html">
+                            </section>
+                            <section title="tablicious.datasets.load" ref="html/tablicious_002edatasets_002eload.html">
+                            </section>
+                        </section>
                         <section title="vecfun" ref="html/vecfun.html">
                         </section>
                     </section>
@@ -422,12 +436,26 @@
             <keyword name="table.vertcat" id="table.vertcat" ref="html/table_002evertcat.html"/>
             <keyword name="table.width" id="table.width" ref="html/table_002ewidth.html"/>
             <keyword name="tableOuterFillValue" id="tableOuterFillValue" ref="html/tableOuterFillValue.html"/>
+            <keyword name="tablicious.dataset" id="tablicious.dataset" ref="html/tablicious_002edataset.html"/>
+            <keyword name="tablicious.dataset.airmiles" id="tablicious.dataset.airmiles" ref="html/tablicious_002edataset_002eairmiles.html"/>
+            <keyword name="tablicious.dataset.beavers" id="tablicious.dataset.beavers" ref="html/tablicious_002edataset_002ebeavers.html"/>
+            <keyword name="tablicious.dataset.iris" id="tablicious.dataset.iris" ref="html/tablicious_002edataset_002eiris.html"/>
+            <keyword name="tablicious.datasets" id="tablicious.datasets" ref="html/tablicious_002edatasets.html"/>
+            <keyword name="tablicious.datasets.list" id="tablicious.datasets.list" ref="html/tablicious_002edatasets_002elist.html"/>
+            <keyword name="tablicious.datasets.load" id="tablicious.datasets.load" ref="html/tablicious_002edatasets_002eload.html"/>
             <keyword name="vecfun" id="vecfun" ref="html/vecfun.html"/>
         </keywords>
         <files>
             <file>Tablicious.html</file>
             <file>html/Copying.html</file>
             <file>html/vecfun.html</file>
+            <file>html/tablicious_002edatasets_002eload.html</file>
+            <file>html/tablicious_002edatasets_002elist.html</file>
+            <file>html/tablicious_002edatasets.html</file>
+            <file>html/tablicious_002edataset_002eiris.html</file>
+            <file>html/tablicious_002edataset_002ebeavers.html</file>
+            <file>html/tablicious_002edataset_002eairmiles.html</file>
+            <file>html/tablicious_002edataset.html</file>
             <file>html/tableOuterFillValue.html</file>
             <file>html/table_002erestrict.html</file>
             <file>html/table_002eevalWithVars.html</file>

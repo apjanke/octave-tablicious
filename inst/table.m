@@ -946,7 +946,7 @@ classdef table
     ## -*- texinfo -*-
     ## @node table.resolveVarRef
     ## @deftypefn {Method} {[@var{ixVar}, @var{varNames}] =} resolveVarRef (@var{obj}, @var{varRef})
-    ## @deftypefn {Method} {[@var{ixVar}, @var{varNames}] =} resolveVarRef (@var{obj}, @var{varRef}, @var{strictness})
+    ## @deftypefnx {Method} {[@var{ixVar}, @var{varNames}] =} resolveVarRef (@var{obj}, @var{varRef}, @var{strictness})
     ##
     ## Resolve a variable reference against this table.
     ##
