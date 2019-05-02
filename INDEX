@@ -22,4 +22,6 @@ Missing Data
 Miscellaneous
  colvecfun
  dispstrs
+ isfile
+ isfolder
  pp
