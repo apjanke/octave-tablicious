@@ -38,10 +38,26 @@ Missing Data
  missing
  isnannish
  eqn
+Validation
+ mustBeA
+ mustBeCellstr
+ mustBeCharvec
+ mustBeFinite
+ mustBeInteger
+ mustBeMember
+ mustBeNonempty
+ mustBeNumeric
+ mustBeReal
+ mustBeSameSize
+ mustBeScalar
+ mustBeScalarLogical
+ mustBeVector
 Miscellaneous
  colvecfun
  dispstrs
  isfile
  isfolder
  pp
+ scalarexpand
+ size2str
  vecfun
