@@ -395,6 +395,60 @@ Categorical variable array.
 Group data into discrete bins or categories.
 
 @end table
+@subsection Dates
+@table @asis
+@item @ref{datetime}
+Represents points in time using the Gregorian calendar.
+
+@item @ref{localdate}
+Represents a complete day using the Gregorian calendar.
+
+@item @ref{isdatetime}
+True if input is a 'datetime' array, false otherwise.
+
+@item @ref{NaT}
+“Not-a-Time”.
+
+@end table
+@subsection Durations
+@table @asis
+@item @ref{calendarDuration}
+Durations of time using variable-length calendar periods, such as days, months, and years, which may vary in length over time.
+
+@item @ref{calmonths}
+Create a 'calendarDuration' that is a given number of calendar months long.
+
+@item @ref{calyears}
+Construct a 'calendarDuration' a given number of years long.
+
+@item @ref{days}
+Duration in days.
+
+@item @ref{duration}
+Represents durations or periods of time as an amount of fixed-length time (i.e.
+
+@item @ref{hours}
+Create a 'duration' X hours long, or get the hours in a 'duration' X.
+
+@item @ref{isduration}
+True if input is a 'duration' array, false otherwise.
+
+@item @ref{milliseconds}
+Create a 'duration' X milliseconds long, or get the milliseconds in a 'duration' X.
+
+@item @ref{minutes}
+Create a 'duration' X hours long, or get the hours in a 'duration' X.
+
+@item @ref{seconds}
+Create a 'duration' X seconds long, or get the seconds in a 'duration' X.
+
+@item @ref{timezones}
+List all the time zones defined on this system.
+
+@item @ref{years}
+Create a 'duration' X years long, or get the years in a 'duration' X.
+
+@end table
 @subsection Missing Data
 @table @asis
 @item @ref{fillmissing}
@@ -440,35 +494,74 @@ Alias for prettyprint, for interactive use.
 Apply function to vectors in array along arbitrary dimension.
 
 @end table
+@subsection Uncategorized
+@table @asis
+@item @ref{octave.chrono.dummy_function}
+A dummy function just for testing the doco tools.
+
+@item @ref{octave.chrono.DummyClass}
+'DummyClass' is a do-nothing class just for testing the doco tools.
+
+@end table
 
 @node API Alphabetically
 @section API Alphabetically
 @menu
 * array2table:: Convert an array to a table.
+* calendarDuration::	Durations of time using variable-length calendar
+		periods, such as days, months, and years, which may vary in
+		length over time.
+* calmonths::	Create a 'calendarDuration' that is a given number of
+		calendar months long.
+* calyears::	Construct a 'calendarDuration' a given number of years
+		long.
 * categorical:: Categorical variable array.
 * cell2table::	Convert a cell array to a table.
 * colvecfun::	Apply a function to column vectors in array.
 * contains::	Test if strings contain a pattern.
+* datetime::	Represents points in time using the Gregorian calendar.
+* days::	Duration in days.
 * discretize::	Group data into discrete bins or categories.
 * dispstrs::	Display strings for array.
+* duration::	Represents durations or periods of time as an amount of
+		fixed-length time (i.e.
 * endsWith::	Test if strings end with a pattern.
 * eqn:: Determine element-wise equality, treating NaNs as equal
 * fillmissing:: Fill missing values.
+* hours::	Create a 'duration' X hours long, or get the hours in a
+		'duration' X.
+* isdatetime::	True if input is a 'datetime' array, false otherwise.
+* isduration::	True if input is a 'duration' array, false otherwise.
 * isfile::	Test whether file exists and is not a folder.
 * isfolder::	Test whether file exists and is a folder.
 * ismissing::	Find missing values.
 * isnannish::	Test if elements are NaN or NaN-like
+* localdate::	Represents a complete day using the Gregorian calendar.
+* milliseconds::	Create a 'duration' X milliseconds long, or get the
+		milliseconds in a 'duration' X.
+* minutes::	Create a 'duration' X hours long, or get the hours in a
+		'duration' X.
 * missing::	Generic auto-converting missing value.
+* NaT:: “Not-a-Time”.
+* octave.chrono.dummy_function::	A dummy function just for testing
+		the doco tools.
+* octave.chrono.DummyClass::	'DummyClass' is a do-nothing class just for
+		testing the doco tools.
 * pp::	Alias for prettyprint, for interactive use.
 * rmmissing::	Remove missing values.
+* seconds::	Create a 'duration' X seconds long, or get the seconds in a
+		'duration' X.
 * standardizeMissing::	Insert standard missing values.
 * startsWith::	Test if strings start with a pattern.
 * string::	A string array of Unicode strings.
 * struct2table::	Convert struct to a table.
 * table::	Tabular data array containing multiple columnar variables.
 * tableOuterFillValue:: Outer fill value for variable within a table.
+* timezones::	List all the time zones defined on this system.
 * vecfun::	Apply function to vectors in array along arbitrary
 		dimension.
+* years::	Create a 'duration' X years long, or get the years in a
+		'duration' X.
 @end menu
 
 @node array2table
@@ -490,6 +583,199 @@ condensed into primitive arrays will be. With @code{array2table}, they
 won't be.
 
 See also: @ref{cell2table}, @ref{table}, @ref{struct2table}
+
+@end deftypefn
+
+
+@node calendarDuration
+@subsection calendarDuration
+@deftp {Class} calendarDuration
+
+Durations of time using variable-length calendar periods, such as days,
+months, and years, which may vary in length over time. (For example, a
+calendar month may have 28, 30, or 31 days.)
+
+@end deftp
+
+@deftypeivar calendarDuration @code{char} Sign
+
+The sign (1 or -1) of this duration, which indicates whether it is a
+positive or negative span of time.
+
+@end deftypeivar
+
+@deftypeivar calendarDuration @code{char} Years
+
+The number of whole calendar years in this duration. Must be integer-valued.
+
+@end deftypeivar
+
+@deftypeivar calendarDuration @code{char} Months
+
+The number of whole calendar months in this duration. Must be integer-valued.
+
+@end deftypeivar
+
+@deftypeivar calendarDuration @code{char} Days
+
+The number of whole calendar days in this duration. Must be integer-valued.
+
+@end deftypeivar
+
+@deftypeivar calendarDuration @code{char} Hours
+
+The number of whole hours in this duration. Must be integer-valued.
+
+@end deftypeivar
+
+@deftypeivar calendarDuration @code{char} Minutes
+
+The number of whole minutes in this duration. Must be integer-valued.
+
+@end deftypeivar
+
+@deftypeivar calendarDuration @code{char} Seconds
+
+The number of seconds in this duration. May contain fractional values.
+
+@end deftypeivar
+
+@deftypeivar calendarDuration @code{char} Format
+
+The format to display this @code{calendarDuration} in. Currently unsupported.
+
+This is a single value that applies to the whole array.
+
+@end deftypeivar
+
+
+@node calendarDuration.calendarDuration
+@subsubsection calendarDuration.calendarDuration
+
+@deftypefn {Constructor} {@var{obj} =} calendarDuration ()
+
+Constructs a new scalar @code{calendarDuration} of zero elapsed time.
+
+@end deftypefn
+
+@deftypefn {Constructor} {@var{obj} =} calendarDuration (@var{Y}, @var{M}, @var{D})
+@deftypefnx {Constructor} {@var{obj} =} calendarDuration (@var{Y}, @var{M}, @
+  @var{D}, @var{H}, @var{MI}, @var{S})
+
+Constructs new @code{calendarDuration} arrays based on input values.
+
+@end deftypefn
+
+@node calendarDuration.isnat
+@subsubsection calendarDuration.isnat
+
+@deftypefn {Method} {@var{out} =} isnat (@var{obj})
+
+True if input elements are NaT.
+
+Returns logical array the same size as @var{obj}.
+
+@end deftypefn
+
+@node calendarDuration.uminus
+@subsubsection calendarDuration.uminus
+
+@deftypefn {Method} {@var{out} =} uminus (@var{obj})
+
+Unary minus. Negates the sign of @var{obj}.
+
+@end deftypefn
+
+@node calendarDuration.plus
+@subsubsection calendarDuration.plus
+
+@deftypefn {Method} {@var{out} =} plus (@var{A}, @var{B})
+
+Addition: add two @code{calendarDuration}s.
+
+All the calendar elements (properties) of the two inputs are added
+together. No normalization is done across the elements, aside from
+the normalization of NaNs.
+
+If @var{B} is numeric, it is converted to a @code{calendarDuration}
+using @code{calendarDuration.ofDays}.
+
+Returns a @code{calendarDuration}.
+
+@end deftypefn
+
+@node calendarDuration.times
+@subsubsection calendarDuration.times
+
+@deftypefn {Method} {@var{out} =} times (@var{obj}, @var{B})
+
+Multiplication: Multiplies a @code{calendarDuration} by a numeric factor.
+
+Returns a @code{calendarDuration}.
+
+@end deftypefn
+
+@node calendarDuration.minus
+@subsubsection calendarDuration.minus
+
+@deftypefn {Method} {@var{out} =} times (@var{A}, @var{B})
+
+Subtraction: Subtracts one @code{calendarDuration} from another.
+
+Returns a @code{calendarDuration}.
+
+@end deftypefn
+
+@node calendarDuration.dispstrs
+@subsubsection calendarDuration.dispstrs
+
+@deftypefn {Method} {@var{out} =} dispstrs (@var{obj})
+
+Get display strings for each element of @var{obj}.
+
+Returns a cellstr the same size as @var{obj}.
+
+@end deftypefn
+
+@node calendarDuration.isnan
+@subsubsection calendarDuration.isnan
+
+@deftypefn {Method} {@var{out} =} isnan (@var{obj})
+
+True if input elements are NaT. This is just an alias for @code{isnat},
+provided for compatibility and polymorphic programming purposes.
+
+Returns logical array the same size as @var{obj}.
+
+@end deftypefn
+
+@node calmonths
+@subsection calmonths
+@deftypefn {Function File} {@var{out} =} calmonths (@var{x})
+Create a @code{calendarDuration} that is a given number of calendar months
+long.
+
+Input @var{x} is a numeric array specifying the number of calendar months.
+
+This is a shorthand alternative to calling the @code{calendarDuration}
+constructor with @code{calendarDuration(0, x, 0)}.
+
+Returns a new @code{calendarDuration} object of the same size as @var{x}.
+
+@xref{calendarDuration}.
+
+@end deftypefn
+
+
+@node calyears
+@subsection calyears
+@deftypefn {Function} {@var{out} =} calyears (@var{x})
+
+Construct a @code{calendarDuration} a given number of years long.
+
+This is a shorthand for calling @code{calendarDuration(@var{x}, 0, 0)}.
+
+@xref{calendarDuration}.
 
 @end deftypefn
 
@@ -901,6 +1187,583 @@ Returns a logical array of the same size as the string array represented by
 @end deftypefn
 
 
+@node datetime
+@subsection datetime
+@deftp {Class} datetime
+
+Represents points in time using the Gregorian calendar.
+
+The underlying values are doubles representing the number of days since the
+Matlab epoch of "January 0, year 0". This has a precision of around nanoseconds
+for typical times.
+
+A @code{datetime} array is an array of date/time values, with each element
+holding a complete date/time. The overall array may also have a TimeZone and a
+Format associated with it, which apply to all elements in the array.
+
+
+This is an attempt to reproduce the functionality of Matlab's @code{datetime}. It
+also contains some Octave-specific extensions.
+
+@end deftp
+
+@deftypeivar datetime @code{double} dnums
+
+The underlying datenums that represent the points in time. These are always in UTC.
+
+This is a planar property: the size of @code{dnums} is the same size as the
+containing @code{datetime} array object.
+
+@end deftypeivar
+
+@deftypeivar datetime @code{char} TimeZone
+
+The time zone this @code{datetime} array is in. Empty if this does not have a
+time zone associated with it (“unzoned”). The name of an IANA time zone if
+this does.
+
+Setting the @code{TimeZone} of a @code{datetime} array changes the time zone it
+is presented in for strings and broken-down times, but does not change the
+underlying UTC times that its elements represent.
+
+@end deftypeivar
+
+@deftypeivar datetime @code{char} Format
+
+The format to display this @code{datetime} in. Currently unsupported.
+
+@end deftypeivar
+
+
+@node datetime.datetime
+@subsubsection datetime.datetime
+
+@deftypefn {Constructor} {@var{obj} =} datetime ()
+
+Constructs a new scalar @code{datetime} containing the current local time, with
+no time zone attached.
+
+@end deftypefn
+
+@deftypefn {Constructor} {@var{obj} =} datetime (@var{datevec})
+@deftypefnx {Constructor} {@var{obj} =} datetime (@var{datestrs})
+@deftypefnx {Constructor} {@var{obj} =} datetime (@var{in}, @code{'ConvertFrom'}, @var{inType})
+@deftypefnx {Constructor} {@var{obj} =} datetime @
+  (@var{Y}, @var{M}, @var{D}, @var{H}, @var{MI}, @var{S})
+@deftypefnx {Constructor} {@var{obj} =} datetime @
+  (@var{Y}, @var{M}, @var{D}, @var{H}, @var{MI}, @var{MS})
+@deftypefnx {Constructor} {@var{obj} =} datetime @
+  (@dots{}, @code{'Format'}, @var{Format}, @code{'InputFormat'}, @var{InputFormat}, @
+   @code{'Locale'}, @var{InputLocale}, @code{'PivotYear'}, @var{PivotYear}, @
+   @code{'TimeZone'}, @var{TimeZone})
+
+Constructs a new @code{datetime} array based on input values.
+
+@end deftypefn
+
+@node datetime.ofDatenum
+@subsubsection datetime.ofDatenum
+
+@deftypefn {Static Method} {@var{obj} =} datetime.ofDatenum (@var{dnums})
+
+Converts a datenum array to a datetime array.
+
+Returns an unzoned @code{datetime} array of the same size as the input.
+
+@end deftypefn
+
+@node datetime.ofDatestruct
+@subsubsection datetime.ofDatestruct
+
+@deftypefn {Static Method} {@var{obj} =} datetime.ofDatestruct (@var{dstruct})
+
+Converts a datestruct to a datetime array.
+
+A datestruct is a special struct format used by Chrono that has fields
+Year, Month, Day, Hour, Minute, and Second. It is not a standard Octave datatype.
+
+Returns an unzoned @code{datetime} array.
+
+@end deftypefn
+
+@node datetime.NaT
+@subsubsection datetime.NaT
+
+@deftypefn {Static Method} {@var{out} =} datetime.NaT ()
+@deftypefnx {Static Method} {@var{out} =} datetime.NaT (@var{sz})
+
+“Not-a-Time”: Creates NaT-valued arrays.
+
+Constructs a new @code{datetime} array of all @code{NaT} values of
+the given size. If no input @var{sz} is given, the result is a scalar @code{NaT}.
+
+@code{NaT} is the @code{datetime} equivalent of @code{NaN}. It represents a missing
+or invalid value. @code{NaT} values never compare equal to, greater than, or less
+than any value, including other @code{NaT}s. Doing arithmetic with a @code{NaT} and
+any other value results in a @code{NaT}.
+
+@end deftypefn
+
+@node datetime.posix2datenum
+@subsubsection datetime.posix2datenum
+
+@deftypefn {Static Method} {@var{dnums} =} datetime.posix2datenum (@var{pdates})
+
+Converts POSIX (Unix) times to datenums
+
+Pdates (numeric) is an array of POSIX dates. A POSIX date is the number
+of seconds since January 1, 1970 UTC, excluding leap seconds. The output
+is implicitly in UTC.
+
+@end deftypefn
+
+@node datetime.datenum2posix
+@subsubsection datetime.datenum2posix
+
+@deftypefn {Static Method} {@var{out} =} datetime.datenum2posix (@var{dnums})
+
+Converts Octave datenums to Unix dates.
+
+The input datenums are assumed to be in UTC.
+
+Returns a double, which may have fractional seconds.
+
+@end deftypefn
+
+@node datetime.proxyKeys
+@subsubsection datetime.proxyKeys
+
+@deftypefn {Method} {[@var{keysA}, @var{keysB}] =} proxyKeys (@var{a}, @var{b})
+
+Computes proxy key values for two datetime arrays. Proxy keys are numeric
+values whose rows have the same equivalence relationships as the elements of
+the inputs.
+
+This is primarily for Chrono's internal use; users will typically not need to call
+it or know how it works.
+
+Returns two 2-D numeric matrices of size n-by-k, where n is the number of elements
+in the corresponding input.
+
+@end deftypefn
+
+@node datetime.ymd
+@subsubsection datetime.ymd
+
+@deftypefn {Method} {[@var{y}, @var{m}, @var{d}] =} ymd (@var{obj})
+
+Get the Year, Month, and Day components of @var{obj}.
+
+For zoned @code{datetime}s, these will be local times in the associated time zone.
+
+Returns double arrays the same size as @code{obj}.
+
+@end deftypefn
+
+@node datetime.hms
+@subsubsection datetime.hms
+
+@deftypefn {Method} {[@var{h}, @var{m}, @var{s}] =} hms (@var{obj})
+
+Get the Hour, Minute, and Second components of a @var{obj}.
+
+For zoned @code{datetime}s, these will be local times in the associated time zone.
+
+Returns double arrays the same size as @code{obj}.
+
+@end deftypefn
+
+@node datetime.ymdhms
+@subsubsection datetime.ymdhms
+
+@deftypefn {Method} {[@var{y}, @var{m}, @var{d}, @var{h}, @var{mi}, @var{s}] =} ymdhms @
+  (@var{obj})
+
+Get the Year, Month, Day, Hour, Minute, and Second components of a @var{obj}.
+
+For zoned @code{datetime}s, these will be local times in the associated time zone.
+
+Returns double arrays the same size as @code{obj}.
+
+@end deftypefn
+
+@node datetime.timeofday
+@subsubsection datetime.timeofday
+
+@deftypefn {Method} {@var{out} =} timeofday (@var{obj})
+
+Get the time of day (elapsed time since midnight).
+
+For zoned @code{datetime}s, these will be local times in the associated time zone.
+
+Returns a @code{duration} array the same size as @code{obj}.
+
+@end deftypefn
+
+@node datetime.week
+@subsubsection datetime.week
+
+@deftypefn {Method} {@var{out} =} week (@var{obj})
+
+Get the week of the year.
+
+This method is unimplemented.
+
+@end deftypefn
+
+@node datetime.dispstrs
+@subsubsection datetime.dispstrs
+
+@deftypefn {Method} {@var{out} =} dispstrs (@var{obj})
+
+Get display strings for each element of @var{obj}.
+
+Returns a cellstr the same size as @var{obj}.
+
+@end deftypefn
+
+@node datetime.datestr
+@subsubsection datetime.datestr
+
+@deftypefn {Method} {@var{out} =} datestr (@var{obj})
+@deftypefnx {Method} {@var{out} =} datestr (@var{obj}, @dots{})
+
+Format @var{obj} as date strings. Supports all arguments that core Octave's
+@code{datestr} does.
+
+Returns date strings as a 2-D char array.
+
+@end deftypefn
+
+@node datetime.datestrs
+@subsubsection datetime.datestrs
+
+@deftypefn {Method} {@var{out} =} datestrs (@var{obj})
+@deftypefnx {Method} {@var{out} =} datestrs (@var{obj}, @dots{})
+
+Format @var{obj} as date strings, returning cellstr.
+Supports all arguments that core Octave's @code{datestr} does.
+
+Returns a cellstr array the same size as @var{obj}.
+
+@end deftypefn
+
+@node datetime.datestruct
+@subsubsection datetime.datestruct
+
+@deftypefn {Method} {@var{out} =} datestruct (@var{obj})
+
+Converts this to a "datestruct" broken-down time structure.
+
+A "datestruct" is a format of struct that Chrono came up with. It is a scalar
+struct with fields Year, Month, Day, Hour, Minute, and Second, each containing
+a double array the same size as the date array it represents.
+
+The values in the returned broken-down time are those of the local time
+in this' defined time zone, if it has one.
+
+Returns a struct with fields Year, Month, Day, Hour, Minute, and Second.
+Each field contains a double array of the same size as this.
+
+@end deftypefn
+
+@node datetime.posixtime
+@subsubsection datetime.posixtime
+
+@deftypefn {Method} {@var{out} =} posixtime (@var{obj})
+
+Converts this to POSIX time values (seconds since the Unix epoch)
+
+Converts this to POSIX time values that represent the same time. The
+returned values will be doubles that may include fractional second values.
+POSIX times are, by definition, in UTC.
+
+Returns double array of same size as this.
+
+@end deftypefn
+
+@node datetime.datenum
+@subsubsection datetime.datenum
+
+@deftypefn {Method} {@var{out} =} datenum (@var{obj})
+
+Convert this to datenums that represent the same local time
+
+Returns double array of same size as this.
+
+@end deftypefn
+
+@node datetime.gmtime
+@subsubsection datetime.gmtime
+
+@deftypefn {Method} {@var{out} =} gmtime (@var{obj})
+
+Convert to TM_STRUCT structure in UTC time.
+
+Converts @var{obj} to a TM_STRUCT style structure array. The result is in
+UTC time. If @var{obj} is unzoned, it is assumed to be in UTC time.
+
+Returns a struct array in TM_STRUCT style.
+
+@end deftypefn
+
+@node datetime.localtime
+@subsubsection datetime.localtime
+
+@deftypefn {Method} {@var{out} =} localtime (@var{obj})
+
+Convert to TM_STRUCT structure in UTC time.
+
+Converts @var{obj} to a TM_STRUCT style structure array. The result is a
+local time in the system default time zone. Note that the system default
+time zone is always used, regardless of what TimeZone is set on @var{obj}.
+
+If @var{obj} is unzoned, it is assumed to be in UTC time.
+
+Returns a struct array in TM_STRUCT style.
+
+Example:
+@example
+dt = datetime;
+dt.TimeZone = datetime.SystemTimeZone;
+tm_struct = localtime (dt);
+@end example
+
+@end deftypefn
+
+@node datetime.isnat
+@subsubsection datetime.isnat
+
+@deftypefn {Method} {@var{out} =} isnat (@var{obj})
+
+True if input elements are NaT.
+
+Returns logical array the same size as @var{obj}.
+
+@end deftypefn
+
+@node datetime.isnan
+@subsubsection datetime.isnan
+
+@deftypefn {Method} {@var{out} =} isnan (@var{obj})
+
+True if input elements are NaT. This is an alias for @code{isnat}
+to support type compatibility and polymorphic programming.
+
+Returns logical array the same size as @var{obj}.
+
+@end deftypefn
+
+@node datetime.lt
+@subsubsection datetime.lt
+
+@deftypefn {Method} {@var{out} =} lt (@var{A}, @var{B})
+
+True if @var{A} is less than @var{B}. This defines the @code{<} operator
+for @code{datetime}s.
+
+Inputs are implicitly converted to @code{datetime} using the one-arg
+constructor or conversion method.
+
+Returns logical array the same size as @var{obj}.
+
+@end deftypefn
+
+@node datetime.le
+@subsubsection datetime.le
+
+@deftypefn {Method} {@var{out} =} le (@var{A}, @var{B})
+
+True if @var{A} is less than or equal to@var{B}. This defines the @code{<=} operator
+for @code{datetime}s.
+
+Inputs are implicitly converted to @code{datetime} using the one-arg
+constructor or conversion method.
+
+Returns logical array the same size as @var{obj}.
+
+@end deftypefn
+
+@node datetime.ne
+@subsubsection datetime.ne
+
+@deftypefn {Method} {@var{out} =} ne (@var{A}, @var{B})
+
+True if @var{A} is not equal to @var{B}. This defines the @code{!=} operator
+for @code{datetime}s.
+
+Inputs are implicitly converted to @code{datetime} using the one-arg
+constructor or conversion method.
+
+Returns logical array the same size as @var{obj}.
+
+@end deftypefn
+
+@node datetime.eq
+@subsubsection datetime.eq
+
+@deftypefn {Method} {@var{out} =} eq (@var{A}, @var{B})
+
+True if @var{A} is equal to @var{B}. This defines the @code{==} operator
+for @code{datetime}s.
+
+Inputs are implicitly converted to @code{datetime} using the one-arg
+constructor or conversion method.
+
+Returns logical array the same size as @var{obj}.
+
+@end deftypefn
+
+@node datetime.ge
+@subsubsection datetime.ge
+
+@deftypefn {Method} {@var{out} =} ge (@var{A}, @var{B})
+
+True if @var{A} is greater than or equal to @var{B}. This defines the @code{>=} operator
+for @code{datetime}s.
+
+Inputs are implicitly converted to @code{datetime} using the one-arg
+constructor or conversion method.
+
+Returns logical array the same size as @var{obj}.
+
+@end deftypefn
+
+@node datetime.gt
+@subsubsection datetime.gt
+
+@deftypefn {Method} {@var{out} =} gt (@var{A}, @var{B})
+
+True if @var{A} is greater than @var{B}. This defines the @code{>} operator
+for @code{datetime}s.
+
+Inputs are implicitly converted to @code{datetime} using the one-arg
+constructor or conversion method.
+
+Returns logical array the same size as @var{obj}.
+
+@end deftypefn
+
+@node datetime.plus
+@subsubsection datetime.plus
+
+@deftypefn {Method} {@var{out} =} plus (@var{A}, @var{B})
+
+Addition (@code{+} operator). Adds a @code{duration}, @code{calendarDuration},
+or numeric @var{B} to a @code{datetime} @var{A}.
+
+@var{A} must be a @code{datetime}.
+
+Numeric @var{B} inputs are implicitly converted to @code{duration} using
+@code{duration.ofDays}.
+
+Returns @code{datetime} array the same size as @var{A}.
+
+@end deftypefn
+
+@node datetime.minus
+@subsubsection datetime.minus
+
+@deftypefn {Method} {@var{out} =} minus (@var{A}, @var{B})
+
+Subtraction (@code{-} operator). Subtracts a @code{duration},
+@code{calendarDuration} or numeric @var{B} from a @code{datetime} @var{A},
+or subtracts two @code{datetime}s from each other.
+
+If both inputs are @code{datetime}, then the output is a @code{duration}.
+Otherwise, the output is a @code{datetime}.
+
+Numeric @var{B} inputs are implicitly converted to @code{duration} using
+@code{duration.ofDays}.
+
+Returns an array the same size as @var{A}.
+
+@end deftypefn
+
+@node datetime.diff
+@subsubsection datetime.diff
+
+@deftypefn {Method} {@var{out} =} diff (@var{obj})
+
+Differences between elements.
+
+Computes the difference between each successive element in @var{obj}, as a
+@code{duration}.
+
+Returns a @code{duration} array the same size as @var{obj}.
+
+@end deftypefn
+
+@node datetime.isbetween
+@subsubsection datetime.isbetween
+
+@deftypefn {Method} {@var{out} =} isbetween (@var{obj}, @var{lower}, @var{upper})
+
+Tests whether the elements of @var{obj} are between @var{lower} and
+@var{upper}.
+
+All inputs are implicitly converted to @code{datetime} arrays, and are subject
+to scalar expansion.
+
+Returns a logical array the same size as the scalar expansion of the inputs.
+
+@end deftypefn
+
+@node datetime.linspace
+@subsubsection datetime.linspace
+
+@deftypefn {Method} {@var{out} =} linspace (@var{from}, @var{to}, @var{n})
+
+Linearly-spaced values in date/time space.
+
+Constructs a vector of @code{datetime}s that represent linearly spaced points
+starting at @var{from} and going up to @var{to}, with @var{n} points in the
+vector.
+
+@var{from} and @var{to} are implicitly converted to @code{datetime}s.
+
+@var{n} is how many points to use. If omitted, defaults to 100.
+
+Returns an @var{n}-long @code{datetime} vector.
+
+@end deftypefn
+
+@node datetime.convertDatenumTimeZone
+@subsubsection datetime.convertDatenumTimeZone
+
+@deftypefn {Static Method} {@var{out} =} datetime.convertDatenumTimeZone @
+ (@var{dnum}, @var{fromZoneId}, @var{toZoneId})
+
+Convert a datenum from one time zone to another.
+
+@var{dnum} is a datenum array to convert.
+
+@var{fromZoneId} is a charvec containing the IANA Time Zone identifier for
+the time zone to convert from.
+
+@var{toZoneId} is a charvec containing the IANA Time Zone identifier for
+the time zone to convert to.
+
+Returns a datenum array the same size as @var{dnum}.
+
+@end deftypefn
+
+@node days
+@subsection days
+@deftypefn {Function} {@var{out} =} days (@var{x})
+
+Duration in days.
+
+If @var{x} is numeric, then @var{out} is a @code{duration} array in units
+of fixed-length 24-hour days, with the same size as @var{x}.
+
+If @var{x} is a @code{duration}, then returns a @code{double} array the same
+size as @var{x} indicating the number of fixed-length days that each duration
+is.
+
+@end deftypefn
+
+
 @node discretize
 @subsection discretize
 @deftypefn {Function} {[@var{Y}, @var{E}] =} discretize (@var{X}, @var{n})
@@ -949,6 +1812,190 @@ Returns a cell array the same size as @var{x}.
 
 @end deftypefn
 
+
+@node duration
+@subsection duration
+@deftp {Class} duration
+
+Represents durations or periods of time as an amount of fixed-length
+time (i.e. fixed-length seconds). It does not care about calendar things
+like months and days that vary in length over time.
+
+This is an attempt to reproduce the functionality of Matlab's @code{duration}. It
+also contains some Octave-specific extensions.
+
+@end deftp
+
+@deftypeivar duration @code{double} days
+
+The underlying datenums that represent the durations, as number of (whole and
+fractional) days. These are uniform 24-hour days, not calendar days.
+
+This is a planar property: the size of @code{days} is the same size as the
+containing @code{duration} array object.
+
+@end deftypeivar
+
+@deftypeivar duration @code{char} Format
+
+The format to display this @code{duration} in. Currently unsupported.
+
+@end deftypeivar
+
+@node duration.duration
+@subsubsection duration.duration
+@deftypefn {Constructor} {@var{obj} =} duration ()
+
+Constructs a new scalar @code{duration} of zero elapsed time.
+
+@end deftypefn
+
+@deftypefn {Constructor} {@var{obj} =} duration (@var{durationstrs})
+@deftypefnx {Constructor} {@var{obj} =} duration (@var{durationstrs}, @code{'InputFormat'}, @var{InputFormat})
+@deftypefnx {Constructor} {@var{obj} =} duration (@var{H}, @var{MI}, @var{S})
+@deftypefnx {Constructor} {@var{obj} =} duration (@var{H}, @var{MI}, @var{S}, @
+  @var{MS})
+
+Constructs a new @code{duration} array based on input values.
+
+@end deftypefn
+
+
+@node duration.ofDays
+@subsubsection duration.ofDays
+
+@subsubsection duration.ofDays
+@deftypefn {Static Method} {@var{obj} =} duration.ofDays (@var{dnums})
+
+Converts a double array representing durations in whole and fractional days
+to a @code{duration} array. This is the method that is used for implicit conversion
+of numerics in many cases.
+
+Returns a @code{duration} array of the same size as the input.
+
+@end deftypefn
+
+@node duration.years
+@subsubsection duration.years
+
+@subsubsection duration.years
+@deftypefn {Method} {@var{out} =} years (@var{obj})
+
+Equivalent number of years.
+
+Gets the number of fixed-length 365.2425-day years that is equivalent
+to this duration.
+
+Returns double array the same size as @var{obj}.
+
+@end deftypefn
+
+@node duration.hours
+@subsubsection duration.hours
+
+@subsubsection duration.hours
+@deftypefn {Method} {@var{out} =} hours (@var{obj})
+
+Equivalent number of hours.
+
+Gets the number of fixed-length 60-minute hours that is equivalent
+to this duration.
+
+Returns double array the same size as @var{obj}.
+
+@end deftypefn
+
+@node duration.minutes
+@subsubsection duration.minutes
+
+@subsubsection duration.minutes
+@deftypefn {Method} {@var{out} =} minutes (@var{obj})
+
+Equivalent number of minutes.
+
+Gets the number of fixed-length 60-second minutes that is equivalent
+to this duration.
+
+Returns double array the same size as @var{obj}.
+
+@end deftypefn
+
+@node duration.seconds
+@subsubsection duration.seconds
+
+@subsubsection duration.seconds
+@deftypefn {Method} {@var{out} =} seconds (@var{obj})
+
+Equivalent number of seconds.
+
+Gets the number of seconds that is equivalent
+to this duration.
+
+Returns double array the same size as @var{obj}.
+
+@end deftypefn
+
+@node duration.milliseconds
+@subsubsection duration.milliseconds
+
+@subsubsection duration.milliseconds
+@deftypefn {Method} {@var{out} =} milliseconds (@var{obj})
+
+Equivalent number of milliseconds.
+
+Gets the number of milliseconds that is equivalent
+to this duration.
+
+Returns double array the same size as @var{obj}.
+
+@end deftypefn
+
+@node duration.dispstrs
+@subsubsection duration.dispstrs
+
+@subsubsection duration.dispstrs
+@deftypefn {Method} {@var{out} =} duration (@var{obj})
+
+Get display strings for each element of @var{obj}.
+
+Returns a cellstr the same size as @var{obj}.
+
+@end deftypefn
+
+@node duration.char
+@subsubsection duration.char
+
+@subsubsection duration.char
+@deftypefn {Method} {@var{out} =} char (@var{obj})
+
+Convert to char. The contents of the strings will be the same as
+returned by @code{dispstrs}.
+
+This is primarily a convenience method for use on scalar @var{obj}s.
+
+Returns a 2-D char array with one row per element in @var{obj}.
+
+@end deftypefn
+
+@node duration.linspace
+@subsubsection duration.linspace
+
+@subsubsection duration.linspace
+@deftypefn {Method} {@var{out} =} linspace (@var{from}, @var{to}, @var{n})
+
+Linearly-spaced values in time duration space.
+
+Constructs a vector of @code{duration}s that represent linearly spaced points
+starting at @var{from} and going up to @var{to}, with @var{n} points in the
+vector.
+
+@var{from} and @var{to} are implicitly converted to @code{duration}s.
+
+@var{n} is how many points to use. If omitted, defaults to 100.
+
+Returns an @var{n}-long @code{datetime} vector.
+
+@end deftypefn
 
 @node endsWith
 @subsection endsWith
@@ -1029,6 +2076,41 @@ Returns @var{out}, which is @var{X} but with missing values filled in, and
 @var{tfFilled}, a logical array the same size as @var{X} which indicates
 which elements were filled.
 
+@end deftypefn
+
+
+@node hours
+@subsection hours
+@deftypefn {Function File} {@var{out} =} hours (@var{x})
+Create a @code{duration} @var{x} hours long, or get the hours in a @code{duration}
+@var{x}.
+
+If input is numeric, returns a @code{duration} array that is that many hours in
+time.
+
+If input is a @code{duration}, converts the @code{duration} to a number of hours.
+
+Returns an array the same size as @var{x}.
+@end deftypefn
+
+
+@node isdatetime
+@subsection isdatetime
+@deftypefn {Function} {@var{tf} =} isdatetime (@var{x})
+
+True if input is a @code{datetime} array, false otherwise.
+
+Returns a logical array the same size as @var{x}.
+@end deftypefn
+
+
+@node isduration
+@subsection isduration
+@deftypefn {Function} {@var{tf} =} isduration (@var{x})
+
+True if input is a @code{duration} array, false otherwise.
+
+Returns a logical array the same size as @var{x}.
 @end deftypefn
 
 
@@ -1158,6 +2240,219 @@ See also: @code{isnan}, @code{isnat}, @ref{ismissing}, @ref{eqn}, @code{isequaln
 @end deftypefn
 
 
+@node localdate
+@subsection localdate
+@deftp {Class} localdate
+
+Represents a complete day using the Gregorian calendar.
+
+This class is useful for indexing daily-granularity data or representing
+time periods that cover an entire day in local time somewhere. The major
+purpose of this class is "type safety", to prevent time-of-day values
+from sneaking in to data sets that should be daily only. As a secondary
+benefit, this uses less memory than datetimes.
+
+@end deftp
+
+@deftypeivar localdate @code{double} dnums
+
+The underlying datenum values that represent the days. The datenums are at
+the midnight that is at the start of the day it represents.
+
+These are doubles, but
+they are restricted to be integer-valued, so they represent complete days, with
+no time-of-day component.
+
+@end deftypeivar
+
+@deftypeivar localdate @code{char} Format
+
+The format to display this @code{localdate} in. Currently unsupported.
+
+@end deftypeivar
+
+
+@node localdate.localdate
+@subsubsection localdate.localdate
+
+@deftypefn {Constructor} {@var{obj} =} localdate ()
+
+Constructs a new scalar @code{localdate} containing the current local date.
+
+@end deftypefn
+
+@deftypefn {Constructor} {@var{obj} =} localdate (@var{datenums})
+@deftypefnx {Constructor} {@var{obj} =} localdate (@var{datestrs})
+@deftypefnx {Constructor} {@var{obj} =} localdate (@var{Y}, @var{M}, @var{D})
+@deftypefnx {Constructor} {@var{obj} =} localdate (@dots{}, @code{'Format'}, @var{Format})
+
+Constructs a new @code{localdate} array based on input values.
+
+@end deftypefn
+
+@node localdate.NaT
+@subsubsection localdate.NaT
+
+@deftypefn {Static Method} {@var{out} =} localdate.NaT ()
+@deftypefnx {Static Method} {@var{out} =} localdate.NaT (@var{sz})
+
+“Not-a-Time”: Creates NaT-valued arrays.
+
+Constructs a new @code{datetime} array of all @code{NaT} values of
+the given size. If no input @var{sz} is given, the result is a scalar @code{NaT}.
+
+@code{NaT} is the @code{datetime} equivalent of @code{NaN}. It represents a missing
+or invalid value. @code{NaT} values never compare equal to, greater than, or less
+than any value, including other @code{NaT}s. Doing arithmetic with a @code{NaT} and
+any other value results in a @code{NaT}.
+
+This static method is provided because the global @code{NaT} function creates
+@code{datetime}s, not @code{localdate}s
+
+@end deftypefn
+
+@node localdate.ymd
+@subsubsection localdate.ymd
+
+@deftypefn {Method} {[@var{y}, @var{m}, @var{d}] =} ymd (@var{obj})
+
+Get the Year, Month, and Day components of @var{obj}.
+
+Returns double arrays the same size as @code{obj}.
+
+@end deftypefn
+
+@node localdate.dispstrs
+@subsubsection localdate.dispstrs
+
+@deftypefn {Method} {@var{out} =} dispstrs (@var{obj})
+
+Get display strings for each element of @var{obj}.
+
+Returns a cellstr the same size as @var{obj}.
+
+@end deftypefn
+
+@node localdate.datestr
+@subsubsection localdate.datestr
+
+@deftypefn {Method} {@var{out} =} datestr (@var{obj})
+@deftypefnx {Method} {@var{out} =} datestr (@var{obj}, @dots{})
+
+Format @var{obj} as date strings. Supports all arguments that core Octave's
+@code{datestr} does.
+
+Returns date strings as a 2-D char array.
+
+@end deftypefn
+
+@node localdate.datestrs
+@subsubsection localdate.datestrs
+
+@deftypefn {Method} {@var{out} =} datestrs (@var{obj})
+@deftypefnx {Method} {@var{out} =} datestrs (@var{obj}, @dots{})
+
+Format @var{obj} as date strings, returning cellstr.
+Supports all arguments that core Octave's @code{datestr} does.
+
+Returns a cellstr array the same size as @var{obj}.
+
+@end deftypefn
+
+@node localdate.datestruct
+@subsubsection localdate.datestruct
+
+@deftypefn {Method} {@var{out} =} datestruct (@var{obj})
+
+Converts this to a "datestruct" broken-down time structure.
+
+A "datestruct" is a format of struct that Chrono came up with. It is a scalar
+struct with fields Year, Month, and Day, each containing
+a double array the same size as the date array it represents. This format
+differs from the "datestruct" used by @code{datetime} in that it lacks
+Hour, Minute, and Second components. This is done for efficiency.
+
+The values in the returned broken-down time are those of the local time
+in this' defined time zone, if it has one.
+
+Returns a struct with fields Year, Month, and Day.
+Each field contains a double array of the same size as this.
+
+@end deftypefn
+
+@node localdate.posixtime
+@subsubsection localdate.posixtime
+
+@deftypefn {Method} {@var{out} =} posixtime (@var{obj})
+
+Converts this to POSIX time values for midnight of @var{obj}’s days.
+
+Converts this to POSIX time values that represent the same date. The
+returned values will be doubles that will not include fractional second values.
+The times returned are those of midnight UTC on @var{obj}’s days.
+
+Returns double array of same size as this.
+
+@end deftypefn
+
+@node localdate.datenum
+@subsubsection localdate.datenum
+
+@deftypefn {Method} {@var{out} =} datenum (@var{obj})
+
+Convert this to datenums that represent midnight on @var{obj}’s days.
+
+Returns double array of same size as this.
+
+@end deftypefn
+
+@node localdate.isnat
+@subsubsection localdate.isnat
+
+@deftypefn {Method} {@var{out} =} isnat (@var{obj})
+
+True if input elements are NaT.
+
+Returns logical array the same size as @var{obj}.
+
+@end deftypefn
+
+@node localdate.isnan
+@subsubsection localdate.isnan
+
+@deftypefn {Method} {@var{out} =} isnan (@var{obj})
+
+True if input elements are NaT. This is an alias for @code{isnat}
+to support type compatibility and polymorphic programming.
+
+Returns logical array the same size as @var{obj}.
+
+@end deftypefn
+
+@node milliseconds
+@subsection milliseconds
+@deftypefn {Function File} {@var{out} =} milliseconds (@var{x})
+Create a @code{duration} @var{x} milliseconds long, or get the milliseconds in a @code{duration}
+@var{x}.
+
+If input is numeric, returns a @code{duration} array that is that many milliseconds in
+time.
+
+If input is a @code{duration}, converts the @code{duration} to a number of milliseconds.
+
+Returns an array the same size as @var{x}.
+@end deftypefn
+
+
+@node minutes
+@subsection minutes
+@deftypefn {Function File} {@var{out} =} hours (@var{x})
+Create a @code{duration} @var{x} hours long, or get the hours in a @code{duration}
+@var{x}.
+
+@end deftypefn
+
+
 @node missing
 @subsection missing
 @deftp {Class} missing
@@ -1253,6 +2548,103 @@ Returns a logical array the same size as @var{obj}.
 
 @end deftypefn
 
+@node NaT
+@subsection NaT
+@deftypefn {Function} {@var{out} =} NaT ()
+@deftypefnx {Function} {@var{out} =} NaT (@var{sz})
+
+“Not-a-Time”. Creates NaT-valued arrays.
+
+Constructs a new @code{datetime} array of all @code{NaT} values of
+the given size. If no input @var{sz} is given, the result is a scalar @code{NaT}.
+
+@code{NaT} is the @code{datetime} equivalent of @code{NaN}. It represents a missing
+or invalid value. @code{NaT} values never compare equal to, greater than, or less
+than any value, including other @code{NaT}s. Doing arithmetic with a @code{NaT} and
+any other value results in a @code{NaT}.
+
+@end deftypefn
+
+
+@node octave.chrono.dummy_function
+@subsection octave.chrono.dummy_function
+@deftypefn {Function} {@var{out} =} dummy_function (@var{x})
+
+A dummy function just for testing the doco tools.
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur
+ullamcorper pulvinar ligula, sit amet accumsan turpis dapibus at.
+Ut sit amet quam orci. Donec vel mauris elementum massa pretium tincidunt.
+
+@end deftypefn
+
+
+@node octave.chrono.DummyClass
+@subsection octave.chrono.DummyClass
+@deftp {Class} DummyClass
+
+@code{DummyClass} is a do-nothing class just for testing the doco tools.
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur
+ullamcorper pulvinar ligula, sit amet accumsan turpis dapibus at.
+Ut sit amet quam orci. Donec vel mauris elementum massa pretium tincidunt.
+
+@end deftp
+
+@deftypeivar DummyClass @code{double} x
+
+A x. Has no semantics.
+
+@end deftypeivar
+
+@deftypeivar DummyClass @code{double} y
+
+A y. Has no semantics.
+
+@end deftypeivar
+
+
+@node octave.chrono.DummyClass.DummyClass
+@subsubsection octave.chrono.DummyClass.DummyClass
+
+@deftypefn {Constructor} {@var{obj} =} octave.chrono.DummyClass ()
+
+Constructs a new scalar @code{DummyClass} with default values.
+
+@end deftypefn
+
+@deftypefn {Constructor} {@var{obj} =} octave.chrono.DummyClass (@var{x}, @var{y})
+
+Constructs a new @code{DummyClass} with the specified values.
+
+@end deftypefn
+
+@node octave.chrono.DummyClass.foo
+@subsubsection octave.chrono.DummyClass.foo
+
+@deftypefn {Method} {@var{out} =} foo (@var{obj})
+
+Computes a foo value.
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur
+ullamcorper pulvinar ligula, sit amet accumsan turpis dapibus at.
+Ut sit amet quam orci. Donec vel mauris elementum massa pretium tincidunt.
+
+@end deftypefn
+
+@node octave.chrono.DummyClass.bar
+@subsubsection octave.chrono.DummyClass.bar
+
+@deftypefn {Method} {@var{out} =} bar (@var{obj})
+
+Computes a bar value.
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur
+ullamcorper pulvinar ligula, sit amet accumsan turpis dapibus at.
+Ut sit amet quam orci. Donec vel mauris elementum massa pretium tincidunt.
+
+@end deftypefn
+
 @node pp
 @subsection pp
 @deftypefn {Function} pp (@var{X})
@@ -1293,6 +2685,21 @@ Returns:
   @var{out} - the input, with missing elements or rows or columns removed
   @var{tf} - a logical index vector indicating which elements, rows, or columns were removed
 
+@end deftypefn
+
+
+@node seconds
+@subsection seconds
+@deftypefn {Function File} {@var{out} =} seconds (@var{x})
+Create a @code{duration} @var{x} seconds long, or get the seconds in a @code{duration}
+@var{x}.
+
+If input is numeric, returns a @code{duration} array that is that many seconds in
+time.
+
+If input is a @code{duration}, converts the @code{duration} to a number of seconds.
+
+Returns an array the same size as @var{x}.
 @end deftypefn
 
 
@@ -2865,6 +4272,35 @@ ncols is the number of columns in the input.
 @end deftypefn
 
 
+@node timezones
+@subsection timezones
+@deftypefn {Function} {@var{out} =} timezones ()
+@deftypefnx {Function} {@var{out} =} timezones (@var{area})
+
+List all the time zones defined on this system.
+
+This lists all the time zones that are defined in the IANA time zone database
+used by this Octave. (On Linux and macOS, that will generally be the system
+time zone database from @file{/usr/share/zoneinfo}. On Windows, it will be
+the database redistributed with the Chrono package.
+
+If the return is captured, the output is returned as a table if your Octave
+has table support, or a struct if it does not. It will have fields/variables
+containing column vectors:
+
+@table @code
+@item Name
+The IANA zone name, as cellstr.
+@item Area
+The geographical area the zone is in, as cellstr.
+@end table
+
+Compatibility note: Matlab also includes UTCOffset and DSTOffset fields in
+the output; these are currently unimplemented.
+
+@end deftypefn
+
+
 @node vecfun
 @subsection vecfun
 @deftypefn {Function} {@var{out} =} vecfun (@var{fcn}, @var{x}, @var{dim})
@@ -2886,6 +4322,26 @@ in to @var{fcn}.
 Returns the collected output of the @var{fcn} calls, which will be
 the same size as @var{x}, but not necessarily the same type.
 
+@end deftypefn
+
+
+@node years
+@subsection years
+@deftypefn {Function File} {@var{out} =} years (@var{x})
+Create a @code{duration} @var{x} years long, or get the years in a @code{duration}
+@var{x}.
+
+If input is numeric, returns a @code{duration} array in units of fixed-length
+years of 365.2425 days each.
+
+If input is a @code{duration}, converts the @code{duration} to a number of fixed-length
+years as double.
+
+Note: @code{years} creates fixed-length years, which may not be what you want.
+To create a duration of calendar years (which account for actual leap days),
+use @code{calyears}.
+
+@xref{calyears}.
 @end deftypefn
 
 

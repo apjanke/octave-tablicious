@@ -37,6 +37,28 @@
                     <section title="API Alphabetically" ref="html/API-Alphabetically.html">
                         <section title="array2table" ref="html/array2table.html">
                         </section>
+                        <section title="calendarDuration" ref="html/calendarDuration.html">
+                            <section title="calendarDuration.calendarDuration" ref="html/calendarDuration_002ecalendarDuration.html">
+                            </section>
+                            <section title="calendarDuration.isnat" ref="html/calendarDuration_002eisnat.html">
+                            </section>
+                            <section title="calendarDuration.uminus" ref="html/calendarDuration_002euminus.html">
+                            </section>
+                            <section title="calendarDuration.plus" ref="html/calendarDuration_002eplus.html">
+                            </section>
+                            <section title="calendarDuration.times" ref="html/calendarDuration_002etimes.html">
+                            </section>
+                            <section title="calendarDuration.minus" ref="html/calendarDuration_002eminus.html">
+                            </section>
+                            <section title="calendarDuration.dispstrs" ref="html/calendarDuration_002edispstrs.html">
+                            </section>
+                            <section title="calendarDuration.isnan" ref="html/calendarDuration_002eisnan.html">
+                            </section>
+                        </section>
+                        <section title="calmonths" ref="html/calmonths.html">
+                        </section>
+                        <section title="calyears" ref="html/calyears.html">
+                        </section>
                         <section title="categorical" ref="html/categorical.html">
                             <section title="categorical.categorical" ref="html/categorical_002ecategorical.html">
                             </section>
@@ -81,15 +103,115 @@
                         </section>
                         <section title="contains" ref="html/contains.html">
                         </section>
+                        <section title="datetime" ref="html/datetime.html">
+                            <section title="datetime.datetime" ref="html/datetime_002edatetime.html">
+                            </section>
+                            <section title="datetime.ofDatenum" ref="html/datetime_002eofDatenum.html">
+                            </section>
+                            <section title="datetime.ofDatestruct" ref="html/datetime_002eofDatestruct.html">
+                            </section>
+                            <section title="datetime.NaT" ref="html/datetime_002eNaT.html">
+                            </section>
+                            <section title="datetime.posix2datenum" ref="html/datetime_002eposix2datenum.html">
+                            </section>
+                            <section title="datetime.datenum2posix" ref="html/datetime_002edatenum2posix.html">
+                            </section>
+                            <section title="datetime.proxyKeys" ref="html/datetime_002eproxyKeys.html">
+                            </section>
+                            <section title="datetime.ymd" ref="html/datetime_002eymd.html">
+                            </section>
+                            <section title="datetime.hms" ref="html/datetime_002ehms.html">
+                            </section>
+                            <section title="datetime.ymdhms" ref="html/datetime_002eymdhms.html">
+                            </section>
+                            <section title="datetime.timeofday" ref="html/datetime_002etimeofday.html">
+                            </section>
+                            <section title="datetime.week" ref="html/datetime_002eweek.html">
+                            </section>
+                            <section title="datetime.dispstrs" ref="html/datetime_002edispstrs.html">
+                            </section>
+                            <section title="datetime.datestr" ref="html/datetime_002edatestr.html">
+                            </section>
+                            <section title="datetime.datestrs" ref="html/datetime_002edatestrs.html">
+                            </section>
+                            <section title="datetime.datestruct" ref="html/datetime_002edatestruct.html">
+                            </section>
+                            <section title="datetime.posixtime" ref="html/datetime_002eposixtime.html">
+                            </section>
+                            <section title="datetime.datenum" ref="html/datetime_002edatenum.html">
+                            </section>
+                            <section title="datetime.gmtime" ref="html/datetime_002egmtime.html">
+                            </section>
+                            <section title="datetime.localtime" ref="html/datetime_002elocaltime.html">
+                            </section>
+                            <section title="datetime.isnat" ref="html/datetime_002eisnat.html">
+                            </section>
+                            <section title="datetime.isnan" ref="html/datetime_002eisnan.html">
+                            </section>
+                            <section title="datetime.lt" ref="html/datetime_002elt.html">
+                            </section>
+                            <section title="datetime.le" ref="html/datetime_002ele.html">
+                            </section>
+                            <section title="datetime.ne" ref="html/datetime_002ene.html">
+                            </section>
+                            <section title="datetime.eq" ref="html/datetime_002eeq.html">
+                            </section>
+                            <section title="datetime.ge" ref="html/datetime_002ege.html">
+                            </section>
+                            <section title="datetime.gt" ref="html/datetime_002egt.html">
+                            </section>
+                            <section title="datetime.plus" ref="html/datetime_002eplus.html">
+                            </section>
+                            <section title="datetime.minus" ref="html/datetime_002eminus.html">
+                            </section>
+                            <section title="datetime.diff" ref="html/datetime_002ediff.html">
+                            </section>
+                            <section title="datetime.isbetween" ref="html/datetime_002eisbetween.html">
+                            </section>
+                            <section title="datetime.linspace" ref="html/datetime_002elinspace.html">
+                            </section>
+                            <section title="datetime.convertDatenumTimeZone" ref="html/datetime_002econvertDatenumTimeZone.html">
+                            </section>
+                        </section>
+                        <section title="days" ref="html/days.html">
+                        </section>
                         <section title="discretize" ref="html/discretize.html">
                         </section>
                         <section title="dispstrs" ref="html/dispstrs.html">
+                        </section>
+                        <section title="duration" ref="html/duration.html">
+                            <section title="duration.duration" ref="html/duration_002eduration.html">
+                            </section>
+                            <section title="duration.ofDays" ref="html/duration_002eofDays.html">
+                            </section>
+                            <section title="duration.years" ref="html/duration_002eyears.html">
+                            </section>
+                            <section title="duration.hours" ref="html/duration_002ehours.html">
+                            </section>
+                            <section title="duration.minutes" ref="html/duration_002eminutes.html">
+                            </section>
+                            <section title="duration.seconds" ref="html/duration_002eseconds.html">
+                            </section>
+                            <section title="duration.milliseconds" ref="html/duration_002emilliseconds.html">
+                            </section>
+                            <section title="duration.dispstrs" ref="html/duration_002edispstrs.html">
+                            </section>
+                            <section title="duration.char" ref="html/duration_002echar.html">
+                            </section>
+                            <section title="duration.linspace" ref="html/duration_002elinspace.html">
+                            </section>
                         </section>
                         <section title="endsWith" ref="html/endsWith.html">
                         </section>
                         <section title="eqn" ref="html/eqn.html">
                         </section>
                         <section title="fillmissing" ref="html/fillmissing.html">
+                        </section>
+                        <section title="hours" ref="html/hours.html">
+                        </section>
+                        <section title="isdatetime" ref="html/isdatetime.html">
+                        </section>
+                        <section title="isduration" ref="html/isduration.html">
                         </section>
                         <section title="isfile" ref="html/isfile.html">
                         </section>
@@ -98,6 +220,34 @@
                         <section title="ismissing" ref="html/ismissing.html">
                         </section>
                         <section title="isnannish" ref="html/isnannish.html">
+                        </section>
+                        <section title="localdate" ref="html/localdate.html">
+                            <section title="localdate.localdate" ref="html/localdate_002elocaldate.html">
+                            </section>
+                            <section title="localdate.NaT" ref="html/localdate_002eNaT.html">
+                            </section>
+                            <section title="localdate.ymd" ref="html/localdate_002eymd.html">
+                            </section>
+                            <section title="localdate.dispstrs" ref="html/localdate_002edispstrs.html">
+                            </section>
+                            <section title="localdate.datestr" ref="html/localdate_002edatestr.html">
+                            </section>
+                            <section title="localdate.datestrs" ref="html/localdate_002edatestrs.html">
+                            </section>
+                            <section title="localdate.datestruct" ref="html/localdate_002edatestruct.html">
+                            </section>
+                            <section title="localdate.posixtime" ref="html/localdate_002eposixtime.html">
+                            </section>
+                            <section title="localdate.datenum" ref="html/localdate_002edatenum.html">
+                            </section>
+                            <section title="localdate.isnat" ref="html/localdate_002eisnat.html">
+                            </section>
+                            <section title="localdate.isnan" ref="html/localdate_002eisnan.html">
+                            </section>
+                        </section>
+                        <section title="milliseconds" ref="html/milliseconds.html">
+                        </section>
+                        <section title="minutes" ref="html/minutes.html">
                         </section>
                         <section title="missing" ref="html/missing.html">
                             <section title="missing.missing" ref="html/missing_002emissing.html">
@@ -111,9 +261,23 @@
                             <section title="missing.isnannish" ref="html/missing_002eisnannish.html">
                             </section>
                         </section>
+                        <section title="NaT" ref="html/NaT.html">
+                        </section>
+                        <section title="octave.chrono.dummy_function" ref="html/octave_002echrono_002edummy_005ffunction.html">
+                        </section>
+                        <section title="octave.chrono.DummyClass" ref="html/octave_002echrono_002eDummyClass.html">
+                            <section title="octave.chrono.DummyClass.DummyClass" ref="html/octave_002echrono_002eDummyClass_002eDummyClass.html">
+                            </section>
+                            <section title="octave.chrono.DummyClass.foo" ref="html/octave_002echrono_002eDummyClass_002efoo.html">
+                            </section>
+                            <section title="octave.chrono.DummyClass.bar" ref="html/octave_002echrono_002eDummyClass_002ebar.html">
+                            </section>
+                        </section>
                         <section title="pp" ref="html/pp.html">
                         </section>
                         <section title="rmmissing" ref="html/rmmissing.html">
+                        </section>
+                        <section title="seconds" ref="html/seconds.html">
                         </section>
                         <section title="standardizeMissing" ref="html/standardizeMissing.html">
                         </section>
@@ -297,7 +461,11 @@
                         </section>
                         <section title="tableOuterFillValue" ref="html/tableOuterFillValue.html">
                         </section>
+                        <section title="timezones" ref="html/timezones.html">
+                        </section>
                         <section title="vecfun" ref="html/vecfun.html">
+                        </section>
+                        <section title="years" ref="html/years.html">
                         </section>
                     </section>
                 </section>
@@ -307,7 +475,19 @@
         </section>
         </toc>
         <keywords>
+            <keyword name="NaT" id="NaT" ref="html/NaT.html"/>
             <keyword name="array2table" id="array2table" ref="html/array2table.html"/>
+            <keyword name="calendarDuration" id="calendarDuration" ref="html/calendarDuration.html"/>
+            <keyword name="calendarDuration.calendarDuration" id="calendarDuration.calendarDuration" ref="html/calendarDuration_002ecalendarDuration.html"/>
+            <keyword name="calendarDuration.dispstrs" id="calendarDuration.dispstrs" ref="html/calendarDuration_002edispstrs.html"/>
+            <keyword name="calendarDuration.isnan" id="calendarDuration.isnan" ref="html/calendarDuration_002eisnan.html"/>
+            <keyword name="calendarDuration.isnat" id="calendarDuration.isnat" ref="html/calendarDuration_002eisnat.html"/>
+            <keyword name="calendarDuration.minus" id="calendarDuration.minus" ref="html/calendarDuration_002eminus.html"/>
+            <keyword name="calendarDuration.plus" id="calendarDuration.plus" ref="html/calendarDuration_002eplus.html"/>
+            <keyword name="calendarDuration.times" id="calendarDuration.times" ref="html/calendarDuration_002etimes.html"/>
+            <keyword name="calendarDuration.uminus" id="calendarDuration.uminus" ref="html/calendarDuration_002euminus.html"/>
+            <keyword name="calmonths" id="calmonths" ref="html/calmonths.html"/>
+            <keyword name="calyears" id="calyears" ref="html/calyears.html"/>
             <keyword name="categorical" id="categorical" ref="html/categorical.html"/>
             <keyword name="categorical.addcats" id="categorical.addcats" ref="html/categorical_002eaddcats.html"/>
             <keyword name="categorical.categorical" id="categorical.categorical" ref="html/categorical_002ecategorical.html"/>
@@ -330,23 +510,92 @@
             <keyword name="cell2table" id="cell2table" ref="html/cell2table.html"/>
             <keyword name="colvecfun" id="colvecfun" ref="html/colvecfun.html"/>
             <keyword name="contains" id="contains" ref="html/contains.html"/>
+            <keyword name="datetime" id="datetime" ref="html/datetime.html"/>
+            <keyword name="datetime.NaT" id="datetime.NaT" ref="html/datetime_002eNaT.html"/>
+            <keyword name="datetime.convertDatenumTimeZone" id="datetime.convertDatenumTimeZone" ref="html/datetime_002econvertDatenumTimeZone.html"/>
+            <keyword name="datetime.datenum" id="datetime.datenum" ref="html/datetime_002edatenum.html"/>
+            <keyword name="datetime.datenum2posix" id="datetime.datenum2posix" ref="html/datetime_002edatenum2posix.html"/>
+            <keyword name="datetime.datestr" id="datetime.datestr" ref="html/datetime_002edatestr.html"/>
+            <keyword name="datetime.datestrs" id="datetime.datestrs" ref="html/datetime_002edatestrs.html"/>
+            <keyword name="datetime.datestruct" id="datetime.datestruct" ref="html/datetime_002edatestruct.html"/>
+            <keyword name="datetime.datetime" id="datetime.datetime" ref="html/datetime_002edatetime.html"/>
+            <keyword name="datetime.diff" id="datetime.diff" ref="html/datetime_002ediff.html"/>
+            <keyword name="datetime.dispstrs" id="datetime.dispstrs" ref="html/datetime_002edispstrs.html"/>
+            <keyword name="datetime.eq" id="datetime.eq" ref="html/datetime_002eeq.html"/>
+            <keyword name="datetime.ge" id="datetime.ge" ref="html/datetime_002ege.html"/>
+            <keyword name="datetime.gmtime" id="datetime.gmtime" ref="html/datetime_002egmtime.html"/>
+            <keyword name="datetime.gt" id="datetime.gt" ref="html/datetime_002egt.html"/>
+            <keyword name="datetime.hms" id="datetime.hms" ref="html/datetime_002ehms.html"/>
+            <keyword name="datetime.isbetween" id="datetime.isbetween" ref="html/datetime_002eisbetween.html"/>
+            <keyword name="datetime.isnan" id="datetime.isnan" ref="html/datetime_002eisnan.html"/>
+            <keyword name="datetime.isnat" id="datetime.isnat" ref="html/datetime_002eisnat.html"/>
+            <keyword name="datetime.le" id="datetime.le" ref="html/datetime_002ele.html"/>
+            <keyword name="datetime.linspace" id="datetime.linspace" ref="html/datetime_002elinspace.html"/>
+            <keyword name="datetime.localtime" id="datetime.localtime" ref="html/datetime_002elocaltime.html"/>
+            <keyword name="datetime.lt" id="datetime.lt" ref="html/datetime_002elt.html"/>
+            <keyword name="datetime.minus" id="datetime.minus" ref="html/datetime_002eminus.html"/>
+            <keyword name="datetime.ne" id="datetime.ne" ref="html/datetime_002ene.html"/>
+            <keyword name="datetime.ofDatenum" id="datetime.ofDatenum" ref="html/datetime_002eofDatenum.html"/>
+            <keyword name="datetime.ofDatestruct" id="datetime.ofDatestruct" ref="html/datetime_002eofDatestruct.html"/>
+            <keyword name="datetime.plus" id="datetime.plus" ref="html/datetime_002eplus.html"/>
+            <keyword name="datetime.posix2datenum" id="datetime.posix2datenum" ref="html/datetime_002eposix2datenum.html"/>
+            <keyword name="datetime.posixtime" id="datetime.posixtime" ref="html/datetime_002eposixtime.html"/>
+            <keyword name="datetime.proxyKeys" id="datetime.proxyKeys" ref="html/datetime_002eproxyKeys.html"/>
+            <keyword name="datetime.timeofday" id="datetime.timeofday" ref="html/datetime_002etimeofday.html"/>
+            <keyword name="datetime.week" id="datetime.week" ref="html/datetime_002eweek.html"/>
+            <keyword name="datetime.ymd" id="datetime.ymd" ref="html/datetime_002eymd.html"/>
+            <keyword name="datetime.ymdhms" id="datetime.ymdhms" ref="html/datetime_002eymdhms.html"/>
+            <keyword name="days" id="days" ref="html/days.html"/>
             <keyword name="discretize" id="discretize" ref="html/discretize.html"/>
             <keyword name="dispstrs" id="dispstrs" ref="html/dispstrs.html"/>
+            <keyword name="duration" id="duration" ref="html/duration.html"/>
+            <keyword name="duration.char" id="duration.char" ref="html/duration_002echar.html"/>
+            <keyword name="duration.dispstrs" id="duration.dispstrs" ref="html/duration_002edispstrs.html"/>
+            <keyword name="duration.hours" id="duration.hours" ref="html/duration_002ehours.html"/>
+            <keyword name="duration.linspace" id="duration.linspace" ref="html/duration_002elinspace.html"/>
+            <keyword name="duration.milliseconds" id="duration.milliseconds" ref="html/duration_002emilliseconds.html"/>
+            <keyword name="duration.minutes" id="duration.minutes" ref="html/duration_002eminutes.html"/>
+            <keyword name="duration.ofDays" id="duration.ofDays" ref="html/duration_002eofDays.html"/>
+            <keyword name="duration.seconds" id="duration.seconds" ref="html/duration_002eseconds.html"/>
+            <keyword name="duration.years" id="duration.years" ref="html/duration_002eyears.html"/>
             <keyword name="endsWith" id="endsWith" ref="html/endsWith.html"/>
             <keyword name="eqn" id="eqn" ref="html/eqn.html"/>
             <keyword name="fillmissing" id="fillmissing" ref="html/fillmissing.html"/>
+            <keyword name="hours" id="hours" ref="html/hours.html"/>
+            <keyword name="isdatetime" id="isdatetime" ref="html/isdatetime.html"/>
+            <keyword name="isduration" id="isduration" ref="html/isduration.html"/>
             <keyword name="isfile" id="isfile" ref="html/isfile.html"/>
             <keyword name="isfolder" id="isfolder" ref="html/isfolder.html"/>
             <keyword name="ismissing" id="ismissing" ref="html/ismissing.html"/>
             <keyword name="isnannish" id="isnannish" ref="html/isnannish.html"/>
+            <keyword name="localdate" id="localdate" ref="html/localdate.html"/>
+            <keyword name="localdate.NaT" id="localdate.NaT" ref="html/localdate_002eNaT.html"/>
+            <keyword name="localdate.datenum" id="localdate.datenum" ref="html/localdate_002edatenum.html"/>
+            <keyword name="localdate.datestr" id="localdate.datestr" ref="html/localdate_002edatestr.html"/>
+            <keyword name="localdate.datestrs" id="localdate.datestrs" ref="html/localdate_002edatestrs.html"/>
+            <keyword name="localdate.datestruct" id="localdate.datestruct" ref="html/localdate_002edatestruct.html"/>
+            <keyword name="localdate.dispstrs" id="localdate.dispstrs" ref="html/localdate_002edispstrs.html"/>
+            <keyword name="localdate.isnan" id="localdate.isnan" ref="html/localdate_002eisnan.html"/>
+            <keyword name="localdate.isnat" id="localdate.isnat" ref="html/localdate_002eisnat.html"/>
+            <keyword name="localdate.localdate" id="localdate.localdate" ref="html/localdate_002elocaldate.html"/>
+            <keyword name="localdate.posixtime" id="localdate.posixtime" ref="html/localdate_002eposixtime.html"/>
+            <keyword name="localdate.ymd" id="localdate.ymd" ref="html/localdate_002eymd.html"/>
+            <keyword name="milliseconds" id="milliseconds" ref="html/milliseconds.html"/>
+            <keyword name="minutes" id="minutes" ref="html/minutes.html"/>
             <keyword name="missing" id="missing" ref="html/missing.html"/>
             <keyword name="missing.dispstrs" id="missing.dispstrs" ref="html/missing_002edispstrs.html"/>
             <keyword name="missing.ismissing" id="missing.ismissing" ref="html/missing_002eismissing.html"/>
             <keyword name="missing.isnan" id="missing.isnan" ref="html/missing_002eisnan.html"/>
             <keyword name="missing.isnannish" id="missing.isnannish" ref="html/missing_002eisnannish.html"/>
             <keyword name="missing.missing" id="missing.missing" ref="html/missing_002emissing.html"/>
+            <keyword name="octave.chrono.DummyClass" id="octave.chrono.DummyClass" ref="html/octave_002echrono_002eDummyClass.html"/>
+            <keyword name="octave.chrono.DummyClass.DummyClass" id="octave.chrono.DummyClass.DummyClass" ref="html/octave_002echrono_002eDummyClass_002eDummyClass.html"/>
+            <keyword name="octave.chrono.DummyClass.bar" id="octave.chrono.DummyClass.bar" ref="html/octave_002echrono_002eDummyClass_002ebar.html"/>
+            <keyword name="octave.chrono.DummyClass.foo" id="octave.chrono.DummyClass.foo" ref="html/octave_002echrono_002eDummyClass_002efoo.html"/>
+            <keyword name="octave.chrono.dummy_function" id="octave.chrono.dummy_function" ref="html/octave_002echrono_002edummy_005ffunction.html"/>
             <keyword name="pp" id="pp" ref="html/pp.html"/>
             <keyword name="rmmissing" id="rmmissing" ref="html/rmmissing.html"/>
+            <keyword name="seconds" id="seconds" ref="html/seconds.html"/>
             <keyword name="standardizeMissing" id="standardizeMissing" ref="html/standardizeMissing.html"/>
             <keyword name="startsWith" id="startsWith" ref="html/startsWith.html"/>
             <keyword name="string" id="string" ref="html/string.html"/>
@@ -438,12 +687,16 @@
             <keyword name="table.vertcat" id="table.vertcat" ref="html/table_002evertcat.html"/>
             <keyword name="table.width" id="table.width" ref="html/table_002ewidth.html"/>
             <keyword name="tableOuterFillValue" id="tableOuterFillValue" ref="html/tableOuterFillValue.html"/>
+            <keyword name="timezones" id="timezones" ref="html/timezones.html"/>
             <keyword name="vecfun" id="vecfun" ref="html/vecfun.html"/>
+            <keyword name="years" id="years" ref="html/years.html"/>
         </keywords>
         <files>
             <file>Tablicious.html</file>
             <file>html/Copying.html</file>
+            <file>html/years.html</file>
             <file>html/vecfun.html</file>
+            <file>html/timezones.html</file>
             <file>html/tableOuterFillValue.html</file>
             <file>html/table_002erestrict.html</file>
             <file>html/table_002eevalWithVars.html</file>
@@ -535,23 +788,94 @@
             <file>html/string.html</file>
             <file>html/startsWith.html</file>
             <file>html/standardizeMissing.html</file>
+            <file>html/seconds.html</file>
             <file>html/rmmissing.html</file>
             <file>html/pp.html</file>
+            <file>html/octave_002echrono_002eDummyClass_002ebar.html</file>
+            <file>html/octave_002echrono_002eDummyClass_002efoo.html</file>
+            <file>html/octave_002echrono_002eDummyClass_002eDummyClass.html</file>
+            <file>html/octave_002echrono_002eDummyClass.html</file>
+            <file>html/octave_002echrono_002edummy_005ffunction.html</file>
+            <file>html/NaT.html</file>
             <file>html/missing_002eisnannish.html</file>
             <file>html/missing_002eisnan.html</file>
             <file>html/missing_002eismissing.html</file>
             <file>html/missing_002edispstrs.html</file>
             <file>html/missing_002emissing.html</file>
             <file>html/missing.html</file>
+            <file>html/minutes.html</file>
+            <file>html/milliseconds.html</file>
+            <file>html/localdate_002eisnan.html</file>
+            <file>html/localdate_002eisnat.html</file>
+            <file>html/localdate_002edatenum.html</file>
+            <file>html/localdate_002eposixtime.html</file>
+            <file>html/localdate_002edatestruct.html</file>
+            <file>html/localdate_002edatestrs.html</file>
+            <file>html/localdate_002edatestr.html</file>
+            <file>html/localdate_002edispstrs.html</file>
+            <file>html/localdate_002eymd.html</file>
+            <file>html/localdate_002eNaT.html</file>
+            <file>html/localdate_002elocaldate.html</file>
+            <file>html/localdate.html</file>
             <file>html/isnannish.html</file>
             <file>html/ismissing.html</file>
             <file>html/isfolder.html</file>
             <file>html/isfile.html</file>
+            <file>html/isduration.html</file>
+            <file>html/isdatetime.html</file>
+            <file>html/hours.html</file>
             <file>html/fillmissing.html</file>
             <file>html/eqn.html</file>
             <file>html/endsWith.html</file>
+            <file>html/duration_002elinspace.html</file>
+            <file>html/duration_002echar.html</file>
+            <file>html/duration_002edispstrs.html</file>
+            <file>html/duration_002emilliseconds.html</file>
+            <file>html/duration_002eseconds.html</file>
+            <file>html/duration_002eminutes.html</file>
+            <file>html/duration_002ehours.html</file>
+            <file>html/duration_002eyears.html</file>
+            <file>html/duration_002eofDays.html</file>
+            <file>html/duration_002eduration.html</file>
+            <file>html/duration.html</file>
             <file>html/dispstrs.html</file>
             <file>html/discretize.html</file>
+            <file>html/days.html</file>
+            <file>html/datetime_002econvertDatenumTimeZone.html</file>
+            <file>html/datetime_002elinspace.html</file>
+            <file>html/datetime_002eisbetween.html</file>
+            <file>html/datetime_002ediff.html</file>
+            <file>html/datetime_002eminus.html</file>
+            <file>html/datetime_002eplus.html</file>
+            <file>html/datetime_002egt.html</file>
+            <file>html/datetime_002ege.html</file>
+            <file>html/datetime_002eeq.html</file>
+            <file>html/datetime_002ene.html</file>
+            <file>html/datetime_002ele.html</file>
+            <file>html/datetime_002elt.html</file>
+            <file>html/datetime_002eisnan.html</file>
+            <file>html/datetime_002eisnat.html</file>
+            <file>html/datetime_002elocaltime.html</file>
+            <file>html/datetime_002egmtime.html</file>
+            <file>html/datetime_002edatenum.html</file>
+            <file>html/datetime_002eposixtime.html</file>
+            <file>html/datetime_002edatestruct.html</file>
+            <file>html/datetime_002edatestrs.html</file>
+            <file>html/datetime_002edatestr.html</file>
+            <file>html/datetime_002edispstrs.html</file>
+            <file>html/datetime_002eweek.html</file>
+            <file>html/datetime_002etimeofday.html</file>
+            <file>html/datetime_002eymdhms.html</file>
+            <file>html/datetime_002ehms.html</file>
+            <file>html/datetime_002eymd.html</file>
+            <file>html/datetime_002eproxyKeys.html</file>
+            <file>html/datetime_002edatenum2posix.html</file>
+            <file>html/datetime_002eposix2datenum.html</file>
+            <file>html/datetime_002eNaT.html</file>
+            <file>html/datetime_002eofDatestruct.html</file>
+            <file>html/datetime_002eofDatenum.html</file>
+            <file>html/datetime_002edatetime.html</file>
+            <file>html/datetime.html</file>
             <file>html/contains.html</file>
             <file>html/colvecfun.html</file>
             <file>html/cell2table.html</file>
@@ -574,6 +898,17 @@
             <file>html/categorical_002ecategories.html</file>
             <file>html/categorical_002ecategorical.html</file>
             <file>html/categorical.html</file>
+            <file>html/calyears.html</file>
+            <file>html/calmonths.html</file>
+            <file>html/calendarDuration_002eisnan.html</file>
+            <file>html/calendarDuration_002edispstrs.html</file>
+            <file>html/calendarDuration_002eminus.html</file>
+            <file>html/calendarDuration_002etimes.html</file>
+            <file>html/calendarDuration_002eplus.html</file>
+            <file>html/calendarDuration_002euminus.html</file>
+            <file>html/calendarDuration_002eisnat.html</file>
+            <file>html/calendarDuration_002ecalendarDuration.html</file>
+            <file>html/calendarDuration.html</file>
             <file>html/array2table.html</file>
             <file>html/API-Alphabetically.html</file>
             <file>html/API-by-Category.html</file>
