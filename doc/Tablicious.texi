@@ -500,7 +500,7 @@ Apply function to vectors in array along arbitrary dimension.
 A dummy function just for testing the doco tools.
 
 @item @ref{octave.chrono.DummyClass}
-'DummyClass' is a do-nothing class just for testing the doco tools.
+A do-nothing class just for testing the doco tools.
 
 @end table
 
@@ -545,8 +545,8 @@ A dummy function just for testing the doco tools.
 * NaT:: “Not-a-Time”.
 * octave.chrono.dummy_function::	A dummy function just for testing
 		the doco tools.
-* octave.chrono.DummyClass::	'DummyClass' is a do-nothing class just for
-		testing the doco tools.
+* octave.chrono.DummyClass::	A do-nothing class just for testing the
+		doco tools.
 * pp::	Alias for prettyprint, for interactive use.
 * rmmissing::	Remove missing values.
 * seconds::	Create a 'duration' X seconds long, or get the seconds in a
@@ -2583,7 +2583,7 @@ Ut sit amet quam orci. Donec vel mauris elementum massa pretium tincidunt.
 @subsection octave.chrono.DummyClass
 @deftp {Class} DummyClass
 
-@code{DummyClass} is a do-nothing class just for testing the doco tools.
+A do-nothing class just for testing the doco tools.
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur
 ullamcorper pulvinar ligula, sit amet accumsan turpis dapibus at.
