@@ -63,7 +63,7 @@ To avoid issues with the Matlab license's Non-Compete clause, this project needs
 
 ## Author and Acknowledgments
 
-Table is created by [Andrew Janke](https://apjanke.net).
+Tablicious is created by [Andrew Janke](https://apjanke.net).
 
 Thanks to [Polkadot Stingray](https://polkadotstingray-official.jimdo.com/) for [powering](https://www.youtube.com/watch?v=3ad4NsEy1tg) [my](https://www.youtube.com/watch?v=-zlq6eMycLA) [coding](https://www.youtube.com/watch?v=1z4RosaB-UQ) [sessions](https://www.youtube.com/watch?v=p6oVXuLsbxM).
 
