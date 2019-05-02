@@ -506,7 +506,7 @@ Requires that input is finite.
 Requires that the inputs are the same size.
 
 @item @ref{mustBeScalar}
-
+Requires that input is scalar.
 
 @item @ref{mustBeScalarLogical}
 Requires that input is a scalar logical.
@@ -602,7 +602,7 @@ A do-nothing class just for testing the doco tools.
 * mustBeNumeric::	Requires that input is numeric.
 * mustBeReal::	Requires that input is finite.
 * mustBeSameSize::	Requires that the inputs are the same size.
-* mustBeScalar::	
+* mustBeScalar::	Requires that input is scalar.
 * mustBeScalarLogical:: Requires that input is a scalar logical.
 * mustBeVector::	Requires that input is a vector or empty.
 * NaT:: “Not-a-Time”.
@@ -2788,7 +2788,20 @@ the input will be described in error messages. If not supplied,
 
 @node mustBeScalar
 @subsection mustBeScalar
-@emph{Not documented}
+@deftypefn {Function File} {@var{x} =} mustBeScalar (@var{x}, @var{label})
+
+Requires that input is scalar.
+
+Raises an error if the input @var{x} is not scalar, as determined by
+@code{isscalar (x)}.
+
+@var{label} is an optional input that determines how the input will be described in
+error messages. If not supplied, @code{inputname (1)} is used, and if that is
+empty, it falls back to "input".
+
+@end deftypefn
+
+
 @node mustBeScalarLogical
 @subsection mustBeScalarLogical
 @deftypefn {Function File} {@var{x} =} mustBeScalarLogical (@var{x}, @var{label})

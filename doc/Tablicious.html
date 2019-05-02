@@ -980,6 +980,9 @@ Next: <a href="#API-Alphabetically" accesskey="n" rel="next">API Alphabetically<
 </p>
 </dd>
 <dt><a href="#mustBeScalar">mustBeScalar</a></dt>
+<dd><p>Requires that input is scalar.
+</p>
+</dd>
 <dt><a href="#mustBeScalarLogical">mustBeScalarLogical</a></dt>
 <dd><p>Requires that input is a scalar logical.
 </p>
@@ -1121,7 +1124,7 @@ Previous: <a href="#API-by-Category" accesskey="p" rel="prev">API by Category</a
 </td></tr>
 <tr><td align="left" valign="top">&bull; <a href="#mustBeSameSize">mustBeSameSize</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">Requires that the inputs are the same size.
 </td></tr>
-<tr><td align="left" valign="top">&bull; <a href="#mustBeScalar">mustBeScalar</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+<tr><td align="left" valign="top">&bull; <a href="#mustBeScalar">mustBeScalar</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">Requires that input is scalar.
 </td></tr>
 <tr><td align="left" valign="top">&bull; <a href="#mustBeScalarLogical">mustBeScalarLogical</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">Requires that input is a scalar logical.
 </td></tr>
@@ -4152,8 +4155,22 @@ the input will be described in error messages. If not supplied,
 Next: <a href="#mustBeScalarLogical" accesskey="n" rel="next">mustBeScalarLogical</a>, Previous: <a href="#mustBeSameSize" accesskey="p" rel="prev">mustBeSameSize</a>, Up: <a href="#API-Alphabetically" accesskey="u" rel="up">API Alphabetically</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
 </div>
 <span id="mustBeScalar-1"></span><h4 class="subsection">8.2.38 mustBeScalar</h4>
-<p><em>Not documented</em>
-</p><hr>
+<dl>
+<dt id="index-mustBeScalar">Function File: <em><var>x</var> =</em> <strong>mustBeScalar</strong> <em>(<var>x</var>, <var>label</var>)</em></dt>
+<dd>
+<p>Requires that input is scalar.
+</p>
+<p>Raises an error if the input <var>x</var> is not scalar, as determined by
+<code>isscalar (x)</code>.
+</p>
+<p><var>label</var> is an optional input that determines how the input will be described in
+error messages. If not supplied, <code>inputname (1)</code> is used, and if that is
+empty, it falls back to &quot;input&quot;.
+</p>
+</dd></dl>
+
+
+<hr>
 <span id="mustBeScalarLogical"></span><div class="header">
 <p>
 Next: <a href="#mustBeVector" accesskey="n" rel="next">mustBeVector</a>, Previous: <a href="#mustBeScalar" accesskey="p" rel="prev">mustBeScalar</a>, Up: <a href="#API-Alphabetically" accesskey="u" rel="up">API Alphabetically</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
