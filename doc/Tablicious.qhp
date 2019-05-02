@@ -13,6 +13,22 @@
                     <section title="table Class" ref="html/table-Class.html">
                     </section>
                 </section>
+                <section title="Date Representation" ref="html/Date-Representation.html">
+                    <section title="datetime Class" ref="html/datetime-Class.html">
+                        <section title="datenum Compatibility" ref="html/datenum-Compatibility.html">
+                        </section>
+                    </section>
+                </section>
+                <section title="Time Zones" ref="html/Time-Zones.html">
+                    <section title="Defined Time Zones" ref="html/Defined-Time-Zones.html">
+                    </section>
+                </section>
+                <section title="Durations" ref="html/Durations.html">
+                    <section title="duration Class" ref="html/duration-Class.html">
+                    </section>
+                    <section title="calendarDuration Class" ref="html/calendarDuration-Class.html">
+                    </section>
+                </section>
                 <section title="Missing Functionality" ref="html/Missing-Functionality.html">
                 </section>
                 <section title="API Reference" ref="html/API-Reference.html">
@@ -563,6 +579,14 @@
             <file>html/API-by-Category.html</file>
             <file>html/API-Reference.html</file>
             <file>html/Missing-Functionality.html</file>
+            <file>html/calendarDuration-Class.html</file>
+            <file>html/duration-Class.html</file>
+            <file>html/Durations.html</file>
+            <file>html/Defined-Time-Zones.html</file>
+            <file>html/Time-Zones.html</file>
+            <file>html/datenum-Compatibility.html</file>
+            <file>html/datetime-Class.html</file>
+            <file>html/Date-Representation.html</file>
             <file>html/table-Class.html</file>
             <file>html/Table-Representation.html</file>
             <file>html/Getting-Started.html</file>

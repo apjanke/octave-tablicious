@@ -31,6 +31,9 @@ This manual is for Tablicious, version 0.1.0.
 * Introduction::
 * Getting Started::
 * Table Representation::
+* Date Representation::
+* Time Zones::
+* Durations::
 * Missing Functionality::
 * API Reference::
 * Copying::
@@ -41,16 +44,29 @@ File: Tablicious.info,  Node: Introduction,  Next: Getting Started,  Up: Top
 1 Introduction
 **************
 
-This is the manual for the Tablicious package version 0.1.0 for GNU
+     Time is an illusion.  Lunchtime doubly so.
+
+                           — _Douglas Adams_
+
+   This is the manual for the Tablicious package version 0.1.0 for GNU
 Octave.
 
-   Tablicious provides Matlab-compatible tabular data support for GNU
-Octave.  This includes a ‘table’ class with support for filtering and
-join operations, Missing Data support, and ‘string’ and ‘categorical’
-data types.
+   Tablicious provides Matlab-compatible tabular data and date/time
+support for GNU Octave.  This includes a ‘table’ class with support for
+filtering and join operations; ‘datetime’, ‘duration’, and related
+classes; Missing Data support; ‘string’ and ‘categorical’ data types;
+and other miscellaneous things.
 
    This document is a work in progress.  You are invited to help improve
 it and submit patches.
+
+   Tablicious’s classes are designed to be convenient to use while still
+being efficient.  The data representations used by Tablicious are
+designed to be efficient and suitable for working with large-ish data
+sets.  A “large-ish” data set is one that can have millions of elements
+or rows, but still fits in main computer memory.  Tablicious’s main
+relational and arithmetic operations are all implemented using
+vectorized operations on primitive Octave data types.
 
    Tablicious was written by Andrew Janke <<floss@apjanke.net>>.
 Support can be found on the Tablicious project GitHub page
@@ -79,7 +95,7 @@ the repo.  Then add the ‘inst’ directory in the repo to your Octave
 path.
 
 
-File: Tablicious.info,  Node: Table Representation,  Next: Missing Functionality,  Prev: Getting Started,  Up: Top
+File: Tablicious.info,  Node: Table Representation,  Next: Date Representation,  Prev: Getting Started,  Up: Top
 
 3 Table Representation
 **********************
@@ -101,27 +117,253 @@ It holds multiple named “variables”, each of which is a column vector,
 or a 2-D matrix whose rows are read as records.
 
 
-File: Tablicious.info,  Node: Missing Functionality,  Next: API Reference,  Prev: Table Representation,  Up: Top
+File: Tablicious.info,  Node: Date Representation,  Next: Time Zones,  Prev: Table Representation,  Up: Top
 
-4 Missing Functionality
+4 Date Representation
+*********************
+
+Chrono provides the ‘datetime’ class for representing points in time.
+
+* Menu:
+
+* datetime Class::
+
+
+File: Tablicious.info,  Node: datetime Class,  Up: Date Representation
+
+4.1 ‘datetime’ Class
+====================
+
+A ‘datetime’ is an array object that represents points in time in the
+familiar Gregorian calendar.
+
+   This is an attempt to reproduce the functionality of Matlab’s
+‘datetime’.  It also contains some Octave-specific extensions.
+
+   The underlying representation is that of a datenum (a ‘double’
+containing the number of days since the Matlab epoch), but encapsulating
+it in an object provides several benefits: friendly human-readable
+display, type safety, automatic type conversion, and time zone support.
+In addition to the underlying datenum array, a ‘datetime’ inclues an
+optional ‘TimeZone’ property indicating what time zone the datetimes are
+in.
+
+* Menu:
+
+* datenum Compatibility::
+
+
+File: Tablicious.info,  Node: datenum Compatibility,  Up: datetime Class
+
+4.1.1 ‘datenum’ Compatibility
+-----------------------------
+
+While the underlying data representation of ‘datetime’ is compatible
+with (in fact, identical to) that of datenums, you cannot directly
+combine them via assignment, concatenation, or most arithmetic
+operations.
+
+   This is because of the signature of the ‘datetime’ constructor.  When
+combining objects and primitive types like ‘double’, the primitive type
+is promoted to an object by calling the other object’s one-argument
+constructor on it.  However, the one-argument numeric-input consstructor
+for ‘datetime’ does not accept datenums: it interprets its input as
+datevecs instead.  This is due to a design decision on Matlab’s part;
+for compatibility, Octave does not alter that interface.
+
+   To combine ‘datetime’s with datenums, you can convert the datenums to
+‘datetime’s by calling ‘datetime.ofDatenum’ or ‘datetime(x,
+'ConvertFrom', 'datenum')’, or you can convert the ‘datetime’s to
+datenums by accessing its ‘dnums’ field with ‘x.dnums’.
+
+   Examples:
+
+     dt = datetime('2011-03-04')
+     dn = datenum('2017-01-01')
+     [dt dn]
+         ⇒ error: datenum: expected date vector containing [YEAR, MONTH, DAY, HOUR, MINUTE, SECOND]
+     [dt datetime.ofDatenum(dn)]
+         ⇒ 04-Mar-2011   01-Jan-2017
+
+   Also, if you have a zoned ‘datetime’, you can’t combine it with a
+datenum, because datenums do not carry time zone information.
+
+
+File: Tablicious.info,  Node: Time Zones,  Next: Durations,  Prev: Date Representation,  Up: Top
+
+5 Time Zones
+************
+
+Chrono has support for representing dates in time zones and for
+converting between time zones.
+
+   A ‘datetime’ may be "zoned" or "zoneless".  A zoneless ‘datetime’
+does not have a time zone associated with it.  This is represented by an
+empty ‘TimeZone’ property on the ‘datetime’ object.  A zoneless
+‘datetime’ represents the local time in some unknown time zone, and
+assumes a continuous time scale (no DST shifts).
+
+   A zoned ‘datetime’ is associated with a time zone.  It is represented
+by having the time zone’s IANA zone identifier (e.g.  ‘'UTC'’ or
+‘'America/New_York'’) in its ‘TimeZone’ property.  A zoned ‘datetime’
+represents the local time in that time zone.
+
+   By default, the ‘datetime’ constructor creates unzoned ‘datetime’s.
+To make a zoned ‘datetime’, either pass the ‘'TimeZone'’ option to the
+constructor, or set the ‘TimeZone’ property after object creation.
+Setting the ‘TimeZone’ property on a zoneless ‘datetime’ declares that
+it’s a local time in that time zone.  Setting the ‘TimeZone’ property on
+a zoned ‘datetime’ turns it back into a zoneless ‘datetime’ without
+changing the local time it represents.
+
+   You can tell a zoned from a zoneless time zone in the object display
+because the time zone is included for zoned ‘datetime’s.
+
+     % Create an unzoned datetime
+     d = datetime('2011-03-04 06:00:00')
+         ⇒  04-Mar-2011 06:00:00
+
+     % Create a zoned datetime
+     d_ny = datetime('2011-03-04 06:00:00', 'TimeZone', 'America/New_York')
+         ⇒  04-Mar-2011 06:00:00 America/New_York
+     % This is equivalent
+     d_ny = datetime('2011-03-04 06:00:00');
+     d_ny.TimeZone = 'America/New_York'
+         ⇒  04-Mar-2011 06:00:00 America/New_York
+
+     % Convert it to Chicago time
+     d_chi.TimeZone = 'America/Chicago'
+         ⇒  04-Mar-2011 05:00:00 America/Chicago
+
+   When you combine two zoned ‘datetime’s via concatenation, assignment,
+or arithmetic, if their time zones differ, they are converted to the
+time zone of the left-hand input.
+
+     d_ny = datetime('2011-03-04 06:00:00', 'TimeZone', 'America/New_York')
+     d_la = datetime('2011-03-04 06:00:00', 'TimeZone', 'America/Los_Angeles')
+     d_la - d_ny
+         ⇒ 03:00:00
+
+   You cannot combine a zoned and an unzoned ‘datetime’.  This results
+in an error being raised.
+
+     Warning: Normalization of "nonexistent" times (like between 02:00
+     and 03:00 on a "spring forward" DST change day) is not implemented
+     yet.  The results of converting a zoneless local time into a time
+     zone where that local time did not exist are currently undefined.
+
+* Menu:
+
+* Defined Time Zones::
+
+
+File: Tablicious.info,  Node: Defined Time Zones,  Up: Time Zones
+
+5.1 Defined Time Zones
+======================
+
+Chrono’s time zone data is drawn from the IANA Time Zone Database
+(https://www.iana.org/time-zones), also known as the “Olson Database”.
+Chrono includes a copy of this database in its distribution so it can
+work on Windows, which does not supply it like Unix systems do.
+
+   You can use the ‘timezones’ function to list the time zones known to
+Chrono.  These will be all the time zones in the IANA database on your
+system (for Linux and macOS) or in the IANA time zone database
+redistributed with Chrono (for Windows).
+
+     Note: The IANA Time Zone Database only covers dates from about the
+     year 1880 to 2038.  Converting time zones for ‘datetime’s outside
+     that range is currently unimplemented.  (Chrono needs to add
+     support for proleptic POSIX time zone rules, which are used to
+     govern behavior outside that date range.)
+
+
+File: Tablicious.info,  Node: Durations,  Next: Missing Functionality,  Prev: Time Zones,  Up: Top
+
+6 Durations
+***********
+
+* Menu:
+
+* duration Class::
+* calendarDuration Class::
+
+
+File: Tablicious.info,  Node: duration Class,  Next: calendarDuration Class,  Up: Durations
+
+6.1 ‘duration’ Class
+====================
+
+A ‘duration’ represents a period of time in fixed-length seconds (or
+minutes, hours, or whatever you want to measure it in.)
+
+   A ‘duration’ has a resolution of about a nanosecond for typical
+dates.  The underlying representation is a ‘double’ representing the
+number of days elapsed, similar to a datenum, except it’s interpreted as
+relative to some other reference point you provide, instead of being
+relative to the Matlab/Octave epoch.
+
+   You can add or subtract a ‘duration’ to a ‘datetime’ to get another
+‘datetime’.  You can also add or subtract ‘durations’ to each other.
+
+
+File: Tablicious.info,  Node: calendarDuration Class,  Prev: duration Class,  Up: Durations
+
+6.2 ‘calendarDuration’ Class
+============================
+
+A ‘calendarDuration’ represents a period of time in variable-length
+calendar components.  For example, years and months can have varying
+numbers of days, and days in time zones with Daylight Saving Time have
+varying numbers of hours.  A ‘calendarDuration’ does arithmetic with
+"whole" calendar periods.
+
+   ‘calendarDuration’s and ‘duration’s cannot be directly combined,
+because they are not semantically equivalent.  (This may be relaxed in
+the future to allow ‘duration’s to be interpreted as numbers of days
+when combined with ‘calendarDuration’s.)
+
+     d = datetime('2011-03-04 00:00:00')
+         ⇒ 04-Mar-2011
+     cdur = calendarDuration(1, 3, 0)
+         ⇒ 1y 3mo
+     d2 = d + cdur
+         ⇒ 04-Jun-2012
+
+
+File: Tablicious.info,  Node: Missing Functionality,  Next: API Reference,  Prev: Durations,  Up: Top
+
+7 Missing Functionality
 ***********************
 
-Tablicious is based on Matlab’s table API and supports most of its major
-functionality.  But not all of it is implemented yet.  The missing parts
-are currently:
+Tablicious is based on Matlab’s table and date/time APIs and supports
+most of their major functionality.  But not all of it is implemented
+yet.  The missing parts are currently:
 
    • ‘timetable’
    • Moving window methods in ‘fillmissing’
    • ‘summary()’ for ‘table’ and ‘categorical’
    • Assignment to table variables using ‘.’-indexing
    • File I/O like ‘readtable()’ and ‘writetable()’
+   • POSIX time zone support for years outside the IANA time zone
+     database coverage
+   • Week-of-year (ISO calendar) calculations
+   • Various ‘'ConvertFrom'’ forms for ‘datetime’ and ‘duration’
+   • Support for LDML formatting for ‘datetime’
+   • Various functions: ‘between’, ‘caldiff’, ‘dateshift’, ‘week’
+   • ‘isdst’, ‘isweekend’
+   • ‘calendarDuration.split’
+   • ‘duration.Format’ support
+   • ‘UTCOffset’ and ‘DSTOffset’ fields in the output of ‘timezones()’
+   • Plotting support
 
    It is the author’s hope that all these will be implemented some day.
 
 
 File: Tablicious.info,  Node: API Reference,  Next: Copying,  Prev: Missing Functionality,  Up: Top
 
-5 API Reference
+8 API Reference
 ***************
 
 * Menu:
@@ -132,10 +374,10 @@ File: Tablicious.info,  Node: API Reference,  Next: Copying,  Prev: Missing Func
 
 File: Tablicious.info,  Node: API by Category,  Next: API Alphabetically,  Up: API Reference
 
-5.1 API by Category
+8.1 API by Category
 ===================
 
-5.1.1 Tables
+8.1.1 Tables
 ------------
 
 *note table::
@@ -153,7 +395,7 @@ File: Tablicious.info,  Node: API by Category,  Next: API Alphabetically,  Up: A
 *note tableOuterFillValue::
      Outer fill value for variable within a table.
 
-5.1.2 Data Types
+8.1.2 Data Types
 ----------------
 
 *note string::
@@ -174,7 +416,7 @@ File: Tablicious.info,  Node: API by Category,  Next: API Alphabetically,  Up: A
 *note discretize::
      Group data into discrete bins or categories.
 
-5.1.3 Missing Data
+8.1.3 Missing Data
 ------------------
 
 *note fillmissing::
@@ -198,7 +440,7 @@ File: Tablicious.info,  Node: API by Category,  Next: API Alphabetically,  Up: A
 *note eqn::
      Determine element-wise equality, treating NaNs as equal
 
-5.1.4 Miscellaneous
+8.1.4 Miscellaneous
 -------------------
 
 *note colvecfun::
@@ -222,7 +464,7 @@ File: Tablicious.info,  Node: API by Category,  Next: API Alphabetically,  Up: A
 
 File: Tablicious.info,  Node: API Alphabetically,  Prev: API by Category,  Up: API Reference
 
-5.2 API Alphabetically
+8.2 API Alphabetically
 ======================
 
 * Menu:
@@ -256,7 +498,7 @@ File: Tablicious.info,  Node: API Alphabetically,  Prev: API by Category,  Up: A
 
 File: Tablicious.info,  Node: array2table,  Next: categorical,  Up: API Alphabetically
 
-5.2.1 array2table
+8.2.1 array2table
 -----------------
 
  -- Function: OUT = array2table (C)
@@ -280,7 +522,7 @@ File: Tablicious.info,  Node: array2table,  Next: categorical,  Up: API Alphabet
 
 File: Tablicious.info,  Node: categorical,  Next: cell2table,  Prev: array2table,  Up: API Alphabetically
 
-5.2.2 categorical
+8.2.2 categorical
 -----------------
 
  -- Class: categorical
@@ -351,7 +593,7 @@ File: Tablicious.info,  Node: categorical,  Next: cell2table,  Prev: array2table
 
 File: Tablicious.info,  Node: categorical.categorical,  Next: categorical.categories,  Up: categorical
 
-5.2.2.1 categorical.categorical
+8.2.2.1 categorical.categorical
 ...............................
 
  -- Constructor: OBJ = categorical ()
@@ -384,7 +626,7 @@ File: Tablicious.info,  Node: categorical.categorical,  Next: categorical.catego
 
 File: Tablicious.info,  Node: categorical.categories,  Next: categorical.iscategory,  Prev: categorical.categorical,  Up: categorical
 
-5.2.2.2 categorical.categories
+8.2.2.2 categorical.categories
 ..............................
 
  -- Method: OUT = categories (OBJ)
@@ -399,7 +641,7 @@ File: Tablicious.info,  Node: categorical.categories,  Next: categorical.iscateg
 
 File: Tablicious.info,  Node: categorical.iscategory,  Next: categorical.isordinal,  Prev: categorical.categories,  Up: categorical
 
-5.2.2.3 categorical.iscategory
+8.2.2.3 categorical.iscategory
 ..............................
 
  -- Method: OUT = iscategory (OBJ, CATNAMES)
@@ -414,7 +656,7 @@ File: Tablicious.info,  Node: categorical.iscategory,  Next: categorical.isordin
 
 File: Tablicious.info,  Node: categorical.isordinal,  Next: categorical.string,  Prev: categorical.iscategory,  Up: categorical
 
-5.2.2.4 categorical.isordinal
+8.2.2.4 categorical.isordinal
 .............................
 
  -- Method: OUT = isordinal (OBJ)
@@ -427,7 +669,7 @@ File: Tablicious.info,  Node: categorical.isordinal,  Next: categorical.string, 
 
 File: Tablicious.info,  Node: categorical.string,  Next: categorical.cellstr,  Prev: categorical.isordinal,  Up: categorical
 
-5.2.2.5 categorical.string
+8.2.2.5 categorical.string
 ..........................
 
  -- Method: OUT = string (OBJ)
@@ -442,7 +684,7 @@ File: Tablicious.info,  Node: categorical.string,  Next: categorical.cellstr,  P
 
 File: Tablicious.info,  Node: categorical.cellstr,  Next: categorical.dispstrs,  Prev: categorical.string,  Up: categorical
 
-5.2.2.6 categorical.cellstr
+8.2.2.6 categorical.cellstr
 ...........................
 
  -- Method: OUT = cellstr (OBJ)
@@ -457,7 +699,7 @@ File: Tablicious.info,  Node: categorical.cellstr,  Next: categorical.dispstrs, 
 
 File: Tablicious.info,  Node: categorical.dispstrs,  Next: categorical.summary,  Prev: categorical.cellstr,  Up: categorical
 
-5.2.2.7 categorical.dispstrs
+8.2.2.7 categorical.dispstrs
 ............................
 
  -- Method: OUT = dispstrs (OBJ)
@@ -473,7 +715,7 @@ File: Tablicious.info,  Node: categorical.dispstrs,  Next: categorical.summary, 
 
 File: Tablicious.info,  Node: categorical.summary,  Next: categorical.addcats,  Prev: categorical.dispstrs,  Up: categorical
 
-5.2.2.8 categorical.summary
+8.2.2.8 categorical.summary
 ...........................
 
  -- Method: summary (OBJ)
@@ -487,7 +729,7 @@ File: Tablicious.info,  Node: categorical.summary,  Next: categorical.addcats,  
 
 File: Tablicious.info,  Node: categorical.addcats,  Next: categorical.removecats,  Prev: categorical.summary,  Up: categorical
 
-5.2.2.9 categorical.addcats
+8.2.2.9 categorical.addcats
 ...........................
 
  -- Method: OUT = addcats (OBJ, NEWCATS)
@@ -502,7 +744,7 @@ File: Tablicious.info,  Node: categorical.addcats,  Next: categorical.removecats
 
 File: Tablicious.info,  Node: categorical.removecats,  Next: categorical.mergecats,  Prev: categorical.addcats,  Up: categorical
 
-5.2.2.10 categorical.removecats
+8.2.2.10 categorical.removecats
 ...............................
 
  -- Method: OUT = removecats (OBJ)
@@ -522,7 +764,7 @@ File: Tablicious.info,  Node: categorical.removecats,  Next: categorical.mergeca
 
 File: Tablicious.info,  Node: categorical.mergecats,  Next: categorical.renamecats,  Prev: categorical.removecats,  Up: categorical
 
-5.2.2.11 categorical.mergecats
+8.2.2.11 categorical.mergecats
 ..............................
 
  -- Method: OUT = mergecats (OBJ, OLDCATS)
@@ -541,7 +783,7 @@ File: Tablicious.info,  Node: categorical.mergecats,  Next: categorical.renameca
 
 File: Tablicious.info,  Node: categorical.renamecats,  Next: categorical.reordercats,  Prev: categorical.mergecats,  Up: categorical
 
-5.2.2.12 categorical.renamecats
+8.2.2.12 categorical.renamecats
 ...............................
 
  -- Method: OUT = renamecats (OBJ, NEWCATS)
@@ -555,7 +797,7 @@ File: Tablicious.info,  Node: categorical.renamecats,  Next: categorical.reorder
 
 File: Tablicious.info,  Node: categorical.reordercats,  Next: categorical.setcats,  Prev: categorical.renamecats,  Up: categorical
 
-5.2.2.13 categorical.reordercats
+8.2.2.13 categorical.reordercats
 ................................
 
  -- Method: OUT = reordercats (OBJ)
@@ -572,7 +814,7 @@ File: Tablicious.info,  Node: categorical.reordercats,  Next: categorical.setcat
 
 File: Tablicious.info,  Node: categorical.setcats,  Next: categorical.isundefined,  Prev: categorical.reordercats,  Up: categorical
 
-5.2.2.14 categorical.setcats
+8.2.2.14 categorical.setcats
 ............................
 
  -- Method: OUT = setcats (OBJ, NEWCATS)
@@ -586,7 +828,7 @@ File: Tablicious.info,  Node: categorical.setcats,  Next: categorical.isundefine
 
 File: Tablicious.info,  Node: categorical.isundefined,  Next: categorical.ismissing,  Prev: categorical.setcats,  Up: categorical
 
-5.2.2.15 categorical.isundefined
+8.2.2.15 categorical.isundefined
 ................................
 
  -- Method: OUT = isundefined (OBJ)
@@ -602,7 +844,7 @@ File: Tablicious.info,  Node: categorical.isundefined,  Next: categorical.ismiss
 
 File: Tablicious.info,  Node: categorical.ismissing,  Next: categorical.isnannish,  Prev: categorical.isundefined,  Up: categorical
 
-5.2.2.16 categorical.ismissing
+8.2.2.16 categorical.ismissing
 ..............................
 
  -- Method: OUT = ismissing (OBJ)
@@ -617,7 +859,7 @@ File: Tablicious.info,  Node: categorical.ismissing,  Next: categorical.isnannis
 
 File: Tablicious.info,  Node: categorical.isnannish,  Next: categorical.squeezecats,  Prev: categorical.ismissing,  Up: categorical
 
-5.2.2.17 categorical.isnannish
+8.2.2.17 categorical.isnannish
 ..............................
 
  -- Method: OUT = isnannish (OBJ)
@@ -633,7 +875,7 @@ File: Tablicious.info,  Node: categorical.isnannish,  Next: categorical.squeezec
 
 File: Tablicious.info,  Node: categorical.squeezecats,  Prev: categorical.isnannish,  Up: categorical
 
-5.2.2.18 categorical.squeezecats
+8.2.2.18 categorical.squeezecats
 ................................
 
  -- Method: OUT = squeezecats (OBJ)
@@ -648,7 +890,7 @@ File: Tablicious.info,  Node: categorical.squeezecats,  Prev: categorical.isnann
 
 File: Tablicious.info,  Node: cell2table,  Next: colvecfun,  Prev: categorical,  Up: API Alphabetically
 
-5.2.3 cell2table
+8.2.3 cell2table
 ----------------
 
  -- Function: OUT = cell2table (C)
@@ -668,7 +910,7 @@ File: Tablicious.info,  Node: cell2table,  Next: colvecfun,  Prev: categorical, 
 
 File: Tablicious.info,  Node: colvecfun,  Next: contains,  Prev: cell2table,  Up: API Alphabetically
 
-5.2.4 colvecfun
+8.2.4 colvecfun
 ---------------
 
  -- Function: OUT = colvecfun (FCN, X)
@@ -690,7 +932,7 @@ File: Tablicious.info,  Node: colvecfun,  Next: contains,  Prev: cell2table,  Up
 
 File: Tablicious.info,  Node: contains,  Next: discretize,  Prev: colvecfun,  Up: API Alphabetically
 
-5.2.5 contains
+8.2.5 contains
 --------------
 
  -- Function: OUT = colvecfun (STR, PATTERN)
@@ -714,7 +956,7 @@ File: Tablicious.info,  Node: contains,  Next: discretize,  Prev: colvecfun,  Up
 
 File: Tablicious.info,  Node: discretize,  Next: dispstrs,  Prev: contains,  Up: API Alphabetically
 
-5.2.6 discretize
+8.2.6 discretize
 ----------------
 
  -- Function: [Y, E] = discretize (X, N)
@@ -741,7 +983,7 @@ File: Tablicious.info,  Node: discretize,  Next: dispstrs,  Prev: contains,  Up:
 
 File: Tablicious.info,  Node: dispstrs,  Next: endsWith,  Prev: discretize,  Up: API Alphabetically
 
-5.2.7 dispstrs
+8.2.7 dispstrs
 --------------
 
  -- Function: OUT = dispstrs (X)
@@ -764,7 +1006,7 @@ File: Tablicious.info,  Node: dispstrs,  Next: endsWith,  Prev: discretize,  Up:
 
 File: Tablicious.info,  Node: endsWith,  Next: eqn,  Prev: dispstrs,  Up: API Alphabetically
 
-5.2.8 endsWith
+8.2.8 endsWith
 --------------
 
  -- Function: OUT = endsWith (STR, PATTERN)
@@ -788,7 +1030,7 @@ File: Tablicious.info,  Node: endsWith,  Next: eqn,  Prev: dispstrs,  Up: API Al
 
 File: Tablicious.info,  Node: eqn,  Next: fillmissing,  Prev: endsWith,  Up: API Alphabetically
 
-5.2.9 eqn
+8.2.9 eqn
 ---------
 
  -- Function: OUT = eqn (A, B)
@@ -816,7 +1058,7 @@ File: Tablicious.info,  Node: eqn,  Next: fillmissing,  Prev: endsWith,  Up: API
 
 File: Tablicious.info,  Node: fillmissing,  Next: isfile,  Prev: eqn,  Up: API Alphabetically
 
-5.2.10 fillmissing
+8.2.10 fillmissing
 ------------------
 
  -- Function: [OUT, TFFILLED] = fillmissing (X, METHOD)
@@ -841,7 +1083,7 @@ File: Tablicious.info,  Node: fillmissing,  Next: isfile,  Prev: eqn,  Up: API A
 
 File: Tablicious.info,  Node: isfile,  Next: isfolder,  Prev: fillmissing,  Up: API Alphabetically
 
-5.2.11 isfile
+8.2.11 isfile
 -------------
 
  -- Function: OUT = isfile (FILE)
@@ -871,7 +1113,7 @@ File: Tablicious.info,  Node: isfile,  Next: isfolder,  Prev: fillmissing,  Up: 
 
 File: Tablicious.info,  Node: isfolder,  Next: ismissing,  Prev: isfile,  Up: API Alphabetically
 
-5.2.12 isfolder
+8.2.12 isfolder
 ---------------
 
  -- Function: OUT = isfolder (FILE)
@@ -899,7 +1141,7 @@ File: Tablicious.info,  Node: isfolder,  Next: ismissing,  Prev: isfile,  Up: AP
 
 File: Tablicious.info,  Node: ismissing,  Next: isnannish,  Prev: isfolder,  Up: API Alphabetically
 
-5.2.13 ismissing
+8.2.13 ismissing
 ----------------
 
  -- Function: OUT = ismissing (X)
@@ -944,7 +1186,7 @@ File: Tablicious.info,  Node: ismissing,  Next: isnannish,  Prev: isfolder,  Up:
 
 File: Tablicious.info,  Node: isnannish,  Next: missing,  Prev: ismissing,  Up: API Alphabetically
 
-5.2.14 isnannish
+8.2.14 isnannish
 ----------------
 
  -- Function: OUT = isnannish (X)
@@ -974,7 +1216,7 @@ File: Tablicious.info,  Node: isnannish,  Next: missing,  Prev: ismissing,  Up: 
 
 File: Tablicious.info,  Node: missing,  Next: pp,  Prev: isnannish,  Up: API Alphabetically
 
-5.2.15 missing
+8.2.15 missing
 --------------
 
  -- Class: missing
@@ -1012,7 +1254,7 @@ File: Tablicious.info,  Node: missing,  Next: pp,  Prev: isnannish,  Up: API Alp
 
 File: Tablicious.info,  Node: missing.missing,  Next: missing.dispstrs,  Up: missing
 
-5.2.15.1 missing.missing
+8.2.15.1 missing.missing
 ........................
 
  -- Constructor: OBJ = missing ()
@@ -1025,7 +1267,7 @@ File: Tablicious.info,  Node: missing.missing,  Next: missing.dispstrs,  Up: mis
 
 File: Tablicious.info,  Node: missing.dispstrs,  Next: missing.ismissing,  Prev: missing.missing,  Up: missing
 
-5.2.15.2 missing.dispstrs
+8.2.15.2 missing.dispstrs
 .........................
 
  -- Method: OUT = dispstrs (OBJ)
@@ -1041,7 +1283,7 @@ File: Tablicious.info,  Node: missing.dispstrs,  Next: missing.ismissing,  Prev:
 
 File: Tablicious.info,  Node: missing.ismissing,  Next: missing.isnan,  Prev: missing.dispstrs,  Up: missing
 
-5.2.15.3 missing.ismissing
+8.2.15.3 missing.ismissing
 ..........................
 
  -- Method: OUT = ismissing (OBJ)
@@ -1055,7 +1297,7 @@ File: Tablicious.info,  Node: missing.ismissing,  Next: missing.isnan,  Prev: mi
 
 File: Tablicious.info,  Node: missing.isnan,  Next: missing.isnannish,  Prev: missing.ismissing,  Up: missing
 
-5.2.15.4 missing.isnan
+8.2.15.4 missing.isnan
 ......................
 
  -- Method: OUT = isnan (OBJ)
@@ -1069,7 +1311,7 @@ File: Tablicious.info,  Node: missing.isnan,  Next: missing.isnannish,  Prev: mi
 
 File: Tablicious.info,  Node: missing.isnannish,  Prev: missing.isnan,  Up: missing
 
-5.2.15.5 missing.isnannish
+8.2.15.5 missing.isnannish
 ..........................
 
  -- Method: OUT = isnannish (OBJ)
@@ -1083,7 +1325,7 @@ File: Tablicious.info,  Node: missing.isnannish,  Prev: missing.isnan,  Up: miss
 
 File: Tablicious.info,  Node: pp,  Next: rmmissing,  Prev: missing,  Up: API Alphabetically
 
-5.2.16 pp
+8.2.16 pp
 ---------
 
  -- Function: pp (X)
@@ -1104,7 +1346,7 @@ File: Tablicious.info,  Node: pp,  Next: rmmissing,  Prev: missing,  Up: API Alp
 
 File: Tablicious.info,  Node: rmmissing,  Next: standardizeMissing,  Prev: pp,  Up: API Alphabetically
 
-5.2.17 rmmissing
+8.2.17 rmmissing
 ----------------
 
  -- Function: [OUT, TF] = rmmissing (X)
@@ -1132,7 +1374,7 @@ File: Tablicious.info,  Node: rmmissing,  Next: standardizeMissing,  Prev: pp,  
 
 File: Tablicious.info,  Node: standardizeMissing,  Next: startsWith,  Prev: rmmissing,  Up: API Alphabetically
 
-5.2.18 standardizeMissing
+8.2.18 standardizeMissing
 -------------------------
 
  -- Function: OUT = standardizeMissing (X, INDICATOR)
@@ -1154,7 +1396,7 @@ File: Tablicious.info,  Node: standardizeMissing,  Next: startsWith,  Prev: rmmi
 
 File: Tablicious.info,  Node: startsWith,  Next: string,  Prev: standardizeMissing,  Up: API Alphabetically
 
-5.2.19 startsWith
+8.2.19 startsWith
 -----------------
 
  -- Function: OUT = startsWith (STR, PATTERN)
@@ -1178,7 +1420,7 @@ File: Tablicious.info,  Node: startsWith,  Next: string,  Prev: standardizeMissi
 
 File: Tablicious.info,  Node: string,  Next: struct2table,  Prev: startsWith,  Up: API Alphabetically
 
-5.2.20 string
+8.2.20 string
 -------------
 
  -- Class: string
@@ -1269,7 +1511,7 @@ File: Tablicious.info,  Node: string,  Next: struct2table,  Prev: startsWith,  U
 
 File: Tablicious.info,  Node: string.string,  Next: string.isstring,  Up: string
 
-5.2.20.1 string.string
+8.2.20.1 string.string
 ......................
 
  -- Constructor: OBJ = string ()
@@ -1289,7 +1531,7 @@ File: Tablicious.info,  Node: string.string,  Next: string.isstring,  Up: string
 
 File: Tablicious.info,  Node: string.isstring,  Next: string.dispstrs,  Prev: string.string,  Up: string
 
-5.2.20.2 string.isstring
+8.2.20.2 string.isstring
 ........................
 
  -- Method: OUT = isstring (OBJ)
@@ -1303,7 +1545,7 @@ File: Tablicious.info,  Node: string.isstring,  Next: string.dispstrs,  Prev: st
 
 File: Tablicious.info,  Node: string.dispstrs,  Next: string.ismissing,  Prev: string.isstring,  Up: string
 
-5.2.20.3 string.dispstrs
+8.2.20.3 string.dispstrs
 ........................
 
  -- Method: OUT = dispstrs (OBJ)
@@ -1320,7 +1562,7 @@ File: Tablicious.info,  Node: string.dispstrs,  Next: string.ismissing,  Prev: s
 
 File: Tablicious.info,  Node: string.ismissing,  Next: string.isnannish,  Prev: string.dispstrs,  Up: string
 
-5.2.20.4 string.ismissing
+8.2.20.4 string.ismissing
 .........................
 
  -- Method: OUT = ismissing (OBJ)
@@ -1336,7 +1578,7 @@ File: Tablicious.info,  Node: string.ismissing,  Next: string.isnannish,  Prev: 
 
 File: Tablicious.info,  Node: string.isnannish,  Next: string.cellstr,  Prev: string.ismissing,  Up: string
 
-5.2.20.5 string.isnannish
+8.2.20.5 string.isnannish
 .........................
 
  -- Method: OUT = isnannish (OBJ)
@@ -1351,7 +1593,7 @@ File: Tablicious.info,  Node: string.isnannish,  Next: string.cellstr,  Prev: st
 
 File: Tablicious.info,  Node: string.cellstr,  Next: string.cell,  Prev: string.isnannish,  Up: string
 
-5.2.20.6 string.cellstr
+8.2.20.6 string.cellstr
 .......................
 
  -- Method: OUT = cellstr (OBJ)
@@ -1365,7 +1607,7 @@ File: Tablicious.info,  Node: string.cellstr,  Next: string.cell,  Prev: string.
 
 File: Tablicious.info,  Node: string.cell,  Next: string.char,  Prev: string.cellstr,  Up: string
 
-5.2.20.7 string.cell
+8.2.20.7 string.cell
 ....................
 
  -- Method: OUT = cell (OBJ)
@@ -1383,7 +1625,7 @@ File: Tablicious.info,  Node: string.cell,  Next: string.char,  Prev: string.cel
 
 File: Tablicious.info,  Node: string.char,  Next: string.encode,  Prev: string.cell,  Up: string
 
-5.2.20.8 string.char
+8.2.20.8 string.char
 ....................
 
  -- Method: OUT = char (OBJ)
@@ -1402,7 +1644,7 @@ File: Tablicious.info,  Node: string.char,  Next: string.encode,  Prev: string.c
 
 File: Tablicious.info,  Node: string.encode,  Next: string.strlength_bytes,  Prev: string.char,  Up: string
 
-5.2.20.9 string.encode
+8.2.20.9 string.encode
 ......................
 
  -- Method: OUT = encode (OBJ, CHARSETNAME)
@@ -1421,7 +1663,7 @@ File: Tablicious.info,  Node: string.encode,  Next: string.strlength_bytes,  Pre
 
 File: Tablicious.info,  Node: string.strlength_bytes,  Next: string.strlength,  Prev: string.encode,  Up: string
 
-5.2.20.10 string.strlength_bytes
+8.2.20.10 string.strlength_bytes
 ................................
 
  -- Method: OUT = strlength_bytes (OBJ)
@@ -1441,7 +1683,7 @@ File: Tablicious.info,  Node: string.strlength_bytes,  Next: string.strlength,  
 
 File: Tablicious.info,  Node: string.strlength,  Next: string.reverse_bytes,  Prev: string.strlength_bytes,  Up: string
 
-5.2.20.11 string.strlength
+8.2.20.11 string.strlength
 ..........................
 
  -- Method: OUT = strlength (OBJ)
@@ -1460,7 +1702,7 @@ File: Tablicious.info,  Node: string.strlength,  Next: string.reverse_bytes,  Pr
 
 File: Tablicious.info,  Node: string.reverse_bytes,  Next: string.reverse,  Prev: string.strlength,  Up: string
 
-5.2.20.12 string.reverse_bytes
+8.2.20.12 string.reverse_bytes
 ..............................
 
  -- Method: OUT = reverse_bytes (OBJ)
@@ -1484,7 +1726,7 @@ File: Tablicious.info,  Node: string.reverse_bytes,  Next: string.reverse,  Prev
 
 File: Tablicious.info,  Node: string.reverse,  Next: string.strcat,  Prev: string.reverse_bytes,  Up: string
 
-5.2.20.13 string.reverse
+8.2.20.13 string.reverse
 ........................
 
  -- Method: OUT = reverse (OBJ)
@@ -1500,7 +1742,7 @@ File: Tablicious.info,  Node: string.reverse,  Next: string.strcat,  Prev: strin
 
 File: Tablicious.info,  Node: string.strcat,  Next: string.lower,  Prev: string.reverse,  Up: string
 
-5.2.20.14 string.strcat
+8.2.20.14 string.strcat
 .......................
 
  -- Method: OUT = strcat (VARARGIN)
@@ -1520,7 +1762,7 @@ File: Tablicious.info,  Node: string.strcat,  Next: string.lower,  Prev: string.
 
 File: Tablicious.info,  Node: string.lower,  Next: string.upper,  Prev: string.strcat,  Up: string
 
-5.2.20.15 string.lower
+8.2.20.15 string.lower
 ......................
 
  -- Method: OUT = lower (OBJ)
@@ -1539,7 +1781,7 @@ File: Tablicious.info,  Node: string.lower,  Next: string.upper,  Prev: string.s
 
 File: Tablicious.info,  Node: string.upper,  Next: string.erase,  Prev: string.lower,  Up: string
 
-5.2.20.16 string.upper
+8.2.20.16 string.upper
 ......................
 
  -- Method: OUT = upper (OBJ)
@@ -1558,7 +1800,7 @@ File: Tablicious.info,  Node: string.upper,  Next: string.erase,  Prev: string.l
 
 File: Tablicious.info,  Node: string.erase,  Next: string.strrep,  Prev: string.upper,  Up: string
 
-5.2.20.17 string.erase
+8.2.20.17 string.erase
 ......................
 
  -- Method: OUT = erase (OBJ, MATCH)
@@ -1572,7 +1814,7 @@ File: Tablicious.info,  Node: string.erase,  Next: string.strrep,  Prev: string.
 
 File: Tablicious.info,  Node: string.strrep,  Next: string.strfind,  Prev: string.erase,  Up: string
 
-5.2.20.18 string.strrep
+8.2.20.18 string.strrep
 .......................
 
  -- Method: OUT = strrep (OBJ, MATCH, REPLACEMENT)
@@ -1592,7 +1834,7 @@ File: Tablicious.info,  Node: string.strrep,  Next: string.strfind,  Prev: strin
 
 File: Tablicious.info,  Node: string.strfind,  Next: string.regexprep,  Prev: string.strrep,  Up: string
 
-5.2.20.19 string.strfind
+8.2.20.19 string.strfind
 ........................
 
  -- Method: OUT = strfind (OBJ, PATTERN)
@@ -1610,7 +1852,7 @@ File: Tablicious.info,  Node: string.strfind,  Next: string.regexprep,  Prev: st
 
 File: Tablicious.info,  Node: string.regexprep,  Next: string.strcmp,  Prev: string.strfind,  Up: string
 
-5.2.20.20 string.regexprep
+8.2.20.20 string.regexprep
 ..........................
 
  -- Method: OUT = regexprep (OBJ, PAT, REPSTR)
@@ -1626,7 +1868,7 @@ File: Tablicious.info,  Node: string.regexprep,  Next: string.strcmp,  Prev: str
 
 File: Tablicious.info,  Node: string.strcmp,  Next: string.cmp,  Prev: string.regexprep,  Up: string
 
-5.2.20.21 string.strcmp
+8.2.20.21 string.strcmp
 .......................
 
  -- Method: OUT = strcmp (A, B)
@@ -1647,7 +1889,7 @@ File: Tablicious.info,  Node: string.strcmp,  Next: string.cmp,  Prev: string.re
 
 File: Tablicious.info,  Node: string.cmp,  Next: string.missing,  Prev: string.strcmp,  Up: string
 
-5.2.20.22 string.cmp
+8.2.20.22 string.cmp
 ....................
 
  -- Method: [OUT, OUTA, OUTB] = cmp (A, B)
@@ -1673,7 +1915,7 @@ File: Tablicious.info,  Node: string.cmp,  Next: string.missing,  Prev: string.s
 
 File: Tablicious.info,  Node: string.missing,  Next: string.decode,  Prev: string.cmp,  Up: string
 
-5.2.20.23 string.missing
+8.2.20.23 string.missing
 ........................
 
  -- Static Method: OUT = string.missing (SZ)
@@ -1688,7 +1930,7 @@ File: Tablicious.info,  Node: string.missing,  Next: string.decode,  Prev: strin
 
 File: Tablicious.info,  Node: string.decode,  Prev: string.missing,  Up: string
 
-5.2.20.24 string.decode
+8.2.20.24 string.decode
 .......................
 
  -- Static Method: OUT = string.decode (BYTES, CHARSETNAME)
@@ -1705,7 +1947,7 @@ File: Tablicious.info,  Node: string.decode,  Prev: string.missing,  Up: string
 
 File: Tablicious.info,  Node: struct2table,  Next: table,  Prev: string,  Up: API Alphabetically
 
-5.2.21 struct2table
+8.2.21 struct2table
 -------------------
 
  -- Function: OUT = struct2table (S)
@@ -1724,7 +1966,7 @@ File: Tablicious.info,  Node: struct2table,  Next: table,  Prev: string,  Up: AP
 
 File: Tablicious.info,  Node: table,  Next: tableOuterFillValue,  Prev: struct2table,  Up: API Alphabetically
 
-5.2.22 table
+8.2.22 table
 ------------
 
  -- Class: table
@@ -1824,7 +2066,7 @@ File: Tablicious.info,  Node: table,  Next: tableOuterFillValue,  Prev: struct2t
 
 File: Tablicious.info,  Node: table.table,  Next: table.summary,  Up: table
 
-5.2.22.1 table.table
+8.2.22.1 table.table
 ....................
 
  -- Constructor: OBJ = table ()
@@ -1854,7 +2096,7 @@ File: Tablicious.info,  Node: table.table,  Next: table.summary,  Up: table
 
 File: Tablicious.info,  Node: table.summary,  Next: table.prettyprint,  Prev: table.table,  Up: table
 
-5.2.22.2 table.summary
+8.2.22.2 table.summary
 ......................
 
  -- Method: summary (OBJ)
@@ -1870,7 +2112,7 @@ File: Tablicious.info,  Node: table.summary,  Next: table.prettyprint,  Prev: ta
 
 File: Tablicious.info,  Node: table.prettyprint,  Next: table.table2cell,  Prev: table.summary,  Up: table
 
-5.2.22.3 table.prettyprint
+8.2.22.3 table.prettyprint
 ..........................
 
  -- Method: prettyprint (OBJ)
@@ -1884,7 +2126,7 @@ File: Tablicious.info,  Node: table.prettyprint,  Next: table.table2cell,  Prev:
 
 File: Tablicious.info,  Node: table.table2cell,  Next: table.table2struct,  Prev: table.prettyprint,  Up: table
 
-5.2.22.4 table.table2cell
+8.2.22.4 table.table2cell
 .........................
 
  -- Method: C = table2cell (OBJ)
@@ -1899,7 +2141,7 @@ File: Tablicious.info,  Node: table.table2cell,  Next: table.table2struct,  Prev
 
 File: Tablicious.info,  Node: table.table2struct,  Next: table.table2array,  Prev: table.table2cell,  Up: table
 
-5.2.22.5 table.table2struct
+8.2.22.5 table.table2struct
 ...........................
 
  -- Method: S = table2struct (OBJ)
@@ -1917,7 +2159,7 @@ File: Tablicious.info,  Node: table.table2struct,  Next: table.table2array,  Pre
 
 File: Tablicious.info,  Node: table.table2array,  Next: table.varnames,  Prev: table.table2struct,  Up: table
 
-5.2.22.6 table.table2array
+8.2.22.6 table.table2array
 ..........................
 
  -- Method: S = table2struct (OBJ)
@@ -1927,7 +2169,7 @@ File: Tablicious.info,  Node: table.table2array,  Next: table.varnames,  Prev: t
 
 File: Tablicious.info,  Node: table.varnames,  Next: table.istable,  Prev: table.table2array,  Up: table
 
-5.2.22.7 table.varnames
+8.2.22.7 table.varnames
 .......................
 
  -- Method: OUT = varnames (OBJ)
@@ -1939,7 +2181,7 @@ File: Tablicious.info,  Node: table.varnames,  Next: table.istable,  Prev: table
 
 File: Tablicious.info,  Node: table.istable,  Next: table.size,  Prev: table.varnames,  Up: table
 
-5.2.22.8 table.istable
+8.2.22.8 table.istable
 ......................
 
  -- Method: TF = istable (OBJ)
@@ -1949,7 +2191,7 @@ File: Tablicious.info,  Node: table.istable,  Next: table.size,  Prev: table.var
 
 File: Tablicious.info,  Node: table.size,  Next: table.length,  Prev: table.istable,  Up: table
 
-5.2.22.9 table.size
+8.2.22.9 table.size
 ...................
 
  -- Method: SZ = size (OBJ)
@@ -1962,7 +2204,7 @@ File: Tablicious.info,  Node: table.size,  Next: table.length,  Prev: table.ista
 
 File: Tablicious.info,  Node: table.length,  Next: table.ndims,  Prev: table.size,  Up: table
 
-5.2.22.10 table.length
+8.2.22.10 table.length
 ......................
 
  -- Method: OUT = length (OBJ)
@@ -1974,7 +2216,7 @@ File: Tablicious.info,  Node: table.length,  Next: table.ndims,  Prev: table.siz
 
 File: Tablicious.info,  Node: table.ndims,  Next: table.squeeze,  Prev: table.length,  Up: table
 
-5.2.22.11 table.ndims
+8.2.22.11 table.ndims
 .....................
 
  -- Method: OUT = ndims (OBJ)
@@ -1986,7 +2228,7 @@ File: Tablicious.info,  Node: table.ndims,  Next: table.squeeze,  Prev: table.le
 
 File: Tablicious.info,  Node: table.squeeze,  Next: table.sizeof,  Prev: table.ndims,  Up: table
 
-5.2.22.12 table.squeeze
+8.2.22.12 table.squeeze
 .......................
 
  -- Method: OBJ = squeeze (OBJ)
@@ -1999,7 +2241,7 @@ File: Tablicious.info,  Node: table.squeeze,  Next: table.sizeof,  Prev: table.n
 
 File: Tablicious.info,  Node: table.sizeof,  Next: table.height,  Prev: table.squeeze,  Up: table
 
-5.2.22.13 table.sizeof
+8.2.22.13 table.sizeof
 ......................
 
  -- Method: OUT = sizeof (OBJ)
@@ -2013,7 +2255,7 @@ File: Tablicious.info,  Node: table.sizeof,  Next: table.height,  Prev: table.sq
 
 File: Tablicious.info,  Node: table.height,  Next: table.rows,  Prev: table.sizeof,  Up: table
 
-5.2.22.14 table.height
+8.2.22.14 table.height
 ......................
 
  -- Method: OUT = height (OBJ)
@@ -2023,7 +2265,7 @@ File: Tablicious.info,  Node: table.height,  Next: table.rows,  Prev: table.size
 
 File: Tablicious.info,  Node: table.rows,  Next: table.width,  Prev: table.height,  Up: table
 
-5.2.22.15 table.rows
+8.2.22.15 table.rows
 ....................
 
  -- Method: OUT = rows (OBJ)
@@ -2033,7 +2275,7 @@ File: Tablicious.info,  Node: table.rows,  Next: table.width,  Prev: table.heigh
 
 File: Tablicious.info,  Node: table.width,  Next: table.columns,  Prev: table.rows,  Up: table
 
-5.2.22.16 table.width
+8.2.22.16 table.width
 .....................
 
  -- Method: OUT = width (OBJ)
@@ -2046,7 +2288,7 @@ File: Tablicious.info,  Node: table.width,  Next: table.columns,  Prev: table.ro
 
 File: Tablicious.info,  Node: table.columns,  Next: table.numel,  Prev: table.width,  Up: table
 
-5.2.22.17 table.columns
+8.2.22.17 table.columns
 .......................
 
  -- Method: OUT = columns (OBJ)
@@ -2059,7 +2301,7 @@ File: Tablicious.info,  Node: table.columns,  Next: table.numel,  Prev: table.wi
 
 File: Tablicious.info,  Node: table.numel,  Next: table.isempty,  Prev: table.columns,  Up: table
 
-5.2.22.18 table.numel
+8.2.22.18 table.numel
 .....................
 
  -- Method: OUT = numel (OBJ)
@@ -2076,7 +2318,7 @@ File: Tablicious.info,  Node: table.numel,  Next: table.isempty,  Prev: table.co
 
 File: Tablicious.info,  Node: table.isempty,  Next: table.ismatrix,  Prev: table.numel,  Up: table
 
-5.2.22.19 table.isempty
+8.2.22.19 table.isempty
 .......................
 
  -- Method: OUT = isempty (OBJ)
@@ -2089,7 +2331,7 @@ File: Tablicious.info,  Node: table.isempty,  Next: table.ismatrix,  Prev: table
 
 File: Tablicious.info,  Node: table.ismatrix,  Next: table.isrow,  Prev: table.isempty,  Up: table
 
-5.2.22.20 table.ismatrix
+8.2.22.20 table.ismatrix
 ........................
 
  -- Method: OUT = ismatrix (OBJ)
@@ -2101,7 +2343,7 @@ File: Tablicious.info,  Node: table.ismatrix,  Next: table.isrow,  Prev: table.i
 
 File: Tablicious.info,  Node: table.isrow,  Next: table.iscol,  Prev: table.ismatrix,  Up: table
 
-5.2.22.21 table.isrow
+8.2.22.21 table.isrow
 .....................
 
  -- Method: OUT = isrow (OBJ)
@@ -2111,7 +2353,7 @@ File: Tablicious.info,  Node: table.isrow,  Next: table.iscol,  Prev: table.isma
 
 File: Tablicious.info,  Node: table.iscol,  Next: table.isvector,  Prev: table.isrow,  Up: table
 
-5.2.22.22 table.iscol
+8.2.22.22 table.iscol
 .....................
 
  -- Method: OUT = iscol (OBJ)
@@ -2124,7 +2366,7 @@ File: Tablicious.info,  Node: table.iscol,  Next: table.isvector,  Prev: table.i
 
 File: Tablicious.info,  Node: table.isvector,  Next: table.isscalar,  Prev: table.iscol,  Up: table
 
-5.2.22.23 table.isvector
+8.2.22.23 table.isvector
 ........................
 
  -- Method: OUT = isvector (OBJ)
@@ -2134,7 +2376,7 @@ File: Tablicious.info,  Node: table.isvector,  Next: table.isscalar,  Prev: tabl
 
 File: Tablicious.info,  Node: table.isscalar,  Next: table.hasrownames,  Prev: table.isvector,  Up: table
 
-5.2.22.24 table.isscalar
+8.2.22.24 table.isscalar
 ........................
 
  -- Method: OUT = isscalar (OBJ)
@@ -2144,7 +2386,7 @@ File: Tablicious.info,  Node: table.isscalar,  Next: table.hasrownames,  Prev: t
 
 File: Tablicious.info,  Node: table.hasrownames,  Next: table.vertcat,  Prev: table.isscalar,  Up: table
 
-5.2.22.25 table.hasrownames
+8.2.22.25 table.hasrownames
 ...........................
 
  -- Method: OUT = hasrownames (OBJ)
@@ -2154,7 +2396,7 @@ File: Tablicious.info,  Node: table.hasrownames,  Next: table.vertcat,  Prev: ta
 
 File: Tablicious.info,  Node: table.vertcat,  Next: table.horzcat,  Prev: table.hasrownames,  Up: table
 
-5.2.22.26 table.vertcat
+8.2.22.26 table.vertcat
 .......................
 
  -- Method: OUT = vertcat (VARARGIN)
@@ -2172,7 +2414,7 @@ File: Tablicious.info,  Node: table.vertcat,  Next: table.horzcat,  Prev: table.
 
 File: Tablicious.info,  Node: table.horzcat,  Next: table.repmat,  Prev: table.vertcat,  Up: table
 
-5.2.22.27 table.horzcat
+8.2.22.27 table.horzcat
 .......................
 
  -- Method: OUT = horzcat (VARARGIN)
@@ -2190,7 +2432,7 @@ File: Tablicious.info,  Node: table.horzcat,  Next: table.repmat,  Prev: table.v
 
 File: Tablicious.info,  Node: table.repmat,  Next: table.setVariableNames,  Prev: table.horzcat,  Up: table
 
-5.2.22.28 table.repmat
+8.2.22.28 table.repmat
 ......................
 
  -- Method: OUT = repmat (OBJ, SZ)
@@ -2208,7 +2450,7 @@ File: Tablicious.info,  Node: table.repmat,  Next: table.setVariableNames,  Prev
 
 File: Tablicious.info,  Node: table.setVariableNames,  Next: table.setRowNames,  Prev: table.repmat,  Up: table
 
-5.2.22.29 table.setVariableNames
+8.2.22.29 table.setVariableNames
 ................................
 
  -- Method: OUT = setVariableNames (OBJ, NAMES)
@@ -2223,7 +2465,7 @@ File: Tablicious.info,  Node: table.setVariableNames,  Next: table.setRowNames, 
 
 File: Tablicious.info,  Node: table.setRowNames,  Next: table.resolveVarRef,  Prev: table.setVariableNames,  Up: table
 
-5.2.22.30 table.setRowNames
+8.2.22.30 table.setRowNames
 ...........................
 
  -- Method: OUT = setRowNames (OBJ, NAMES)
@@ -2238,7 +2480,7 @@ File: Tablicious.info,  Node: table.setRowNames,  Next: table.resolveVarRef,  Pr
 
 File: Tablicious.info,  Node: table.resolveVarRef,  Next: table.subsetRows,  Prev: table.setRowNames,  Up: table
 
-5.2.22.31 table.resolveVarRef
+8.2.22.31 table.resolveVarRef
 .............................
 
  -- Method: [IXVAR, VARNAMES] = resolveVarREf (OBJ, VARREF)
@@ -2257,7 +2499,7 @@ File: Tablicious.info,  Node: table.resolveVarRef,  Next: table.subsetRows,  Pre
 
 File: Tablicious.info,  Node: table.subsetRows,  Next: table.subsetvars,  Prev: table.resolveVarRef,  Up: table
 
-5.2.22.32 table.subsetRows
+8.2.22.32 table.subsetRows
 ..........................
 
  -- Method: OUT = subsetRows (OBJ, IXROWS)
@@ -2271,7 +2513,7 @@ File: Tablicious.info,  Node: table.subsetRows,  Next: table.subsetvars,  Prev: 
 
 File: Tablicious.info,  Node: table.subsetvars,  Next: table.removevars,  Prev: table.subsetRows,  Up: table
 
-5.2.22.33 table.subsetvars
+8.2.22.33 table.subsetvars
 ..........................
 
  -- Method: OUT = subsetvars (OBJ, IXVARS)
@@ -2289,7 +2531,7 @@ File: Tablicious.info,  Node: table.subsetvars,  Next: table.removevars,  Prev: 
 
 File: Tablicious.info,  Node: table.removevars,  Next: table.movevars,  Prev: table.subsetvars,  Up: table
 
-5.2.22.34 table.removevars
+8.2.22.34 table.removevars
 ..........................
 
  -- Method: OUT = removevars (OBJ, VARS)
@@ -2304,7 +2546,7 @@ File: Tablicious.info,  Node: table.removevars,  Next: table.movevars,  Prev: ta
 
 File: Tablicious.info,  Node: table.movevars,  Next: table.setvar,  Prev: table.removevars,  Up: table
 
-5.2.22.35 table.movevars
+8.2.22.35 table.movevars
 ........................
 
  -- Method: OUT = movevars (OBJ, VARS, RELLOCATION, LOCATION)
@@ -2326,7 +2568,7 @@ File: Tablicious.info,  Node: table.movevars,  Next: table.setvar,  Prev: table.
 
 File: Tablicious.info,  Node: table.setvar,  Next: table.convertvars,  Prev: table.movevars,  Up: table
 
-5.2.22.36 table.setvar
+8.2.22.36 table.setvar
 ......................
 
  -- Method: OUT = setvar (OBJ, VARREF, VALUE)
@@ -2339,7 +2581,7 @@ File: Tablicious.info,  Node: table.setvar,  Next: table.convertvars,  Prev: tab
 
 File: Tablicious.info,  Node: table.convertvars,  Next: table.head,  Prev: table.setvar,  Up: table
 
-5.2.22.37 table.convertvars
+8.2.22.37 table.convertvars
 ...........................
 
  -- Method: OUT = convertvars (OBJ, VARS, DATATYPE)
@@ -2366,7 +2608,7 @@ File: Tablicious.info,  Node: table.convertvars,  Next: table.head,  Prev: table
 
 File: Tablicious.info,  Node: table.head,  Next: table.tail,  Prev: table.convertvars,  Up: table
 
-5.2.22.38 table.head
+8.2.22.38 table.head
 ....................
 
  -- Method: OUT = head (OBJ)
@@ -2383,7 +2625,7 @@ File: Tablicious.info,  Node: table.head,  Next: table.tail,  Prev: table.conver
 
 File: Tablicious.info,  Node: table.tail,  Next: table.join,  Prev: table.head,  Up: table
 
-5.2.22.39 table.tail
+8.2.22.39 table.tail
 ....................
 
  -- Method: OUT = tail (OBJ)
@@ -2400,7 +2642,7 @@ File: Tablicious.info,  Node: table.tail,  Next: table.join,  Prev: table.head, 
 
 File: Tablicious.info,  Node: table.join,  Next: table.innerjoin,  Prev: table.tail,  Up: table
 
-5.2.22.40 table.join
+8.2.22.40 table.join
 ....................
 
  -- Method: [C, IB] = join (A, B)
@@ -2422,7 +2664,7 @@ File: Tablicious.info,  Node: table.join,  Next: table.innerjoin,  Prev: table.t
 
 File: Tablicious.info,  Node: table.innerjoin,  Next: table.outerjoin,  Prev: table.join,  Up: table
 
-5.2.22.41 table.innerjoin
+8.2.22.41 table.innerjoin
 .........................
 
  -- Method: [OUT, IXA, IXB] = innerjoin (A, B)
@@ -2443,7 +2685,7 @@ File: Tablicious.info,  Node: table.innerjoin,  Next: table.outerjoin,  Prev: ta
 
 File: Tablicious.info,  Node: table.outerjoin,  Next: table.outerfillvals,  Prev: table.innerjoin,  Up: table
 
-5.2.22.42 table.outerjoin
+8.2.22.42 table.outerjoin
 .........................
 
  -- Method: [OUT, IXA, IXB] = outerjoin (A, B)
@@ -2466,7 +2708,7 @@ File: Tablicious.info,  Node: table.outerjoin,  Next: table.outerfillvals,  Prev
 
 File: Tablicious.info,  Node: table.outerfillvals,  Next: table.semijoin,  Prev: table.outerjoin,  Up: table
 
-5.2.22.43 table.outerfillvals
+8.2.22.43 table.outerfillvals
 .............................
 
  -- Method: OUT = outerfillvals (OBJ)
@@ -2480,7 +2722,7 @@ File: Tablicious.info,  Node: table.outerfillvals,  Next: table.semijoin,  Prev:
 
 File: Tablicious.info,  Node: table.semijoin,  Next: table.antijoin,  Prev: table.outerfillvals,  Up: table
 
-5.2.22.44 table.semijoin
+8.2.22.44 table.semijoin
 ........................
 
  -- Method: [OUTA, IXA, OUTB, IXB] = semijoin (A, B)
@@ -2502,7 +2744,7 @@ File: Tablicious.info,  Node: table.semijoin,  Next: table.antijoin,  Prev: tabl
 
 File: Tablicious.info,  Node: table.antijoin,  Next: table.cartesian,  Prev: table.semijoin,  Up: table
 
-5.2.22.45 table.antijoin
+8.2.22.45 table.antijoin
 ........................
 
  -- Method: [OUTA, IXA, OUTB, IXB] = antijoin (A, B)
@@ -2521,7 +2763,7 @@ File: Tablicious.info,  Node: table.antijoin,  Next: table.cartesian,  Prev: tab
 
 File: Tablicious.info,  Node: table.cartesian,  Next: table.groupby,  Prev: table.antijoin,  Up: table
 
-5.2.22.46 table.cartesian
+8.2.22.46 table.cartesian
 .........................
 
  -- Method: [OUT, IXS] = cartesian (A, B)
@@ -2553,7 +2795,7 @@ File: Tablicious.info,  Node: table.cartesian,  Next: table.groupby,  Prev: tabl
 
 File: Tablicious.info,  Node: table.groupby,  Next: table.grpstats,  Prev: table.cartesian,  Up: table
 
-5.2.22.47 table.groupby
+8.2.22.47 table.groupby
 .......................
 
  -- Method: [OUT] = groupby (OBJ, GROUPVARS, AGGCALCS)
@@ -2577,7 +2819,7 @@ File: Tablicious.info,  Node: table.groupby,  Next: table.grpstats,  Prev: table
 
 File: Tablicious.info,  Node: table.grpstats,  Next: table.union,  Prev: table.groupby,  Up: table
 
-5.2.22.48 table.grpstats
+8.2.22.48 table.grpstats
 ........................
 
  -- Method: [OUT] = grpstats (OBJ, GROUPVAR)
@@ -2590,7 +2832,7 @@ File: Tablicious.info,  Node: table.grpstats,  Next: table.union,  Prev: table.g
 
 File: Tablicious.info,  Node: table.union,  Next: table.intersect,  Prev: table.grpstats,  Up: table
 
-5.2.22.49 table.union
+8.2.22.49 table.union
 .....................
 
  -- Method: [C, IA, IB] = union (A, B)
@@ -2608,7 +2850,7 @@ File: Tablicious.info,  Node: table.union,  Next: table.intersect,  Prev: table.
 
 File: Tablicious.info,  Node: table.intersect,  Next: table.setxor,  Prev: table.union,  Up: table
 
-5.2.22.50 table.intersect
+8.2.22.50 table.intersect
 .........................
 
  -- Method: [C, IA, IB] = intersect (A, B)
@@ -2627,7 +2869,7 @@ File: Tablicious.info,  Node: table.intersect,  Next: table.setxor,  Prev: table
 
 File: Tablicious.info,  Node: table.setxor,  Next: table.setdiff,  Prev: table.intersect,  Up: table
 
-5.2.22.51 table.setxor
+8.2.22.51 table.setxor
 ......................
 
  -- Method: [C, IA, IB] = setxor (A, B)
@@ -2646,7 +2888,7 @@ File: Tablicious.info,  Node: table.setxor,  Next: table.setdiff,  Prev: table.i
 
 File: Tablicious.info,  Node: table.setdiff,  Next: table.ismember,  Prev: table.setxor,  Up: table
 
-5.2.22.52 table.setdiff
+8.2.22.52 table.setdiff
 .......................
 
  -- Method: [C, IA] = setdiff (A, B)
@@ -2664,7 +2906,7 @@ File: Tablicious.info,  Node: table.setdiff,  Next: table.ismember,  Prev: table
 
 File: Tablicious.info,  Node: table.ismember,  Next: table.ismissing,  Prev: table.setdiff,  Up: table
 
-5.2.22.53 table.ismember
+8.2.22.53 table.ismember
 ........................
 
  -- Method: [TF, LOC] = ismember (A, B)
@@ -2679,7 +2921,7 @@ File: Tablicious.info,  Node: table.ismember,  Next: table.ismissing,  Prev: tab
 
 File: Tablicious.info,  Node: table.ismissing,  Next: table.rmmissing,  Prev: table.ismember,  Up: table
 
-5.2.22.54 table.ismissing
+8.2.22.54 table.ismissing
 .........................
 
  -- Method: OUT = ismissing (OBJ)
@@ -2701,7 +2943,7 @@ File: Tablicious.info,  Node: table.ismissing,  Next: table.rmmissing,  Prev: ta
 
 File: Tablicious.info,  Node: table.rmmissing,  Next: table.standardizeMissing,  Prev: table.ismissing,  Up: table
 
-5.2.22.55 table.rmmissing
+8.2.22.55 table.rmmissing
 .........................
 
  -- Method: [OUT, TF] = rmmissing (OBJ)
@@ -2724,7 +2966,7 @@ File: Tablicious.info,  Node: table.rmmissing,  Next: table.standardizeMissing, 
 
 File: Tablicious.info,  Node: table.standardizeMissing,  Next: table.varfun,  Prev: table.rmmissing,  Up: table
 
-5.2.22.56 table.standardizeMissing
+8.2.22.56 table.standardizeMissing
 ..................................
 
  -- Method: OUT = standardizeMissing (OBJ, INDICATOR)
@@ -2750,7 +2992,7 @@ File: Tablicious.info,  Node: table.standardizeMissing,  Next: table.varfun,  Pr
 
 File: Tablicious.info,  Node: table.varfun,  Next: table.rowfun,  Prev: table.standardizeMissing,  Up: table
 
-5.2.22.57 table.varfun
+8.2.22.57 table.varfun
 ......................
 
  -- Method: OUT = varfun (FCN, OBJ)
@@ -2766,7 +3008,7 @@ File: Tablicious.info,  Node: table.varfun,  Next: table.rowfun,  Prev: table.st
 
 File: Tablicious.info,  Node: table.rowfun,  Next: table.findgroups,  Prev: table.varfun,  Up: table
 
-5.2.22.58 table.rowfun
+8.2.22.58 table.rowfun
 ......................
 
  -- Method: OUT = varfun (FCN, OBJ)
@@ -2777,7 +3019,7 @@ File: Tablicious.info,  Node: table.rowfun,  Next: table.findgroups,  Prev: tabl
 
 File: Tablicious.info,  Node: table.findgroups,  Next: table.evalWithVars,  Prev: table.rowfun,  Up: table
 
-5.2.22.59 table.findgroups
+8.2.22.59 table.findgroups
 ..........................
 
  -- Method: [G, TID] = findgroups (OBJ)
@@ -2795,7 +3037,7 @@ File: Tablicious.info,  Node: table.findgroups,  Next: table.evalWithVars,  Prev
 
 File: Tablicious.info,  Node: table.evalWithVars,  Next: table.restrict,  Prev: table.findgroups,  Up: table
 
-5.2.22.60 table.evalWithVars
+8.2.22.60 table.evalWithVars
 ............................
 
  -- Method: OUT = evalWithVars (OBJ, EXPR)
@@ -2822,7 +3064,7 @@ File: Tablicious.info,  Node: table.evalWithVars,  Next: table.restrict,  Prev: 
 
 File: Tablicious.info,  Node: table.restrict,  Prev: table.evalWithVars,  Up: table
 
-5.2.22.61 table.restrict
+8.2.22.61 table.restrict
 ........................
 
  -- Method: OUT = restrict (OBJ, EXPR)
@@ -2853,7 +3095,7 @@ File: Tablicious.info,  Node: table.restrict,  Prev: table.evalWithVars,  Up: ta
 
 File: Tablicious.info,  Node: tableOuterFillValue,  Next: vecfun,  Prev: table,  Up: API Alphabetically
 
-5.2.23 tableOuterFillValue
+8.2.23 tableOuterFillValue
 --------------------------
 
  -- Function: OUT = tableOuterFillValue (X)
@@ -2882,7 +3124,7 @@ File: Tablicious.info,  Node: tableOuterFillValue,  Next: vecfun,  Prev: table, 
 
 File: Tablicious.info,  Node: vecfun,  Prev: tableOuterFillValue,  Up: API Alphabetically
 
-5.2.24 vecfun
+8.2.24 vecfun
 -------------
 
  -- Function: OUT = vecfun (FCN, X, DIM)
@@ -2907,10 +3149,10 @@ File: Tablicious.info,  Node: vecfun,  Prev: tableOuterFillValue,  Up: API Alpha
 
 File: Tablicious.info,  Node: Copying,  Prev: API Reference,  Up: Top
 
-6 Copying
+9 Copying
 *********
 
-6.1 Package Copyright
+9.1 Package Copyright
 =====================
 
 Tablicious for Octave is covered by the GNU GPLv3.
@@ -2919,7 +3161,7 @@ Tablicious for Octave is covered by the GNU GPLv3.
 
    The Fisher Iris dataset is Public Domain.
 
-6.2 Manual Copyright
+9.2 Manual Copyright
 ====================
 
 This manual is for Tablicious, version 0.1.0.
@@ -2943,147 +3185,155 @@ This manual is for Tablicious, version 0.1.0.
 
 Tag Table:
 Node: Top772
-Node: Introduction1058
-Node: Getting Started1751
-Node: Table Representation2565
-Node: table Class2830
-Node: Missing Functionality3142
-Node: API Reference3803
-Node: API by Category3992
-Node: API Alphabetically5752
-Node: array2table7148
-Node: categorical8079
-Node: categorical.categorical10333
-Node: categorical.categories11590
-Node: categorical.iscategory11993
-Node: categorical.isordinal12439
-Node: categorical.string12808
-Node: categorical.cellstr13255
-Node: categorical.dispstrs13694
-Node: categorical.summary14150
-Node: categorical.addcats14601
-Node: categorical.removecats15027
-Node: categorical.mergecats15669
-Node: categorical.renamecats16324
-Node: categorical.reordercats16741
-Node: categorical.setcats17276
-Node: categorical.isundefined17722
-Node: categorical.ismissing18240
-Node: categorical.isnannish18650
-Node: categorical.squeezecats19128
-Node: cell2table19498
-Node: colvecfun20238
-Node: contains20962
-Node: discretize21751
-Node: dispstrs22650
-Node: endsWith23432
-Node: eqn24213
-Node: fillmissing25299
-Node: isfile26151
-Node: isfolder27262
-Node: ismissing28229
-Node: isnannish30339
-Node: missing31321
-Node: missing.missing32358
-Node: missing.dispstrs32672
-Node: missing.ismissing33069
-Node: missing.isnan33434
-Node: missing.isnannish33773
-Node: pp34107
-Node: rmmissing34750
-Node: standardizeMissing35793
-Node: startsWith36619
-Node: string37429
-Node: string.string40723
-Node: string.isstring41393
-Node: string.dispstrs41718
-Node: string.ismissing42300
-Node: string.isnannish42781
-Node: string.cellstr43164
-Node: string.cell43509
-Node: string.char43996
-Node: string.encode44521
-Node: string.strlength_bytes45035
-Node: string.strlength45708
-Node: string.reverse_bytes46275
-Node: string.reverse47013
-Node: string.strcat47485
-Node: string.lower48063
-Node: string.upper48565
-Node: string.erase49066
-Node: string.strrep49403
-Node: string.strfind50008
-Node: string.regexprep50531
-Node: string.strcmp51007
-Node: string.cmp51700
-Node: string.missing52679
-Node: string.decode53081
-Node: struct2table53491
-Node: table53958
-Node: table.table56402
-Node: table.summary57454
-Node: table.prettyprint57881
-Node: table.table2cell58340
-Node: table.table2struct58828
-Node: table.table2array59463
-Node: table.varnames59710
-Node: table.istable59962
-Node: table.size60174
-Node: table.length60503
-Node: table.ndims60802
-Node: table.squeeze61053
-Node: table.sizeof61400
-Node: table.height61831
-Node: table.rows62039
-Node: table.width62240
-Node: table.columns62571
-Node: table.numel62909
-Node: table.isempty63429
-Node: table.ismatrix63753
-Node: table.isrow64042
-Node: table.iscol64260
-Node: table.isvector64620
-Node: table.isscalar64846
-Node: table.hasrownames65076
-Node: table.vertcat65326
-Node: table.horzcat65847
-Node: table.repmat66467
-Node: table.setVariableNames67002
-Node: table.setRowNames67448
-Node: table.resolveVarRef67820
-Node: table.subsetRows68430
-Node: table.subsetvars68775
-Node: table.removevars69282
-Node: table.movevars69667
-Node: table.setvar70395
-Node: table.convertvars70764
-Node: table.head71746
-Node: table.tail72121
-Node: table.join72487
-Node: table.innerjoin73233
-Node: table.outerjoin73894
-Node: table.outerfillvals74701
-Node: table.semijoin75134
-Node: table.antijoin75903
-Node: table.cartesian76555
-Node: table.groupby77823
-Node: table.grpstats78674
-Node: table.union79002
-Node: table.intersect79570
-Node: table.setxor80178
-Node: table.setdiff80813
-Node: table.ismember81350
-Node: table.ismissing81752
-Node: table.rmmissing82436
-Node: table.standardizeMissing83228
-Node: table.varfun84218
-Node: table.rowfun84785
-Node: table.findgroups85096
-Node: table.evalWithVars85681
-Node: table.restrict86531
-Node: tableOuterFillValue87660
-Node: vecfun88894
-Node: Copying89619
+Node: Introduction1111
+Node: Getting Started2474
+Node: Table Representation3288
+Node: table Class3551
+Node: Date Representation3863
+Node: datetime Class4123
+Node: datenum Compatibility4956
+Node: Time Zones6500
+Node: Defined Time Zones9337
+Node: Durations10312
+Node: duration Class10495
+Node: calendarDuration Class11250
+Node: Missing Functionality12155
+Node: API Reference13396
+Node: API by Category13585
+Node: API Alphabetically15345
+Node: array2table16741
+Node: categorical17672
+Node: categorical.categorical19926
+Node: categorical.categories21183
+Node: categorical.iscategory21586
+Node: categorical.isordinal22032
+Node: categorical.string22401
+Node: categorical.cellstr22848
+Node: categorical.dispstrs23287
+Node: categorical.summary23743
+Node: categorical.addcats24194
+Node: categorical.removecats24620
+Node: categorical.mergecats25262
+Node: categorical.renamecats25917
+Node: categorical.reordercats26334
+Node: categorical.setcats26869
+Node: categorical.isundefined27315
+Node: categorical.ismissing27833
+Node: categorical.isnannish28243
+Node: categorical.squeezecats28721
+Node: cell2table29091
+Node: colvecfun29831
+Node: contains30555
+Node: discretize31344
+Node: dispstrs32243
+Node: endsWith33025
+Node: eqn33806
+Node: fillmissing34892
+Node: isfile35744
+Node: isfolder36855
+Node: ismissing37822
+Node: isnannish39932
+Node: missing40914
+Node: missing.missing41951
+Node: missing.dispstrs42265
+Node: missing.ismissing42662
+Node: missing.isnan43027
+Node: missing.isnannish43366
+Node: pp43700
+Node: rmmissing44343
+Node: standardizeMissing45386
+Node: startsWith46212
+Node: string47022
+Node: string.string50316
+Node: string.isstring50986
+Node: string.dispstrs51311
+Node: string.ismissing51893
+Node: string.isnannish52374
+Node: string.cellstr52757
+Node: string.cell53102
+Node: string.char53589
+Node: string.encode54114
+Node: string.strlength_bytes54628
+Node: string.strlength55301
+Node: string.reverse_bytes55868
+Node: string.reverse56606
+Node: string.strcat57078
+Node: string.lower57656
+Node: string.upper58158
+Node: string.erase58659
+Node: string.strrep58996
+Node: string.strfind59601
+Node: string.regexprep60124
+Node: string.strcmp60600
+Node: string.cmp61293
+Node: string.missing62272
+Node: string.decode62674
+Node: struct2table63084
+Node: table63551
+Node: table.table65995
+Node: table.summary67047
+Node: table.prettyprint67474
+Node: table.table2cell67933
+Node: table.table2struct68421
+Node: table.table2array69056
+Node: table.varnames69303
+Node: table.istable69555
+Node: table.size69767
+Node: table.length70096
+Node: table.ndims70395
+Node: table.squeeze70646
+Node: table.sizeof70993
+Node: table.height71424
+Node: table.rows71632
+Node: table.width71833
+Node: table.columns72164
+Node: table.numel72502
+Node: table.isempty73022
+Node: table.ismatrix73346
+Node: table.isrow73635
+Node: table.iscol73853
+Node: table.isvector74213
+Node: table.isscalar74439
+Node: table.hasrownames74669
+Node: table.vertcat74919
+Node: table.horzcat75440
+Node: table.repmat76060
+Node: table.setVariableNames76595
+Node: table.setRowNames77041
+Node: table.resolveVarRef77413
+Node: table.subsetRows78023
+Node: table.subsetvars78368
+Node: table.removevars78875
+Node: table.movevars79260
+Node: table.setvar79988
+Node: table.convertvars80357
+Node: table.head81339
+Node: table.tail81714
+Node: table.join82080
+Node: table.innerjoin82826
+Node: table.outerjoin83487
+Node: table.outerfillvals84294
+Node: table.semijoin84727
+Node: table.antijoin85496
+Node: table.cartesian86148
+Node: table.groupby87416
+Node: table.grpstats88267
+Node: table.union88595
+Node: table.intersect89163
+Node: table.setxor89771
+Node: table.setdiff90406
+Node: table.ismember90943
+Node: table.ismissing91345
+Node: table.rmmissing92029
+Node: table.standardizeMissing92821
+Node: table.varfun93811
+Node: table.rowfun94378
+Node: table.findgroups94689
+Node: table.evalWithVars95274
+Node: table.restrict96124
+Node: tableOuterFillValue97253
+Node: vecfun98487
+Node: Copying99212
 
 End Tag Table
 
