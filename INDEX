@@ -13,23 +13,23 @@ Data Types
  categorical
  discretize
 Dates
-  datetime
-  localdate
-  isdatetime
-  NaT
- Durations
-  calendarDuration
-  calmonths
-  calyears
-  days
-  duration
-  hours
-  isduration
-  milliseconds
-  minutes
-  seconds
-  timezones
-  years
+ datetime
+ localdate
+ isdatetime
+ NaT
+Durations
+ calendarDuration
+ calmonths
+ calyears
+ days
+ duration
+ hours
+ isduration
+ milliseconds
+ minutes
+ seconds
+ timezones
+ years
 Missing Data
  fillmissing
  ismissing
