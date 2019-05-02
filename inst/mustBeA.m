@@ -15,6 +15,7 @@
 
 ## -*- texinfo -*-
 ## @deftypefn {Function File} {@code{x} =} mustBeA (@code{x}, @code{type})
+## @deftypefnx {Function File} {@code{x} =} mustBeA (@code{x}, @code{type}, @var{label})
 ##
 ## Requires that input is of a given type.
 ##
@@ -27,13 +28,15 @@
 ##
 ## @end deftypefn
 
-function mustBeA (x, type)
+function mustBeA (x, type, label)
   if isa (x, type)
     return
   endif
-  name = inputname (1);
-  if isempty (name)
-    name = 'input';
+  if isempty (label)
+    label = inputname (1);
   endif
-  error ('%s must be of type %s; got %s', name, type, class (x));
+  if isempty (label)
+    label = "input";
+  endif
+  error ('%s must be of type %s; got %s', label, type, class (x));
 endfunction
