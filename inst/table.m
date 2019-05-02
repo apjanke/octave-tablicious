@@ -945,39 +945,53 @@ classdef table
 
     ## -*- texinfo -*-
     ## @node table.resolveVarRef
-    ## @deftypefn {Method} {[@var{ixVar}, @var{varNames}] =} resolveVarREf (@var{obj}, @var{varRef})
+    ## @deftypefn {Method} {[@var{ixVar}, @var{varNames}] =} resolveVarRef (@var{obj}, @var{varRef})
+    ## @deftypefn {Method} {[@var{ixVar}, @var{varNames}] =} resolveVarRef (@var{obj}, @var{varRef}, @var{strictness})
     ##
     ## Resolve a variable reference against this table.
     ##
     ## A @var{varRef} is a numeric or char/cellstr indicator of which variables within
     ## @var{obj} are being referenced.
     ##
+    ## @var{strictness} controls what to do when the given variable references
+    ## could not be resolved. It may be 'strict' (the default) or 'lenient'.
+    ##
     ## Returns:
     ##   @var{ixVar} - the indexes of the variables in @var{obj}
     ##   @var{varNames} - a cellstr of the names of the variables in @var{obj}
     ##
-    ## Raises an error if any of the specified variables could not be resolved.
+    ## Raises an error if any of the specified variables could not be resolved,
+    ## unless strictness is 'lenient', in which case it will return 0 for the
+    ## index and '' for the name for each variable which could not be resolved.
     ##
     ## @end deftypefn
-    function [ixVar, varNames] = resolveVarRef (this, varRef)
+    function [ixVar, varNames] = resolveVarRef (this, varRef, strictness)
       %RESOLVEVARREF Resolve a reference to variables
       %
       % A varRef is a numeric or char/cellstr indicator of which variables within
       % this table are being referenced.
+      if nargin < 3 || isempty (strictness); strictness = 'strict'; end
+      mustBeMember (strictness, {'strict','lenient'});
       if isnumeric (varRef) || islogical (varRef)
         ixVar = varRef;
+        % TODO: Validate indexes
       elseif isequal (varRef, ':')
         ixVar = 1:width (this);
       elseif ischar (varRef) || iscellstr (varRef)
         varRef = cellstr (varRef);
         [tf, ixVar] = ismember (varRef, this.VariableNames);
-        if ~all (tf)
-          error ('table.resolveVarRef: No such variable in table: %s', strjoin (varRef(~tf), ', '));
-        end
+        if isequal (strictness, 'strict')
+          if ~all (tf)
+            error ('table.resolveVarRef: No such variable in table: %s', strjoin (varRef(~tf), ', '));
+          endif
+        else
+          ixVar(~tf) = 0;
+        endif
       else
         error ('table.resolveVarRef: Unsupported variable indexing operand type: %s', class (varRef));
       end
-      varNames = this.VariableNames(ixVar);
+      varNames = repmat ({''}, size (ixVar));
+      varNames(ixVar != 0) = this.VariableNames(ixVar(ixVar != 0));
     end
 
     function [ixRow, ixVar] = resolveRowVarRefs (this, rowRef, varRef)
@@ -1138,18 +1152,53 @@ classdef table
     ##
     ## Set value for a variable in table.
     ##
-    ## This sets (replaces) the value for a variable that already exists in @var{obj}.
-    ## It cannot be used to add a new variable.
+    ## This sets (adds or replaces) the value for a variable in @var{obj}. It
+    ## may be used to change the value of an existing variable, or add a new
+    ## variable.
+    ##
+    ## @var{varRef} is a variable reference, either the index or name of a variable.
+    ## If you are adding a new variable, it must be a name, and not an index.
+    ##
+    ## @var{value} is the value to set the variable to. If it is scalar or
+    ## a single string as charvec, it is scalar-expanded to match the number
+    ## of rows in @var{obj}.
     ##
     ## @end deftypefn
     function out = setvar (this, varRef, value)
-      ixVar = resolveVarRef (this, varRef);
+      ixVar = resolveVarRef (this, varRef, 'lenient');
+      if ! isscalar (ixVar)
+        error('table.setvar: Only a single variable is allowed for varRef; got %d', ...
+          numel (ixVar));
+      endif
       out = this;
+      % Scalar expansion
+      value_in = value;
+      n_rows = height (this);
+      val_is_scalar = isscalar(value) || (ischar(value) && ...
+        (size (value, 1) == 1 || isequal (size (value), [0 0])));
+      if n_rows != 1 && val_is_scalar
+        if ischar (value)
+          value = { value };
+        endif
+        value = repmat (value, [n_rows 1]);
+      endif
       if size (value, 1) ~= height (this)
         error ('table.setvar: Inconsistent dimensions: table is height %d, input is height %d', ...
           height (this), size (value, 1));
       end
-      out.VariableValues{ixVar} = value;
+      if ixVar == 0
+        % Adding a variable
+        if ! ischar (varRef)
+          error (['table.setvar: When adding a variable, you must supply the ' ...
+            'variable name instead of an index']);
+        endif
+        ix_new_var = width (this) + 1;
+        out.VariableNames{ix_new_var} = varRef;
+        out.VariableValues{ix_new_var} = value;
+      else
+        % Changing a variable
+        out.VariableValues{ixVar} = value;
+      endif
     end
     
     ## -*- texinfo -*-
