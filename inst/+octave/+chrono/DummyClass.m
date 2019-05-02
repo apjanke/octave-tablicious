@@ -19,7 +19,7 @@
 ## -*- texinfo -*-
 ## @deftp {Class} DummyClass
 ##
-## @code{DummyClass} is a do-nothing class just for testing the doco tools.
+## A do-nothing class just for testing the doco tools.
 ##
 ## Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur 
 ## ullamcorper pulvinar ligula, sit amet accumsan turpis dapibus at. 
