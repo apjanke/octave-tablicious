@@ -14,14 +14,14 @@
 ## along with this program; If not, see <http://www.gnu.org/licenses/>.
 
 ## -*- texinfo -*-
-## @deftypefn {Function File} {@code{x} =} mustBeNonempty (@code{x}, @code{label})
+## @deftypefn {Function File} {@var{x} =} mustBeNonempty (@var{x}, @var{label})
 ##
 ## Requires that input is nonempty.
 ##
-## Raises an error if the input @code{x} is not empty, as determined by
+## Raises an error if the input @var{x} is not empty, as determined by
 ## @code{! isempty (x)}.
 ##
-## @code{label} is an optional input that determines how the input will be described in
+## @var{label} is an optional input that determines how the input will be described in
 ## error messages. If not supplied, @code{inputname (1)} is used, and if that is
 ## empty, it falls back to "input".
 ##
