@@ -544,19 +544,17 @@ Apply function to vectors in array along arbitrary dimension.
 @end table
 @subsection Uncategorized
 @table @asis
-<<<<<<< HEAD:doc/Tablicious.texi
-@item @ref{tablicious.dataset}
-The 'dataset' class provides convenient access to the various datasets included with Tablicious.
-
-@item @ref{tablicious.datasets}
-Example dataset collection.
-=======
 @item @ref{octave.chrono.dummy_function}
 A dummy function just for testing the doco tools.
 
 @item @ref{octave.chrono.DummyClass}
 A do-nothing class just for testing the doco tools.
->>>>>>> master:doc/tablicious.texi
+
+@item @ref{tablicious.dataset}
+The 'dataset' class provides convenient access to the various datasets included with Tablicious.
+
+@item @ref{tablicious.datasets}
+Example dataset collection.
 
 @end table
 
@@ -630,13 +628,10 @@ A do-nothing class just for testing the doco tools.
 * struct2table::	Convert struct to a table.
 * table::	Tabular data array containing multiple columnar variables.
 * tableOuterFillValue:: Outer fill value for variable within a table.
-<<<<<<< HEAD:doc/Tablicious.texi
 * tablicious.dataset::	The 'dataset' class provides convenient access to
 		the various datasets included with Tablicious.
 * tablicious.datasets:: Example dataset collection.
-=======
 * timezones::	List all the time zones defined on this system.
->>>>>>> master:doc/tablicious.texi
 * vecfun::	Apply function to vectors in array along arbitrary
 		dimension.
 * years::	Create a 'duration' X years long, or get the years in a
@@ -4591,7 +4586,6 @@ ncols is the number of columns in the input.
 @end deftypefn
 
 
-<<<<<<< HEAD:doc/Tablicious.texi
 @node tablicious.dataset
 @subsection tablicious.dataset
 @deftp {Class} dataset
@@ -4685,7 +4679,7 @@ Load a specified dataset.
 @code{Name} column of the dataset list.
 
 @end deftypefn
-=======
+
 @node timezones
 @subsection timezones
 @deftypefn {Function} {@var{out} =} timezones ()
@@ -4714,7 +4708,6 @@ the output; these are currently unimplemented.
 
 @end deftypefn
 
->>>>>>> master:doc/tablicious.texi
 
 @node vecfun
 @subsection vecfun

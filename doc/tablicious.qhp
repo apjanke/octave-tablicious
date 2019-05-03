@@ -491,7 +491,6 @@
                         </section>
                         <section title="tableOuterFillValue" ref="html/tableOuterFillValue.html">
                         </section>
-<<<<<<< HEAD:doc/Tablicious.qhp
                         <section title="tablicious.dataset" ref="html/tablicious_002edataset.html">
                             <section title="tablicious.dataset.AirPassengers" ref="html/tablicious_002edataset_002eAirPassengers.html">
                             </section>
@@ -507,9 +506,8 @@
                             </section>
                             <section title="tablicious.datasets.load" ref="html/tablicious_002edatasets_002eload.html">
                             </section>
-=======
+                        </section>
                         <section title="timezones" ref="html/timezones.html">
->>>>>>> master:doc/tablicious.qhp
                         </section>
                         <section title="vecfun" ref="html/vecfun.html">
                         </section>
@@ -748,7 +746,6 @@
             <keyword name="table.vertcat" id="table.vertcat" ref="html/table_002evertcat.html"/>
             <keyword name="table.width" id="table.width" ref="html/table_002ewidth.html"/>
             <keyword name="tableOuterFillValue" id="tableOuterFillValue" ref="html/tableOuterFillValue.html"/>
-<<<<<<< HEAD:doc/Tablicious.qhp
             <keyword name="tablicious.dataset" id="tablicious.dataset" ref="html/tablicious_002edataset.html"/>
             <keyword name="tablicious.dataset.AirPassengers" id="tablicious.dataset.AirPassengers" ref="html/tablicious_002edataset_002eAirPassengers.html"/>
             <keyword name="tablicious.dataset.airmiles" id="tablicious.dataset.airmiles" ref="html/tablicious_002edataset_002eairmiles.html"/>
@@ -757,9 +754,7 @@
             <keyword name="tablicious.datasets" id="tablicious.datasets" ref="html/tablicious_002edatasets.html"/>
             <keyword name="tablicious.datasets.list" id="tablicious.datasets.list" ref="html/tablicious_002edatasets_002elist.html"/>
             <keyword name="tablicious.datasets.load" id="tablicious.datasets.load" ref="html/tablicious_002edatasets_002eload.html"/>
-=======
             <keyword name="timezones" id="timezones" ref="html/timezones.html"/>
->>>>>>> master:doc/tablicious.qhp
             <keyword name="vecfun" id="vecfun" ref="html/vecfun.html"/>
             <keyword name="years" id="years" ref="html/years.html"/>
         </keywords>
@@ -768,7 +763,7 @@
             <file>html/Copying.html</file>
             <file>html/years.html</file>
             <file>html/vecfun.html</file>
-<<<<<<< HEAD:doc/Tablicious.qhp
+            <file>html/timezones.html</file>
             <file>html/tablicious_002edatasets_002eload.html</file>
             <file>html/tablicious_002edatasets_002elist.html</file>
             <file>html/tablicious_002edatasets.html</file>
@@ -777,9 +772,6 @@
             <file>html/tablicious_002edataset_002eairmiles.html</file>
             <file>html/tablicious_002edataset_002eAirPassengers.html</file>
             <file>html/tablicious_002edataset.html</file>
-=======
-            <file>html/timezones.html</file>
->>>>>>> master:doc/tablicious.qhp
             <file>html/tableOuterFillValue.html</file>
             <file>html/table_002erestrict.html</file>
             <file>html/table_002eevalWithVars.html</file>
