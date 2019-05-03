@@ -199,6 +199,19 @@ classdef string
     endfunction
     
     ## -*- texinfo -*-
+    ## @node datetime.sizeof
+    ## @deftypefn {Method} {@var{out} =} sizeof (@var{obj})
+    ##
+    ## Size of array in bytes.
+    ##
+    ## @end deftypefn
+    function out = sizeof (this)
+      out = 0;
+      out += sizeof (this.strs);
+      out += sizeof (this.tfMissing);
+    endfunction
+    
+    ## -*- texinfo -*-
     ## @node string.ismissing
     ## @deftypefn {Method} {@var{out} =} ismissing (@var{obj})
     ##

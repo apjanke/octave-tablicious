@@ -232,6 +232,22 @@ classdef categorical
       this.isProtected = doProtected;
     endfunction
     
+    ## -*- texinfo -*-
+    ## @node datetime.sizeof
+    ## @deftypefn {Method} {@var{out} =} sizeof (@var{obj})
+    ##
+    ## Size of array in bytes.
+    ##
+    ## @end deftypefn
+    function out = sizeof (this)
+      out = 0;
+      out += sizeof (this.code);
+      out += sizeof (this.tfMissing);
+      out += sizeof (this.cats);
+      out += sizeof (this.isOrdinal);
+      out += sizeof (this.isProtected);
+    endfunction
+    
     function this = set.code (this, x)
       if ! isnumeric (x)
         error ('categorical.code: values must be numeric');

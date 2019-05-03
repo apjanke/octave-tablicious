@@ -43,25 +43,6 @@
 ## The format to display this @code{duration} in. Currently unsupported.
 ##
 ## @end deftypeivar
-##
-## @node duration.duration
-## @subsubsection duration.duration
-## @deftypefn {Constructor} {@var{obj} =} duration ()
-##
-## Constructs a new scalar @code{duration} of zero elapsed time.
-##
-## @end deftypefn
-##
-## @deftypefn {Constructor} {@var{obj} =} duration (@var{durationstrs})
-## @deftypefnx {Constructor} {@var{obj} =} duration (@var{durationstrs}, @code{'InputFormat'}, @var{InputFormat})
-## @deftypefnx {Constructor} {@var{obj} =} duration (@var{H}, @var{MI}, @var{S})
-## @deftypefnx {Constructor} {@var{obj} =} duration (@var{H}, @var{MI}, @var{S}, @
-##   @var{MS})
-##
-## Constructs a new @code{duration} array based on input values.
-##
-## @end deftypefn
-
 
 classdef duration
   %DURATION Lengths of time in fixed-length units
@@ -98,6 +79,22 @@ classdef duration
   endmethods
 
   methods
+    ## @node duration.duration
+    ## @deftypefn {Constructor} {@var{obj} =} duration ()
+    ##
+    ## Constructs a new scalar @code{duration} of zero elapsed time.
+    ##
+    ## @end deftypefn
+    ##
+    ## @deftypefn {Constructor} {@var{obj} =} duration (@var{durationstrs})
+    ## @deftypefnx {Constructor} {@var{obj} =} duration (@var{durationstrs}, @code{'InputFormat'}, @var{InputFormat})
+    ## @deftypefnx {Constructor} {@var{obj} =} duration (@var{H}, @var{MI}, @var{S})
+    ## @deftypefnx {Constructor} {@var{obj} =} duration (@var{H}, @var{MI}, @var{S}, @
+    ##   @var{MS})
+    ##
+    ## Constructs a new @code{duration} array based on input values.
+    ##
+    ## @end deftypefn
     function this = duration (varargin)
       %DURATION Construct a new duration array
       args = varargin;
@@ -158,6 +155,19 @@ classdef duration
       error ('Changing the Format of duration is currently unimplemented.');
     endfunction
     
+    ## -*- texinfo -*-
+    ## @node datetime.sizeof
+    ## @deftypefn {Method} {@var{out} =} sizeof (@var{obj})
+    ##
+    ## Size of array in bytes.
+    ##
+    ## @end deftypefn
+    function out = sizeof (this)
+      out = 0;
+      out += sizeof (this.days);
+      out += sizeof (this.Format);
+    endfunction
+
     ## -*- texinfo -*-
     ## @node duration.years
     ## @subsubsection duration.years

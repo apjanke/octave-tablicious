@@ -345,7 +345,20 @@ classdef datetime
   endmethods
 
   methods
-        
+    ## -*- texinfo -*-
+    ## @node datetime.sizeof
+    ## @deftypefn {Method} {@var{out} =} sizeof (@var{obj})
+    ##
+    ## Size of array in bytes.
+    ##
+    ## @end deftypefn
+    function out = sizeof (this)
+      out = 0;
+      out += sizeof (this.dnums);
+      out += sizeof (this.Format);
+      out += sizeof (this.TimeZone);
+    endfunction
+
     ## -*- texinfo -*-
     ## @node datetime.proxyKeys
     ## @deftypefn {Method} {[@var{keysA}, @var{keysB}] =} proxyKeys (@var{a}, @var{b})

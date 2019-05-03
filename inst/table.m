@@ -497,11 +497,13 @@ classdef table
     ##
     ## @end deftypefn
     function out = sizeof (this)
-      %SIZEOF Size of this in bytes.
-      %
-      % TODO: Calculate this as the sum of bytes in all variables and in all
-      % properties/metadata arrays.
-      error ('table.sizeof: sizeof is not yet implemented for tables');
+      total_size = 0;
+      total_size += sizeof(this.VariableNames);
+      for i = 1:width(this)
+        total_size += sizeof(this.VariableValues{i});
+      endfor
+      total_size += sizeof(this.RowNames);
+      out = total_size;
     endfunction
 
     ## -*- texinfo -*-
