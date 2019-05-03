@@ -156,7 +156,7 @@ classdef duration
     endfunction
     
     ## -*- texinfo -*-
-    ## @node datetime.sizeof
+    ## @node duration.sizeof
     ## @deftypefn {Method} {@var{out} =} sizeof (@var{obj})
     ##
     ## Size of array in bytes.

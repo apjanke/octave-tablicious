@@ -233,7 +233,7 @@ classdef categorical
     endfunction
     
     ## -*- texinfo -*-
-    ## @node datetime.sizeof
+    ## @node categorical.sizeof
     ## @deftypefn {Method} {@var{out} =} sizeof (@var{obj})
     ##
     ## Size of array in bytes.

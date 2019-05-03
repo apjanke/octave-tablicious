@@ -199,7 +199,7 @@ classdef string
     endfunction
     
     ## -*- texinfo -*-
-    ## @node datetime.sizeof
+    ## @node string.sizeof
     ## @deftypefn {Method} {@var{out} =} sizeof (@var{obj})
     ##
     ## Size of array in bytes.
