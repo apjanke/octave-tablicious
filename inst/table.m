@@ -790,6 +790,30 @@ classdef table
       endif
     endfunction
     
+    ## -*- texinfo -*-
+    ## @node table.repelem
+    ## @deftypefn {Method} {@var{out} =} repelem (@var{obj}, @var{R})
+    ## @deftypefnx {Method} {@var{out} =} repelem (@var{obj}, @var{R_1}, @var{R_2})
+    ##
+    ## Replicate elements of matrix.
+    ##
+    ## Replicates elements of this table matrix by applying repelem to each of
+    ## its variables.
+    ##
+    ## Only two dimensions are supported for @code{repelem} on tables.
+    ##
+    ## @end deftypefn
+    function out = repelem(this, varargin);
+      args = varargin;
+      if numel (args) > 2
+        error ("table.repelem: Only 2 dimensions are supported for repelem on tables");
+      endif
+      out = this;
+      for i = 1:width (this)
+        out.VariableValues{i} = repelem (this.VariableValues{i}, args{:});
+      endfor
+    endfunction
+  
     function out = subsref (this, s)
       %SUBSREF Subscripted reference
       %
@@ -2127,23 +2151,104 @@ classdef table
       out = groupby (this, groupvar, aggs);
     endfunction
 
+    ## -*- texinfo -*-
+    ## @node table.rows2vars
+    ## @deftypefn {Method} {@var{out} =} rows2vars (@var{obj})
+    ## @deftypefnx {Method} {@var{out} =} rows2vars (@var{obj}, @
+    ##   @code{'VariableNamesSource'}, @var{VariableNamesSource})
+    ## @deftypefnx {Method} {@var{out} =} rows2vars (@dots{}, @
+    ##   @code{'DataVariables'}, @var{DataVariables})
+    ##
+    ## Reorient table, swapping rows and variables dimensions.
+    ##
+    ## This flips the dimensions of the given table @var{obj}, swapping the
+    ## orientation of the contained data, and swapping the row names/labels
+    ## and variable names.
+    ##
+    ## The variable names become a new variable named “OriginalVariableNames”.
+    ##
+    ## The row names are drawn from the column @var{VariableNamesSource} if it
+    ## is specified. Otherwise, if @var{obj} has row names, they are used. 
+    ## Otherwise, new variable names in the form “VarN” are generated.
+    ##
+    ## If all the variables in @var{obj} are of the same type, they are concatenated
+    ## and then sliced to create the new variable values. Otherwise, they are
+    ## converted to cells, and the new table has cell variable values.
+    ##
+    ## @end deftypefn
+    function out = rows2vars (this, varargin)
+      [opts, args] = peelOffNameValueOptions (varargin, {'VariableNamesSource', ...
+        'DataVariables'});
+        
+      for i = 1:width (this)
+        if size (this.VariableValues{i}, 2) > 1
+          error ('table.rows2vars: Table variables may not have more than 1 column');
+        elseif istable (this.VariableValues{i})
+          error ('table.rows2vars: Nested tables are not supported');
+        endif
+      endfor
+      
+      if isfield (opts, 'VariableNamesSource')
+        new_var_names = getvar (this, opts.VariableNamesSource);
+        tbl = removevars (this, opts.VariableNamesSource);
+      elseif hasrownames (this)
+        new_var_names = this.RowNames';
+        tbl = this;
+      else
+        new_var_names = cell (1, height (this));
+        for i = 1:height (this)
+          new_var_names{i} = sprintf ("Var%d", i);
+        endfor
+        tbl = this;
+      endif
+      if isfield (opts, 'DataVariables')
+        tbl = subsetvars (tbl, opts.DataVariables);
+      endif
+      OriginalVariableNames = tbl.VariableNames(:);
+      tbl_original_var_names = table (OriginalVariableNames);
+      
+      col_types = cellfun (@(x) class(x), tbl.VariableValues);
+      u_col_types = unique (col_types);
+      if isscalar (u_col_types)
+        matrix = cat (2, tbl.VariableValues{:});
+      else
+        cols_as_cells = cell (1, width (tbl));
+        for i = 1:width (tbl)
+          if iscell (tbl.VariableValues{i})
+            cols_as_cells{i} = tbl.VariableValues{i};
+          else
+            cols_as_cells{i} = num2cell (tbl.VariableValues{i});
+          endif
+        endfor
+        matrix = cat (2, cols_as_cells{:});
+      endif
+
+      matrix = matrix';
+      new_var_values = num2cell (matrix, 1);
+      out = table(new_var_values{:}, ...
+        'VariableNames', new_var_names);
+      out = [tbl_original_var_names out];
+    endfunction
+    
+    ## -*- texinfo -*-
+    ## @node table.congruentize
+    ## @deftypefn {Method} {[@var{outA}, @var{outB}] =} congruentize (@var{A}, @var{B})
+    ##
+    ## Make tables congruent.
+    ##
+    ## Makes tables congruent by ensuring they have the same variables of the
+    ## same types in the same order. Congruent tables may be safely unioned,
+    ## intersected, vertcatted, or have other set operations done to them.
+    ##
+    ## Variable names present in one input but not in the other produces an error.
+    ## Variables with the same name but different types in the inputs produces
+    ## an error.
+    ## Inputs must either both have row names or both not have row names; it is
+    ## an error if one has row names and the other doesn't.
+    ## Variables in different orders are reordered to be in the same order as A.
+    ##
+    ## @end deftypefn
     function [outA, outB] = congruentize (A, B)
-      %CONGRUENTIZE Make tables congruent
-      %
-      % [outA, outB] = congruentize (A, B)
-      %
-      % Makes tables congruent by ensuring they have the same variables of the
-      % same types in the same order. Congruent tables may be safely unioned,
-      % intersected, vertcatted, or have other set operations done to them.
-      %
-      % Variable names present in one input but not in the other produces an error.
-      % Variables with the same name but different types in the inputs produces
-      % an error.
-      % Inputs must either both have row names or both not have row names; it is
-      % an error if one has row names and the other doesn't.
-      % Variables in different orders are reordered to be in the same order as A.
-      %
-      % This is an Octave extension.
       
       if !istable (A)
         A = table (A);
@@ -2173,7 +2278,7 @@ classdef table
       [~,loc] = ismember (A.VariableNames, outB.VariableNames);
       outB = subsetvars (outB, loc);
       
-      endfunction
+    endfunction
 
     ## -*- texinfo -*-
     ## @node table.union
