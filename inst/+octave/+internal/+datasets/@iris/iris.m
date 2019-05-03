@@ -13,7 +13,7 @@
 ## You should have received a copy of the GNU General Public License
 ## along with this program; If not, see <http://www.gnu.org/licenses/>.
 
-classdef iris < tablicious.internal.dataset
+classdef iris < octave.internal.dataset
   % This is the classic Fisher Iris dataset.
   %
   % ## Source

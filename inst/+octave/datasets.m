@@ -50,10 +50,10 @@ classdef datasets
     ##
     ## @end deftypefn
     function out = list ()
-      names = tablicious.internal.dataset.included_datasets;
+      names = octave.internal.dataset.included_datasets;
       c = {};
       for i = 1:numel (names)
-        dset = tablicious.internal.dataset.lookup (names{i});
+        dset = octave.internal.dataset.lookup (names{i});
         c = [c; {dset.name dset.description}];
       endfor
       out = cell2table(c, "VariableNames", {"Name", "Description"});
@@ -75,7 +75,7 @@ classdef datasets
     ##
     ## @end deftypefn
     function out = load (name)
-      dset = tablicious.internal.dataset.lookup (name);
+      dset = octave.internal.dataset.lookup (name);
       s = dset.load ();
       if nargout == 0
         vars = fieldnames (s);

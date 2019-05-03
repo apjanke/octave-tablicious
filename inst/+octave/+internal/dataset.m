@@ -50,7 +50,7 @@ classdef (Abstract) dataset
   methods (Static)
 
     function out = lookup (name)
-      if ! ismember (name, tablicious.internal.dataset.included_datasets)
+      if ! ismember (name, octave.internal.dataset.included_datasets)
         error ("No defined dataset with name '%s'", name);
       endif
       class_name = ['tablicious.internal.datasets.' name];
@@ -58,7 +58,7 @@ classdef (Abstract) dataset
     endfunction
 
     function regenerate_all_datasets ()
-      names = tablicious.internal.dataset.included_datasets;
+      names = octave.internal.dataset.included_datasets;
       for i = 1:numel (names)
         dset = tablicious.internal.dataset.lookup (names{i});
         dset.regenerate_dataset ();
@@ -114,12 +114,12 @@ classdef (Abstract) dataset
       %CACHE_FILE_PATH Path to the local cache file, for classes that use caching
 
       if ispc
-        error (['tablicious.internal.dataset.cache_file_path: this is not ' ...
+        error (['octave.internal.dataset.cache_file_path: this is not ' ...
           'implemented for Windows yet. Sorry.']);
       else
         % Use the XDG standard cache location on Linux and Mac
         xdg_cache_dir = fullfile (getenv ('HOME'), '.cache');
-        datasets_cache_dir = fullfile (xdg_cache_dir, 'octave', 'tablicious', 'datasets');
+        datasets_cache_dir = fullfile (xdg_cache_dir, 'octave', 'datasets');
       endif
       out = fullfile (datasets_cache_dir, [class(this) '.mat']);
     endfunction

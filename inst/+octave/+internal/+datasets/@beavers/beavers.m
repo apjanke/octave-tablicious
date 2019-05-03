@@ -13,7 +13,7 @@
 ## You should have received a copy of the GNU General Public License
 ## along with this program; If not, see <http://www.gnu.org/licenses/>.
 
-classdef beavers < tablicious.internal.dataset
+classdef beavers < octave.internal.dataset
   % Body temperature of two beavers
 
   methods

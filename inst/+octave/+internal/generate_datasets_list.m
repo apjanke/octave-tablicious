@@ -17,11 +17,11 @@ function generate_datasets_list ()
   % Generates the dataset.m file based on existing datasets
 
   my_dir = fileparts (mfilename ("fullpath"));
-  tablicious_namespace_dir = fileparts (my_dir);
-  dataset_m_file = fullfile (tablicious_namespace_dir, "dataset.m");
+  octave_namespace_dir = fileparts (my_dir);
+  dataset_m_file = fullfile (octave_namespace_dir, "dataset.m");
   in_file = [dataset_m_file ".in"];
 
-  names = tablicious.internal.dataset.included_datasets;
+  names = octave.internal.dataset.included_datasets;
 
   txt = {};
   function p(fmt, varargin)
@@ -30,7 +30,7 @@ function generate_datasets_list ()
 
   for i_dataset = 1:numel(names)
     name = names{i_dataset};
-    dset = tablicious.internal.dataset.lookup (name);
+    dset = octave.internal.dataset.lookup (name);
     p ("    ## -*- texinfo -*-");
     p ("    ## @node dataset.%s", name);
     p ("    ## @deftypefn {Static Method} {@var{out} =} %s ()", name);
@@ -40,7 +40,7 @@ function generate_datasets_list ()
     p ("    ## @end deftypefn");
     p ("    function out = %s ()", name);
     p ("      name = '%s';", name);
-    p ("      out = tablicious.datasets.load(name);")
+    p ("      out = octave.datasets.load(name);")
     p ("    endfunction");
     p ("");
   endfor

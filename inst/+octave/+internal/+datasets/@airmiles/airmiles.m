@@ -13,7 +13,7 @@
 ## You should have received a copy of the GNU General Public License
 ## along with this program; If not, see <http://www.gnu.org/licenses/>.
 
-classdef airmiles < tablicious.internal.dataset
+classdef airmiles < octave.internal.dataset
   % Passenger Miles on Commercial US Airlines, 1937-1960
   %
   % Source: R example datasets
