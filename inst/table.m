@@ -1228,6 +1228,59 @@ classdef table
     end
     
     ## -*- texinfo -*-
+    ## @node table.addvars
+    ## @deftypefn {Method} {@var{out} =} addvars (@var{obj}, @var{var1}, @dots{}, @var{varN})
+    ## @deftypefnx {Method} {@var{out} =} addvars (@dots{}, @code{'Before'}, @var{Before})
+    ## @deftypefnx {Method} {@var{out} =} addvars (@dots{}, @code{'After'}, @var{After})
+    ## @deftypefnx {Method} {@var{out} =} addvars (@dots{}, @
+    ##   @code{'NewVariableNames'}, @var{NewVariableNames})
+    ##
+    ## Add variables to table
+    ##
+    ## Adds the specified variables to a table.
+    ##
+    ## @end deftypefn
+    function out = addvars (obj, varargin)
+      [opts, args] = peelOffNameValueOptions (varargin, ...
+        {'Before', 'After', 'NewVariableNames'});
+      ix_insertion = width (obj);
+      if isfield (opts, 'Before')
+        ix_insertion = resolveVarRef (this, opts.Before) - 1;
+      endif
+      if isfield (opts, 'After')
+        ix_insertion = resolveVarRef (this, opts.After);
+      endif
+      
+      new_var_vals = args;
+      if isfield (opts, 'NewVariableNames')
+        new_var_names = opts.NewVariableNames;
+        if numel (new_var_names) != numel (new_var_vals)
+          error ('table.addvars: size mismatch: got %d variables but %d names', ...
+            numel (new_var_vals), numel (new_var_names));
+        endif
+      else
+        new_var_names = cell (size (args));
+        for i = 1:numel (new_var_vals)
+          new_var_names{i} = inputname (i + 1);
+          if isempty (new_var_names{i})
+            error ('table.addvars: no variable name found for input %d', i + 1);
+          endif
+        endfor
+      endif
+      
+      new_tbl = table (new_var_vals{:}, 'VariableNames', new_var_names);
+      if ix_insertion == width (this)
+        out = [this new_tbl];
+      elseif ix_insertion == 0
+        out = [new_tbl this];
+      else
+        left = subsetvars (this, 1:ix_insertion);
+        right = subsetvars (this, ix_insertion+1:end);
+        out = [left new_tbl right];
+      endif
+    endfunction
+    
+    ## -*- texinfo -*-
     ## @node table.convertvars
     ## @deftypefn {Method} {@var{out} =} convertvars (@var{obj}, @var{vars}, @var{dataType})
     ##
