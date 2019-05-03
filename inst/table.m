@@ -835,7 +835,7 @@ classdef table
           end
           [ixRow, ixVar] = resolveRowVarRefs (this, s.subs{1}, s.subs{2});
           out = this;
-          out = subsetRows (out, ixRow);
+          out = subsetrows (out, ixRow);
           out = subsetvars (out, ixVar);
         case '{}'
           if numel (s.subs) ~= 2
@@ -1044,8 +1044,8 @@ classdef table
     end
     
     ## -*- texinfo -*-
-    ## @node table.subsetRows
-    ## @deftypefn {Method} {@var{out} =} subsetRows (@var{obj}, @var{ixRows})
+    ## @node table.subsetrows
+    ## @deftypefn {Method} {@var{out} =} subsetrows (@var{obj}, @var{ixRows})
     ##
     ## Subset table by rows.
     ##
@@ -1054,14 +1054,14 @@ classdef table
     ## @var{ixRows} may be a numeric or logical index into the rows of @var{obj}.
     ##
     ## @end deftypefn
-    function out = subsetRows (this, ixRows)
+    function out = subsetrows (this, ixRows)
       out = this;
       if ~isnumeric (ixRows) && ~islogical (ixRows)
         % TODO: Hmm. Maybe we ought not to do this check, but just defer to the
         % individual variable values' indexing logic, so SUBSREF/SUBSINDX overrides
         % are respected. Would produce worse error messages, but be more "right"
         % type-wise.
-        error ('table.subsetRows: ixRows must be numeric or logical; got a %s', ...
+        error ('table.subsetrows: ixRows must be numeric or logical; got a %s', ...
           class (ixRows));
       endif
       for i = 1:width (this)
@@ -1337,7 +1337,7 @@ classdef table
         out = this;
         return;
       endif
-      out = subsetRows (this, 1:k);
+      out = subsetrows (this, 1:k);
     endfunction
     
     ## -*- texinfo -*-
@@ -1370,7 +1370,7 @@ classdef table
         out = this;
         return;
       endif
-      out = subsetRows (this, [(nRows - (k - 1)):nRows]);
+      out = subsetrows (this, [(nRows - (k - 1)):nRows]);
     endfunction
     
     function out = transpose (this)
@@ -1425,7 +1425,7 @@ classdef table
           error ('table.sortrows: this table does not have row names');
         endif
         [sortedRowNames, index] = sortrows (this.RowNames, direction, optArgs{:});
-        out = subsetRows (this, index);
+        out = subsetrows (this, index);
       else
         % General case
         ixVars = resolveVarRef (this, varRef);
@@ -1457,9 +1457,9 @@ classdef table
             [~, ix] = sortrows (varVal, optArgs{:});
           endif
           index = index(ix);
-          tmp = subsetRows (tmp, ix);
+          tmp = subsetrows (tmp, ix);
         endfor
-        out = subsetRows (this, index);
+        out = subsetrows (this, index);
       endif
     endfunction
     
@@ -1518,7 +1518,7 @@ classdef table
 
       pk = proxykeysForMatrixes (this);
       [uPk, ia, ic] = unique (pk, 'rows', flags{:});
-      out = subsetRows (this, ia);
+      out = subsetrows (this, ia);
     endfunction
     
     ## -*- texinfo -*-
@@ -1582,7 +1582,7 @@ classdef table
       % realjoin() here?
       outA = A;
       nonKeysB = subsetvars (B, nonKeyVarsB);
-      outB = subsetRows (nonKeysB, ib);
+      outB = subsetrows (nonKeysB, ib);
       C = [outA outB];
     endfunction
 
@@ -1796,8 +1796,8 @@ classdef table
       subA = subsetvars (A, opts2.varIxA);
       subB = subsetvars (B, opts2.varIxB);
       [subA, subB] = makeVarNamesUnique (subA, subB);
-      outA = subsetRows (subA, ixs(:,1));
-      outB = subsetRows (subB, ixs(:,2));
+      outA = subsetrows (subA, ixs(:,1));
+      outB = subsetrows (subB, ixs(:,2));
       out = [outA outB];
 
     endfunction
@@ -1876,14 +1876,14 @@ classdef table
       subA = subsetvars (A, opts2.varIxA);
       subB = subsetvars (B, opts2.varIxB);
       [subA, subB] = makeVarNamesUnique (subA, subB);
-      outA = subsetRows (subA, ixs(:,1));
-      outB = subsetRows (subB, ixs(:,2));
+      outA = subsetrows (subA, ixs(:,1));
+      outB = subsetrows (subB, ixs(:,2));
       ixa = ixs(:,1);
       ixb = ixs(:,2);
       fillTables = {};
       if fillLeft
         fillRowB = outerfillvals (subB);
-        fillLeftTable = [subsetRows(subA, ixUnmatchedA) ...
+        fillLeftTable = [subsetrows(subA, ixUnmatchedA) ...
           repmat(fillRowB, [numel(ixUnmatchedA) 1])];
         fillTables{end+1} = fillLeftTable;
         ixa = [ixa; ixUnmatchedA];
@@ -1892,7 +1892,7 @@ classdef table
       if fillRight
         fillRowA = outerfillvals (subA);
         fillRightTable = [repmat(fillRowA, [numel(ixUnmatchedB) 1]) ...
-          subsetRows(subB, ixUnmatchedB)];
+          subsetrows(subB, ixUnmatchedB)];
         fillTables{end+1} = fillRightTable;
         ixa = [ixa; NaN(size(ixUnmatchedB))];
         ixb = [ixb; ixUnmatchedB];
@@ -1974,10 +1974,10 @@ classdef table
       keysB = subsetvars (B, keyVarNames);
       [pkA, pkB] = proxykeysForMatrixes (keysA, keysB);
       ixA = find (ismember (pkA, pkB, 'rows'));
-      outA = subsetRows (A, ixA);
+      outA = subsetrows (A, ixA);
       if nargout > 2
         ixB = find (ismember (pkB, pkA, 'rows'));
-        outB = subsetRows (B, ixB);
+        outB = subsetrows (B, ixB);
       endif
     endfunction
     
@@ -2023,10 +2023,10 @@ classdef table
       keysB = subsetvars (B, keyVarNames);
       [pkA, pkB] = proxykeysForMatrixes (keysA, keysB);
       ixA = find (!ismember (pkA, pkB, 'rows'));
-      outA = subsetRows (A, ixA);
+      outA = subsetrows (A, ixA);
       if nargout > 2
         ixB = find (!ismember (pkB, pkA, 'rows'));
-        outB = subsetRows (B, ixB);
+        outB = subsetrows (B, ixB);
       endif
     endfunction
     
@@ -2077,8 +2077,8 @@ classdef table
       ixAOut = repelem (ixA, nRowsB);
       ixBOut = repmat (ixB, [nRowsA 1]);
       ixs = [ixAOut ixBOut];
-      outA = subsetRows (A, ixAOut);
-      outB = subsetRows (B, ixBOut);
+      outA = subsetrows (A, ixAOut);
+      outB = subsetrows (B, ixBOut);
       out = [outA outB];
     endfunction
     
@@ -2355,7 +2355,7 @@ classdef table
       % Set logic
       [pkA, pkB] = proxykeysForMatrixes (A, B);
       [~, ia, ib] = union (pkA, pkB, 'rows');
-      C = [subsetRows(A, ia); subsetRows(B, ib)];      
+      C = [subsetrows(A, ia); subsetrows(B, ib)];      
     endfunction
     
     ## -*- texinfo -*-
@@ -2380,7 +2380,7 @@ classdef table
       % Set logic
       [pkA, pkB] = proxykeysForMatrixes (A, B);
       [~, ia, ib] = intersect (pkA, pkB, 'rows');
-      C = [subsetRows(A, ia); subsetRows(B, ib)];      
+      C = [subsetrows(A, ia); subsetrows(B, ib)];      
     endfunction
     
     ## -*- texinfo -*-
@@ -2406,7 +2406,7 @@ classdef table
       % Set logic
       [pkA, pkB] = proxykeysForMatrixes (A, B);
       [~, ia, ib] = setxor (pkA, pkB, 'rows');
-      C = [subsetRows(A, ia); subsetRows(B, ib)];      
+      C = [subsetrows(A, ia); subsetrows(B, ib)];      
     endfunction
     
     ## -*- texinfo -*-
@@ -2430,7 +2430,7 @@ classdef table
       % Set logic
       [pkA, pkB] = proxykeysForMatrixes (A, B);
       [~, ia] = setdiff (pkA, pkB, 'rows');
-      C = subsetRows (A, ia);
+      C = subsetrows (A, ia);
     endfunction
     
     ## -*- texinfo -*-
@@ -2545,7 +2545,7 @@ classdef table
       endif
       nMissing = sum (tfMissing, 2);
       tfRowHasMissing = nMissing >= minNumMissing;
-      out = subsetRows (this, ~tfRowHasMissing);
+      out = subsetrows (this, ~tfRowHasMissing);
       tf = tfRowHasMissing;
     endfunction
 
@@ -2817,13 +2817,13 @@ classdef table
     ## involving @var{obj}’s variables.
     ##
     ## If the argument is a numeric or logical vector, it is interpreted as an
-    ## index into the rows of this. (Just as with `subsetRows (this, index)`.)
+    ## index into the rows of this. (Just as with `subsetrows (this, index)`.)
     ##
     ## If the argument is a char, then it is evaulated as an M-code expression,
     ## with all of this’ variables available as workspace variables, as with
     ## @code{evalWithVars}. The output of expr must be a numeric or logical index
     ## vector (This form is a shorthand for 
-    ## @code{out = subsetRows (this, evalWithVars (this, expr))}.)
+    ## @code{out = subsetrows (this, evalWithVars (this, expr))}.)
     ##
     ## TODO: Decide whether to name this to "where" to be more like SQL instead
     ## of relational algebra.
@@ -2838,9 +2838,9 @@ classdef table
     function out = restrict (this, arg)
       if ischar (arg)
         rowIx = evalWithVars (this, arg);
-        out = subsetRows (this, rowIx);
+        out = subsetrows (this, rowIx);
       elseif isnumeric (arg) || islogical (arg)
-        out = subsetRows (this, arg);
+        out = subsetrows (this, arg);
       endif
     endfunction
 
