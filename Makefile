@@ -1,4 +1,4 @@
-# This Makefile is just for when you're hacking on chrono inside
+# This Makefile is just for when you're hacking on this package inside
 # its repo. It'll build the octfiles and install them into inst/.
 #
 # This only works if the octave and mkoctfile on your path are the ones from

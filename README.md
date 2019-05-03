@@ -33,7 +33,7 @@ The `string` and `categorical` support are incomplete, and less mature than the 
 To get started using or testing this project, install it using Octave's `pkg` function:
 
 ```
-pkg install https://github.com/apjanke/octave-tablicious/releases/download/v0.1.0/Tablicious-0.1.0.tar.gz
+pkg install https://github.com/apjanke/octave-tablicious/releases/download/v0.1.0/tablicious-0.1.0.tar.gz
 pkg load tablicious
 ```
 
@@ -49,6 +49,8 @@ If you want to hack on the Tablicious code itself, set it up like this:
 
 See the `doc-project/` directory for notes on this project, especially for [Developer Notes](doc-project/Developer-Notes.md). Also see [CONTRIBUTING](CONTRIBUTING.md) if you would like to contribute to this project.
 
+The documentation for the latest development version can be viewed online at <https://apjanke.github.io/octave-tablicious/doc/tablicious.html>.
+
 Real user documentation is hopefully coming soon.
 
 ## Contributing
@@ -61,7 +63,7 @@ To avoid issues with the Matlab license's Non-Compete clause, this project needs
 
 ## Author and Acknowledgments
 
-Table is created by [Andrew Janke](https://apjanke.net).
+Tablicious is created by [Andrew Janke](https://apjanke.net).
 
 Thanks to [Polkadot Stingray](https://polkadotstingray-official.jimdo.com/) for [powering](https://www.youtube.com/watch?v=3ad4NsEy1tg) [my](https://www.youtube.com/watch?v=-zlq6eMycLA) [coding](https://www.youtube.com/watch?v=1z4RosaB-UQ) [sessions](https://www.youtube.com/watch?v=p6oVXuLsbxM).
 

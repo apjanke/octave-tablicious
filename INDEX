@@ -12,6 +12,24 @@ Data Types
  contains
  categorical
  discretize
+Dates
+ datetime
+ localdate
+ isdatetime
+ NaT
+Durations
+ calendarDuration
+ calmonths
+ calyears
+ days
+ duration
+ hours
+ isduration
+ milliseconds
+ minutes
+ seconds
+ timezones
+ years
 Missing Data
  fillmissing
  ismissing
@@ -20,10 +38,26 @@ Missing Data
  missing
  isnannish
  eqn
+Validation
+ mustBeA
+ mustBeCellstr
+ mustBeCharvec
+ mustBeFinite
+ mustBeInteger
+ mustBeMember
+ mustBeNonempty
+ mustBeNumeric
+ mustBeReal
+ mustBeSameSize
+ mustBeScalar
+ mustBeScalarLogical
+ mustBeVector
 Miscellaneous
  colvecfun
  dispstrs
  isfile
  isfolder
  pp
+ scalarexpand
+ size2str
  vecfun
