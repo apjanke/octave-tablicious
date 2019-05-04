@@ -38,7 +38,7 @@ Missing Data
  missing
  isnannish
  eqn
-Validation
+Validation Functions
  mustBeA
  mustBeCellstr
  mustBeCharvec

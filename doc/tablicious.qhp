@@ -29,6 +29,8 @@
                     <section title="calendarDuration Class" ref="html/calendarDuration-Class.html">
                     </section>
                 </section>
+                <section title="Validation Functions" ref="html/Validation-Functions.html">
+                </section>
                 <section title="Missing Functionality" ref="html/Missing-Functionality.html">
                 </section>
                 <section title="API Reference" ref="html/API-Reference.html">
@@ -1053,6 +1055,7 @@
             <file>html/API-by-Category.html</file>
             <file>html/API-Reference.html</file>
             <file>html/Missing-Functionality.html</file>
+            <file>html/Validation-Functions.html</file>
             <file>html/calendarDuration-Class.html</file>
             <file>html/duration-Class.html</file>
             <file>html/Durations.html</file>
