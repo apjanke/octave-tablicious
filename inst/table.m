@@ -1000,7 +1000,7 @@ classdef table
       mustBeMember (strictness, {'strict','lenient'});
       if isnumeric (varRef) || islogical (varRef)
         ixVar = varRef;
-        ix_bad = find(ixVar > width (this) | ixVar < 1)
+        ix_bad = find(ixVar > width (this) | ixVar < 1);
         if ! isempty (ix_bad)
           error ('table: variable index out of bounds: %d (table has %d variables)', ...
             ix_bad(1), width (this));
@@ -1400,7 +1400,7 @@ classdef table
       if do_all_vars
         vars_to_split = [];
         for i=1:width (this)
-          if size (this.VariableValues{i}, 2) > 1)
+          if size (this.VariableValues{i}, 2) > 1
             vars_to_split(end+1) = i;
           endif
         endfor
@@ -1441,6 +1441,56 @@ classdef table
       endfor
     endfunction
 
+    ## -*- texinfo -*-
+    ## @node table.stack
+    ## @deftypefn {Method} {@var{out} =} stack (@var{obj}, @var{vars})
+    ## @deftypefn {Method} {@var{out} =} stack (@dots{}, @
+    ##   @code{'NewDataVariableName'}, @var{NewDataVariableName})
+    ## @deftypefn {Method} {@var{out} =} stack (@dots{}, @
+    ##   @code{'IndexVariableName'}, @var{IndexVariableName})
+    function out = stack (this, varRef, varargin)
+      [opts, args] = peelOffNameValueOptions (varargin, ...
+        {'NewDataVariableName', 'IndexVariableName', 'ConstantVariables'});
+      index_var_name = [];
+      if isfield (opts, 'IndexVariableName')
+        index_var_name = opts.IndexVariableName;
+      endif
+      new_data_var_name = [];
+      if isfield (opts, 'NewDataVariableName')
+        new_data_var_name = opts.NewDataVariableName;
+      endif
+      
+      [ix_vars, var_names] = resolveVarRef (this, varRef);
+      if isfield (opts, 'ConstantVariables')
+        [ix_const_vars, const_var_names] = resolveVarRef (this, opts.ConstantVariables);
+      else
+        ix_const_vars = setdiff (1:width (this), ix_vars);
+      endif
+      
+      tbl = subsetvars (this, ix_const_vars);
+      n_rows_orig = height (this);
+      n_ctgs = numel (ix_vars);
+      ctg_run = categorical (var_names)';
+      tbl = repelem (tbl, n_ctgs, 1);
+      
+      % Do some fancy indexing to arrange the stacked values
+      stk_vals = this.VariableValues(ix_vars);
+      stk_mat = cat(2, stk_vals{:});
+      stk_mat = stk_mat';
+      stk_var_vals = stk_mat(:);
+      index_var_vals = repmat(ctg_run, [n_rows_orig 1]);
+      if isempty (new_data_var_name)
+        new_data_var_name = strjoin(var_names, '_');
+      endif
+      if isempty (index_var_name)
+        index_var_name = [new_data_var_name '_Indicator'];
+      endif
+      stk_tbl = table(index_var_vals, stk_var_vals, ...
+        'VariableNames', {index_var_name, new_data_var_name});
+      
+      out = [tbl stk_tbl];
+    endfunction
+    
     ## -*- texinfo -*-
     ## @node table.head
     ## @deftypefn {Method} {@var{out} =} head (@var{obj})
