@@ -5,19 +5,19 @@ Tables
  cell2table
  struct2table
  tableOuterFillValue
-Data Types
+ vartype
+Strings and Categoricals
  string
  startsWith
  endsWith
  contains
  categorical
  discretize
-Dates
+Dates and Times
  datetime
  localdate
  isdatetime
  NaT
-Durations
  calendarDuration
  calmonths
  calyears
@@ -61,3 +61,6 @@ Miscellaneous
  scalarexpand
  size2str
  vecfun
+Example Datasets
+ octave.datasets
+ octave.dataset
