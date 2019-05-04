@@ -917,9 +917,13 @@ classdef string
   % Planar structural stuff
   methods
     
-    function out = size (this)
+    function out = size (this, dim)
       %SIZE Size of array.
-      out = size (this.strs);
+      if nargin == 1
+        out = size (this.strs);
+      else
+        out = size (this.strs, dim);
+      endif
     endfunction
     
     function out = numel (this)
