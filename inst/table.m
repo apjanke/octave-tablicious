@@ -1315,6 +1315,49 @@ classdef table
     endfunction
     
     ## -*- texinfo -*-
+    ## @node table.mergevars
+    ## @deftypefn {Method} {@var{out} =} mergevars (@var{obj}, @var{vars})
+    ## @deftypefnx {Method} {@var{out} =} mergevars (@dots{}, @
+    ##   @code{'NewVariableName'}, @var{NewVariableName})
+    ## @deftypefnx {Method} {@var{out} =} mergevars (@dots{}, @
+    ##   @code{'MergeAsTable'}, @var{MergeAsTable})
+    ##
+    ## Merge table variables into a single variable.
+    ##
+    ## @end deftypefn
+    function out = mergevars (this, vars, varargin)
+      [opts, args] = peelOffNameValueOptions (varargin, ...
+        {'NewVariableName', 'MergeAsTable'});
+      if isfield (opts, 'MergeAsTable')
+        merge_as_table = opts.MergeAsTable;
+      else
+        merge_as_table = false;
+      endif
+      [ix_vars, var_names] = resolveVarRef (this, vars);
+      [ix_vars, ix_sort] = sort(ix_vars);
+      var_names = var_names(ix_sort);
+      if isfield (opts, 'NewVariableName')
+        new_var_name = opts.NewVariableName;
+      else
+        new_var_name = var_names{1};
+      endif      
+      
+      ix_all_vars = 1:width (this);
+      ix_vars_left = ix_all_vars;
+      ix_vars_left(ix_vars) = [];
+      
+      merged_as_tbl = subsetvars (this, ix_vars);
+      leftover = subsetvars (this, ix_vars_left);
+      if merge_as_table
+        new_var_value = merged_as_tbl;
+      else
+        new_var_value = cat (2, merged_as_tbl.VariableValues{:});
+      endif
+      out = addvars (leftover, new_var_value, 'After', ix_vars(1)-1, ...
+        'NewVariableNames', {new_var_name});
+    endfunction
+    
+    ## -*- texinfo -*-
     ## @node table.head
     ## @deftypefn {Method} {@var{out} =} head (@var{obj})
     ## @deftypefnx {Method} {@var{out} =} head (@var{obj}, @var{k})
