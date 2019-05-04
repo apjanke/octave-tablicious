@@ -412,8 +412,11 @@ Convert struct to a table.
 @item @ref{tableOuterFillValue}
 Outer fill value for variable within a table.
 
+@item @ref{vartype}
+Filter by variable type for use in suscripting.
+
 @end table
-@subsection Data Types
+@subsection Strings and Categoricals
 @table @asis
 @item @ref{string}
 A string array of Unicode strings.
@@ -434,7 +437,7 @@ Categorical variable array.
 Group data into discrete bins or categories.
 
 @end table
-@subsection Dates
+@subsection Dates and Times
 @table @asis
 @item @ref{datetime}
 Represents points in time using the Gregorian calendar.
@@ -448,9 +451,6 @@ True if input is a 'datetime' array, false otherwise.
 @item @ref{NaT}
 “Not-a-Time”.
 
-@end table
-@subsection Durations
-@table @asis
 @item @ref{calendarDuration}
 Durations of time using variable-length calendar periods, such as days, months, and years, which may vary in length over time.
 
@@ -581,6 +581,15 @@ Alias for prettyprint, for interactive use.
 Apply function to vectors in array along arbitrary dimension.
 
 @end table
+@subsection Example Datasets
+@table @asis
+@item @ref{octave.datasets}
+Example dataset collection.
+
+@item @ref{octave.dataset}
+The 'dataset' class provides convenient access to the various datasets included with Tablicious.
+
+@end table
 @subsection Uncategorized
 @table @asis
 @item @ref{octave.chrono.dummy_function}
@@ -588,15 +597,6 @@ A dummy function just for testing the doco tools.
 
 @item @ref{octave.chrono.DummyClass}
 A do-nothing class just for testing the doco tools.
-
-@item @ref{octave.dataset}
-The 'dataset' class provides convenient access to the various datasets included with Tablicious.
-
-@item @ref{octave.datasets}
-Example dataset collection.
-
-@item @ref{vartype}
-Filter by variable type for use in suscripting.
 
 @end table
 
