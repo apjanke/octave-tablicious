@@ -1000,7 +1000,11 @@ classdef table
       mustBeMember (strictness, {'strict','lenient'});
       if isnumeric (varRef) || islogical (varRef)
         ixVar = varRef;
-        % TODO: Validate indexes
+        ix_bad = find(ixVar > width (this) | ixVar < 1)
+        if ! isempty (ix_bad)
+          error ('table: variable index out of bounds: %d (table has %d variables)', ...
+            ix_bad(1), width (this));
+        endif
       elseif isequal (varRef, ':')
         ixVar = 1:width (this);
       elseif ischar (varRef) || iscellstr (varRef)
@@ -1008,13 +1012,20 @@ classdef table
         [tf, ixVar] = ismember (varRef, this.VariableNames);
         if isequal (strictness, 'strict')
           if ~all (tf)
-            error ('table.resolveVarRef: No such variable in table: %s', strjoin (varRef(~tf), ', '));
+            error ('table: No such variable in table: %s', strjoin (varRef(~tf), ', '));
           endif
         else
           ixVar(~tf) = 0;
         endif
+      elseif isa (varRef, 'octave.table.internal.vartype_filter')
+        ixVar = [];
+        for i = 1:width (this)
+          if varRef.matches (this.VariableValues{i})
+            ixVar(end+1) = i;
+          endif
+        endfor
       else
-        error ('table.resolveVarRef: Unsupported variable indexing operand type: %s', class (varRef));
+        error ('table: Unsupported variable indexing operand type: %s', class (varRef));
       end
       varNames = repmat ({''}, size (ixVar));
       varNames(ixVar != 0) = this.VariableNames(ixVar(ixVar != 0));
@@ -1028,16 +1039,16 @@ classdef table
         ixRow = rowRef;
       elseif iscellstr (rowRef)
         if isempty (this.RowNames)
-          error ('table.resolveRowVarRefs: this table has no RowNames');
+          error ('table: this table has no RowNames');
         end
         [tf, ixRow] = ismember (rowRef, this.RowNames);
         if ~all (tf)
-          error ('table.resolveRowVarRefs: No such named row in table: %s', strjoin (rowRef(~tf), ', '));
+          error ('table: No such named row in table: %s', strjoin (rowRef(~tf), ', '));
         end
       elseif isequal (rowRef, ':')
         ixRow = 1:height (this);
       else
-        error ('table.resolveRowVarRefs: Unsupported row indexing operand type: %s', class (rowRef));
+        error ('table: Unsupported row indexing operand type: %s', class (rowRef));
       end
       
       ixVar = resolveVarRef (this, varRef);
