@@ -1372,7 +1372,7 @@ classdef table
     ## -*- texinfo -*-
     ## @node table.splitvars
     ## @deftypefn {Method} {@var{out} =} splitvars (@var{obj})
-    ## @deftypefnx {Method} {@var{out} =} splitvars (@var{obj, @var{vars})
+    ## @deftypefnx {Method} {@var{out} =} splitvars (@var{obj}, @var{vars})
     ## @deftypefnx {Method} {@var{out} =} splitvars (@dots{}, @
     ##   @code{'NewVariableNames'}, @var{NewVariableNames})
     ##
