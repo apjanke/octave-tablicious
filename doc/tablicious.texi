@@ -550,11 +550,14 @@ A dummy function just for testing the doco tools.
 @item @ref{octave.chrono.DummyClass}
 A do-nothing class just for testing the doco tools.
 
-@item @ref{tablicious.dataset}
+@item @ref{octave.dataset}
 The 'dataset' class provides convenient access to the various datasets included with Tablicious.
 
-@item @ref{tablicious.datasets}
+@item @ref{octave.datasets}
 Example dataset collection.
+
+@item @ref{vartype}
+Filter by variable type for use in suscripting.
 
 @end table
 
@@ -616,6 +619,9 @@ Example dataset collection.
 		the doco tools.
 * octave.chrono.DummyClass::	A do-nothing class just for testing the
 		doco tools.
+* octave.dataset::	The 'dataset' class provides convenient access to
+		the various datasets included with Tablicious.
+* octave.datasets::	Example dataset collection.
 * pp::	Alias for prettyprint, for interactive use.
 * rmmissing::	Remove missing values.
 * scalarexpand::	
@@ -628,10 +634,8 @@ Example dataset collection.
 * struct2table::	Convert struct to a table.
 * table::	Tabular data array containing multiple columnar variables.
 * tableOuterFillValue:: Outer fill value for variable within a table.
-* tablicious.dataset::	The 'dataset' class provides convenient access to
-		the various datasets included with Tablicious.
-* tablicious.datasets:: Example dataset collection.
 * timezones::	List all the time zones defined on this system.
+* vartype::	Filter by variable type for use in suscripting.
 * vecfun::	Apply function to vectors in array along arbitrary
 		dimension.
 * years::	Create a 'duration' X years long, or get the years in a
@@ -737,6 +741,15 @@ Constructs a new scalar @code{calendarDuration} of zero elapsed time.
   @var{D}, @var{H}, @var{MI}, @var{S})
 
 Constructs new @code{calendarDuration} arrays based on input values.
+
+@end deftypefn
+
+@node calendarDuration.sizeof
+@subsubsection calendarDuration.sizeof
+
+@deftypefn {Method} {@var{out} =} sizeof (@var{obj})
+
+Size of array in bytes.
 
 @end deftypefn
 
@@ -945,6 +958,15 @@ to strings.
 @var{Protected} indicates whether @var{obj} should be protected, which
 prevents the addition of new categories to the array. Defaults to
 false.
+
+@end deftypefn
+
+@node categorical.sizeof
+@subsubsection categorical.sizeof
+
+@deftypefn {Method} {@var{out} =} sizeof (@var{obj})
+
+Size of array in bytes.
 
 @end deftypefn
 
@@ -1401,6 +1423,15 @@ Converts Octave datenums to Unix dates.
 The input datenums are assumed to be in UTC.
 
 Returns a double, which may have fractional seconds.
+
+@end deftypefn
+
+@node datetime.sizeof
+@subsubsection datetime.sizeof
+
+@deftypefn {Method} {@var{out} =} sizeof (@var{obj})
+
+Size of array in bytes.
 
 @end deftypefn
 
@@ -1916,24 +1947,6 @@ The format to display this @code{duration} in. Currently unsupported.
 
 @end deftypeivar
 
-@node duration.duration
-@subsubsection duration.duration
-@deftypefn {Constructor} {@var{obj} =} duration ()
-
-Constructs a new scalar @code{duration} of zero elapsed time.
-
-@end deftypefn
-
-@deftypefn {Constructor} {@var{obj} =} duration (@var{durationstrs})
-@deftypefnx {Constructor} {@var{obj} =} duration (@var{durationstrs}, @code{'InputFormat'}, @var{InputFormat})
-@deftypefnx {Constructor} {@var{obj} =} duration (@var{H}, @var{MI}, @var{S})
-@deftypefnx {Constructor} {@var{obj} =} duration (@var{H}, @var{MI}, @var{S}, @
-  @var{MS})
-
-Constructs a new @code{duration} array based on input values.
-
-@end deftypefn
-
 
 @node duration.ofDays
 @subsubsection duration.ofDays
@@ -1946,6 +1959,15 @@ to a @code{duration} array. This is the method that is used for implicit convers
 of numerics in many cases.
 
 Returns a @code{duration} array of the same size as the input.
+
+@end deftypefn
+
+@node duration.sizeof
+@subsubsection duration.sizeof
+
+@deftypefn {Method} {@var{out} =} sizeof (@var{obj})
+
+Size of array in bytes.
 
 @end deftypefn
 
@@ -2939,6 +2961,100 @@ Ut sit amet quam orci. Donec vel mauris elementum massa pretium tincidunt.
 
 @end deftypefn
 
+@node octave.dataset
+@subsection octave.dataset
+@deftp {Class} dataset
+
+The @code{dataset} class provides convenient access to the various
+datasets included with Tablicious.
+
+This class just contains a bunch of static methods, each of which loads
+the dataset of that name. It’s provided so you can use tab completion
+on the dataset list.
+
+@end deftp
+
+
+@node octave.dataset.AirPassengers
+@subsubsection octave.dataset.AirPassengers
+
+@deftypefn {Static Method} {@var{out} =} AirPassengers ()
+
+Monthly Airline Passenger Numbers 1949-1960
+
+@end deftypefn
+
+@node octave.dataset.airmiles
+@subsubsection octave.dataset.airmiles
+
+@deftypefn {Static Method} {@var{out} =} airmiles ()
+
+Passenger Miles on Commercial US Airlines, 1937-1960
+
+@end deftypefn
+
+@node octave.dataset.beavers
+@subsubsection octave.dataset.beavers
+
+@deftypefn {Static Method} {@var{out} =} beavers ()
+
+Body Temperature Series of Two Beavers
+
+@end deftypefn
+
+@node octave.dataset.iris
+@subsubsection octave.dataset.iris
+
+@deftypefn {Static Method} {@var{out} =} iris ()
+
+The Fisher Iris set: measurements for various flowers
+
+@end deftypefn
+
+@node octave.datasets
+@subsection octave.datasets
+@deftp {Class} datasets
+
+Example dataset collection.
+
+@code{datasets} is a collection of example datasets to go with the
+Tablicious package.
+
+The @code{datasets} class provides methods for listing and loading
+the example datasets.
+
+@end deftp
+
+
+@node octave.datasets.list
+@subsubsection octave.datasets.list
+
+@deftypefn {Static Method} list ()
+@deftypefnx {Static Method} {@var{out} =} list ()
+
+List all datasets.
+
+Lists all the example datasets known to this class. If the output is
+captured, returns the list as a table. If the output is not captured,
+displays the list.
+
+Returns a table with variables Name, Description, and possibly more.
+
+@end deftypefn
+
+@node octave.datasets.load
+@subsubsection octave.datasets.load
+
+@deftypefn {Static Method} load (@var{datasetName})
+@deftypefnx {Static Method} {@var{out} =} load (@var{datasetName})
+
+Load a specified dataset.
+
+@var{datasetName} is the name of the dataset to load, as found in the
+@code{Name} column of the dataset list.
+
+@end deftypefn
+
 @node pp
 @subsection pp
 @deftypefn {Function} pp (@var{X})
@@ -3153,6 +3269,15 @@ and with CR/LF characters replaced with @code{'\r'} and @code{'\n'} escape seque
 or @code{"<missing>"} for missing values.
 
 Returns a cellstr of the same size as @var{obj}.
+
+@end deftypefn
+
+@node string.sizeof
+@subsubsection string.sizeof
+
+@deftypefn {Method} {@var{out} =} sizeof (@var{obj})
+
+Size of array in bytes.
 
 @end deftypefn
 
@@ -3937,6 +4062,21 @@ with a possibly different row count.
 
 @end deftypefn
 
+@node table.repelem
+@subsubsection table.repelem
+
+@deftypefn {Method} {@var{out} =} repelem (@var{obj}, @var{R})
+@deftypefnx {Method} {@var{out} =} repelem (@var{obj}, @var{R_1}, @var{R_2})
+
+Replicate elements of matrix.
+
+Replicates elements of this table matrix by applying repelem to each of
+its variables.
+
+Only two dimensions are supported for @code{repelem} on tables.
+
+@end deftypefn
+
 @node table.setVariableNames
 @subsubsection table.setVariableNames
 
@@ -3989,10 +4129,10 @@ index and '' for the name for each variable which could not be resolved.
 
 @end deftypefn
 
-@node table.subsetRows
-@subsubsection table.subsetRows
+@node table.subsetrows
+@subsubsection table.subsetrows
 
-@deftypefn {Method} {@var{out} =} subsetRows (@var{obj}, @var{ixRows})
+@deftypefn {Method} {@var{out} =} subsetrows (@var{obj}, @var{ixRows})
 
 Subset table by rows.
 
@@ -4075,6 +4215,21 @@ of rows in @var{obj}.
 
 @end deftypefn
 
+@node table.addvars
+@subsubsection table.addvars
+
+@deftypefn {Method} {@var{out} =} addvars (@var{obj}, @var{var1}, @dots{}, @var{varN})
+@deftypefnx {Method} {@var{out} =} addvars (@dots{}, @code{'Before'}, @var{Before})
+@deftypefnx {Method} {@var{out} =} addvars (@dots{}, @code{'After'}, @var{After})
+@deftypefnx {Method} {@var{out} =} addvars (@dots{}, @
+  @code{'NewVariableNames'}, @var{NewVariableNames})
+
+Add variables to table
+
+Adds the specified variables to a table.
+
+@end deftypefn
+
 @node table.convertvars
 @subsubsection table.convertvars
 
@@ -4095,6 +4250,48 @@ defined on the specified variables' current type.
 
 Returns a table with the same variable names as @var{obj}, but with converted
 types.
+
+@end deftypefn
+
+@node table.mergevars
+@subsubsection table.mergevars
+
+@deftypefn {Method} {@var{out} =} mergevars (@var{obj}, @var{vars})
+@deftypefnx {Method} {@var{out} =} mergevars (@dots{}, @
+  @code{'NewVariableName'}, @var{NewVariableName})
+@deftypefnx {Method} {@var{out} =} mergevars (@dots{}, @
+  @code{'MergeAsTable'}, @var{MergeAsTable})
+
+Merge table variables into a single variable.
+
+@end deftypefn
+
+@node table.splitvars
+@subsubsection table.splitvars
+
+@deftypefn {Method} {@var{out} =} splitvars (@var{obj})
+@deftypefnx {Method} {@var{out} =} splitvars (@var{obj}, @var{vars})
+@deftypefnx {Method} {@var{out} =} splitvars (@dots{}, @
+  @code{'NewVariableNames'}, @var{NewVariableNames})
+
+Split multicolumn table variables.
+
+Splits multicolumn table variables into new single-column variables.
+If @var{vars} is supplied, splits only those variables. If @var{vars}
+is not supplied, splits all multicolumn variables.
+
+@end deftypefn
+
+@node table.stack
+@subsubsection table.stack
+
+@deftypefn {Method} {@var{out} =} stack (@var{obj}, @var{vars})
+@deftypefnx {Method} {@var{out} =} stack (@dots{}, @
+  @code{'NewDataVariableName'}, @var{NewDataVariableName})
+@deftypefnx {Method} {@var{out} =} stack (@dots{}, @
+  @code{'IndexVariableName'}, @var{IndexVariableName})
+
+Stack multiple table variables into a single variable.
 
 @end deftypefn
 
@@ -4307,6 +4504,53 @@ Returns a table.
 Statistics by group.
 
 See also: @ref{table.groupby}.
+
+@end deftypefn
+
+@node table.rows2vars
+@subsubsection table.rows2vars
+
+@deftypefn {Method} {@var{out} =} rows2vars (@var{obj})
+@deftypefnx {Method} {@var{out} =} rows2vars (@var{obj}, @
+  @code{'VariableNamesSource'}, @var{VariableNamesSource})
+@deftypefnx {Method} {@var{out} =} rows2vars (@dots{}, @
+  @code{'DataVariables'}, @var{DataVariables})
+
+Reorient table, swapping rows and variables dimensions.
+
+This flips the dimensions of the given table @var{obj}, swapping the
+orientation of the contained data, and swapping the row names/labels
+and variable names.
+
+The variable names become a new variable named “OriginalVariableNames”.
+
+The row names are drawn from the column @var{VariableNamesSource} if it
+is specified. Otherwise, if @var{obj} has row names, they are used.
+Otherwise, new variable names in the form “VarN” are generated.
+
+If all the variables in @var{obj} are of the same type, they are concatenated
+and then sliced to create the new variable values. Otherwise, they are
+converted to cells, and the new table has cell variable values.
+
+@end deftypefn
+
+@node table.congruentize
+@subsubsection table.congruentize
+
+@deftypefn {Method} {[@var{outA}, @var{outB}] =} congruentize (@var{A}, @var{B})
+
+Make tables congruent.
+
+Makes tables congruent by ensuring they have the same variables of the
+same types in the same order. Congruent tables may be safely unioned,
+intersected, vertcatted, or have other set operations done to them.
+
+Variable names present in one input but not in the other produces an error.
+Variables with the same name but different types in the inputs produces
+an error.
+Inputs must either both have row names or both not have row names; it is
+an error if one has row names and the other doesn't.
+Variables in different orders are reordered to be in the same order as A.
 
 @end deftypefn
 
@@ -4540,13 +4784,13 @@ Subsets a table row-wise, using either an index vector or an expression
 involving @var{obj}’s variables.
 
 If the argument is a numeric or logical vector, it is interpreted as an
-index into the rows of this. (Just as with `subsetRows (this, index)`.)
+index into the rows of this. (Just as with `subsetrows (this, index)`.)
 
 If the argument is a char, then it is evaulated as an M-code expression,
 with all of this’ variables available as workspace variables, as with
 @code{evalWithVars}. The output of expr must be a numeric or logical index
 vector (This form is a shorthand for
-@code{out = subsetRows (this, evalWithVars (this, expr))}.)
+@code{out = subsetrows (this, evalWithVars (this, expr))}.)
 
 TODO: Decide whether to name this to "where" to be more like SQL instead
 of relational algebra.
@@ -4586,100 +4830,6 @@ ncols is the number of columns in the input.
 @end deftypefn
 
 
-@node tablicious.dataset
-@subsection tablicious.dataset
-@deftp {Class} dataset
-
-The @code{dataset} class provides convenient access to the various
-datasets included with Tablicious.
-
-This class just contains a bunch of static methods, each of which loads
-the dataset of that name. It’s provided so you can use tab completion
-on the dataset list.
-
-@end deftp
-
-
-@node tablicious.dataset.AirPassengers
-@subsubsection tablicious.dataset.AirPassengers
-
-@deftypefn {Static Method} {@var{out} =} AirPassengers ()
-
-Monthly Airline Passenger Numbers 1949-1960
-
-@end deftypefn
-
-@node tablicious.dataset.airmiles
-@subsubsection tablicious.dataset.airmiles
-
-@deftypefn {Static Method} {@var{out} =} airmiles ()
-
-Passenger Miles on Commercial US Airlines, 1937-1960
-
-@end deftypefn
-
-@node tablicious.dataset.beavers
-@subsubsection tablicious.dataset.beavers
-
-@deftypefn {Static Method} {@var{out} =} beavers ()
-
-Body Temperature Series of Two Beavers
-
-@end deftypefn
-
-@node tablicious.dataset.iris
-@subsubsection tablicious.dataset.iris
-
-@deftypefn {Static Method} {@var{out} =} iris ()
-
-The Fisher Iris set: measurements for various flowers
-
-@end deftypefn
-
-@node tablicious.datasets
-@subsection tablicious.datasets
-@deftp {Class} datasets
-
-Example dataset collection.
-
-@code{datasets} is a collection of example datasets to go with the
-Tablicious package.
-
-The @code{datasets} class provides methods for listing and loading
-the example datasets.
-
-@end deftp
-
-
-@node tablicious.datasets.list
-@subsubsection tablicious.datasets.list
-
-@deftypefn {Static Method} list ()
-@deftypefnx {Static Method} {@var{out} =} list ()
-
-List all datasets.
-
-Lists all the example datasets known to this class. If the output is
-captured, returns the list as a table. If the output is not captured,
-displays the list.
-
-Returns a table with variables Name, Description, and possibly more.
-
-@end deftypefn
-
-@node tablicious.datasets.load
-@subsubsection tablicious.datasets.load
-
-@deftypefn {Static Method} load (@var{datasetName})
-@deftypefnx {Static Method} {@var{out} =} load (@var{datasetName})
-
-Load a specified dataset.
-
-@var{datasetName} is the name of the dataset to load, as found in the
-@code{Name} column of the dataset list.
-
-@end deftypefn
-
 @node timezones
 @subsection timezones
 @deftypefn {Function} {@var{out} =} timezones ()
@@ -4705,6 +4855,26 @@ The geographical area the zone is in, as cellstr.
 
 Compatibility note: Matlab also includes UTCOffset and DSTOffset fields in
 the output; these are currently unimplemented.
+
+@end deftypefn
+
+
+@node vartype
+@subsection vartype
+@deftypefn {Function} {@var{out} =} vartype (@var{type})
+
+Filter by variable type for use in suscripting.
+
+Creates an object that can be used for subscripting into the variables
+dimension of a table and filtering on variable type.
+
+@var{type} is the name of a type as charvec. This may be anything that
+the @code{isa} function accepts, or @code{'cellstr'} to select cellstrs,
+as determined by @code{iscellstr}.
+
+Returns an object of an opaque type. Don’t worry about what type it is;
+just pass it into the second argument of a subscript into a @code{table}
+object.
 
 @end deftypefn
 

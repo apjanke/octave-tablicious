@@ -40,6 +40,8 @@
                         <section title="calendarDuration" ref="html/calendarDuration.html">
                             <section title="calendarDuration.calendarDuration" ref="html/calendarDuration_002ecalendarDuration.html">
                             </section>
+                            <section title="calendarDuration.sizeof" ref="html/calendarDuration_002esizeof.html">
+                            </section>
                             <section title="calendarDuration.isnat" ref="html/calendarDuration_002eisnat.html">
                             </section>
                             <section title="calendarDuration.uminus" ref="html/calendarDuration_002euminus.html">
@@ -61,6 +63,8 @@
                         </section>
                         <section title="categorical" ref="html/categorical.html">
                             <section title="categorical.categorical" ref="html/categorical_002ecategorical.html">
+                            </section>
+                            <section title="categorical.sizeof" ref="html/categorical_002esizeof.html">
                             </section>
                             <section title="categorical.categories" ref="html/categorical_002ecategories.html">
                             </section>
@@ -115,6 +119,8 @@
                             <section title="datetime.posix2datenum" ref="html/datetime_002eposix2datenum.html">
                             </section>
                             <section title="datetime.datenum2posix" ref="html/datetime_002edatenum2posix.html">
+                            </section>
+                            <section title="datetime.sizeof" ref="html/datetime_002esizeof.html">
                             </section>
                             <section title="datetime.proxyKeys" ref="html/datetime_002eproxyKeys.html">
                             </section>
@@ -180,9 +186,9 @@
                         <section title="dispstrs" ref="html/dispstrs.html">
                         </section>
                         <section title="duration" ref="html/duration.html">
-                            <section title="duration.duration" ref="html/duration_002eduration.html">
-                            </section>
                             <section title="duration.ofDays" ref="html/duration_002eofDays.html">
+                            </section>
+                            <section title="duration.sizeof" ref="html/duration_002esizeof.html">
                             </section>
                             <section title="duration.years" ref="html/duration_002eyears.html">
                             </section>
@@ -299,6 +305,22 @@
                             <section title="octave.chrono.DummyClass.bar" ref="html/octave_002echrono_002eDummyClass_002ebar.html">
                             </section>
                         </section>
+                        <section title="octave.dataset" ref="html/octave_002edataset.html">
+                            <section title="octave.dataset.AirPassengers" ref="html/octave_002edataset_002eAirPassengers.html">
+                            </section>
+                            <section title="octave.dataset.airmiles" ref="html/octave_002edataset_002eairmiles.html">
+                            </section>
+                            <section title="octave.dataset.beavers" ref="html/octave_002edataset_002ebeavers.html">
+                            </section>
+                            <section title="octave.dataset.iris" ref="html/octave_002edataset_002eiris.html">
+                            </section>
+                        </section>
+                        <section title="octave.datasets" ref="html/octave_002edatasets.html">
+                            <section title="octave.datasets.list" ref="html/octave_002edatasets_002elist.html">
+                            </section>
+                            <section title="octave.datasets.load" ref="html/octave_002edatasets_002eload.html">
+                            </section>
+                        </section>
                         <section title="pp" ref="html/pp.html">
                         </section>
                         <section title="rmmissing" ref="html/rmmissing.html">
@@ -319,6 +341,8 @@
                             <section title="string.isstring" ref="html/string_002eisstring.html">
                             </section>
                             <section title="string.dispstrs" ref="html/string_002edispstrs.html">
+                            </section>
+                            <section title="string.sizeof" ref="html/string_002esizeof.html">
                             </section>
                             <section title="string.ismissing" ref="html/string_002eismissing.html">
                             </section>
@@ -422,13 +446,15 @@
                             </section>
                             <section title="table.repmat" ref="html/table_002erepmat.html">
                             </section>
+                            <section title="table.repelem" ref="html/table_002erepelem.html">
+                            </section>
                             <section title="table.setVariableNames" ref="html/table_002esetVariableNames.html">
                             </section>
                             <section title="table.setRowNames" ref="html/table_002esetRowNames.html">
                             </section>
                             <section title="table.resolveVarRef" ref="html/table_002eresolveVarRef.html">
                             </section>
-                            <section title="table.subsetRows" ref="html/table_002esubsetRows.html">
+                            <section title="table.subsetrows" ref="html/table_002esubsetrows.html">
                             </section>
                             <section title="table.subsetvars" ref="html/table_002esubsetvars.html">
                             </section>
@@ -438,7 +464,15 @@
                             </section>
                             <section title="table.setvar" ref="html/table_002esetvar.html">
                             </section>
+                            <section title="table.addvars" ref="html/table_002eaddvars.html">
+                            </section>
                             <section title="table.convertvars" ref="html/table_002econvertvars.html">
+                            </section>
+                            <section title="table.mergevars" ref="html/table_002emergevars.html">
+                            </section>
+                            <section title="table.splitvars" ref="html/table_002esplitvars.html">
+                            </section>
+                            <section title="table.stack" ref="html/table_002estack.html">
                             </section>
                             <section title="table.head" ref="html/table_002ehead.html">
                             </section>
@@ -461,6 +495,10 @@
                             <section title="table.groupby" ref="html/table_002egroupby.html">
                             </section>
                             <section title="table.grpstats" ref="html/table_002egrpstats.html">
+                            </section>
+                            <section title="table.rows2vars" ref="html/table_002erows2vars.html">
+                            </section>
+                            <section title="table.congruentize" ref="html/table_002econgruentize.html">
                             </section>
                             <section title="table.union" ref="html/table_002eunion.html">
                             </section>
@@ -491,23 +529,9 @@
                         </section>
                         <section title="tableOuterFillValue" ref="html/tableOuterFillValue.html">
                         </section>
-                        <section title="tablicious.dataset" ref="html/tablicious_002edataset.html">
-                            <section title="tablicious.dataset.AirPassengers" ref="html/tablicious_002edataset_002eAirPassengers.html">
-                            </section>
-                            <section title="tablicious.dataset.airmiles" ref="html/tablicious_002edataset_002eairmiles.html">
-                            </section>
-                            <section title="tablicious.dataset.beavers" ref="html/tablicious_002edataset_002ebeavers.html">
-                            </section>
-                            <section title="tablicious.dataset.iris" ref="html/tablicious_002edataset_002eiris.html">
-                            </section>
-                        </section>
-                        <section title="tablicious.datasets" ref="html/tablicious_002edatasets.html">
-                            <section title="tablicious.datasets.list" ref="html/tablicious_002edatasets_002elist.html">
-                            </section>
-                            <section title="tablicious.datasets.load" ref="html/tablicious_002edatasets_002eload.html">
-                            </section>
-                        </section>
                         <section title="timezones" ref="html/timezones.html">
+                        </section>
+                        <section title="vartype" ref="html/vartype.html">
                         </section>
                         <section title="vecfun" ref="html/vecfun.html">
                         </section>
@@ -530,6 +554,7 @@
             <keyword name="calendarDuration.isnat" id="calendarDuration.isnat" ref="html/calendarDuration_002eisnat.html"/>
             <keyword name="calendarDuration.minus" id="calendarDuration.minus" ref="html/calendarDuration_002eminus.html"/>
             <keyword name="calendarDuration.plus" id="calendarDuration.plus" ref="html/calendarDuration_002eplus.html"/>
+            <keyword name="calendarDuration.sizeof" id="calendarDuration.sizeof" ref="html/calendarDuration_002esizeof.html"/>
             <keyword name="calendarDuration.times" id="calendarDuration.times" ref="html/calendarDuration_002etimes.html"/>
             <keyword name="calendarDuration.uminus" id="calendarDuration.uminus" ref="html/calendarDuration_002euminus.html"/>
             <keyword name="calmonths" id="calmonths" ref="html/calmonths.html"/>
@@ -550,6 +575,7 @@
             <keyword name="categorical.renamecats" id="categorical.renamecats" ref="html/categorical_002erenamecats.html"/>
             <keyword name="categorical.reordercats" id="categorical.reordercats" ref="html/categorical_002ereordercats.html"/>
             <keyword name="categorical.setcats" id="categorical.setcats" ref="html/categorical_002esetcats.html"/>
+            <keyword name="categorical.sizeof" id="categorical.sizeof" ref="html/categorical_002esizeof.html"/>
             <keyword name="categorical.squeezecats" id="categorical.squeezecats" ref="html/categorical_002esqueezecats.html"/>
             <keyword name="categorical.string" id="categorical.string" ref="html/categorical_002estring.html"/>
             <keyword name="categorical.summary" id="categorical.summary" ref="html/categorical_002esummary.html"/>
@@ -587,6 +613,7 @@
             <keyword name="datetime.posix2datenum" id="datetime.posix2datenum" ref="html/datetime_002eposix2datenum.html"/>
             <keyword name="datetime.posixtime" id="datetime.posixtime" ref="html/datetime_002eposixtime.html"/>
             <keyword name="datetime.proxyKeys" id="datetime.proxyKeys" ref="html/datetime_002eproxyKeys.html"/>
+            <keyword name="datetime.sizeof" id="datetime.sizeof" ref="html/datetime_002esizeof.html"/>
             <keyword name="datetime.timeofday" id="datetime.timeofday" ref="html/datetime_002etimeofday.html"/>
             <keyword name="datetime.week" id="datetime.week" ref="html/datetime_002eweek.html"/>
             <keyword name="datetime.ymd" id="datetime.ymd" ref="html/datetime_002eymd.html"/>
@@ -603,6 +630,7 @@
             <keyword name="duration.minutes" id="duration.minutes" ref="html/duration_002eminutes.html"/>
             <keyword name="duration.ofDays" id="duration.ofDays" ref="html/duration_002eofDays.html"/>
             <keyword name="duration.seconds" id="duration.seconds" ref="html/duration_002eseconds.html"/>
+            <keyword name="duration.sizeof" id="duration.sizeof" ref="html/duration_002esizeof.html"/>
             <keyword name="duration.years" id="duration.years" ref="html/duration_002eyears.html"/>
             <keyword name="endsWith" id="endsWith" ref="html/endsWith.html"/>
             <keyword name="eqn" id="eqn" ref="html/eqn.html"/>
@@ -652,6 +680,14 @@
             <keyword name="octave.chrono.DummyClass.bar" id="octave.chrono.DummyClass.bar" ref="html/octave_002echrono_002eDummyClass_002ebar.html"/>
             <keyword name="octave.chrono.DummyClass.foo" id="octave.chrono.DummyClass.foo" ref="html/octave_002echrono_002eDummyClass_002efoo.html"/>
             <keyword name="octave.chrono.dummy_function" id="octave.chrono.dummy_function" ref="html/octave_002echrono_002edummy_005ffunction.html"/>
+            <keyword name="octave.dataset" id="octave.dataset" ref="html/octave_002edataset.html"/>
+            <keyword name="octave.dataset.AirPassengers" id="octave.dataset.AirPassengers" ref="html/octave_002edataset_002eAirPassengers.html"/>
+            <keyword name="octave.dataset.airmiles" id="octave.dataset.airmiles" ref="html/octave_002edataset_002eairmiles.html"/>
+            <keyword name="octave.dataset.beavers" id="octave.dataset.beavers" ref="html/octave_002edataset_002ebeavers.html"/>
+            <keyword name="octave.dataset.iris" id="octave.dataset.iris" ref="html/octave_002edataset_002eiris.html"/>
+            <keyword name="octave.datasets" id="octave.datasets" ref="html/octave_002edatasets.html"/>
+            <keyword name="octave.datasets.list" id="octave.datasets.list" ref="html/octave_002edatasets_002elist.html"/>
+            <keyword name="octave.datasets.load" id="octave.datasets.load" ref="html/octave_002edatasets_002eload.html"/>
             <keyword name="pp" id="pp" ref="html/pp.html"/>
             <keyword name="rmmissing" id="rmmissing" ref="html/rmmissing.html"/>
             <keyword name="seconds" id="seconds" ref="html/seconds.html"/>
@@ -674,6 +710,7 @@
             <keyword name="string.regexprep" id="string.regexprep" ref="html/string_002eregexprep.html"/>
             <keyword name="string.reverse" id="string.reverse" ref="html/string_002ereverse.html"/>
             <keyword name="string.reverse_bytes" id="string.reverse_bytes" ref="html/string_002ereverse_005fbytes.html"/>
+            <keyword name="string.sizeof" id="string.sizeof" ref="html/string_002esizeof.html"/>
             <keyword name="string.strcat" id="string.strcat" ref="html/string_002estrcat.html"/>
             <keyword name="string.strcmp" id="string.strcmp" ref="html/string_002estrcmp.html"/>
             <keyword name="string.strfind" id="string.strfind" ref="html/string_002estrfind.html"/>
@@ -684,9 +721,11 @@
             <keyword name="string.upper" id="string.upper" ref="html/string_002eupper.html"/>
             <keyword name="struct2table" id="struct2table" ref="html/struct2table.html"/>
             <keyword name="table" id="table" ref="html/table.html"/>
+            <keyword name="table.addvars" id="table.addvars" ref="html/table_002eaddvars.html"/>
             <keyword name="table.antijoin" id="table.antijoin" ref="html/table_002eantijoin.html"/>
             <keyword name="table.cartesian" id="table.cartesian" ref="html/table_002ecartesian.html"/>
             <keyword name="table.columns" id="table.columns" ref="html/table_002ecolumns.html"/>
+            <keyword name="table.congruentize" id="table.congruentize" ref="html/table_002econgruentize.html"/>
             <keyword name="table.convertvars" id="table.convertvars" ref="html/table_002econvertvars.html"/>
             <keyword name="table.evalWithVars" id="table.evalWithVars" ref="html/table_002eevalWithVars.html"/>
             <keyword name="table.findgroups" id="table.findgroups" ref="html/table_002efindgroups.html"/>
@@ -709,6 +748,7 @@
             <keyword name="table.isvector" id="table.isvector" ref="html/table_002eisvector.html"/>
             <keyword name="table.join" id="table.join" ref="html/table_002ejoin.html"/>
             <keyword name="table.length" id="table.length" ref="html/table_002elength.html"/>
+            <keyword name="table.mergevars" id="table.mergevars" ref="html/table_002emergevars.html"/>
             <keyword name="table.movevars" id="table.movevars" ref="html/table_002emovevars.html"/>
             <keyword name="table.ndims" id="table.ndims" ref="html/table_002endims.html"/>
             <keyword name="table.numel" id="table.numel" ref="html/table_002enumel.html"/>
@@ -716,12 +756,14 @@
             <keyword name="table.outerjoin" id="table.outerjoin" ref="html/table_002eouterjoin.html"/>
             <keyword name="table.prettyprint" id="table.prettyprint" ref="html/table_002eprettyprint.html"/>
             <keyword name="table.removevars" id="table.removevars" ref="html/table_002eremovevars.html"/>
+            <keyword name="table.repelem" id="table.repelem" ref="html/table_002erepelem.html"/>
             <keyword name="table.repmat" id="table.repmat" ref="html/table_002erepmat.html"/>
             <keyword name="table.resolveVarRef" id="table.resolveVarRef" ref="html/table_002eresolveVarRef.html"/>
             <keyword name="table.restrict" id="table.restrict" ref="html/table_002erestrict.html"/>
             <keyword name="table.rmmissing" id="table.rmmissing" ref="html/table_002ermmissing.html"/>
             <keyword name="table.rowfun" id="table.rowfun" ref="html/table_002erowfun.html"/>
             <keyword name="table.rows" id="table.rows" ref="html/table_002erows.html"/>
+            <keyword name="table.rows2vars" id="table.rows2vars" ref="html/table_002erows2vars.html"/>
             <keyword name="table.semijoin" id="table.semijoin" ref="html/table_002esemijoin.html"/>
             <keyword name="table.setRowNames" id="table.setRowNames" ref="html/table_002esetRowNames.html"/>
             <keyword name="table.setVariableNames" id="table.setVariableNames" ref="html/table_002esetVariableNames.html"/>
@@ -730,9 +772,11 @@
             <keyword name="table.setxor" id="table.setxor" ref="html/table_002esetxor.html"/>
             <keyword name="table.size" id="table.size" ref="html/table_002esize.html"/>
             <keyword name="table.sizeof" id="table.sizeof" ref="html/table_002esizeof.html"/>
+            <keyword name="table.splitvars" id="table.splitvars" ref="html/table_002esplitvars.html"/>
             <keyword name="table.squeeze" id="table.squeeze" ref="html/table_002esqueeze.html"/>
+            <keyword name="table.stack" id="table.stack" ref="html/table_002estack.html"/>
             <keyword name="table.standardizeMissing" id="table.standardizeMissing" ref="html/table_002estandardizeMissing.html"/>
-            <keyword name="table.subsetRows" id="table.subsetRows" ref="html/table_002esubsetRows.html"/>
+            <keyword name="table.subsetrows" id="table.subsetrows" ref="html/table_002esubsetrows.html"/>
             <keyword name="table.subsetvars" id="table.subsetvars" ref="html/table_002esubsetvars.html"/>
             <keyword name="table.summary" id="table.summary" ref="html/table_002esummary.html"/>
             <keyword name="table.table" id="table.table" ref="html/table_002etable.html"/>
@@ -746,15 +790,8 @@
             <keyword name="table.vertcat" id="table.vertcat" ref="html/table_002evertcat.html"/>
             <keyword name="table.width" id="table.width" ref="html/table_002ewidth.html"/>
             <keyword name="tableOuterFillValue" id="tableOuterFillValue" ref="html/tableOuterFillValue.html"/>
-            <keyword name="tablicious.dataset" id="tablicious.dataset" ref="html/tablicious_002edataset.html"/>
-            <keyword name="tablicious.dataset.AirPassengers" id="tablicious.dataset.AirPassengers" ref="html/tablicious_002edataset_002eAirPassengers.html"/>
-            <keyword name="tablicious.dataset.airmiles" id="tablicious.dataset.airmiles" ref="html/tablicious_002edataset_002eairmiles.html"/>
-            <keyword name="tablicious.dataset.beavers" id="tablicious.dataset.beavers" ref="html/tablicious_002edataset_002ebeavers.html"/>
-            <keyword name="tablicious.dataset.iris" id="tablicious.dataset.iris" ref="html/tablicious_002edataset_002eiris.html"/>
-            <keyword name="tablicious.datasets" id="tablicious.datasets" ref="html/tablicious_002edatasets.html"/>
-            <keyword name="tablicious.datasets.list" id="tablicious.datasets.list" ref="html/tablicious_002edatasets_002elist.html"/>
-            <keyword name="tablicious.datasets.load" id="tablicious.datasets.load" ref="html/tablicious_002edatasets_002eload.html"/>
             <keyword name="timezones" id="timezones" ref="html/timezones.html"/>
+            <keyword name="vartype" id="vartype" ref="html/vartype.html"/>
             <keyword name="vecfun" id="vecfun" ref="html/vecfun.html"/>
             <keyword name="years" id="years" ref="html/years.html"/>
         </keywords>
@@ -763,15 +800,8 @@
             <file>html/Copying.html</file>
             <file>html/years.html</file>
             <file>html/vecfun.html</file>
+            <file>html/vartype.html</file>
             <file>html/timezones.html</file>
-            <file>html/tablicious_002edatasets_002eload.html</file>
-            <file>html/tablicious_002edatasets_002elist.html</file>
-            <file>html/tablicious_002edatasets.html</file>
-            <file>html/tablicious_002edataset_002eiris.html</file>
-            <file>html/tablicious_002edataset_002ebeavers.html</file>
-            <file>html/tablicious_002edataset_002eairmiles.html</file>
-            <file>html/tablicious_002edataset_002eAirPassengers.html</file>
-            <file>html/tablicious_002edataset.html</file>
             <file>html/tableOuterFillValue.html</file>
             <file>html/table_002erestrict.html</file>
             <file>html/table_002eevalWithVars.html</file>
@@ -786,6 +816,8 @@
             <file>html/table_002esetxor.html</file>
             <file>html/table_002eintersect.html</file>
             <file>html/table_002eunion.html</file>
+            <file>html/table_002econgruentize.html</file>
+            <file>html/table_002erows2vars.html</file>
             <file>html/table_002egrpstats.html</file>
             <file>html/table_002egroupby.html</file>
             <file>html/table_002ecartesian.html</file>
@@ -797,15 +829,20 @@
             <file>html/table_002ejoin.html</file>
             <file>html/table_002etail.html</file>
             <file>html/table_002ehead.html</file>
+            <file>html/table_002estack.html</file>
+            <file>html/table_002esplitvars.html</file>
+            <file>html/table_002emergevars.html</file>
             <file>html/table_002econvertvars.html</file>
+            <file>html/table_002eaddvars.html</file>
             <file>html/table_002esetvar.html</file>
             <file>html/table_002emovevars.html</file>
             <file>html/table_002eremovevars.html</file>
             <file>html/table_002esubsetvars.html</file>
-            <file>html/table_002esubsetRows.html</file>
+            <file>html/table_002esubsetrows.html</file>
             <file>html/table_002eresolveVarRef.html</file>
             <file>html/table_002esetRowNames.html</file>
             <file>html/table_002esetVariableNames.html</file>
+            <file>html/table_002erepelem.html</file>
             <file>html/table_002erepmat.html</file>
             <file>html/table_002ehorzcat.html</file>
             <file>html/table_002evertcat.html</file>
@@ -857,6 +894,7 @@
             <file>html/string_002ecellstr.html</file>
             <file>html/string_002eisnannish.html</file>
             <file>html/string_002eismissing.html</file>
+            <file>html/string_002esizeof.html</file>
             <file>html/string_002edispstrs.html</file>
             <file>html/string_002eisstring.html</file>
             <file>html/string_002estring.html</file>
@@ -868,6 +906,14 @@
             <file>html/scalarexpand.html</file>
             <file>html/rmmissing.html</file>
             <file>html/pp.html</file>
+            <file>html/octave_002edatasets_002eload.html</file>
+            <file>html/octave_002edatasets_002elist.html</file>
+            <file>html/octave_002edatasets.html</file>
+            <file>html/octave_002edataset_002eiris.html</file>
+            <file>html/octave_002edataset_002ebeavers.html</file>
+            <file>html/octave_002edataset_002eairmiles.html</file>
+            <file>html/octave_002edataset_002eAirPassengers.html</file>
+            <file>html/octave_002edataset.html</file>
             <file>html/octave_002echrono_002eDummyClass_002ebar.html</file>
             <file>html/octave_002echrono_002eDummyClass_002efoo.html</file>
             <file>html/octave_002echrono_002eDummyClass_002eDummyClass.html</file>
@@ -925,8 +971,8 @@
             <file>html/duration_002eminutes.html</file>
             <file>html/duration_002ehours.html</file>
             <file>html/duration_002eyears.html</file>
+            <file>html/duration_002esizeof.html</file>
             <file>html/duration_002eofDays.html</file>
-            <file>html/duration_002eduration.html</file>
             <file>html/duration.html</file>
             <file>html/dispstrs.html</file>
             <file>html/discretize.html</file>
@@ -959,6 +1005,7 @@
             <file>html/datetime_002ehms.html</file>
             <file>html/datetime_002eymd.html</file>
             <file>html/datetime_002eproxyKeys.html</file>
+            <file>html/datetime_002esizeof.html</file>
             <file>html/datetime_002edatenum2posix.html</file>
             <file>html/datetime_002eposix2datenum.html</file>
             <file>html/datetime_002eNaT.html</file>
@@ -986,6 +1033,7 @@
             <file>html/categorical_002eisordinal.html</file>
             <file>html/categorical_002eiscategory.html</file>
             <file>html/categorical_002ecategories.html</file>
+            <file>html/categorical_002esizeof.html</file>
             <file>html/categorical_002ecategorical.html</file>
             <file>html/categorical.html</file>
             <file>html/calyears.html</file>
@@ -997,6 +1045,7 @@
             <file>html/calendarDuration_002eplus.html</file>
             <file>html/calendarDuration_002euminus.html</file>
             <file>html/calendarDuration_002eisnat.html</file>
+            <file>html/calendarDuration_002esizeof.html</file>
             <file>html/calendarDuration_002ecalendarDuration.html</file>
             <file>html/calendarDuration.html</file>
             <file>html/array2table.html</file>
