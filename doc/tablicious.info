@@ -3296,12 +3296,15 @@ File: tablicious.info,  Node: octave.dataset,  Next: octave.datasets,  Prev: oct
 * Menu:
 
 * octave.dataset.AirPassengers::
+* octave.dataset.ChickWeight::
 * octave.dataset.airmiles::
 * octave.dataset.beavers::
+* octave.dataset.cupcake::
 * octave.dataset.iris::
+* octave.dataset.mtcars::
 
 
-File: tablicious.info,  Node: octave.dataset.AirPassengers,  Next: octave.dataset.airmiles,  Up: octave.dataset
+File: tablicious.info,  Node: octave.dataset.AirPassengers,  Next: octave.dataset.ChickWeight,  Up: octave.dataset
 
 9.2.44.1 octave.dataset.AirPassengers
 .....................................
@@ -3310,35 +3313,240 @@ File: tablicious.info,  Node: octave.dataset.AirPassengers,  Next: octave.datase
 
      Monthly Airline Passenger Numbers 1949-1960
 
-
-File: tablicious.info,  Node: octave.dataset.airmiles,  Next: octave.dataset.beavers,  Prev: octave.dataset.AirPassengers,  Up: octave.dataset
+     Description
+     ...........
 
-9.2.44.2 octave.dataset.airmiles
+     The classic Box & Jenkins airline data.  Monthly totals of
+     international airline passengers, 1949 to 1960.
+
+     Source
+     ......
+
+     Box, G. E. P., Jenkins, G. M. and Reinsel, G. C. (1976) Time Series
+     Analysis, Forecasting and Control.  Third Edition.  Holden-Day.
+     Series G.
+
+
+File: tablicious.info,  Node: octave.dataset.ChickWeight,  Next: octave.dataset.airmiles,  Prev: octave.dataset.AirPassengers,  Up: octave.dataset
+
+9.2.44.2 octave.dataset.ChickWeight
+...................................
+
+ -- Static Method: OUT = ChickWeight ()
+
+     Weight versus age of chicks on different diets
+
+     Format
+     ......
+
+     ‘weight’
+          a numeric vector giving the body weight of the chick (gm).
+     ‘Time’
+          a numeric vector giving the number of days since birth when
+          the measurement was made.
+     ‘Chick’
+          an ordered factor with levels 18 < ...  < 48 giving a unique
+          identifier for the chick.  The ordering of the levels groups
+          chicks on the same diet together and orders them according to
+          their final weight (lightest to heaviest) within diet.
+     ‘Diet’
+          a factor with levels 1, ..., 4 indicating which experimental
+          diet the chick received.
+
+     Source
+     ......
+
+     Crowder, M. and Hand, D. (1990), Analysis of Repeated Measures,
+     Chapman and Hall (example 5.3)
+
+     Hand, D. and Crowder, M. (1996), Practical Longitudinal Data
+     Analysis, Chapman and Hall (table A.2)
+
+     Pinheiro, J. C. and Bates, D. M. (2000) Mixed-effects Models in S
+     and S-PLUS, Springer.
+
+
+File: tablicious.info,  Node: octave.dataset.airmiles,  Next: octave.dataset.beavers,  Prev: octave.dataset.ChickWeight,  Up: octave.dataset
+
+9.2.44.3 octave.dataset.airmiles
 ................................
 
  -- Static Method: OUT = airmiles ()
 
      Passenger Miles on Commercial US Airlines, 1937-1960
 
-
-File: tablicious.info,  Node: octave.dataset.beavers,  Next: octave.dataset.iris,  Prev: octave.dataset.airmiles,  Up: octave.dataset
+     Description
+     ...........
 
-9.2.44.3 octave.dataset.beavers
+     The revenue passenger miles flown by commercial airlines in the
+     United States for each year from 1937 to 1960.
+
+     Source
+     ......
+
+     F.A.A. Statistical Handbook of Aviation.
+
+
+File: tablicious.info,  Node: octave.dataset.beavers,  Next: octave.dataset.cupcake,  Prev: octave.dataset.airmiles,  Up: octave.dataset
+
+9.2.44.4 octave.dataset.beavers
 ...............................
 
  -- Static Method: OUT = beavers ()
 
      Body Temperature Series of Two Beavers
 
-
-File: tablicious.info,  Node: octave.dataset.iris,  Prev: octave.dataset.beavers,  Up: octave.dataset
+     Description
+     ...........
 
-9.2.44.4 octave.dataset.iris
+     Body temperature readings for two beavers.
+
+     Format
+     ......
+
+     ‘day’
+          Day of observation (in days since the beginning of 1990),
+          December 12–13 (beaver1) and November 3–4 (beaver2).
+     ‘time’
+          Time of observation, in the form 0330 for 3:30am
+     ‘temp’
+          Measured body temperature in degrees Celsius.
+     ‘activ’
+          Indicator of activity outside the retreat.
+
+     Source
+     ......
+
+     P. S. Reynolds (1994) Time-series analyses of beaver body
+     temperatures.  Chapter 11 of Lange, N., Ryan, L., Billard, L.,
+     Brillinger, D., Conquest, L. and Greenhouse, J. eds (1994) Case
+     Studies in Biometry.  New York: John Wiley and Sons.
+
+
+File: tablicious.info,  Node: octave.dataset.cupcake,  Next: octave.dataset.iris,  Prev: octave.dataset.beavers,  Up: octave.dataset
+
+9.2.44.5 octave.dataset.cupcake
+...............................
+
+ -- Static Method: OUT = cupcake ()
+
+     Google Search popularity for "cupcake", 2004-2019
+
+     Description
+     ...........
+
+     Monthly popularity of worldwide Google search results for
+     "cupcake", 2004-2019.
+
+     Format
+     ......
+
+     Month - Month when searches took place
+
+     Cupcake - An indicator of search volume, in unknown units
+
+     Source
+     ......
+
+     Google Trends,
+     <https://trends.google.com/trends/explore?q=%2Fm%2F03p1r4&date=all>,
+     retrieved 2019-05-04 buy apjanke.
+
+
+File: tablicious.info,  Node: octave.dataset.iris,  Next: octave.dataset.mtcars,  Prev: octave.dataset.cupcake,  Up: octave.dataset
+
+9.2.44.6 octave.dataset.iris
 ............................
 
  -- Static Method: OUT = iris ()
 
-     The Fisher Iris set: measurements for various flowers
+     The Fisher Iris dataset: measurements of various flowers
+
+     Description
+     ...........
+
+     This is the classic Fisher Iris dataset.
+
+     Source
+     ......
+
+     <http://archive.ics.uci.edu/ml/datasets/Iris>
+
+     References
+     ..........
+
+     <https://en.wikipedia.org/wiki/Iris_flower_data_set>
+
+     Fisher,R.A. “The use of multiple measurements in taxonomic
+     problems” Annals of Eugenics, 7, Part II, 179-188 (1936); also in
+     “Contributions to Mathematical Statistics” (John Wiley, NY, 1950).
+
+     Duda,R.O., & Hart,P.E. (1973) Pattern Classification and Scene
+     Analysis.  (Q327.D83) John Wiley & Sons.  ISBN 0-471-22361-1.  See
+     page 218.
+
+     The data were collected by Anderson, Edgar (1935).  The irises of
+     the Gaspe Peninsula, Bulletin of the American Iris Society, 59,
+     2–5.
+
+
+File: tablicious.info,  Node: octave.dataset.mtcars,  Prev: octave.dataset.iris,  Up: octave.dataset
+
+9.2.44.7 octave.dataset.mtcars
+..............................
+
+ -- Static Method: OUT = mtcars ()
+
+     Motor Trend 1974 Car Road Tests
+
+     Description
+     ...........
+
+     The data was extracted from the 1974 Motor Trend US magazine, and
+     comprises fuel consumption and 10 aspects of automobile design and
+     performance for 32 automobiles (1973–74 models).
+
+     Format
+     ......
+
+     ‘mpg’
+          Fuel efficiency in miles/gallon
+     ‘cyl’
+          Number of cylinders
+     ‘disp’
+          Displacement (cu.  in.)
+     ‘hp’
+          Gross horsepower
+     ‘drat’
+          Rear axle ratio
+     ‘wt’
+          Weight (1,000 lbs)
+     ‘qsec’
+          1/4 mile time
+     ‘vs’
+          Engine type (0 = V-shaped, 1 = straight)
+     ‘am’
+          Transmission type (0 = automatic, 1 = manual)
+     ‘gear’
+          Number of forward gears
+     ‘carb’
+          Number of carburetors
+
+     Note
+     ....
+
+     Henderson and Velleman (1981) comment in a footnote to Table 1:
+     “Hocking [original transcriber]’s noncrucial coding of the Mazda’s
+     rotary engine as a straight six-cylinder engine and the Porsche’s
+     flat engine as a V engine, as well as the inclusion of the diesel
+     Mercedes 240D, have been retained to enable direct comparisons to
+     be made with previous analyses.”
+
+     Source
+     ......
+
+     Henderson and Velleman (1981), Building multiple regression models
+     interactively.  Biometrics, 37, 391–411.
 
 
 File: tablicious.info,  Node: octave.datasets,  Next: pp,  Prev: octave.dataset,  Up: API Alphabetically
@@ -3360,6 +3568,7 @@ File: tablicious.info,  Node: octave.datasets,  Next: pp,  Prev: octave.dataset,
 
 * octave.datasets.list::
 * octave.datasets.load::
+* octave.datasets.description::
 
 
 File: tablicious.info,  Node: octave.datasets.list,  Next: octave.datasets.load,  Up: octave.datasets
@@ -3380,7 +3589,7 @@ File: tablicious.info,  Node: octave.datasets.list,  Next: octave.datasets.load,
      more.
 
 
-File: tablicious.info,  Node: octave.datasets.load,  Prev: octave.datasets.list,  Up: octave.datasets
+File: tablicious.info,  Node: octave.datasets.load,  Next: octave.datasets.description,  Prev: octave.datasets.list,  Up: octave.datasets
 
 9.2.45.2 octave.datasets.load
 .............................
@@ -3392,6 +3601,22 @@ File: tablicious.info,  Node: octave.datasets.load,  Prev: octave.datasets.list,
 
      DATASETNAME is the name of the dataset to load, as found in the
      ‘Name’ column of the dataset list.
+
+
+File: tablicious.info,  Node: octave.datasets.description,  Prev: octave.datasets.load,  Up: octave.datasets
+
+9.2.45.3 octave.datasets.description
+....................................
+
+ -- Static Method: description (DATASETNAME)
+ -- Static Method: OUT = description (DATASETNAME)
+
+     Get or display the description for a dataset.
+
+     Gets the description for the named dataset.  If the output is
+     captured, it is returned as a charvec containing plain text
+     suitable for human display.  If the output is not captured,
+     displays the description to the console.
 
 
 File: tablicious.info,  Node: pp,  Next: rmmissing,  Prev: octave.datasets,  Up: API Alphabetically
@@ -5673,122 +5898,126 @@ Node: octave.chrono.DummyClass.DummyClass101435
 Node: octave.chrono.DummyClass.foo101906
 Node: octave.chrono.DummyClass.bar102445
 Node: octave.dataset102940
-Node: octave.dataset.AirPassengers103551
-Node: octave.dataset.airmiles103836
-Node: octave.dataset.beavers104146
-Node: octave.dataset.iris104430
-Node: octave.datasets104688
-Node: octave.datasets.list105154
-Node: octave.datasets.load105662
-Node: pp106057
-Node: rmmissing106708
-Node: scalarexpand107745
-Node: seconds107909
-Node: size2str108408
-Node: standardizeMissing108569
-Node: startsWith109394
-Node: string110204
-Node: string.string113516
-Node: string.isstring114186
-Node: string.dispstrs114511
-Node: string.sizeof115090
-Node: string.ismissing115308
-Node: string.isnannish115787
-Node: string.cellstr116170
-Node: string.cell116515
-Node: string.char117002
-Node: string.encode117527
-Node: string.strlength_bytes118043
-Node: string.strlength118716
-Node: string.reverse_bytes119283
-Node: string.reverse120021
-Node: string.strcat120493
-Node: string.lower121071
-Node: string.upper121573
-Node: string.erase122074
-Node: string.strrep122411
-Node: string.strfind123016
-Node: string.regexprep123539
-Node: string.strcmp124015
-Node: string.cmp124708
-Node: string.missing125687
-Node: string.decode126089
-Node: struct2table126499
-Node: table126966
-Node: table.table129545
-Node: table.summary130597
-Node: table.prettyprint131024
-Node: table.table2cell131483
-Node: table.table2struct131971
-Node: table.table2array132606
-Node: table.varnames132853
-Node: table.istable133105
-Node: table.size133317
-Node: table.length133646
-Node: table.ndims133945
-Node: table.squeeze134196
-Node: table.sizeof134543
-Node: table.height134974
-Node: table.rows135182
-Node: table.width135383
-Node: table.columns135714
-Node: table.numel136052
-Node: table.isempty136572
-Node: table.ismatrix136896
-Node: table.isrow137185
-Node: table.iscol137403
-Node: table.isvector137763
-Node: table.isscalar137989
-Node: table.hasrownames138219
-Node: table.vertcat138469
-Node: table.horzcat138990
-Node: table.repmat139610
-Node: table.repelem140136
-Node: table.setVariableNames140577
-Node: table.setRowNames141024
-Node: table.resolveVarRef141396
-Node: table.subsetrows142398
-Node: table.subsetvars142743
-Node: table.removevars143250
-Node: table.movevars143635
-Node: table.setvar144363
-Node: table.addvars145088
-Node: table.convertvars145555
-Node: table.mergevars146543
-Node: table.splitvars146946
-Node: table.stack147504
-Node: table.head147913
-Node: table.tail148282
-Node: table.join148648
-Node: table.innerjoin149394
-Node: table.outerjoin150055
-Node: table.outerfillvals150862
-Node: table.semijoin151295
-Node: table.antijoin152064
-Node: table.cartesian152716
-Node: table.groupby153984
-Node: table.grpstats154835
-Node: table.rows2vars155167
-Node: table.congruentize156290
-Node: table.union157159
-Node: table.intersect157731
-Node: table.setxor158339
-Node: table.setdiff158974
-Node: table.ismember159511
-Node: table.ismissing159913
-Node: table.rmmissing160597
-Node: table.standardizeMissing161389
-Node: table.varfun162379
-Node: table.rowfun162946
-Node: table.findgroups163257
-Node: table.evalWithVars163842
-Node: table.restrict164692
-Node: tableOuterFillValue165821
-Node: timezones167058
-Node: vartype168103
-Node: vecfun168816
-Node: years169543
-Node: Copying170220
+Node: octave.dataset.AirPassengers103635
+Node: octave.dataset.ChickWeight104259
+Node: octave.dataset.airmiles105570
+Node: octave.dataset.beavers106107
+Node: octave.dataset.cupcake107155
+Node: octave.dataset.iris107868
+Node: octave.dataset.mtcars108935
+Node: octave.datasets110558
+Node: octave.datasets.list111056
+Node: octave.datasets.load111564
+Node: octave.datasets.description111995
+Node: pp112575
+Node: rmmissing113226
+Node: scalarexpand114263
+Node: seconds114427
+Node: size2str114926
+Node: standardizeMissing115087
+Node: startsWith115912
+Node: string116722
+Node: string.string120034
+Node: string.isstring120704
+Node: string.dispstrs121029
+Node: string.sizeof121608
+Node: string.ismissing121826
+Node: string.isnannish122305
+Node: string.cellstr122688
+Node: string.cell123033
+Node: string.char123520
+Node: string.encode124045
+Node: string.strlength_bytes124561
+Node: string.strlength125234
+Node: string.reverse_bytes125801
+Node: string.reverse126539
+Node: string.strcat127011
+Node: string.lower127589
+Node: string.upper128091
+Node: string.erase128592
+Node: string.strrep128929
+Node: string.strfind129534
+Node: string.regexprep130057
+Node: string.strcmp130533
+Node: string.cmp131226
+Node: string.missing132205
+Node: string.decode132607
+Node: struct2table133017
+Node: table133484
+Node: table.table136063
+Node: table.summary137115
+Node: table.prettyprint137542
+Node: table.table2cell138001
+Node: table.table2struct138489
+Node: table.table2array139124
+Node: table.varnames139371
+Node: table.istable139623
+Node: table.size139835
+Node: table.length140164
+Node: table.ndims140463
+Node: table.squeeze140714
+Node: table.sizeof141061
+Node: table.height141492
+Node: table.rows141700
+Node: table.width141901
+Node: table.columns142232
+Node: table.numel142570
+Node: table.isempty143090
+Node: table.ismatrix143414
+Node: table.isrow143703
+Node: table.iscol143921
+Node: table.isvector144281
+Node: table.isscalar144507
+Node: table.hasrownames144737
+Node: table.vertcat144987
+Node: table.horzcat145508
+Node: table.repmat146128
+Node: table.repelem146654
+Node: table.setVariableNames147095
+Node: table.setRowNames147542
+Node: table.resolveVarRef147914
+Node: table.subsetrows148916
+Node: table.subsetvars149261
+Node: table.removevars149768
+Node: table.movevars150153
+Node: table.setvar150881
+Node: table.addvars151606
+Node: table.convertvars152073
+Node: table.mergevars153061
+Node: table.splitvars153464
+Node: table.stack154022
+Node: table.head154431
+Node: table.tail154800
+Node: table.join155166
+Node: table.innerjoin155912
+Node: table.outerjoin156573
+Node: table.outerfillvals157380
+Node: table.semijoin157813
+Node: table.antijoin158582
+Node: table.cartesian159234
+Node: table.groupby160502
+Node: table.grpstats161353
+Node: table.rows2vars161685
+Node: table.congruentize162808
+Node: table.union163677
+Node: table.intersect164249
+Node: table.setxor164857
+Node: table.setdiff165492
+Node: table.ismember166029
+Node: table.ismissing166431
+Node: table.rmmissing167115
+Node: table.standardizeMissing167907
+Node: table.varfun168897
+Node: table.rowfun169464
+Node: table.findgroups169775
+Node: table.evalWithVars170360
+Node: table.restrict171210
+Node: tableOuterFillValue172339
+Node: timezones173576
+Node: vartype174621
+Node: vecfun175334
+Node: years176061
+Node: Copying176738
 
 End Tag Table
 

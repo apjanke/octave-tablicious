@@ -31,11 +31,19 @@ function generate_datasets_list ()
   for i_dataset = 1:numel(names)
     name = names{i_dataset};
     dset = octave.internal.dataset.lookup (name);
+    
+    descr_texi = dset.description_texi;
+    texi_lines = regexp (descr_texi, '\r?\n', "split");
+    descr_comment_lines = strcat ({"    ## "}, texi_lines);
+    descr_comment = strjoin (descr_comment_lines, "\n");
+
     p ("    ## -*- texinfo -*-");
     p ("    ## @node dataset.%s", name);
     p ("    ## @deftypefn {Static Method} {@var{out} =} %s ()", name);
     p ("    ##");
-    p ("    ## %s", dset.description);
+    p ("    ## %s", dset.summary);
+    p ("    ##");
+    p ("%s", descr_comment);
     p ("    ##");
     p ("    ## @end deftypefn");
     p ("    function out = %s ()", name);

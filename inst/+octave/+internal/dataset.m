@@ -85,9 +85,9 @@ classdef (Abstract) dataset
         class (this));
     endfunction
 
-    function out = description (this)
-      %DESCRIPTION Get or display the description for this dataset
-      description_file = fullfile (this.class_dir, "description.txt");
+    function out = description_texi (this)
+      %DESCRIPTION_TEXI Get the Texinfo description for this dataset
+      description_file = fullfile (this.class_dir, "description.texi");
       if isfile (description_file)
         out = fileread (description_file);
       else

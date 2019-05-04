@@ -310,17 +310,25 @@
                         <section title="octave.dataset" ref="html/octave_002edataset.html">
                             <section title="octave.dataset.AirPassengers" ref="html/octave_002edataset_002eAirPassengers.html">
                             </section>
+                            <section title="octave.dataset.ChickWeight" ref="html/octave_002edataset_002eChickWeight.html">
+                            </section>
                             <section title="octave.dataset.airmiles" ref="html/octave_002edataset_002eairmiles.html">
                             </section>
                             <section title="octave.dataset.beavers" ref="html/octave_002edataset_002ebeavers.html">
                             </section>
+                            <section title="octave.dataset.cupcake" ref="html/octave_002edataset_002ecupcake.html">
+                            </section>
                             <section title="octave.dataset.iris" ref="html/octave_002edataset_002eiris.html">
+                            </section>
+                            <section title="octave.dataset.mtcars" ref="html/octave_002edataset_002emtcars.html">
                             </section>
                         </section>
                         <section title="octave.datasets" ref="html/octave_002edatasets.html">
                             <section title="octave.datasets.list" ref="html/octave_002edatasets_002elist.html">
                             </section>
                             <section title="octave.datasets.load" ref="html/octave_002edatasets_002eload.html">
+                            </section>
+                            <section title="octave.datasets.description" ref="html/octave_002edatasets_002edescription.html">
                             </section>
                         </section>
                         <section title="pp" ref="html/pp.html">
@@ -684,10 +692,14 @@
             <keyword name="octave.chrono.dummy_function" id="octave.chrono.dummy_function" ref="html/octave_002echrono_002edummy_005ffunction.html"/>
             <keyword name="octave.dataset" id="octave.dataset" ref="html/octave_002edataset.html"/>
             <keyword name="octave.dataset.AirPassengers" id="octave.dataset.AirPassengers" ref="html/octave_002edataset_002eAirPassengers.html"/>
+            <keyword name="octave.dataset.ChickWeight" id="octave.dataset.ChickWeight" ref="html/octave_002edataset_002eChickWeight.html"/>
             <keyword name="octave.dataset.airmiles" id="octave.dataset.airmiles" ref="html/octave_002edataset_002eairmiles.html"/>
             <keyword name="octave.dataset.beavers" id="octave.dataset.beavers" ref="html/octave_002edataset_002ebeavers.html"/>
+            <keyword name="octave.dataset.cupcake" id="octave.dataset.cupcake" ref="html/octave_002edataset_002ecupcake.html"/>
             <keyword name="octave.dataset.iris" id="octave.dataset.iris" ref="html/octave_002edataset_002eiris.html"/>
+            <keyword name="octave.dataset.mtcars" id="octave.dataset.mtcars" ref="html/octave_002edataset_002emtcars.html"/>
             <keyword name="octave.datasets" id="octave.datasets" ref="html/octave_002edatasets.html"/>
+            <keyword name="octave.datasets.description" id="octave.datasets.description" ref="html/octave_002edatasets_002edescription.html"/>
             <keyword name="octave.datasets.list" id="octave.datasets.list" ref="html/octave_002edatasets_002elist.html"/>
             <keyword name="octave.datasets.load" id="octave.datasets.load" ref="html/octave_002edatasets_002eload.html"/>
             <keyword name="pp" id="pp" ref="html/pp.html"/>
@@ -908,12 +920,16 @@
             <file>html/scalarexpand.html</file>
             <file>html/rmmissing.html</file>
             <file>html/pp.html</file>
+            <file>html/octave_002edatasets_002edescription.html</file>
             <file>html/octave_002edatasets_002eload.html</file>
             <file>html/octave_002edatasets_002elist.html</file>
             <file>html/octave_002edatasets.html</file>
+            <file>html/octave_002edataset_002emtcars.html</file>
             <file>html/octave_002edataset_002eiris.html</file>
+            <file>html/octave_002edataset_002ecupcake.html</file>
             <file>html/octave_002edataset_002ebeavers.html</file>
             <file>html/octave_002edataset_002eairmiles.html</file>
+            <file>html/octave_002edataset_002eChickWeight.html</file>
             <file>html/octave_002edataset_002eAirPassengers.html</file>
             <file>html/octave_002edataset.html</file>
             <file>html/octave_002echrono_002eDummyClass_002ebar.html</file>

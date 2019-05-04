@@ -1,18 +1,14 @@
-The Fisher Iris dataset: Measurements of various flowers
-
-Description
------------
+@subsubheading Description
 
 This is the classic Fisher Iris dataset.
 
-Source
-------
-http://archive.ics.uci.edu/ml/datasets/Iris
+@subsubheading Source
 
-References
-----------
+@url{http://archive.ics.uci.edu/ml/datasets/Iris}
 
-https://en.wikipedia.org/wiki/Iris_flower_data_set
+@subsubheading References
+
+@url{https://en.wikipedia.org/wiki/Iris_flower_data_set}
 
 Fisher,R.A. “The use of multiple measurements in taxonomic problems”
 Annals of Eugenics, 7, Part II, 179-188 (1936); also in “Contributions 

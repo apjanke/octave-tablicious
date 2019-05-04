@@ -1,20 +1,15 @@
-Cupcake: Google Search popularity for "cupcake", 2004-2019
-
-Description
------------
+@subsubheading Description
 
 Monthly popularity of worldwide Google search results for "cupcake", 2004-2019.
 
-Format
-------
+@subsubheading Format
 
 Month - Month when searches took place
 
 Cupcake - An indicator of search volume, in unknown units
 
-Source
-------
+@subsubheading Source
 
-Google Trends, https://trends.google.com/trends/explore?q=%2Fm%2F03p1r4&date=all,
+Google Trends, @url{https://trends.google.com/trends/explore?q=%2Fm%2F03p1r4&date=all},
 retrieved 2019-05-04 buy apjanke.
 

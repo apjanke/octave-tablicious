@@ -31,7 +31,7 @@ classdef datasets
 
     ## -*- texinfo -*-
     ## @node datasets.list
-    ## @deftypefn {Static Method} list ()
+    ## @deftypefn {Static Method} {} list ()
     ## @deftypefnx {Static Method} {@var{out} =} list ()
     ##
     ## List all datasets.
@@ -95,8 +95,10 @@ classdef datasets
     ##
     ## @end deftypefn
     function out = description (name)
+      % TODO: Convert the texinfo input to plain text. Or maybe just remove
+      % this method and let it be replaced by "help octave.dataset.<name>".
       dset = octave.internal.dataset.lookup (name);
-      out = dset.description;
+      out = dset.description_texi;
       if nargout == 0
         disp (out);
         clear out
