@@ -60,6 +60,7 @@ This manual is for Tablicious, version @value{VERSION}.
 * Date Representation::
 * Time Zones::
 * Durations::
+* Validation Functions::
 * Missing Functionality::
 * API Reference::
 * Copying::
@@ -320,6 +321,44 @@ d2 = d + cdur
 @end example
 
 
+@node Validation Functions
+@chapter Validation Functions
+
+Tablicious provides several validation functions which can be used to check properties
+of function arguments, variables, object properties, and other expressions. These can
+be used to express invariants in your program and catch problems due to input errors,
+incorrect function usage, or other bugs.
+
+These validation functions are named following the pattern @code{mustBeXxx}, where @code{Xxx}
+is some property of the input it is testing. Validation functions may check the type,
+size, or other aspects of their inputs.
+
+The most common place for validation functions to be used will probably be at the
+beginning of functions, to check the input arguments and ensure that the contract of
+the function is not being violated. If in the future Octave gains the ability to
+declaratively express object property constraints, they will also be of use there.
+
+Be careful not to get too aggressive with the use of validation functions: while using
+them can make sure invariants are followed and your program is correct, they also reduce
+the code’s ability to make use of duck typing, reducing its flexibility. Whether you want
+to make this trade-off is a design decision you will have to consider.
+
+When a validation function’s condition is violated, it raises an error that includes a
+description of the violation in the error message. This message will include a label for
+the input that describes what is being tested. By default, this label is initialized
+with @code{inputname()}, so when you are calling a validator on a function argument or
+variable, you will generally not need to supply a label. But if you’re calling it on
+an object property or an expression more complex than a simple variable reference, the
+validator cannot automatically detect the input name for use in the label. In this case,
+make use of the optional trailing argument(s) to the functions to manually supply a
+label for the value being tested.
+
+@example
+% Validation of a simple variable does not need a label
+mustBeScalar (x);
+% Validation of a field or property reference does need a label
+mustBeScalar (this.foo, 'this.foo');
+@end example
 
 
 @node Missing Functionality
