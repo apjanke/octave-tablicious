@@ -1448,6 +1448,10 @@ classdef table
     ##   @code{'NewDataVariableName'}, @var{NewDataVariableName})
     ## @deftypefn {Method} {@var{out} =} stack (@dots{}, @
     ##   @code{'IndexVariableName'}, @var{IndexVariableName})
+    ##
+    ## Stack multiple table variables into a single variable.
+    ##
+    ## @end deftypefn
     function out = stack (this, varRef, varargin)
       [opts, args] = peelOffNameValueOptions (varargin, ...
         {'NewDataVariableName', 'IndexVariableName', 'ConstantVariables'});
