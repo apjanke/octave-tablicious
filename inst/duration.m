@@ -597,9 +597,13 @@ classdef duration
       out = ndims (this.days);
     endfunction
     
-    function out = size (this)
+    function out = size (this, dim)
       %SIZE Size of array.
-      out = size (this.days);
+      if nargin == 1
+        out = size (this.days);
+      else
+        out = size (this.days, dim);
+      endif
     endfunction
     
     function out = isempty (this)

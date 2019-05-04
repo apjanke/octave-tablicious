@@ -462,9 +462,13 @@ classdef calendarDuration
       out = ndims (this.Sign);
     endfunction
     
-    function out = size (this)
+    function out = size (this, dim)
       %SIZE Size of array.
-      out = size (this.Sign);
+      if nargin == 1
+        out = size (this.Sign);
+      else
+        out = size (this, dim);
+      endif
     endfunction
     
     function out = isempty (this)

@@ -921,9 +921,13 @@ classdef categorical
   % Planar structural stuff
   methods
     
-    function out = size (this)
+    function out = size (this, dim)
       %SIZE Size of array.
-      out = size (this.code);
+      if nargin == 1
+        out = size (this.code);
+      else
+        out = size (this.code, dim);
+      endif
     endfunction
     
     function out = numel (this)

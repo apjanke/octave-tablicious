@@ -1149,9 +1149,13 @@ classdef datetime
       out = ndims (this.dnums);
     endfunction
     
-    function out = size (this)
+    function out = size (this, dim)
       %SIZE Size of array.
-      out = size (this.dnums);
+      if nargin == 1
+        out = size (this.dnums);
+      else
+        out = size (this.dnums, dim);
+      endif
     endfunction
     
     function out = isempty (this)
