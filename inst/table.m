@@ -1444,9 +1444,9 @@ classdef table
     ## -*- texinfo -*-
     ## @node table.stack
     ## @deftypefn {Method} {@var{out} =} stack (@var{obj}, @var{vars})
-    ## @deftypefn {Method} {@var{out} =} stack (@dots{}, @
+    ## @deftypefnx {Method} {@var{out} =} stack (@dots{}, @
     ##   @code{'NewDataVariableName'}, @var{NewDataVariableName})
-    ## @deftypefn {Method} {@var{out} =} stack (@dots{}, @
+    ## @deftypefnx {Method} {@var{out} =} stack (@dots{}, @
     ##   @code{'IndexVariableName'}, @var{IndexVariableName})
     ##
     ## Stack multiple table variables into a single variable.
