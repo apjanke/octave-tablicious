@@ -1357,6 +1357,79 @@ classdef table
         'NewVariableNames', {new_var_name});
     endfunction
     
+
+    ## -*- texinfo -*-
+    ## @node table.splitvars
+    ## @deftypefn {Method} {@var{out} =} splitvars (@var{obj})
+    ## @deftypefnx {Method} {@var{out} =} splitvars (@var{obj, @var{vars})
+    ## @deftypefnx {Method} {@var{out} =} splitvars (@dots{}, @
+    ##   @code{'NewVariableNames'}, @var{NewVariableNames})
+    ##
+    ## Split multicolumn table variables.
+    ##
+    ## Splits multicolumn table variables into new single-column variables.
+    ## If @var{vars} is supplied, splits only those variables. If @var{vars}
+    ## is not supplied, splits all multicolumn variables.
+    ##
+    ## @end deftypefn
+    function out = splitvars(this, varargin)
+      [opts, args] = peelOffNameValueOptions (varargin, {'NewVariableNames'});
+      if isfield (opts, 'NewVariableNames')
+        new_var_names = opts.NewVariableNames;
+      else
+        new_var_names = [];
+      endif
+      if isempty(args)
+        do_all_vars = true;
+      else
+        do_all_vars = false;
+        vars_to_split = args{1};
+      endif
+      
+      if do_all_vars
+        vars_to_split = [];
+        for i=1:width (this)
+          if size (this.VariableValues{i}, 2) > 1)
+            vars_to_split(end+1) = i;
+          endif
+        endfor
+      endif
+      [ix_vars, old_var_names] = resolveVarRef (this, vars_to_split);
+      [ix_vars, ix_sort] = sort (ix_vars);
+      old_var_names = old_var_names(ix_sort);
+      if numel (ix_vars) > 1 && ! isempty (new_var_names)
+        error ('NewVariableNames may only be specified when splitting a single variable');
+      endif
+      
+      out = this;
+      for i_var = numel(ix_vars):-1:1
+        ix_var = ix_vars(i_var);
+        old_val = out.VariableValues{ix_var};
+        if isa (old_val, 'table')
+          new_var_vals = old_val.VariableValues;
+        else
+          new_var_vals = num2cell (old_val, 1);
+        endif
+        if isempty (new_var_names)
+          if istable (old_val)
+            my_new_var_names = old_val.VariableNames;
+          else
+            my_new_var_names = cell (size (new_var_vals));
+            for i_new_var = 1:numel (my_new_var_names)
+              my_new_var_names{i_new_var} = sprintf('%s_%d', old_var_names{i_var}, ...
+                i_new_var);
+            endfor
+          endif
+        else
+          my_new_var_names = new_var_names;
+        endif
+        
+        out = removevars (out, ix_var);
+        out = addvars (out, new_var_vals{:}, 'NewVariableNames', my_new_var_names, ...
+          'Before', ix_var);
+      endfor
+    endfunction
+
     ## -*- texinfo -*-
     ## @node table.head
     ## @deftypefn {Method} {@var{out} =} head (@var{obj})
