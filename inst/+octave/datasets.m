@@ -27,12 +27,6 @@
 ## @end deftp
 classdef datasets
 
-  properties (Constant)
-    mainList = cell2table({
-      "iris"    "The Fisher Iris set: measurements for various flowers"
-    }, "VariableNames", {"Name", "Description"})
-  endproperties
-
   methods (Static)
 
     ## -*- texinfo -*-
@@ -54,9 +48,9 @@ classdef datasets
       c = {};
       for i = 1:numel (names)
         dset = octave.internal.dataset.lookup (names{i});
-        c = [c; {dset.name dset.description}];
+        c = [c; {dset.name dset.summary}];
       endfor
-      out = cell2table(c, "VariableNames", {"Name", "Description"});
+      out = cell2table(c, "VariableNames", {"Name", "Summary"});
       if nargout == 0
         prettyprint (out);
         clear out
@@ -85,6 +79,27 @@ classdef datasets
         endfor
       else
         out = s;
+      endif
+    endfunction
+
+    ## -*- texinfo -*-
+    ## @node datasets.description
+    ## @deftypefn {Static Method} description (@var{datasetName})
+    ## @deftypefnx {Static Method} {@var{out} =} description (@var{datasetName})
+    ##
+    ## Get or display the description for a dataset.
+    ##
+    ## Gets the description for the named dataset. If the output is captured,
+    ## it is returned as a charvec containing plain text suitable for human display.
+    ## If the output is not captured, displays the description to the console.
+    ##
+    ## @end deftypefn
+    function out = description (name)
+      dset = octave.internal.dataset.lookup (name);
+      out = dset.description;
+      if nargout == 0
+        disp (out);
+        clear out
       endif
     endfunction
 

@@ -20,7 +20,7 @@ classdef beavers < octave.internal.dataset
 
     function this = beavers ()
       this.name = "beavers";
-      this.description = "Body Temperature Series of Two Beavers";
+      this.summary = "Body Temperature Series of Two Beavers";
     endfunction
 
     function out = load (this)

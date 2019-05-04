@@ -34,7 +34,7 @@ classdef iris < octave.internal.dataset
 
     function this = iris
       this.name = "iris";
-      this.description = "The Fisher Iris set: measurements for various flowers";
+      this.summary = "The Fisher Iris dataset: measurements of various flowers";
     endfunction
 
     function out = load (this)
@@ -80,6 +80,6 @@ classdef iris < octave.internal.dataset
       save (mat_file, "iris");
     endfunction
 
-endmethods
+  endmethods
 
 endclassdef

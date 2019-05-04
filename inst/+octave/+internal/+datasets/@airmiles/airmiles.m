@@ -22,7 +22,7 @@ classdef airmiles < octave.internal.dataset
 
     function this = airmiles ()
       this.name = "airmiles";
-      this.description = "Passenger Miles on Commercial US Airlines, 1937-1960";
+      this.summary = "Passenger Miles on Commercial US Airlines, 1937-1960";
     endfunction
 
     function out = load (this)

@@ -39,12 +39,13 @@ classdef (Abstract) dataset
       'airmiles'
       'beavers'
       'iris'
+      'mtcars'
     }
   endproperties
 
   properties
     name
-    description
+    summary
   endproperties
 
   methods (Static)
@@ -53,17 +54,18 @@ classdef (Abstract) dataset
       if ! ismember (name, octave.internal.dataset.included_datasets)
         error ("No defined dataset with name '%s'", name);
       endif
-      class_name = ['tablicious.internal.datasets.' name];
+      class_name = ['octave.internal.datasets.' name];
       out = feval (class_name);
     endfunction
 
     function regenerate_all_datasets ()
       names = octave.internal.dataset.included_datasets;
       for i = 1:numel (names)
-        dset = tablicious.internal.dataset.lookup (names{i});
+        dset = octave.internal.dataset.lookup (names{i});
         dset.regenerate_dataset ();
       endfor
     endfunction
+
   endmethods
 
   methods
@@ -77,6 +79,16 @@ classdef (Abstract) dataset
       % the variables defined in this dataset.
       error('dataset.load is abstract. Subclass %s must implement it, but it does not.', ...
         class (this));
+    endfunction
+
+    function out = description (this)
+      %DESCRIPTION Get or display the description for this dataset
+      description_file = fullfile (this.class_dir, "description.txt");
+      if isfile (description_file)
+        out = fileread (description_file);
+      else
+        out = "<no description available>";
+      endif
     endfunction
 
     function regenerate_dataset (this)
@@ -126,4 +138,19 @@ classdef (Abstract) dataset
 
   endmethods
 
+  methods (Protected)
+    function out = class_dir (this)
+      %CLASS_DIR Directory of the class definition
+      %
+      % This only works for datasets implemented as part of Tablicious' example
+      % data sets, because it makes assumptions about where they live. We have
+      % to do this because Octave's which() doesn't work on classes in namespaces,
+      % as of Octave 4.4.
+      my_dir = fileparts (mfilename ("fullpath"));
+      datasets_namespace_dir = fullfile (my_dir, "+datasets");
+      klass = class (this);
+      base_class = regexprep (klass, '.*\.', "");
+      out = fullfile (datasets_namespace_dir, ["@" base_class]);
+    endfunction
+  endmethods
 endclassdef

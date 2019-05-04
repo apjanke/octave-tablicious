@@ -1,0 +1,38 @@
+Motor Trend 1974 Car Road Tests
+
+Description
+-----------
+
+The data was extracted from the 1974 Motor Trend US magazine, and
+comprises fuel consumption and 10 aspects of automobile design and
+performance for 32 automobiles (1973–74 models).
+
+Format
+------
+
+mpg  - Fuel efficiency in miles/gallon
+cyl  - Number of cylinders
+disp - Displacement (cu. in.)
+hp   - Gross horsepower
+drat - Rear axle ratio
+wt   - Weight (1,000 lbs)
+qsec - 1/4 mile time
+vs   - Engine type (0 = V-shaped, 1 = straight)
+am   - Transmission type (0 = automatic, 1 = manual)
+gear - Number of forward gears
+carb - Number of carburetors
+
+Note
+----
+
+Henderson and Velleman (1981) comment in a footnote to Table 1: “Hocking
+[original transcriber]’s noncrucial coding of the Mazda’s rotary engine
+as a straight six-cylinder engine and the Porsche’s flat engine as a V
+engine, as well as the inclusion of the diesel Mercedes 240D, have been
+retained to enable direct comparisons to be made with previous analyses.”
+
+Source
+------
+
+Henderson and Velleman (1981), Building multiple regression models
+interactively. Biometrics, 37, 391–411.

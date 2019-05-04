@@ -20,7 +20,7 @@ classdef AirPassengers < octave.internal.dataset
 
     function this = AirPassengers ()
       this.name = "AirPassengers";
-      this.description = "Monthly Airline Passenger Numbers 1949-1960";
+      this.summary = "Monthly Airline Passenger Numbers 1949-1960";
     endfunction
 
     function out = load (this)
