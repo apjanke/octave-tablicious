@@ -29,6 +29,7 @@ classdef (Abstract) dataset
   %       cache_file_path() in both of them.
 
   properties (Constant)
+
     % The list of datasets included with Tablicious itself, in the
     % tablicious.internal.datasets namespace. The names here must match
     % The class base name.
@@ -36,11 +37,14 @@ classdef (Abstract) dataset
     % Keep this list in asciibetical order, for tidiness.
     included_datasets = {
       'AirPassengers'
+      'ChickWeight'
       'airmiles'
       'beavers'
+      'cupcake'
       'iris'
       'mtcars'
     }
+
   endproperties
 
   properties
