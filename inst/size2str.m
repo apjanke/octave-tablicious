@@ -39,5 +39,5 @@ function out = size2str (sz)
 	for i = 1:numel (sz)
 		strs{i} = sprintf ("%d", sz(i));
 	endfor
-	out = strjoin (strs, "-by-"");
+	out = strjoin (strs, "-by-");
 endfunction
