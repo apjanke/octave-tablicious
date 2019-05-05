@@ -10,23 +10,25 @@
                 <section title="Getting Started" ref="html/Getting-Started.html">
                 </section>
                 <section title="Table Representation" ref="html/Table-Representation.html">
-                    <section title="table Class" ref="html/table-Class.html">
+                    <section title="Table Construction" ref="html/Table-Construction.html">
+                    </section>
+                    <section title="Tables vs SQL" ref="html/Tables-vs-SQL.html">
                     </section>
                 </section>
-                <section title="Date Representation" ref="html/Date-Representation.html">
+                <section title="Date/Time Representation" ref="html/Date/Time-Representation.html">
                     <section title="datetime Class" ref="html/datetime-Class.html">
-                        <section title="datenum Compatibility" ref="html/datenum-Compatibility.html">
+                        <section title="Datenum Compatibility" ref="html/Datenum-Compatibility.html">
                         </section>
                     </section>
-                </section>
-                <section title="Time Zones" ref="html/Time-Zones.html">
-                    <section title="Defined Time Zones" ref="html/Defined-Time-Zones.html">
+                    <section title="Time Zones" ref="html/Time-Zones.html">
+                        <section title="Defined Time Zones" ref="html/Defined-Time-Zones.html">
+                        </section>
                     </section>
-                </section>
-                <section title="Durations" ref="html/Durations.html">
-                    <section title="duration Class" ref="html/duration-Class.html">
-                    </section>
-                    <section title="calendarDuration Class" ref="html/calendarDuration-Class.html">
+                    <section title="Durations" ref="html/Durations.html">
+                        <section title="duration Class" ref="html/duration-Class.html">
+                        </section>
+                        <section title="calendarDuration Class" ref="html/calendarDuration-Class.html">
+                        </section>
                     </section>
                 </section>
                 <section title="Validation Functions" ref="html/Validation-Functions.html">
@@ -1130,10 +1132,11 @@
             <file>html/Durations.html</file>
             <file>html/Defined-Time-Zones.html</file>
             <file>html/Time-Zones.html</file>
-            <file>html/datenum-Compatibility.html</file>
+            <file>html/Datenum-Compatibility.html</file>
             <file>html/datetime-Class.html</file>
-            <file>html/Date-Representation.html</file>
-            <file>html/table-Class.html</file>
+            <file>html/Date/Time-Representation.html</file>
+            <file>html/Tables-vs-SQL.html</file>
+            <file>html/Table-Construction.html</file>
             <file>html/Table-Representation.html</file>
             <file>html/Getting-Started.html</file>
             <file>html/Introduction.html</file>
