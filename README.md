@@ -47,7 +47,8 @@ If you want to hack on the Tablicious code itself, set it up like this:
 
 ## Documentation
 
-See the `doc-project/` directory for notes on this project, especially for [Developer Notes](doc-project/Developer-Notes.md). Also see [CONTRIBUTING](CONTRIBUTING.md) if you would like to contribute to this project.
+See the `doc-project/` directory for notes on this project, especially for [Developer Notes](doc-project/Developer-Notes.md) and [Design and Justification](doc-project/Design-and-Justification.md), which discusses how and why this library is written.
+Also see [CONTRIBUTING](CONTRIBUTING.md) if you would like to contribute to this project.
 
 The documentation for the latest development version can be viewed online at <https://apjanke.github.io/octave-tablicious/doc/tablicious.html>.
 

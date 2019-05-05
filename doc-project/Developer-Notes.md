@@ -1,6 +1,9 @@
 Tablicious Developer Notes
 ==========================
 
+See also [Design and Justification](Design-and-Justification.html) for info on
+the design of this library.
+
 # TODO
 
 * table
