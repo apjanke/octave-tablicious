@@ -1,0 +1,34 @@
+@subsubheading Description
+
+Aggregated data from a survey of clerical employees at a large financial
+organization.
+
+@subsubheading Format
+
+@table @code
+@item rating
+Overall rating.
+@item complaints
+Handling of employee complaints.
+@item privileges
+Does not allow special privileges.
+@item learning
+Opportunity to learn.
+@item raises
+Raises based on performance.
+@item critical
+Too critical.
+@item advance
+Advancement.
+@end table
+
+@subsubheading Source
+
+Chatterjee, S. and Price, B. (1977) @cite{Regression Analysis by Example}. New York:
+Wiley. (Section 3.7, p.68ff of 2nd ed.(1991).)
+
+@subsubheading Examples
+
+@example
+@INCLUDE_DATASET_EXAMPLE_SCRIPT{attitude_1.m}
+@end example

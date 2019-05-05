@@ -42,6 +42,8 @@ classdef (Abstract) dataset
       'airquality'
       'anscombe'
       'attenu'
+      'attitude'
+      'austres'
       'beavers'
       'cupcake'
       'iris'

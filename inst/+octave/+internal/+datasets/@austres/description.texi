@@ -1,0 +1,23 @@
+@subsubheading Description
+
+Numbers of Australian residents measured quarterly from March 1971 to March 1994.
+
+@subsubheading Format
+
+@table @code
+@item date
+The month of the observation.
+@item residents
+The number of residents.
+@end table
+
+@subsubheading Source
+
+P. J. Brockwell and R. A. Davis (1996) @cite{Introduction to Time Series and
+Forecasting}. Springer
+
+@subsubheading Examples
+
+@example
+@INCLUDE_DATASET_EXAMPLE_SCRIPT{austres_1.m}
+@end example
