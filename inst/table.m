@@ -3460,7 +3460,7 @@ classdef table
               s = ss{j};
               col = {};
               col{end+1} = sprintf ("%d: %s", i_var, s.name);
-              col{end+1} = sprintf ("  %s", s.type);
+              col{end+1} = sprintf ("   %s", s.type);
               val_col_width = max (cellfun(@numel, s.info(:,2)));
               val_col_width = max (val_col_width, 8);
               for i_info = 1:size (s.info, 1)
