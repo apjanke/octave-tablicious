@@ -2,7 +2,7 @@
 
 @c %**start of header
 
-@set VERSION 0.1.0+
+@set VERSION 0.2.0
 
 @setfilename tablicious.info
 @settitle Octave Tablicious v@value{VERSION}
@@ -36,7 +36,7 @@ User manual for Tablicious for Octave.
 
 @titlepage
 @title  Tablicious for Octave
-@subtitle version @value{VERSION}, April 2019
+@subtitle version @value{VERSION}, May 2019
 @author Andrew Janke
 @page
 @vskip 0pt plus 1filll
@@ -106,7 +106,7 @@ The easiest way to obtain Tablicious is by using Octave's @code{pkg} package man
 To install the development prerelease of Tablicious, run this in Octave:
 
 @example
-pkg install https://github.com/apjanke/octave-tablicious/releases/download/v0.1.0+/tablicious-0.1.0+.tar.gz
+pkg install https://github.com/apjanke/octave-tablicious/releases/download/v0.2.0/tablicious-0.2.0.tar.gz
 @end example
 
 (Check the releases page at @url{https://github.com/apjanke/octave-tablicious/releases} to

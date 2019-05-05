@@ -44,6 +44,9 @@ the design of this library.
 * Update release in `DESCRIPTION`
 * Update download instructions version in `README.md`
 * `git commit -a -c <version>`
+* Regenerate the docs
+  * `cd doc; make maintainer-clean; make all`
+* `git commit -a -c 'regenerate doco'`
 * Do `make dist` to make sure that it works
 * `git tag v<version>`
 * `git push; git push --tags`
