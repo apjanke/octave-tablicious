@@ -39,6 +39,8 @@ classdef (Abstract) dataset
       'AirPassengers'
       'ChickWeight'
       'airmiles'
+      'airquality'
+      'anscombe'
       'beavers'
       'cupcake'
       'iris'

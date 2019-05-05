@@ -1,0 +1,57 @@
+@subsubheading Description
+
+Four sets of x/y pairs which have the same statistical properties, but are
+very different.
+
+@subsubheading Format
+
+The data comes in an array of 4 structs, each with fields as follows:
+
+@table @code
+@item x
+The X values for this pair.
+@item y
+The Y values for this pair.
+@end table
+
+@subsubheading Source
+
+Tufte, Edward R. (1989). @cite{The Visual Display of Quantitative Information}.
+13–14. Graphics Press.
+
+@subsubheading References
+
+Anscombe, Francis J. (1973). “Graphs in statistical analysis”. @cite{The
+American Statistician}, 27, 17–21. 
+
+@subsubheading Examples
+
+@example
+data = octave.dataset.anscombe
+
+# Pick good limits for the plots
+all_x = [data.x];
+all_y = [data.y];
+x_limits = [min(0, min(all_x)) max(all_x)*1.2];
+y_limits = [min(0, min(all_y)) max(all_y)*1.2];
+
+# Do regression on each pair and plot the input and results
+figure;
+haxs = NaN (1, 4);
+for i_pair = 1:4
+  x = data(i_pair).x;
+  y = data(i_pair).y;
+  # TODO: Port the anova and other characterizations from the R code
+  # TODO: Do a linear regression and plot its line
+  hax = subplot (2, 2, i_pair);
+  haxs(i_pair) = hax;
+  xlabel (sprintf ("x%d", i_pair));
+  ylabel (sprintf ("y%d", i_pair));
+  scatter (x, y, "r");
+endfor
+
+# Fiddle with the plot axes parameters
+linkaxes (haxs);
+xlim(haxs(1), x_limits);
+ylim(haxs(1), y_limits);
+@end example
