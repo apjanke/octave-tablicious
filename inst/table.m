@@ -2384,6 +2384,26 @@ classdef table
       
       out = groupby (this, groupvar, aggs);
     endfunction
+    
+    ## -*- texinfo -*-
+    ## @node table.splitapply
+    ## @deftypefn {Method} {@var{out} =} splitapply (@var{func}, @var{obj}, @var{G})
+    ## @deftypefnx {Method} {[@var{Y1}, @dots{}, @var{YM}] =} splitapply (@var{func}, @var{obj}, @var{G})
+    ##
+    ## Split table data into groups and apply function.
+    ##
+    ## Performs a splitapply, using the variables in @var{obj} as the input X variables
+    ## to the @code{splitapply} function call.
+    ##
+    ## See also: @ref{splitapply}, @ref{table.groupby}
+    ##
+    ## @end deftypefn
+    function varargout = splitapply (func, this, G)
+      mustBeA (func, 'function_handle');
+      mustBeA (this, 'table');
+      vars = this.VariableValues;
+      out = octave.internal.splitapply_impl (func, vars{:}, G);
+    endfunction
 
     ## -*- texinfo -*-
     ## @node table.rows2vars

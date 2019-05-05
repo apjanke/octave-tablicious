@@ -60,6 +60,7 @@ Miscellaneous
  pp
  scalarexpand
  size2str
+ splitapply
  vecfun
 Example Datasets
  octave.datasets
