@@ -232,7 +232,7 @@ classdef table
     
     ## -*- texinfo -*-
     ## @node table.prettyprint
-    ## @deftypefn {Method} prettyprint (@var{obj})
+    ## @deftypefn {Method} {} prettyprint (@var{obj})
     ##
     ## Display table's values in tabular format. This prints the contents
     ## of the table in human-readable, tabular form.

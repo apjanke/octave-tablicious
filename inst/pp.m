@@ -14,10 +14,10 @@
 ## along with this program; If not, see <http://www.gnu.org/licenses/>.
 
 ## -*- texinfo -*-
-## @deftypefn {Function} pp (@var{X})
-## @deftypefnx {Function} pp (@var{A}, @var{B}, @var{C}, @dots{})
-## @deftypefnx {Function} pp (@code{'A'}, @code{'B'}, @code{'C'}, @dots{})
-## @deftypefnx {Function} pp @code{A} @code{B} @code{C} @dots{}
+## @deftypefn {Function} {} pp (@var{X})
+## @deftypefnx {Function} {} pp (@var{A}, @var{B}, @var{C}, @dots{})
+## @deftypefnx {Function} {} pp (@code{'A'}, @code{'B'}, @code{'C'}, @dots{})
+## @deftypefnx {Function} {} pp @code{A} @code{B} @code{C} @dots{}
 ##
 ## Alias for prettyprint, for interactive use.
 ##
