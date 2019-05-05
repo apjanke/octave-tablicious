@@ -64,7 +64,7 @@
                         <section title="calyears" ref="html/calyears.html">
                         </section>
                         <section title="categorical" ref="html/categorical.html">
-                            <section title="categorical.categorical" ref="html/categorical_002ecategorical.html">
+                            <section title="categorical.undefined" ref="html/categorical_002eundefined.html">
                             </section>
                             <section title="categorical.categorical" ref="html/categorical_002ecategorical.html">
                             </section>
@@ -613,6 +613,7 @@
             <keyword name="categorical.squeezecats" id="categorical.squeezecats" ref="html/categorical_002esqueezecats.html"/>
             <keyword name="categorical.string" id="categorical.string" ref="html/categorical_002estring.html"/>
             <keyword name="categorical.summary" id="categorical.summary" ref="html/categorical_002esummary.html"/>
+            <keyword name="categorical.undefined" id="categorical.undefined" ref="html/categorical_002eundefined.html"/>
             <keyword name="cell2table" id="cell2table" ref="html/cell2table.html"/>
             <keyword name="colvecfun" id="colvecfun" ref="html/colvecfun.html"/>
             <keyword name="contains" id="contains" ref="html/contains.html"/>
@@ -1101,7 +1102,7 @@
             <file>html/categorical_002ecategories.html</file>
             <file>html/categorical_002esizeof.html</file>
             <file>html/categorical_002ecategorical.html</file>
-            <file>html/categorical_002ecategorical.html</file>
+            <file>html/categorical_002eundefined.html</file>
             <file>html/categorical.html</file>
             <file>html/calyears.html</file>
             <file>html/calmonths.html</file>

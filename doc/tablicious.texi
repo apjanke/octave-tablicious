@@ -986,11 +986,11 @@ ordinal relationship.
 @end deftypeivar
 
 
-@node categorical.categorical
-@subsubsection categorical.categorical
+@node categorical.undefined
+@subsubsection categorical.undefined
 
 @deftypefn {Static Method} {@var{out} =} categorical.undefined ()
-@deftypefn {Static Method} {@var{out} =} categorical.undefined (sz)
+@deftypefnx {Static Method} {@var{out} =} categorical.undefined (sz)
 
 Create an array of undefined categoricals.
 
@@ -4457,6 +4457,13 @@ DataFrame in R or Pandas.
 A table is an array in itself: its size is @var{nrows}-by-@var{nvariables},
 and you can index along the rows and variables by indexing into the table
 along dimensions 1 and 2.
+
+A note on accessing properties of a @code{table} array: Because .-indexing is
+used to access the variables inside the array, it can’t also be directly used
+to access properties as well. Instead, do @code{t.Properties.<property>} for
+a table @code{t}. That will give you a property instead of a variable.
+(And due to this mechanism, it will cause problems if you have a @code{table}
+with a variable named @code{Properties}. Try to avoid that.)
 
 @end deftp
 
