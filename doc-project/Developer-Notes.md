@@ -43,7 +43,7 @@ the design of this library.
 
 * Update release in `DESCRIPTION`
 * Update download instructions version in `README.md`
-* `git commit`
+* `git commit -a -c <version>`
 * Do `make dist` to make sure that it works
 * `git tag v<version>`
 * `git push; git push --tags`
