@@ -20,5 +20,11 @@ Indicator of activity outside the retreat.
 
 P. S. Reynolds (1994) Time-series analyses of beaver body temperatures.
 Chapter 11 of Lange, N., Ryan, L., Billard, L., Brillinger, D., Conquest,
-L. and Greenhouse, J. eds (1994) Case Studies in Biometry. New York: John Wiley
+L. and Greenhouse, J. eds (1994) @cite{Case Studies in Biometry}. New York: John Wiley
 and Sons.
+
+@subsubheading Examples
+
+@example
+# TODO: This example needs to be ported from R.
+@end example

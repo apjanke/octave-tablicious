@@ -4,12 +4,22 @@ Monthly popularity of worldwide Google search results for "cupcake", 2004-2019.
 
 @subsubheading Format
 
-Month - Month when searches took place
-
-Cupcake - An indicator of search volume, in unknown units
+@table @code
+@item Month
+Month when searches took place
+@item Cupcake
+An indicator of search volume, in unknown units
+@end table
 
 @subsubheading Source
 
 Google Trends, @url{https://trends.google.com/trends/explore?q=%2Fm%2F03p1r4&date=all},
-retrieved 2019-05-04 buy apjanke.
+retrieved 2019-05-04 by Andrew Janke.
 
+@subsubheading Examples
+
+@example
+t = octave.dataset.cupcake
+plot(datenum(t.Month), t.Cupcake)
+title ('“Cupcake” Google Searches'); xlabel ("Year"); ylabel ("Unknown popularity metric")
+@end example

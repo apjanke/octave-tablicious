@@ -18,11 +18,17 @@ the chick received.
 
 @subsubheading Source
 
-Crowder, M. and Hand, D. (1990), Analysis of Repeated Measures, Chapman and
+Crowder, M. and Hand, D. (1990), @cite{Analysis of Repeated Measures}. Chapman and
 Hall (example 5.3)
 
-Hand, D. and Crowder, M. (1996), Practical Longitudinal Data Analysis, Chapman
+Hand, D. and Crowder, M. (1996), @cite{Practical Longitudinal Data Analysis}. Chapman
 and Hall (table A.2)
 
-Pinheiro, J. C. and Bates, D. M. (2000) Mixed-effects Models in S and S-PLUS,
+Pinheiro, J. C. and Bates, D. M. (2000) @cite{Mixed-effects Models in S and S-PLUS}.
 Springer.
+
+@subsubheading Examples
+
+@example
+# TODO: This example needs to be ported from R.
+@end example

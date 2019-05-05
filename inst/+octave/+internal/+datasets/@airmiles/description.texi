@@ -5,4 +5,14 @@ United States for each year from 1937 to 1960.
 
 @subsubheading Source
 
-F.A.A. Statistical Handbook of Aviation.
+@cite{F.A.A. Statistical Handbook of Aviation}.
+
+@subsubheading Examples
+
+@example
+t = octave.dataset.airmiles;
+plot (t.year, t.miles);
+title ("airmiles data");
+xlabel ("Passenger-miles flown by U.S. commercial airlines")
+ylabel ("airmiles");
+@end example
