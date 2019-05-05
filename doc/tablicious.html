@@ -7830,10 +7830,70 @@ Next: <a href="#table_002efindgroups" accesskey="n" rel="next">table.findgroups<
 <span id="table_002erowfun-1"></span><h4 class="subsubsection">9.2.57.66 table.rowfun</h4>
 
 <dl>
-<dt id="index-varfun-4">Method: <em><var>out</var> =</em> <strong>varfun</strong> <em>(<var>fcn</var>, <var>obj</var>)</em></dt>
+<dt id="index-varfun-4">Method: <em><var>out</var> =</em> <strong>varfun</strong> <em>(<var>func</var>, <var>obj</var>)</em></dt>
 <dt id="index-varfun-5">Method: <em><var>out</var> =</em> <strong>varfun</strong> <em>(&hellip;, <code>'OptionName'</code>, <var>OptionValue</var>, &hellip;)</em></dt>
 <dd>
-<p>This method is currently unimplemented. Sorry.
+<p>Apply function to rows in table and collect outputs.
+</p>
+<p>This applies the function <var>func</var> to the elements of each row of
+<var>obj</var>’s variables, and collects the concatenated output(s) into the
+variable(s) of a new table.
+</p>
+<p><var>func</var> is a function handle. It should take as many inputs as there
+are variables in <var>obj</var>. Or, it can take a single input, and you must
+specify <code>'SeparateInputs', false</code> to have the input variables
+concatenated before being passed to <var>func</var>. It may return multiple
+argouts, but to capture those past the first one, you must explicitly
+specify the <code>'NumOutputs'</code> or <code>'OutputVariableNames'</code> options.
+</p>
+<p>Supported name/value options:
+</p><dl compact="compact">
+<dt><code>'OutputVariableNames'</code></dt>
+<dd><p>Names of table variables to store combined function output arguments in.
+</p></dd>
+<dt><code>'NumOutputs'</code></dt>
+<dd><p>Number of output arguments to call function with. If omitted, defaults to
+number of items in <var>OutputVariableNames</var> if it is supplied, otherwise
+defaults to 1.
+</p></dd>
+<dt><code>'SeparateInputs'</code></dt>
+<dd><p>If true, input variables are passed as separate input arguments to <var>func</var>.
+If false, they are concatenated together into a row vector and passed as
+a single argument. Defaults to true.
+</p></dd>
+<dt><code>'ErrorHandler'</code></dt>
+<dd><p>A function to call as a fallback when calling <var>func</var> results in an error.
+It is passed the caught exception, along with the original inputs passed
+to <var>func</var>, and it has a “second chance” to compute replacement values
+for that row. This is useful for converting raised errors to missing-value
+fill values, or logging warnings.
+</p></dd>
+<dt><code>'ExtractCellContents'</code></dt>
+<dd><p>Whether to “pop out” the contents of the elements of cell variables in
+<var>obj</var>, or to leave them as cells. True/false; default is false. If
+you specify this option, then <var>obj</var> may not have any multi-column
+cell-valued variables.
+</p></dd>
+<dt><code>'InputVariables'</code></dt>
+<dd><p>If specified, only these variables from <var>obj</var> are used as the function
+inputs, instead of using all variables.
+</p></dd>
+<dt><code>'GroupingVariables'</code></dt>
+<dd><p>Not yet implemented.
+</p></dd>
+<dt><code>'OutputFormat'</code></dt>
+<dd><p>The format of the output. May be <code>'table'</code> (the default),
+<code>'uniform'</code>, or <code>'cell'</code>. If it is <code>'uniform'</code> or <code>'cell'</code>,
+the output variables are returned in multiple output arguments from
+<code>'rowfun'</code>.
+</p></dd>
+</dl>
+
+<p>Returns a <code>table</code> whose variables are the collected output arguments
+of <var>func</var> if <var>OutputFormat</var> is <code>'table'</code>. Otherwise, returns
+multiple output arguments of whatever type <var>func</var> returned (if
+<var>OutputFormat</var> is <code>'uniform'</code>) or cells (if <var>OutputFormat</var>
+is <code>'cell'</code>).
 </p>
 </dd></dl>
 
