@@ -54,7 +54,23 @@ classdef dataset
     ## @end deftypefn
     function out = AirPassengers ()
       name = 'AirPassengers';
-      out = octave.datasets.load(name);
+      data = octave.datasets.load(name);
+      if nargout == 0
+        if isstruct (data)
+          s = data;
+          vars = fieldnames (s);
+          for i = 1:numel (vars)
+            assignin ('caller', vars{i}, s.(vars{i}));
+          endfor
+          loaded_vars = vars;
+        else
+          assignin ('caller', name, data);
+          loaded_vars = { name };
+        endif
+        printf ('Loaded ''%s''. Variables: %s\n', name, strjoin (loaded_vars, ', '));
+      else
+        out = data;
+      endif
     endfunction
 
     ## -*- texinfo -*-
@@ -102,7 +118,23 @@ classdef dataset
     ## @end deftypefn
     function out = ChickWeight ()
       name = 'ChickWeight';
-      out = octave.datasets.load(name);
+      data = octave.datasets.load(name);
+      if nargout == 0
+        if isstruct (data)
+          s = data;
+          vars = fieldnames (s);
+          for i = 1:numel (vars)
+            assignin ('caller', vars{i}, s.(vars{i}));
+          endfor
+          loaded_vars = vars;
+        else
+          assignin ('caller', name, data);
+          loaded_vars = { name };
+        endif
+        printf ('Loaded ''%s''. Variables: %s\n', name, strjoin (loaded_vars, ', '));
+      else
+        out = data;
+      endif
     endfunction
 
     ## -*- texinfo -*-
@@ -134,7 +166,23 @@ classdef dataset
     ## @end deftypefn
     function out = airmiles ()
       name = 'airmiles';
-      out = octave.datasets.load(name);
+      data = octave.datasets.load(name);
+      if nargout == 0
+        if isstruct (data)
+          s = data;
+          vars = fieldnames (s);
+          for i = 1:numel (vars)
+            assignin ('caller', vars{i}, s.(vars{i}));
+          endfor
+          loaded_vars = vars;
+        else
+          assignin ('caller', name, data);
+          loaded_vars = { name };
+        endif
+        printf ('Loaded ''%s''. Variables: %s\n', name, strjoin (loaded_vars, ', '));
+      else
+        out = data;
+      endif
     endfunction
 
     ## -*- texinfo -*-
@@ -211,7 +259,23 @@ classdef dataset
     ## @end deftypefn
     function out = airquality ()
       name = 'airquality';
-      out = octave.datasets.load(name);
+      data = octave.datasets.load(name);
+      if nargout == 0
+        if isstruct (data)
+          s = data;
+          vars = fieldnames (s);
+          for i = 1:numel (vars)
+            assignin ('caller', vars{i}, s.(vars{i}));
+          endfor
+          loaded_vars = vars;
+        else
+          assignin ('caller', name, data);
+          loaded_vars = { name };
+        endif
+        printf ('Loaded ''%s''. Variables: %s\n', name, strjoin (loaded_vars, ', '));
+      else
+        out = data;
+      endif
     endfunction
 
     ## -*- texinfo -*-
@@ -282,7 +346,23 @@ classdef dataset
     ## @end deftypefn
     function out = anscombe ()
       name = 'anscombe';
-      out = octave.datasets.load(name);
+      data = octave.datasets.load(name);
+      if nargout == 0
+        if isstruct (data)
+          s = data;
+          vars = fieldnames (s);
+          for i = 1:numel (vars)
+            assignin ('caller', vars{i}, s.(vars{i}));
+          endfor
+          loaded_vars = vars;
+        else
+          assignin ('caller', name, data);
+          loaded_vars = { name };
+        endif
+        printf ('Loaded ''%s''. Variables: %s\n', name, strjoin (loaded_vars, ', '));
+      else
+        out = data;
+      endif
     endfunction
 
     ## -*- texinfo -*-
@@ -335,7 +415,23 @@ classdef dataset
     ## @end deftypefn
     function out = attenu ()
       name = 'attenu';
-      out = octave.datasets.load(name);
+      data = octave.datasets.load(name);
+      if nargout == 0
+        if isstruct (data)
+          s = data;
+          vars = fieldnames (s);
+          for i = 1:numel (vars)
+            assignin ('caller', vars{i}, s.(vars{i}));
+          endfor
+          loaded_vars = vars;
+        else
+          assignin ('caller', name, data);
+          loaded_vars = { name };
+        endif
+        printf ('Loaded ''%s''. Variables: %s\n', name, strjoin (loaded_vars, ', '));
+      else
+        out = data;
+      endif
     endfunction
 
     ## -*- texinfo -*-
@@ -390,7 +486,23 @@ classdef dataset
     ## @end deftypefn
     function out = attitude ()
       name = 'attitude';
-      out = octave.datasets.load(name);
+      data = octave.datasets.load(name);
+      if nargout == 0
+        if isstruct (data)
+          s = data;
+          vars = fieldnames (s);
+          for i = 1:numel (vars)
+            assignin ('caller', vars{i}, s.(vars{i}));
+          endfor
+          loaded_vars = vars;
+        else
+          assignin ('caller', name, data);
+          loaded_vars = { name };
+        endif
+        printf ('Loaded ''%s''. Variables: %s\n', name, strjoin (loaded_vars, ', '));
+      else
+        out = data;
+      endif
     endfunction
 
     ## -*- texinfo -*-
@@ -420,7 +532,7 @@ classdef dataset
     ## @subsubheading Examples
     ## 
     ## @example
-    ## t = octave.datasets.austres
+    ## t = octave.dataset.austres
     ## 
     ## plot (datenum (t.date), t.residents);
     ## datetick x
@@ -431,7 +543,23 @@ classdef dataset
     ## @end deftypefn
     function out = austres ()
       name = 'austres';
-      out = octave.datasets.load(name);
+      data = octave.datasets.load(name);
+      if nargout == 0
+        if isstruct (data)
+          s = data;
+          vars = fieldnames (s);
+          for i = 1:numel (vars)
+            assignin ('caller', vars{i}, s.(vars{i}));
+          endfor
+          loaded_vars = vars;
+        else
+          assignin ('caller', name, data);
+          loaded_vars = { name };
+        endif
+        printf ('Loaded ''%s''. Variables: %s\n', name, strjoin (loaded_vars, ', '));
+      else
+        out = data;
+      endif
     endfunction
 
     ## -*- texinfo -*-
@@ -475,7 +603,23 @@ classdef dataset
     ## @end deftypefn
     function out = beavers ()
       name = 'beavers';
-      out = octave.datasets.load(name);
+      data = octave.datasets.load(name);
+      if nargout == 0
+        if isstruct (data)
+          s = data;
+          vars = fieldnames (s);
+          for i = 1:numel (vars)
+            assignin ('caller', vars{i}, s.(vars{i}));
+          endfor
+          loaded_vars = vars;
+        else
+          assignin ('caller', name, data);
+          loaded_vars = { name };
+        endif
+        printf ('Loaded ''%s''. Variables: %s\n', name, strjoin (loaded_vars, ', '));
+      else
+        out = data;
+      endif
     endfunction
 
     ## -*- texinfo -*-
@@ -515,7 +659,23 @@ classdef dataset
     ## @end deftypefn
     function out = cupcake ()
       name = 'cupcake';
-      out = octave.datasets.load(name);
+      data = octave.datasets.load(name);
+      if nargout == 0
+        if isstruct (data)
+          s = data;
+          vars = fieldnames (s);
+          for i = 1:numel (vars)
+            assignin ('caller', vars{i}, s.(vars{i}));
+          endfor
+          loaded_vars = vars;
+        else
+          assignin ('caller', name, data);
+          loaded_vars = { name };
+        endif
+        printf ('Loaded ''%s''. Variables: %s\n', name, strjoin (loaded_vars, ', '));
+      else
+        out = data;
+      endif
     endfunction
 
     ## -*- texinfo -*-
@@ -570,7 +730,23 @@ classdef dataset
     ## @end deftypefn
     function out = iris ()
       name = 'iris';
-      out = octave.datasets.load(name);
+      data = octave.datasets.load(name);
+      if nargout == 0
+        if isstruct (data)
+          s = data;
+          vars = fieldnames (s);
+          for i = 1:numel (vars)
+            assignin ('caller', vars{i}, s.(vars{i}));
+          endfor
+          loaded_vars = vars;
+        else
+          assignin ('caller', name, data);
+          loaded_vars = { name };
+        endif
+        printf ('Loaded ''%s''. Variables: %s\n', name, strjoin (loaded_vars, ', '));
+      else
+        out = data;
+      endif
     endfunction
 
     ## -*- texinfo -*-
@@ -634,7 +810,23 @@ classdef dataset
     ## @end deftypefn
     function out = mtcars ()
       name = 'mtcars';
-      out = octave.datasets.load(name);
+      data = octave.datasets.load(name);
+      if nargout == 0
+        if isstruct (data)
+          s = data;
+          vars = fieldnames (s);
+          for i = 1:numel (vars)
+            assignin ('caller', vars{i}, s.(vars{i}));
+          endfor
+          loaded_vars = vars;
+        else
+          assignin ('caller', name, data);
+          loaded_vars = { name };
+        endif
+        printf ('Loaded ''%s''. Variables: %s\n', name, strjoin (loaded_vars, ', '));
+      else
+        out = data;
+      endif
     endfunction
 
   endmethods

@@ -48,7 +48,23 @@ function generate_datasets_list ()
     p ("    ## @end deftypefn");
     p ("    function out = %s ()", name);
     p ("      name = '%s';", name);
-    p ("      out = octave.datasets.load(name);")
+    p ("      data = octave.datasets.load(name);")
+    p ("      if nargout == 0")
+    p ("        if isstruct (data)")
+    p ("          s = data;")
+    p ("          vars = fieldnames (s);")
+    p ("          for i = 1:numel (vars)")
+    p ("            assignin ('caller', vars{i}, s.(vars{i}));")
+    p ("          endfor")
+    p ("          loaded_vars = vars;")
+    p ("        else")
+    p ("          assignin ('caller', name, data);")
+    p ("          loaded_vars = { name };")
+    p ("        endif")
+    p ("%s", "        printf ('Loaded ''%s''. Variables: %s\\n', name, strjoin (loaded_vars, ', '));")
+    p ("      else")
+    p ("        out = data;")
+    p ("      endif")
     p ("    endfunction");
     p ("");
   endfor

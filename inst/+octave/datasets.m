@@ -70,15 +70,23 @@ classdef datasets
     ## @end deftypefn
     function out = load (name)
       dset = octave.internal.dataset.lookup (name);
-      s = dset.load ();
+      data = dset.load ();
       if nargout == 0
-        vars = fieldnames (s);
-        for i = 1:numel(vars)
-          var = vars{i};
-          assignin ("caller", var, s.(var));
-        endfor
+        if isstruct (data)
+          s = data;
+          vars = fieldnames (s);
+          for i = 1:numel(vars)
+            var = vars{i};
+            assignin ("caller", var, s.(var));
+          endfor
+          loaded_vars = vars;
+        else
+          assignin ("caller", name, data);
+          loaded_vars = { name };
+        endif
+        printf ("Loaded '%s'. Variables: %s\n", name, strjoin (loaded_vars, ", "));
       else
-        out = s;
+        out = data;
       endif
     endfunction
 
