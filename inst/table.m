@@ -31,6 +31,13 @@
 ## and you can index along the rows and variables by indexing into the table
 ## along dimensions 1 and 2.
 ##
+## A note on accessing properties of a @code{table} array: Because .-indexing is
+## used to access the variables inside the array, it can’t also be directly used
+## to access properties as well. Instead, do @code{t.Properties.<property>} for
+## a table @code{t}. That will give you a property instead of a variable.
+## (And due to this mechanism, it will cause problems if you have a @code{table}
+## with a variable named @code{Properties}. Try to avoid that.)
+##
 ## @end deftp
 ##
 ## @deftypeivar table @code{cellstr} VariableNames
