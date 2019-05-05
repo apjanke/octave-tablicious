@@ -601,6 +601,12 @@ Plot pairs of variables against each other.
 @end table
 @subsection Uncategorized
 @table @asis
+@item @ref{iscategorical}
+True if input is a 'categorical' array, false otherwise.
+
+@item @ref{isstring}
+True if input is a 'string' array, false otherwise.
+
 @item @ref{octave.chrono.dummy_function}
 A dummy function just for testing the doco tools.
 
@@ -635,12 +641,15 @@ A do-nothing class just for testing the doco tools.
 * fillmissing:: Fill missing values.
 * hours::	Create a 'duration' X hours long, or get the hours in a
 		'duration' X.
+* iscategorical::	True if input is a 'categorical' array, false
+		otherwise.
 * isdatetime::	True if input is a 'datetime' array, false otherwise.
 * isduration::	True if input is a 'duration' array, false otherwise.
 * isfile::	Test whether file exists and is not a folder.
 * isfolder::	Test whether file exists and is a folder.
 * ismissing::	Find missing values.
 * isnannish::	Test if elements are NaN or NaN-like
+* isstring::	True if input is a 'string' array, false otherwise.
 * localdate::	Represents a complete day using the Gregorian calendar.
 * milliseconds::	Create a 'duration' X milliseconds long, or get the
 		milliseconds in a 'duration' X.
@@ -976,6 +985,23 @@ ordinal relationship.
 
 @end deftypeivar
 
+
+@node categorical.categorical
+@subsubsection categorical.categorical
+
+@deftypefn {Static Method} {@var{out} =} categorical.undefined ()
+@deftypefn {Static Method} {@var{out} =} categorical.undefined (sz)
+
+Create an array of undefined categoricals.
+
+Creates a categorical array whose elements are all <undefined>.
+
+@var{sz} is the size of the array to create. If omitted or empty, creates
+a scalar.
+
+Returns a categorical.
+
+@end deftypefn
 
 @node categorical.categorical
 @subsubsection categorical.categorical
@@ -2241,23 +2267,36 @@ Returns an array the same size as @var{x}.
 @end deftypefn
 
 
+@node iscategorical
+@subsection iscategorical
+@deftypefn {Function} {@var{out} =} iscategorical (@var{x})
+
+True if input is a @code{categorical} array, false otherwise.
+
+Returns a scalar logical.
+
+@end deftypefn
+
+
 @node isdatetime
 @subsection isdatetime
-@deftypefn {Function} {@var{tf} =} isdatetime (@var{x})
+@deftypefn {Function} {@var{out} =} isdatetime (@var{x})
 
 True if input is a @code{datetime} array, false otherwise.
 
-Returns a logical array the same size as @var{x}.
+Returns a scalar logical.
+
 @end deftypefn
 
 
 @node isduration
 @subsection isduration
-@deftypefn {Function} {@var{tf} =} isduration (@var{x})
+@deftypefn {Function} {@var{out} =} isduration (@var{x})
 
 True if input is a @code{duration} array, false otherwise.
 
-Returns a logical array the same size as @var{x}.
+Returns a scalar logical.
+
 @end deftypefn
 
 
@@ -2402,6 +2441,17 @@ Under normal operation, @code{isnannish()} should not throw an error for any typ
 value of input.
 
 See also: @code{isnan}, @code{isnat}, @ref{ismissing}, @ref{eqn}, @code{isequaln}
+
+@end deftypefn
+
+
+@node isstring
+@subsection isstring
+@deftypefn {Function} {@var{out} =} isstring (@var{x})
+
+True if input is a @code{string} array, false otherwise.
+
+Returns a scalar logical.
 
 @end deftypefn
 
@@ -4468,14 +4518,11 @@ Overrides the implicit names garnered from the input variable names.
 @subsubsection table.summary
 
 @deftypefn {Method} summary (@var{obj})
-@deftypefnx {Method} {@var{s} =} summary (@var{obj})
 
 Summary of table's data.
 
-Displays or returns a summary of data in the input table. This will
-contain some statistical information on each of its variables.
-
-This method is not implemented yet.
+Displays a summary of data in the input table. This will contain some
+statistical information on each of its variables.
 
 @end deftypefn
 

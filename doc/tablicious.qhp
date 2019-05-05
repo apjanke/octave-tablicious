@@ -66,6 +66,8 @@
                         <section title="categorical" ref="html/categorical.html">
                             <section title="categorical.categorical" ref="html/categorical_002ecategorical.html">
                             </section>
+                            <section title="categorical.categorical" ref="html/categorical_002ecategorical.html">
+                            </section>
                             <section title="categorical.sizeof" ref="html/categorical_002esizeof.html">
                             </section>
                             <section title="categorical.categories" ref="html/categorical_002ecategories.html">
@@ -217,6 +219,8 @@
                         </section>
                         <section title="hours" ref="html/hours.html">
                         </section>
+                        <section title="iscategorical" ref="html/iscategorical.html">
+                        </section>
                         <section title="isdatetime" ref="html/isdatetime.html">
                         </section>
                         <section title="isduration" ref="html/isduration.html">
@@ -228,6 +232,8 @@
                         <section title="ismissing" ref="html/ismissing.html">
                         </section>
                         <section title="isnannish" ref="html/isnannish.html">
+                        </section>
+                        <section title="isstring" ref="html/isstring.html">
                         </section>
                         <section title="localdate" ref="html/localdate.html">
                             <section title="localdate.localdate" ref="html/localdate_002elocaldate.html">
@@ -664,12 +670,14 @@
             <keyword name="eqn" id="eqn" ref="html/eqn.html"/>
             <keyword name="fillmissing" id="fillmissing" ref="html/fillmissing.html"/>
             <keyword name="hours" id="hours" ref="html/hours.html"/>
+            <keyword name="iscategorical" id="iscategorical" ref="html/iscategorical.html"/>
             <keyword name="isdatetime" id="isdatetime" ref="html/isdatetime.html"/>
             <keyword name="isduration" id="isduration" ref="html/isduration.html"/>
             <keyword name="isfile" id="isfile" ref="html/isfile.html"/>
             <keyword name="isfolder" id="isfolder" ref="html/isfolder.html"/>
             <keyword name="ismissing" id="ismissing" ref="html/ismissing.html"/>
             <keyword name="isnannish" id="isnannish" ref="html/isnannish.html"/>
+            <keyword name="isstring" id="isstring" ref="html/isstring.html"/>
             <keyword name="localdate" id="localdate" ref="html/localdate.html"/>
             <keyword name="localdate.NaT" id="localdate.NaT" ref="html/localdate_002eNaT.html"/>
             <keyword name="localdate.datenum" id="localdate.datenum" ref="html/localdate_002edatenum.html"/>
@@ -1009,12 +1017,14 @@
             <file>html/localdate_002eNaT.html</file>
             <file>html/localdate_002elocaldate.html</file>
             <file>html/localdate.html</file>
+            <file>html/isstring.html</file>
             <file>html/isnannish.html</file>
             <file>html/ismissing.html</file>
             <file>html/isfolder.html</file>
             <file>html/isfile.html</file>
             <file>html/isduration.html</file>
             <file>html/isdatetime.html</file>
+            <file>html/iscategorical.html</file>
             <file>html/hours.html</file>
             <file>html/fillmissing.html</file>
             <file>html/eqn.html</file>
@@ -1090,6 +1100,7 @@
             <file>html/categorical_002eiscategory.html</file>
             <file>html/categorical_002ecategories.html</file>
             <file>html/categorical_002esizeof.html</file>
+            <file>html/categorical_002ecategorical.html</file>
             <file>html/categorical_002ecategorical.html</file>
             <file>html/categorical.html</file>
             <file>html/calyears.html</file>
