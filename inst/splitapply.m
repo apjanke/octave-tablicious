@@ -15,9 +15,9 @@
 
 ## -*- texinfo -*-
 ## @node splitapply
-## @deftypefn {Method} {@var{out} =} splitapply (@var{func}, @var{X}, @var{G})
-## @deftypefnx {Method} {@var{out} =} splitapply (@var{func}, @var{X1}, @dots{}, @var{XN}, @var{G})
-## @deftypefnx {Method} {[@var{Y1}, @dots{}, @var{YM}] =} splitapply (@dots{})
+## @deftypefn {Function} {@var{out} =} splitapply (@var{func}, @var{X}, @var{G})
+## @deftypefnx {Function} {@var{out} =} splitapply (@var{func}, @var{X1}, @dots{}, @var{XN}, @var{G})
+## @deftypefnx {Function} {[@var{Y1}, @dots{}, @var{YM}] =} splitapply (@dots{})
 ##
 ## Split data into groups and apply function.
 ##
