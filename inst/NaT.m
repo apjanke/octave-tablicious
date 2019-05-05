@@ -30,6 +30,9 @@
 ## than any value, including other @code{NaT}s. Doing arithmetic with a @code{NaT} and
 ## any other value results in a @code{NaT}.
 ##
+## @code{NaT} currently cannot create NaT arrays of type @code{localdate}. To do that,
+## use @ref{localdate.NaT} instead.
+##
 ## @end deftypefn
 function out = NaT (sz)
   %NaT Not-a-Time
