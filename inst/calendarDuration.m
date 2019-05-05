@@ -202,44 +202,6 @@ classdef calendarDuration
       keysB = [b.Sign(:) b.Years(:) b.Months(:) b.Days(:) b.Time(:) double (b.IsNaN(:))];
     endfunction
     
-    % These setters have sometimes caused Octave to crash if they are enabled.
-    % But they haven't done so recently, so I'me leaving them on. Please send
-    % bug report if this is reproducible.
-    
-    function this = set.Sign (this, x)
-      if ~isnumeric (x)
-        error ('Sign must be numeric');
-      endif
-      if ~all (ismember (x(:), [-1 1]))
-        error ('Sign must be -1 or 1; got %f', x);
-      endif
-      this.Sign = x;
-    endfunction
-    
-    function this = set.Years (this, Years)
-      octave.chrono.internal.mustBeIntVal (Years);
-      this.Years = Years;
-      this = normalizeNaNs (this);
-    endfunction
-    
-    function this = set.Months (this, Months)
-      octave.chrono.internal.mustBeIntVal (Months);
-      this.Months = Months;
-      this = normalizeNaNs (this);
-    endfunction
-    
-    function this = set.Days (this, Days)
-      octave.chrono.internal.mustBeIntVal (Days);
-      this.Days = Days;
-      this = normalizeNaNs (this);
-    endfunction
-    
-    function this = set.Time (this, Time)
-      this.Time = Time;
-      this = normalizeNaNs (this);
-      this = normalizeNaNs (this);
-    endfunction
-    
     function out = calyears (this)
       out = this.Years;
     endfunction

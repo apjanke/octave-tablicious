@@ -973,7 +973,8 @@ classdef datetime
     ## @end deftypefn
     function out = plus (A, B)
       %PLUS Addition.
-
+      A_in = A;
+      B_in = B;
       % TODO: Maybe support `duration/calendarDuration + datetime` form by just swapping the
       % arguments.
       if ~isa (A, 'datetime')
@@ -987,7 +988,10 @@ classdef datetime
         [A, B] = octave.chrono.internal.scalarexpand (A, B);
         out = A;
         for i = 1:numel (A)
-          out = asgn(out, i, plusScalarCalendarDuration (subset(A, i), B(i)));
+          A_i = subset (A, i);
+          B_i = B(i);
+          out_i = plusScalarCalendarDuration (A_i, B_i);
+          out = asgn(out, i, out_i);
         endfor
       elseif isnumeric (B)
         out = A + duration.ofDays (B);
@@ -1089,6 +1093,15 @@ classdef datetime
           increment = varargin{1};
           limit = varargin{2};
       endswitch
+      if isa (increment, 'calendarDuration')
+        % TODO: Fix this slow, Shlemiel implementation
+        out = this;
+        while subset (out, numel(out)) < limit
+          next_date = subset (out, numel(out)) + increment;
+          out = [out next_date];
+        endwhile
+        return
+      endif
       if isnumeric (increment)
         increment = duration.ofDays (increment);
       endif
