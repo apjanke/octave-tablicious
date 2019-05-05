@@ -10,9 +10,5 @@ United States for each year from 1937 to 1960.
 @subsubheading Examples
 
 @example
-t = octave.dataset.airmiles;
-plot (t.year, t.miles);
-title ("airmiles data");
-xlabel ("Passenger-miles flown by U.S. commercial airlines")
-ylabel ("airmiles");
+@INCLUDE_DATASET_EXAMPLE_SCRIPT{airmiles_1.m}
 @end example

@@ -204,6 +204,7 @@ classdef dataset
     ##     plot (hax, x_hat, p_y, "r");
     ##   endfor
     ## endfor
+    ## 
     ## @end example
     ## 
     ##
@@ -290,6 +291,45 @@ classdef dataset
     ##
     ## Joyner-Boore Earthquake Attenuation Data
     ##
+    ## @subsubheading Description
+    ## 
+    ## Event data for 23 earthquakes in California, showing peak accelerations.
+    ## 
+    ## @subsubheading Format
+    ## 
+    ## @table @code
+    ## @item event
+    ## Event number
+    ## @item mag
+    ## Moment magnitude
+    ## @item station
+    ## Station identifier
+    ## @item dist
+    ## Station-hypocenter distance (km)
+    ## @item accel
+    ## Peak acceleration (g)
+    ## @end table
+    ## 
+    ## @subsubheading Source
+    ## 
+    ## Joyner, W.B., D.M. Boore and R.D. Porcella (1981). Peak horizontal acceleration
+    ## and velocity from strong-motion records including records from the 1979
+    ## Imperial Valley, California earthquake. USGS Open File report 81-365. Menlo
+    ## Park, Ca.
+    ## 
+    ## @subsubheading References
+    ## 
+    ## Boore, D. M. and Joyner, W. B.(1982). The empirical prediction of ground
+    ## motion, @cite{Bulletin of the Seismological Society of America}, 72, S269–S268.
+    ## 
+    ## @subsubheading Examples
+    ## 
+    ## @example
+    ## # TODO: Port the example code from R
+    ## # It does coplot() and pairs(), which are higher-level plotting tools 
+    ## # than core Octave provides. This could turn into a long example if we
+    ## # just use base Octave here.
+    ## @end example
     ## 
     ##
     ## @end deftypefn
@@ -372,6 +412,7 @@ classdef dataset
     ## t = octave.dataset.cupcake
     ## plot(datenum(t.Month), t.Cupcake)
     ## title ('“Cupcake” Google Searches'); xlabel ("Year"); ylabel ("Unknown popularity metric")
+    ## 
     ## @end example
     ## 
     ##

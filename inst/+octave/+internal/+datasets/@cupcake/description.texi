@@ -19,7 +19,5 @@ retrieved 2019-05-04 by Andrew Janke.
 @subsubheading Examples
 
 @example
-t = octave.dataset.cupcake
-plot(datenum(t.Month), t.Cupcake)
-title ('“Cupcake” Google Searches'); xlabel ("Year"); ylabel ("Unknown popularity metric")
+@INCLUDE_DATASET_EXAMPLE_SCRIPT{cupcake_1.m}
 @end example

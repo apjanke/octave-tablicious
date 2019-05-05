@@ -38,5 +38,5 @@ Peninsula, @cite{Bulletin of the American Iris Society}, 59, 2–5.
 @subsubheading Examples
 
 @example
-# TODO: Port this example from R
+@INCLUDE_DATASET_EXAMPLE_SCRIPT{iris_1.m}
 @end example

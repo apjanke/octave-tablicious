@@ -11,5 +11,5 @@ Analysis, Forecasting and Control}. Third Edition. Holden-Day. Series G.
 @subsubheading Examples
 
 @example
-## TODO: This example needs to be ported from R.
+@INCLUDE_DATASET_EXAMPLE_SCRIPT{AirPassengers_1.m}
 @end example

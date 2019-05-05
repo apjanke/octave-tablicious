@@ -91,11 +91,33 @@ classdef (Abstract) dataset
     function out = description_texi (this)
       %DESCRIPTION_TEXI Get the Texinfo description for this dataset
       description_file = fullfile (this.class_dir, "description.texi");
-      if isfile (description_file)
-        out = fileread (description_file);
-      else
+      if ! isfile (description_file)
         out = "<no description available>";
+        return
       endif
+      texi_in = fileread (description_file);
+      % Process our special directives
+      texi = texi_in;
+      octave_namespace_dir = fileparts (fileparts (mfilename ("fullpath")));
+      example_scripts_dir = fullfile (octave_namespace_dir, "+examples", ...
+        "+internal", "+datasets");
+      % Include example scripts
+      while true
+        [ix_start, ix_end, tok] = regexp (texi, '@INCLUDE_DATASET_EXAMPLE_SCRIPT\{(.*?)\}', ...
+          "start", "end", "tokens");
+        if isempty (ix_start)
+          break
+        endif
+        script_file_base = tok{1}{1};
+        script_file = fullfile (example_scripts_dir, script_file_base);
+        if ! isfile (script_file)
+          error ("dataset.description_texi: File not found: %s", script_file);
+        endif
+        script = fileread (script_file);
+        script_texi = escape_for_texi (script);
+        texi = [texi(1:ix_start-1) script_texi texi(ix_end+1:end)];
+      endwhile
+      out = texi;
     endfunction
 
     function regenerate_dataset (this)
@@ -161,3 +183,10 @@ classdef (Abstract) dataset
     endfunction
   endmethods
 endclassdef
+
+function out = escape_for_texi (txt)
+  out = txt;
+  out = strrep (out, "@", "@@");
+  out = strrep (out, "{", "@{");
+  out = strrep (out, "}", "@}");
+endfunction
