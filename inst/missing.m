@@ -39,6 +39,11 @@
 ## called for type conversion in that assignment. Darn it.
 ##
 ## @end deftp
+
+# TODO: Because there is only one missing value, this could probably be 
+# optimized to just store a size variable, and not store the .data property.
+# I'm just using that now because it was easy to implement, due to my existing
+# planar-gen boilerplate code.
 classdef missing
 
   properties
@@ -171,11 +176,6 @@ classdef missing
       out = false (sz);
     endfunction
     
-    function out = ismember (A, B)
-      sz = missing.size_scalar_expand (A, B);
-      out = false (sz);      
-    endfunction
-    
     % Conversion stuff
     
     function out = double (this)
@@ -287,11 +287,28 @@ classdef missing
     % Auto-conversion stuff
     
     function out = cat (dim, varargin)
-      %CAT Concatenate arrays.
       args = missing.demote (varargin);
       out = cat (dim, args{:});
     endfunction
 
+    % Array stuff
+    
+    function [tf, loc] = ismember (this, varargin)
+      tf = false (size (this));
+      loc = zeros (size (this));
+    endfunction
+    
+    function [out, ix, jx] = unique (this)
+      out = this;
+      ix = 1:numel (this);
+      jx = ix;
+    endfunction
+    
+    function [out, ix] = sort (this)
+      out = this;
+      ix = 1:numel (this);      
+    endfunction
+    
   endmethods
       
   % Planar boilerplate stuff
@@ -401,7 +418,94 @@ classdef missing
       %VERTCAT Vertical concatenation.
       out = cat (1, varargin{:});
     endfunction
-
+    
+    function this = subsasgn(this, s, b)
+      %SUBSASGN Subscripted assignment.
+      
+      % Chained subscripts
+      if numel(s) > 1
+        rhs_in = subsref(this, s(1));
+        rhs = subsasgn(rhs_in, s(2:end), b);
+      else
+        rhs = b;
+      endif
+      
+      % Base case
+      switch s(1).type
+        case '()'
+          this = subsasgnParensPlanar(this, s(1), rhs);
+        case '{}'
+          error ('missing:BadOperation', '{}-assignment is not defined for missing arrays');
+        case '.'
+          error ('missing:BadOperation', '.-assignment is not defined for missing arrays');
+      endswitch
+    endfunction
+      
+    function varargout = subsref(this, s)
+    %SUBSREF Subscripted reference.
+    
+      % Base case
+      switch s(1).type
+        case '()'
+          varargout = { subsrefParensPlanar(this, s(1)) };
+        case '{}'
+          error('missing:BadOperation',...
+              '.-subscripting is not supported for missing arrays');
+        case '.'
+          error('missing:BadOperation',...
+              '.-subscripting is not supported for missing arrays');
+      endswitch
+      
+      % Chained reference
+      if numel (s) > 1
+        out = subsref (out, s(2:end));
+      endif
+    endfunction
+  
+  endmethods
+    
+  methods (Access=private)
+  
+    function this = subsasgnParensPlanar (this, s, rhs)
+      %SUBSASGNPARENSPLANAR ()-assignment for planar object
+      if ~isa (rhs, 'missing')
+        rhs = missing (rhs);
+      endif
+      this.data(s.subs{:}) = rhs.data;
+    endfunction
+    
+    function out = subsrefParensPlanar(this, s)
+      %SUBSREFPARENSPLANAR ()-indexing for planar object
+      out = this;
+      out.data = this.data(s.subs{:});
+    endfunction
+    
+    function out = parensRef(this, varargin)
+      %PARENSREF ()-indexing, for this class's internal use
+      out = subsrefParensPlanar (this, struct ('subs', {varargin}));
+    endfunction
+    
+    function out = subset(this, varargin)
+      %SUBSET Subset array by indexes.
+      % This is what you call internally inside the class instead of doing 
+      % ()-indexing references on the RHS, which don't work properly inside the class
+      % because they don't respect the subsref() override.
+      out = parensRef (this, varargin{:});
+    endfunction
+        
+    function out = asgn(this, ix, value)
+      %ASGN Assign array elements by indexes.
+      % This is what you call internally inside the class instead of doing 
+      % ()-indexing references on the LHS, which don't work properly inside
+      % the class because they don't respect the subsasgn() override.
+      if ~iscell(ix)
+        ix = { ix };
+      endif
+      s.type = '()';
+      s.subs = ix;
+      out = subsasgnParensPlanar(this, s, value);
+    endfunction
+    
   endmethods
 
   methods (Static)
