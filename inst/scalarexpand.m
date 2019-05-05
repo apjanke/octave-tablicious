@@ -16,8 +16,36 @@
 ## along with Octave; see the file COPYING.  If not, see
 ## <https://www.gnu.org/licenses/>.
 
+## -*- texinfo -*-
+## @node size2str
+## @deftypefn {Function} {[@var{out1}, @var{out2}, @dots{}, @var{outN}] =} scalarexpand @
+##   (@var{x1}, @var{x2}, @dots{}, @var{xN})
+##
+## Expand scalar inputs to match size of non-scalar inputs.
+##
+## Expands each scalar input argument to match the size of the non-scalar
+## input arguments, and returns the expanded values in the corresponding
+## output arguments. @code{repmat} is used to do the expansion.
+##
+## Works on any input types that support @code{size}, @code{isscalar}, and
+## @code{repmat}.
+##
+## It is an error if any of the non-scalar inputs are not the same size as
+## all of the other non-scalar inputs.
+##
+## Returns as many output arguments as there were input arguments.
+##
+## Examples:
+##
+## @example
+## x1 = rand(3);
+## x2 = 42;
+## x3 = magic(3);
+## [x1, x2, x3] = scalarexpand (x1, x2, x3)
+## @end example
+##
+## @end deftypefn
 function varargout = scalarexpand (varargin)
-%SCALAREXPAND Expand scalar inputs to be same size as nonscalar inputs
   sz = [];
 
   for i = 1:nargin
