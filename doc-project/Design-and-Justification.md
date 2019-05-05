@@ -71,6 +71,29 @@ any `+internal` namespace from the generation of the API Reference
 section of the manual. So code in there is hidden from the user view
 at the documentation level.
 
+### The `+octave/+examples` namespace
+
+I’m sticking example code in the `octave.examples` namespace. This makes
+it readily available to anyone with the package loaded (as opposed to
+requiring them to `cd` into a specific `examples/` directory or manually
+add it to the path), but keeps them out of the global namespace and the
+Octave and Tablicious public APIs.
+
+The `+examples` namespace is a suitable place to throw code that might be
+useful for users, but we don’t want in the actual package API for some reason.
+This includes:
+
+* Collecting code that’s used in multiple examples, like in the `octave.datasets` example data sets, into one place
+* Making available code that users can model their own code on, or reuse directly, but isn’t good enough for “production” code yet
+* Throwing examples where we don’t know what we want the permanent API to look like
+
+The stuff in `+examples` can be lower quality than main code, in the sense that:
+
+* It can be “toy” code that gets the happy path right, but doesn’t bother doing input validation or error handling
+* They can go without tests
+* Bugs here are lower impact
+* No need to keep things from changing between versions; no need to preserve back-compatibility
+
 ## `datetime`
 
 ### `datetime` constructor for numeric inputs
