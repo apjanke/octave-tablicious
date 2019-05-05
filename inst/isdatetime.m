@@ -17,11 +17,12 @@
 ## <https://www.gnu.org/licenses/>.
 
 ## -*- texinfo -*-
-## @deftypefn {Function} {@var{tf} =} isdatetime (@var{x})
+## @deftypefn {Function} {@var{out} =} isdatetime (@var{x})
 ##
 ## True if input is a @code{datetime} array, false otherwise.
 ##
-## Returns a logical array the same size as @var{x}.
+## Returns a scalar logical.
+##
 ## @end deftypefn
 
 function out = isdatetime (x)

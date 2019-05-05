@@ -17,11 +17,12 @@
 ## <https://www.gnu.org/licenses/>.
 
 ## -*- texinfo -*-
-## @deftypefn {Function} {@var{tf} =} isduration (@var{x})
+## @deftypefn {Function} {@var{out} =} isduration (@var{x})
 ##
 ## True if input is a @code{duration} array, false otherwise.
 ##
-## Returns a logical array the same size as @var{x}.
+## Returns a scalar logical.
+##
 ## @end deftypefn
 
 function out = isduration (x)
