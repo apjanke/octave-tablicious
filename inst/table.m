@@ -3432,13 +3432,18 @@ classdef table
       for i_var = 1:width (this)
         infos{i_var} = summary_for_variable (this, i_var);
       endfor
+      printf ("%s: %d %s by %d %s\n", class (this), height (this), this.DimensionNames{1}, ...
+        width (this), this.DimensionNames{2});
       for i_var = 1:numel (infos)
         s = infos{i_var};
-        printf("%d: %s\n", i_var, s.name);
-        printf("    %s\n", s.type);
+        printf ("%d: %s\n", i_var, s.name);
+        if ! ismember (s.type, {"double", "string"})
+          printf ("   %s\n", s.type);
+        endif
         val_col_width = max (cellfun(@numel, s.info(:,2)));
+        val_col_width = max (val_col_width, 8);
         for i_info = 1:size (s.info, 1)
-          printf("      %-12s %*s\n", [s.info{i_info,1} ":"], val_col_width, s.info{i_info,2});
+          printf ("      %-12s %*s\n", [s.info{i_info,1} ":"], val_col_width, s.info{i_info,2});
         endfor
       endfor
     endfunction
@@ -3455,6 +3460,10 @@ classdef table
         out.info = summary_for_var_numeric (x);
       elseif iscategorical (x)
         out.info = summary_for_var_categorical (x);
+      elseif isstring (x) || iscellstr (x)
+        out.info = summary_for_var_string (x);
+      else
+        out.info = cell (0, 2);
       endif
     endfunction
   endmethods
@@ -3507,4 +3516,17 @@ function out = summary_for_var_categorical (x)
       'N. Miss.'  num2str(n_missing)
     };
   endif
+endfunction
+
+function out = summary_for_var_string (x)
+  x = string (x);
+  n_missing = numel (find (ismissing (x)));
+  u_strs = unique (x (!ismissing (x)));
+  # TODO: This redundancy calculation looks wrong. Figure out a real one.
+  #redundancy = (numel(x) - n_missing) / numel(u_strs);
+  out = {
+    "Card."     num2str(numel(u_strs))
+    "N. Miss."  num2str(n_missing)
+    #"Redund."   num2str(redundancy)
+  };
 endfunction
