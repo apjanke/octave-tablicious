@@ -257,7 +257,7 @@ classdef table
       colWidths = NaN (1, nVars);
       for iVar = 1:numel (this.VariableValues)
         vals = this.VariableValues{iVar};
-        strs = dispstrs (vals);
+        strs = tablevar_dispstrs (vals);
         lines = cell (height(this), 1);
         for iRow = 1:size (strs, 1)
           lines{iRow} = strjoin (strs(iRow,:), '   ');
@@ -3215,4 +3215,13 @@ endclassdef
 
 function out = prettyprint_summary_data (s)
   error ('table.prettyprint_summary_data: This is not yet implemented. Sorry.');
+endfunction
+
+function out = tablevar_dispstrs (x)
+  if isa (x, "string")
+    out = cellstr (x);
+    out(ismissing (x)) = {"<missing>"};
+  else
+    out = dispstrs (x);
+  endif
 endfunction
