@@ -931,11 +931,11 @@ classdef table
     ##
     ## Sets the @code{VariableNames} for this table to a new list of names.
     ##
-    ## @var{names} is a cellstr vector. It must have the same number of elements
-    ## as the number of variables in @var{obj}.
+    ## @var{names} is a char or cellstr vector. It must have the same number of elements
+    ## as the number of variable names being assigned.
     ##
     ## @var{ix} is an index vector indicating which variable names to set. If 
-    ## omitted, it sets all of them.
+    ## omitted, it sets all of them present in @var{obj}.
     ##
     ## This method exists because the @code{obj.Properties.VariableNames = @dots{}}
     ## assignment form does not work, possibly due to an Octave bug.
@@ -949,6 +949,9 @@ classdef table
         names = varargin{1};
       else
         [ix, names] = varargin{:};
+      endif
+      if ischar (names)
+        names = cellstr (names);
       endif
       mustBeCellstr (names);
       if ~all (cellfun (@isvarname, names))
@@ -974,6 +977,62 @@ classdef table
       endif
     endfunction
     
+    ## -*- texinfo -*-
+    ## @node table.setDimensionNames
+    ## @deftypefn {Method} {@var{out} =} setDimensionNames (@var{obj}, @var{names})
+    ## @deftypefnx {Method} {@var{out} =} setDimensionNames (@var{obj}, @var{ix}, @var{names})
+    ##
+    ## Set dimension names.
+    ##
+    ## Sets the @code{DimensionNames} for this table to a new list of names.
+    ##
+    ## @var{names} is a char or cellstr vector. It must have the same number of elements
+    ## as the number of dimension names being assigned.
+    ##
+    ## @var{ix} is an index vector indicating which dimension names to set. If 
+    ## omitted, it sets all two of them. Since there are always two dimension,
+    ## the indexes in @var{ix} may never be higher than 2.
+    ##
+    ## This method exists because the @code{obj.Properties.DimensionNames = @dots{}}
+    ## assignment form does not work, possibly due to an Octave bug.
+    ##
+    ## @end deftypefn
+    function this = setDimensionNames (this, varargin)
+      narginchk (2, 3);
+      if nargin == 2
+        ix = [];
+        names = varargin{1};
+      else
+        [ix, names] = varargin{:};
+      endif
+      if ischar (names)
+        names = cellstr (names);
+      endif
+      mustBeCellstr (names);
+      if ~all (cellfun (@isvarname, names))
+        error ('table.setDimensionNames: DimensionNames must be valid variable names');
+      endif
+      if isempty (ix)
+        n_assigned = 2;
+      else
+        n_assigned = numel (ix);
+      endif
+      if numel (names) != n_assigned
+        error ('table.setDimensionNames: Dimension mismatch: assigning to %d dimension names but new DimensionNames is %d-long', ...
+          n_assigned, numel (names));
+      endif
+      if isempty (ix)
+        this.DimensionNames = names;
+      else
+        if any (ix > 2)
+          error ('table.setDimensionNames: index out of range: %d (max is %d)', ...
+            max (ix), 2);
+        endif
+        this.DimensionNames(ix) = names;
+      endif
+    endfunction
+
+
     ## -*- texinfo -*-
     ## @node table.setRowNames
     ## @deftypefn {Method} {@var{out} =} setRowNames (@var{obj}, @var{names})
