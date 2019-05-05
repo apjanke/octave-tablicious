@@ -130,7 +130,7 @@ classdef categorical
     ## -*- texinfo -*-
     ## @node categorical.undefined
     ## @deftypefn {Static Method} {@var{out} =} categorical.undefined ()
-    ## @deftypefn {Static Method} {@var{out} =} categorical.undefined (sz)
+    ## @deftypefnx {Static Method} {@var{out} =} categorical.undefined (sz)
     ##
     ## Create an array of undefined categoricals.
     ##
