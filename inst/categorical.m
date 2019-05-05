@@ -125,6 +125,33 @@ classdef categorical
     endfunction
   endmethods
   
+  methods (Static)
+    
+    ## -*- texinfo -*-
+    ## @node categorical.categorical
+    ## @deftypefn {Static Method} {@var{out} =} categorical.undefined ()
+    ## @deftypefn {Static Method} {@var{out} =} categorical.undefined (sz)
+    ##
+    ## Create an array of undefined categoricals.
+    ##
+    ## Creates a categorical array whose elements are all <undefined>.
+    ##
+    ## @var{sz} is the size of the array to create. If omitted or empty, creates
+    ## a scalar.
+    ##
+    ## Returns a categorical.
+    ##
+    ## @end deftypefn
+    function out = undefined (sz)
+      if nargin < 1 || isempty (sz);  sz = [1 1]; end
+      out = categorical;
+      out.code = repmat (uint16(0), sz);
+      out.tfMissing = true (sz);
+      out.cats = {};
+    endfunction
+    
+  endmethods
+  
   methods
     
     ## -*- texinfo -*-
@@ -164,6 +191,7 @@ classdef categorical
       % TODO: Empty strings and cellstrs should convert to <undefined>
       % TODO: Handle datetime and duration inputs
       % TODO: Handle logical inputs
+      % TODO: Handle @missing inputs
       % TODO: Numeric conversion is probably wrong. It's trying to convert 
       % numeric inputs directly to codes. It should probably convert them to the
       % num2str representation of numbers instead, and make those all categories.
@@ -191,7 +219,7 @@ classdef categorical
         endif
       else
         valueset = unique (x);
-        valueset = valueset(!ismissing(valueset));
+        valueset = valueset(!ismissing (valueset));
       endif
       if numel (args) >= 2
         category_names = args{2};
@@ -231,7 +259,7 @@ classdef categorical
       this.isOrdinal = doOrdinal;
       this.isProtected = doProtected;
     endfunction
-    
+
     ## -*- texinfo -*-
     ## @node categorical.sizeof
     ## @deftypefn {Method} {@var{out} =} sizeof (@var{obj})
