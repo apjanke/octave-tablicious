@@ -404,6 +404,7 @@ doc octave.dataset.cupcake
 currently doesn’t. This may be due to an issue with Octave’s @code{help}
 command.)
 
+
 @node Missing Functionality
 @chapter Missing Functionality
 
@@ -412,25 +413,34 @@ their major functionality.
 But not all of it is implemented yet. The missing parts are currently:
 
 @itemize
-@item @code{timetable}
-@item Moving window methods in @code{fillmissing}
-@item @code{summary()} for @code{table} and @code{categorical}
-@item Assignment to table variables using @code{.}-indexing
 @item File I/O like @code{readtable()} and @code{writetable()}
+@item @code{summary()} @code{categorical}
+@item Assignment to table variables using @code{.}-indexing
+@item @code{timetable}
 @item POSIX time zone support for years outside the IANA time zone database coverage
 @item Week-of-year (ISO calendar) calculations
 @item Various @code{'ConvertFrom'} forms for @code{datetime} and @code{duration}
 @item Support for LDML formatting for @code{datetime}
-@item Various functions: @code{between}, @code{caldiff}, @code{dateshift}, @code{week}
+@item Various functions:
+@itemize
+@item @code{between}
+@item @code{caldiff}
+@item @code{dateshift}
+@item @code{week}
+@end itemize
 @item @code{isdst}, @code{isweekend}
 @item @code{calendarDuration.split}
 @item @code{duration.Format} support
+@item Moving window methods in @code{fillmissing}
 @item @code{UTCOffset} and @code{DSTOffset} fields in the output of @code{timezones()}
 @item Plotting support
 @end itemize
 
 It is the author’s hope that all these will be implemented some day.
 
+These areas of missing functionality are all tracked on the Tablicious issue
+tracker at @url{https://github.com/apjanke/octave-tablicious/issues} and
+@url{https://github.com/users/apjanke/projects/1}.
 
 
 @node API Reference
