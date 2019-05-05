@@ -25,6 +25,8 @@ That could be a violation of your MATLAB license terms, because the Matlab licen
   submitting bug reports, and proposing new features and tests.
 * Issues and changes should be small and focused on a particular topic.
 * Contributors are expected to abide by the [code of conduct](CODE_OF_CONDUCT.md).
+* Problems with documentation (including stuff that’s just missing) are considered bugs,
+  and bug reports against it are welcome.
 
 ## Community
 
