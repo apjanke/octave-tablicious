@@ -41,6 +41,7 @@ classdef (Abstract) dataset
       'airmiles'
       'airquality'
       'anscombe'
+      'attenu'
       'beavers'
       'cupcake'
       'iris'
