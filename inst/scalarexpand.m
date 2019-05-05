@@ -17,7 +17,7 @@
 ## <https://www.gnu.org/licenses/>.
 
 ## -*- texinfo -*-
-## @node size2str
+## @node scalarexpand
 ## @deftypefn {Function} {[@var{out1}, @var{out2}, @dots{}, @var{outN}] =} scalarexpand @
 ##   (@var{x1}, @var{x2}, @dots{}, @var{xN})
 ##
