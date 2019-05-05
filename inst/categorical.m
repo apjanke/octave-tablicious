@@ -392,7 +392,7 @@ classdef categorical
     
     ## -*- texinfo -*-
     ## @node categorical.summary
-    ## @deftypefn {Method} summary (@var{obj})
+    ## @deftypefn {Method} {} summary (@var{obj})
     ##
     ## Display summary of array’s values.
     ##
