@@ -66,6 +66,8 @@ classdef table
     VariableValues = {}
     % Optional row names, as cellstr
     RowNames = []
+    % Dimension names
+    DimensionNames = { "Row" "Variables" }
   end
   
   methods
@@ -859,9 +861,14 @@ classdef table
           if ~ischar (name)
             error ('table.subsref: .-reference arguments must be char');
           end
+          % Special cases for special properties and other attribute access
+          % TODO: should variable names or dimension names take precedence?
           if isequal (name, 'Properties')
-            % Special case for this.Properties access
             out = getProperties (this);
+          elseif isequal (name, this.DimensionNames{1})
+            out = this.RowNames;
+          elseif isequal (name, this.DimensionNames{2})
+            out = this.VariableNames;
           else
             out = getVar (this, name);
           endif
@@ -908,6 +915,7 @@ classdef table
           endif
           if isequal (s.subs, 'Properties')
             % Special case for this.Properties access
+            error ('table.subsasgn: .Properties access is not implemented yet');
           else
             out = setvar (this, s.subs, rhs);            
           endif
@@ -917,6 +925,7 @@ classdef table
     ## -*- texinfo -*-
     ## @node table.setVariableNames
     ## @deftypefn {Method} {@var{out} =} setVariableNames (@var{obj}, @var{names})
+    ## @deftypefnx {Method} {@var{out} =} setVariableNames (@var{obj}, @var{ix}, @var{names})
     ##
     ## Set variable names.
     ##
@@ -925,20 +934,44 @@ classdef table
     ## @var{names} is a cellstr vector. It must have the same number of elements
     ## as the number of variables in @var{obj}.
     ##
+    ## @var{ix} is an index vector indicating which variable names to set. If 
+    ## omitted, it sets all of them.
+    ##
+    ## This method exists because the @code{obj.Properties.VariableNames = @dots{}}
+    ## assignment form does not work, possibly due to an Octave bug.
+    ##
     ## @end deftypefn
-    function this = setVariableNames (this, names)
+    function this = setVariableNames (this, varargin)
       %SETVARIABLENAMES Set VariableNames
-      if ~iscellstr (names)
-        error ('table: VariableNames must be cellstr; got a %s', class (names));
+      narginchk (2, 3);
+      if nargin == 2
+        ix = [];
+        names = varargin{1};
+      else
+        [ix, names] = varargin{:};
       endif
+      mustBeCellstr (names);
       if ~all (cellfun (@isvarname, names))
         error ('table: VariableNames must be valid variable names');
       endif
-      if ~isequal (size (names), [1 width(this)])
-        error ('table: Dimension mismatch: table has %d columns but new VariableNames is %s', ...
-          width (this), size2str (size (names)));
+      if isempty (ix)
+        n_assigned = width (this);
+      else
+        n_assigned = numel (ix);
       endif
-      this.VariableNames = names;
+      if numel (names) != n_assigned
+        error ('table: Dimension mismatch: assigning to %d variable names but new VariableNames is %d-long', ...
+          n_assigned, numel (names));
+      endif
+      if isempty (ix)
+        this.VariableNames = names;
+      else
+        if any (ix > width (this))
+          error ('table: index out of range during variable name assignment: %d (vs. %d variables in this)', ...
+            max (ix), width (this));
+        endif
+        this.VariableNames(ix) = names;
+      endif
     endfunction
     
     ## -*- texinfo -*-
@@ -3036,7 +3069,7 @@ classdef table
       % Function application
       vars = this.VariableValues;
       n_vars = numel (vars);
-      out_bufs = repmat ({cell (height (this), 1)}, [1 n_out_args]);
+      out_bufs = repmat ({cell(height(this), 1)}, [1 n_out_args]);
       for i_row = 1:height (this)
         args = cell (1, n_vars);
         for i_var = 1:n_vars
@@ -3305,6 +3338,7 @@ classdef table
       out.VariableNames = this.VariableNames;
       out.VariableValues = this.VariableValues;
       out.RowNames = this.RowNames;
+      out.DimensionNames = this.DimensionNames;
     endfunction
   endmethods
   
