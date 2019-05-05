@@ -200,36 +200,15 @@ classdef table
     ## -*- texinfo -*-
     ## @node table.summary
     ## @deftypefn {Method} summary (@var{obj})
-    ## @deftypefnx {Method} {@var{s} =} summary (@var{obj})
     ##
     ## Summary of table's data.
     ##
-    ## Displays or returns a summary of data in the input table. This will
-    ## contain some statistical information on each of its variables.
-    ##
-    ## This method is not implemented yet.
+    ## Displays a summary of data in the input table. This will contain some
+    ## statistical information on each of its variables.
     ##
     ## @end deftypefn
     function out = summary (this)
-      
-      % Common summary things:
-      % Size, Type, Description, Units, CustomProperties
-      % Size and Type can be computed from variable data itself;
-      % Description, Units and CustomProperties are drawn from the table-managed metadata.
-      
-      out = struct;
-      for iVar = 1:width (this)
-        varVal = this.VariableValues{iVar};
-        s = octave.table.internal.mx_summary (varVal);
-        %TODO: Decorate with table-managed metadata: Description, Units, CustomProperties
-        out.(this.VariableNames{iVar}) = s;
-      endfor
-      
-      if nargout == 0
-        %TODO: Include obj-level Description etc
-        prettyprint_summary_data (out);
-        clear out
-      endif
+      summary_impl (this);
     endfunction
     
     ## -*- texinfo -*-
@@ -3426,6 +3405,7 @@ classdef table
   endmethods
 
   methods (Access = private)
+    
     function out = proxykeysForOneTable (this)
       varProxyKeys = cell (size (this.VariableNames));
       for iVar = 1:numel (this.VariableNames);
@@ -3444,13 +3424,42 @@ classdef table
       pkA = cat (2, varProxyKeysA{:});
       pkB = cat (2, varProxyKeysB{:});
     endfunction
+    
+    % Summary stuff
+    
+    function summary_impl (this)
+      infos = {};
+      for i_var = 1:width (this)
+        infos{i_var} = summary_for_variable (this, i_var);
+      endfor
+      for i_var = 1:numel (infos)
+        s = infos{i_var};
+        printf("%d: %s\n", i_var, s.name);
+        printf("    %s\n", s.type);
+        val_col_width = max (cellfun(@numel, s.info(:,2)));
+        for i_info = 1:size (s.info, 1)
+          printf("      %-12s %*s\n", [s.info{i_info,1} ":"], val_col_width, s.info{i_info,2});
+        endfor
+      endfor
+    endfunction
+    
+    function out = summary_for_variable (this, ix)
+      out.name = this.VariableNames{ix};
+      x = this.VariableValues{ix};
+      out.type = class (x);
+      if size (x, 2) > 1
+        out.info = {
+          'Columns'   size(x, 2)
+        };
+      elseif isnumeric (x)
+        out.info = summary_for_var_numeric (x);
+      elseif iscategorical (x)
+        out.info = summary_for_var_categorical (x);
+      endif
+    endfunction
   endmethods
 
 endclassdef
-
-function out = prettyprint_summary_data (s)
-  error ('table.prettyprint_summary_data: This is not yet implemented. Sorry.');
-endfunction
 
 function out = tablevar_dispstrs (x)
   if isa (x, "string")
@@ -3458,5 +3467,44 @@ function out = tablevar_dispstrs (x)
     out(ismissing (x)) = {"<missing>"};
   else
     out = dispstrs (x);
+  endif
+endfunction
+
+function out = summary_for_var_numeric (x)
+  x_min = min (x);
+  x_mean = mean (x);
+  x_max = max (x);
+  x_prcts = prctile (x, [25 50 75]);
+  out = {
+    'Min.'      num2str(x_min)
+    '1st Qu.'   num2str(x_prcts(1))
+    'Median'    num2str(x_prcts(2))
+    'Mean'      num2str(x_mean)
+    '3rd Qu.'   num2str(x_prcts(3))
+    'Max.'      num2str(x_max)
+  };
+endfunction
+
+function out = summary_for_var_categorical (x)
+  max_ctgs_to_list = 7;
+  u_ctgs = unique (x (!ismissing (x)));
+  n_ctgs = numel (u_ctgs);
+  n_missing = numel (find (ismissing (x)));
+  u_ctg_strs = dispstrs (u_ctgs);
+  if n_ctgs <= max_ctgs_to_list
+    out = {};
+    for i = 1:numel (u_ctgs)
+      out = [out; {
+        u_ctg_strs{i}   num2str(numel(find(x == u_ctgs(i))))
+      }];
+    endfor
+    out = [out; {
+      '<undefined>'   num2str(n_missing)
+    }];
+  else
+    out = {
+      'N. Ctgs.'  num2str(n_ctgs)
+      'N. Miss.'  num2str(n_missing)
+    };
   endif
 endfunction
