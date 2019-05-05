@@ -128,7 +128,7 @@ classdef categorical
   methods (Static)
     
     ## -*- texinfo -*-
-    ## @node categorical.categorical
+    ## @node categorical.undefined
     ## @deftypefn {Static Method} {@var{out} =} categorical.undefined ()
     ## @deftypefn {Static Method} {@var{out} =} categorical.undefined (sz)
     ##
