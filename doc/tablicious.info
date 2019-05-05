@@ -2520,35 +2520,41 @@ File: tablicious.info,  Node: ismissing,  Next: isnannish,  Prev: isfolder,  Up:
      indicator input is not provided, standard missing values depending
      on the input type of X are used.
 
-     Standard missing values depend on the data type: * NaN for double,
-     single, duration, and calendarDuration * NaT for datetime * ‘' '’
-     for char * ‘{''}’ for cellstrs * Integer numeric types have no
-     standard missing value; they are never considered missing.  *
-     Structs are never considered missing.  * Logicals are never
-     considered missing.  * Other types have no standard missing value;
-     it is currently an error to call ‘ismissing’ on them without
-     providing an indicator.  * This includes cells which are not
-     cellstrs; calling ‘ismissing’ on them results in an error.  * TODO:
-     Determine whether this should really be an error, or if it should
-     default to never considering those types as missing.  * TODO:
-     Decide whether, for classdef objects, ‘ismissing’ should
-     polymorphically detect isnan()/isnat()/isnannish() methods and use
-     those, or whether we should require classes to override ismissing()
-     itself.
+     Standard missing values depend on the data type:
+        • NaN for double, single, duration, and calendarDuration
+        • NaT for datetime
+        • ‘' '’ for char
+        • ‘{''}’ for cellstrs
+        • Integer numeric types have no standard missing value; they are
+          never considered missing.
+        • Structs are never considered missing.
+        • Logicals are never considered missing.
+        • Other types have no standard missing value; it is currently an
+          error to call ‘ismissing’ on them without providing an
+          indicator.
+             − This includes cells which are not cellstrs; calling
+               ‘ismissing’ on them results in an error.
+             − TODO: Determine whether this should really be an error,
+               or if it should default to never considering those types
+               as missing.
+             − TODO: Decide whether, for classdef objects, ‘ismissing’
+               should polymorphically detect isnan()/isnat()/isnannish()
+               methods and use those, or whether we should require
+               classes to override ismissing() itself.
 
      If INDICATOR is supplied, it is an array containing multiple
      values, all of which are considered to be missing values.  Only
      indicator values that are type-compatible with the input are
      considered; other indicator value types are silently ignored.  This
      is by design, so you can pass an indicator that holds sentinel
-     values for disparate types in to ismissing() used for any type, or
-     for compound types like table.
+     values for disparate types in to ‘ismissing()’ used for any type,
+     or for compound types like table.
 
      Indicators are currently not supported for struct or logical
      inputs.  This is probably a bug.
 
-     Table defines its own ismissing() method which respects individual
-     variables’ data types; see *note table.ismissing::.
+     Table defines its own ‘ismissing()’ method which respects
+     individual variables’ data types; see *note table.ismissing::.
 
 
 File: tablicious.info,  Node: isnannish,  Next: localdate,  Prev: ismissing,  Up: API Alphabetically
@@ -2561,20 +2567,21 @@ File: tablicious.info,  Node: isnannish,  Next: localdate,  Prev: ismissing,  Up
      Test if elements are NaN or NaN-like
 
      Tests if input elements are NaN, NaT, or otherwise NaN-like.  This
-     is true if isnan() or isnat() returns true, and is false for types
-     that do not support isnan() or isnat().
+     is true if ‘isnan()’ or ‘isnat()’ returns true, and is false for
+     types that do not support ‘isnan()’ or ‘isnat()’.
 
      This function only exists because:
 
-     a) Matlab decided to call their NaN values for datetime "NaT"
-     instead, and test for them with a different "isnat()" function, and
-     b) isnan() errors out for some types that do not support isnan(),
-     like cells.
+       a. Matlab decided to call their NaN values for datetime “NaT”
+          instead, and test for them with a different “isnat()”
+          function, and
+       b. isnan() errors out for some types that do not support isnan(),
+          like cells.
 
-     isnannish() smooths over those differences so you can call it
+     ‘isnannish()’ smooths over those differences so you can call it
      polymorphically on any input type.
 
-     Under normal operation, isnannish() should not throw an error for
+     Under normal operation, ‘isnannish()’ should not throw an error for
      any type or value of input.
 
      See also: ‘isnan’, ‘isnat’, *note ismissing::, *note eqn::,
@@ -2725,17 +2732,17 @@ File: tablicious.info,  Node: localdate.datestruct,  Next: localdate.posixtime, 
 
  -- Method: OUT = datestruct (OBJ)
 
-     Converts this to a "datestruct" broken-down time structure.
+     Converts this to a “datestruct” broken-down time structure.
 
-     A "datestruct" is a format of struct that Chrono came up with.  It
+     A “datestruct” is a format of struct that Chrono came up with.  It
      is a scalar struct with fields Year, Month, and Day, each
      containing a double array the same size as the date array it
-     represents.  This format differs from the "datestruct" used by
+     represents.  This format differs from the “datestruct” used by
      ‘datetime’ in that it lacks Hour, Minute, and Second components.
      This is done for efficiency.
 
      The values in the returned broken-down time are those of the local
-     time in this’ defined time zone, if it has one.
+     time in OBJ’s defined time zone, if it has one.
 
      Returns a struct with fields Year, Month, and Day.  Each field
      contains a double array of the same size as this.
@@ -3190,6 +3197,9 @@ File: tablicious.info,  Node: NaT,  Next: octave.chrono.dummy_function,  Prev: m
      Doing arithmetic with a ‘NaT’ and any other value results in a
      ‘NaT’.
 
+     ‘NaT’ currently cannot create NaT arrays of type ‘localdate’.  To
+     do that, use *note localdate.NaT:: instead.
+
 
 File: tablicious.info,  Node: octave.chrono.dummy_function,  Next: octave.chrono.DummyClass,  Prev: NaT,  Up: API Alphabetically
 
@@ -3222,7 +3232,7 @@ File: tablicious.info,  Node: octave.chrono.DummyClass,  Next: octave.dataset,  
 
  -- Instance Variable of DummyClass: ‘double’ x
 
-     A x.  Has no semantics.
+     An x.  Has no semantics.
 
  -- Instance Variable of DummyClass: ‘double’ y
 
@@ -3298,6 +3308,9 @@ File: tablicious.info,  Node: octave.dataset,  Next: octave.datasets,  Prev: oct
 * octave.dataset.AirPassengers::
 * octave.dataset.ChickWeight::
 * octave.dataset.airmiles::
+* octave.dataset.airquality::
+* octave.dataset.anscombe::
+* octave.dataset.attenu::
 * octave.dataset.beavers::
 * octave.dataset.cupcake::
 * octave.dataset.iris::
@@ -3322,9 +3335,14 @@ File: tablicious.info,  Node: octave.dataset.AirPassengers,  Next: octave.datase
      Source
      ......
 
-     Box, G. E. P., Jenkins, G. M. and Reinsel, G. C. (1976) Time Series
-     Analysis, Forecasting and Control.  Third Edition.  Holden-Day.
-     Series G.
+     Box, G. E. P., Jenkins, G. M. and Reinsel, G. C. (1976) ‘Time
+     Series Analysis, Forecasting and Control’.  Third Edition.
+     Holden-Day.  Series G.
+
+     Examples
+     ........
+
+          ## TODO: This example needs to be ported from R.
 
 
 File: tablicious.info,  Node: octave.dataset.ChickWeight,  Next: octave.dataset.airmiles,  Prev: octave.dataset.AirPassengers,  Up: octave.dataset
@@ -3356,17 +3374,22 @@ File: tablicious.info,  Node: octave.dataset.ChickWeight,  Next: octave.dataset.
      Source
      ......
 
-     Crowder, M. and Hand, D. (1990), Analysis of Repeated Measures,
+     Crowder, M. and Hand, D. (1990), ‘Analysis of Repeated Measures’.
      Chapman and Hall (example 5.3)
 
-     Hand, D. and Crowder, M. (1996), Practical Longitudinal Data
-     Analysis, Chapman and Hall (table A.2)
+     Hand, D. and Crowder, M. (1996), ‘Practical Longitudinal Data
+     Analysis’.  Chapman and Hall (table A.2)
 
-     Pinheiro, J. C. and Bates, D. M. (2000) Mixed-effects Models in S
-     and S-PLUS, Springer.
+     Pinheiro, J. C. and Bates, D. M. (2000) ‘Mixed-effects Models in S
+     and S-PLUS’. Springer.
+
+     Examples
+     ........
+
+          # TODO: This example needs to be ported from R.
 
 
-File: tablicious.info,  Node: octave.dataset.airmiles,  Next: octave.dataset.beavers,  Prev: octave.dataset.ChickWeight,  Up: octave.dataset
+File: tablicious.info,  Node: octave.dataset.airmiles,  Next: octave.dataset.airquality,  Prev: octave.dataset.ChickWeight,  Up: octave.dataset
 
 9.2.44.3 octave.dataset.airmiles
 ................................
@@ -3384,12 +3407,176 @@ File: tablicious.info,  Node: octave.dataset.airmiles,  Next: octave.dataset.bea
      Source
      ......
 
-     F.A.A. Statistical Handbook of Aviation.
+     ‘F.A.A. Statistical Handbook of Aviation’.
+
+     Examples
+     ........
+
+          t = octave.dataset.airmiles;
+          plot (t.year, t.miles);
+          title ("airmiles data");
+          xlabel ("Passenger-miles flown by U.S. commercial airlines")
+          ylabel ("airmiles");
 
 
-File: tablicious.info,  Node: octave.dataset.beavers,  Next: octave.dataset.cupcake,  Prev: octave.dataset.airmiles,  Up: octave.dataset
+File: tablicious.info,  Node: octave.dataset.airquality,  Next: octave.dataset.anscombe,  Prev: octave.dataset.airmiles,  Up: octave.dataset
 
-9.2.44.4 octave.dataset.beavers
+9.2.44.4 octave.dataset.airquality
+..................................
+
+ -- Static Method: OUT = airquality ()
+
+     New York Air Quality Measurements from 1973
+
+     Description
+     ...........
+
+     Daily air quality measurements in New York, May to September 1973.
+
+     Format
+     ......
+
+     ‘Ozone’
+          Ozone concentration (ppb)
+     ‘SolarR’
+          Solar R (lang)
+     ‘Wind’
+          Wind (mph)
+     ‘Temp’
+          Temperature (degrees F)
+     ‘Month’
+          Month (1-12)
+     ‘Day’
+          Day of month (1-31)
+
+     Source
+     ......
+
+     New York State Department of Conservation (ozone data) and the
+     National Weather Service (meteorological data).
+
+     References
+     ..........
+
+     Chambers, J. M., Cleveland, W. S., Kleiner, B. and Tukey, P. A.
+     (1983) ‘Graphical Methods for Data Analysis’.  Belmont, CA:
+     Wadsworth.
+
+     Examples
+     ........
+
+          t = octave.dataset.airquality
+          # Plot a scatter-plot plus a fitted line, for each combination of measurements
+          vars = {"Ozone", "SolarR", "Wind", "Temp" "Month", "Day"};
+          n_vars = numel (vars);
+          figure;
+          for i = 1:n_vars
+            for j = 1:n_vars
+              if i == j
+                continue
+              endif
+              ix_subplot = (n_vars*(j - 1) + i);
+              hax = subplot (n_vars, n_vars, ix_subplot);
+              var_x = vars{i};
+              var_y = vars{j};
+              x = t.(var_x);
+              y = t.(var_y);
+              scatter (hax, x, y, 10);
+              # Fit a cubic line to these points
+              # TODO: Find out exactly what kind of fitted line R's example is using, and
+              # port that.
+              hold on
+              p = polyfit (x, y, 3);
+              x_hat = unique(x);
+              p_y = polyval (p, x_hat);
+              plot (hax, x_hat, p_y, "r");
+            endfor
+          endfor
+
+
+File: tablicious.info,  Node: octave.dataset.anscombe,  Next: octave.dataset.attenu,  Prev: octave.dataset.airquality,  Up: octave.dataset
+
+9.2.44.5 octave.dataset.anscombe
+................................
+
+ -- Static Method: OUT = anscombe ()
+
+     Anscombe’s Quartet of “Identical” Simple Linear Regressions
+
+     Description
+     ...........
+
+     Four sets of x/y pairs which have the same statistical properties,
+     but are very different.
+
+     Format
+     ......
+
+     The data comes in an array of 4 structs, each with fields as
+     follows:
+
+     ‘x’
+          The X values for this pair.
+     ‘y’
+          The Y values for this pair.
+
+     Source
+     ......
+
+     Tufte, Edward R. (1989).  ‘The Visual Display of Quantitative
+     Information’.  13–14.  Graphics Press.
+
+     References
+     ..........
+
+     Anscombe, Francis J. (1973).  “Graphs in statistical analysis”.
+     ‘The American Statistician’, 27, 17–21.
+
+     Examples
+     ........
+
+          data = octave.dataset.anscombe
+
+          # Pick good limits for the plots
+          all_x = [data.x];
+          all_y = [data.y];
+          x_limits = [min(0, min(all_x)) max(all_x)*1.2];
+          y_limits = [min(0, min(all_y)) max(all_y)*1.2];
+
+          # Do regression on each pair and plot the input and results
+          figure;
+          haxs = NaN (1, 4);
+          for i_pair = 1:4
+            x = data(i_pair).x;
+            y = data(i_pair).y;
+            # TODO: Port the anova and other characterizations from the R code
+            # TODO: Do a linear regression and plot its line
+            hax = subplot (2, 2, i_pair);
+            haxs(i_pair) = hax;
+            xlabel (sprintf ("x%d", i_pair));
+            ylabel (sprintf ("y%d", i_pair));
+            scatter (x, y, "r");
+          endfor
+
+          # Fiddle with the plot axes parameters
+          linkaxes (haxs);
+          xlim(haxs(1), x_limits);
+          ylim(haxs(1), y_limits);
+
+
+File: tablicious.info,  Node: octave.dataset.attenu,  Next: octave.dataset.beavers,  Prev: octave.dataset.anscombe,  Up: octave.dataset
+
+9.2.44.6 octave.dataset.attenu
+..............................
+
+ -- Static Method: OUT = attenu ()
+
+     Joyner-Boore Earthquake Attenuation Data
+
+
+File: tablicious.info,  Node: octave.dataset.beavers,  Next: octave.dataset.cupcake,  Prev: octave.dataset.attenu,  Up: octave.dataset
+
+9.2.44.7 octave.dataset.beavers
 ...............................
 
  -- Static Method: OUT = beavers ()
@@ -3419,13 +3606,18 @@ File: tablicious.info,  Node: octave.dataset.beavers,  Next: octave.dataset.cupc
 
      P. S. Reynolds (1994) Time-series analyses of beaver body
      temperatures.  Chapter 11 of Lange, N., Ryan, L., Billard, L.,
-     Brillinger, D., Conquest, L. and Greenhouse, J. eds (1994) Case
-     Studies in Biometry.  New York: John Wiley and Sons.
+     Brillinger, D., Conquest, L. and Greenhouse, J. eds (1994) ‘Case
+     Studies in Biometry’.  New York: John Wiley and Sons.
+
+     Examples
+     ........
+
+          # TODO: This example needs to be ported from R.
 
 
 File: tablicious.info,  Node: octave.dataset.cupcake,  Next: octave.dataset.iris,  Prev: octave.dataset.beavers,  Up: octave.dataset
 
-9.2.44.5 octave.dataset.cupcake
+9.2.44.8 octave.dataset.cupcake
 ...............................
 
  -- Static Method: OUT = cupcake ()
@@ -3441,21 +3633,29 @@ File: tablicious.info,  Node: octave.dataset.cupcake,  Next: octave.dataset.iris
      Format
      ......
 
-     Month - Month when searches took place
-
-     Cupcake - An indicator of search volume, in unknown units
+     ‘Month’
+          Month when searches took place
+     ‘Cupcake’
+          An indicator of search volume, in unknown units
 
      Source
      ......
 
      Google Trends,
      <https://trends.google.com/trends/explore?q=%2Fm%2F03p1r4&date=all>,
-     retrieved 2019-05-04 buy apjanke.
+     retrieved 2019-05-04 by Andrew Janke.
+
+     Examples
+     ........
+
+          t = octave.dataset.cupcake
+          plot(datenum(t.Month), t.Cupcake)
+          title ('“Cupcake” Google Searches'); xlabel ("Year"); ylabel ("Unknown popularity metric")
 
 
 File: tablicious.info,  Node: octave.dataset.iris,  Next: octave.dataset.mtcars,  Prev: octave.dataset.cupcake,  Up: octave.dataset
 
-9.2.44.6 octave.dataset.iris
+9.2.44.9 octave.dataset.iris
 ............................
 
  -- Static Method: OUT = iris ()
@@ -3467,6 +3667,20 @@ File: tablicious.info,  Node: octave.dataset.iris,  Next: octave.dataset.mtcars,
 
      This is the classic Fisher Iris dataset.
 
+     Format
+     ......
+
+     ‘Species’
+          The species of flower being measured.
+     ‘SepalLength’
+          Length of sepals, in centimeters.
+     ‘SepalWidth’
+          Width of sepals, in centimeters.
+     ‘PetalLength’
+          Length of petals, in centimeters.
+     ‘PetalWidth’
+          Width of petals, in centimeters.
+
      Source
      ......
 
@@ -3477,23 +3691,28 @@ File: tablicious.info,  Node: octave.dataset.iris,  Next: octave.dataset.mtcars,
 
      <https://en.wikipedia.org/wiki/Iris_flower_data_set>
 
-     Fisher,R.A. “The use of multiple measurements in taxonomic
+     Fisher, R.A. “The use of multiple measurements in taxonomic
      problems” Annals of Eugenics, 7, Part II, 179-188 (1936); also in
-     “Contributions to Mathematical Statistics” (John Wiley, NY, 1950).
+     ‘Contributions to Mathematical Statistics’ (John Wiley, NY, 1950).
 
-     Duda,R.O., & Hart,P.E. (1973) Pattern Classification and Scene
-     Analysis.  (Q327.D83) John Wiley & Sons.  ISBN 0-471-22361-1.  See
+     Duda, R.O., & Hart, P.E. (1973) ‘Pattern Classification and Scene
+     Analysis’.  (Q327.D83) John Wiley & Sons.  ISBN 0-471-22361-1.  See
      page 218.
 
      The data were collected by Anderson, Edgar (1935).  The irises of
-     the Gaspe Peninsula, Bulletin of the American Iris Society, 59,
+     the Gaspe Peninsula, ‘Bulletin of the American Iris Society’, 59,
      2–5.
+
+     Examples
+     ........
+
+          # TODO: Port this example from R
 
 
 File: tablicious.info,  Node: octave.dataset.mtcars,  Prev: octave.dataset.iris,  Up: octave.dataset
 
-9.2.44.7 octave.dataset.mtcars
-..............................
+9.2.44.10 octave.dataset.mtcars
+...............................
 
  -- Static Method: OUT = mtcars ()
 
@@ -3545,8 +3764,13 @@ File: tablicious.info,  Node: octave.dataset.mtcars,  Prev: octave.dataset.iris,
      Source
      ......
 
-     Henderson and Velleman (1981), Building multiple regression models
-     interactively.  Biometrics, 37, 391–411.
+     Henderson and Velleman (1981), “Building multiple regression models
+     interactively”.  Biometrics, 37, 391–411.
+
+     Examples
+     ........
+
+          # TODO: Port this example from R
 
 
 File: tablicious.info,  Node: octave.datasets,  Next: pp,  Prev: octave.dataset,  Up: API Alphabetically
@@ -5857,167 +6081,170 @@ Node: isduration75635
 Node: isfile75924
 Node: isfolder77034
 Node: ismissing78001
-Node: isnannish80111
-Node: localdate81095
-Node: localdate.localdate82418
-Node: localdate.NaT82954
-Node: localdate.ymd83842
-Node: localdate.dispstrs84146
-Node: localdate.datestr84450
-Node: localdate.datestrs84848
-Node: localdate.datestruct85275
-Node: localdate.posixtime86193
-Node: localdate.datenum86764
-Node: localdate.isnat87092
-Node: localdate.isnan87379
-Node: milliseconds87737
-Node: minutes88272
-Node: missing88530
-Node: missing.missing89570
-Node: missing.dispstrs89884
-Node: missing.ismissing90281
-Node: missing.isnan90646
-Node: missing.isnannish90985
-Node: mustBeA91319
-Node: mustBeCellstr91896
-Node: mustBeCharvec92531
-Node: mustBeFinite93431
-Node: mustBeInteger93971
-Node: mustBeMember94616
-Node: mustBeNonempty95444
-Node: mustBeNumeric95993
-Node: mustBeReal96538
-Node: mustBeSameSize97067
-Node: mustBeScalar97705
-Node: mustBeScalarLogical98252
-Node: mustBeVector98845
-Node: NaT99385
-Node: octave.chrono.dummy_function100101
-Node: octave.chrono.DummyClass100633
-Node: octave.chrono.DummyClass.DummyClass101435
-Node: octave.chrono.DummyClass.foo101906
-Node: octave.chrono.DummyClass.bar102445
-Node: octave.dataset102940
-Node: octave.dataset.AirPassengers103635
-Node: octave.dataset.ChickWeight104259
-Node: octave.dataset.airmiles105570
-Node: octave.dataset.beavers106107
-Node: octave.dataset.cupcake107155
-Node: octave.dataset.iris107868
-Node: octave.dataset.mtcars108935
-Node: octave.datasets110558
-Node: octave.datasets.list111056
-Node: octave.datasets.load111564
-Node: octave.datasets.description111995
-Node: pp112575
-Node: rmmissing113226
-Node: scalarexpand114263
-Node: seconds114427
-Node: size2str114926
-Node: standardizeMissing115087
-Node: startsWith115912
-Node: string116722
-Node: string.string120034
-Node: string.isstring120704
-Node: string.dispstrs121029
-Node: string.sizeof121608
-Node: string.ismissing121826
-Node: string.isnannish122305
-Node: string.cellstr122688
-Node: string.cell123033
-Node: string.char123520
-Node: string.encode124045
-Node: string.strlength_bytes124561
-Node: string.strlength125234
-Node: string.reverse_bytes125801
-Node: string.reverse126539
-Node: string.strcat127011
-Node: string.lower127589
-Node: string.upper128091
-Node: string.erase128592
-Node: string.strrep128929
-Node: string.strfind129534
-Node: string.regexprep130057
-Node: string.strcmp130533
-Node: string.cmp131226
-Node: string.missing132205
-Node: string.decode132607
-Node: struct2table133017
-Node: table133484
-Node: table.table136063
-Node: table.summary137115
-Node: table.prettyprint137542
-Node: table.table2cell138001
-Node: table.table2struct138489
-Node: table.table2array139124
-Node: table.varnames139371
-Node: table.istable139623
-Node: table.size139835
-Node: table.length140164
-Node: table.ndims140463
-Node: table.squeeze140714
-Node: table.sizeof141061
-Node: table.height141492
-Node: table.rows141700
-Node: table.width141901
-Node: table.columns142232
-Node: table.numel142570
-Node: table.isempty143090
-Node: table.ismatrix143414
-Node: table.isrow143703
-Node: table.iscol143921
-Node: table.isvector144281
-Node: table.isscalar144507
-Node: table.hasrownames144737
-Node: table.vertcat144987
-Node: table.horzcat145508
-Node: table.repmat146128
-Node: table.repelem146654
-Node: table.setVariableNames147095
-Node: table.setRowNames147542
-Node: table.resolveVarRef147914
-Node: table.subsetrows148916
-Node: table.subsetvars149261
-Node: table.removevars149768
-Node: table.movevars150153
-Node: table.setvar150881
-Node: table.addvars151606
-Node: table.convertvars152073
-Node: table.mergevars153061
-Node: table.splitvars153464
-Node: table.stack154022
-Node: table.head154431
-Node: table.tail154800
-Node: table.join155166
-Node: table.innerjoin155912
-Node: table.outerjoin156573
-Node: table.outerfillvals157380
-Node: table.semijoin157813
-Node: table.antijoin158582
-Node: table.cartesian159234
-Node: table.groupby160502
-Node: table.grpstats161353
-Node: table.rows2vars161685
-Node: table.congruentize162808
-Node: table.union163677
-Node: table.intersect164249
-Node: table.setxor164857
-Node: table.setdiff165492
-Node: table.ismember166029
-Node: table.ismissing166431
-Node: table.rmmissing167115
-Node: table.standardizeMissing167907
-Node: table.varfun168897
-Node: table.rowfun169464
-Node: table.findgroups169775
-Node: table.evalWithVars170360
-Node: table.restrict171210
-Node: tableOuterFillValue172339
-Node: timezones173576
-Node: vartype174621
-Node: vecfun175334
-Node: years176061
-Node: Copying176738
+Node: isnannish80292
+Node: localdate81344
+Node: localdate.localdate82667
+Node: localdate.NaT83203
+Node: localdate.ymd84091
+Node: localdate.dispstrs84395
+Node: localdate.datestr84699
+Node: localdate.datestrs85097
+Node: localdate.datestruct85524
+Node: localdate.posixtime86454
+Node: localdate.datenum87025
+Node: localdate.isnat87353
+Node: localdate.isnan87640
+Node: milliseconds87998
+Node: minutes88533
+Node: missing88791
+Node: missing.missing89831
+Node: missing.dispstrs90145
+Node: missing.ismissing90542
+Node: missing.isnan90907
+Node: missing.isnannish91246
+Node: mustBeA91580
+Node: mustBeCellstr92157
+Node: mustBeCharvec92792
+Node: mustBeFinite93692
+Node: mustBeInteger94232
+Node: mustBeMember94877
+Node: mustBeNonempty95705
+Node: mustBeNumeric96254
+Node: mustBeReal96799
+Node: mustBeSameSize97328
+Node: mustBeScalar97966
+Node: mustBeScalarLogical98513
+Node: mustBeVector99106
+Node: NaT99646
+Node: octave.chrono.dummy_function100491
+Node: octave.chrono.DummyClass101023
+Node: octave.chrono.DummyClass.DummyClass101826
+Node: octave.chrono.DummyClass.foo102297
+Node: octave.chrono.DummyClass.bar102836
+Node: octave.dataset103331
+Node: octave.dataset.AirPassengers104110
+Node: octave.dataset.ChickWeight104829
+Node: octave.dataset.airmiles106247
+Node: octave.dataset.airquality107033
+Node: octave.dataset.anscombe109122
+Node: octave.dataset.attenu111087
+Node: octave.dataset.beavers111372
+Node: octave.dataset.cupcake112512
+Node: octave.dataset.iris113472
+Node: octave.dataset.mtcars114984
+Node: octave.datasets116688
+Node: octave.datasets.list117186
+Node: octave.datasets.load117694
+Node: octave.datasets.description118125
+Node: pp118705
+Node: rmmissing119356
+Node: scalarexpand120393
+Node: seconds120557
+Node: size2str121056
+Node: standardizeMissing121217
+Node: startsWith122042
+Node: string122852
+Node: string.string126164
+Node: string.isstring126834
+Node: string.dispstrs127159
+Node: string.sizeof127738
+Node: string.ismissing127956
+Node: string.isnannish128435
+Node: string.cellstr128818
+Node: string.cell129163
+Node: string.char129650
+Node: string.encode130175
+Node: string.strlength_bytes130691
+Node: string.strlength131364
+Node: string.reverse_bytes131931
+Node: string.reverse132669
+Node: string.strcat133141
+Node: string.lower133719
+Node: string.upper134221
+Node: string.erase134722
+Node: string.strrep135059
+Node: string.strfind135664
+Node: string.regexprep136187
+Node: string.strcmp136663
+Node: string.cmp137356
+Node: string.missing138335
+Node: string.decode138737
+Node: struct2table139147
+Node: table139614
+Node: table.table142193
+Node: table.summary143245
+Node: table.prettyprint143672
+Node: table.table2cell144131
+Node: table.table2struct144619
+Node: table.table2array145254
+Node: table.varnames145501
+Node: table.istable145753
+Node: table.size145965
+Node: table.length146294
+Node: table.ndims146593
+Node: table.squeeze146844
+Node: table.sizeof147191
+Node: table.height147622
+Node: table.rows147830
+Node: table.width148031
+Node: table.columns148362
+Node: table.numel148700
+Node: table.isempty149220
+Node: table.ismatrix149544
+Node: table.isrow149833
+Node: table.iscol150051
+Node: table.isvector150411
+Node: table.isscalar150637
+Node: table.hasrownames150867
+Node: table.vertcat151117
+Node: table.horzcat151638
+Node: table.repmat152258
+Node: table.repelem152784
+Node: table.setVariableNames153225
+Node: table.setRowNames153672
+Node: table.resolveVarRef154044
+Node: table.subsetrows155046
+Node: table.subsetvars155391
+Node: table.removevars155898
+Node: table.movevars156283
+Node: table.setvar157011
+Node: table.addvars157736
+Node: table.convertvars158203
+Node: table.mergevars159191
+Node: table.splitvars159594
+Node: table.stack160152
+Node: table.head160561
+Node: table.tail160930
+Node: table.join161296
+Node: table.innerjoin162042
+Node: table.outerjoin162703
+Node: table.outerfillvals163510
+Node: table.semijoin163943
+Node: table.antijoin164712
+Node: table.cartesian165364
+Node: table.groupby166632
+Node: table.grpstats167483
+Node: table.rows2vars167815
+Node: table.congruentize168938
+Node: table.union169807
+Node: table.intersect170379
+Node: table.setxor170987
+Node: table.setdiff171622
+Node: table.ismember172159
+Node: table.ismissing172561
+Node: table.rmmissing173245
+Node: table.standardizeMissing174037
+Node: table.varfun175027
+Node: table.rowfun175594
+Node: table.findgroups175905
+Node: table.evalWithVars176490
+Node: table.restrict177340
+Node: tableOuterFillValue178469
+Node: timezones179706
+Node: vartype180751
+Node: vecfun181464
+Node: years182191
+Node: Copying182868
 
 End Tag Table
 

@@ -314,6 +314,12 @@
                             </section>
                             <section title="octave.dataset.airmiles" ref="html/octave_002edataset_002eairmiles.html">
                             </section>
+                            <section title="octave.dataset.airquality" ref="html/octave_002edataset_002eairquality.html">
+                            </section>
+                            <section title="octave.dataset.anscombe" ref="html/octave_002edataset_002eanscombe.html">
+                            </section>
+                            <section title="octave.dataset.attenu" ref="html/octave_002edataset_002eattenu.html">
+                            </section>
                             <section title="octave.dataset.beavers" ref="html/octave_002edataset_002ebeavers.html">
                             </section>
                             <section title="octave.dataset.cupcake" ref="html/octave_002edataset_002ecupcake.html">
@@ -694,6 +700,9 @@
             <keyword name="octave.dataset.AirPassengers" id="octave.dataset.AirPassengers" ref="html/octave_002edataset_002eAirPassengers.html"/>
             <keyword name="octave.dataset.ChickWeight" id="octave.dataset.ChickWeight" ref="html/octave_002edataset_002eChickWeight.html"/>
             <keyword name="octave.dataset.airmiles" id="octave.dataset.airmiles" ref="html/octave_002edataset_002eairmiles.html"/>
+            <keyword name="octave.dataset.airquality" id="octave.dataset.airquality" ref="html/octave_002edataset_002eairquality.html"/>
+            <keyword name="octave.dataset.anscombe" id="octave.dataset.anscombe" ref="html/octave_002edataset_002eanscombe.html"/>
+            <keyword name="octave.dataset.attenu" id="octave.dataset.attenu" ref="html/octave_002edataset_002eattenu.html"/>
             <keyword name="octave.dataset.beavers" id="octave.dataset.beavers" ref="html/octave_002edataset_002ebeavers.html"/>
             <keyword name="octave.dataset.cupcake" id="octave.dataset.cupcake" ref="html/octave_002edataset_002ecupcake.html"/>
             <keyword name="octave.dataset.iris" id="octave.dataset.iris" ref="html/octave_002edataset_002eiris.html"/>
@@ -928,6 +937,9 @@
             <file>html/octave_002edataset_002eiris.html</file>
             <file>html/octave_002edataset_002ecupcake.html</file>
             <file>html/octave_002edataset_002ebeavers.html</file>
+            <file>html/octave_002edataset_002eattenu.html</file>
+            <file>html/octave_002edataset_002eanscombe.html</file>
+            <file>html/octave_002edataset_002eairquality.html</file>
             <file>html/octave_002edataset_002eairmiles.html</file>
             <file>html/octave_002edataset_002eChickWeight.html</file>
             <file>html/octave_002edataset_002eAirPassengers.html</file>

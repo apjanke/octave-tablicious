@@ -282,10 +282,13 @@ ul.no-bullet {list-style: none}
         <li><a id="toc-octave_002edataset_002eAirPassengers-1" href="#octave_002edataset_002eAirPassengers">9.2.44.1 octave.dataset.AirPassengers</a></li>
         <li><a id="toc-octave_002edataset_002eChickWeight-1" href="#octave_002edataset_002eChickWeight">9.2.44.2 octave.dataset.ChickWeight</a></li>
         <li><a id="toc-octave_002edataset_002eairmiles-1" href="#octave_002edataset_002eairmiles">9.2.44.3 octave.dataset.airmiles</a></li>
-        <li><a id="toc-octave_002edataset_002ebeavers-1" href="#octave_002edataset_002ebeavers">9.2.44.4 octave.dataset.beavers</a></li>
-        <li><a id="toc-octave_002edataset_002ecupcake-1" href="#octave_002edataset_002ecupcake">9.2.44.5 octave.dataset.cupcake</a></li>
-        <li><a id="toc-octave_002edataset_002eiris-1" href="#octave_002edataset_002eiris">9.2.44.6 octave.dataset.iris</a></li>
-        <li><a id="toc-octave_002edataset_002emtcars-1" href="#octave_002edataset_002emtcars">9.2.44.7 octave.dataset.mtcars</a></li>
+        <li><a id="toc-octave_002edataset_002eairquality-1" href="#octave_002edataset_002eairquality">9.2.44.4 octave.dataset.airquality</a></li>
+        <li><a id="toc-octave_002edataset_002eanscombe-1" href="#octave_002edataset_002eanscombe">9.2.44.5 octave.dataset.anscombe</a></li>
+        <li><a id="toc-octave_002edataset_002eattenu-1" href="#octave_002edataset_002eattenu">9.2.44.6 octave.dataset.attenu</a></li>
+        <li><a id="toc-octave_002edataset_002ebeavers-1" href="#octave_002edataset_002ebeavers">9.2.44.7 octave.dataset.beavers</a></li>
+        <li><a id="toc-octave_002edataset_002ecupcake-1" href="#octave_002edataset_002ecupcake">9.2.44.8 octave.dataset.cupcake</a></li>
+        <li><a id="toc-octave_002edataset_002eiris-1" href="#octave_002edataset_002eiris">9.2.44.9 octave.dataset.iris</a></li>
+        <li><a id="toc-octave_002edataset_002emtcars-1" href="#octave_002edataset_002emtcars">9.2.44.10 octave.dataset.mtcars</a></li>
       </ul></li>
       <li><a id="toc-octave_002edatasets-1" href="#octave_002edatasets">9.2.45 octave.datasets</a>
       <ul class="no-bullet">
@@ -1869,7 +1872,7 @@ Next: <a href="#categorical_002eaddcats" accesskey="n" rel="next">categorical.ad
 <span id="categorical_002esummary-1"></span><h4 class="subsubsection">9.2.5.9 categorical.summary</h4>
 
 <dl>
-<dt id="index-_0028obj_0029">Method: <em>summary</em> <strong>(<var>obj</var>)</strong></dt>
+<dt id="index-summary">Method: <em></em> <strong>summary</strong> <em>(<var>obj</var>)</em></dt>
 <dd>
 <p>Display summary of array’s values.
 </p>
@@ -3543,35 +3546,39 @@ not provided, standard missing values depending on the input type of <var>X</var
 used.
 </p>
 <p>Standard missing values depend on the data type:
-  * NaN for double, single, duration, and calendarDuration
-  * NaT for datetime
-  * <code>' '</code> for char
-  * <code>{''}</code> for cellstrs
-  * Integer numeric types have no standard missing value; they are never
-    considered missing.
-  * Structs are never considered missing.
-  * Logicals are never considered missing.
-  * Other types have no standard missing value; it is currently an error to
-    call <code>ismissing</code> on them without providing an indicator.
-    * This includes cells which are not cellstrs; calling <code>ismissing</code> on them
-      results in an error.
-    * TODO: Determine whether this should really be an error, or if it should
-      default to never considering those types as missing.
-    * TODO: Decide whether, for classdef objects, <code>ismissing</code> should polymorphically
-      detect isnan()/isnat()/isnannish() methods and use those, or whether we should
-      require classes to override ismissing() itself.
-</p>
+</p><ul>
+<li> NaN for double, single, duration, and calendarDuration
+</li><li> NaT for datetime
+</li><li> <code>' '</code> for char
+</li><li> <code>{''}</code> for cellstrs
+</li><li> Integer numeric types have no standard missing value; they are never
+considered missing.
+</li><li> Structs are never considered missing.
+</li><li> Logicals are never considered missing.
+</li><li> Other types have no standard missing value; it is currently an error to
+call <code>ismissing</code> on them without providing an indicator.
+<ul class="no-bullet">
+<li>- This includes cells which are not cellstrs; calling <code>ismissing</code> on them
+results in an error.
+</li><li>- TODO: Determine whether this should really be an error, or if it should
+default to never considering those types as missing.
+</li><li>- TODO: Decide whether, for classdef objects, <code>ismissing</code> should polymorphically
+detect isnan()/isnat()/isnannish() methods and use those, or whether we should
+require classes to override ismissing() itself.
+</li></ul>
+</li></ul>
+
 <p>If <var>indicator</var> is supplied, it is an array containing multiple values, all of
 which are considered to be missing values. Only indicator values that are
 type-compatible with the input are considered; other indicator value types are
 silently ignored. This is by design, so you can pass an indicator that holds
-sentinel values for disparate types in to ismissing() used for any type, or
+sentinel values for disparate types in to <code>ismissing()</code> used for any type, or
 for compound types like table.
 </p>
 <p>Indicators are currently not supported for struct or logical inputs. This is
 probably a bug.
 </p>
-<p>Table defines its own ismissing() method which respects individual variables’
+<p>Table defines its own <code>ismissing()</code> method which respects individual variables’
 data types; see <a href="#table_002eismissing">table.ismissing</a>.
 </p>
 </dd></dl>
@@ -3589,19 +3596,21 @@ Next: <a href="#localdate" accesskey="n" rel="next">localdate</a>, Previous: <a 
 <p>Test if elements are NaN or NaN-like
 </p>
 <p>Tests if input elements are NaN, NaT, or otherwise NaN-like. This is true
-if isnan() or isnat() returns true, and is false for types that do not support
-isnan() or isnat().
+if <code>isnan()</code> or <code>isnat()</code> returns true, and is false for types that do not support
+<code>isnan()</code> or <code>isnat()</code>.
 </p>
 <p>This function only exists because:
 </p>
-<p>a) Matlab decided to call their NaN values for datetime &quot;NaT&quot; instead, and
-test for them with a different &quot;isnat()&quot; function, and
-b) isnan() errors out for some types that do not support isnan(), like cells.
-</p>
-<p>isnannish() smooths over those differences so you can call it polymorphically on
+<ol type="a" start="1">
+<li> Matlab decided to call their NaN values for datetime “NaT” instead, and
+test for them with a different “isnat()” function, and
+</li><li> isnan() errors out for some types that do not support isnan(), like cells.
+</li></ol>
+
+<p><code>isnannish()</code> smooths over those differences so you can call it polymorphically on
 any input type.
 </p>
-<p>Under normal operation, isnannish() should not throw an error for any type or
+<p>Under normal operation, <code>isnannish()</code> should not throw an error for any type or
 value of input.
 </p>
 <p>See also: <code>isnan</code>, <code>isnat</code>, <a href="#ismissing">ismissing</a>, <a href="#eqn">eqn</a>, <code>isequaln</code>
@@ -3801,16 +3810,16 @@ Next: <a href="#localdate_002eposixtime" accesskey="n" rel="next">localdate.posi
 <dl>
 <dt id="index-datestruct-1">Method: <em><var>out</var> =</em> <strong>datestruct</strong> <em>(<var>obj</var>)</em></dt>
 <dd>
-<p>Converts this to a &quot;datestruct&quot; broken-down time structure.
+<p>Converts this to a “datestruct” broken-down time structure.
 </p>
-<p>A &quot;datestruct&quot; is a format of struct that Chrono came up with. It is a scalar
+<p>A “datestruct” is a format of struct that Chrono came up with. It is a scalar
 struct with fields Year, Month, and Day, each containing
 a double array the same size as the date array it represents. This format
-differs from the &quot;datestruct&quot; used by <code>datetime</code> in that it lacks
+differs from the “datestruct” used by <code>datetime</code> in that it lacks
 Hour, Minute, and Second components. This is done for efficiency.
 </p>
 <p>The values in the returned broken-down time are those of the local time
-in this&rsquo; defined time zone, if it has one.
+in <var>obj</var>’s defined time zone, if it has one.
 </p>
 <p>Returns a struct with fields Year, Month, and Day.
 Each field contains a double array of the same size as this.
@@ -4363,6 +4372,9 @@ or invalid value. <code>NaT</code> values never compare equal to, greater than, 
 than any value, including other <code>NaT</code>s. Doing arithmetic with a <code>NaT</code> and
 any other value results in a <code>NaT</code>.
 </p>
+<p><code>NaT</code> currently cannot create NaT arrays of type <code>localdate</code>. To do that,
+use <a href="#localdate_002eNaT">localdate.NaT</a> instead.
+</p>
 </dd></dl>
 
 
@@ -4404,7 +4416,7 @@ Ut sit amet quam orci. Donec vel mauris elementum massa pretium tincidunt.
 <dl>
 <dt id="index-x-of-DummyClass">Instance Variable of DummyClass: <em><code>double</code></em> <strong>x</strong></dt>
 <dd>
-<p>A x. Has no semantics.
+<p>An x. Has no semantics.
 </p>
 </dd></dl>
 
@@ -4508,13 +4520,19 @@ on the dataset list.
 </td></tr>
 <tr><td align="left" valign="top">&bull; <a href="#octave_002edataset_002eairmiles" accesskey="3">octave.dataset.airmiles</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
-<tr><td align="left" valign="top">&bull; <a href="#octave_002edataset_002ebeavers" accesskey="4">octave.dataset.beavers</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+<tr><td align="left" valign="top">&bull; <a href="#octave_002edataset_002eairquality" accesskey="4">octave.dataset.airquality</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
-<tr><td align="left" valign="top">&bull; <a href="#octave_002edataset_002ecupcake" accesskey="5">octave.dataset.cupcake</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+<tr><td align="left" valign="top">&bull; <a href="#octave_002edataset_002eanscombe" accesskey="5">octave.dataset.anscombe</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
-<tr><td align="left" valign="top">&bull; <a href="#octave_002edataset_002eiris" accesskey="6">octave.dataset.iris</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+<tr><td align="left" valign="top">&bull; <a href="#octave_002edataset_002eattenu" accesskey="6">octave.dataset.attenu</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
-<tr><td align="left" valign="top">&bull; <a href="#octave_002edataset_002emtcars" accesskey="7">octave.dataset.mtcars</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+<tr><td align="left" valign="top">&bull; <a href="#octave_002edataset_002ebeavers" accesskey="7">octave.dataset.beavers</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="#octave_002edataset_002ecupcake" accesskey="8">octave.dataset.cupcake</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="#octave_002edataset_002eiris" accesskey="9">octave.dataset.iris</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="#octave_002edataset_002emtcars">octave.dataset.mtcars</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
 </table>
 
@@ -4537,9 +4555,15 @@ airline passengers, 1949 to 1960.
 </p>
 <span id="Source"></span><h4 class="subsubheading">Source</h4>
 
-<p>Box, G. E. P., Jenkins, G. M. and Reinsel, G. C. (1976) Time Series
-Analysis, Forecasting and Control. Third Edition. Holden-Day. Series G.
+<p>Box, G. E. P., Jenkins, G. M. and Reinsel, G. C. (1976) <cite>Time Series
+Analysis, Forecasting and Control</cite>. Third Edition. Holden-Day. Series G.
 </p>
+<span id="Examples"></span><h4 class="subsubheading">Examples</h4>
+
+<div class="example">
+<pre class="example">## TODO: This example needs to be ported from R.
+</pre></div>
+
 
 </dd></dl>
 
@@ -4579,21 +4603,28 @@ the chick received.
 
 <span id="Source-1"></span><h4 class="subsubheading">Source</h4>
 
-<p>Crowder, M. and Hand, D. (1990), Analysis of Repeated Measures, Chapman and
+<p>Crowder, M. and Hand, D. (1990), <cite>Analysis of Repeated Measures</cite>. Chapman and
 Hall (example 5.3)
 </p>
-<p>Hand, D. and Crowder, M. (1996), Practical Longitudinal Data Analysis, Chapman
+<p>Hand, D. and Crowder, M. (1996), <cite>Practical Longitudinal Data Analysis</cite>. Chapman
 and Hall (table A.2)
 </p>
-<p>Pinheiro, J. C. and Bates, D. M. (2000) Mixed-effects Models in S and S-PLUS,
+<p>Pinheiro, J. C. and Bates, D. M. (2000) <cite>Mixed-effects Models in S and S-PLUS</cite>.
 Springer.
 </p>
+<span id="Examples-1"></span><h4 class="subsubheading">Examples</h4>
+
+<div class="example">
+<pre class="example"># TODO: This example needs to be ported from R.
+</pre></div>
+
+
 </dd></dl>
 
 <hr>
 <span id="octave_002edataset_002eairmiles"></span><div class="header">
 <p>
-Next: <a href="#octave_002edataset_002ebeavers" accesskey="n" rel="next">octave.dataset.beavers</a>, Previous: <a href="#octave_002edataset_002eChickWeight" accesskey="p" rel="prev">octave.dataset.ChickWeight</a>, Up: <a href="#octave_002edataset" accesskey="u" rel="up">octave.dataset</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+Next: <a href="#octave_002edataset_002eairquality" accesskey="n" rel="next">octave.dataset.airquality</a>, Previous: <a href="#octave_002edataset_002eChickWeight" accesskey="p" rel="prev">octave.dataset.ChickWeight</a>, Up: <a href="#octave_002edataset" accesskey="u" rel="up">octave.dataset</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
 </div>
 <span id="octave_002edataset_002eairmiles-1"></span><h4 class="subsubsection">9.2.44.3 octave.dataset.airmiles</h4>
 
@@ -4609,28 +4640,213 @@ United States for each year from 1937 to 1960.
 </p>
 <span id="Source-2"></span><h4 class="subsubheading">Source</h4>
 
-<p>F.A.A. Statistical Handbook of Aviation.
+<p><cite>F.A.A. Statistical Handbook of Aviation</cite>.
 </p>
+<span id="Examples-2"></span><h4 class="subsubheading">Examples</h4>
+
+<div class="example">
+<pre class="example">t = octave.dataset.airmiles;
+plot (t.year, t.miles);
+title (&quot;airmiles data&quot;);
+xlabel (&quot;Passenger-miles flown by U.S. commercial airlines&quot;)
+ylabel (&quot;airmiles&quot;);
+</pre></div>
+
+
+</dd></dl>
+
+<hr>
+<span id="octave_002edataset_002eairquality"></span><div class="header">
+<p>
+Next: <a href="#octave_002edataset_002eanscombe" accesskey="n" rel="next">octave.dataset.anscombe</a>, Previous: <a href="#octave_002edataset_002eairmiles" accesskey="p" rel="prev">octave.dataset.airmiles</a>, Up: <a href="#octave_002edataset" accesskey="u" rel="up">octave.dataset</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<span id="octave_002edataset_002eairquality-1"></span><h4 class="subsubsection">9.2.44.4 octave.dataset.airquality</h4>
+
+<dl>
+<dt id="index-airquality">Static Method: <em><var>out</var> =</em> <strong>airquality</strong> <em>()</em></dt>
+<dd>
+<p>New York Air Quality Measurements from 1973
+</p>
+<span id="Description-2"></span><h4 class="subsubheading">Description</h4>
+
+<p>Daily air quality measurements in New York, May to September 1973.
+</p>
+<span id="Format-1"></span><h4 class="subsubheading">Format</h4>
+
+<dl compact="compact">
+<dt><code>Ozone</code></dt>
+<dd><p>Ozone concentration (ppb)
+</p></dd>
+<dt><code>SolarR</code></dt>
+<dd><p>Solar R (lang)
+</p></dd>
+<dt><code>Wind</code></dt>
+<dd><p>Wind (mph)
+</p></dd>
+<dt><code>Temp</code></dt>
+<dd><p>Temperature (degrees F)
+</p></dd>
+<dt><code>Month</code></dt>
+<dd><p>Month (1-12)
+</p></dd>
+<dt><code>Day</code></dt>
+<dd><p>Day of month (1-31)
+</p></dd>
+</dl>
+
+<span id="Source-3"></span><h4 class="subsubheading">Source</h4>
+
+<p>New York State Department of Conservation (ozone data) and the National
+Weather Service (meteorological data).
+</p>
+<span id="References"></span><h4 class="subsubheading">References</h4>
+
+<p>Chambers, J. M., Cleveland, W. S., Kleiner, B. and Tukey, P. A. (1983)
+<cite>Graphical Methods for Data Analysis</cite>. Belmont, CA: Wadsworth.
+</p>
+<span id="Examples-3"></span><h4 class="subsubheading">Examples</h4>
+
+<div class="example">
+<pre class="example">t = octave.dataset.airquality
+# Plot a scatter-plot plus a fitted line, for each combination of measurements
+vars = {&quot;Ozone&quot;, &quot;SolarR&quot;, &quot;Wind&quot;, &quot;Temp&quot; &quot;Month&quot;, &quot;Day&quot;};
+n_vars = numel (vars);
+figure;
+for i = 1:n_vars
+  for j = 1:n_vars
+    if i == j
+      continue
+    endif
+    ix_subplot = (n_vars*(j - 1) + i);
+    hax = subplot (n_vars, n_vars, ix_subplot);
+    var_x = vars{i};
+    var_y = vars{j};
+    x = t.(var_x);
+    y = t.(var_y);
+    scatter (hax, x, y, 10);
+    # Fit a cubic line to these points
+    # TODO: Find out exactly what kind of fitted line R's example is using, and
+    # port that.
+    hold on
+    p = polyfit (x, y, 3);
+    x_hat = unique(x);
+    p_y = polyval (p, x_hat);
+    plot (hax, x_hat, p_y, &quot;r&quot;);
+  endfor
+endfor
+</pre></div>
+
+
+</dd></dl>
+
+<hr>
+<span id="octave_002edataset_002eanscombe"></span><div class="header">
+<p>
+Next: <a href="#octave_002edataset_002eattenu" accesskey="n" rel="next">octave.dataset.attenu</a>, Previous: <a href="#octave_002edataset_002eairquality" accesskey="p" rel="prev">octave.dataset.airquality</a>, Up: <a href="#octave_002edataset" accesskey="u" rel="up">octave.dataset</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<span id="octave_002edataset_002eanscombe-1"></span><h4 class="subsubsection">9.2.44.5 octave.dataset.anscombe</h4>
+
+<dl>
+<dt id="index-anscombe">Static Method: <em><var>out</var> =</em> <strong>anscombe</strong> <em>()</em></dt>
+<dd>
+<p>Anscombe’s Quartet of “Identical” Simple Linear Regressions
+</p>
+<span id="Description-3"></span><h4 class="subsubheading">Description</h4>
+
+<p>Four sets of x/y pairs which have the same statistical properties, but are
+very different.
+</p>
+<span id="Format-2"></span><h4 class="subsubheading">Format</h4>
+
+<p>The data comes in an array of 4 structs, each with fields as follows:
+</p>
+<dl compact="compact">
+<dt><code>x</code></dt>
+<dd><p>The X values for this pair.
+</p></dd>
+<dt><code>y</code></dt>
+<dd><p>The Y values for this pair.
+</p></dd>
+</dl>
+
+<span id="Source-4"></span><h4 class="subsubheading">Source</h4>
+
+<p>Tufte, Edward R. (1989). <cite>The Visual Display of Quantitative Information</cite>.
+13–14. Graphics Press.
+</p>
+<span id="References-1"></span><h4 class="subsubheading">References</h4>
+
+<p>Anscombe, Francis J. (1973). “Graphs in statistical analysis”. <cite>The
+American Statistician</cite>, 27, 17–21.
+</p>
+<span id="Examples-4"></span><h4 class="subsubheading">Examples</h4>
+
+<div class="example">
+<pre class="example">data = octave.dataset.anscombe
+
+# Pick good limits for the plots
+all_x = [data.x];
+all_y = [data.y];
+x_limits = [min(0, min(all_x)) max(all_x)*1.2];
+y_limits = [min(0, min(all_y)) max(all_y)*1.2];
+
+# Do regression on each pair and plot the input and results
+figure;
+haxs = NaN (1, 4);
+for i_pair = 1:4
+  x = data(i_pair).x;
+  y = data(i_pair).y;
+  # TODO: Port the anova and other characterizations from the R code
+  # TODO: Do a linear regression and plot its line
+  hax = subplot (2, 2, i_pair);
+  haxs(i_pair) = hax;
+  xlabel (sprintf (&quot;x%d&quot;, i_pair));
+  ylabel (sprintf (&quot;y%d&quot;, i_pair));
+  scatter (x, y, &quot;r&quot;);
+endfor
+
+# Fiddle with the plot axes parameters
+linkaxes (haxs);
+xlim(haxs(1), x_limits);
+ylim(haxs(1), y_limits);
+</pre></div>
+
+
+</dd></dl>
+
+<hr>
+<span id="octave_002edataset_002eattenu"></span><div class="header">
+<p>
+Next: <a href="#octave_002edataset_002ebeavers" accesskey="n" rel="next">octave.dataset.beavers</a>, Previous: <a href="#octave_002edataset_002eanscombe" accesskey="p" rel="prev">octave.dataset.anscombe</a>, Up: <a href="#octave_002edataset" accesskey="u" rel="up">octave.dataset</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<span id="octave_002edataset_002eattenu-1"></span><h4 class="subsubsection">9.2.44.6 octave.dataset.attenu</h4>
+
+<dl>
+<dt id="index-attenu">Static Method: <em><var>out</var> =</em> <strong>attenu</strong> <em>()</em></dt>
+<dd>
+<p>Joyner-Boore Earthquake Attenuation Data
+</p>
+
 
 </dd></dl>
 
 <hr>
 <span id="octave_002edataset_002ebeavers"></span><div class="header">
 <p>
-Next: <a href="#octave_002edataset_002ecupcake" accesskey="n" rel="next">octave.dataset.cupcake</a>, Previous: <a href="#octave_002edataset_002eairmiles" accesskey="p" rel="prev">octave.dataset.airmiles</a>, Up: <a href="#octave_002edataset" accesskey="u" rel="up">octave.dataset</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+Next: <a href="#octave_002edataset_002ecupcake" accesskey="n" rel="next">octave.dataset.cupcake</a>, Previous: <a href="#octave_002edataset_002eattenu" accesskey="p" rel="prev">octave.dataset.attenu</a>, Up: <a href="#octave_002edataset" accesskey="u" rel="up">octave.dataset</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
 </div>
-<span id="octave_002edataset_002ebeavers-1"></span><h4 class="subsubsection">9.2.44.4 octave.dataset.beavers</h4>
+<span id="octave_002edataset_002ebeavers-1"></span><h4 class="subsubsection">9.2.44.7 octave.dataset.beavers</h4>
 
 <dl>
 <dt id="index-beavers">Static Method: <em><var>out</var> =</em> <strong>beavers</strong> <em>()</em></dt>
 <dd>
 <p>Body Temperature Series of Two Beavers
 </p>
-<span id="Description-2"></span><h4 class="subsubheading">Description</h4>
+<span id="Description-4"></span><h4 class="subsubheading">Description</h4>
 
 <p>Body temperature readings for two beavers.
 </p>
-<span id="Format-1"></span><h4 class="subsubheading">Format</h4>
+<span id="Format-3"></span><h4 class="subsubheading">Format</h4>
 
 <dl compact="compact">
 <dt><code>day</code></dt>
@@ -4648,13 +4864,19 @@ and November 3–4 (beaver2).
 </p></dd>
 </dl>
 
-<span id="Source-3"></span><h4 class="subsubheading">Source</h4>
+<span id="Source-5"></span><h4 class="subsubheading">Source</h4>
 
 <p>P. S. Reynolds (1994) Time-series analyses of beaver body temperatures.
 Chapter 11 of Lange, N., Ryan, L., Billard, L., Brillinger, D., Conquest,
-L. and Greenhouse, J. eds (1994) Case Studies in Biometry. New York: John Wiley
+L. and Greenhouse, J. eds (1994) <cite>Case Studies in Biometry</cite>. New York: John Wiley
 and Sons.
 </p>
+<span id="Examples-5"></span><h4 class="subsubheading">Examples</h4>
+
+<div class="example">
+<pre class="example"># TODO: This example needs to be ported from R.
+</pre></div>
+
 
 </dd></dl>
 
@@ -4663,28 +4885,40 @@ and Sons.
 <p>
 Next: <a href="#octave_002edataset_002eiris" accesskey="n" rel="next">octave.dataset.iris</a>, Previous: <a href="#octave_002edataset_002ebeavers" accesskey="p" rel="prev">octave.dataset.beavers</a>, Up: <a href="#octave_002edataset" accesskey="u" rel="up">octave.dataset</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
 </div>
-<span id="octave_002edataset_002ecupcake-1"></span><h4 class="subsubsection">9.2.44.5 octave.dataset.cupcake</h4>
+<span id="octave_002edataset_002ecupcake-1"></span><h4 class="subsubsection">9.2.44.8 octave.dataset.cupcake</h4>
 
 <dl>
 <dt id="index-cupcake">Static Method: <em><var>out</var> =</em> <strong>cupcake</strong> <em>()</em></dt>
 <dd>
 <p>Google Search popularity for &quot;cupcake&quot;, 2004-2019
 </p>
-<span id="Description-3"></span><h4 class="subsubheading">Description</h4>
+<span id="Description-5"></span><h4 class="subsubheading">Description</h4>
 
 <p>Monthly popularity of worldwide Google search results for &quot;cupcake&quot;, 2004-2019.
 </p>
-<span id="Format-2"></span><h4 class="subsubheading">Format</h4>
+<span id="Format-4"></span><h4 class="subsubheading">Format</h4>
 
-<p>Month - Month when searches took place
-</p>
-<p>Cupcake - An indicator of search volume, in unknown units
-</p>
-<span id="Source-4"></span><h4 class="subsubheading">Source</h4>
+<dl compact="compact">
+<dt><code>Month</code></dt>
+<dd><p>Month when searches took place
+</p></dd>
+<dt><code>Cupcake</code></dt>
+<dd><p>An indicator of search volume, in unknown units
+</p></dd>
+</dl>
+
+<span id="Source-6"></span><h4 class="subsubheading">Source</h4>
 
 <p>Google Trends, <a href="https://trends.google.com/trends/explore?q=%2Fm%2F03p1r4&amp;date=all">https://trends.google.com/trends/explore?q=%2Fm%2F03p1r4&amp;date=all</a>,
-retrieved 2019-05-04 buy apjanke.
+retrieved 2019-05-04 by Andrew Janke.
 </p>
+<span id="Examples-6"></span><h4 class="subsubheading">Examples</h4>
+
+<div class="example">
+<pre class="example">t = octave.dataset.cupcake
+plot(datenum(t.Month), t.Cupcake)
+title ('“Cupcake” Google Searches'); xlabel (&quot;Year&quot;); ylabel (&quot;Unknown popularity metric&quot;)
+</pre></div>
 
 
 </dd></dl>
@@ -4694,35 +4928,60 @@ retrieved 2019-05-04 buy apjanke.
 <p>
 Next: <a href="#octave_002edataset_002emtcars" accesskey="n" rel="next">octave.dataset.mtcars</a>, Previous: <a href="#octave_002edataset_002ecupcake" accesskey="p" rel="prev">octave.dataset.cupcake</a>, Up: <a href="#octave_002edataset" accesskey="u" rel="up">octave.dataset</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
 </div>
-<span id="octave_002edataset_002eiris-1"></span><h4 class="subsubsection">9.2.44.6 octave.dataset.iris</h4>
+<span id="octave_002edataset_002eiris-1"></span><h4 class="subsubsection">9.2.44.9 octave.dataset.iris</h4>
 
 <dl>
 <dt id="index-iris">Static Method: <em><var>out</var> =</em> <strong>iris</strong> <em>()</em></dt>
 <dd>
 <p>The Fisher Iris dataset: measurements of various flowers
 </p>
-<span id="Description-4"></span><h4 class="subsubheading">Description</h4>
+<span id="Description-6"></span><h4 class="subsubheading">Description</h4>
 
 <p>This is the classic Fisher Iris dataset.
 </p>
-<span id="Source-5"></span><h4 class="subsubheading">Source</h4>
+<span id="Format-5"></span><h4 class="subsubheading">Format</h4>
+
+<dl compact="compact">
+<dt><code>Species</code></dt>
+<dd><p>The species of flower being measured.
+</p></dd>
+<dt><code>SepalLength</code></dt>
+<dd><p>Length of sepals, in centimeters.
+</p></dd>
+<dt><code>SepalWidth</code></dt>
+<dd><p>Width of sepals, in centimeters.
+</p></dd>
+<dt><code>PetalLength</code></dt>
+<dd><p>Length of petals, in centimeters.
+</p></dd>
+<dt><code>PetalWidth</code></dt>
+<dd><p>Width of petals, in centimeters.
+</p></dd>
+</dl>
+
+<span id="Source-7"></span><h4 class="subsubheading">Source</h4>
 
 <p><a href="http://archive.ics.uci.edu/ml/datasets/Iris">http://archive.ics.uci.edu/ml/datasets/Iris</a>
 </p>
-<span id="References"></span><h4 class="subsubheading">References</h4>
+<span id="References-2"></span><h4 class="subsubheading">References</h4>
 
 <p><a href="https://en.wikipedia.org/wiki/Iris_flower_data_set">https://en.wikipedia.org/wiki/Iris_flower_data_set</a>
 </p>
-<p>Fisher,R.A. “The use of multiple measurements in taxonomic problems”
-Annals of Eugenics, 7, Part II, 179-188 (1936); also in “Contributions
-to Mathematical Statistics” (John Wiley, NY, 1950).
+<p>Fisher, R.A. “The use of multiple measurements in taxonomic problems”
+Annals of Eugenics, 7, Part II, 179-188 (1936); also in <cite>Contributions
+to Mathematical Statistics</cite> (John Wiley, NY, 1950).
 </p>
-<p>Duda,R.O., &amp; Hart,P.E. (1973) Pattern Classification and Scene Analysis.
+<p>Duda, R.O., &amp; Hart, P.E. (1973) <cite>Pattern Classification and Scene Analysis</cite>.
 (Q327.D83) John Wiley &amp; Sons. ISBN 0-471-22361-1. See page 218.
 </p>
 <p>The data were collected by Anderson, Edgar (1935). The irises of the Gaspe
-Peninsula, Bulletin of the American Iris Society, 59, 2–5.
+Peninsula, <cite>Bulletin of the American Iris Society</cite>, 59, 2–5.
 </p>
+<span id="Examples-7"></span><h4 class="subsubheading">Examples</h4>
+
+<div class="example">
+<pre class="example"># TODO: Port this example from R
+</pre></div>
 
 </dd></dl>
 
@@ -4731,20 +4990,20 @@ Peninsula, Bulletin of the American Iris Society, 59, 2–5.
 <p>
 Previous: <a href="#octave_002edataset_002eiris" accesskey="p" rel="prev">octave.dataset.iris</a>, Up: <a href="#octave_002edataset" accesskey="u" rel="up">octave.dataset</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
 </div>
-<span id="octave_002edataset_002emtcars-1"></span><h4 class="subsubsection">9.2.44.7 octave.dataset.mtcars</h4>
+<span id="octave_002edataset_002emtcars-1"></span><h4 class="subsubsection">9.2.44.10 octave.dataset.mtcars</h4>
 
 <dl>
 <dt id="index-mtcars">Static Method: <em><var>out</var> =</em> <strong>mtcars</strong> <em>()</em></dt>
 <dd>
 <p>Motor Trend 1974 Car Road Tests
 </p>
-<span id="Description-5"></span><h4 class="subsubheading">Description</h4>
+<span id="Description-7"></span><h4 class="subsubheading">Description</h4>
 
 <p>The data was extracted from the 1974 Motor Trend US magazine, and
 comprises fuel consumption and 10 aspects of automobile design and
 performance for 32 automobiles (1973–74 models).
 </p>
-<span id="Format-3"></span><h4 class="subsubheading">Format</h4>
+<span id="Format-6"></span><h4 class="subsubheading">Format</h4>
 
 <dl compact="compact">
 <dt><code>mpg</code></dt>
@@ -4790,11 +5049,16 @@ as a straight six-cylinder engine and the Porsche’s flat engine as a V
 engine, as well as the inclusion of the diesel Mercedes 240D, have been
 retained to enable direct comparisons to be made with previous analyses.”
 </p>
-<span id="Source-6"></span><h4 class="subsubheading">Source</h4>
+<span id="Source-8"></span><h4 class="subsubheading">Source</h4>
 
-<p>Henderson and Velleman (1981), Building multiple regression models
-interactively. Biometrics, 37, 391–411.
+<p>Henderson and Velleman (1981), “Building multiple regression models
+interactively”. Biometrics, 37, 391–411.
 </p>
+<span id="Examples-8"></span><h4 class="subsubheading">Examples</h4>
+
+<div class="example">
+<pre class="example"># TODO: Port this example from R
+</pre></div>
 
 </dd></dl>
 
@@ -5945,8 +6209,8 @@ Next: <a href="#table_002eprettyprint" accesskey="n" rel="next">table.prettyprin
 <span id="table_002esummary-1"></span><h4 class="subsubsection">9.2.55.2 table.summary</h4>
 
 <dl>
-<dt id="index-_0028obj_0029-1">Method: <em>summary</em> <strong>(<var>obj</var>)</strong></dt>
-<dt id="index-summary">Method: <em><var>s</var> =</em> <strong>summary</strong> <em>(<var>obj</var>)</em></dt>
+<dt id="index-_0028obj_0029">Method: <em>summary</em> <strong>(<var>obj</var>)</strong></dt>
+<dt id="index-summary-1">Method: <em><var>s</var> =</em> <strong>summary</strong> <em>(<var>obj</var>)</em></dt>
 <dd>
 <p>Summary of table&rsquo;s data.
 </p>
@@ -5965,7 +6229,7 @@ Next: <a href="#table_002etable2cell" accesskey="n" rel="next">table.table2cell<
 <span id="table_002eprettyprint-1"></span><h4 class="subsubsection">9.2.55.3 table.prettyprint</h4>
 
 <dl>
-<dt id="index-_0028obj_0029-2">Method: <em>prettyprint</em> <strong>(<var>obj</var>)</strong></dt>
+<dt id="index-_0028obj_0029-1">Method: <em>prettyprint</em> <strong>(<var>obj</var>)</strong></dt>
 <dd>
 <p>Display table&rsquo;s values in tabular format. This prints the contents
 of the table in human-readable, tabular form.

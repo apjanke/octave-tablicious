@@ -41,8 +41,14 @@ classdef dataset
     ## 
     ## @subsubheading Source
     ## 
-    ## Box, G. E. P., Jenkins, G. M. and Reinsel, G. C. (1976) Time Series
-    ## Analysis, Forecasting and Control. Third Edition. Holden-Day. Series G.
+    ## Box, G. E. P., Jenkins, G. M. and Reinsel, G. C. (1976) @cite{Time Series
+    ## Analysis, Forecasting and Control}. Third Edition. Holden-Day. Series G.
+    ## 
+    ## @subsubheading Examples
+    ## 
+    ## @example
+    ## ## TODO: This example needs to be ported from R.
+    ## @end example
     ## 
     ##
     ## @end deftypefn
@@ -77,14 +83,21 @@ classdef dataset
     ## 
     ## @subsubheading Source
     ## 
-    ## Crowder, M. and Hand, D. (1990), Analysis of Repeated Measures, Chapman and
+    ## Crowder, M. and Hand, D. (1990), @cite{Analysis of Repeated Measures}. Chapman and
     ## Hall (example 5.3)
     ## 
-    ## Hand, D. and Crowder, M. (1996), Practical Longitudinal Data Analysis, Chapman
+    ## Hand, D. and Crowder, M. (1996), @cite{Practical Longitudinal Data Analysis}. Chapman
     ## and Hall (table A.2)
     ## 
-    ## Pinheiro, J. C. and Bates, D. M. (2000) Mixed-effects Models in S and S-PLUS,
+    ## Pinheiro, J. C. and Bates, D. M. (2000) @cite{Mixed-effects Models in S and S-PLUS}.
     ## Springer.
+    ## 
+    ## @subsubheading Examples
+    ## 
+    ## @example
+    ## # TODO: This example needs to be ported from R.
+    ## @end example
+    ## 
     ##
     ## @end deftypefn
     function out = ChickWeight ()
@@ -105,12 +118,183 @@ classdef dataset
     ## 
     ## @subsubheading Source
     ## 
-    ## F.A.A. Statistical Handbook of Aviation.
+    ## @cite{F.A.A. Statistical Handbook of Aviation}.
+    ## 
+    ## @subsubheading Examples
+    ## 
+    ## @example
+    ## t = octave.dataset.airmiles;
+    ## plot (t.year, t.miles);
+    ## title ("airmiles data");
+    ## xlabel ("Passenger-miles flown by U.S. commercial airlines")
+    ## ylabel ("airmiles");
+    ## @end example
     ## 
     ##
     ## @end deftypefn
     function out = airmiles ()
       name = 'airmiles';
+      out = octave.datasets.load(name);
+    endfunction
+
+    ## -*- texinfo -*-
+    ## @node dataset.airquality
+    ## @deftypefn {Static Method} {@var{out} =} airquality ()
+    ##
+    ## New York Air Quality Measurements from 1973
+    ##
+    ## @subsubheading Description
+    ## 
+    ## Daily air quality measurements in New York, May to September 1973.
+    ## 
+    ## @subsubheading Format
+    ## 
+    ## @table @code
+    ## @item Ozone
+    ## Ozone concentration (ppb)
+    ## @item SolarR
+    ## Solar R (lang)
+    ## @item Wind
+    ## Wind (mph)
+    ## @item Temp
+    ## Temperature (degrees F)
+    ## @item Month
+    ## Month (1-12)
+    ## @item Day
+    ## Day of month (1-31)
+    ## @end table
+    ## 
+    ## @subsubheading Source
+    ## 
+    ## New York State Department of Conservation (ozone data) and the National
+    ## Weather Service (meteorological data).
+    ## 
+    ## @subsubheading References
+    ## 
+    ## Chambers, J. M., Cleveland, W. S., Kleiner, B. and Tukey, P. A. (1983)
+    ## @cite{Graphical Methods for Data Analysis}. Belmont, CA: Wadsworth.
+    ## 
+    ## @subsubheading Examples
+    ## 
+    ## @example
+    ## t = octave.dataset.airquality
+    ## # Plot a scatter-plot plus a fitted line, for each combination of measurements
+    ## vars = @{"Ozone", "SolarR", "Wind", "Temp" "Month", "Day"@};
+    ## n_vars = numel (vars);
+    ## figure;
+    ## for i = 1:n_vars
+    ##   for j = 1:n_vars
+    ##     if i == j
+    ##       continue
+    ##     endif
+    ##     ix_subplot = (n_vars*(j - 1) + i);
+    ##     hax = subplot (n_vars, n_vars, ix_subplot);
+    ##     var_x = vars@{i@};
+    ##     var_y = vars@{j@};
+    ##     x = t.(var_x);
+    ##     y = t.(var_y);
+    ##     scatter (hax, x, y, 10);
+    ##     # Fit a cubic line to these points
+    ##     # TODO: Find out exactly what kind of fitted line R's example is using, and
+    ##     # port that.
+    ##     hold on
+    ##     p = polyfit (x, y, 3);
+    ##     x_hat = unique(x);
+    ##     p_y = polyval (p, x_hat);
+    ##     plot (hax, x_hat, p_y, "r");
+    ##   endfor
+    ## endfor
+    ## @end example
+    ## 
+    ##
+    ## @end deftypefn
+    function out = airquality ()
+      name = 'airquality';
+      out = octave.datasets.load(name);
+    endfunction
+
+    ## -*- texinfo -*-
+    ## @node dataset.anscombe
+    ## @deftypefn {Static Method} {@var{out} =} anscombe ()
+    ##
+    ## Anscombe’s Quartet of “Identical” Simple Linear Regressions
+    ##
+    ## @subsubheading Description
+    ## 
+    ## Four sets of x/y pairs which have the same statistical properties, but are
+    ## very different.
+    ## 
+    ## @subsubheading Format
+    ## 
+    ## The data comes in an array of 4 structs, each with fields as follows:
+    ## 
+    ## @table @code
+    ## @item x
+    ## The X values for this pair.
+    ## @item y
+    ## The Y values for this pair.
+    ## @end table
+    ## 
+    ## @subsubheading Source
+    ## 
+    ## Tufte, Edward R. (1989). @cite{The Visual Display of Quantitative Information}.
+    ## 13–14. Graphics Press.
+    ## 
+    ## @subsubheading References
+    ## 
+    ## Anscombe, Francis J. (1973). “Graphs in statistical analysis”. @cite{The
+    ## American Statistician}, 27, 17–21. 
+    ## 
+    ## @subsubheading Examples
+    ## 
+    ## @example
+    ## data = octave.dataset.anscombe
+    ## 
+    ## # Pick good limits for the plots
+    ## all_x = [data.x];
+    ## all_y = [data.y];
+    ## x_limits = [min(0, min(all_x)) max(all_x)*1.2];
+    ## y_limits = [min(0, min(all_y)) max(all_y)*1.2];
+    ## 
+    ## # Do regression on each pair and plot the input and results
+    ## figure;
+    ## haxs = NaN (1, 4);
+    ## for i_pair = 1:4
+    ##   x = data(i_pair).x;
+    ##   y = data(i_pair).y;
+    ##   # TODO: Port the anova and other characterizations from the R code
+    ##   # TODO: Do a linear regression and plot its line
+    ##   hax = subplot (2, 2, i_pair);
+    ##   haxs(i_pair) = hax;
+    ##   xlabel (sprintf ("x%d", i_pair));
+    ##   ylabel (sprintf ("y%d", i_pair));
+    ##   scatter (x, y, "r");
+    ## endfor
+    ## 
+    ## # Fiddle with the plot axes parameters
+    ## linkaxes (haxs);
+    ## xlim(haxs(1), x_limits);
+    ## ylim(haxs(1), y_limits);
+    ## @end example
+    ## 
+    ##
+    ## @end deftypefn
+    function out = anscombe ()
+      name = 'anscombe';
+      out = octave.datasets.load(name);
+    endfunction
+
+    ## -*- texinfo -*-
+    ## @node dataset.attenu
+    ## @deftypefn {Static Method} {@var{out} =} attenu ()
+    ##
+    ## Joyner-Boore Earthquake Attenuation Data
+    ##
+    ## 
+    ##
+    ## @end deftypefn
+    function out = attenu ()
+      name = 'attenu';
       out = octave.datasets.load(name);
     endfunction
 
@@ -142,8 +326,14 @@ classdef dataset
     ## 
     ## P. S. Reynolds (1994) Time-series analyses of beaver body temperatures.
     ## Chapter 11 of Lange, N., Ryan, L., Billard, L., Brillinger, D., Conquest,
-    ## L. and Greenhouse, J. eds (1994) Case Studies in Biometry. New York: John Wiley
+    ## L. and Greenhouse, J. eds (1994) @cite{Case Studies in Biometry}. New York: John Wiley
     ## and Sons.
+    ## 
+    ## @subsubheading Examples
+    ## 
+    ## @example
+    ## # TODO: This example needs to be ported from R.
+    ## @end example
     ## 
     ##
     ## @end deftypefn
@@ -164,15 +354,25 @@ classdef dataset
     ## 
     ## @subsubheading Format
     ## 
-    ## Month - Month when searches took place
-    ## 
-    ## Cupcake - An indicator of search volume, in unknown units
+    ## @table @code
+    ## @item Month
+    ## Month when searches took place
+    ## @item Cupcake
+    ## An indicator of search volume, in unknown units
+    ## @end table
     ## 
     ## @subsubheading Source
     ## 
     ## Google Trends, @url{https://trends.google.com/trends/explore?q=%2Fm%2F03p1r4&date=all},
-    ## retrieved 2019-05-04 buy apjanke.
+    ## retrieved 2019-05-04 by Andrew Janke.
     ## 
+    ## @subsubheading Examples
+    ## 
+    ## @example
+    ## t = octave.dataset.cupcake
+    ## plot(datenum(t.Month), t.Cupcake)
+    ## title ('“Cupcake” Google Searches'); xlabel ("Year"); ylabel ("Unknown popularity metric")
+    ## @end example
     ## 
     ##
     ## @end deftypefn
@@ -191,6 +391,21 @@ classdef dataset
     ## 
     ## This is the classic Fisher Iris dataset.
     ## 
+    ## @subsubheading Format
+    ## 
+    ## @table @code
+    ## @item Species
+    ## The species of flower being measured.
+    ## @item SepalLength
+    ## Length of sepals, in centimeters.
+    ## @item SepalWidth
+    ## Width of sepals, in centimeters.
+    ## @item PetalLength
+    ## Length of petals, in centimeters.
+    ## @item PetalWidth
+    ## Width of petals, in centimeters.
+    ## @end table
+    ## 
     ## @subsubheading Source
     ## 
     ## @url{http://archive.ics.uci.edu/ml/datasets/Iris}
@@ -199,16 +414,21 @@ classdef dataset
     ## 
     ## @url{https://en.wikipedia.org/wiki/Iris_flower_data_set}
     ## 
-    ## Fisher,R.A. “The use of multiple measurements in taxonomic problems”
-    ## Annals of Eugenics, 7, Part II, 179-188 (1936); also in “Contributions 
-    ## to Mathematical Statistics” (John Wiley, NY, 1950).
+    ## Fisher, R.A. “The use of multiple measurements in taxonomic problems”
+    ## Annals of Eugenics, 7, Part II, 179-188 (1936); also in @cite{Contributions 
+    ## to Mathematical Statistics} (John Wiley, NY, 1950).
     ## 
-    ## Duda,R.O., & Hart,P.E. (1973) Pattern Classification and Scene Analysis. 
+    ## Duda, R.O., & Hart, P.E. (1973) @cite{Pattern Classification and Scene Analysis}.
     ## (Q327.D83) John Wiley & Sons. ISBN 0-471-22361-1. See page 218.
     ## 
     ## The data were collected by Anderson, Edgar (1935). The irises of the Gaspe
-    ## Peninsula, Bulletin of the American Iris Society, 59, 2–5.
+    ## Peninsula, @cite{Bulletin of the American Iris Society}, 59, 2–5.
     ## 
+    ## @subsubheading Examples
+    ## 
+    ## @example
+    ## # TODO: Port this example from R
+    ## @end example
     ##
     ## @end deftypefn
     function out = iris ()
@@ -265,9 +485,14 @@ classdef dataset
     ## 
     ## @subsubheading Source
     ## 
-    ## Henderson and Velleman (1981), Building multiple regression models
-    ## interactively. Biometrics, 37, 391–411.
+    ## Henderson and Velleman (1981), “Building multiple regression models
+    ## interactively”. Biometrics, 37, 391–411.
     ## 
+    ## @subsubheading Examples
+    ## 
+    ## @example
+    ## # TODO: Port this example from R
+    ## @end example
     ##
     ## @end deftypefn
     function out = mtcars ()
