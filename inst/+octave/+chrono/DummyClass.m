@@ -29,7 +29,7 @@
 ##
 ## @deftypeivar DummyClass @code{double} x
 ##
-## A x. Has no semantics.
+## An x. Has no semantics.
 ##
 ## @end deftypeivar
 ##
