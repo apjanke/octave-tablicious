@@ -19,19 +19,23 @@
 ## Test if elements are NaN or NaN-like
 ##
 ## Tests if input elements are NaN, NaT, or otherwise NaN-like. This is true
-## if isnan() or isnat() returns true, and is false for types that do not support
-## isnan() or isnat().
+## if @code{isnan()} or @code{isnat()} returns true, and is false for types that do not support
+## @code{isnan()} or @code{isnat()}.
 ##
 ## This function only exists because:
 ##
-## a) Matlab decided to call their NaN values for datetime "NaT" instead, and
-## test for them with a different "isnat()" function, and
-## b) isnan() errors out for some types that do not support isnan(), like cells.
+## @enumerate a
+## @item
+## Matlab decided to call their NaN values for datetime “NaT” instead, and
+## test for them with a different “isnat()” function, and
+## @item
+## isnan() errors out for some types that do not support isnan(), like cells.
+## @end enumerate
 ##
-## isnannish() smooths over those differences so you can call it polymorphically on
+## @code{isnannish()} smooths over those differences so you can call it polymorphically on
 ## any input type.
 ##
-## Under normal operation, isnannish() should not throw an error for any type or
+## Under normal operation, @code{isnannish()} should not throw an error for any type or
 ## value of input.
 ##
 ## See also: @code{isnan}, @code{isnat}, @ref{ismissing}, @ref{eqn}, @code{isequaln}

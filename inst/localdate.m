@@ -404,16 +404,16 @@ classdef localdate
     ## @node localdate.datestruct
     ## @deftypefn {Method} {@var{out} =} datestruct (@var{obj})
     ##
-    ## Converts this to a "datestruct" broken-down time structure.
+    ## Converts this to a “datestruct” broken-down time structure.
     ##
-    ## A "datestruct" is a format of struct that Chrono came up with. It is a scalar
+    ## A “datestruct” is a format of struct that Chrono came up with. It is a scalar
     ## struct with fields Year, Month, and Day, each containing
     ## a double array the same size as the date array it represents. This format
-    ## differs from the "datestruct" used by @code{datetime} in that it lacks
+    ## differs from the “datestruct” used by @code{datetime} in that it lacks
     ## Hour, Minute, and Second components. This is done for efficiency.
     ##
     ## The values in the returned broken-down time are those of the local time
-    ## in this' defined time zone, if it has one.
+    ## in @var{obj}’s defined time zone, if it has one.
     ##
     ## Returns a struct with fields Year, Month, and Day.
     ## Each field contains a double array of the same size as this.

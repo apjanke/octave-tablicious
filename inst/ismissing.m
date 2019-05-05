@@ -24,35 +24,50 @@
 ## used.
 ##
 ## Standard missing values depend on the data type:
-##   * NaN for double, single, duration, and calendarDuration
-##   * NaT for datetime
-##   * @code{' '} for char
-##   * @code{@{''@}} for cellstrs
-##   * Integer numeric types have no standard missing value; they are never 
-##     considered missing.
-##   * Structs are never considered missing.
-##   * Logicals are never considered missing.
-##   * Other types have no standard missing value; it is currently an error to
-##     call @code{ismissing} on them without providing an indicator.
-##     * This includes cells which are not cellstrs; calling @code{ismissing} on them
-##       results in an error.
-##     * TODO: Determine whether this should really be an error, or if it should
-##       default to never considering those types as missing.
-##     * TODO: Decide whether, for classdef objects, @code{ismissing} should polymorphically
-##       detect isnan()/isnat()/isnannish() methods and use those, or whether we should
-##       require classes to override ismissing() itself.
+## @itemize @bullet
+## @item
+## NaN for double, single, duration, and calendarDuration
+## @item
+## NaT for datetime
+## @item
+## @code{' '} for char
+## @item
+## @code{@{''@}} for cellstrs
+## @item
+## Integer numeric types have no standard missing value; they are never 
+## considered missing.
+## @item
+## Structs are never considered missing.
+## @item
+## Logicals are never considered missing.
+## @item
+## Other types have no standard missing value; it is currently an error to
+## call @code{ismissing} on them without providing an indicator.
+## @itemize @minus
+## @item
+## This includes cells which are not cellstrs; calling @code{ismissing} on them
+## results in an error.
+## @item
+## TODO: Determine whether this should really be an error, or if it should
+## default to never considering those types as missing.
+## @item
+## TODO: Decide whether, for classdef objects, @code{ismissing} should polymorphically
+## detect isnan()/isnat()/isnannish() methods and use those, or whether we should
+## require classes to override ismissing() itself.
+## @end itemize
+## @end itemize
 ##
 ## If @var{indicator} is supplied, it is an array containing multiple values, all of
 ## which are considered to be missing values. Only indicator values that are
 ## type-compatible with the input are considered; other indicator value types are
 ## silently ignored. This is by design, so you can pass an indicator that holds
-## sentinel values for disparate types in to ismissing() used for any type, or
+## sentinel values for disparate types in to @code{ismissing()} used for any type, or
 ## for compound types like table.
 ##
 ## Indicators are currently not supported for struct or logical inputs. This is
 ## probably a bug.
 ##
-## Table defines its own ismissing() method which respects individual variables’
+## Table defines its own @code{ismissing()} method which respects individual variables’
 ## data types; see @ref{table.ismissing}.
 ##
 ## @end deftypefn
