@@ -353,6 +353,8 @@
                         </section>
                         <section title="size2str" ref="html/size2str.html">
                         </section>
+                        <section title="splitapply" ref="html/splitapply.html">
+                        </section>
                         <section title="standardizeMissing" ref="html/standardizeMissing.html">
                         </section>
                         <section title="startsWith" ref="html/startsWith.html">
@@ -517,6 +519,8 @@
                             <section title="table.groupby" ref="html/table_002egroupby.html">
                             </section>
                             <section title="table.grpstats" ref="html/table_002egrpstats.html">
+                            </section>
+                            <section title="table.splitapply" ref="html/table_002esplitapply.html">
                             </section>
                             <section title="table.rows2vars" ref="html/table_002erows2vars.html">
                             </section>
@@ -722,7 +726,10 @@
             <keyword name="octave.examples.plot_pairs" id="octave.examples.plot_pairs" ref="html/octave_002eexamples_002eplot_005fpairs.html"/>
             <keyword name="pp" id="pp" ref="html/pp.html"/>
             <keyword name="rmmissing" id="rmmissing" ref="html/rmmissing.html"/>
+            <keyword name="scalarexpand" id="scalarexpand" ref="html/scalarexpand.html"/>
             <keyword name="seconds" id="seconds" ref="html/seconds.html"/>
+            <keyword name="size2str" id="size2str" ref="html/size2str.html"/>
+            <keyword name="splitapply" id="splitapply" ref="html/splitapply.html"/>
             <keyword name="standardizeMissing" id="standardizeMissing" ref="html/standardizeMissing.html"/>
             <keyword name="startsWith" id="startsWith" ref="html/startsWith.html"/>
             <keyword name="string" id="string" ref="html/string.html"/>
@@ -804,6 +811,7 @@
             <keyword name="table.setxor" id="table.setxor" ref="html/table_002esetxor.html"/>
             <keyword name="table.size" id="table.size" ref="html/table_002esize.html"/>
             <keyword name="table.sizeof" id="table.sizeof" ref="html/table_002esizeof.html"/>
+            <keyword name="table.splitapply" id="table.splitapply" ref="html/table_002esplitapply.html"/>
             <keyword name="table.splitvars" id="table.splitvars" ref="html/table_002esplitvars.html"/>
             <keyword name="table.squeeze" id="table.squeeze" ref="html/table_002esqueeze.html"/>
             <keyword name="table.stack" id="table.stack" ref="html/table_002estack.html"/>
@@ -850,6 +858,7 @@
             <file>html/table_002eunion.html</file>
             <file>html/table_002econgruentize.html</file>
             <file>html/table_002erows2vars.html</file>
+            <file>html/table_002esplitapply.html</file>
             <file>html/table_002egrpstats.html</file>
             <file>html/table_002egroupby.html</file>
             <file>html/table_002ecartesian.html</file>
@@ -933,6 +942,7 @@
             <file>html/string.html</file>
             <file>html/startsWith.html</file>
             <file>html/standardizeMissing.html</file>
+            <file>html/splitapply.html</file>
             <file>html/size2str.html</file>
             <file>html/seconds.html</file>
             <file>html/scalarexpand.html</file>

@@ -572,10 +572,13 @@ Test whether file exists and is a folder.
 Alias for prettyprint, for interactive use.
 
 @item @ref{scalarexpand}
-
+Expand scalar inputs to match size of non-scalar inputs.
 
 @item @ref{size2str}
+Format an array size for display.
 
+@item @ref{splitapply}
+Split data into groups and apply function.
 
 @item @ref{vecfun}
 Apply function to vectors in array along arbitrary dimension.
@@ -670,10 +673,12 @@ A do-nothing class just for testing the doco tools.
 * octave.examples.plot_pairs::	Plot pairs of variables against each other.
 * pp::	Alias for prettyprint, for interactive use.
 * rmmissing::	Remove missing values.
-* scalarexpand::	
+* scalarexpand::	Expand scalar inputs to match size of non-scalar
+		inputs.
 * seconds::	Create a 'duration' X seconds long, or get the seconds in a
 		'duration' X.
-* size2str::	
+* size2str::	Format an array size for display.
+* splitapply::	Split data into groups and apply function.
 * standardizeMissing::	Insert standard missing values.
 * startsWith::	Test if strings start with a pattern.
 * string::	A string array of Unicode strings.
@@ -3750,7 +3755,35 @@ Returns:
 
 @node scalarexpand
 @subsection scalarexpand
-@emph{Not documented}
+@deftypefn {Function} {[@var{out1}, @var{out2}, @dots{}, @var{outN}] =} scalarexpand @
+  (@var{x1}, @var{x2}, @dots{}, @var{xN})
+
+Expand scalar inputs to match size of non-scalar inputs.
+
+Expands each scalar input argument to match the size of the non-scalar
+input arguments, and returns the expanded values in the corresponding
+output arguments. @code{repmat} is used to do the expansion.
+
+Works on any input types that support @code{size}, @code{isscalar}, and
+@code{repmat}.
+
+It is an error if any of the non-scalar inputs are not the same size as
+all of the other non-scalar inputs.
+
+Returns as many output arguments as there were input arguments.
+
+Examples:
+
+@example
+x1 = rand(3);
+x2 = 42;
+x3 = magic(3);
+[x1, x2, x3] = scalarexpand (x1, x2, x3)
+@end example
+
+@end deftypefn
+
+
 @node seconds
 @subsection seconds
 @deftypefn {Function File} {@var{out} =} seconds (@var{x})
@@ -3768,7 +3801,56 @@ Returns an array the same size as @var{x}.
 
 @node size2str
 @subsection size2str
-@emph{Not documented}
+@deftypefn {Function} {@var{out} =} size2str (@var{sz})
+
+Format an array size for display.
+
+Formats the given array size @var{sz} as a string for human-readable
+display. It will be in the format “d1-by-d2-...-by-dN”, for the @var{N}
+dimensions represented by @var{sz}.
+
+@var{sz} is an array of dimension sizes, in the format returned by
+the @code{size} function.
+
+Returns a charvec.
+
+Examples:
+@example
+str = size2str (size (magic (4)))
+@end example
+
+@end deftypefn
+
+
+@node splitapply
+@subsection splitapply
+@deftypefn {Function} {@var{out} =} splitapply (@var{func}, @var{X}, @var{G})
+@deftypefnx {Function} {@var{out} =} splitapply (@var{func}, @var{X1}, @dots{}, @var{XN}, @var{G})
+@deftypefnx {Function} {[@var{Y1}, @dots{}, @var{YM}] =} splitapply (@dots{})
+
+Split data into groups and apply function.
+
+@var{func} is a function handle to call on each group of inputs in turn.
+
+@var{X}, @var{X1}, @dots{}, @var{XN} are the input variables that are split into
+groups for the function calls. If @var{X} is a @code{table}, then its contained
+variables are “popped out” and considered to be the @var{X1} @dots{} @var{XN}
+input variables.
+
+@var{G} is the grouping variable vector. It contains a list of integers that
+identify which group each element of the @var{X} input variables belongs to.
+NaNs in @var{G} mean that element is ignored.
+
+Vertically concatenates the function outputs for each of the groups and returns them in
+as many variables as you capture.
+
+Returns the concatenated outputs of applying @var{func} to each group.
+
+See also: @ref{table.groupby}, @ref{table.splitapply}
+
+@end deftypefn
+
+
 @node standardizeMissing
 @subsection standardizeMissing
 @deftypefn {Function} {@var{out} =} standardizeMissing (@var{X}, @var{indicator})
@@ -5154,6 +5236,21 @@ Returns a table.
 Statistics by group.
 
 See also: @ref{table.groupby}.
+
+@end deftypefn
+
+@node table.splitapply
+@subsubsection table.splitapply
+
+@deftypefn {Method} {@var{out} =} splitapply (@var{func}, @var{obj}, @var{G})
+@deftypefnx {Method} {[@var{Y1}, @dots{}, @var{YM}] =} splitapply (@var{func}, @var{obj}, @var{G})
+
+Split table data into groups and apply function.
+
+Performs a splitapply, using the variables in @var{obj} as the input X variables
+to the @code{splitapply} function call.
+
+See also: @ref{splitapply}, @ref{table.groupby}
 
 @end deftypefn
 
