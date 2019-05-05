@@ -61,6 +61,7 @@ This manual is for Tablicious, version @value{VERSION}.
 * Time Zones::
 * Durations::
 * Validation Functions::
+* Example Data Sets::
 * Missing Functionality::
 * API Reference::
 * Copying::
@@ -361,6 +362,49 @@ mustBeScalar (this.foo, 'this.foo');
 @end example
 
 
+@node Example Data Sets
+@chapter Example Data Sets
+
+Tablicious comes with several example data sets that you can use to explore how
+its functions and objects work. These are accessed through the
+@code{octave.datasets} and @code{octave.dataset} classes.
+
+To see a list of the available data sets, run @code{octave.datasets.list()}.
+Then to load one of the example data sets, run
+@code{octave.datasets.load('examplename')}. For example:
+
+@example
+octave.datasets.list
+t = octave.datasets.load('cupcake')
+@end example
+
+You can also load it by calling @code{octave.dataset.<name>}. This does
+the same thing. For example:
+
+@example
+t = octave.dataset.cupcake
+@end example
+
+When you load a data set, it either returns all its data in a single variable
+(if you capture it), or loads its data into one or more variables in your
+workspace (if you call it with no outputs).
+
+Each example data set comes with help text that describes the data set and
+provides examples of how to work with it. This help is found using the @code{doc}
+command on @code{octave.dataset.<name>}, where @var{<name>} is the name of
+the data set.
+
+For example:
+
+@example
+doc octave.dataset.cupcake
+@end example
+
+(The command @code{help octave.dataset.<name>} ought to work too, but it
+currently doesn’t. This may be due to an issue with Octave’s @code{help}
+command.)
+
+
 @node Missing Functionality
 @chapter Missing Functionality
 
@@ -369,25 +413,34 @@ their major functionality.
 But not all of it is implemented yet. The missing parts are currently:
 
 @itemize
-@item @code{timetable}
-@item Moving window methods in @code{fillmissing}
-@item @code{summary()} for @code{table} and @code{categorical}
-@item Assignment to table variables using @code{.}-indexing
 @item File I/O like @code{readtable()} and @code{writetable()}
+@item @code{summary()} @code{categorical}
+@item Assignment to table variables using @code{.}-indexing
+@item @code{timetable}
 @item POSIX time zone support for years outside the IANA time zone database coverage
 @item Week-of-year (ISO calendar) calculations
 @item Various @code{'ConvertFrom'} forms for @code{datetime} and @code{duration}
 @item Support for LDML formatting for @code{datetime}
-@item Various functions: @code{between}, @code{caldiff}, @code{dateshift}, @code{week}
+@item Various functions:
+@itemize
+@item @code{between}
+@item @code{caldiff}
+@item @code{dateshift}
+@item @code{week}
+@end itemize
 @item @code{isdst}, @code{isweekend}
 @item @code{calendarDuration.split}
 @item @code{duration.Format} support
+@item Moving window methods in @code{fillmissing}
 @item @code{UTCOffset} and @code{DSTOffset} fields in the output of @code{timezones()}
 @item Plotting support
 @end itemize
 
 It is the author’s hope that all these will be implemented some day.
 
+These areas of missing functionality are all tracked on the Tablicious issue
+tracker at @url{https://github.com/apjanke/octave-tablicious/issues} and
+@url{https://github.com/users/apjanke/projects/1}.
 
 
 @node API Reference
@@ -3470,7 +3523,7 @@ Forecasting}. Springer
 @subsubheading Examples
 
 @example
-t = octave.datasets.austres
+t = octave.dataset.austres
 
 plot (datenum (t.date), t.residents);
 datetick x
