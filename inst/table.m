@@ -2896,24 +2896,76 @@ classdef table
     
     ## -*- texinfo -*-
     ## @node table.rowfun
-    ## @deftypefn {Method} {@var{out} =} varfun (@var{fcn}, @var{obj})
+    ## @deftypefn {Method} {@var{out} =} varfun (@var{func}, @var{obj})
     ## @deftypefnx {Method} {@var{out} =} varfun (@dots{}, @code{'OptionName'}, @var{OptionValue}, @dots{})
     ##
-    ## This method is currently unimplemented. Sorry.
+    ## Apply function to rows in table and collect outputs.
+    ##
+    ## This applies the function @var{func} to the elements of each row of
+    ## @var{obj}’s variables, and collects the concatenated output(s) into the
+    ## variable(s) of a new table.
+    ##
+    ## @var{func} is a function handle. It should take as many inputs as there
+    ## are variables in @var{obj}. Or, it can take a single input, and you must
+    ## specify @code{'SeparateInputs', false} to have the input variables
+    ## concatenated before being passed to @var{func}. It may return multiple
+    ## argouts, but to capture those past the first one, you must explicitly
+    ## specify the @code{'NumOutputs'} or @code{'OutputVariableNames'} options.
+    ##
+    ## Supported name/value options:
+    ## @table @code
+    ## @item 'OutputVariableNames'
+    ## Names of table variables to store combined function output arguments in.
+    ## @item 'NumOutputs'
+    ## Number of output arguments to call function with. If omitted, defaults to
+    ## number of items in @var{OutputVariableNames} if it is supplied, otherwise
+    ## defaults to 1.
+    ## @item 'SeparateInputs'
+    ## If true, input variables are passed as separate input arguments to @var{func}.
+    ## If false, they are concatenated together into a row vector and passed as
+    ## a single argument. Defaults to true.
+    ## @item 'ErrorHandler'
+    ## A function to call as a fallback when calling @var{func} results in an error.
+    ## It is passed the caught exception, along with the original inputs passed
+    ## to @var{func}, and it has a “second chance” to compute replacement values
+    ## for that row. This is useful for converting raised errors to missing-value
+    ## fill values, or logging warnings.
+    ## @item 'ExtractCellContents'
+    ## Whether to “pop out” the contents of the elements of cell variables in 
+    ## @var{obj}, or to leave them as cells. True/false; default is false. If
+    ## you specify this option, then @var{obj} may not have any multi-column
+    ## cell-valued variables.
+    ## @item 'InputVariables'
+    ## If specified, only these variables from @var{obj} are used as the function
+    ## inputs, instead of using all variables.
+    ## @item 'GroupingVariables'
+    ## Not yet implemented.
+    ## @item 'OutputFormat'
+    ## The format of the output. May be @code{'table'} (the default), 
+    ## @code{'uniform'}, or @code{'cell'}. If it is @code{'uniform'} or @code{'cell'},
+    ## the output variables are returned in multiple output arguments from
+    ## @code{'rowfun'}.
+    ## @end table
+    ##
+    ## Returns a @code{table} whose variables are the collected output arguments
+    ## of @var{func} if @var{OutputFormat} is @code{'table'}. Otherwise, returns
+    ## multiple output arguments of whatever type @var{func} returned (if 
+    ## @var{OutputFormat} is @code{'uniform'}) or cells (if @var{OutputFormat}
+    ## is @code{'cell'}).
     ##
     ## @end deftypefn
-    function out = rowfun (func, A, varargin)
+    function varargout = rowfun (func, A, varargin)
       % TODO: Document all the Name/Value options; there's a bunch of them.
+      % TODO: Implement the remaining options.
       
       % Input handling
+      mustBeA (func, 'function_handle');
       mustBeA (A, 'table');
       validOptions = {'InputVariables', 'GroupingVariables', 'OutputFormat', ...
         'SeparateInputs', 'ExtractCellContents', 'OutputVariableNames', ...
         'NumOutputs', 'ErrorHandler'};
       [opts, args] = peelOffNameValueOptions (varargin, validOptions);
-      unimplementedOptions = {'InputVariables', 'GroupingVariables', ...
-        'SeparateInputs', 'ExtractCellContents', 'OutputVariableNames', ...
-        'NumOutputs'};
+      unimplementedOptions = {'GroupingVariables'};
       for i = 1:numel (unimplementedOptions)
         if isfield (opts, unimplementedOptions{i})
           error ('table.rowfun: Option %s is not yet implemented.', unimplementedOptions{i});
@@ -2922,9 +2974,9 @@ classdef table
       if ~isa (func, 'function_handle')
         error ('table.rowfun: func must be a function handle; got a %s', class (func));
       endif
-      outputFormat = 'table';
+      output_format = 'table';
       if isfield (opts, 'OutputFormat')
-        outputFormat = opts.OutputFormat;
+        output_format = opts.OutputFormat;
       endif
       validOutputFormats = {'table','uniform','cell'};
       if ~ismember (outputFormat, validOutputFormats);
@@ -2940,13 +2992,103 @@ classdef table
         errorHandler = opts.ErrorHandler;
       endif
       tbl = A;
-      
-      error('table.rowfun: This function is not yet implemented.');
+      n_out_args = [];
+      if isfield (opts, 'NumOutputs')
+        mustBeScalar (opts.NumOutputs, 'opts.NumOutputs');
+        mustBeNumeric (opts.NumOutputs, 'opts.NumOutputs');
+        n_out_args = opts.NumOutputs;
+      endif
+      if isfield (opts, 'OutputVariableNames')
+        out_var_names = opts.OutputVariableNames;
+        n_out_args = numel (out_var_names);
+        mustBeCellstr (out_var_names, 'opts.OutputVariableNames');
+      else
+        if isempty (n_out_args)
+          n_out_args = 1;
+        endif
+        out_var_names = cell (1, n_out_args);
+        for i = 1:n_out_args
+          out_var_names = sprintf ("out%d", i);
+        endfor
+      endif
+      do_separate_inputs = true;
+      if isfield (opts, 'SeparateInputs')
+        do_separate_inputs = opts.SeparateInputs;
+      endif
+      do_extract_cell_contents = false;
+      if isfield (opts, 'ExtractCellContents')
+        mustBeScalarLogical (opts.ExtractCellContents, 'opts.ExtractCellContents');
+        do_extract_cell_contents = opts.ExtractCellContents;
+      endif
+      if do_extract_cell_contents
+        for i = 1:width (this)
+          if iscell (this.VariableValues{i}) && size (this.VariableValues{i}, 2) > 1
+            error (['table.rowfun: Calling rowfun on a table with multi-column cell ' ...
+              'variables is not supported when ''ExtractCellContents'' is true' ...
+              '(bad variable: %s)'], this.VariableNames{i});
+          endif
+        endfor
+      endif
+      if isfield (opts, 'InputVariables')
+        this = subsetvars (this, opts.InputVariables);
+      endif
       
       % Function application
+      vars = this.VariableValues;
+      n_vars = numel (vars);
+      out_bufs = repmat ({cell (height (this), 1)}, [1 n_out_args]);
+      for i_row = 1:height (this)
+        args = cell (1, n_vars);
+        for i_var = 1:n_vars
+          if do_extract_cell_contents && iscell (vars{i_var})
+            args{i_var} = vars{i_var}{i_row};
+          else
+            args{i_var} = vars{i_var}(i_row,:);
+          endif
+        endfor
+        argouts = cell (1, n_out_args);
+        if do_separate_inputs
+          if isempty (errorHandler)
+            [argouts{:}] = func (args{:});
+          else
+            try
+              [argouts{:}] = func (args{:});
+            catch err
+              [argouts{:}] = errorHandler (err, args{:});
+            end_try_catch
+          endif
+        else
+          single_input = [args{:}];
+          if isempty (errorHandler)
+            [argouts{:}] = func (single_input);
+          else
+            try
+              [argouts{:}] = func (single_input);
+            catch err
+              [argouts{:}] = errorHandler (err, single_input);
+            end_try_catch
+          endif
+        endif
+        for i_out_arg = 1:n_out_args
+          out_bufs{i_out_arg}{i_row} = argouts{i_out_arg};
+        endfor
+      endfor
       
       % Output packaging
-      
+      switch output_format
+        case 'table'
+          out_vars = cellfun(@(c) cat(1, c{:}), out_bufs);
+          out = table (out_vars{:}, 'VariableNames', out_var_names);
+          varargout = { out };
+        case 'cell'
+          varargout = out_vars;
+        case 'uniform'
+          varargout = cellfun(@(c) cat(1, c{:}), out_bufs);
+        case 'timetable'
+          error ('timetable is not yet implemented. Sorry.');
+        otherwise
+          error ('table.rowfun: Invalid OutputFormat: ''%s''', output_format);
+      endswitch
     endfunction
     
     ## -*- texinfo -*-
