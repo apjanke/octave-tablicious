@@ -4847,6 +4847,7 @@ File: tablicious.info,  Node: table,  Next: tableOuterFillValue,  Prev: struct2t
 * table.repmat::
 * table.repelem::
 * table.setVariableNames::
+* table.setDimensionNames::
 * table.setRowNames::
 * table.resolveVarRef::
 * table.subsetrows::
@@ -5288,24 +5289,54 @@ File: tablicious.info,  Node: table.repelem,  Next: table.setVariableNames,  Pre
      Only two dimensions are supported for ‘repelem’ on tables.
 
 
-File: tablicious.info,  Node: table.setVariableNames,  Next: table.setRowNames,  Prev: table.repelem,  Up: table
+File: tablicious.info,  Node: table.setVariableNames,  Next: table.setDimensionNames,  Prev: table.repelem,  Up: table
 
 9.2.57.30 table.setVariableNames
 ................................
 
  -- Method: OUT = setVariableNames (OBJ, NAMES)
+ -- Method: OUT = setVariableNames (OBJ, IX, NAMES)
 
      Set variable names.
 
      Sets the ‘VariableNames’ for this table to a new list of names.
 
-     NAMES is a cellstr vector.  It must have the same number of
-     elements as the number of variables in OBJ.
+     NAMES is a char or cellstr vector.  It must have the same number of
+     elements as the number of variable names being assigned.
+
+     IX is an index vector indicating which variable names to set.  If
+     omitted, it sets all of them present in OBJ.
+
+     This method exists because the ‘obj.Properties.VariableNames = ...’
+     assignment form does not work, possibly due to an Octave bug.
 
 
-File: tablicious.info,  Node: table.setRowNames,  Next: table.resolveVarRef,  Prev: table.setVariableNames,  Up: table
+File: tablicious.info,  Node: table.setDimensionNames,  Next: table.setRowNames,  Prev: table.setVariableNames,  Up: table
 
-9.2.57.31 table.setRowNames
+9.2.57.31 table.setDimensionNames
+.................................
+
+ -- Method: OUT = setDimensionNames (OBJ, NAMES)
+ -- Method: OUT = setDimensionNames (OBJ, IX, NAMES)
+
+     Set dimension names.
+
+     Sets the ‘DimensionNames’ for this table to a new list of names.
+
+     NAMES is a char or cellstr vector.  It must have the same number of
+     elements as the number of dimension names being assigned.
+
+     IX is an index vector indicating which dimension names to set.  If
+     omitted, it sets all two of them.  Since there are always two
+     dimension, the indexes in IX may never be higher than 2.
+
+     This method exists because the ‘obj.Properties.DimensionNames =
+     ...’ assignment form does not work, possibly due to an Octave bug.
+
+
+File: tablicious.info,  Node: table.setRowNames,  Next: table.resolveVarRef,  Prev: table.setDimensionNames,  Up: table
+
+9.2.57.32 table.setRowNames
 ...........................
 
  -- Method: OUT = setRowNames (OBJ, NAMES)
@@ -5320,7 +5351,7 @@ File: tablicious.info,  Node: table.setRowNames,  Next: table.resolveVarRef,  Pr
 
 File: tablicious.info,  Node: table.resolveVarRef,  Next: table.subsetrows,  Prev: table.setRowNames,  Up: table
 
-9.2.57.32 table.resolveVarRef
+9.2.57.33 table.resolveVarRef
 .............................
 
  -- Method: [IXVAR, VARNAMES] = resolveVarRef (OBJ, VARREF)
@@ -5346,7 +5377,7 @@ File: tablicious.info,  Node: table.resolveVarRef,  Next: table.subsetrows,  Pre
 
 File: tablicious.info,  Node: table.subsetrows,  Next: table.subsetvars,  Prev: table.resolveVarRef,  Up: table
 
-9.2.57.33 table.subsetrows
+9.2.57.34 table.subsetrows
 ..........................
 
  -- Method: OUT = subsetrows (OBJ, IXROWS)
@@ -5360,7 +5391,7 @@ File: tablicious.info,  Node: table.subsetrows,  Next: table.subsetvars,  Prev: 
 
 File: tablicious.info,  Node: table.subsetvars,  Next: table.removevars,  Prev: table.subsetrows,  Up: table
 
-9.2.57.34 table.subsetvars
+9.2.57.35 table.subsetvars
 ..........................
 
  -- Method: OUT = subsetvars (OBJ, IXVARS)
@@ -5378,7 +5409,7 @@ File: tablicious.info,  Node: table.subsetvars,  Next: table.removevars,  Prev: 
 
 File: tablicious.info,  Node: table.removevars,  Next: table.movevars,  Prev: table.subsetvars,  Up: table
 
-9.2.57.35 table.removevars
+9.2.57.36 table.removevars
 ..........................
 
  -- Method: OUT = removevars (OBJ, VARS)
@@ -5393,7 +5424,7 @@ File: tablicious.info,  Node: table.removevars,  Next: table.movevars,  Prev: ta
 
 File: tablicious.info,  Node: table.movevars,  Next: table.setvar,  Prev: table.removevars,  Up: table
 
-9.2.57.36 table.movevars
+9.2.57.37 table.movevars
 ........................
 
  -- Method: OUT = movevars (OBJ, VARS, RELLOCATION, LOCATION)
@@ -5415,7 +5446,7 @@ File: tablicious.info,  Node: table.movevars,  Next: table.setvar,  Prev: table.
 
 File: tablicious.info,  Node: table.setvar,  Next: table.addvars,  Prev: table.movevars,  Up: table
 
-9.2.57.37 table.setvar
+9.2.57.38 table.setvar
 ......................
 
  -- Method: OUT = setvar (OBJ, VARREF, VALUE)
@@ -5437,7 +5468,7 @@ File: tablicious.info,  Node: table.setvar,  Next: table.addvars,  Prev: table.m
 
 File: tablicious.info,  Node: table.addvars,  Next: table.convertvars,  Prev: table.setvar,  Up: table
 
-9.2.57.38 table.addvars
+9.2.57.39 table.addvars
 .......................
 
  -- Method: OUT = addvars (OBJ, VAR1, ..., VARN)
@@ -5452,7 +5483,7 @@ File: tablicious.info,  Node: table.addvars,  Next: table.convertvars,  Prev: ta
 
 File: tablicious.info,  Node: table.convertvars,  Next: table.mergevars,  Prev: table.addvars,  Up: table
 
-9.2.57.39 table.convertvars
+9.2.57.40 table.convertvars
 ...........................
 
  -- Method: OUT = convertvars (OBJ, VARS, DATATYPE)
@@ -5479,7 +5510,7 @@ File: tablicious.info,  Node: table.convertvars,  Next: table.mergevars,  Prev: 
 
 File: tablicious.info,  Node: table.mergevars,  Next: table.splitvars,  Prev: table.convertvars,  Up: table
 
-9.2.57.40 table.mergevars
+9.2.57.41 table.mergevars
 .........................
 
  -- Method: OUT = mergevars (OBJ, VARS)
@@ -5491,7 +5522,7 @@ File: tablicious.info,  Node: table.mergevars,  Next: table.splitvars,  Prev: ta
 
 File: tablicious.info,  Node: table.splitvars,  Next: table.stack,  Prev: table.mergevars,  Up: table
 
-9.2.57.41 table.splitvars
+9.2.57.42 table.splitvars
 .........................
 
  -- Method: OUT = splitvars (OBJ)
@@ -5508,7 +5539,7 @@ File: tablicious.info,  Node: table.splitvars,  Next: table.stack,  Prev: table.
 
 File: tablicious.info,  Node: table.stack,  Next: table.head,  Prev: table.splitvars,  Up: table
 
-9.2.57.42 table.stack
+9.2.57.43 table.stack
 .....................
 
  -- Method: OUT = stack (OBJ, VARS)
@@ -5521,7 +5552,7 @@ File: tablicious.info,  Node: table.stack,  Next: table.head,  Prev: table.split
 
 File: tablicious.info,  Node: table.head,  Next: table.tail,  Prev: table.stack,  Up: table
 
-9.2.57.43 table.head
+9.2.57.44 table.head
 ....................
 
  -- Method: OUT = head (OBJ)
@@ -5538,7 +5569,7 @@ File: tablicious.info,  Node: table.head,  Next: table.tail,  Prev: table.stack,
 
 File: tablicious.info,  Node: table.tail,  Next: table.join,  Prev: table.head,  Up: table
 
-9.2.57.44 table.tail
+9.2.57.45 table.tail
 ....................
 
  -- Method: OUT = tail (OBJ)
@@ -5555,7 +5586,7 @@ File: tablicious.info,  Node: table.tail,  Next: table.join,  Prev: table.head, 
 
 File: tablicious.info,  Node: table.join,  Next: table.innerjoin,  Prev: table.tail,  Up: table
 
-9.2.57.45 table.join
+9.2.57.46 table.join
 ....................
 
  -- Method: [C, IB] = join (A, B)
@@ -5577,7 +5608,7 @@ File: tablicious.info,  Node: table.join,  Next: table.innerjoin,  Prev: table.t
 
 File: tablicious.info,  Node: table.innerjoin,  Next: table.outerjoin,  Prev: table.join,  Up: table
 
-9.2.57.46 table.innerjoin
+9.2.57.47 table.innerjoin
 .........................
 
  -- Method: [OUT, IXA, IXB] = innerjoin (A, B)
@@ -5598,7 +5629,7 @@ File: tablicious.info,  Node: table.innerjoin,  Next: table.outerjoin,  Prev: ta
 
 File: tablicious.info,  Node: table.outerjoin,  Next: table.outerfillvals,  Prev: table.innerjoin,  Up: table
 
-9.2.57.47 table.outerjoin
+9.2.57.48 table.outerjoin
 .........................
 
  -- Method: [OUT, IXA, IXB] = outerjoin (A, B)
@@ -5621,7 +5652,7 @@ File: tablicious.info,  Node: table.outerjoin,  Next: table.outerfillvals,  Prev
 
 File: tablicious.info,  Node: table.outerfillvals,  Next: table.semijoin,  Prev: table.outerjoin,  Up: table
 
-9.2.57.48 table.outerfillvals
+9.2.57.49 table.outerfillvals
 .............................
 
  -- Method: OUT = outerfillvals (OBJ)
@@ -5635,7 +5666,7 @@ File: tablicious.info,  Node: table.outerfillvals,  Next: table.semijoin,  Prev:
 
 File: tablicious.info,  Node: table.semijoin,  Next: table.antijoin,  Prev: table.outerfillvals,  Up: table
 
-9.2.57.49 table.semijoin
+9.2.57.50 table.semijoin
 ........................
 
  -- Method: [OUTA, IXA, OUTB, IXB] = semijoin (A, B)
@@ -5657,7 +5688,7 @@ File: tablicious.info,  Node: table.semijoin,  Next: table.antijoin,  Prev: tabl
 
 File: tablicious.info,  Node: table.antijoin,  Next: table.cartesian,  Prev: table.semijoin,  Up: table
 
-9.2.57.50 table.antijoin
+9.2.57.51 table.antijoin
 ........................
 
  -- Method: [OUTA, IXA, OUTB, IXB] = antijoin (A, B)
@@ -5676,7 +5707,7 @@ File: tablicious.info,  Node: table.antijoin,  Next: table.cartesian,  Prev: tab
 
 File: tablicious.info,  Node: table.cartesian,  Next: table.groupby,  Prev: table.antijoin,  Up: table
 
-9.2.57.51 table.cartesian
+9.2.57.52 table.cartesian
 .........................
 
  -- Method: [OUT, IXS] = cartesian (A, B)
@@ -5708,7 +5739,7 @@ File: tablicious.info,  Node: table.cartesian,  Next: table.groupby,  Prev: tabl
 
 File: tablicious.info,  Node: table.groupby,  Next: table.grpstats,  Prev: table.cartesian,  Up: table
 
-9.2.57.52 table.groupby
+9.2.57.53 table.groupby
 .......................
 
  -- Method: [OUT] = groupby (OBJ, GROUPVARS, AGGCALCS)
@@ -5732,7 +5763,7 @@ File: tablicious.info,  Node: table.groupby,  Next: table.grpstats,  Prev: table
 
 File: tablicious.info,  Node: table.grpstats,  Next: table.splitapply,  Prev: table.groupby,  Up: table
 
-9.2.57.53 table.grpstats
+9.2.57.54 table.grpstats
 ........................
 
  -- Method: [OUT] = grpstats (OBJ, GROUPVAR)
@@ -5745,7 +5776,7 @@ File: tablicious.info,  Node: table.grpstats,  Next: table.splitapply,  Prev: ta
 
 File: tablicious.info,  Node: table.splitapply,  Next: table.rows2vars,  Prev: table.grpstats,  Up: table
 
-9.2.57.54 table.splitapply
+9.2.57.55 table.splitapply
 ..........................
 
  -- Method: OUT = splitapply (FUNC, OBJ, G)
@@ -5761,7 +5792,7 @@ File: tablicious.info,  Node: table.splitapply,  Next: table.rows2vars,  Prev: t
 
 File: tablicious.info,  Node: table.rows2vars,  Next: table.congruentize,  Prev: table.splitapply,  Up: table
 
-9.2.57.55 table.rows2vars
+9.2.57.56 table.rows2vars
 .........................
 
  -- Method: OUT = rows2vars (OBJ)
@@ -5790,7 +5821,7 @@ File: tablicious.info,  Node: table.rows2vars,  Next: table.congruentize,  Prev:
 
 File: tablicious.info,  Node: table.congruentize,  Next: table.union,  Prev: table.rows2vars,  Up: table
 
-9.2.57.56 table.congruentize
+9.2.57.57 table.congruentize
 ............................
 
  -- Method: [OUTA, OUTB] = congruentize (A, B)
@@ -5812,7 +5843,7 @@ File: tablicious.info,  Node: table.congruentize,  Next: table.union,  Prev: tab
 
 File: tablicious.info,  Node: table.union,  Next: table.intersect,  Prev: table.congruentize,  Up: table
 
-9.2.57.57 table.union
+9.2.57.58 table.union
 .....................
 
  -- Method: [C, IA, IB] = union (A, B)
@@ -5830,7 +5861,7 @@ File: tablicious.info,  Node: table.union,  Next: table.intersect,  Prev: table.
 
 File: tablicious.info,  Node: table.intersect,  Next: table.setxor,  Prev: table.union,  Up: table
 
-9.2.57.58 table.intersect
+9.2.57.59 table.intersect
 .........................
 
  -- Method: [C, IA, IB] = intersect (A, B)
@@ -5849,7 +5880,7 @@ File: tablicious.info,  Node: table.intersect,  Next: table.setxor,  Prev: table
 
 File: tablicious.info,  Node: table.setxor,  Next: table.setdiff,  Prev: table.intersect,  Up: table
 
-9.2.57.59 table.setxor
+9.2.57.60 table.setxor
 ......................
 
  -- Method: [C, IA, IB] = setxor (A, B)
@@ -5868,7 +5899,7 @@ File: tablicious.info,  Node: table.setxor,  Next: table.setdiff,  Prev: table.i
 
 File: tablicious.info,  Node: table.setdiff,  Next: table.ismember,  Prev: table.setxor,  Up: table
 
-9.2.57.60 table.setdiff
+9.2.57.61 table.setdiff
 .......................
 
  -- Method: [C, IA] = setdiff (A, B)
@@ -5886,7 +5917,7 @@ File: tablicious.info,  Node: table.setdiff,  Next: table.ismember,  Prev: table
 
 File: tablicious.info,  Node: table.ismember,  Next: table.ismissing,  Prev: table.setdiff,  Up: table
 
-9.2.57.61 table.ismember
+9.2.57.62 table.ismember
 ........................
 
  -- Method: [TF, LOC] = ismember (A, B)
@@ -5901,7 +5932,7 @@ File: tablicious.info,  Node: table.ismember,  Next: table.ismissing,  Prev: tab
 
 File: tablicious.info,  Node: table.ismissing,  Next: table.rmmissing,  Prev: table.ismember,  Up: table
 
-9.2.57.62 table.ismissing
+9.2.57.63 table.ismissing
 .........................
 
  -- Method: OUT = ismissing (OBJ)
@@ -5923,7 +5954,7 @@ File: tablicious.info,  Node: table.ismissing,  Next: table.rmmissing,  Prev: ta
 
 File: tablicious.info,  Node: table.rmmissing,  Next: table.standardizeMissing,  Prev: table.ismissing,  Up: table
 
-9.2.57.63 table.rmmissing
+9.2.57.64 table.rmmissing
 .........................
 
  -- Method: [OUT, TF] = rmmissing (OBJ)
@@ -5946,7 +5977,7 @@ File: tablicious.info,  Node: table.rmmissing,  Next: table.standardizeMissing, 
 
 File: tablicious.info,  Node: table.standardizeMissing,  Next: table.varfun,  Prev: table.rmmissing,  Up: table
 
-9.2.57.64 table.standardizeMissing
+9.2.57.65 table.standardizeMissing
 ..................................
 
  -- Method: OUT = standardizeMissing (OBJ, INDICATOR)
@@ -5972,7 +6003,7 @@ File: tablicious.info,  Node: table.standardizeMissing,  Next: table.varfun,  Pr
 
 File: tablicious.info,  Node: table.varfun,  Next: table.rowfun,  Prev: table.standardizeMissing,  Up: table
 
-9.2.57.65 table.varfun
+9.2.57.66 table.varfun
 ......................
 
  -- Method: OUT = varfun (FCN, OBJ)
@@ -5988,7 +6019,7 @@ File: tablicious.info,  Node: table.varfun,  Next: table.rowfun,  Prev: table.st
 
 File: tablicious.info,  Node: table.rowfun,  Next: table.findgroups,  Prev: table.varfun,  Up: table
 
-9.2.57.66 table.rowfun
+9.2.57.67 table.rowfun
 ......................
 
  -- Method: OUT = varfun (FUNC, OBJ)
@@ -6053,7 +6084,7 @@ File: tablicious.info,  Node: table.rowfun,  Next: table.findgroups,  Prev: tabl
 
 File: tablicious.info,  Node: table.findgroups,  Next: table.evalWithVars,  Prev: table.rowfun,  Up: table
 
-9.2.57.67 table.findgroups
+9.2.57.68 table.findgroups
 ..........................
 
  -- Method: [G, TID] = findgroups (OBJ)
@@ -6071,7 +6102,7 @@ File: tablicious.info,  Node: table.findgroups,  Next: table.evalWithVars,  Prev
 
 File: tablicious.info,  Node: table.evalWithVars,  Next: table.restrict,  Prev: table.findgroups,  Up: table
 
-9.2.57.68 table.evalWithVars
+9.2.57.69 table.evalWithVars
 ............................
 
  -- Method: OUT = evalWithVars (OBJ, EXPR)
@@ -6098,7 +6129,7 @@ File: tablicious.info,  Node: table.evalWithVars,  Next: table.restrict,  Prev: 
 
 File: tablicious.info,  Node: table.restrict,  Prev: table.evalWithVars,  Up: table
 
-9.2.57.69 table.restrict
+9.2.57.70 table.restrict
 ........................
 
  -- Method: OUT = restrict (OBJ, EXPR)
@@ -6497,81 +6528,82 @@ Node: string.missing145643
 Node: string.decode146045
 Node: struct2table146455
 Node: table146922
-Node: table.table149522
-Node: table.summary150574
-Node: table.prettyprint151001
-Node: table.table2cell151460
-Node: table.table2struct151948
-Node: table.table2array152583
-Node: table.varnames152830
-Node: table.istable153082
-Node: table.size153294
-Node: table.length153623
-Node: table.ndims153922
-Node: table.squeeze154173
-Node: table.sizeof154520
-Node: table.height154951
-Node: table.rows155159
-Node: table.width155360
-Node: table.columns155691
-Node: table.numel156029
-Node: table.isempty156549
-Node: table.ismatrix156873
-Node: table.isrow157162
-Node: table.iscol157380
-Node: table.isvector157740
-Node: table.isscalar157966
-Node: table.hasrownames158196
-Node: table.vertcat158446
-Node: table.horzcat158967
-Node: table.repmat159587
-Node: table.repelem160113
-Node: table.setVariableNames160554
-Node: table.setRowNames161001
-Node: table.resolveVarRef161373
-Node: table.subsetrows162375
-Node: table.subsetvars162720
-Node: table.removevars163227
-Node: table.movevars163612
-Node: table.setvar164340
-Node: table.addvars165065
-Node: table.convertvars165532
-Node: table.mergevars166520
-Node: table.splitvars166923
-Node: table.stack167481
-Node: table.head167890
-Node: table.tail168259
-Node: table.join168625
-Node: table.innerjoin169371
-Node: table.outerjoin170032
-Node: table.outerfillvals170839
-Node: table.semijoin171272
-Node: table.antijoin172041
-Node: table.cartesian172693
-Node: table.groupby173961
-Node: table.grpstats174812
-Node: table.splitapply175145
-Node: table.rows2vars175646
-Node: table.congruentize176771
-Node: table.union177640
-Node: table.intersect178212
-Node: table.setxor178820
-Node: table.setdiff179455
-Node: table.ismember179992
-Node: table.ismissing180394
-Node: table.rmmissing181078
-Node: table.standardizeMissing181870
-Node: table.varfun182860
-Node: table.rowfun183427
-Node: table.findgroups186513
-Node: table.evalWithVars187098
-Node: table.restrict187948
-Node: tableOuterFillValue189077
-Node: timezones190314
-Node: vartype191359
-Node: vecfun192072
-Node: years192799
-Node: Copying193476
+Node: table.table149550
+Node: table.summary150602
+Node: table.prettyprint151029
+Node: table.table2cell151488
+Node: table.table2struct151976
+Node: table.table2array152611
+Node: table.varnames152858
+Node: table.istable153110
+Node: table.size153322
+Node: table.length153651
+Node: table.ndims153950
+Node: table.squeeze154201
+Node: table.sizeof154548
+Node: table.height154979
+Node: table.rows155187
+Node: table.width155388
+Node: table.columns155719
+Node: table.numel156057
+Node: table.isempty156577
+Node: table.ismatrix156901
+Node: table.isrow157190
+Node: table.iscol157408
+Node: table.isvector157768
+Node: table.isscalar157994
+Node: table.hasrownames158224
+Node: table.vertcat158474
+Node: table.horzcat158995
+Node: table.repmat159615
+Node: table.repelem160141
+Node: table.setVariableNames160582
+Node: table.setDimensionNames161375
+Node: table.setRowNames162260
+Node: table.resolveVarRef162633
+Node: table.subsetrows163635
+Node: table.subsetvars163980
+Node: table.removevars164487
+Node: table.movevars164872
+Node: table.setvar165600
+Node: table.addvars166325
+Node: table.convertvars166792
+Node: table.mergevars167780
+Node: table.splitvars168183
+Node: table.stack168741
+Node: table.head169150
+Node: table.tail169519
+Node: table.join169885
+Node: table.innerjoin170631
+Node: table.outerjoin171292
+Node: table.outerfillvals172099
+Node: table.semijoin172532
+Node: table.antijoin173301
+Node: table.cartesian173953
+Node: table.groupby175221
+Node: table.grpstats176072
+Node: table.splitapply176405
+Node: table.rows2vars176906
+Node: table.congruentize178031
+Node: table.union178900
+Node: table.intersect179472
+Node: table.setxor180080
+Node: table.setdiff180715
+Node: table.ismember181252
+Node: table.ismissing181654
+Node: table.rmmissing182338
+Node: table.standardizeMissing183130
+Node: table.varfun184120
+Node: table.rowfun184687
+Node: table.findgroups187773
+Node: table.evalWithVars188358
+Node: table.restrict189208
+Node: tableOuterFillValue190337
+Node: timezones191574
+Node: vartype192619
+Node: vecfun193332
+Node: years194059
+Node: Copying194736
 
 End Tag Table
 

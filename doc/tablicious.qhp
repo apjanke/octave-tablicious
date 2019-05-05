@@ -474,6 +474,8 @@
                             </section>
                             <section title="table.setVariableNames" ref="html/table_002esetVariableNames.html">
                             </section>
+                            <section title="table.setDimensionNames" ref="html/table_002esetDimensionNames.html">
+                            </section>
                             <section title="table.setRowNames" ref="html/table_002esetRowNames.html">
                             </section>
                             <section title="table.resolveVarRef" ref="html/table_002eresolveVarRef.html">
@@ -804,6 +806,7 @@
             <keyword name="table.rows" id="table.rows" ref="html/table_002erows.html"/>
             <keyword name="table.rows2vars" id="table.rows2vars" ref="html/table_002erows2vars.html"/>
             <keyword name="table.semijoin" id="table.semijoin" ref="html/table_002esemijoin.html"/>
+            <keyword name="table.setDimensionNames" id="table.setDimensionNames" ref="html/table_002esetDimensionNames.html"/>
             <keyword name="table.setRowNames" id="table.setRowNames" ref="html/table_002esetRowNames.html"/>
             <keyword name="table.setVariableNames" id="table.setVariableNames" ref="html/table_002esetVariableNames.html"/>
             <keyword name="table.setdiff" id="table.setdiff" ref="html/table_002esetdiff.html"/>
@@ -882,6 +885,7 @@
             <file>html/table_002esubsetrows.html</file>
             <file>html/table_002eresolveVarRef.html</file>
             <file>html/table_002esetRowNames.html</file>
+            <file>html/table_002esetDimensionNames.html</file>
             <file>html/table_002esetVariableNames.html</file>
             <file>html/table_002erepelem.html</file>
             <file>html/table_002erepmat.html</file>
