@@ -64,3 +64,5 @@ Miscellaneous
 Example Datasets
  octave.datasets
  octave.dataset
+Example Code
+ octave.examples.plot_pairs
