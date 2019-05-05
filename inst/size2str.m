@@ -31,6 +31,7 @@
 ## Examples:
 ## @example
 ## str = size2str (size (magic (4)))
+##     @result{} str = 4-by-4
 ## @end example
 ##
 ## @end deftypefn

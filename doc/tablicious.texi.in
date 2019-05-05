@@ -57,9 +57,7 @@ This manual is for Tablicious, version @value{VERSION}.
 * Introduction::
 * Getting Started::
 * Table Representation::
-* Date Representation::
-* Time Zones::
-* Durations::
+* Date/Time Representation::
 * Validation Functions::
 * Example Data Sets::
 * Missing Functionality::
@@ -125,26 +123,104 @@ Then add the @file{inst} directory in the repo to your Octave path.
 
 Tablicious provides the @code{table} class for representing tabular data.
 
-@menu
-* table Class::
-@end menu
-
-@node table Class
-@section @code{table} Class
-
 A @code{table} is an array object that represents a tabular data structure. It holds
 multiple named “variables”, each of which is a column vector, or a 2-D matrix whose
 rows are read as records.
 
+A @code{table} is composed of multiple “variables”, each with a name, which all have
+the same number of rows. (A @code{table} variable is like a “column” in SQL tables
+or in R or Python/pandas dataframes. Whenever you read “variable” here, think
+“column”.) Taken together, the @var{i}-th element or row of each variable compose
+a single record or observation.
 
-@node Date Representation
-@chapter Date Representation
+Tables are good ways of arranging data if you have data that would otherwise be stored
+in a few separate variables which all need to be kept in the same shape and order,
+especially if you might want to do element-wise comparisons involving two or more of
+those variables. That’s basically all a @code{table} is: it holds a collection of
+variables, and makes sure they are all kept aligned and ordered in the same way.
 
-Chrono provides the @code{datetime} class for representing points in time.
+Tables are a lot like SQL tables or result sets, and are based on the same relational
+algebra theory that SQL is. Many common, even powerful, SQL operations can be done
+in Octave using @code{table} arrays. It’s like having your own in-memory SQL engine.
 
-@menu
-* datetime Class::
-@end menu
+@node Table Construction
+@section Table Construction
+
+There are two main ways to construct a @code{table} array: build one up by combining
+multiple variables together, or convert an existing tabular-organized array into a 
+@code{table}.
+
+To build an array from multiple variables, use the @code{table(@dots{})} constructor, passing
+in all of your variables as separate inputs. It takes any number of inputs. Each input
+becomes a table variable in the new @code{table} object. If you pass your constructor
+inputs directly from variables, it automatically picks up their names and uses them
+as the table variable names. Otherwise, if you’re using more complex expressions, you’ll
+need to supply the @code{'VariableNames'} option.
+
+To convert a tabular-organized array of another type into a @code{table}, use the 
+conversion functions like @code{array2table}, @code{struct2table} and @code{cell2table}.
+@code{array2table} and @code{cell2table} take each column of the input array and turn
+it into a separate table variable in the resulting @code{table}. @code{struct2table} takes
+the fields of a struct and puts them into table variables.
+
+@node Tables vs SQL
+@section Tables vs SQL
+
+Here’s a table (ha!) of what SQL and relational algebar operations correspond to
+what Octave @code{table} operations.
+
+In this table, @code{t} is a variable holding a @code{table} array, and @code{ix} is 
+some indexing expression.
+
+@multitable @columnfractions .33 .33 .33
+@headitem SQL @tab Relational @tab Octave @code{table}
+@item SELECT
+@tab PROJECT
+@tab @code{subsetvars}, @code{t(:,ix)}
+@item WHERE
+@tab RESTRICT
+@tab @code{subsetrows}, @code{t(ix,:)}
+@item INNER JOIN
+@tab JOIN
+@tab @code{innerjoin}
+@item OUTER JOIN
+@tab OUTER JOIN
+@tab @code{outerjoin}
+@item FROM @code{@var{table1}, @var{table2}, @dots{}}
+@tab Cartesian product
+@tab @code{cartesian}
+@item GROUP BY
+@tab SUMMARIZE
+@tab @code{groupby}
+@item DISTINCT
+@tab (automatic)
+@tab @code{unique(t)}
+@end multitable
+
+Note that there is one big difference between relational algebra and SQL & Octave
+@code{table}: Relations in relational algebra are sets, not lists.
+There are no duplicate rows in relational algebra, and there is no ordering.
+So every operation there does an implicit @code{DISTINCT}/@code{unique()} on its
+results, and there‘s no @code{ORDER BY}/@code{sort()}. This is not the case in SQL
+or Octave @code{table}.
+
+Note for users coming from Matlab: Matlab does not provide a general @code{groupby}
+function. Instead, you have to variously use @code{rowfun}, @code{grpstats},
+@code{groupsummary}, and manual code to accomplish “group by” operations.
+
+Note: I wrote this based on my understanding of relational algebra from reading
+C. J. Date books. Other people’s understanding and terminology may differ. - apjanke
+
+
+
+@node Date/Time Representation
+@chapter Date/Time Representation
+
+Tablicious provides the @code{datetime} class for representing points in time.
+
+There’s also @code{duration} and @code{calendarDuration} for representing
+periods or durations of time. Like vector quantities along the time line,
+as opposed to @code{datetime} being a point along the time line.
 
 @node datetime Class
 @section @code{datetime} Class
@@ -162,8 +238,11 @@ automatic type conversion, and time zone support. In addition to the underlying
 datenum array, a @code{datetime} inclues an optional @code{TimeZone} property 
 indicating what time zone the datetimes are in.
 
-@node datenum Compatibility
-@subsection @code{datenum} Compatibility
+So, basically, a @code{datetime} is an object wrapper around a datenum array,
+plus time zone support.
+
+@node Datenum Compatibility
+@subsection Datenum Compatibility
 
 While the underlying data representation of @code{datetime} is compatible with
 (in fact, identical to) that of datenums, you cannot directly combine them
@@ -197,7 +276,7 @@ do not carry time zone information.
 
 
 @node Time Zones
-@chapter Time Zones
+@section Time Zones
 
 Chrono has support for representing dates in time zones and for converting between time zones.
 
@@ -259,7 +338,7 @@ into a time zone where that local time did not exist are currently undefined.
 @end quotation
 
 @node Defined Time Zones
-@section Defined Time Zones
+@subsection Defined Time Zones
 
 Chrono's time zone data is drawn from the @uref{https://www.iana.org/time-zones, 
 IANA Time Zone Database}, also known as the “Olson Database”. Chrono includes a
@@ -278,7 +357,7 @@ behavior outside that date range.)
 @end quotation
 
 @node Durations
-@chapter Durations
+@section Durations
 
 @menu
 * duration Class::
@@ -286,7 +365,7 @@ behavior outside that date range.)
 @end menu
 
 @node duration Class
-@section @code{duration} Class
+@subsection @code{duration} Class
 
 A @code{duration} represents a period of time in fixed-length seconds (or minutes, hours,
 or whatever you want to measure it in.)
@@ -300,7 +379,7 @@ You can add or subtract a @code{duration} to a @code{datetime} to get another @c
 You can also add or subtract @code{durations} to each other.
 
 @node calendarDuration Class
-@section @code{calendarDuration} Class
+@subsection @code{calendarDuration} Class
 
 A @code{calendarDuration} represents a period of time in variable-length calendar 
 components. For example, years and months can have varying numbers of days, and days
