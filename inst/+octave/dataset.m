@@ -339,6 +339,102 @@ classdef dataset
     endfunction
 
     ## -*- texinfo -*-
+    ## @node dataset.attitude
+    ## @deftypefn {Static Method} {@var{out} =} attitude ()
+    ##
+    ## The Chatterjee-Price Attitude Data
+    ##
+    ## @subsubheading Description
+    ## 
+    ## Aggregated data from a survey of clerical employees at a large financial
+    ## organization.
+    ## 
+    ## @subsubheading Format
+    ## 
+    ## @table @code
+    ## @item rating
+    ## Overall rating.
+    ## @item complaints
+    ## Handling of employee complaints.
+    ## @item privileges
+    ## Does not allow special privileges.
+    ## @item learning
+    ## Opportunity to learn.
+    ## @item raises
+    ## Raises based on performance.
+    ## @item critical
+    ## Too critical.
+    ## @item advance
+    ## Advancement.
+    ## @end table
+    ## 
+    ## @subsubheading Source
+    ## 
+    ## Chatterjee, S. and Price, B. (1977) @cite{Regression Analysis by Example}. New York:
+    ## Wiley. (Section 3.7, p.68ff of 2nd ed.(1991).)
+    ## 
+    ## @subsubheading Examples
+    ## 
+    ## @example
+    ## t = octave.dataset.attitude
+    ## 
+    ## octave.examples.plot_pairs (t);
+    ## 
+    ## # TODO: Display table summary
+    ## 
+    ## # TODO: Whatever those statistical linear-model plots are that R is doing
+    ## 
+    ## 
+    ## @end example
+    ##
+    ## @end deftypefn
+    function out = attitude ()
+      name = 'attitude';
+      out = octave.datasets.load(name);
+    endfunction
+
+    ## -*- texinfo -*-
+    ## @node dataset.austres
+    ## @deftypefn {Static Method} {@var{out} =} austres ()
+    ##
+    ## Australian Population
+    ##
+    ## @subsubheading Description
+    ## 
+    ## Numbers of Australian residents measured quarterly from March 1971 to March 1994.
+    ## 
+    ## @subsubheading Format
+    ## 
+    ## @table @code
+    ## @item date
+    ## The month of the observation.
+    ## @item residents
+    ## The number of residents.
+    ## @end table
+    ## 
+    ## @subsubheading Source
+    ## 
+    ## P. J. Brockwell and R. A. Davis (1996) @cite{Introduction to Time Series and
+    ## Forecasting}. Springer
+    ## 
+    ## @subsubheading Examples
+    ## 
+    ## @example
+    ## t = octave.datasets.austres
+    ## 
+    ## plot (datenum (t.date), t.residents);
+    ## datetick x
+    ## xlabel ("Month"); ylabel ("Residents"); title ("Australian Residents");
+    ## @end example
+    ## 
+    ##
+    ## @end deftypefn
+    function out = austres ()
+      name = 'austres';
+      out = octave.datasets.load(name);
+    endfunction
+
+    ## -*- texinfo -*-
     ## @node dataset.beavers
     ## @deftypefn {Static Method} {@var{out} =} beavers ()
     ##

@@ -320,6 +320,10 @@
                             </section>
                             <section title="octave.dataset.attenu" ref="html/octave_002edataset_002eattenu.html">
                             </section>
+                            <section title="octave.dataset.attitude" ref="html/octave_002edataset_002eattitude.html">
+                            </section>
+                            <section title="octave.dataset.austres" ref="html/octave_002edataset_002eaustres.html">
+                            </section>
                             <section title="octave.dataset.beavers" ref="html/octave_002edataset_002ebeavers.html">
                             </section>
                             <section title="octave.dataset.cupcake" ref="html/octave_002edataset_002ecupcake.html">
@@ -336,6 +340,8 @@
                             </section>
                             <section title="octave.datasets.description" ref="html/octave_002edatasets_002edescription.html">
                             </section>
+                        </section>
+                        <section title="octave.examples.plot_pairs" ref="html/octave_002eexamples_002eplot_005fpairs.html">
                         </section>
                         <section title="pp" ref="html/pp.html">
                         </section>
@@ -703,6 +709,8 @@
             <keyword name="octave.dataset.airquality" id="octave.dataset.airquality" ref="html/octave_002edataset_002eairquality.html"/>
             <keyword name="octave.dataset.anscombe" id="octave.dataset.anscombe" ref="html/octave_002edataset_002eanscombe.html"/>
             <keyword name="octave.dataset.attenu" id="octave.dataset.attenu" ref="html/octave_002edataset_002eattenu.html"/>
+            <keyword name="octave.dataset.attitude" id="octave.dataset.attitude" ref="html/octave_002edataset_002eattitude.html"/>
+            <keyword name="octave.dataset.austres" id="octave.dataset.austres" ref="html/octave_002edataset_002eaustres.html"/>
             <keyword name="octave.dataset.beavers" id="octave.dataset.beavers" ref="html/octave_002edataset_002ebeavers.html"/>
             <keyword name="octave.dataset.cupcake" id="octave.dataset.cupcake" ref="html/octave_002edataset_002ecupcake.html"/>
             <keyword name="octave.dataset.iris" id="octave.dataset.iris" ref="html/octave_002edataset_002eiris.html"/>
@@ -711,6 +719,7 @@
             <keyword name="octave.datasets.description" id="octave.datasets.description" ref="html/octave_002edatasets_002edescription.html"/>
             <keyword name="octave.datasets.list" id="octave.datasets.list" ref="html/octave_002edatasets_002elist.html"/>
             <keyword name="octave.datasets.load" id="octave.datasets.load" ref="html/octave_002edatasets_002eload.html"/>
+            <keyword name="octave.examples.plot_pairs" id="octave.examples.plot_pairs" ref="html/octave_002eexamples_002eplot_005fpairs.html"/>
             <keyword name="pp" id="pp" ref="html/pp.html"/>
             <keyword name="rmmissing" id="rmmissing" ref="html/rmmissing.html"/>
             <keyword name="seconds" id="seconds" ref="html/seconds.html"/>
@@ -929,6 +938,7 @@
             <file>html/scalarexpand.html</file>
             <file>html/rmmissing.html</file>
             <file>html/pp.html</file>
+            <file>html/octave_002eexamples_002eplot_005fpairs.html</file>
             <file>html/octave_002edatasets_002edescription.html</file>
             <file>html/octave_002edatasets_002eload.html</file>
             <file>html/octave_002edatasets_002elist.html</file>
@@ -937,6 +947,8 @@
             <file>html/octave_002edataset_002eiris.html</file>
             <file>html/octave_002edataset_002ecupcake.html</file>
             <file>html/octave_002edataset_002ebeavers.html</file>
+            <file>html/octave_002edataset_002eaustres.html</file>
+            <file>html/octave_002edataset_002eattitude.html</file>
             <file>html/octave_002edataset_002eattenu.html</file>
             <file>html/octave_002edataset_002eanscombe.html</file>
             <file>html/octave_002edataset_002eairquality.html</file>

@@ -590,6 +590,12 @@ Example dataset collection.
 The 'dataset' class provides convenient access to the various datasets included with Tablicious.
 
 @end table
+@subsection Example Code
+@table @asis
+@item @ref{octave.examples.plot_pairs}
+Plot pairs of variables against each other.
+
+@end table
 @subsection Uncategorized
 @table @asis
 @item @ref{octave.chrono.dummy_function}
@@ -661,6 +667,7 @@ A do-nothing class just for testing the doco tools.
 * octave.dataset::	The 'dataset' class provides convenient access to
 		the various datasets included with Tablicious.
 * octave.datasets::	Example dataset collection.
+* octave.examples.plot_pairs::	Plot pairs of variables against each other.
 * pp::	Alias for prettyprint, for interactive use.
 * rmmissing::	Remove missing values.
 * scalarexpand::	
@@ -3204,6 +3211,7 @@ for i = 1:n_vars
     plot (hax, x_hat, p_y, "r");
   endfor
 endfor
+
 @end example
 
 
@@ -3284,6 +3292,135 @@ ylim(haxs(1), y_limits);
 
 Joyner-Boore Earthquake Attenuation Data
 
+@subsubheading Description
+
+Event data for 23 earthquakes in California, showing peak accelerations.
+
+@subsubheading Format
+
+@table @code
+@item event
+Event number
+@item mag
+Moment magnitude
+@item station
+Station identifier
+@item dist
+Station-hypocenter distance (km)
+@item accel
+Peak acceleration (g)
+@end table
+
+@subsubheading Source
+
+Joyner, W.B., D.M. Boore and R.D. Porcella (1981). Peak horizontal acceleration
+and velocity from strong-motion records including records from the 1979
+Imperial Valley, California earthquake. USGS Open File report 81-365. Menlo
+Park, Ca.
+
+@subsubheading References
+
+Boore, D. M. and Joyner, W. B.(1982). The empirical prediction of ground
+motion, @cite{Bulletin of the Seismological Society of America}, 72, S269–S268.
+
+@subsubheading Examples
+
+@example
+# TODO: Port the example code from R
+# It does coplot() and pairs(), which are higher-level plotting tools
+# than core Octave provides. This could turn into a long example if we
+# just use base Octave here.
+@end example
+
+
+@end deftypefn
+
+@node octave.dataset.attitude
+@subsubsection octave.dataset.attitude
+
+@deftypefn {Static Method} {@var{out} =} attitude ()
+
+The Chatterjee-Price Attitude Data
+
+@subsubheading Description
+
+Aggregated data from a survey of clerical employees at a large financial
+organization.
+
+@subsubheading Format
+
+@table @code
+@item rating
+Overall rating.
+@item complaints
+Handling of employee complaints.
+@item privileges
+Does not allow special privileges.
+@item learning
+Opportunity to learn.
+@item raises
+Raises based on performance.
+@item critical
+Too critical.
+@item advance
+Advancement.
+@end table
+
+@subsubheading Source
+
+Chatterjee, S. and Price, B. (1977) @cite{Regression Analysis by Example}. New York:
+Wiley. (Section 3.7, p.68ff of 2nd ed.(1991).)
+
+@subsubheading Examples
+
+@example
+t = octave.dataset.attitude
+
+octave.examples.plot_pairs (t);
+
+# TODO: Display table summary
+
+# TODO: Whatever those statistical linear-model plots are that R is doing
+
+
+@end example
+
+@end deftypefn
+
+@node octave.dataset.austres
+@subsubsection octave.dataset.austres
+
+@deftypefn {Static Method} {@var{out} =} austres ()
+
+Australian Population
+
+@subsubheading Description
+
+Numbers of Australian residents measured quarterly from March 1971 to March 1994.
+
+@subsubheading Format
+
+@table @code
+@item date
+The month of the observation.
+@item residents
+The number of residents.
+@end table
+
+@subsubheading Source
+
+P. J. Brockwell and R. A. Davis (1996) @cite{Introduction to Time Series and
+Forecasting}. Springer
+
+@subsubheading Examples
+
+@example
+t = octave.datasets.austres
+
+plot (datenum (t.date), t.residents);
+datetick x
+xlabel ("Month"); ylabel ("Residents"); title ("Australian Residents");
+@end example
 
 
 @end deftypefn
@@ -3360,6 +3497,7 @@ retrieved 2019-05-04 by Andrew Janke.
 t = octave.dataset.cupcake
 plot(datenum(t.Month), t.Cupcake)
 title ('“Cupcake” Google Searches'); xlabel ("Year"); ylabel ("Unknown popularity metric")
+
 @end example
 
 
@@ -3536,12 +3674,43 @@ If the output is not captured, displays the description to the console.
 
 @end deftypefn
 
+@node octave.examples.plot_pairs
+@subsection octave.examples.plot_pairs
+@deftypefn {Function} {@var{out} =} plot_pairs (@var{data})
+@deftypefnx {Function} {@var{out} =} plot_pairs (@var{data}, @var{plot_type})
+@deftypefnx {Function} {@var{out} =} plot_pairs (@var{fig}, @dots{})
+
+Plot pairs of variables against each other.
+
+@var{data} is the data holding the variables to plot. It may be either a
+@code{table} or a struct. Each variable or field in the @code{table}
+or struct is considered to be one variable. Each must hold a vector, and
+all the vectors of all the variables must be the same size.
+
+@var{plot_type} is a charvec indicating what plot type to do in each subplot.
+(@code{"scatter"} is the default.) Valid @var{plot_type} values are:
+
+@table @code
+@item "scatter"
+A plain scatter plot.
+@item "smooth"
+A scatter plot + fitted line, like R's @code{panel.smooth} does.
+@end table
+
+@var{fig} is an optional figure handle to plot into. If omitted, a new
+figure is created.
+
+Returns the created figure, if the output is captured.
+
+@end deftypefn
+
+
 @node pp
 @subsection pp
-@deftypefn {Function} pp (@var{X})
-@deftypefnx {Function} pp (@var{A}, @var{B}, @var{C}, @dots{})
-@deftypefnx {Function} pp (@code{'A'}, @code{'B'}, @code{'C'}, @dots{})
-@deftypefnx {Function} pp @code{A} @code{B} @code{C} @dots{}
+@deftypefn {Function} {} pp (@var{X})
+@deftypefnx {Function} {} pp (@var{A}, @var{B}, @var{C}, @dots{})
+@deftypefnx {Function} {} pp (@code{'A'}, @code{'B'}, @code{'C'}, @dots{})
+@deftypefnx {Function} {} pp @code{A} @code{B} @code{C} @dots{}
 
 Alias for prettyprint, for interactive use.
 
@@ -4231,7 +4400,7 @@ This method is not implemented yet.
 @node table.prettyprint
 @subsubsection table.prettyprint
 
-@deftypefn {Method} prettyprint (@var{obj})
+@deftypefn {Method} {} prettyprint (@var{obj})
 
 Display table's values in tabular format. This prints the contents
 of the table in human-readable, tabular form.
