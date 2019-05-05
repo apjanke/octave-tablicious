@@ -3427,25 +3427,56 @@ classdef table
     
     % Summary stuff
     
-    function summary_impl (this)
+    function summary_impl (this, format)
+      if nargin < 2 || isempty (format); format = 'compact'; endif
       infos = {};
       for i_var = 1:width (this)
         infos{i_var} = summary_for_variable (this, i_var);
       endfor
       printf ("%s: %d %s by %d %s\n", class (this), height (this), this.DimensionNames{1}, ...
         width (this), this.DimensionNames{2});
-      for i_var = 1:numel (infos)
-        s = infos{i_var};
-        printf ("%d: %s\n", i_var, s.name);
-        if ! ismember (s.type, {"double", "string"})
-          printf ("   %s\n", s.type);
-        endif
-        val_col_width = max (cellfun(@numel, s.info(:,2)));
-        val_col_width = max (val_col_width, 8);
-        for i_info = 1:size (s.info, 1)
-          printf ("      %-12s %*s\n", [s.info{i_info,1} ":"], val_col_width, s.info{i_info,2});
-        endfor
-      endfor
+      switch format
+        case 'long'
+          for i_var = 1:numel (infos)
+            s = infos{i_var};
+            printf ("%d: %s\n", i_var, s.name);
+            if ! ismember (s.type, {"double", "string"})
+              printf ("   %s\n", s.type);
+            endif
+            val_col_width = max (cellfun(@numel, s.info(:,2)));
+            val_col_width = max (val_col_width, 8);
+            for i_info = 1:size (s.info, 1)
+              printf ("      %-12s %*s\n", [s.info{i_info,1} ":"], val_col_width, s.info{i_info,2});
+            endfor
+          endfor
+        case 'compact'
+          vars_per_line = 4;
+          n_vars = width (this);
+          for i = 1:vars_per_line:n_vars
+            ix = i:min(n_vars, i+vars_per_line-1);
+            ss = infos(ix);
+            strss = cell (size (ss));
+            for j = 1:numel (strss)
+              s = ss{j};
+              col = {};
+              col{end+1} = sprintf ("%d: %s", i_var, s.name);
+              col{end+1} = sprintf ("  %s", s.type);
+              val_col_width = max (cellfun(@numel, s.info(:,2)));
+              val_col_width = max (val_col_width, 8);
+              for i_info = 1:size (s.info, 1)
+                col{end+1} = sprintf ("      %-12s %*s", [s.info{i_info,1} ":"], ...
+                  val_col_width, s.info{i_info,2});
+              endfor
+              strss{j} = col(:);
+            endfor
+            lines = glue_row_strs (strss, 3);
+            for j = 1:numel (lines)
+              printf ("%s\n", lines{j});
+            endfor
+          endfor
+        otherwise
+          error ('table.summary: invalid format: ''%s''', format);
+      endswitch
     endfunction
     
     function out = summary_for_variable (this, ix)
@@ -3477,6 +3508,27 @@ function out = tablevar_dispstrs (x)
   else
     out = dispstrs (x);
   endif
+endfunction
+
+function out = glue_row_strs (strss, n_pad_chars)
+  pad = repmat (' ', [1 n_pad_chars]);
+  n_cols = numel (strss);
+  n_rows = max (cellfun (@numel, strss));
+  widths = NaN (1, n_cols);
+  for i = 1:numel(strss)
+    strss{i}(end+1:n_rows) = {''};
+    widths(i) = max (cellfun (@numel, strss{i}));
+    for j = 1:numel(strss{i})
+      if numel(strss{i}{j}) < widths(i)
+        strss{i}{j}(end+1:widths(i)) = ' ';
+      endif
+    endfor
+  endfor
+  grid = cat (2, strss{:});
+  for i_line = 1:n_rows
+    lines{i_line} = strjoin(grid(i_line,:), {pad});
+  endfor
+  out = lines;
 endfunction
 
 function out = summary_for_var_numeric (x)
