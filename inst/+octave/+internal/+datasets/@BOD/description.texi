@@ -1,0 +1,27 @@
+@subsubheading Description
+
+Contains biochemical oxygen demand versus time in an evaluation of water quality.
+
+@subsubheading Format
+
+@table @code
+@item Time
+Time of the measurement (in days).
+@item demand
+Biochemical oxygen demand (mg/l).
+@end table
+
+@subsubheading Source
+
+Bates, D.M. and Watts, D.G. (1988), @cite{Nonlinear Regression Analysis and Its
+Applications}, Wiley, Appendix A1.4.
+
+Originally from Marske (1967), @cite{Biochemical Oxygen Demand Data
+Interpretation Using Sum of Squares Surface}, M.Sc. Thesis, University of
+Wisconsin – Madison.
+
+@subsubheading Examples
+
+@example
+@INCLUDE_DATASET_EXAMPLE_SCRIPT{BOD_1.m}
+@end example

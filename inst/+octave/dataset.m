@@ -74,6 +74,126 @@ classdef dataset
     endfunction
 
     ## -*- texinfo -*-
+    ## @node dataset.BJsales
+    ## @deftypefn {Static Method} {@var{out} =} BJsales ()
+    ##
+    ## Sales Data with Leading Indicator
+    ##
+    ## @subsubheading Description
+    ## 
+    ## Sales Data with Leading Indicator
+    ## 
+    ## @subsubheading Format
+    ## 
+    ## @table @code
+    ## @item record
+    ## Index of the record.
+    ## @item lead
+    ## Leading indicator.
+    ## @item sales
+    ## Sales volume.
+    ## @end table
+    ## 
+    ## @subsubheading Source
+    ## 
+    ## The data are given in Box & Jenkins (1976). Obtained from the Time Series Data
+    ## Library at @url{http://www-personal.buseco.monash.edu.au/~hyndman/TSDL/}.
+    ## 
+    ## @subsubheading References
+    ## 
+    ## G. E. P. Box and G. M. Jenkins (1976): @cite{Time Series Analysis, Forecasting and
+    ## Control}, Holden-Day, San Francisco, p. 537.
+    ## 
+    ## P. J. Brockwell and R. A. Davis (1991): @cite{Time Series: Theory and Methods},
+    ## Second edition, Springer Verlag, NY, pp. 414.
+    ## 
+    ## @subsubheading Examples
+    ## 
+    ## @example
+    ## # TODO: Come up with example code here
+    ## @end example
+    ## 
+    ##
+    ## @end deftypefn
+    function out = BJsales ()
+      name = 'BJsales';
+      data = octave.datasets.load(name);
+      if nargout == 0
+        if isstruct (data)
+          s = data;
+          vars = fieldnames (s);
+          for i = 1:numel (vars)
+            assignin ('caller', vars{i}, s.(vars{i}));
+          endfor
+          loaded_vars = vars;
+        else
+          assignin ('caller', name, data);
+          loaded_vars = { name };
+        endif
+        printf ('Loaded ''%s''. Variables: %s\n', name, strjoin (loaded_vars, ', '));
+      else
+        out = data;
+      endif
+    endfunction
+
+    ## -*- texinfo -*-
+    ## @node dataset.BOD
+    ## @deftypefn {Static Method} {@var{out} =} BOD ()
+    ##
+    ## Biochemical Oxygen Demand
+    ##
+    ## @subsubheading Description
+    ## 
+    ## Contains biochemical oxygen demand versus time in an evaluation of water quality.
+    ## 
+    ## @subsubheading Format
+    ## 
+    ## @table @code
+    ## @item Time
+    ## Time of the measurement (in days).
+    ## @item demand
+    ## Biochemical oxygen demand (mg/l).
+    ## @end table
+    ## 
+    ## @subsubheading Source
+    ## 
+    ## Bates, D.M. and Watts, D.G. (1988), @cite{Nonlinear Regression Analysis and Its
+    ## Applications}, Wiley, Appendix A1.4.
+    ## 
+    ## Originally from Marske (1967), @cite{Biochemical Oxygen Demand Data
+    ## Interpretation Using Sum of Squares Surface}, M.Sc. Thesis, University of
+    ## Wisconsin – Madison.
+    ## 
+    ## @subsubheading Examples
+    ## 
+    ## @example
+    ## # TODO: Port this example from R
+    ## @end example
+    ## 
+    ##
+    ## @end deftypefn
+    function out = BOD ()
+      name = 'BOD';
+      data = octave.datasets.load(name);
+      if nargout == 0
+        if isstruct (data)
+          s = data;
+          vars = fieldnames (s);
+          for i = 1:numel (vars)
+            assignin ('caller', vars{i}, s.(vars{i}));
+          endfor
+          loaded_vars = vars;
+        else
+          assignin ('caller', name, data);
+          loaded_vars = { name };
+        endif
+        printf ('Loaded ''%s''. Variables: %s\n', name, strjoin (loaded_vars, ', '));
+      else
+        out = data;
+      endif
+    endfunction
+
+    ## -*- texinfo -*-
     ## @node dataset.ChickWeight
     ## @deftypefn {Static Method} {@var{out} =} ChickWeight ()
     ##
@@ -603,6 +723,78 @@ classdef dataset
     ## @end deftypefn
     function out = beavers ()
       name = 'beavers';
+      data = octave.datasets.load(name);
+      if nargout == 0
+        if isstruct (data)
+          s = data;
+          vars = fieldnames (s);
+          for i = 1:numel (vars)
+            assignin ('caller', vars{i}, s.(vars{i}));
+          endfor
+          loaded_vars = vars;
+        else
+          assignin ('caller', name, data);
+          loaded_vars = { name };
+        endif
+        printf ('Loaded ''%s''. Variables: %s\n', name, strjoin (loaded_vars, ', '));
+      else
+        out = data;
+      endif
+    endfunction
+
+    ## -*- texinfo -*-
+    ## @node dataset.cars
+    ## @deftypefn {Static Method} {@var{out} =} cars ()
+    ##
+    ## Speed and Stopping Distances of Cars
+    ##
+    ## @subsubheading Description
+    ## 
+    ## Speed of cars and distances taken to stop. Note that the data were recorded in the 1920s.
+    ## 
+    ## @subsubheading Format
+    ## 
+    ## @table @code
+    ## @item speed
+    ## Speed (mph).
+    ## @item dist
+    ## Stopping distance (ft).
+    ## @end table
+    ## 
+    ## @subsubheading Source
+    ## 
+    ## Ezekiel, M. (1930) @cite{Methods of Correlation Analysis}. Wiley.
+    ## 
+    ## @subsubheading References
+    ## 
+    ## McNeil, D. R. (1977) Interactive Data Analysis. Wiley.
+    ## 
+    ## @subsubheading Examples
+    ## 
+    ## @example
+    ## # TODO: Add Lowess smoothed lines to the plots
+    ## 
+    ## t = octave.dataset.cars;
+    ## 
+    ## figure;
+    ## 
+    ## subplot (2, 1, 1);
+    ## plot (t.speed, t.dist);
+    ## xlabel ("Speed (mph)"); ylabel("Stopping distance (ft)");
+    ## title("cars data");
+    ## 
+    ## subplot (2, 1, 2);
+    ## loglog (t.speed, t.dist);
+    ## xlabel ("Speed (mph)"); ylabel("Stopping distance (ft)");
+    ## title("cars data (logarithmic scales)");
+    ## 
+    ## 
+    ## @end example
+    ## 
+    ##
+    ## @end deftypefn
+    function out = cars ()
+      name = 'cars';
       data = octave.datasets.load(name);
       if nargout == 0
         if isstruct (data)

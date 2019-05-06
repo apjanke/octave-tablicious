@@ -37,6 +37,8 @@ classdef (Abstract) dataset
     % Keep this list in asciibetical order, for tidiness.
     included_datasets = {
       'AirPassengers'
+      'BJsales'
+      'BOD'
       'ChickWeight'
       'airmiles'
       'airquality'
@@ -45,6 +47,7 @@ classdef (Abstract) dataset
       'attitude'
       'austres'
       'beavers'
+      'cars'
       'cupcake'
       'iris'
       'mtcars'

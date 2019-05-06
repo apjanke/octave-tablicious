@@ -81,6 +81,13 @@ error: help: 'datetime' is not documented
   * Get `mkdoc.pl` to ignore files in `+internal` namespaces.
   * Get `mkdoc.pl` to include namespaces in class/function definition items.
 
+# Examples stuff
+
+* Lowess smoothing
+* ANOVA display
+* Linear model regression results plotting
+  * The thing that does a 2-by-2 grid with residuals, Q-Q, and Scale-Location plots
+
 # Wishlist and maybes
 
 * MAT-file representation compatibility with Matlab?
