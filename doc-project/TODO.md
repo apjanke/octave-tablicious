@@ -83,10 +83,11 @@ error: help: 'datetime' is not documented
 
 # Examples stuff
 
-* Lowess smoothing
-* ANOVA display
-* Linear model regression results plotting
+* Lowess smoothing (several datasets)
+* ANOVA display (`chickwts`)
+* Linear model regression results plotting (`cars`, `chickwts`)
   * The thing that does a 2-by-2 grid with residuals, Q-Q, and Scale-Location plots
+  * I think this comes from R’s `lm()` linear model function
 
 # Wishlist and maybes
 

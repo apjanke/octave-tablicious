@@ -1,0 +1,31 @@
+@subsubheading Description
+
+An experiment was conducted to measure and compare the effectiveness of various
+feed supplements on the growth rate of chickens.
+
+Newly hatched chicks were randomly allocated into six groups, and each group
+was given a different feed supplement. Their weights in grams after six weeks
+are given along with feed types.
+
+@subsubheading Format
+
+@table @code
+@item weight
+Chick weight at six weeks (gm).
+@item feed
+Feed type.
+@end table
+
+@subsubheading Source
+
+Anonymous (1948) @cite{Biometrika}, 35, 214.
+
+@subsubheading References
+
+McNeil, D. R. (1977) @code{Interactive Data Analysis}. New York: Wiley.
+
+@subsubheading Examples
+
+@example
+@INCLUDE_DATASET_EXAMPLE_SCRIPT{chickwts_1.m}
+@end example

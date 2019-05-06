@@ -772,21 +772,37 @@ classdef dataset
     ## @subsubheading Examples
     ## 
     ## @example
-    ## # TODO: Add Lowess smoothed lines to the plots
     ## 
     ## t = octave.dataset.cars;
     ## 
+    ## 
+    ## # TODO: Add Lowess smoothed lines to the plots
+    ## 
     ## figure;
-    ## 
-    ## subplot (2, 1, 1);
-    ## plot (t.speed, t.dist);
+    ## plot (t.speed, t.dist, "o");
     ## xlabel ("Speed (mph)"); ylabel("Stopping distance (ft)");
-    ## title("cars data");
+    ## title ("cars data");
     ## 
-    ## subplot (2, 1, 2);
-    ## loglog (t.speed, t.dist);
+    ## figure;
+    ## loglog (t.speed, t.dist, "o");
     ## xlabel ("Speed (mph)"); ylabel("Stopping distance (ft)");
-    ## title("cars data (logarithmic scales)");
+    ## title ("cars data (logarithmic scales)");
+    ## 
+    ## # TODO: Do the linear model plot
+    ## 
+    ## # Polynomial regression
+    ## figure;
+    ## plot (t.speed, t.dist, "o");
+    ## xlabel ("Speed (mph)"); ylabel("Stopping distance (ft)");
+    ## title ("cars polynomial regressions");
+    ## hold on
+    ## xlim ([0 25]);
+    ## x2 = linspace (0, 25, 200);
+    ## for degree = 1:4
+    ##   [P, S, mu] = polyfit (t.speed, t.dist, degree);
+    ##   y2 = polyval(P, x2, [], mu);
+    ##   plot (x2, y2);
+    ## endfor
     ## 
     ## 
     ## @end example
@@ -795,6 +811,69 @@ classdef dataset
     ## @end deftypefn
     function out = cars ()
       name = 'cars';
+      data = octave.datasets.load(name);
+      if nargout == 0
+        if isstruct (data)
+          s = data;
+          vars = fieldnames (s);
+          for i = 1:numel (vars)
+            assignin ('caller', vars{i}, s.(vars{i}));
+          endfor
+          loaded_vars = vars;
+        else
+          assignin ('caller', name, data);
+          loaded_vars = { name };
+        endif
+        printf ('Loaded ''%s''. Variables: %s\n', name, strjoin (loaded_vars, ', '));
+      else
+        out = data;
+      endif
+    endfunction
+
+    ## -*- texinfo -*-
+    ## @node dataset.chickwts
+    ## @deftypefn {Static Method} {@var{out} =} chickwts ()
+    ##
+    ## Chicken Weights by Feed Type
+    ##
+    ## @subsubheading Description
+    ## 
+    ## An experiment was conducted to measure and compare the effectiveness of various
+    ## feed supplements on the growth rate of chickens.
+    ## 
+    ## Newly hatched chicks were randomly allocated into six groups, and each group
+    ## was given a different feed supplement. Their weights in grams after six weeks
+    ## are given along with feed types.
+    ## 
+    ## @subsubheading Format
+    ## 
+    ## @table @code
+    ## @item weight
+    ## Chick weight (g).
+    ## @item feed
+    ## Feed type.
+    ## @end table
+    ## 
+    ## @subsubheading Source
+    ## 
+    ## Anonymous (1948) @cite{Biometrika}, 35, 214.
+    ## 
+    ## @subsubheading References
+    ## 
+    ## McNeil, D. R. (1977) @code{Interactive Data Analysis}. New York: Wiley.
+    ## 
+    ## @subsubheading Examples
+    ## 
+    ## @example
+    ## t = octave.dataset.chickwts
+    ## 
+    ## 
+    ## @end example
+    ## 
+    ##
+    ## @end deftypefn
+    function out = chickwts ()
+      name = 'chickwts';
       data = octave.datasets.load(name);
       if nargout == 0
         if isstruct (data)
