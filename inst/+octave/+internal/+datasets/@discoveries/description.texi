@@ -1,0 +1,26 @@
+@subsubheading Description
+
+The numbers of “great” inventions and scientific discoveries in each year from 1860 to 1959.
+
+@subsubheading Format
+
+@table @code
+@item year
+Year.
+@item discoveries
+Number of “great” discoveries that year.
+@end table
+
+@subsubheading Source
+
+@cite{The World Almanac and Book of Facts}, 1975 Edition, pages 315–318.
+
+@subsubheading References
+
+McNeil, D. R. (1977) @cite{Interactive Data Analysis}. Wiley.
+
+@subsubheading Examples
+
+@example
+@INCLUDE_DATASET_EXAMPLE_SCRIPT{discoveries_1.m}
+@end example

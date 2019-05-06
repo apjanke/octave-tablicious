@@ -1,0 +1,72 @@
+@subsubheading Description
+
+Data of 3000 male criminals over 20 years old undergoing their sentences in the
+chief prisons of England and Wales.
+
+@subsubheading Format
+
+This dataset contains three separate variables. The @code{finger_length} and
+@code{body_height} variables correspond to the rows and columns of the
+@code{count} matrix.
+
+@table @code
+@item finger_length
+Midpoints of intervals of finger lengths (cm).
+@item body_height
+Body heights (cm).
+@item count
+Number of prisoners in this bin.
+@end table
+
+@subsubheading Details
+
+Student is the pseudonym of William Sealy Gosset. In his 1908 paper he wrote
+(on page 13) at the beginning of section VI entitled Practical Test of the
+forgoing Equations:
+
+“Before I had succeeded in solving my problem analytically, I had endeavoured
+to do so empirically. The material used was a correlation table containing
+the height and left middle finger measurements of 3000 criminals, from a
+paper by W. R. MacDonell (Biometrika, Vol. I., p. 219). The measurements
+were written out on 3000 pieces of cardboard, which were then very thoroughly
+shuffled and drawn at random. As each card was drawn its numbers were written
+down in a book, which thus contains the measurements of 3000 criminals in a
+random order. Finally, each consecutive set of 4 was taken as a sample—750
+in all—and the mean, standard deviation, and correlation of each sample 
+etermined. The difference between the mean of each sample and the mean of
+the population was then divided by the standard deviation of the sample, giving
+us the z of Section III.”
+
+The table is in fact page 216 and not page 219 in MacDonell(1902). In the
+MacDonell table, the middle finger lengths were given in mm and the heights
+in feet/inches intervals, they are both converted into cm here. The midpoints
+of intervals were used, e.g., where MacDonell has “4' 7"9/16 -- 8"9/16”, we
+have 142.24 which is 2.54*56 = 2.54*(4' 8").
+
+MacDonell credited the source of data (page 178) as follows: “The data on which
+the memoir is based were obtained, through the kindness of Dr Garson, from the
+Central Metric Office, New Scotland Yard... He pointed out on page 179 that:
+“The forms were drawn at random from the mass on the office shelves; we are
+therefore dealing with a random sampling.”
+
+@subsubheading Source
+
+@url{http://pbil.univ-lyon1.fr/R/donnees/criminals1902.txt} thanks to Jean R.
+Lobry and Anne-Béatrice Dufour.
+
+@subsubheading References
+
+Garson, J.G. (1900). The metric system of identification of criminals, as used
+in in Great Britain and Ireland. @cite{The Journal of the Anthropological
+Institute of Great Britain and Ireland}, 30, 161–198.
+
+MacDonell, W.R. (1902). On criminal anthropometry and the identification of
+criminals. @cite{Biometrika}, 1(2), 177–227.
+
+Student (1908). The probable error of a mean. @code{Biometrika}, 6, 1–25.
+
+@subsubheading Examples
+
+@example
+@INCLUDE_DATASET_EXAMPLE_SCRIPT{crimtab_1.m}
+@end example

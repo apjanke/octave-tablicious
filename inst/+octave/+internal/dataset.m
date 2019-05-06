@@ -50,7 +50,9 @@ classdef (Abstract) dataset
       'cars'
       'chickwts'
       'co2'
+      'crimtab'
       'cupcake'
+      'discoveries'
       'iris'
       'mtcars'
     }
