@@ -13,6 +13,8 @@
 ## You should have received a copy of the GNU General Public License
 ## along with this program; If not, see <http://www.gnu.org/licenses/>.
 
+# This is based on the AirPassengers dataset from R’s datasets package
+
 classdef AirPassengers < octave.internal.dataset
   % Monthly Airline Passenger Numbers 1949-1960
 

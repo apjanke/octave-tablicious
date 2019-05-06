@@ -13,6 +13,8 @@
 ## You should have received a copy of the GNU General Public License
 ## along with this program; If not, see <http://www.gnu.org/licenses/>.
 
+# This is based on the iris dataset from R’s datasets package
+
 classdef iris < octave.internal.dataset
   % This is the classic Fisher Iris dataset.
   %

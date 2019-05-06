@@ -13,6 +13,9 @@
 ## You should have received a copy of the GNU General Public License
 ## along with this program; If not, see <http://www.gnu.org/licenses/>.
 
+# This is based on the airmiles dataset from R’s datasets package
+# https://rdrr.io/r/datasets/airmiles.html
+
 classdef airmiles < octave.internal.dataset
   % Passenger Miles on Commercial US Airlines, 1937-1960
   %
