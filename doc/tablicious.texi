@@ -2,7 +2,7 @@
 
 @c %**start of header
 
-@set VERSION 0.2.0
+@set VERSION 0.2.0+
 
 @setfilename tablicious.info
 @settitle Octave Tablicious v@value{VERSION}
@@ -106,7 +106,7 @@ The easiest way to obtain Tablicious is by using Octave's @code{pkg} package man
 To install the development prerelease of Tablicious, run this in Octave:
 
 @example
-pkg install https://github.com/apjanke/octave-tablicious/releases/download/v0.2.0/tablicious-0.2.0.tar.gz
+pkg install https://github.com/apjanke/octave-tablicious/releases/download/v0.2.0+/tablicious-0.2.0+.tar.gz
 @end example
 
 (Check the releases page at @url{https://github.com/apjanke/octave-tablicious/releases} to
@@ -483,6 +483,12 @@ doc octave.dataset.cupcake
 currently doesn’t. This may be due to an issue with Octave’s @code{help}
 command.)
 
+Many of Tablicious’ example data sets are based on the example datasets
+found in R’s @code{datasets} package. R can be found at
+@url{https://www.r-project.org/}, and documentation for its @code{datasets}
+is at @url{https://rdrr.io/r/datasets/datasets-package.html}. Our examples’
+code tries to replicate their examples, so it can be useful to compare the
+two of them if you are moving from one language to another.
 
 @node Missing Functionality
 @chapter Missing Functionality
