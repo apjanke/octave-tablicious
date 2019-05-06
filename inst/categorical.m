@@ -355,7 +355,7 @@ classdef categorical
     ## @end deftypefn
     function out = string (this)
       out = cell (size (this));
-      out(!this.tfMissing) = this.category_list(this.code(!this.tfMissing));
+      out(!this.tfMissing) = this.cats(this.code(!this.tfMissing));
       out = string (out);
       out(this.tfMissing) = string.missing;
     endfunction
@@ -375,7 +375,7 @@ classdef categorical
     ## @end deftypefn
     function out = cellstr (this)
       out = cell (size (this));
-      out(!this.tfMissing) = this.category_list(this.code(!this.tfMissing));
+      out(!this.tfMissing) = this.cats(this.code(!this.tfMissing));
       out(this.tfMissing) = {""};      
     endfunction
     
