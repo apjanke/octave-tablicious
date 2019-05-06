@@ -849,7 +849,7 @@ classdef dataset
     ## 
     ## @table @code
     ## @item weight
-    ## Chick weight (g).
+    ## Chick weight at six weeks (gm).
     ## @item feed
     ## Feed type.
     ## @end table
@@ -865,8 +865,21 @@ classdef dataset
     ## @subsubheading Examples
     ## 
     ## @example
+    ## # This example requires the statistics package from Octave Forge
+    ## 
     ## t = octave.dataset.chickwts
     ## 
+    ## # Boxplot by group
+    ## figure
+    ## g = groupby (t, "feed", @{
+    ##   "weight", @@(x) @{x@}, "weight"
+    ## @});
+    ## boxplot (g.weight, 1);
+    ## xlabel ("feed"); ylabel ("Weight at six weeks (gm)");
+    ## xticklabels ([@{""@} cellstr(g.feed')]);
+    ## 
+    ## # Linear model
+    ## # TODO: This linear model thing and anova
     ## 
     ## @end example
     ## 
@@ -874,6 +887,75 @@ classdef dataset
     ## @end deftypefn
     function out = chickwts ()
       name = 'chickwts';
+      data = octave.datasets.load(name);
+      if nargout == 0
+        if isstruct (data)
+          s = data;
+          vars = fieldnames (s);
+          for i = 1:numel (vars)
+            assignin ('caller', vars{i}, s.(vars{i}));
+          endfor
+          loaded_vars = vars;
+        else
+          assignin ('caller', name, data);
+          loaded_vars = { name };
+        endif
+        printf ('Loaded ''%s''. Variables: %s\n', name, strjoin (loaded_vars, ', '));
+      else
+        out = data;
+      endif
+    endfunction
+
+    ## -*- texinfo -*-
+    ## @node dataset.co2
+    ## @deftypefn {Static Method} {@var{out} =} co2 ()
+    ##
+    ## Mauna Loa Atmospheric CO2 Concentration
+    ##
+    ## @subsubheading Description
+    ## 
+    ## Atmospheric concentrations of CO2 are expressed in parts per million (ppm) and
+    ## reported in the preliminary 1997 SIO manometric mole fraction scale. Contains
+    ## monthly observations from 1959 to 1997.
+    ## 
+    ## @subsubheading Format
+    ## 
+    ## @table @code
+    ## @item date
+    ## Date of the month of the observation, as datetime.
+    ## @item co2
+    ## CO2 concentration (ppm).
+    ## @end table
+    ## 
+    ## @subsubheading Details
+    ## 
+    ## The values for February, March and April of 1964 were missing and have
+    ## been obtained by interpolating linearly between the values for January
+    ## and May of 1964.
+    ## 
+    ## @subsubheading Source
+    ## 
+    ## Keeling, C. D. and Whorf, T. P., Scripps Institution of Oceanography
+    ## (SIO), University of California, La Jolla, California USA 92093-0220.
+    ## 
+    ## @url{ftp://cdiac.esd.ornl.gov/pub/maunaloa-co2/maunaloa.co2}.
+    ## 
+    ## @subsubheading References
+    ## 
+    ## Cleveland, W. S. (1993) @code{Visualizing Data}. New Jersey: Summit Press.
+    ## 
+    ## @subsubheading Examples
+    ## 
+    ## @example
+    ## t = octave.dataset.co2;
+    ## 
+    ## 
+    ## @end example
+    ## 
+    ##
+    ## @end deftypefn
+    function out = co2 ()
+      name = 'co2';
       data = octave.datasets.load(name);
       if nargout == 0
         if isstruct (data)

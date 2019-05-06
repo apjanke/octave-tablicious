@@ -1,0 +1,37 @@
+@subsubheading Description
+
+Atmospheric concentrations of CO2 are expressed in parts per million (ppm) and
+reported in the preliminary 1997 SIO manometric mole fraction scale. Contains
+monthly observations from 1959 to 1997.
+
+@subsubheading Format
+
+@table @code
+@item date
+Date of the month of the observation, as datetime.
+@item co2
+CO2 concentration (ppm).
+@end table
+
+@subsubheading Details
+
+The values for February, March and April of 1964 were missing and have
+been obtained by interpolating linearly between the values for January
+and May of 1964.
+
+@subsubheading Source
+
+Keeling, C. D. and Whorf, T. P., Scripps Institution of Oceanography
+(SIO), University of California, La Jolla, California USA 92093-0220.
+
+@url{ftp://cdiac.esd.ornl.gov/pub/maunaloa-co2/maunaloa.co2}.
+
+@subsubheading References
+
+Cleveland, W. S. (1993) @code{Visualizing Data}. New Jersey: Summit Press.
+
+@subsubheading Examples
+
+@example
+@INCLUDE_DATASET_EXAMPLE_SCRIPT{co2_1.m}
+@end example

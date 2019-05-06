@@ -49,6 +49,7 @@ classdef (Abstract) dataset
       'beavers'
       'cars'
       'chickwts'
+      'co2'
       'cupcake'
       'iris'
       'mtcars'
