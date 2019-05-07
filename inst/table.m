@@ -856,7 +856,7 @@ classdef table
           elseif isequal (name, this.DimensionNames{2})
             out = this.VariableNames;
           else
-            out = getVar (this, name);
+            out = getvar (this, name);
           endif
       end
       % Chained references
@@ -1261,6 +1261,49 @@ classdef table
       out = [left moved right];
     endfunction
     
+    ## -*- texinfo -*-
+    ## @node table.getvar
+    ## @deftypefn {Method} {[@var{out}, @var{name}]} = getvar (@var{obj}, @var{varRef})
+    ##
+    ## Get value and name for single table variable.
+    ##
+    ## @var{varRef} is a variable reference. It may be a name or an index. It
+    ## may only specify a single table variable.
+    ##
+    ## Returns:
+    ##   @var{out} – the value of the referenced table variable
+    ##   @var{name} – the name of the referenced table variable
+    ##
+    ## @end deftypefn
+    function [out, name] = getvar (this, var_ref)
+      [ix_var, var_names] = resolveVarRef (this, var_ref);
+      if ! isscalar (ix_var)
+        error ('table.getvar: getvar only accepts a single variable reference; got %d', ...
+          numel (ix_var));
+      endif
+      out = this.VariableValues{ix_var};
+      name = var_names{1};
+    endfunction
+    
+    ## -*- texinfo -*-
+    ## @node table.getvars
+    ## @deftypefn {Method} {[@var{out1}, @dots{}]} = getvars (@var{obj}, @var{varRef})
+    ##
+    ## Get values for one ore more table variables.
+    ##
+    ## @var{varRef} is a variable reference in the form of variable names or 
+    ## indexes.
+    ##
+    ## Returns as many outputs as @var{varRef} referenced variables. Each output
+    ## contains the contents of the corresponding table variable.
+    ##
+    ## @end deftypefn
+    function varargout = getvars (this, name)
+      [ix_var, var_names] = resolveVarRef (this, name);
+      varargout = cell (1:numel (ix_var));
+      [varargout{:}] = this.VariableValues{ix_var};
+    endfunction
+
     ## -*- texinfo -*-
     ## @node table.setvar
     ## @deftypefn {Method} {@var{out} =} setvar (@var{obj}, @var{varRef}, @var{value})
@@ -3327,14 +3370,6 @@ classdef table
       outB.VariableNames = newNamesB;
     endfunction
   
-    function out = getVar (this, name)
-      [tf, loc] = ismember (name, this.VariableNames);
-      if ~tf
-        error ('table has no variable named ''%s''', name);
-      endif
-      out = this.VariableValues{loc};
-    endfunction
-
     function out = transpose_table (this)
       %TRANSPOSE_TABLE This is for table's internal use
       if ~hasrownames (this)
