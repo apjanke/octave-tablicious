@@ -30,5 +30,5 @@ Springer.
 @subsubheading Examples
 
 @example
-# TODO: This example needs to be ported from R.
+@INCLUDE_DATASET_EXAMPLE_SCRIPT{ChickWeight_1.m}
 @end example
