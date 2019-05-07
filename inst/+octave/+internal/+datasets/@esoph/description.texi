@@ -1,0 +1,29 @@
+@subsubheading Description
+
+Data from a case-control study of (o)esophageal cancer in Ille-et-Vilaine, France.
+
+@subsubheading Format
+
+@table @code
+@item item
+Age group (years).
+@item alcgp
+Alcohol consumption (gm/day).
+@item tobgp
+Tobacco consumption (gm/day).
+@item ncases
+Number of cases.
+@item ncontrols
+Number of controls
+@end table
+
+@subsubheading Source
+
+Breslow, N. E. and Day, N. E. (1980) @cite{Statistical Methods in Cancer Research.
+Volume 1: The Analysis of Case-Control Studies}. IARC Lyon / Oxford University Press.
+
+@subsubheading Examples
+
+@example
+@INCLUDE_DATASET_EXAMPLE_SCRIPT{esoph_1.m}
+@end example
