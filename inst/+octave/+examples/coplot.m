@@ -15,7 +15,8 @@
 
 ## -*- texinfo -*-
 ## @deftypefn {Function} {[@var{fig}, @var{hax}] =} coplot (@var{tbl}, @var{xvar}, @var{yvar}, @var{gvar})
-## @deftypefn {Function} {[@var{fig}, @var{hax}] =} coplot (@var{fig}, @var{tbl}, @var{xvar}, @var{yvar}, @var{gvar})
+## @deftypefnx {Function} {[@var{fig}, @var{hax}] =} coplot (@var{fig}, @var{tbl}, @var{xvar}, @var{yvar}, @var{gvar})
+## @deftypefnx {Function} {[@var{fig}, @var{hax}] =} coplot (@dots{}, @var{OptionName}, @var{OptionValue}, @dots{})
 ##
 ## Conditioning plot.
 ##
@@ -40,13 +41,36 @@
 ## @var{fig} is the figure handle to plot into. If @var{fig} is not provided, a new figure
 ## is created.
 ##
+## Name/Value options:
+##
+## @table @code
+## @item PlotFcn
+## The plotting function to use, supplied as a function handle. Defaults to @code{@@plot}.
+## It must be a function that provides the signature @code{fcn(hax, X, Y, @dots{})}.
+## @item PlotArgs
+## A cell array of arguments to pass in to the plotting function, following the @var{hax},
+## @var{x}, and @var{y} arguments.
+## @end table
+##
 ## Returns:
 ##   @var{fig} – the figure handle it plotted into
 ##   @var{hax} – array of axes handles to all the axes for the subplots
 
 function [fig, hax] = coplot(varargin)
   narginchk (4, Inf);
-  args = varargin;
+  defaults = {
+    "PlotFcn"   "plot"
+    "PlotArgs"  {}
+  };
+  [opts, args] = octave.examples.peel_off_name_value_options (varargin, ...
+    {"PlotFcn", "PlotArgs"}, {
+      "PlotFcn"   @plot
+      "PlotArgs"  {}
+    });
+  mustBeA (opts.PlotFcn, "function_handle", "opts.PlotFcn");
+  if ! iscell (opts.PlotArgs)
+    opts.PlotArgs = { opts.PlotArgs };
+  endif
   if isnumeric (args{1})
     fig = args{1};
     mustBeScalar (fig);
@@ -62,17 +86,19 @@ function [fig, hax] = coplot(varargin)
   [Y, y_name] = getvar (tbl, yvar);
   [g_ix, g_names] = resolveVarRef (tbl, gvar);
   if isscalar (g_ix)
-    hax = coplot_one (fig, tbl, X, x_name, Y, y_name, g_ix, g_names);
+    hax = coplot_one (fig, tbl, X, x_name, Y, y_name, g_ix, g_names, opts);
   else
-    hax = coplot_two (fig, tbl, X, x_name, Y, y_name, g_ix, g_names);
+    hax = coplot_two (fig, tbl, X, x_name, Y, y_name, g_ix, g_names, opts);
   endif
   if nargout < 1
     clear fig
   endif
 endfunction
 
-function hax = coplot_one (fig, tbl, X, x_name, Y, y_name, g_ix, g_names)
-  
+function hax = coplot_one (fig, tbl, X, x_name, Y, y_name, g_ix, g_names, opts)
+  plot_fcn = opts.PlotFcn;
+  plot_args = opts.PlotArgs;
+
   G = getvar (tbl, g_ix);
   u_g = unique (G (!ismissing (G)));
   n_groups = numel (u_g);
@@ -88,12 +114,10 @@ function hax = coplot_one (fig, tbl, X, x_name, Y, y_name, g_ix, g_names)
     ix_row = ceil (i / n_cols);
     ix_col = 1 + rem (i, n_rows);
     ax = subplot (n_rows, n_cols, i);
-    if ix_col == 1
-    else
+    if ix_col != 1
       set(ax, 'yticklabel', {});
     endif
-    if ix_row == n_rows
-    else
+    if ix_row != n_rows
       set(ax, 'xticklabel', {});
     endif
     set(ax, 'position', get(ax, 'outerposition'));
@@ -101,7 +125,7 @@ function hax = coplot_one (fig, tbl, X, x_name, Y, y_name, g_ix, g_names)
     tf_g = G == u_g(i);
     x_g = X(tf_g);
     y_g = Y(tf_g);
-    plot (ax, x_g, y_g, "o");
+    plot_fcn (ax, x_g, y_g, "o");
   endfor
   
   linkaxes (hax, "xy");

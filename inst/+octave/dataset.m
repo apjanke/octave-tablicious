@@ -231,13 +231,76 @@ classdef dataset
     ## @subsubheading Examples
     ## 
     ## @example
-    ## # TODO: This example needs to be ported from R.
+    ## t = octave.dataset.ChickWeight
+    ## 
+    ## octave.examples.coplot (t, "Time", "weight", "Chick");
+    ## 
     ## @end example
     ## 
     ##
     ## @end deftypefn
     function out = ChickWeight ()
       name = 'ChickWeight';
+      data = octave.datasets.load(name);
+      if nargout == 0
+        if isstruct (data)
+          s = data;
+          vars = fieldnames (s);
+          for i = 1:numel (vars)
+            assignin ('caller', vars{i}, s.(vars{i}));
+          endfor
+          loaded_vars = vars;
+        else
+          assignin ('caller', name, data);
+          loaded_vars = { name };
+        endif
+        printf ('Loaded ''%s''. Variables: %s\n', name, strjoin (loaded_vars, ', '));
+      else
+        out = data;
+      endif
+    endfunction
+
+    ## -*- texinfo -*-
+    ## @node dataset.DNase
+    ## @deftypefn {Static Method} {@var{out} =} DNase ()
+    ##
+    ## Elisa assay of DNase
+    ##
+    ## @subsubheading Description
+    ## 
+    ## Data obtained during development of an ELISA assay for the recombinant protein DNase in rat serum.
+    ## 
+    ## @subsubheading Format
+    ## 
+    ## @table @code
+    ## @item Run
+    ## Ordered @code{categorical} indicating the assay run.
+    ## @item conc
+    ## Known concentration of the protein (ng/ml).
+    ## @item density
+    ## Measured optical density in the assay (dimensionless).
+    ## @end table
+    ## 
+    ## @subsubheading Source
+    ## 
+    ## Davidian, M. and Giltinan, D. M. (1995) @cite{Nonlinear Models for Repeated
+    ## Measurement Data}, Chapman & Hall (section 5.2.4, p. 134)
+    ## 
+    ## Pinheiro, J. C. and Bates, D. M. (2000) @cite{Mixed-effects Models in S and
+    ## S-PLUS}, Springer.
+    ## 
+    ## @subsubheading Examples
+    ## 
+    ## @example
+    ## t = octave.dataset.DNase;
+    ## 
+    ## 
+    ## @end example
+    ## 
+    ##
+    ## @end deftypefn
+    function out = DNase ()
+      name = 'DNase';
       data = octave.datasets.load(name);
       if nargout == 0
         if isstruct (data)
@@ -949,6 +1012,10 @@ classdef dataset
     ## @example
     ## t = octave.dataset.co2;
     ## 
+    ## plot (datenum (t.date), t.co2);
+    ## datetick ("x");
+    ## xlabel ("Time"); ylabel ("Atmospheric concentration of CO2");
+    ## title ("co2 data set");
     ## 
     ## @end example
     ## 
@@ -956,6 +1023,108 @@ classdef dataset
     ## @end deftypefn
     function out = co2 ()
       name = 'co2';
+      data = octave.datasets.load(name);
+      if nargout == 0
+        if isstruct (data)
+          s = data;
+          vars = fieldnames (s);
+          for i = 1:numel (vars)
+            assignin ('caller', vars{i}, s.(vars{i}));
+          endfor
+          loaded_vars = vars;
+        else
+          assignin ('caller', name, data);
+          loaded_vars = { name };
+        endif
+        printf ('Loaded ''%s''. Variables: %s\n', name, strjoin (loaded_vars, ', '));
+      else
+        out = data;
+      endif
+    endfunction
+
+    ## -*- texinfo -*-
+    ## @node dataset.crimtab
+    ## @deftypefn {Static Method} {@var{out} =} crimtab ()
+    ##
+    ## Student’s 3000 Criminals Data
+    ##
+    ## @subsubheading Description
+    ## 
+    ## Data of 3000 male criminals over 20 years old undergoing their sentences in the
+    ## chief prisons of England and Wales.
+    ## 
+    ## @subsubheading Format
+    ## 
+    ## This dataset contains three separate variables. The @code{finger_length} and
+    ## @code{body_height} variables correspond to the rows and columns of the
+    ## @code{count} matrix.
+    ## 
+    ## @table @code
+    ## @item finger_length
+    ## Midpoints of intervals of finger lengths (cm).
+    ## @item body_height
+    ## Body heights (cm).
+    ## @item count
+    ## Number of prisoners in this bin.
+    ## @end table
+    ## 
+    ## @subsubheading Details
+    ## 
+    ## Student is the pseudonym of William Sealy Gosset. In his 1908 paper he wrote
+    ## (on page 13) at the beginning of section VI entitled Practical Test of the
+    ## forgoing Equations:
+    ## 
+    ## “Before I had succeeded in solving my problem analytically, I had endeavoured
+    ## to do so empirically. The material used was a correlation table containing
+    ## the height and left middle finger measurements of 3000 criminals, from a
+    ## paper by W. R. MacDonell (Biometrika, Vol. I., p. 219). The measurements
+    ## were written out on 3000 pieces of cardboard, which were then very thoroughly
+    ## shuffled and drawn at random. As each card was drawn its numbers were written
+    ## down in a book, which thus contains the measurements of 3000 criminals in a
+    ## random order. Finally, each consecutive set of 4 was taken as a sample—750
+    ## in all—and the mean, standard deviation, and correlation of each sample 
+    ## etermined. The difference between the mean of each sample and the mean of
+    ## the population was then divided by the standard deviation of the sample, giving
+    ## us the z of Section III.”
+    ## 
+    ## The table is in fact page 216 and not page 219 in MacDonell(1902). In the
+    ## MacDonell table, the middle finger lengths were given in mm and the heights
+    ## in feet/inches intervals, they are both converted into cm here. The midpoints
+    ## of intervals were used, e.g., where MacDonell has “4' 7"9/16 -- 8"9/16”, we
+    ## have 142.24 which is 2.54*56 = 2.54*(4' 8").
+    ## 
+    ## MacDonell credited the source of data (page 178) as follows: “The data on which
+    ## the memoir is based were obtained, through the kindness of Dr Garson, from the
+    ## Central Metric Office, New Scotland Yard... He pointed out on page 179 that:
+    ## “The forms were drawn at random from the mass on the office shelves; we are
+    ## therefore dealing with a random sampling.”
+    ## 
+    ## @subsubheading Source
+    ## 
+    ## @url{http://pbil.univ-lyon1.fr/R/donnees/criminals1902.txt} thanks to Jean R.
+    ## Lobry and Anne-Béatrice Dufour.
+    ## 
+    ## @subsubheading References
+    ## 
+    ## Garson, J.G. (1900). The metric system of identification of criminals, as used
+    ## in in Great Britain and Ireland. @cite{The Journal of the Anthropological
+    ## Institute of Great Britain and Ireland}, 30, 161–198.
+    ## 
+    ## MacDonell, W.R. (1902). On criminal anthropometry and the identification of
+    ## criminals. @cite{Biometrika}, 1(2), 177–227.
+    ## 
+    ## Student (1908). The probable error of a mean. @code{Biometrika}, 6, 1–25.
+    ## 
+    ## @subsubheading Examples
+    ## 
+    ## @example
+    ## # TODO: Port this from R
+    ## @end example
+    ## 
+    ##
+    ## @end deftypefn
+    function out = crimtab ()
+      name = 'crimtab';
       data = octave.datasets.load(name);
       if nargout == 0
         if isstruct (data)
@@ -1012,6 +1181,67 @@ classdef dataset
     ## @end deftypefn
     function out = cupcake ()
       name = 'cupcake';
+      data = octave.datasets.load(name);
+      if nargout == 0
+        if isstruct (data)
+          s = data;
+          vars = fieldnames (s);
+          for i = 1:numel (vars)
+            assignin ('caller', vars{i}, s.(vars{i}));
+          endfor
+          loaded_vars = vars;
+        else
+          assignin ('caller', name, data);
+          loaded_vars = { name };
+        endif
+        printf ('Loaded ''%s''. Variables: %s\n', name, strjoin (loaded_vars, ', '));
+      else
+        out = data;
+      endif
+    endfunction
+
+    ## -*- texinfo -*-
+    ## @node dataset.discoveries
+    ## @deftypefn {Static Method} {@var{out} =} discoveries ()
+    ##
+    ## Yearly Numbers of Important Discoveries
+    ##
+    ## @subsubheading Description
+    ## 
+    ## The numbers of “great” inventions and scientific discoveries in each year from 1860 to 1959.
+    ## 
+    ## @subsubheading Format
+    ## 
+    ## @table @code
+    ## @item year
+    ## Year.
+    ## @item discoveries
+    ## Number of “great” discoveries that year.
+    ## @end table
+    ## 
+    ## @subsubheading Source
+    ## 
+    ## @cite{The World Almanac and Book of Facts}, 1975 Edition, pages 315–318.
+    ## 
+    ## @subsubheading References
+    ## 
+    ## McNeil, D. R. (1977) @cite{Interactive Data Analysis}. Wiley.
+    ## 
+    ## @subsubheading Examples
+    ## 
+    ## @example
+    ## t = octave.dataset.discoveries;
+    ## 
+    ## plot (t.year, t.discoveries);
+    ## xlabel ("Time"); ylabel ("Number of important discoveries");
+    ## title ("discoveries data set");
+    ## 
+    ## @end example
+    ## 
+    ##
+    ## @end deftypefn
+    function out = discoveries ()
+      name = 'discoveries';
       data = octave.datasets.load(name);
       if nargout == 0
         if isstruct (data)

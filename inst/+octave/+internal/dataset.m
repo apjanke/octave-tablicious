@@ -40,6 +40,7 @@ classdef (Abstract) dataset
       'BJsales'
       'BOD'
       'ChickWeight'
+      'DNase'
       'airmiles'
       'airquality'
       'anscombe'

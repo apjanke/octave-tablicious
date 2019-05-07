@@ -1,0 +1,28 @@
+@subsubheading Description
+
+Data obtained during development of an ELISA assay for the recombinant protein DNase in rat serum.
+
+@subsubheading Format
+
+@table @code
+@item Run
+Ordered @code{categorical} indicating the assay run.
+@item conc
+Known concentration of the protein (ng/ml).
+@item density
+Measured optical density in the assay (dimensionless).
+@end table
+
+@subsubheading Source
+
+Davidian, M. and Giltinan, D. M. (1995) @cite{Nonlinear Models for Repeated
+Measurement Data}, Chapman & Hall (section 5.2.4, p. 134)
+
+Pinheiro, J. C. and Bates, D. M. (2000) @cite{Mixed-effects Models in S and
+S-PLUS}, Springer.
+
+@subsubheading Examples
+
+@example
+@INCLUDE_DATASET_EXAMPLE_SCRIPT{DNase_1.m}
+@end example
