@@ -55,6 +55,8 @@
 ## Returns:
 ##   @var{fig} – the figure handle it plotted into
 ##   @var{hax} – array of axes handles to all the axes for the subplots
+##
+## @end deftypefn
 
 function [fig, hax] = coplot(varargin)
   narginchk (4, Inf);
