@@ -1,0 +1,25 @@
+@subsubheading Description
+
+@code{eurodist} gives road distances (in km) between 21 cities in Europe. The
+data are taken from a table in The Cambridge Encyclopaedia.
+
+@code{UScitiesD} gives “straight line” distances between 10 cities in the US.
+
+@subsubheading Format
+
+@table @code
+@item eurodist
+?????
+@end table
+
+TODO: Finish this.
+
+@subsubheading Source
+
+Crystal, D. Ed. (1990) @cite{The Cambridge Encyclopaedia}. Cambridge:
+Cambridge University Press,
+
+The US cities distances were provided by Pierre Legendre.
+
+@subsubheading Examples
+

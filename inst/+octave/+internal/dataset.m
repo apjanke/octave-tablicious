@@ -56,6 +56,8 @@ classdef (Abstract) dataset
       'DNase'
       'esoph'
       'euro'
+      'eurodist'
+      'EuStockMarkets'
       'iris'
       'mtcars'
     }
