@@ -88,6 +88,7 @@ error: help: 'datetime' is not documented
 * Linear model regression results plotting (`cars`, `chickwts`)
   * The thing that does a 2-by-2 grid with residuals, Q-Q, and Scale-Location plots
   * I think this comes from R’s `lm()` linear model function
+* Equivalent of R’s `coplot()` (`DNase`)
 
 # Wishlist and maybes
 
