@@ -1,3 +1,4 @@
+## Copyright (C) 1994-9 W. N. Venables and B. D. Ripley
 ## Copyright (C) 2019 Andrew Janke
 ##
 ## This program is free software; you can redistribute it and/or modify
