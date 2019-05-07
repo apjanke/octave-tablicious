@@ -34,26 +34,28 @@ classdef (Abstract) dataset
     % tablicious.internal.datasets namespace. The names here must match
     % The class base name.
     %
-    % Keep this list in asciibetical order, for tidiness.
+    % Keep this list in alphabetical order, for tidiness.
     included_datasets = {
-      'AirPassengers'
-      'BJsales'
-      'BOD'
-      'ChickWeight'
-      'DNase'
       'airmiles'
+      'AirPassengers'
       'airquality'
       'anscombe'
       'attenu'
       'attitude'
       'austres'
       'beavers'
+      'BJsales'
+      'BOD'
       'cars'
+      'ChickWeight'
       'chickwts'
       'co2'
       'crimtab'
       'cupcake'
       'discoveries'
+      'DNase'
+      'esoph'
+      'euro'
       'iris'
       'mtcars'
     }
