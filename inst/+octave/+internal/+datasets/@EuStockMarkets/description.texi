@@ -1,0 +1,22 @@
+@subsubheading Description
+
+Contains the daily closing prices of major European stock indices: Germany DAX
+(Ibis), Switzerland SMI, France CAC, and UK FTSE. The data are sampled in
+business time, i.e., weekends and holidays are omitted.
+
+@subsubheading Format
+
+A multivariate time series with 1860 observations on 4 variables.
+
+The starting date is the 130th day of 1991, with a frequency of 260 observations
+per year.
+
+@subsubheading Source
+
+The data were kindly provided by Erste Bank AG, Vienna, Austria.
+
+@subsubheading Examples
+
+@example
+@INCLUDE_DATASET_EXAMPLE_SCRIPT{EuStockMarkets_1.m}
+@end example
