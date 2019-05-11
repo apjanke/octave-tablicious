@@ -1,0 +1,41 @@
+@subsubheading Description
+
+Freeny’s data on quarterly revenue and explanatory variables.
+
+@subsubheading Format
+
+Freeny’s dataset consists of one observed dependent variable
+(revenue) and four explanatory variables (lagged quartery
+revenue, price index, income level, and market potential).
+
+@table @code
+@item date
+Start date of the quarter for the observation.
+@item y
+Observed quarterly revenue.
+TODO: Determine units (probably millions of USD?)
+@item lag_quarterly_revenue
+Quarterly revenue (@code{y}), lagged 1 quarter.
+@item price_index
+A price index
+@item income_level
+??? TODO: Fill this in
+@item market_potential
+??? TODO: Fill this in
+@end table
+
+@subsubheading Source
+
+A. E. Freeny (1977) @cite{A Portable Linear Regression Package with Test
+Programs}. Bell Laboratories memorandum.
+
+@subsubheading References
+
+Becker, R. A., Chambers, J. M. and Wilks, A. R. (1988) @cite{The New S
+Language}. Wadsworth & Brooks/Cole.
+
+@subsubheading Examples
+
+@example
+@INCLUDE_DATASET_EXAMPLE_SCRIPT{freeny_1.m}
+@end example

@@ -36,31 +36,37 @@ classdef (Abstract) dataset
     %
     % Keep this list in alphabetical order, for tidiness.
     included_datasets = {
-      'airmiles'
-      'AirPassengers'
-      'airquality'
-      'anscombe'
-      'attenu'
-      'attitude'
-      'austres'
-      'beavers'
-      'BJsales'
-      'BOD'
-      'cars'
-      'ChickWeight'
-      'chickwts'
-      'co2'
-      'crimtab'
-      'cupcake'
-      'discoveries'
-      'DNase'
-      'esoph'
-      'euro'
-      'eurodist'
-      'EuStockMarkets'
-      'faithful'
-      'iris'
-      'mtcars'
+      "airmiles"
+      "AirPassengers"
+      "airquality"
+      "anscombe"
+      "attenu"
+      "attitude"
+      "austres"
+      "beavers"
+      "BJsales"
+      "BOD"
+      "cars"
+      "ChickWeight"
+      "chickwts"
+      "co2"
+      "crimtab"
+      "cupcake"
+      "discoveries"
+      "DNase"
+      "esoph"
+      "euro"
+      "eurodist"
+      "EuStockMarkets"
+      "faithful"
+      "Formaldehyde"
+      "freeny"
+      "HairEyeColor"
+      "Harman23cor"
+      "Harman74cor"
+      "Indometh"
+      "iris"
+      "mtcars"
     }
 
   endproperties
@@ -76,7 +82,7 @@ classdef (Abstract) dataset
       if ! ismember (name, octave.internal.dataset.included_datasets)
         error ("No defined dataset with name '%s'", name);
       endif
-      class_name = ['octave.internal.datasets.' name];
+      class_name = ["octave.internal.datasets." name];
       out = feval (class_name);
     endfunction
 
@@ -95,11 +101,11 @@ classdef (Abstract) dataset
     function out = load (this)
       %LOAD Load the dataset from its local files
       %
-      % This is what gets called when a user does tablicious.datasets.load('foo').
+      % This is what gets called when a user does tablicious.datasets.load("foo").
       %
       % This method must return a scalar struct whose fields are
       % the variables defined in this dataset.
-      error('dataset.load is abstract. Subclass %s must implement it, but it does not.', ...
+      error("dataset.load is abstract. Subclass %s must implement it, but it does not.", ...
         class (this));
     endfunction
 
@@ -118,7 +124,7 @@ classdef (Abstract) dataset
         "+internal", "+datasets");
       % Include example scripts
       while true
-        [ix_start, ix_end, tok] = regexp (texi, '@INCLUDE_DATASET_EXAMPLE_SCRIPT\{(.*?)\}', ...
+        [ix_start, ix_end, tok] = regexp (texi, "@INCLUDE_DATASET_EXAMPLE_SCRIPT\{(.*?)\}", ...
           "start", "end", "tokens");
         if isempty (ix_start)
           break
@@ -147,7 +153,7 @@ classdef (Abstract) dataset
       % Since the dataset is never expected to change, and the generated files
       % are checked into the source tree, this method only needs to be called
       % if the file format for Octave mat-files changes, or something similar.
-      % So, basically never, and it's included just as a reference for where
+      % So, basically never, and it"s included just as a reference for where
       % the data came from.
       %
       % This is a do-nothing in the base class. Leave it as a do-nothing if
@@ -170,14 +176,14 @@ classdef (Abstract) dataset
       %CACHE_FILE_PATH Path to the local cache file, for classes that use caching
 
       if ispc
-        error (['octave.internal.dataset.cache_file_path: this is not ' ...
-          'implemented for Windows yet. Sorry.']);
+        error (["octave.internal.dataset.cache_file_path: this is not " ...
+          "implemented for Windows yet. Sorry."]);
       else
         % Use the XDG standard cache location on Linux and Mac
-        xdg_cache_dir = fullfile (getenv ('HOME'), '.cache');
-        datasets_cache_dir = fullfile (xdg_cache_dir, 'octave', 'datasets');
+        xdg_cache_dir = fullfile (getenv ("HOME"), ".cache");
+        datasets_cache_dir = fullfile (xdg_cache_dir, "octave", "datasets");
       endif
-      out = fullfile (datasets_cache_dir, [class(this) '.mat']);
+      out = fullfile (datasets_cache_dir, [class(this) ".mat"]);
     endfunction
 
   endmethods
@@ -186,14 +192,14 @@ classdef (Abstract) dataset
     function out = class_dir (this)
       %CLASS_DIR Directory of the class definition
       %
-      % This only works for datasets implemented as part of Tablicious' example
+      % This only works for datasets implemented as part of Tablicious" example
       % data sets, because it makes assumptions about where they live. We have
-      % to do this because Octave's which() doesn't work on classes in namespaces,
+      % to do this because Octave"s which() doesn"t work on classes in namespaces,
       % as of Octave 4.4.
       my_dir = fileparts (mfilename ("fullpath"));
       datasets_namespace_dir = fullfile (my_dir, "+datasets");
       klass = class (this);
-      base_class = regexprep (klass, '.*\.', "");
+      base_class = regexprep (klass, ".*\.", "");
       out = fullfile (datasets_namespace_dir, ["@" base_class]);
     endfunction
   endmethods

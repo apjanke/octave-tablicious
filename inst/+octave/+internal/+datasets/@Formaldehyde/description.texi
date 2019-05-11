@@ -1,0 +1,32 @@
+@subsubheading Description
+
+These data are from a chemical experiment to prepare a standard curve for the
+determination of formaldehyde by the addition of chromatropic acid and
+concentrated sulphuric acid and the reading of the resulting purple color on
+a spectrophotometer.
+
+@subsubheading Format
+
+@table @code
+@item record
+Observation record number.
+@item carb
+Carbohydrate (ml).
+@item optden
+Optical Density
+@end table
+
+@subsubheading Source
+
+Bennett, N. A. and N. L. Franklin (1954) @cite{Statistical Analysis in
+Chemistry and the Chemical Industry}. New York: Wiley.
+
+@subsubheading References
+
+McNeil, D. R. (1977) @cite{Interactive Data Analysis}. New York: Wiley.
+
+@subsubheading Examples
+
+@example
+@INCLUDE_DATASET_EXAMPLE_SCRIPT{Formaldehyde_1.m}
+@end example

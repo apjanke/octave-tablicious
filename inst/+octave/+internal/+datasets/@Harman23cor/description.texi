@@ -1,0 +1,26 @@
+@subsubheading Description
+
+A correlation matrix of eight physical measurements on 305 girls between
+ages seven and seventeen.
+
+@subsubheading Format
+
+@table @code
+@item cov
+An 8-by-8 correlation matrix.
+@item names
+Names of the variables corresponding to the indexes of the correlation matrix’s
+dimensions.
+@end table
+
+@subsubheading Source
+
+Harman, H. H. (1976) @cite{Modern Factor Analysis}, Third Edition Revised,
+University of Chicago Press, Table 2.3.
+
+
+@subsubheading Examples
+
+@example
+@INCLUDE_DATASET_EXAMPLE_SCRIPT{Harman23cor_1.m}
+@end example

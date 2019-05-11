@@ -1,0 +1,25 @@
+@subsubheading Description
+
+A correlation matrix of 24 psychological tests given to 145 seventh and
+eighth-grade children in a Chicago suburb by Holzinger and Swineford.
+
+@subsubheading Format
+
+@table @code
+@item cov
+A 2-dimensional correlation matrix.
+@item vars
+Names of the variables corresponding to the indexes along the dimensions of
+@code{cov}.
+@end table
+
+@subsubheading Source
+
+Harman, H. H. (1976) @cite{Modern Factor Analysis}, Third Edition
+Revised, University of Chicago Press, Table 7.4.
+
+@subsubheading Examples
+
+@example
+@INCLUDE_DATASET_EXAMPLE_SCRIPT{Harman74cor_1.m}
+@end example
