@@ -127,7 +127,7 @@ classdef (Abstract) dataset
         "+internal", "+datasets");
       % Include example scripts
       while true
-        [ix_start, ix_end, tok] = regexp (texi, "@INCLUDE_DATASET_EXAMPLE_SCRIPT\{(.*?)\}", ...
+        [ix_start, ix_end, tok] = regexp (texi, '@INCLUDE_DATASET_EXAMPLE_SCRIPT\{(.*?)\}', ...
           "start", "end", "tokens");
         if isempty (ix_start)
           break
@@ -202,7 +202,7 @@ classdef (Abstract) dataset
       my_dir = fileparts (mfilename ("fullpath"));
       datasets_namespace_dir = fullfile (my_dir, "+datasets");
       klass = class (this);
-      base_class = regexprep (klass, ".*\.", "");
+      base_class = regexprep (klass, '.*\.', "");
       out = fullfile (datasets_namespace_dir, ["@" base_class]);
     endfunction
   endmethods
