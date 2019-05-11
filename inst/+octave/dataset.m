@@ -29,298 +29,6 @@ classdef dataset
   methods (Static)
 
     ## -*- texinfo -*-
-    ## @node dataset.AirPassengers
-    ## @deftypefn {Static Method} {@var{out} =} AirPassengers ()
-    ##
-    ## Monthly Airline Passenger Numbers 1949-1960
-    ##
-    ## @subsubheading Description
-    ## 
-    ## The classic Box & Jenkins airline data. Monthly totals of international
-    ## airline passengers, 1949 to 1960.
-    ## 
-    ## @subsubheading Source
-    ## 
-    ## Box, G. E. P., Jenkins, G. M. and Reinsel, G. C. (1976) @cite{Time Series
-    ## Analysis, Forecasting and Control}. Third Edition. Holden-Day. Series G.
-    ## 
-    ## @subsubheading Examples
-    ## 
-    ## @example
-    ## ## TODO: This example needs to be ported from R.
-    ## @end example
-    ## 
-    ##
-    ## @end deftypefn
-    function out = AirPassengers ()
-      name = 'AirPassengers';
-      data = octave.datasets.load(name);
-      if nargout == 0
-        if isstruct (data)
-          s = data;
-          vars = fieldnames (s);
-          for i = 1:numel (vars)
-            assignin ('caller', vars{i}, s.(vars{i}));
-          endfor
-          loaded_vars = vars;
-        else
-          assignin ('caller', name, data);
-          loaded_vars = { name };
-        endif
-        printf ('Loaded ''%s''. Variables: %s\n', name, strjoin (loaded_vars, ', '));
-      else
-        out = data;
-      endif
-    endfunction
-
-    ## -*- texinfo -*-
-    ## @node dataset.BJsales
-    ## @deftypefn {Static Method} {@var{out} =} BJsales ()
-    ##
-    ## Sales Data with Leading Indicator
-    ##
-    ## @subsubheading Description
-    ## 
-    ## Sales Data with Leading Indicator
-    ## 
-    ## @subsubheading Format
-    ## 
-    ## @table @code
-    ## @item record
-    ## Index of the record.
-    ## @item lead
-    ## Leading indicator.
-    ## @item sales
-    ## Sales volume.
-    ## @end table
-    ## 
-    ## @subsubheading Source
-    ## 
-    ## The data are given in Box & Jenkins (1976). Obtained from the Time Series Data
-    ## Library at @url{http://www-personal.buseco.monash.edu.au/~hyndman/TSDL/}.
-    ## 
-    ## @subsubheading References
-    ## 
-    ## G. E. P. Box and G. M. Jenkins (1976): @cite{Time Series Analysis, Forecasting and
-    ## Control}, Holden-Day, San Francisco, p. 537.
-    ## 
-    ## P. J. Brockwell and R. A. Davis (1991): @cite{Time Series: Theory and Methods},
-    ## Second edition, Springer Verlag, NY, pp. 414.
-    ## 
-    ## @subsubheading Examples
-    ## 
-    ## @example
-    ## # TODO: Come up with example code here
-    ## @end example
-    ## 
-    ##
-    ## @end deftypefn
-    function out = BJsales ()
-      name = 'BJsales';
-      data = octave.datasets.load(name);
-      if nargout == 0
-        if isstruct (data)
-          s = data;
-          vars = fieldnames (s);
-          for i = 1:numel (vars)
-            assignin ('caller', vars{i}, s.(vars{i}));
-          endfor
-          loaded_vars = vars;
-        else
-          assignin ('caller', name, data);
-          loaded_vars = { name };
-        endif
-        printf ('Loaded ''%s''. Variables: %s\n', name, strjoin (loaded_vars, ', '));
-      else
-        out = data;
-      endif
-    endfunction
-
-    ## -*- texinfo -*-
-    ## @node dataset.BOD
-    ## @deftypefn {Static Method} {@var{out} =} BOD ()
-    ##
-    ## Biochemical Oxygen Demand
-    ##
-    ## @subsubheading Description
-    ## 
-    ## Contains biochemical oxygen demand versus time in an evaluation of water quality.
-    ## 
-    ## @subsubheading Format
-    ## 
-    ## @table @code
-    ## @item Time
-    ## Time of the measurement (in days).
-    ## @item demand
-    ## Biochemical oxygen demand (mg/l).
-    ## @end table
-    ## 
-    ## @subsubheading Source
-    ## 
-    ## Bates, D.M. and Watts, D.G. (1988), @cite{Nonlinear Regression Analysis and Its
-    ## Applications}, Wiley, Appendix A1.4.
-    ## 
-    ## Originally from Marske (1967), @cite{Biochemical Oxygen Demand Data
-    ## Interpretation Using Sum of Squares Surface}, M.Sc. Thesis, University of
-    ## Wisconsin – Madison.
-    ## 
-    ## @subsubheading Examples
-    ## 
-    ## @example
-    ## # TODO: Port this example from R
-    ## @end example
-    ## 
-    ##
-    ## @end deftypefn
-    function out = BOD ()
-      name = 'BOD';
-      data = octave.datasets.load(name);
-      if nargout == 0
-        if isstruct (data)
-          s = data;
-          vars = fieldnames (s);
-          for i = 1:numel (vars)
-            assignin ('caller', vars{i}, s.(vars{i}));
-          endfor
-          loaded_vars = vars;
-        else
-          assignin ('caller', name, data);
-          loaded_vars = { name };
-        endif
-        printf ('Loaded ''%s''. Variables: %s\n', name, strjoin (loaded_vars, ', '));
-      else
-        out = data;
-      endif
-    endfunction
-
-    ## -*- texinfo -*-
-    ## @node dataset.ChickWeight
-    ## @deftypefn {Static Method} {@var{out} =} ChickWeight ()
-    ##
-    ## Weight versus age of chicks on different diets
-    ##
-    ## @subsubheading Format
-    ## 
-    ## @table @code
-    ## @item weight
-    ## a numeric vector giving the body weight of the chick (gm).
-    ## @item Time
-    ## a numeric vector giving the number of days since birth when the
-    ## measurement was made.
-    ## @item Chick
-    ## an ordered factor with levels 18 < ... < 48 giving a unique
-    ## identifier for the chick. The ordering of the levels groups chicks on the same
-    ## diet together and orders them according to their final weight (lightest to
-    ## heaviest) within diet.
-    ## @item Diet
-    ## a factor with levels 1, ..., 4 indicating which experimental diet
-    ## the chick received.
-    ## @end table
-    ## 
-    ## @subsubheading Source
-    ## 
-    ## Crowder, M. and Hand, D. (1990), @cite{Analysis of Repeated Measures}. Chapman and
-    ## Hall (example 5.3)
-    ## 
-    ## Hand, D. and Crowder, M. (1996), @cite{Practical Longitudinal Data Analysis}. Chapman
-    ## and Hall (table A.2)
-    ## 
-    ## Pinheiro, J. C. and Bates, D. M. (2000) @cite{Mixed-effects Models in S and S-PLUS}.
-    ## Springer.
-    ## 
-    ## @subsubheading Examples
-    ## 
-    ## @example
-    ## t = octave.dataset.ChickWeight
-    ## 
-    ## octave.examples.coplot (t, "Time", "weight", "Chick");
-    ## 
-    ## @end example
-    ## 
-    ##
-    ## @end deftypefn
-    function out = ChickWeight ()
-      name = 'ChickWeight';
-      data = octave.datasets.load(name);
-      if nargout == 0
-        if isstruct (data)
-          s = data;
-          vars = fieldnames (s);
-          for i = 1:numel (vars)
-            assignin ('caller', vars{i}, s.(vars{i}));
-          endfor
-          loaded_vars = vars;
-        else
-          assignin ('caller', name, data);
-          loaded_vars = { name };
-        endif
-        printf ('Loaded ''%s''. Variables: %s\n', name, strjoin (loaded_vars, ', '));
-      else
-        out = data;
-      endif
-    endfunction
-
-    ## -*- texinfo -*-
-    ## @node dataset.DNase
-    ## @deftypefn {Static Method} {@var{out} =} DNase ()
-    ##
-    ## Elisa assay of DNase
-    ##
-    ## @subsubheading Description
-    ## 
-    ## Data obtained during development of an ELISA assay for the recombinant protein DNase in rat serum.
-    ## 
-    ## @subsubheading Format
-    ## 
-    ## @table @code
-    ## @item Run
-    ## Ordered @code{categorical} indicating the assay run.
-    ## @item conc
-    ## Known concentration of the protein (ng/ml).
-    ## @item density
-    ## Measured optical density in the assay (dimensionless).
-    ## @end table
-    ## 
-    ## @subsubheading Source
-    ## 
-    ## Davidian, M. and Giltinan, D. M. (1995) @cite{Nonlinear Models for Repeated
-    ## Measurement Data}, Chapman & Hall (section 5.2.4, p. 134)
-    ## 
-    ## Pinheiro, J. C. and Bates, D. M. (2000) @cite{Mixed-effects Models in S and
-    ## S-PLUS}, Springer.
-    ## 
-    ## @subsubheading Examples
-    ## 
-    ## @example
-    ## t = octave.dataset.DNase;
-    ## 
-    ## 
-    ## @end example
-    ## 
-    ##
-    ## @end deftypefn
-    function out = DNase ()
-      name = 'DNase';
-      data = octave.datasets.load(name);
-      if nargout == 0
-        if isstruct (data)
-          s = data;
-          vars = fieldnames (s);
-          for i = 1:numel (vars)
-            assignin ('caller', vars{i}, s.(vars{i}));
-          endfor
-          loaded_vars = vars;
-        else
-          assignin ('caller', name, data);
-          loaded_vars = { name };
-        endif
-        printf ('Loaded ''%s''. Variables: %s\n', name, strjoin (loaded_vars, ', '));
-      else
-        out = data;
-      endif
-    endfunction
-
-    ## -*- texinfo -*-
     ## @node dataset.airmiles
     ## @deftypefn {Static Method} {@var{out} =} airmiles ()
     ##
@@ -349,6 +57,51 @@ classdef dataset
     ## @end deftypefn
     function out = airmiles ()
       name = 'airmiles';
+      data = octave.datasets.load(name);
+      if nargout == 0
+        if isstruct (data)
+          s = data;
+          vars = fieldnames (s);
+          for i = 1:numel (vars)
+            assignin ('caller', vars{i}, s.(vars{i}));
+          endfor
+          loaded_vars = vars;
+        else
+          assignin ('caller', name, data);
+          loaded_vars = { name };
+        endif
+        printf ('Loaded ''%s''. Variables: %s\n', name, strjoin (loaded_vars, ', '));
+      else
+        out = data;
+      endif
+    endfunction
+
+    ## -*- texinfo -*-
+    ## @node dataset.AirPassengers
+    ## @deftypefn {Static Method} {@var{out} =} AirPassengers ()
+    ##
+    ## Monthly Airline Passenger Numbers 1949-1960
+    ##
+    ## @subsubheading Description
+    ## 
+    ## The classic Box & Jenkins airline data. Monthly totals of international
+    ## airline passengers, 1949 to 1960.
+    ## 
+    ## @subsubheading Source
+    ## 
+    ## Box, G. E. P., Jenkins, G. M. and Reinsel, G. C. (1976) @cite{Time Series
+    ## Analysis, Forecasting and Control}. Third Edition. Holden-Day. Series G.
+    ## 
+    ## @subsubheading Examples
+    ## 
+    ## @example
+    ## ## TODO: This example needs to be ported from R.
+    ## @end example
+    ## 
+    ##
+    ## @end deftypefn
+    function out = AirPassengers ()
+      name = 'AirPassengers';
       data = octave.datasets.load(name);
       if nargout == 0
         if isstruct (data)
@@ -806,6 +559,126 @@ classdef dataset
     endfunction
 
     ## -*- texinfo -*-
+    ## @node dataset.BJsales
+    ## @deftypefn {Static Method} {@var{out} =} BJsales ()
+    ##
+    ## Sales Data with Leading Indicator
+    ##
+    ## @subsubheading Description
+    ## 
+    ## Sales Data with Leading Indicator
+    ## 
+    ## @subsubheading Format
+    ## 
+    ## @table @code
+    ## @item record
+    ## Index of the record.
+    ## @item lead
+    ## Leading indicator.
+    ## @item sales
+    ## Sales volume.
+    ## @end table
+    ## 
+    ## @subsubheading Source
+    ## 
+    ## The data are given in Box & Jenkins (1976). Obtained from the Time Series Data
+    ## Library at @url{http://www-personal.buseco.monash.edu.au/~hyndman/TSDL/}.
+    ## 
+    ## @subsubheading References
+    ## 
+    ## G. E. P. Box and G. M. Jenkins (1976): @cite{Time Series Analysis, Forecasting and
+    ## Control}, Holden-Day, San Francisco, p. 537.
+    ## 
+    ## P. J. Brockwell and R. A. Davis (1991): @cite{Time Series: Theory and Methods},
+    ## Second edition, Springer Verlag, NY, pp. 414.
+    ## 
+    ## @subsubheading Examples
+    ## 
+    ## @example
+    ## # TODO: Come up with example code here
+    ## @end example
+    ## 
+    ##
+    ## @end deftypefn
+    function out = BJsales ()
+      name = 'BJsales';
+      data = octave.datasets.load(name);
+      if nargout == 0
+        if isstruct (data)
+          s = data;
+          vars = fieldnames (s);
+          for i = 1:numel (vars)
+            assignin ('caller', vars{i}, s.(vars{i}));
+          endfor
+          loaded_vars = vars;
+        else
+          assignin ('caller', name, data);
+          loaded_vars = { name };
+        endif
+        printf ('Loaded ''%s''. Variables: %s\n', name, strjoin (loaded_vars, ', '));
+      else
+        out = data;
+      endif
+    endfunction
+
+    ## -*- texinfo -*-
+    ## @node dataset.BOD
+    ## @deftypefn {Static Method} {@var{out} =} BOD ()
+    ##
+    ## Biochemical Oxygen Demand
+    ##
+    ## @subsubheading Description
+    ## 
+    ## Contains biochemical oxygen demand versus time in an evaluation of water quality.
+    ## 
+    ## @subsubheading Format
+    ## 
+    ## @table @code
+    ## @item Time
+    ## Time of the measurement (in days).
+    ## @item demand
+    ## Biochemical oxygen demand (mg/l).
+    ## @end table
+    ## 
+    ## @subsubheading Source
+    ## 
+    ## Bates, D.M. and Watts, D.G. (1988), @cite{Nonlinear Regression Analysis and Its
+    ## Applications}, Wiley, Appendix A1.4.
+    ## 
+    ## Originally from Marske (1967), @cite{Biochemical Oxygen Demand Data
+    ## Interpretation Using Sum of Squares Surface}, M.Sc. Thesis, University of
+    ## Wisconsin – Madison.
+    ## 
+    ## @subsubheading Examples
+    ## 
+    ## @example
+    ## # TODO: Port this example from R
+    ## @end example
+    ## 
+    ##
+    ## @end deftypefn
+    function out = BOD ()
+      name = 'BOD';
+      data = octave.datasets.load(name);
+      if nargout == 0
+        if isstruct (data)
+          s = data;
+          vars = fieldnames (s);
+          for i = 1:numel (vars)
+            assignin ('caller', vars{i}, s.(vars{i}));
+          endfor
+          loaded_vars = vars;
+        else
+          assignin ('caller', name, data);
+          loaded_vars = { name };
+        endif
+        printf ('Loaded ''%s''. Variables: %s\n', name, strjoin (loaded_vars, ', '));
+      else
+        out = data;
+      endif
+    endfunction
+
+    ## -*- texinfo -*-
     ## @node dataset.cars
     ## @deftypefn {Static Method} {@var{out} =} cars ()
     ##
@@ -874,6 +747,73 @@ classdef dataset
     ## @end deftypefn
     function out = cars ()
       name = 'cars';
+      data = octave.datasets.load(name);
+      if nargout == 0
+        if isstruct (data)
+          s = data;
+          vars = fieldnames (s);
+          for i = 1:numel (vars)
+            assignin ('caller', vars{i}, s.(vars{i}));
+          endfor
+          loaded_vars = vars;
+        else
+          assignin ('caller', name, data);
+          loaded_vars = { name };
+        endif
+        printf ('Loaded ''%s''. Variables: %s\n', name, strjoin (loaded_vars, ', '));
+      else
+        out = data;
+      endif
+    endfunction
+
+    ## -*- texinfo -*-
+    ## @node dataset.ChickWeight
+    ## @deftypefn {Static Method} {@var{out} =} ChickWeight ()
+    ##
+    ## Weight versus age of chicks on different diets
+    ##
+    ## @subsubheading Format
+    ## 
+    ## @table @code
+    ## @item weight
+    ## a numeric vector giving the body weight of the chick (gm).
+    ## @item Time
+    ## a numeric vector giving the number of days since birth when the
+    ## measurement was made.
+    ## @item Chick
+    ## an ordered factor with levels 18 < ... < 48 giving a unique
+    ## identifier for the chick. The ordering of the levels groups chicks on the same
+    ## diet together and orders them according to their final weight (lightest to
+    ## heaviest) within diet.
+    ## @item Diet
+    ## a factor with levels 1, ..., 4 indicating which experimental diet
+    ## the chick received.
+    ## @end table
+    ## 
+    ## @subsubheading Source
+    ## 
+    ## Crowder, M. and Hand, D. (1990), @cite{Analysis of Repeated Measures}. Chapman and
+    ## Hall (example 5.3)
+    ## 
+    ## Hand, D. and Crowder, M. (1996), @cite{Practical Longitudinal Data Analysis}. Chapman
+    ## and Hall (table A.2)
+    ## 
+    ## Pinheiro, J. C. and Bates, D. M. (2000) @cite{Mixed-effects Models in S and S-PLUS}.
+    ## Springer.
+    ## 
+    ## @subsubheading Examples
+    ## 
+    ## @example
+    ## t = octave.dataset.ChickWeight
+    ## 
+    ## octave.examples.coplot (t, "Time", "weight", "Chick");
+    ## 
+    ## @end example
+    ## 
+    ##
+    ## @end deftypefn
+    function out = ChickWeight ()
+      name = 'ChickWeight';
       data = octave.datasets.load(name);
       if nargout == 0
         if isstruct (data)
@@ -1242,6 +1182,401 @@ classdef dataset
     ## @end deftypefn
     function out = discoveries ()
       name = 'discoveries';
+      data = octave.datasets.load(name);
+      if nargout == 0
+        if isstruct (data)
+          s = data;
+          vars = fieldnames (s);
+          for i = 1:numel (vars)
+            assignin ('caller', vars{i}, s.(vars{i}));
+          endfor
+          loaded_vars = vars;
+        else
+          assignin ('caller', name, data);
+          loaded_vars = { name };
+        endif
+        printf ('Loaded ''%s''. Variables: %s\n', name, strjoin (loaded_vars, ', '));
+      else
+        out = data;
+      endif
+    endfunction
+
+    ## -*- texinfo -*-
+    ## @node dataset.DNase
+    ## @deftypefn {Static Method} {@var{out} =} DNase ()
+    ##
+    ## Elisa assay of DNase
+    ##
+    ## @subsubheading Description
+    ## 
+    ## Data obtained during development of an ELISA assay for the recombinant protein DNase in rat serum.
+    ## 
+    ## @subsubheading Format
+    ## 
+    ## @table @code
+    ## @item Run
+    ## Ordered @code{categorical} indicating the assay run.
+    ## @item conc
+    ## Known concentration of the protein (ng/ml).
+    ## @item density
+    ## Measured optical density in the assay (dimensionless).
+    ## @end table
+    ## 
+    ## @subsubheading Source
+    ## 
+    ## Davidian, M. and Giltinan, D. M. (1995) @cite{Nonlinear Models for Repeated
+    ## Measurement Data}, Chapman & Hall (section 5.2.4, p. 134)
+    ## 
+    ## Pinheiro, J. C. and Bates, D. M. (2000) @cite{Mixed-effects Models in S and
+    ## S-PLUS}, Springer.
+    ## 
+    ## @subsubheading Examples
+    ## 
+    ## @example
+    ## t = octave.dataset.DNase;
+    ## 
+    ## # TODO: Port this from R
+    ## 
+    ## octave.examples.coplot (t, "conc", "density", "Run", "PlotFcn", @@scatter);
+    ## octave.examples.coplot (t, "conc", "density", "Run", "PlotFcn", @@loglog, ...
+    ##   "PlotArgs", @{"o"@});
+    ## 
+    ## @end example
+    ## 
+    ##
+    ## @end deftypefn
+    function out = DNase ()
+      name = 'DNase';
+      data = octave.datasets.load(name);
+      if nargout == 0
+        if isstruct (data)
+          s = data;
+          vars = fieldnames (s);
+          for i = 1:numel (vars)
+            assignin ('caller', vars{i}, s.(vars{i}));
+          endfor
+          loaded_vars = vars;
+        else
+          assignin ('caller', name, data);
+          loaded_vars = { name };
+        endif
+        printf ('Loaded ''%s''. Variables: %s\n', name, strjoin (loaded_vars, ', '));
+      else
+        out = data;
+      endif
+    endfunction
+
+    ## -*- texinfo -*-
+    ## @node dataset.esoph
+    ## @deftypefn {Static Method} {@var{out} =} esoph ()
+    ##
+    ## Smoking, Alcohol and Esophageal Cancer
+    ##
+    ## @subsubheading Description
+    ## 
+    ## Data from a case-control study of (o)esophageal cancer in Ille-et-Vilaine, France.
+    ## 
+    ## @subsubheading Format
+    ## 
+    ## @table @code
+    ## @item item
+    ## Age group (years).
+    ## @item alcgp
+    ## Alcohol consumption (gm/day).
+    ## @item tobgp
+    ## Tobacco consumption (gm/day).
+    ## @item ncases
+    ## Number of cases.
+    ## @item ncontrols
+    ## Number of controls
+    ## @end table
+    ## 
+    ## @subsubheading Source
+    ## 
+    ## Breslow, N. E. and Day, N. E. (1980) @cite{Statistical Methods in Cancer Research.
+    ## Volume 1: The Analysis of Case-Control Studies}. IARC Lyon / Oxford University Press.
+    ## 
+    ## @subsubheading Examples
+    ## 
+    ## @example
+    ## # TODO: Port this from R
+    ## 
+    ## # TODO: Port the anova output
+    ## 
+    ## # TODO: Port the fancy plot
+    ## # This involves a "mosaic plot", which is not supported by Octave, so this will
+    ## # take some work.
+    ## 
+    ## @end example
+    ## 
+    ##
+    ## @end deftypefn
+    function out = esoph ()
+      name = 'esoph';
+      data = octave.datasets.load(name);
+      if nargout == 0
+        if isstruct (data)
+          s = data;
+          vars = fieldnames (s);
+          for i = 1:numel (vars)
+            assignin ('caller', vars{i}, s.(vars{i}));
+          endfor
+          loaded_vars = vars;
+        else
+          assignin ('caller', name, data);
+          loaded_vars = { name };
+        endif
+        printf ('Loaded ''%s''. Variables: %s\n', name, strjoin (loaded_vars, ', '));
+      else
+        out = data;
+      endif
+    endfunction
+
+    ## -*- texinfo -*-
+    ## @node dataset.euro
+    ## @deftypefn {Static Method} {@var{out} =} euro ()
+    ##
+    ## Conversion Rates of Euro Currencies
+    ##
+    ## @subsubheading Description
+    ## 
+    ## Conversion rates between the various Euro currencies.
+    ## 
+    ## @subsubheading Format
+    ## 
+    ## This data comes in two separate variables.
+    ## 
+    ## @table @code
+    ## @item euro
+    ## An 11-long vector of the value of 1 Euro in all participating currencies.
+    ## @item euro_cross
+    ## An 11-by-11 matrix of conversion rates between various Euro currencies.
+    ## @item euro_date
+    ## The date upon which these Euro conversion rates were fixed.
+    ## @end table
+    ## 
+    ## @subsubheading Details
+    ## 
+    ## The data set euro contains the value of 1 Euro in all currencies participating
+    ## in the European monetary union (Austrian Schilling ATS, Belgian Franc BEF,
+    ## German Mark DEM, Spanish Peseta ESP, Finnish Markka FIM, French Franc FRF,
+    ## Irish Punt IEP, Italian Lira ITL, Luxembourg Franc LUF, Dutch Guilder NLG and
+    ## Portuguese Escudo PTE). These conversion rates were fixed by the European
+    ## Union on December 31, 1998. To convert old prices to Euro prices, divide by the
+    ## respective rate and round to 2 digits.
+    ## 
+    ## @subsubheading Source
+    ## 
+    ## Unknown.
+    ## 
+    ## This example data set was derived from the R 3.6.0 example datasets, and they
+    ## do not specify a source.
+    ## 
+    ## @subsubheading Examples
+    ## 
+    ## @example
+    ## # TODO: Port this from R
+    ## 
+    ## # TODO: Example conversion
+    ## 
+    ## # TODO: "dot chart" showing euro-to-whatever conversion rates and vice versa
+    ## 
+    ## @end example
+    ## 
+    ##
+    ## @end deftypefn
+    function out = euro ()
+      name = 'euro';
+      data = octave.datasets.load(name);
+      if nargout == 0
+        if isstruct (data)
+          s = data;
+          vars = fieldnames (s);
+          for i = 1:numel (vars)
+            assignin ('caller', vars{i}, s.(vars{i}));
+          endfor
+          loaded_vars = vars;
+        else
+          assignin ('caller', name, data);
+          loaded_vars = { name };
+        endif
+        printf ('Loaded ''%s''. Variables: %s\n', name, strjoin (loaded_vars, ', '));
+      else
+        out = data;
+      endif
+    endfunction
+
+    ## -*- texinfo -*-
+    ## @node dataset.eurodist
+    ## @deftypefn {Static Method} {@var{out} =} eurodist ()
+    ##
+    ## Distances Between European Cities and Between US Cities
+    ##
+    ## @subsubheading Description
+    ## 
+    ## @code{eurodist} gives road distances (in km) between 21 cities in Europe. The
+    ## data are taken from a table in The Cambridge Encyclopaedia.
+    ## 
+    ## @code{UScitiesD} gives “straight line” distances between 10 cities in the US.
+    ## 
+    ## @subsubheading Format
+    ## 
+    ## @table @code
+    ## @item eurodist
+    ## ?????
+    ## @end table
+    ## 
+    ## TODO: Finish this.
+    ## 
+    ## @subsubheading Source
+    ## 
+    ## Crystal, D. Ed. (1990) @cite{The Cambridge Encyclopaedia}. Cambridge:
+    ## Cambridge University Press,
+    ## 
+    ## The US cities distances were provided by Pierre Legendre.
+    ## 
+    ## @subsubheading Examples
+    ## 
+    ## 
+    ##
+    ## @end deftypefn
+    function out = eurodist ()
+      name = 'eurodist';
+      data = octave.datasets.load(name);
+      if nargout == 0
+        if isstruct (data)
+          s = data;
+          vars = fieldnames (s);
+          for i = 1:numel (vars)
+            assignin ('caller', vars{i}, s.(vars{i}));
+          endfor
+          loaded_vars = vars;
+        else
+          assignin ('caller', name, data);
+          loaded_vars = { name };
+        endif
+        printf ('Loaded ''%s''. Variables: %s\n', name, strjoin (loaded_vars, ', '));
+      else
+        out = data;
+      endif
+    endfunction
+
+    ## -*- texinfo -*-
+    ## @node dataset.EuStockMarkets
+    ## @deftypefn {Static Method} {@var{out} =} EuStockMarkets ()
+    ##
+    ## Daily Closing Prices of Major European Stock Indices
+    ##
+    ## @subsubheading Description
+    ## 
+    ## Contains the daily closing prices of major European stock indices: Germany DAX
+    ## (Ibis), Switzerland SMI, France CAC, and UK FTSE. The data are sampled in
+    ## business time, i.e., weekends and holidays are omitted.
+    ## 
+    ## @subsubheading Format
+    ## 
+    ## A multivariate time series with 1860 observations on 4 variables.
+    ## 
+    ## The starting date is the 130th day of 1991, with a frequency of 260 observations
+    ## per year.
+    ## 
+    ## @subsubheading Source
+    ## 
+    ## The data were kindly provided by Erste Bank AG, Vienna, Austria.
+    ## 
+    ## @subsubheading Examples
+    ## 
+    ## @example
+    ## 
+    ## t = octave.dataset.EuStockMarkets;
+    ## 
+    ## # The fact that we're doing this munging means that table might have
+    ## # been the wrong structure for this data in the first place
+    ## 
+    ## t2 = removevars (t, "day");
+    ## index_names = t2.Properties.VariableNames;
+    ## day = 1:height (t2);
+    ## price = table2array (t2);
+    ## 
+    ## price0 = price(1,:);
+    ## 
+    ## rel_price = price ./ repmat (price0, [size(price,1) 1]);
+    ## 
+    ## figure;
+    ## plot (day, rel_price);
+    ## legend (index_names);
+    ## xlabel ("Business day");
+    ## ylabel ("Relative price");
+    ## 
+    ## 
+    ## 
+    ## @end example
+    ## 
+    ##
+    ## @end deftypefn
+    function out = EuStockMarkets ()
+      name = 'EuStockMarkets';
+      data = octave.datasets.load(name);
+      if nargout == 0
+        if isstruct (data)
+          s = data;
+          vars = fieldnames (s);
+          for i = 1:numel (vars)
+            assignin ('caller', vars{i}, s.(vars{i}));
+          endfor
+          loaded_vars = vars;
+        else
+          assignin ('caller', name, data);
+          loaded_vars = { name };
+        endif
+        printf ('Loaded ''%s''. Variables: %s\n', name, strjoin (loaded_vars, ', '));
+      else
+        out = data;
+      endif
+    endfunction
+
+    ## -*- texinfo -*-
+    ## @node dataset.faithful
+    ## @deftypefn {Static Method} {@var{out} =} faithful ()
+    ##
+    ## Old Faithful Geyser Data
+    ##
+    ## @subsubheading Description
+    ## 
+    ## Waiting time between eruptions and the duration of the eruption for the Old
+    ## Faithful geyser in Yellowstone National Park, Wyoming, USA.
+    ## 
+    ## @subsubheading Format
+    ## 
+    ## @table @code
+    ## @item eruptions
+    ## Eruption time (mins).
+    ## @item waiting
+    ## Waiting time to next eruption (mins).
+    ## @end table
+    ## 
+    ## @subsubheading Source
+    ## 
+    ## W. Härdle.
+    ## 
+    ## @subsubheading References
+    ## 
+    ## Härdle, W. (1991). @cite{Smoothing Techniques with Implementation in S}. New York:
+    ## Springer.
+    ## 
+    ## Azzalini, A. and Bowman, A. W. (1990). A look at some data on the Old
+    ## Faithful geyser. @cite{Applied Statistics}, 39, 357–365.
+    ## 
+    ## @subsubheading Examples
+    ## 
+    ## @example
+    ## 
+    ## @end example
+    ## 
+    ##
+    ## @end deftypefn
+    function out = faithful ()
+      name = 'faithful';
       data = octave.datasets.load(name);
       if nargout == 0
         if isstruct (data)

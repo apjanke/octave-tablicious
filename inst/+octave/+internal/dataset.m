@@ -58,6 +58,7 @@ classdef (Abstract) dataset
       'euro'
       'eurodist'
       'EuStockMarkets'
+      'faithful'
       'iris'
       'mtcars'
     }

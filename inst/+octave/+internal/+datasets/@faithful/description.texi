@@ -1,0 +1,31 @@
+@subsubheading Description
+
+Waiting time between eruptions and the duration of the eruption for the Old
+Faithful geyser in Yellowstone National Park, Wyoming, USA.
+
+@subsubheading Format
+
+@table @code
+@item eruptions
+Eruption time (mins).
+@item waiting
+Waiting time to next eruption (mins).
+@end table
+
+@subsubheading Source
+
+W. Härdle.
+
+@subsubheading References
+
+Härdle, W. (1991). @cite{Smoothing Techniques with Implementation in S}. New York:
+Springer.
+
+Azzalini, A. and Bowman, A. W. (1990). A look at some data on the Old
+Faithful geyser. @cite{Applied Statistics}, 39, 357–365.
+
+@subsubheading Examples
+
+@example
+@INCLUDE_DATASET_EXAMPLE_SCRIPT{faithful_1.m}
+@end example
