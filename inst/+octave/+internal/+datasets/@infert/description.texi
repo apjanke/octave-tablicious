@@ -1,0 +1,39 @@
+@subsubheading Description
+
+This is a matched case-control study dating from before the availability of
+conditional logistic regression.
+
+@subsubheading Format
+
+@table @code
+@item education
+Index of the record.
+@item age
+Age in years of case.
+@item parity
+Count.
+@item induced
+Number of prior induced abortions, grouped into “0”, “1”, or “2 or more”.
+@item case_status
+0 = control, 1 = case.
+@item spontaneous
+Number of prior spontaneous abortions, grouped into “0”, “1”, or “2 or more”.
+@item stratum
+Matched set number.
+@item pooled_stratum
+Stratum number.
+@end table
+
+@subsubheading Note
+
+One case with two prior spontaneous abortions and two prior induced abortions is omitted.
+
+@subsubheading Source
+
+Trichopoulos et al (1976) @cite{Br. J. of Obst. and Gynaec.} 83, 645–650.
+
+@subsubheading Examples
+
+@example
+@INCLUDE_DATASET_EXAMPLE_SCRIPT{infert_1.m}
+@end example

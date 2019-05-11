@@ -65,7 +65,10 @@ classdef (Abstract) dataset
       "Harman23cor"
       "Harman74cor"
       "Indometh"
+      "infert"
+      "InsectSprays"
       "iris"
+      "islands"
       "mtcars"
     }
 

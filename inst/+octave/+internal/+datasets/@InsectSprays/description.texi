@@ -1,0 +1,28 @@
+@subsubheading Description
+
+The counts of insects in agricultural experimental units treated with different
+insecticides.
+
+@subsubheading Format
+
+@table @code
+@item spray
+The type of spray.
+@item count
+Insect count.
+@end table
+
+@subsubheading Source
+
+Beall, G., (1942) The Transformation of data from entomological field
+experiments, @cite{Biometrika}, 29, 243–262.
+
+@subsubheading References
+
+McNeil, D. (1977) @cite{Interactive Data Analysis}. New York: Wiley.
+
+@subsubheading Examples
+
+@example
+@INCLUDE_DATASET_EXAMPLE_SCRIPT{InsectSprays_1.m}
+@end example
