@@ -1,0 +1,23 @@
+@subsubheading Description
+
+Quarterly earnings (dollars) per Johnson & Johnson share 1960–80.
+
+@subsubheading Format
+
+@table @code
+@item date
+Start date of the quarter.
+@item earnings
+Earnings per share (USD).
+@end table
+
+@subsubheading Source
+
+Shumway, R. H. and Stoffer, D. S. (2000) @cite{Time Series Analysis and its
+Applications}. Second Edition. Springer. Example 1.1.
+
+@subsubheading Examples
+
+@example
+@INCLUDE_DATASET_EXAMPLE_SCRIPT{JohnsonJohnson_1.m}
+@end example

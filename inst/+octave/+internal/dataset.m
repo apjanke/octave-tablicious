@@ -69,6 +69,7 @@ classdef (Abstract) dataset
       "InsectSprays"
       "iris"
       "islands"
+      "JohnsonJohnson"
       "mtcars"
     }
 
