@@ -97,6 +97,7 @@ classdef (Abstract) dataset
       "sleep"
       "stackloss"
       "state"
+      "sunspot_month"
       "sunspot_year"
       "sunspots"
       "swiss"

@@ -1,0 +1,26 @@
+@subsubheading Description
+
+Monthly numbers of sunspots, as from the World Data Center, aka SIDC. This
+is the version of the data that may occasionally be updated when new counts
+become available.
+
+@subsubheading Format
+
+@table @code
+@item month
+Month of the observation.
+@item sunspots
+Number of sunspots.
+@end table
+
+@subsubheading Source
+
+WDC-SILSO, Solar Influences Data Analysis Center (SIDC), Royal Observatory
+of Belgium, Av. Circulaire, 3, B-1180 BRUSSELS.
+Currently at @url{http://www.sidc.be/silso/datafiles}.
+
+@subsubheading Examples
+
+@example
+@INCLUDE_DATASET_EXAMPLE_SCRIPT{sunspot_month_1.m}
+@end example
