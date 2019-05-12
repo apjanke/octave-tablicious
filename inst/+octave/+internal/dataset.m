@@ -90,6 +90,10 @@ classdef (Abstract) dataset
       "presidents"
       "pressure"
       "Puromycin"
+      "quakes"
+      "randu"
+      "rivers"
+      "rock"
     }
 
   endproperties

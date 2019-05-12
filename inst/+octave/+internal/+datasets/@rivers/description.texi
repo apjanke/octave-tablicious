@@ -1,0 +1,25 @@
+@subsubheading Description
+
+This data set gives the lengths (in miles) of 141 “major” rivers in North
+America, as compiled by the US Geological Survey.
+
+@subsubheading Format
+
+@table @code
+@item rivers
+A vector containing 141 observations.
+@end table
+
+@subsubheading Source
+
+@cite{World Almanac and Book of Facts}, 1975, page 406.
+
+@subsubheading References
+
+McNeil, D. R. (1977) @cite{Interactive Data Analysis}. New York: Wiley.
+
+@subsubheading Examples
+
+@example
+@INCLUDE_DATASET_EXAMPLE_SCRIPT{rivers_1.m}
+@end example

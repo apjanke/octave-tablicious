@@ -3699,7 +3699,7 @@ classdef dataset
     ## @subsubheading Examples
     ## 
     ## @example
-    ## t = octave.dataset.Puromycin
+    ## t = octave.dataset.Puromycin;
     ## 
     ## # TODO: Port example to Octave
     ## 
@@ -3709,6 +3709,278 @@ classdef dataset
     ## @end deftypefn
     function out = Puromycin ()
       name = 'Puromycin';
+      data = octave.datasets.load(name);
+      if nargout == 0
+        if isstruct (data)
+          s = data;
+          vars = fieldnames (s);
+          for i = 1:numel (vars)
+            assignin ('caller', vars{i}, s.(vars{i}));
+          endfor
+          loaded_vars = vars;
+        else
+          assignin ('caller', name, data);
+          loaded_vars = { name };
+        endif
+        printf ('Loaded ''%s''. Variables: %s\n', name, strjoin (loaded_vars, ', '));
+      else
+        out = data;
+      endif
+    endfunction
+
+    ## -*- texinfo -*-
+    ## @node dataset.quakes
+    ## @deftypefn {Static Method} {@var{out} =} quakes ()
+    ##
+    ## Locations of Earthquakes off Fiji
+    ##
+    ## @subsubheading Description
+    ## 
+    ## The data set give the locations of 1000 seismic events of MB > 4.0. The events
+    ## occurred in a cube near Fiji since 1964.
+    ## 
+    ## @subsubheading Format
+    ## 
+    ## @table @code
+    ## @item lat
+    ## Latitude of event.
+    ## @item long
+    ## Longitude of event.
+    ## @item depth
+    ## Depth (km).
+    ## @item mag
+    ## Richter magnitude.
+    ## @item stations
+    ## Number of stations reporting.
+    ## @end table
+    ## 
+    ## @subsubheading Details
+    ## 
+    ##  There are two clear planes of seismic activity. One is a major plate junction;
+    ##  the other is the Tonga trench off New Zealand. These data constitute a subsample
+    ##  from a larger dataset of containing 5000 observations.
+    ## 
+    ## @subsubheading Source
+    ## 
+    ## This is one of the Harvard PRIM-H project data sets. They in turn obtained it
+    ## from Dr. John Woodhouse, Dept. of Geophysics, Harvard University.
+    ## 
+    ## @subsubheading References
+    ## 
+    ## G. E. P. Box and G. M. Jenkins (1976): @cite{Time Series Analysis, Forecasting and
+    ## Control}, Holden-Day, San Francisco, p. 537.
+    ## 
+    ## P. J. Brockwell and R. A. Davis (1991): @cite{Time Series: Theory and Methods},
+    ## Second edition, Springer Verlag, NY, pp. 414.
+    ## 
+    ## @subsubheading Examples
+    ## 
+    ## @example
+    ## # TODO: Come up with example code here
+    ## @end example
+    ## 
+    ##
+    ## @end deftypefn
+    function out = quakes ()
+      name = 'quakes';
+      data = octave.datasets.load(name);
+      if nargout == 0
+        if isstruct (data)
+          s = data;
+          vars = fieldnames (s);
+          for i = 1:numel (vars)
+            assignin ('caller', vars{i}, s.(vars{i}));
+          endfor
+          loaded_vars = vars;
+        else
+          assignin ('caller', name, data);
+          loaded_vars = { name };
+        endif
+        printf ('Loaded ''%s''. Variables: %s\n', name, strjoin (loaded_vars, ', '));
+      else
+        out = data;
+      endif
+    endfunction
+
+    ## -*- texinfo -*-
+    ## @node dataset.randu
+    ## @deftypefn {Static Method} {@var{out} =} randu ()
+    ##
+    ## Random Numbers from Congruential Generator RANDU
+    ##
+    ## @subsubheading Description
+    ## 
+    ## 400 triples of successive random numbers were taken from the VAX FORTRAN
+    ## function RANDU running under VMS 1.5.
+    ## 
+    ## @subsubheading Format
+    ## 
+    ## @table @code
+    ## @item record
+    ## Index of the record.
+    ## @item x
+    ## X value of the triple.
+    ## @item y
+    ## Y value of the triple.
+    ## @item z
+    ## Z value of the triple.
+    ## @end table
+    ## 
+    ## @subsubheading Details
+    ## 
+    ## In three dimensional displays it is evident that the triples fall on 15
+    ## parallel planes in 3-space. This can be shown theoretically to be true
+    ## for all triples from the RANDU generator.
+    ## 
+    ## These particular 400 triples start 5 apart in the sequence, that is they
+    ## are ((U[5i+1], U[5i+2], U[5i+3]), i= 0, ..., 399), and they are rounded
+    ## to 6 decimal places.
+    ## 
+    ## Under VMS versions 2.0 and higher, this problem has been fixed.
+    ## 
+    ## @subsubheading Source
+    ## 
+    ## David Donoho
+    ## 
+    ## @subsubheading Examples
+    ## 
+    ## @example
+    ## t = octave.dataset.randu;
+    ## 
+    ## 
+    ## @end example
+    ## 
+    ##
+    ## @end deftypefn
+    function out = randu ()
+      name = 'randu';
+      data = octave.datasets.load(name);
+      if nargout == 0
+        if isstruct (data)
+          s = data;
+          vars = fieldnames (s);
+          for i = 1:numel (vars)
+            assignin ('caller', vars{i}, s.(vars{i}));
+          endfor
+          loaded_vars = vars;
+        else
+          assignin ('caller', name, data);
+          loaded_vars = { name };
+        endif
+        printf ('Loaded ''%s''. Variables: %s\n', name, strjoin (loaded_vars, ', '));
+      else
+        out = data;
+      endif
+    endfunction
+
+    ## -*- texinfo -*-
+    ## @node dataset.rivers
+    ## @deftypefn {Static Method} {@var{out} =} rivers ()
+    ##
+    ## Lengths of Major North American Rivers
+    ##
+    ## @subsubheading Description
+    ## 
+    ## This data set gives the lengths (in miles) of 141 “major” rivers in North
+    ## America, as compiled by the US Geological Survey.
+    ## 
+    ## @subsubheading Format
+    ## 
+    ## @table @code
+    ## @item rivers
+    ## A vector containing 141 observations.
+    ## @end table
+    ## 
+    ## @subsubheading Source
+    ## 
+    ## @cite{World Almanac and Book of Facts}, 1975, page 406.
+    ## 
+    ## @subsubheading References
+    ## 
+    ## McNeil, D. R. (1977) @cite{Interactive Data Analysis}. New York: Wiley.
+    ## 
+    ## @subsubheading Examples
+    ## 
+    ## @example
+    ## octave.dataset.rivers;
+    ## 
+    ## longest_river = max (rivers)
+    ## shortest_river = min (rivers)
+    ## 
+    ## @end example
+    ## 
+    ##
+    ## @end deftypefn
+    function out = rivers ()
+      name = 'rivers';
+      data = octave.datasets.load(name);
+      if nargout == 0
+        if isstruct (data)
+          s = data;
+          vars = fieldnames (s);
+          for i = 1:numel (vars)
+            assignin ('caller', vars{i}, s.(vars{i}));
+          endfor
+          loaded_vars = vars;
+        else
+          assignin ('caller', name, data);
+          loaded_vars = { name };
+        endif
+        printf ('Loaded ''%s''. Variables: %s\n', name, strjoin (loaded_vars, ', '));
+      else
+        out = data;
+      endif
+    endfunction
+
+    ## -*- texinfo -*-
+    ## @node dataset.rock
+    ## @deftypefn {Static Method} {@var{out} =} rock ()
+    ##
+    ## Measurements on Petroleum Rock Samples
+    ##
+    ## @subsubheading Description
+    ## 
+    ## Measurements on 48 rock samples from a petroleum reservoir.
+    ## 
+    ## @subsubheading Format
+    ## 
+    ## @table @code
+    ## @item area
+    ## Area of pores space, in pixels out of 256 by 256.
+    ## @item peri
+    ## Perimeter in pixels.
+    ## @item shape
+    ## Perimeter/sqrt(area).
+    ## @item perm
+    ## Permeability in milli-Darcies.
+    ## @end table
+    ## 
+    ## @subsubheading Details
+    ## 
+    ## Twelve core samples from petroleum reservoirs were sampled by 4
+    ## cross-sections. Each core sample was measured for permeability, and each
+    ## cross-section has total area of pores, total perimeter of pores, and shape.
+    ## 
+    ## @subsubheading Source
+    ## 
+    ## Data from BP Research, image analysis by Ronit Katz, U. Oxford.
+    ## 
+    ## @subsubheading Examples
+    ## 
+    ## @example
+    ## t = octave.dataset.rock;
+    ## 
+    ## figure
+    ## scatter (t.area, t.perm)
+    ## xlabel ("Area of pores space (pixels out of 256x256)")
+    ## ylabel ("Permeability (milli-Darcies)")
+    ## 
+    ## @end example
+    ## 
+    ##
+    ## @end deftypefn
+    function out = rock ()
+      name = 'rock';
       data = octave.datasets.load(name);
       if nargout == 0
         if isstruct (data)

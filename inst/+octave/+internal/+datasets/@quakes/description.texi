@@ -1,0 +1,44 @@
+@subsubheading Description
+
+The data set give the locations of 1000 seismic events of MB > 4.0. The events
+occurred in a cube near Fiji since 1964.
+
+@subsubheading Format
+
+@table @code
+@item lat
+Latitude of event.
+@item long
+Longitude of event.
+@item depth
+Depth (km).
+@item mag
+Richter magnitude.
+@item stations
+Number of stations reporting.
+@end table
+
+@subsubheading Details
+
+ There are two clear planes of seismic activity. One is a major plate junction;
+ the other is the Tonga trench off New Zealand. These data constitute a subsample
+ from a larger dataset of containing 5000 observations.
+
+@subsubheading Source
+
+This is one of the Harvard PRIM-H project data sets. They in turn obtained it
+from Dr. John Woodhouse, Dept. of Geophysics, Harvard University.
+
+@subsubheading References
+
+G. E. P. Box and G. M. Jenkins (1976): @cite{Time Series Analysis, Forecasting and
+Control}, Holden-Day, San Francisco, p. 537.
+
+P. J. Brockwell and R. A. Davis (1991): @cite{Time Series: Theory and Methods},
+Second edition, Springer Verlag, NY, pp. 414.
+
+@subsubheading Examples
+
+@example
+@INCLUDE_DATASET_EXAMPLE_SCRIPT{BJsales_1.m}
+@end example
