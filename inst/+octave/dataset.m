@@ -3335,7 +3335,7 @@ classdef dataset
     ## Response.
     ## @end table
     ## 
-    ## @Details
+    ## @subsubheading Details
     ## 
     ## Individual cells of dry comb were filled with measured amounts of lime
     ## sulphur emulsion in sucrose solution. Seven different concentrations of lime
