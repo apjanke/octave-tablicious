@@ -3556,7 +3556,45 @@ File: tablicious.info,  Node: octave.dataset,  Next: octave.datasets,  Prev: oct
 * octave.dataset.lh::
 * octave.dataset.LifeCycleSavings::
 * octave.dataset.Loblolly::
+* octave.dataset.longley::
+* octave.dataset.lynx::
+* octave.dataset.morley::
 * octave.dataset.mtcars::
+* octave.dataset.nhtemp::
+* octave.dataset.Nile::
+* octave.dataset.nottem::
+* octave.dataset.npk::
+* octave.dataset.occupationalStatus::
+* octave.dataset.Orange::
+* octave.dataset.OrchardSprays::
+* octave.dataset.PlantGrowth::
+* octave.dataset.precip::
+* octave.dataset.presidents::
+* octave.dataset.pressure::
+* octave.dataset.Puromycin::
+* octave.dataset.quakes::
+* octave.dataset.randu::
+* octave.dataset.rivers::
+* octave.dataset.rock::
+* octave.dataset.sleep::
+* octave.dataset.stackloss::
+* octave.dataset.state::
+* octave.dataset.sunspot_month::
+* octave.dataset.sunspot_year::
+* octave.dataset.sunspots::
+* octave.dataset.swiss::
+* octave.dataset.Theoph::
+* octave.dataset.Titanic::
+* octave.dataset.ToothGrowth::
+* octave.dataset.treering::
+* octave.dataset.trees::
+* octave.dataset.UCBAdmissions::
+* octave.dataset.UKDriverDeaths::
+* octave.dataset.UKgas::
+* octave.dataset.UKLungDeaths::
+* octave.dataset.USArrests::
+* octave.dataset.USJudgeRatings::
+* octave.dataset.USPersonalExpenditure::
 
 
 File: tablicious.info,  Node: octave.dataset.airmiles,  Next: octave.dataset.AirPassengers,  Up: octave.dataset
@@ -5474,7 +5512,7 @@ File: tablicious.info,  Node: octave.dataset.LifeCycleSavings,  Next: octave.dat
 
 
 
-File: tablicious.info,  Node: octave.dataset.Loblolly,  Next: octave.dataset.mtcars,  Prev: octave.dataset.LifeCycleSavings,  Up: octave.dataset
+File: tablicious.info,  Node: octave.dataset.Loblolly,  Next: octave.dataset.longley,  Prev: octave.dataset.LifeCycleSavings,  Up: octave.dataset
 
 8.2.46.38 octave.dataset.Loblolly
 .................................
@@ -5514,12 +5552,187 @@ File: tablicious.info,  Node: octave.dataset.Loblolly,  Next: octave.dataset.mtc
 
           t = octave.dataset.Loblolly;
 
+          t2 = t(t.Seed == "329",:);
+          scatter (t2.age, t2.height)
+          xlabel ("Tree age (yr)");
+          ylabel ("Tree height (ft)");
+          title ("Loblolly data and fitted curve (Seed 329 only)")
+
+          # TODO: Compute and plot fitted curve
 
 
 
-File: tablicious.info,  Node: octave.dataset.mtcars,  Prev: octave.dataset.Loblolly,  Up: octave.dataset
+File: tablicious.info,  Node: octave.dataset.longley,  Next: octave.dataset.lynx,  Prev: octave.dataset.Loblolly,  Up: octave.dataset
 
-8.2.46.39 octave.dataset.mtcars
+8.2.46.39 octave.dataset.longley
+................................
+
+ -- Static Method: OUT = longley ()
+
+     Longley’s Economic Regression Data
+
+     Description
+     ...........
+
+     A macroeconomic data set which provides a well-known example for a
+     highly collinear regression.
+
+     Format
+     ......
+
+     ‘Year’
+          The year.
+     ‘GNP_deflator’
+          GNP implicit price deflator (1954=100).
+     ‘GNP’
+          Gross National Product.
+     ‘Unemployed’
+          Number of unemployed.
+     ‘Armed_Forces’
+          Number of people in the armed forces.
+     ‘Population’
+          “Noninstitutionalized” population ≥ 14 years of age.
+     ‘Employed’
+          Number of people employed.
+
+     Source
+     ......
+
+     J. W. Longley (1967) An appraisal of least-squares programs from
+     the point of view of the user.  ‘Journal of the American
+     Statistical Association’ 62, 819–841.
+
+     References
+     ..........
+
+     Becker, R. A., Chambers, J. M. and Wilks, A. R. (1988) ‘The New S
+     Language’.  Wadsworth & Brooks/Cole.
+
+     Examples
+     ........
+
+          t = octave.dataset.longley;
+
+          # TODO: Linear model
+          # TODO: opar plot
+
+
+
+File: tablicious.info,  Node: octave.dataset.lynx,  Next: octave.dataset.morley,  Prev: octave.dataset.longley,  Up: octave.dataset
+
+8.2.46.40 octave.dataset.lynx
+.............................
+
+ -- Static Method: OUT = lynx ()
+
+     Annual Canadian Lynx trappings 1821-1934
+
+     Description
+     ...........
+
+     Annual numbers of lynx trappings for 1821–1934 in Canada.  Taken
+     from Brockwell & Davis (1991), this appears to be the series
+     considered by Campbell & Walker (1977).
+
+     Format
+     ......
+
+     ‘year’
+          Year of the record.
+     ‘lynx’
+          Number of lynx trapped.
+
+     Source
+     ......
+
+     Brockwell, P. J. and Davis, R. A. (1991).  ‘Time Series and
+     Forecasting Methods’.  Second edition.  Springer.  Series G (page
+     557).
+
+     References
+     ..........
+
+     Becker, R. A., Chambers, J. M. and Wilks, A. R. (1988).  ‘The New S
+     Language’.  Wadsworth & Brooks/Cole.
+
+     Campbell, M. J. and Walker, A. M. (1977).  A Survey of statistical
+     work on the Mackenzie River series of annual Canadian lynx
+     trappings for the years 1821–1934 and a new analysis.  ‘Journal of
+     the Royal Statistical Society series A’, 140, 411–431.
+
+     Examples
+     ........
+
+          t = octave.dataset.lynx;
+
+          plot (t.year, t.lynx);
+          xlabel ("Year");
+          ylabel ("Lynx Trapped");
+
+
+
+File: tablicious.info,  Node: octave.dataset.morley,  Next: octave.dataset.mtcars,  Prev: octave.dataset.lynx,  Up: octave.dataset
+
+8.2.46.41 octave.dataset.morley
+...............................
+
+ -- Static Method: OUT = morley ()
+
+     Michelson Speed of Light Data
+
+     Description
+     ...........
+
+     A classical data of Michelson (but not this one with Morley) on
+     measurements done in 1879 on the speed of light.  The data consists
+     of five experiments, each consisting of 20 consecutive ‘runs’.  The
+     response is the speed of light measurement, suitably coded (km/sec,
+     with 299000 subtracted).
+
+     Format
+     ......
+
+     ‘Expt’
+          The experiment number, from 1 to 5.
+     ‘Run’
+          The run number within each experiment.
+     ‘Speed’
+          Speed-of-light measurement.
+
+     Details
+     .......
+
+     The data is here viewed as a randomized block experiment with
+     ‘experiment’ and ‘run’ as the factors.  ‘run’ may also be
+     considered a quantitative variate to account for linear (or
+     polynomial) changes in the measurement over the course of a single
+     experiment.
+
+     Source
+     ......
+
+     A. J. Weekes (1986) ‘A Genstat Primer’.  London: Edward Arnold.
+
+     S. M. Stigler (1977) Do robust estimators work with real data?
+     ‘Annals of Statistics’ 5, 1055–1098.  (See Table 6.)
+
+     A. A. Michelson (1882) Experimental determination of the velocity
+     of light made at the United States Naval Academy, Annapolis.
+     ‘Astronomic Papers’ 1 135–8.  U.S. Nautical Almanac Office.  (See
+     Table 24.).
+
+     Examples
+     ........
+
+          t = octave.dataset.morley;
+
+          # TODO: Port to Octave
+
+
+
+File: tablicious.info,  Node: octave.dataset.mtcars,  Next: octave.dataset.nhtemp,  Prev: octave.dataset.morley,  Up: octave.dataset
+
+8.2.46.42 octave.dataset.mtcars
 ...............................
 
  -- Static Method: OUT = mtcars ()
@@ -5579,6 +5792,1919 @@ File: tablicious.info,  Node: octave.dataset.mtcars,  Prev: octave.dataset.Loblo
      ........
 
           # TODO: Port this example from R
+
+
+File: tablicious.info,  Node: octave.dataset.nhtemp,  Next: octave.dataset.Nile,  Prev: octave.dataset.mtcars,  Up: octave.dataset
+
+8.2.46.43 octave.dataset.nhtemp
+...............................
+
+ -- Static Method: OUT = nhtemp ()
+
+     Average Yearly Temperatures in New Haven
+
+     Description
+     ...........
+
+     The mean annual temperature in degrees Fahrenheit in New Haven,
+     Connecticut, from 1912 to 1971.
+
+     Format
+     ......
+
+     ‘year’
+          Year of the observation.
+     ‘temp’
+          Mean annual temperature (degrees F).
+
+     Source
+     ......
+
+     Vaux, J. E. and Brinker, N. B. (1972) ‘Cycles’, 1972, 117–121.
+
+     References
+     ..........
+
+     McNeil, D. R. (1977) ‘Interactive Data Analysis’.  New York: Wiley.
+
+     Examples
+     ........
+
+          t = octave.dataset.nhtemp;
+
+          plot (t.year, t.temp);
+          title ("nhtemp data");
+          xlabel ("Mean annual temperature in New Haven, CT (deg. F)");
+
+
+
+File: tablicious.info,  Node: octave.dataset.Nile,  Next: octave.dataset.nottem,  Prev: octave.dataset.nhtemp,  Up: octave.dataset
+
+8.2.46.44 octave.dataset.Nile
+.............................
+
+ -- Static Method: OUT = Nile ()
+
+     Flow of the River Nile
+
+     Description
+     ...........
+
+     Measurements of the annual flow of the river Nile at Aswan
+     (formerly Assuan), 1871–1970, in m^3, “with apparent changepoint
+     near 1898” (Cobb(1978), Table 1, p.249).
+
+     Format
+     ......
+
+     ‘year’
+          Year of the record.
+     ‘flow’
+          Annual flow (cubic meters).
+
+     Source
+     ......
+
+     Durbin, J. and Koopman, S. J. (2001).  ‘Time Series Analysis by
+     State Space Methods’.  Oxford University Press.
+     <http://www.ssfpack.com/DKbook.html>
+
+     References
+     ..........
+
+     Balke, N. S. (1993).  Detecting level shifts in time series.
+     ‘Journal of Business and Economic Statistics’, 11, 81–92.
+
+     Cobb, G. W. (1978).  The problem of the Nile: conditional solution
+     to a change-point problem.  ‘Biometrika’ 65, 243–51.
+
+     Examples
+     ........
+
+          t = octave.dataset.Nile;
+
+          figure
+          plot (t.year, t.flow);
+
+          # TODO: Port the rest of the example to Octave
+
+
+File: tablicious.info,  Node: octave.dataset.nottem,  Next: octave.dataset.npk,  Prev: octave.dataset.Nile,  Up: octave.dataset
+
+8.2.46.45 octave.dataset.nottem
+...............................
+
+ -- Static Method: OUT = nottem ()
+
+     Average Monthly Temperatures at Nottingham, 1920-1939
+
+     Description
+     ...........
+
+     A time series object containing average air temperatures at
+     Nottingham Castle in degrees Fahrenheit for 20 years.
+
+     Format
+     ......
+
+     ‘record’
+          Index of the record.
+     ‘lead’
+          Leading indicator.
+     ‘sales’
+          Sales volume.
+
+     Source
+     ......
+
+     Anderson, O. D. (1976) ‘Time Series Analysis and Forecasting: The
+     Box-Jenkins approach’.  Butterworths.  Series R.
+
+     Examples
+     ........
+
+          # TODO: Come up with example code here
+
+
+File: tablicious.info,  Node: octave.dataset.npk,  Next: octave.dataset.occupationalStatus,  Prev: octave.dataset.nottem,  Up: octave.dataset
+
+8.2.46.46 octave.dataset.npk
+............................
+
+ -- Static Method: OUT = npk ()
+
+     Classical N, P, K Factorial Experiment
+
+     Description
+     ...........
+
+     A classical N, P, K (nitrogen, phosphate, potassium) factorial
+     experiment on the growth of peas conducted on 6 blocks.  Each half
+     of a fractional factorial design confounding the NPK interaction
+     was used on 3 of the plots.
+
+     Format
+     ......
+
+     ‘block’
+          Which block (1 to 6).
+     ‘N’
+          Indicator (0/1) for the application of nitrogen.
+     ‘P’
+          Indicator (0/1) for the application of phosphate.
+     ‘K’
+          Indicator (0/1) for the application of potassium.
+     ‘yield’
+          Yield of peas, in pounds/plot.  Plots were 1/70 acre.
+
+     Source
+     ......
+
+     Imperial College, London, M.Sc.  exercise sheet.
+
+     References
+     ..........
+
+     Venables, W. N. and Ripley, B. D. (2002) ‘Modern Applied Statistics
+     with S’. Fourth edition.  Springer.
+
+     Examples
+     ........
+
+          t = octave.dataset.npk;
+
+          # TODO: Port aov() and LM to Octave
+
+
+
+File: tablicious.info,  Node: octave.dataset.occupationalStatus,  Next: octave.dataset.Orange,  Prev: octave.dataset.npk,  Up: octave.dataset
+
+8.2.46.47 octave.dataset.occupationalStatus
+...........................................
+
+ -- Static Method: OUT = occupationalStatus ()
+
+     Occupational Status of Fathers and their Sons
+
+     Description
+     ...........
+
+     Cross-classification of a sample of British males according to each
+     subject’s occupational status and his father’s occupational status.
+
+     Format
+     ......
+
+     An 8-by-8 matrix of counts, with classifying fators ‘origin’
+     (father’s occupational status, levels 1:8) and ‘destination’ (son’s
+     occupational status, levels 1:8).
+
+     Source
+     ......
+
+     Goodman, L. A. (1979) Simple Models for the Analysis of Association
+     in Cross-Classifications having Ordered Categories.  ‘J. Am. Stat.
+     Assoc.’, 74 (367), 537–552.
+
+     Examples
+     ........
+
+          # TODO: Come up with example code here
+
+
+File: tablicious.info,  Node: octave.dataset.Orange,  Next: octave.dataset.OrchardSprays,  Prev: octave.dataset.occupationalStatus,  Up: octave.dataset
+
+8.2.46.48 octave.dataset.Orange
+...............................
+
+ -- Static Method: OUT = Orange ()
+
+     Growth of Orange Trees
+
+     Description
+     ...........
+
+     Records of the growth of orange trees.
+
+     Format
+     ......
+
+     ‘Tree’
+          A categorical indicating on which tree the measurement is
+          made.  Ordering is according to increasing maximum diameter.
+     ‘age’
+          Age of the tree (days since 1968-12-31).
+     ‘circumference’
+          Trunk circumference (mm).  This is probably “circumference at
+          breast height”, a standard measurement in forestry.
+
+     Source
+     ......
+
+     The data are given in Box & Jenkins (1976).  Obtained from the Time
+     Series Data Library at
+     <http://www-personal.buseco.monash.edu.au/~hyndman/TSDL/>.
+
+     References
+     ..........
+
+     Draper, N. R. and Smith, H. (1998), ‘Applied Regression Analysis
+     (3rd ed)’, Wiley (exercise 24.N).
+
+     Pinheiro, J. C. and Bates, D. M. (2000) ‘Mixed-effects Models in S
+     and S-PLUS’, Springer.
+
+     Examples
+     ........
+
+          t = octave.dataset.Orange;
+
+          # TODO: Port coplot to Octave
+
+          # TODO: Linear model
+
+
+
+File: tablicious.info,  Node: octave.dataset.OrchardSprays,  Next: octave.dataset.PlantGrowth,  Prev: octave.dataset.Orange,  Up: octave.dataset
+
+8.2.46.49 octave.dataset.OrchardSprays
+......................................
+
+ -- Static Method: OUT = OrchardSprays ()
+
+     Potency of Orchard Sprays
+
+     Description
+     ...........
+
+     An experiment was conducted to assess the potency of various
+     constituents of orchard sprays in repelling honeybees, using a
+     Latin square design.
+
+     Format
+     ......
+
+     ‘rowpos’
+          Row of the design.
+     ‘colpos’
+          Column of the design
+     ‘treatment’
+          Treatment level.
+     ‘decrease’
+          Response.
+
+     Details
+     .......
+
+     Individual cells of dry comb were filled with measured amounts of
+     lime sulphur emulsion in sucrose solution.  Seven different
+     concentrations of lime sulphur ranging from a concentration of
+     1/100 to 1/1,562,500 in successive factors of 1/5 were used as well
+     as a solution containing no lime sulphur.
+
+     The responses for the different solutions were obtained by
+     releasing 100 bees into the chamber for two hours, and then
+     measuring the decrease in volume of the solutions in the various
+     cells.
+
+     An 8 x 8 Latin square design was used and the treatments were coded
+     as follows:
+
+     A – highest level of lime sulphur B – next highest level of lime
+     sulphur ... G – lowest level of lime sulphur H – no lime sulphur
+
+     Source
+     ......
+
+     Finney, D. J. (1947) ‘Probit Analysis’.  Cambridge.
+
+     References
+     ..........
+
+     McNeil, D. R. (1977) ‘Interactive Data Analysis’.  New York: Wiley.
+
+     Examples
+     ........
+
+          t = octave.dataset.OrchardSprays;
+
+          octave.examples.plot_pairs (t);
+
+
+
+File: tablicious.info,  Node: octave.dataset.PlantGrowth,  Next: octave.dataset.precip,  Prev: octave.dataset.OrchardSprays,  Up: octave.dataset
+
+8.2.46.50 octave.dataset.PlantGrowth
+....................................
+
+ -- Static Method: OUT = PlantGrowth ()
+
+     Results from an Experiment on Plant Growth
+
+     Description
+     ...........
+
+     Results from an experiment to compare yields (as measured by dried
+     weight of plants) obtained under a control and two different
+     treatment conditions.
+
+     Format
+     ......
+
+     ‘group’
+          Treatment condition group.
+     ‘weight’
+          Weight of plants.
+
+     Source
+     ......
+
+     Dobson, A. J. (1983) ‘An Introduction to Statistical Modelling’.
+     London: Chapman and Hall.
+
+     Examples
+     ........
+
+          t = octave.dataset.PlantGrowth;
+
+          # TODO: Port anova to Octave
+
+
+
+File: tablicious.info,  Node: octave.dataset.precip,  Next: octave.dataset.presidents,  Prev: octave.dataset.PlantGrowth,  Up: octave.dataset
+
+8.2.46.51 octave.dataset.precip
+...............................
+
+ -- Static Method: OUT = precip ()
+
+     Annual Precipitation in US Cities
+
+     Description
+     ...........
+
+     The average amount of precipitation (rainfall) in inches for each
+     of 70 United States (and Puerto Rico) cities.
+
+     Format
+     ......
+
+     ‘city’
+          City observed.
+     ‘precip’
+          Annual precipitation (in).
+
+     Source
+     ......
+
+     ‘Statistical Abstracts of the United States’, 1975.
+
+     References
+     ..........
+
+     McNeil, D. R. (1977) ‘Interactive Data Analysis’.  New York: Wiley.
+
+     Examples
+     ........
+
+          t = octave.dataset.precip;
+
+          # TODO: Port dot plot to Octave
+
+
+
+File: tablicious.info,  Node: octave.dataset.presidents,  Next: octave.dataset.pressure,  Prev: octave.dataset.precip,  Up: octave.dataset
+
+8.2.46.52 octave.dataset.presidents
+...................................
+
+ -- Static Method: OUT = presidents ()
+
+     Quarterly Approval Ratings of US Presidents
+
+     Description
+     ...........
+
+     The (approximately) quarterly approval rating for the President of
+     the United States from the first quarter of 1945 to the last
+     quarter of 1974.
+
+     Format
+     ......
+
+     ‘date’
+          Approximate date of the observation.
+     ‘approval’
+          Approval rating (%).
+
+     Details
+     .......
+
+     The data are actually a fudged version of the approval ratings.
+     See McNeil’s book for details.
+
+     Source
+     ......
+
+     The Gallup Organisation.
+
+     References
+     ..........
+
+     McNeil, D. R. (1977) ‘Interactive Data Analysis’.  New York: Wiley.
+
+     Examples
+     ........
+
+          t = octave.dataset.presidents;
+
+          figure
+          plot (datenum (t.date), t.approval)
+          datetick ("x")
+          xlabel ("Date")
+          ylabel ("Approval rating (%)")
+          title ("presidents data")
+
+
+
+File: tablicious.info,  Node: octave.dataset.pressure,  Next: octave.dataset.Puromycin,  Prev: octave.dataset.presidents,  Up: octave.dataset
+
+8.2.46.53 octave.dataset.pressure
+.................................
+
+ -- Static Method: OUT = pressure ()
+
+     Vapor Pressure of Mercury as a Function of Temperature
+
+     Description
+     ...........
+
+     Data on the relation between temperature in degrees Celsius and
+     vapor pressure of mercury in millimeters (of mercury).
+
+     Format
+     ......
+
+     ‘temperature’
+          Temperature (deg C).
+     ‘pressure’
+          Pressure (mm Hg).
+
+     Source
+     ......
+
+     Weast, R. C., ed.  (1973) ‘Handbook of Chemistry and Physics’.  CRC
+     Press.
+
+     References
+     ..........
+
+     McNeil, D. R. (1977) ‘Interactive Data Analysis’.  New York: Wiley.
+
+     Examples
+     ........
+
+          t = octave.dataset.pressure;
+
+          figure
+          plot (t.temperature, t.pressure)
+          xlabel ("Temperature (deg C)")
+          ylabel ("Pressure (mm of Hg)")
+          title ("pressure data: Vapor Pressure of Mercury")
+
+          figure
+          semilogy (t.temperature, t.pressure)
+          xlabel ("Temperature (deg C)")
+          ylabel ("Pressure (mm of Hg)")
+          title ("pressure data: Vapor Pressure of Mercury")
+
+
+
+
+File: tablicious.info,  Node: octave.dataset.Puromycin,  Next: octave.dataset.quakes,  Prev: octave.dataset.pressure,  Up: octave.dataset
+
+8.2.46.54 octave.dataset.Puromycin
+..................................
+
+ -- Static Method: OUT = Puromycin ()
+
+     Reaction Velocity of an Enzymatic Reaction
+
+     Description
+     ...........
+
+     Reaction velocity versus substrate concentration in an enzymatic
+     reaction involving untreated cells or cells treated with Puromycin.
+
+     Format
+     ......
+
+     ‘state’
+          Whether the cell was treated.
+     ‘conc’
+          Substrate concentrations (ppm).
+     ‘rate’
+          Instantaneous reaction rates (counts/min/min).
+
+     Details
+     .......
+
+     Data on the velocity of an enzymatic reaction were obtained by
+     Treloar (1974).  The number of counts per minute of radioactive
+     product from the reaction was measured as a function of substrate
+     concentration in parts per million (ppm) and from these counts the
+     initial rate (or velocity) of the reaction was calculated
+     (counts/min/min).  The experiment was conducted once with the
+     enzyme treated with Puromycin, and once with the enzyme untreated.
+
+     Source
+     ......
+
+     The data are given in Box & Jenkins (1976).  Obtained from the Time
+     Series Data Library at
+     <http://www-personal.buseco.monash.edu.au/~hyndman/TSDL/>.
+
+     References
+     ..........
+
+     Bates, D.M. and Watts, D.G. (1988), ‘Nonlinear Regression Analysis
+     and Its Applications’, Wiley, Appendix A1.3.
+
+     Treloar, M. A. (1974), ‘Effects of Puromycin on
+     Galactosyltransferase in Golgi Membranes’, M.Sc.  Thesis, U. of
+     Toronto.
+
+     Examples
+     ........
+
+          t = octave.dataset.Puromycin;
+
+          # TODO: Port example to Octave
+
+
+
+File: tablicious.info,  Node: octave.dataset.quakes,  Next: octave.dataset.randu,  Prev: octave.dataset.Puromycin,  Up: octave.dataset
+
+8.2.46.55 octave.dataset.quakes
+...............................
+
+ -- Static Method: OUT = quakes ()
+
+     Locations of Earthquakes off Fiji
+
+     Description
+     ...........
+
+     The data set give the locations of 1000 seismic events of MB > 4.0.
+     The events occurred in a cube near Fiji since 1964.
+
+     Format
+     ......
+
+     ‘lat’
+          Latitude of event.
+     ‘long’
+          Longitude of event.
+     ‘depth’
+          Depth (km).
+     ‘mag’
+          Richter magnitude.
+     ‘stations’
+          Number of stations reporting.
+
+     Details
+     .......
+
+     There are two clear planes of seismic activity.  One is a major
+     plate junction; the other is the Tonga trench off New Zealand.
+     These data constitute a subsample from a larger dataset of
+     containing 5000 observations.
+
+     Source
+     ......
+
+     This is one of the Harvard PRIM-H project data sets.  They in turn
+     obtained it from Dr.  John Woodhouse, Dept.  of Geophysics, Harvard
+     University.
+
+     References
+     ..........
+
+     G. E. P. Box and G. M. Jenkins (1976): ‘Time Series Analysis,
+     Forecasting and Control’, Holden-Day, San Francisco, p.  537.
+
+     P. J. Brockwell and R. A. Davis (1991): ‘Time Series: Theory and
+     Methods’, Second edition, Springer Verlag, NY, pp.  414.
+
+     Examples
+     ........
+
+          # TODO: Come up with example code here
+
+
+File: tablicious.info,  Node: octave.dataset.randu,  Next: octave.dataset.rivers,  Prev: octave.dataset.quakes,  Up: octave.dataset
+
+8.2.46.56 octave.dataset.randu
+..............................
+
+ -- Static Method: OUT = randu ()
+
+     Random Numbers from Congruential Generator RANDU
+
+     Description
+     ...........
+
+     400 triples of successive random numbers were taken from the VAX
+     FORTRAN function RANDU running under VMS 1.5.
+
+     Format
+     ......
+
+     ‘record’
+          Index of the record.
+     ‘x’
+          X value of the triple.
+     ‘y’
+          Y value of the triple.
+     ‘z’
+          Z value of the triple.
+
+     Details
+     .......
+
+     In three dimensional displays it is evident that the triples fall
+     on 15 parallel planes in 3-space.  This can be shown theoretically
+     to be true for all triples from the RANDU generator.
+
+     These particular 400 triples start 5 apart in the sequence, that is
+     they are ((U[5i+1], U[5i+2], U[5i+3]), i= 0, ..., 399), and they
+     are rounded to 6 decimal places.
+
+     Under VMS versions 2.0 and higher, this problem has been fixed.
+
+     Source
+     ......
+
+     David Donoho
+
+     Examples
+     ........
+
+          t = octave.dataset.randu;
+
+
+
+
+File: tablicious.info,  Node: octave.dataset.rivers,  Next: octave.dataset.rock,  Prev: octave.dataset.randu,  Up: octave.dataset
+
+8.2.46.57 octave.dataset.rivers
+...............................
+
+ -- Static Method: OUT = rivers ()
+
+     Lengths of Major North American Rivers
+
+     Description
+     ...........
+
+     This data set gives the lengths (in miles) of 141 “major” rivers in
+     North America, as compiled by the US Geological Survey.
+
+     Format
+     ......
+
+     ‘rivers’
+          A vector containing 141 observations.
+
+     Source
+     ......
+
+     ‘World Almanac and Book of Facts’, 1975, page 406.
+
+     References
+     ..........
+
+     McNeil, D. R. (1977) ‘Interactive Data Analysis’.  New York: Wiley.
+
+     Examples
+     ........
+
+          octave.dataset.rivers;
+
+          longest_river = max (rivers)
+          shortest_river = min (rivers)
+
+
+
+File: tablicious.info,  Node: octave.dataset.rock,  Next: octave.dataset.sleep,  Prev: octave.dataset.rivers,  Up: octave.dataset
+
+8.2.46.58 octave.dataset.rock
+.............................
+
+ -- Static Method: OUT = rock ()
+
+     Measurements on Petroleum Rock Samples
+
+     Description
+     ...........
+
+     Measurements on 48 rock samples from a petroleum reservoir.
+
+     Format
+     ......
+
+     ‘area’
+          Area of pores space, in pixels out of 256 by 256.
+     ‘peri’
+          Perimeter in pixels.
+     ‘shape’
+          Perimeter/sqrt(area).
+     ‘perm’
+          Permeability in milli-Darcies.
+
+     Details
+     .......
+
+     Twelve core samples from petroleum reservoirs were sampled by 4
+     cross-sections.  Each core sample was measured for permeability,
+     and each cross-section has total area of pores, total perimeter of
+     pores, and shape.
+
+     Source
+     ......
+
+     Data from BP Research, image analysis by Ronit Katz, U. Oxford.
+
+     Examples
+     ........
+
+          t = octave.dataset.rock;
+
+          figure
+          scatter (t.area, t.perm)
+          xlabel ("Area of pores space (pixels out of 256x256)")
+          ylabel ("Permeability (milli-Darcies)")
+
+
+
+File: tablicious.info,  Node: octave.dataset.sleep,  Next: octave.dataset.stackloss,  Prev: octave.dataset.rock,  Up: octave.dataset
+
+8.2.46.59 octave.dataset.sleep
+..............................
+
+ -- Static Method: OUT = sleep ()
+
+     Student’s Sleep Data
+
+     Description
+     ...........
+
+     Data which show the effect of two soporific drugs (increase in
+     hours of sleep compared to control) on 10 patients.
+
+     Format
+     ......
+
+     ‘id’
+          Patient ID.
+     ‘group’
+          Drug given.
+     ‘extra’
+          Increase in hours of sleep.
+
+     Details
+     .......
+
+     The ‘group’ variable name may be misleading about the data: They
+     represent measurements on 10 persons, not in groups.
+
+     Source
+     ......
+
+     Cushny, A. R. and Peebles, A. R. (1905) The action of optical
+     isomers: II hyoscines.  ‘The Journal of Physiology’ 32, 501–510.
+
+     Student (1908) The probable error of the mean.  ‘Biometrika’, 6,
+     20.
+
+     References
+     ..........
+
+     Scheffé, Henry (1959) ‘The Analysis of Variance’.  New York, NY:
+     Wiley.
+
+     Examples
+     ........
+
+          t = octave.dataset.sleep;
+
+          # TODO: Port to Octave
+
+
+
+File: tablicious.info,  Node: octave.dataset.stackloss,  Next: octave.dataset.state,  Prev: octave.dataset.sleep,  Up: octave.dataset
+
+8.2.46.60 octave.dataset.stackloss
+..................................
+
+ -- Static Method: OUT = stackloss ()
+
+     Brownlee’s Stack Loss Plant Data
+
+     Description
+     ...........
+
+     Operational data of a plant for the oxidation of ammonia to nitric
+     acid.
+
+     Format
+     ......
+
+     ‘AirFlow’
+          Flow of cooling air.
+     ‘WaterTemp’
+          Cooling Water Inlet temperature.
+     ‘AcidConc’
+          Concentration of acid (per 1000, minus 500).
+     ‘StackLoss’
+          Stack loss
+
+     Details
+     .......
+
+     “Obtained from 21 days of operation of a plant for the oxidation of
+     ammonia (NH3) to nitric acid (HNO3).  The nitric oxides produced
+     are absorbed in a countercurrent absorption tower”.  (Brownlee,
+     cited by Dodge, slightly reformatted by MM.)
+
+     ‘AirFlow’ represents the rate of operation of the plant.
+     ‘WaterTemp’ is the temperature of cooling water circulated through
+     coils in the absorption tower.  ‘AcidConc’ is the concentration of
+     the acid circulating, minus 50, times 10: that is, 89 corresponds
+     to 58.9 per cent acid.  ‘StackLoss’ (the dependent variable) is 10
+     times the percentage of the ingoing ammonia to the plant that
+     escapes from the absorption column unabsorbed; that is, an
+     (inverse) measure of the over-all efficiency of the plant.
+
+     Source
+     ......
+
+     Brownlee, K. A. (1960, 2nd ed.  1965) ‘Statistical Theory and
+     Methodology in Science and Engineering’.  New York: Wiley.  pp.
+     491–500.
+
+     References
+     ..........
+
+     Becker, R. A., Chambers, J. M. and Wilks, A. R. (1988) ‘The New S
+     Language’.  Wadsworth & Brooks/Cole.
+
+     Dodge, Y. (1996) The guinea pig of multiple regression.  In:
+     ‘Robust Statistics, Data Analysis, and Computer Intensive Methods;
+     In Honor of Peter Huber’s 60th Birthday’, 1996, ‘Lecture Notes in
+     Statistics’ 109, Springer-Verlag, New York.
+
+     Examples
+     ........
+
+          t = octave.dataset.stackloss;
+
+          # TODO: Create linear model and print summary
+
+
+
+File: tablicious.info,  Node: octave.dataset.state,  Next: octave.dataset.sunspot_month,  Prev: octave.dataset.stackloss,  Up: octave.dataset
+
+8.2.46.61 octave.dataset.state
+..............................
+
+ -- Static Method: OUT = state ()
+
+     US State Facts and Figures
+
+     Description
+     ...........
+
+     Data related to the 50 states of the United States of America.
+
+     Format
+     ......
+
+     ‘abb’
+          State abbreviation.
+     ‘name’
+          State name.
+     ‘area’
+          Area (sq mi).
+     ‘lat’
+          Approximate center (latitude).
+     ‘lon’
+          Approximate center (longitude).
+     ‘division’
+          State division.
+     ‘revion’
+          State region.
+     ‘Population’
+          Population estimate as of July 1, 1975.
+     ‘Income’
+          Per capita income (1974).
+     ‘Illiteracy’
+          Illiteracy as of 1970 (percent of population).
+     ‘LifeExp’
+          Lfe expectancy in years (1969-71).
+     ‘Murder’
+          Murder and non-negligent manslaughter rate per 100,000
+          population (1976).
+     ‘HSGrad’
+          Percent high-school graduates (1970).
+     ‘Frost’
+          Mean number of days with minimum temperature below freezing
+          (1931-1960) in capital or large city.
+
+     Source
+     ......
+
+     U.S. Department of Commerce, Bureau of the Census (1977)
+     ‘Statistical Abstract of the United States’.
+
+     U.S. Department of Commerce, Bureau of the Census (1977) ‘County
+     and City Data Book’.
+
+     References
+     ..........
+
+     Becker, R. A., Chambers, J. M. and Wilks, A. R. (1988) ‘The New S
+     Language’.  Wadsworth & Brooks/Cole.
+
+     Examples
+     ........
+
+          t = octave.dataset.state;
+
+
+File: tablicious.info,  Node: octave.dataset.sunspot_month,  Next: octave.dataset.sunspot_year,  Prev: octave.dataset.state,  Up: octave.dataset
+
+8.2.46.62 octave.dataset.sunspot_month
+......................................
+
+ -- Static Method: OUT = sunspot_month ()
+
+     Monthly Sunspot Data, from 1749 to “Present”
+
+     Description
+     ...........
+
+     Monthly numbers of sunspots, as from the World Data Center, aka
+     SIDC. This is the version of the data that may occasionally be
+     updated when new counts become available.
+
+     Format
+     ......
+
+     ‘month’
+          Month of the observation.
+     ‘sunspots’
+          Number of sunspots.
+
+     Source
+     ......
+
+     WDC-SILSO, Solar Influences Data Analysis Center (SIDC), Royal
+     Observatory of Belgium, Av.  Circulaire, 3, B-1180 BRUSSELS.
+     Currently at <http://www.sidc.be/silso/datafiles>.
+
+     Examples
+     ........
+
+          t = octave.dataset.sunspot_month;
+
+
+
+
+File: tablicious.info,  Node: octave.dataset.sunspot_year,  Next: octave.dataset.sunspots,  Prev: octave.dataset.sunspot_month,  Up: octave.dataset
+
+8.2.46.63 octave.dataset.sunspot_year
+.....................................
+
+ -- Static Method: OUT = sunspot_year ()
+
+     Yearly Sunspot Data, 1700-1988
+
+     Description
+     ...........
+
+     Yearly numbers of sunspots from 1700 to 1988 (rounded to one
+     digit).
+
+     Format
+     ......
+
+     ‘year’
+          Year of the observation.
+     ‘sunspots’
+          Number of sunspots.
+
+     Source
+     ......
+
+     H. Tong (1996) ‘Non-Linear Time Series’.  Clarendon Press, Oxford,
+     p.  471.
+
+     Examples
+     ........
+
+          t = octave.dataset.sunspot_year;
+
+          figure
+          plot (t.year, t.sunspots)
+          xlabel ("Year")
+          ylabel ("Sunspots")
+
+
+File: tablicious.info,  Node: octave.dataset.sunspots,  Next: octave.dataset.swiss,  Prev: octave.dataset.sunspot_year,  Up: octave.dataset
+
+8.2.46.64 octave.dataset.sunspots
+.................................
+
+ -- Static Method: OUT = sunspots ()
+
+     Monthly Sunspot Numbers, 1749-1983
+
+     Description
+     ...........
+
+     Monthly mean relative sunspot numbers from 1749 to 1983.  Collected
+     at Swiss Federal Observatory, Zurich until 1960, then Tokyo
+     Astronomical Observatory.
+
+     Format
+     ......
+
+     ‘month’
+          Month of the observation.
+     ‘sunspots’
+          Number of observed sunspots.
+
+     Source
+     ......
+
+     Andrews, D. F. and Herzberg, A. M. (1985) ‘Data: A Collection of
+     Problems from Many Fields for the Student and Research Worker’.
+     New York: Springer-Verlag.
+
+     Examples
+     ........
+
+          t = octave.dataset.sunspots;
+
+          figure
+          plot (datenum (t.month), t.sunspots)
+          datetick ("x")
+          xlabel ("Date")
+          ylabel ("Monthly sunspot numbers")
+          title ("sunspots data")
+
+
+
+
+File: tablicious.info,  Node: octave.dataset.swiss,  Next: octave.dataset.Theoph,  Prev: octave.dataset.sunspots,  Up: octave.dataset
+
+8.2.46.65 octave.dataset.swiss
+..............................
+
+ -- Static Method: OUT = swiss ()
+
+     Swiss Fertility and Socioeconomic Indicators (1888) Data
+
+     Description
+     ...........
+
+     Standardized fertility measure and socio-economic indicators for
+     each of 47 French-speaking provinces of Switzerland at about 1888.
+
+     Format
+     ......
+
+     ‘Fertility’
+          Ig, ‘common standardized fertility measure’.
+     ‘Agriculture’
+          % of males involved in agriculture as occupation.
+     ‘Examination’
+          % draftees receiving highest mark on army examination.
+     ‘Education’
+          % education beyond primary school for draftees.
+     ‘Catholic’
+          % ‘Catholic’ (as opposed to ‘Protestant’).
+     ‘InfantMortality’
+          Live births who live less than 1 year.
+
+     All variables but ‘Fertility’ give proportions of the population.
+
+     Source
+     ......
+
+     (paraphrasing Mosteller and Tukey):
+
+     Switzerland, in 1888, was entering a period known as the
+     demographic transition; i.e., its fertility was beginning to fall
+     from the high level typical of underdeveloped countries.
+
+     The data collected are for 47 French-speaking “provinces” at about
+     1888.
+
+     Here, all variables are scaled to [0, 100], where in the original,
+     all but ‘Catholic’ were scaled to [0, 1].
+
+     Note
+     ....
+
+     Files for all 182 districts in 1888 and other years have been
+     available at <https://opr.princeton.edu/archive/pefp/switz.aspx>.
+
+     They state that variables ‘Examination’ and ‘Education’ are
+     averages for 1887, 1888 and 1889.
+
+     References
+     ..........
+
+     Becker, R. A., Chambers, J. M. and Wilks, A. R. (1988) ‘The New S
+     Language’.  Wadsworth & Brooks/Cole.
+
+     Examples
+     ........
+
+          t = octave.dataset.swiss;
+
+          # TODO: Port linear model to Octave
+
+
+
+File: tablicious.info,  Node: octave.dataset.Theoph,  Next: octave.dataset.Titanic,  Prev: octave.dataset.swiss,  Up: octave.dataset
+
+8.2.46.66 octave.dataset.Theoph
+...............................
+
+ -- Static Method: OUT = Theoph ()
+
+     Pharmacokinetics of Theophylline
+
+     Description
+     ...........
+
+     An experiment on the pharmacokinetics of theophylline.
+
+     Format
+     ......
+
+     ‘Subject’
+          Categorical identifying the subject on whom the observation
+          was made.  The ordering is by increasing maximum concentration
+          of theophylline observed.
+     ‘Wt’
+          Weight of the subject (kg).
+     ‘Dose’
+          Dose of theophylline administerred orally to the subject
+          (mg/kg).
+     ‘Time’
+          Time since drug administration when the sample was drawn (hr).
+     ‘conc’
+          Theophylline concentration in the sample (mg/L).
+
+     Details
+     .......
+
+     Boeckmann, Sheiner and Beal (1994) report data from a study by Dr.
+     Robert Upton of the kinetics of the anti-asthmatic drug
+     theophylline.  Twelve subjects were given oral doses of
+     theophylline then serum concentrations were measured at 11 time
+     points over the next 25 hours.
+
+     These data are analyzed in Davidian and Giltinan (1995) and
+     Pinheiro and Bates (2000) using a two-compartment open
+     pharmacokinetic model, for which a self-starting model function,
+     SSfol, is available.
+
+     Source
+     ......
+
+     The data are given in Box & Jenkins (1976).  Obtained from the Time
+     Series Data Library at
+     <http://www-personal.buseco.monash.edu.au/~hyndman/TSDL/>.
+
+     References
+     ..........
+
+     Boeckmann, A. J., Sheiner, L. B. and Beal, S. L. (1994), ‘NONMEM
+     Users Guide: Part V’, NONMEM Project Group, University of
+     California, San Francisco.
+
+     Davidian, M. and Giltinan, D. M. (1995) ‘Nonlinear Models for
+     Repeated Measurement Data’, Chapman & Hall (section 5.5, p.  145
+     and section 6.6, p.  176)
+
+     Pinheiro, J. C. and Bates, D. M. (2000) ‘Mixed-effects Models in S
+     and S-PLUS’, Springer (Appendix A.29)
+
+     Examples
+     ........
+
+          t = octave.dataset.Theoph;
+
+          # TODO: Coplot
+          # TODO: Yet another linear model to port to Octave
+
+
+
+File: tablicious.info,  Node: octave.dataset.Titanic,  Next: octave.dataset.ToothGrowth,  Prev: octave.dataset.Theoph,  Up: octave.dataset
+
+8.2.46.67 octave.dataset.Titanic
+................................
+
+ -- Static Method: OUT = Titanic ()
+
+     Survival of passengers on the Titanic
+
+     Description
+     ...........
+
+     This data set provides information on the fate of passengers on the
+     fatal maiden voyage of the ocean liner ‘Titanic’, summarized
+     according to economic status (class), sex, age and survival.
+
+     Format
+     ......
+
+     ‘n’ is a 4-dimensional array resulting from cross-tabulating 2201
+     observations on 4 variables.  The dimensions of the array
+     correspond to the following variables:
+
+     ‘Class’
+          1st, 2nd, 3rd, Cre.
+     ‘Sex’
+          Male, Female.
+     ‘Age’
+          Child, Adult.
+     ‘Survived’
+          No, Yes.
+
+     Details
+     .......
+
+     The sinking of the Titanic is a famous event, and new books are
+     still being published about it.  Many well-known facts—from the
+     proportions of first-class passengers to the ‘women and children
+     first’ policy, and the fact that that policy was not entirely
+     successful in saving the women and children in the third class—are
+     reflected in the survival rates for various classes of passenger.
+
+     These data were originally collected by the British Board of Trade
+     in their investigation of the sinking.  Note that there is not
+     complete agreement among primary sources as to the exact numbers on
+     board, rescued, or lost.
+
+     Due in particular to the very successful film ‘Titanic’, the last
+     years saw a rise in public interest in the Titanic.  Very detailed
+     data about the passengers is now available on the Internet, at
+     sites such as Encyclopedia Titanica
+     (<https://www.encyclopedia-titanica.org/>).
+
+     Source
+     ......
+
+     Dawson, Robert J. MacG. (1995), The ‘Unusual Episode’ Data
+     Revisited.  ‘Journal of Statistics Education’, 3.
+
+     The source provides a data set recording class, sex, age, and
+     survival status for each person on board of the Titanic, and is
+     based on data originally collected by the British Board of Trade
+     and reprinted in:
+
+     British Board of Trade (1990), ‘Report on the Loss of the ‘Titanic’
+     (S.S.)’. British Board of Trade Inquiry Report (reprint).
+     Gloucester, UK: Allan Sutton Publishing.
+
+     Examples
+     ........
+
+          octave.dataset.Titanic;
+
+          # TODO: Port mosaic plot to Octave
+
+          # TODO: Check for higher survival rates in children and females
+
+
+
+File: tablicious.info,  Node: octave.dataset.ToothGrowth,  Next: octave.dataset.treering,  Prev: octave.dataset.Titanic,  Up: octave.dataset
+
+8.2.46.68 octave.dataset.ToothGrowth
+....................................
+
+ -- Static Method: OUT = ToothGrowth ()
+
+     The Effect of Vitamin C on Tooth Growth in Guinea Pigs
+
+     Description
+     ...........
+
+     The response is the length of odontoblasts (cells responsible for
+     tooth growth) in 60 guinea pigs.  Each animal received one of three
+     dose levels of vitamin C (0.5, 1, and 2 mg/day) by one of two
+     delivery methods, orange juice or ascorbic acid (a form of vitamin
+     C and coded as ‘VC’).
+
+     Format
+     ......
+
+     ‘supp’
+          Supplement type.
+     ‘dose’
+          Dose (mg/day).
+     ‘len’
+          Tooth length.
+
+     Source
+     ......
+
+     C. I. Bliss (1952).  ‘The Statistics of Bioassay’.  Academic Press.
+
+     References
+     ..........
+
+     McNeil, D. R. (1977).  ‘Interactive Data Analysis’.  New York:
+     Wiley.
+
+     Crampton, E. W. (1947).  The growth of the odontoblast of the
+     incisor teeth as a criterion of vitamin C intake of the guinea pig.
+     ‘The Journal of Nutrition’, 33(5), 491–504.
+
+     Examples
+     ........
+
+          t = octave.dataset.ToothGrowth;
+
+          octave.examples.coplot (t, "dose", "len", "supp");
+
+          # TODO: Port Lowess smoothing to Octave
+
+
+
+File: tablicious.info,  Node: octave.dataset.treering,  Next: octave.dataset.trees,  Prev: octave.dataset.ToothGrowth,  Up: octave.dataset
+
+8.2.46.69 octave.dataset.treering
+.................................
+
+ -- Static Method: OUT = treering ()
+
+     Yearly Treering Data, -6000-1979
+
+     Description
+     ...........
+
+     Contains normalized tree-ring widths in dimensionless units.
+
+     Format
+     ......
+
+     A univariate time series with 7981 observations.
+
+     Each tree ring corresponds to one year.
+
+     Details
+     .......
+
+     The data were recorded by Donald A. Graybill, 1980, from Gt Basin
+     Bristlecone Pine 2805M, 3726-11810 in Methuselah Walk, California.
+
+     Source
+     ......
+
+     Time Series Data Library:
+     <http://www-personal.buseco.monash.edu.au/~hyndman/TSDL/>, series
+     ‘CA535.DAT’.
+
+     References
+     ..........
+
+     For some photos of Methuselah Walk see
+     <https://web.archive.org/web/20110523225828/http://www.ltrr.arizona.edu/~hallman/sitephotos/meth.html>.
+
+     Examples
+     ........
+
+          t = octave.dataset.treering;
+
+
+
+File: tablicious.info,  Node: octave.dataset.trees,  Next: octave.dataset.UCBAdmissions,  Prev: octave.dataset.treering,  Up: octave.dataset
+
+8.2.46.70 octave.dataset.trees
+..............................
+
+ -- Static Method: OUT = trees ()
+
+     Diameter, Height and Volume for Black Cherry Trees
+
+     Description
+     ...........
+
+     This data set provides measurements of the diameter, height and
+     volume of timber in 31 felled black cherry trees.  Note that the
+     diameter (in inches) is erroneously labelled Girth in the data.  It
+     is measured at 4 ft 6 in above the ground.
+
+     Format
+     ......
+
+     ‘Girth’
+          Tree diameter (rather than girth, actually) in inches.
+     ‘Height’
+          Height in ft.
+     ‘Volume’
+          Volume of timber in cubic feet.
+
+     Source
+     ......
+
+     Ryan, T. A., Joiner, B. L. and Ryan, B. F. (1976) ‘The Minitab
+     Student Handbook’.  Duxbury Press.
+
+     References
+     ..........
+
+     Atkinson, A. C. (1985) ‘Plots, Transformations and Regression’.
+     Oxford University Press.
+
+     Examples
+     ........
+
+          t = octave.dataset.trees;
+
+          figure
+          octave.examples.plot_pairs (t);
+
+          figure
+          loglog (t.Girth, t.Volume)
+          xlabel ("Girth")
+          ylabel ("Volume")
+
+          # TODO: Transform to log space for the coplot
+
+          # TODO: Linear model
+
+
+
+File: tablicious.info,  Node: octave.dataset.UCBAdmissions,  Next: octave.dataset.UKDriverDeaths,  Prev: octave.dataset.trees,  Up: octave.dataset
+
+8.2.46.71 octave.dataset.UCBAdmissions
+......................................
+
+ -- Static Method: OUT = UCBAdmissions ()
+
+     Student Admissions at UC Berkeley
+
+     Description
+     ...........
+
+     Aggregate data on applicants to graduate school at Berkeley for the
+     six largest departments in 1973 classified by admission and sex.
+
+     Format
+     ......
+
+     A 3-dimensional array resulting from cross-tabulating 4526
+     observations on 3 variables.  The variables and their levels are as
+     follows:
+
+     ‘Admit’
+          Admitted, Rejected.
+     ‘Gender’
+          Male, Female.
+     ‘Dept’
+          A, B, C, D, E, F.
+
+     Details
+     .......
+
+     This data set is frequently used for illustrating Simpson’s
+     paradox, see Bickel et al (1975).  At issue is whether the data
+     show evidence of sex bias in admission practices.  There were 2691
+     male applicants, of whom 1198 (44.5%) were admitted, compared with
+     1835 female applicants of whom 557 (30.4%) were admitted.  This
+     gives a sample odds ratio of 1.83, indicating that males were
+     almost twice as likely to be admitted.  In fact, graphical methods
+     (as in the example below) or log-linear modelling show that the
+     apparent association between admission and sex stems from
+     differences in the tendency of males and females to apply to the
+     individual departments (females used to apply more to departments
+     with higher rejection rates).
+
+     Source
+     ......
+
+     The data are given in Box & Jenkins (1976).  Obtained from the Time
+     Series Data Library at
+     <http://www-personal.buseco.monash.edu.au/~hyndman/TSDL/>.
+
+     References
+     ..........
+
+     Bickel, P. J., Hammel, E. A., and O’Connell, J. W. (1975).  Sex
+     bias in graduate admissions: Data from Berkeley.  ‘Science’, 187,
+     398–403.  <http://www.jstor.org/stable/1739581>.
+
+     Examples
+     ........
+
+          octave.dataset.UCBAdmissions;
+
+          # TODO: Port mosaic plot to Octave
+
+
+
+File: tablicious.info,  Node: octave.dataset.UKDriverDeaths,  Next: octave.dataset.UKgas,  Prev: octave.dataset.UCBAdmissions,  Up: octave.dataset
+
+8.2.46.72 octave.dataset.UKDriverDeaths
+.......................................
+
+ -- Static Method: OUT = UKDriverDeaths ()
+
+     Road Casualties in Great Britain 1969-84
+
+     Description
+     ...........
+
+     ‘UKDriverDeaths’ is a time series giving the monthly totals of car
+     drivers in Great Britain killed or seriously injured Jan 1969 to
+     Dec 1984.  Compulsory wearing of seat belts was introduced on 31
+     Jan 1983.
+
+     ‘Seatbelts’ is more information on the same problem.
+
+     Format
+     ......
+
+     ‘UKDriverDeaths’ is a table with the following variables:
+
+     ‘month’
+          Month of the observation.
+     ‘deaths’
+          Number of deaths.
+
+     ‘Seatbelts’ is a table with the following variables:
+
+     ‘month’
+          Month of the observation.
+     ‘DriversKilled’
+          Car drivers killed.
+     ‘drivers’
+          Same as ‘UKDriverDeaths’ ‘deaths’ count.
+     ‘front’
+          Front-seat passengers killed or seriously injured.
+     ‘rear’
+          Rear-seat passengers killed or seriously injured.
+     ‘kms’
+          Distance driven.
+     ‘PetrolPrice’
+          Petrol price.
+     ‘VanKilled’
+          Number of van (“light goods vehicle”) drivers killed.
+     ‘law’
+          0/1: was the seatbelt law in effect that month?
+
+     Source
+     ......
+
+     Harvey, A.C. (1989).  ‘Forecasting, Structural Time Series Models
+     and the Kalman Filter’.  Cambridge University Press, pp.  519–523.
+
+     Durbin, J. and Koopman, S. J. (2001).  ‘Time Series Analysis by
+     State Space Methods’.  Oxford University Press.
+     <http://www.ssfpack.com/dkbook/>
+
+     References
+     ..........
+
+     Harvey, A. C. and Durbin, J. (1986).  The effects of seat belt
+     legislation on British road casualties: A case study in structural
+     time series modelling.  ‘Journal of the Royal Statistical Society’
+     series A, 149, 187–227.
+
+     Examples
+     ........
+
+          octave.dataset.UKDriverDeaths;
+          d = UKDriverDeaths;
+          s = Seatbelts;
+
+          # TODO: Port the model and plots to Octave
+
+
+
+File: tablicious.info,  Node: octave.dataset.UKgas,  Next: octave.dataset.UKLungDeaths,  Prev: octave.dataset.UKDriverDeaths,  Up: octave.dataset
+
+8.2.46.73 octave.dataset.UKgas
+..............................
+
+ -- Static Method: OUT = UKgas ()
+
+     UK Quarterly Gas Consumption
+
+     Description
+     ...........
+
+     Quarterly UK gas consumption from 1960Q1 to 1986Q4, in millions of
+     therms.
+
+     Format
+     ......
+
+     ‘date’
+          Quarter of the observation
+     ‘gas’
+          Gas consumption (MM therms).
+
+     Source
+     ......
+
+     Durbin, J. and Koopman, S. J. (2001) ‘Time Series Analysis by State
+     Space Methods’.  Oxford University Press.
+     <http://www.ssfpack.com/dkbook/>.
+
+     Examples
+     ........
+
+          t = octave.dataset.UKgas;
+
+          plot (datenum (t.date), t.gas);
+          datetick ("x")
+          xlabel ("Month")
+          ylabel ("Gas consumption (MM therms)")
+
+
+
+File: tablicious.info,  Node: octave.dataset.UKLungDeaths,  Next: octave.dataset.USArrests,  Prev: octave.dataset.UKgas,  Up: octave.dataset
+
+8.2.46.74 octave.dataset.UKLungDeaths
+.....................................
+
+ -- Static Method: OUT = UKLungDeaths ()
+
+     Monthly Deaths from Lung Diseases in the UK
+
+     Description
+     ...........
+
+     Three time series giving the monthly deaths from bronchitis,
+     emphysema and asthma in the UK, 1974–1979.
+
+     Format
+     ......
+
+     ‘date’
+          Month of the observation.
+     ‘ldeaths’
+          Total lung deaths.
+     ‘fdeaths’
+          Lung deaths among females.
+     ‘mdeaths’
+          Lung deaths among males.
+
+     Source
+     ......
+
+     P. J. Diggle (1990) ‘Time Series: A Biostatistical Introduction’.
+     Oxford, table A.3
+
+     Examples
+     ........
+
+          t = octave.dataset.UKLungDeaths;
+
+          figure
+          plot (datenum (t.date), t.ldeaths);
+          title ("Total UK Lung Deaths")
+          xlabel ("Month")
+          ylabel ("Deaths")
+
+          figure
+          plot (datenum (t.date), [t.fdeaths t.mdeaths]);
+          title ("UK Lung Deaths buy sex")
+          legend ({"Female", "Male"})
+          xlabel ("Month")
+          ylabel ("Deaths")
+
+
+
+File: tablicious.info,  Node: octave.dataset.USArrests,  Next: octave.dataset.USJudgeRatings,  Prev: octave.dataset.UKLungDeaths,  Up: octave.dataset
+
+8.2.46.75 octave.dataset.USArrests
+..................................
+
+ -- Static Method: OUT = USArrests ()
+
+     Violent Crime Rates by US State
+
+     Description
+     ...........
+
+     This data set contains statistics, in arrests per 100,000 residents
+     for assault, murder, and rape in each of the 50 US states in 1973.
+     Also given is the percent of the population living in urban areas.
+
+     Format
+     ......
+
+     ‘State’
+          State name.
+     ‘Murder’
+          Murder arrests (per 100,000).
+     ‘Assault’
+          Assault arrests (per 100,000).
+     ‘UrbanPop’
+          Percent urban population.
+     ‘Rape’
+          Rape arrests (per 100,000).
+
+     Note
+     ....
+
+     ‘USArrests’ contains the data as in McNeil’s monograph.  For the
+     ‘UrbanPop’ percentages, a review of the table (No.  21) in the
+     Statistical Abstracts 1975 reveals a transcription error for
+     Maryland (and that McNeil used the same “round to even” rule), as
+     found by Daniel S Coven (Arizona).
+
+     See the example below on how to correct the error and improve
+     accuracy for the ‘<n>.5’ percentages.
+
+     Source
+     ......
+
+     ‘World Almanac and Book of Facts 1975’.  (Crime rates).
+
+     ‘Statistical Abstracts of the United States 1975’, p.20, (Urban
+     rates), possibly available as
+     <https://books.google.ch/books?id=zl9qAAAAMAAJ&pg=PA20>.
+
+     References
+     ..........
+
+     McNeil, D. R. (1977) ‘Interactive Data Analysis’.  New York: Wiley.
+
+     Examples
+     ........
+
+          t = octave.dataset.USArrests;
+
+          summary (t);
+
+          octave.examples.plot_pairs (t(:,2:end));
+
+          # TODO: Difference between USArrests and its correction
+
+          # TODO: +/- 0.5 to restore the original <n>.5 percentages
+
+
+
+File: tablicious.info,  Node: octave.dataset.USJudgeRatings,  Next: octave.dataset.USPersonalExpenditure,  Prev: octave.dataset.USArrests,  Up: octave.dataset
+
+8.2.46.76 octave.dataset.USJudgeRatings
+.......................................
+
+ -- Static Method: OUT = USJudgeRatings ()
+
+     Lawyers’ Ratings of State Judges in the US Superior Court
+
+     Description
+     ...........
+
+     Lawyers’ ratings of state judges in the US Superior Court.
+
+     Format
+     ......
+
+     ‘CONT’
+          Number of contacts of lawyer with judge.
+     ‘INTG’
+          Judicial integrity.
+     ‘DMNR’
+          Demeanor.
+     ‘DILG’
+          Diligence.
+     ‘CFMG’
+          Case flow managing.
+     ‘DECI’
+          Prompt decisions.
+     ‘PREP’
+          Preparation for trial.
+     ‘FAMI’
+          Familiarity with law.
+     ‘ORAL’
+          Sound oral rulings.
+     ‘WRIT’
+          Sound written rulings.
+     ‘PHYS’
+          Physical ability.
+     ‘RTEN’
+          Worthy of retention.
+
+     Source
+     ......
+
+     New Haven Register, 14 January, 1977 (from John Hartigan).
+
+     Examples
+     ........
+
+          t = octave.dataset.USJudgeRatings;
+
+          figure
+          octave.examples.plot_pairs (t(:,2:end));
+          title ("USJudgeRatings data")
+
+
+File: tablicious.info,  Node: octave.dataset.USPersonalExpenditure,  Prev: octave.dataset.USJudgeRatings,  Up: octave.dataset
+
+8.2.46.77 octave.dataset.USPersonalExpenditure
+..............................................
+
+ -- Static Method: OUT = USPersonalExpenditure ()
+
+     Personal Expenditure Data
+
+     Description
+     ...........
+
+     This data set consists of United States personal expenditures (in
+     billions of dollars) in the categories: food and tobacco, household
+     operation, medical and health, personal care, and private education
+     for the years 1940, 1945, 1950, 1955 and 1960.
+
+     Format
+     ......
+
+     A 2-dimensional matrix ‘x’ with Category along dimension 1 and Year
+     along dimension 2.
+
+     Source
+     ......
+
+     ‘The World Almanac and Book of Facts’, 1962, page 756.
+
+     References
+     ..........
+
+     Tukey, J. W. (1977) ‘Exploratory Data Analysis’.  Addison-Wesley.
+
+     McNeil, D. R. (1977) ‘Interactive Data Analysis’.  Wiley.
+
+     Examples
+     ........
+
+          octave.dataset.USPersonalExpenditure;
+
+          # TODO: Port medpolish() from R, whatever that is.
+
 
 
 File: tablicious.info,  Node: octave.datasets,  Next: octave.examples.coplot,  Prev: octave.dataset,  Up: API Alphabetically
@@ -8222,165 +10348,203 @@ Node: octave.chrono.DummyClass.DummyClass110496
 Node: octave.chrono.DummyClass.foo110967
 Node: octave.chrono.DummyClass.bar111506
 Node: octave.dataset112001
-Node: octave.dataset.airmiles113596
-Node: octave.dataset.AirPassengers114350
-Node: octave.dataset.airquality115100
-Node: octave.dataset.anscombe117195
-Node: octave.dataset.attenu119160
-Node: octave.dataset.attitude120597
-Node: octave.dataset.austres121825
-Node: octave.dataset.beavers122716
-Node: octave.dataset.BJsales123857
-Node: octave.dataset.BOD124949
-Node: octave.dataset.cars125888
-Node: octave.dataset.ChickWeight127577
-Node: octave.dataset.chickwts129038
-Node: octave.dataset.co2130521
-Node: octave.dataset.crimtab132007
-Node: octave.dataset.cupcake135487
-Node: octave.dataset.discoveries136457
-Node: octave.dataset.DNase137472
-Node: octave.dataset.esoph138721
-Node: octave.dataset.euro139879
-Node: octave.dataset.eurodist141551
-Node: octave.dataset.EuStockMarkets142460
-Node: octave.dataset.faithful143996
-Node: octave.dataset.Formaldehyde145831
-Node: octave.dataset.freeny147258
-Node: octave.dataset.HairEyeColor148854
-Node: octave.dataset.Harman23cor151383
-Node: octave.dataset.Harman74cor152295
-Node: octave.dataset.Indometh153249
-Node: octave.dataset.infert154544
-Node: octave.dataset.InsectSprays155950
-Node: octave.dataset.iris156889
-Node: octave.dataset.islands158409
-Node: octave.dataset.JohnsonJohnson159285
-Node: octave.dataset.LakeHuron160170
-Node: octave.dataset.lh161238
-Node: octave.dataset.LifeCycleSavings162123
-Node: octave.dataset.Loblolly164021
-Node: octave.dataset.mtcars165038
-Node: octave.datasets166746
-Node: octave.datasets.list167264
-Node: octave.datasets.load167772
-Node: octave.datasets.description168203
-Node: octave.examples.coplot168783
-Node: octave.examples.plot_pairs170749
-Node: pp171875
-Node: rmmissing172537
-Node: scalarexpand173574
-Node: seconds174498
-Node: size2str174997
-Node: splitapply175600
-Node: standardizeMissing176723
-Node: startsWith177550
-Node: string178360
-Node: string.string181672
-Node: string.isstring182342
-Node: string.dispstrs182667
-Node: string.sizeof183246
-Node: string.ismissing183464
-Node: string.isnannish183943
-Node: string.cellstr184326
-Node: string.cell184671
-Node: string.char185158
-Node: string.encode185683
-Node: string.strlength_bytes186199
-Node: string.strlength186872
-Node: string.reverse_bytes187439
-Node: string.reverse188177
-Node: string.strcat188649
-Node: string.lower189227
-Node: string.upper189729
-Node: string.erase190230
-Node: string.strrep190567
-Node: string.strfind191172
-Node: string.regexprep191695
-Node: string.strcmp192171
-Node: string.cmp192864
-Node: string.missing193843
-Node: string.decode194245
-Node: struct2table194655
-Node: table195122
-Node: table.table198265
-Node: table.summary199317
-Node: table.prettyprint199661
-Node: table.table2cell200120
-Node: table.table2struct200608
-Node: table.table2array201243
-Node: table.varnames201490
-Node: table.istable201742
-Node: table.size201954
-Node: table.length202283
-Node: table.ndims202582
-Node: table.squeeze202833
-Node: table.sizeof203180
-Node: table.height203611
-Node: table.rows203819
-Node: table.width204020
-Node: table.columns204351
-Node: table.numel204689
-Node: table.isempty205209
-Node: table.ismatrix205533
-Node: table.isrow205822
-Node: table.iscol206040
-Node: table.isvector206400
-Node: table.isscalar206626
-Node: table.hasrownames206856
-Node: table.vertcat207106
-Node: table.horzcat207627
-Node: table.repmat208247
-Node: table.repelem208773
-Node: table.setVariableNames209214
-Node: table.setDimensionNames210007
-Node: table.setRowNames210892
-Node: table.resolveVarRef211265
-Node: table.subsetrows212267
-Node: table.subsetvars212612
-Node: table.removevars213119
-Node: table.movevars213504
-Node: table.getvar214232
-Node: table.getvars214724
-Node: table.setvar215197
-Node: table.addvars215921
-Node: table.convertvars216388
-Node: table.mergevars217376
-Node: table.splitvars217779
-Node: table.stack218337
-Node: table.head218746
-Node: table.tail219115
-Node: table.join219481
-Node: table.innerjoin220227
-Node: table.outerjoin220888
-Node: table.outerfillvals221695
-Node: table.semijoin222128
-Node: table.antijoin222897
-Node: table.cartesian223549
-Node: table.groupby224817
-Node: table.grpstats225668
-Node: table.splitapply226001
-Node: table.rows2vars226502
-Node: table.congruentize227627
-Node: table.union228496
-Node: table.intersect229068
-Node: table.setxor229676
-Node: table.setdiff230311
-Node: table.ismember230848
-Node: table.ismissing231250
-Node: table.rmmissing231934
-Node: table.standardizeMissing232726
-Node: table.varfun233716
-Node: table.rowfun234283
-Node: table.findgroups237369
-Node: table.evalWithVars237954
-Node: table.restrict238804
-Node: tableOuterFillValue239933
-Node: timezones241170
-Node: vartype242215
-Node: vecfun242928
-Node: years243655
-Node: Copying244332
+Node: octave.dataset.airmiles114676
+Node: octave.dataset.AirPassengers115430
+Node: octave.dataset.airquality116180
+Node: octave.dataset.anscombe118275
+Node: octave.dataset.attenu120240
+Node: octave.dataset.attitude121677
+Node: octave.dataset.austres122905
+Node: octave.dataset.beavers123796
+Node: octave.dataset.BJsales124937
+Node: octave.dataset.BOD126029
+Node: octave.dataset.cars126968
+Node: octave.dataset.ChickWeight128657
+Node: octave.dataset.chickwts130118
+Node: octave.dataset.co2131601
+Node: octave.dataset.crimtab133087
+Node: octave.dataset.cupcake136567
+Node: octave.dataset.discoveries137537
+Node: octave.dataset.DNase138552
+Node: octave.dataset.esoph139801
+Node: octave.dataset.euro140959
+Node: octave.dataset.eurodist142631
+Node: octave.dataset.EuStockMarkets143540
+Node: octave.dataset.faithful145076
+Node: octave.dataset.Formaldehyde146911
+Node: octave.dataset.freeny148338
+Node: octave.dataset.HairEyeColor149934
+Node: octave.dataset.Harman23cor152463
+Node: octave.dataset.Harman74cor153375
+Node: octave.dataset.Indometh154329
+Node: octave.dataset.infert155624
+Node: octave.dataset.InsectSprays157030
+Node: octave.dataset.iris157969
+Node: octave.dataset.islands159489
+Node: octave.dataset.JohnsonJohnson160365
+Node: octave.dataset.LakeHuron161250
+Node: octave.dataset.lh162318
+Node: octave.dataset.LifeCycleSavings163203
+Node: octave.dataset.Loblolly165101
+Node: octave.dataset.longley166385
+Node: octave.dataset.lynx167757
+Node: octave.dataset.morley169144
+Node: octave.dataset.mtcars170870
+Node: octave.dataset.nhtemp172606
+Node: octave.dataset.Nile173588
+Node: octave.dataset.nottem174868
+Node: octave.dataset.npk175715
+Node: octave.dataset.occupationalStatus176994
+Node: octave.dataset.Orange178019
+Node: octave.dataset.OrchardSprays179378
+Node: octave.dataset.PlantGrowth181206
+Node: octave.dataset.precip182090
+Node: octave.dataset.presidents182965
+Node: octave.dataset.pressure184172
+Node: octave.dataset.Puromycin185487
+Node: octave.dataset.quakes187295
+Node: octave.dataset.randu188839
+Node: octave.dataset.rivers190090
+Node: octave.dataset.rock190976
+Node: octave.dataset.sleep192196
+Node: octave.dataset.stackloss193411
+Node: octave.dataset.state195660
+Node: octave.dataset.sunspot_month197432
+Node: octave.dataset.sunspot_year198398
+Node: octave.dataset.sunspots199246
+Node: octave.dataset.swiss200347
+Node: octave.dataset.Theoph202425
+Node: octave.dataset.Titanic204730
+Node: octave.dataset.ToothGrowth207402
+Node: octave.dataset.treering208825
+Node: octave.dataset.trees209919
+Node: octave.dataset.UCBAdmissions211325
+Node: octave.dataset.UKDriverDeaths213495
+Node: octave.dataset.UKgas215797
+Node: octave.dataset.UKLungDeaths216733
+Node: octave.dataset.USArrests218004
+Node: octave.dataset.USJudgeRatings219973
+Node: octave.dataset.USPersonalExpenditure221287
+Node: octave.datasets222434
+Node: octave.datasets.list222952
+Node: octave.datasets.load223460
+Node: octave.datasets.description223891
+Node: octave.examples.coplot224471
+Node: octave.examples.plot_pairs226437
+Node: pp227563
+Node: rmmissing228225
+Node: scalarexpand229262
+Node: seconds230186
+Node: size2str230685
+Node: splitapply231288
+Node: standardizeMissing232411
+Node: startsWith233238
+Node: string234048
+Node: string.string237360
+Node: string.isstring238030
+Node: string.dispstrs238355
+Node: string.sizeof238934
+Node: string.ismissing239152
+Node: string.isnannish239631
+Node: string.cellstr240014
+Node: string.cell240359
+Node: string.char240846
+Node: string.encode241371
+Node: string.strlength_bytes241887
+Node: string.strlength242560
+Node: string.reverse_bytes243127
+Node: string.reverse243865
+Node: string.strcat244337
+Node: string.lower244915
+Node: string.upper245417
+Node: string.erase245918
+Node: string.strrep246255
+Node: string.strfind246860
+Node: string.regexprep247383
+Node: string.strcmp247859
+Node: string.cmp248552
+Node: string.missing249531
+Node: string.decode249933
+Node: struct2table250343
+Node: table250810
+Node: table.table253953
+Node: table.summary255005
+Node: table.prettyprint255349
+Node: table.table2cell255808
+Node: table.table2struct256296
+Node: table.table2array256931
+Node: table.varnames257178
+Node: table.istable257430
+Node: table.size257642
+Node: table.length257971
+Node: table.ndims258270
+Node: table.squeeze258521
+Node: table.sizeof258868
+Node: table.height259299
+Node: table.rows259507
+Node: table.width259708
+Node: table.columns260039
+Node: table.numel260377
+Node: table.isempty260897
+Node: table.ismatrix261221
+Node: table.isrow261510
+Node: table.iscol261728
+Node: table.isvector262088
+Node: table.isscalar262314
+Node: table.hasrownames262544
+Node: table.vertcat262794
+Node: table.horzcat263315
+Node: table.repmat263935
+Node: table.repelem264461
+Node: table.setVariableNames264902
+Node: table.setDimensionNames265695
+Node: table.setRowNames266580
+Node: table.resolveVarRef266953
+Node: table.subsetrows267955
+Node: table.subsetvars268300
+Node: table.removevars268807
+Node: table.movevars269192
+Node: table.getvar269920
+Node: table.getvars270412
+Node: table.setvar270885
+Node: table.addvars271609
+Node: table.convertvars272076
+Node: table.mergevars273064
+Node: table.splitvars273467
+Node: table.stack274025
+Node: table.head274434
+Node: table.tail274803
+Node: table.join275169
+Node: table.innerjoin275915
+Node: table.outerjoin276576
+Node: table.outerfillvals277383
+Node: table.semijoin277816
+Node: table.antijoin278585
+Node: table.cartesian279237
+Node: table.groupby280505
+Node: table.grpstats281356
+Node: table.splitapply281689
+Node: table.rows2vars282190
+Node: table.congruentize283315
+Node: table.union284184
+Node: table.intersect284756
+Node: table.setxor285364
+Node: table.setdiff285999
+Node: table.ismember286536
+Node: table.ismissing286938
+Node: table.rmmissing287622
+Node: table.standardizeMissing288414
+Node: table.varfun289404
+Node: table.rowfun289971
+Node: table.findgroups293057
+Node: table.evalWithVars293642
+Node: table.restrict294492
+Node: tableOuterFillValue295621
+Node: timezones296858
+Node: vartype297903
+Node: vecfun298616
+Node: years299343
+Node: Copying300020
 
 End Tag Table
 

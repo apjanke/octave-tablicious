@@ -394,7 +394,83 @@
                             </section>
                             <section title="octave.dataset.Loblolly" ref="html/octave_002edataset_002eLoblolly.html">
                             </section>
+                            <section title="octave.dataset.longley" ref="html/octave_002edataset_002elongley.html">
+                            </section>
+                            <section title="octave.dataset.lynx" ref="html/octave_002edataset_002elynx.html">
+                            </section>
+                            <section title="octave.dataset.morley" ref="html/octave_002edataset_002emorley.html">
+                            </section>
                             <section title="octave.dataset.mtcars" ref="html/octave_002edataset_002emtcars.html">
+                            </section>
+                            <section title="octave.dataset.nhtemp" ref="html/octave_002edataset_002enhtemp.html">
+                            </section>
+                            <section title="octave.dataset.Nile" ref="html/octave_002edataset_002eNile.html">
+                            </section>
+                            <section title="octave.dataset.nottem" ref="html/octave_002edataset_002enottem.html">
+                            </section>
+                            <section title="octave.dataset.npk" ref="html/octave_002edataset_002enpk.html">
+                            </section>
+                            <section title="octave.dataset.occupationalStatus" ref="html/octave_002edataset_002eoccupationalStatus.html">
+                            </section>
+                            <section title="octave.dataset.Orange" ref="html/octave_002edataset_002eOrange.html">
+                            </section>
+                            <section title="octave.dataset.OrchardSprays" ref="html/octave_002edataset_002eOrchardSprays.html">
+                            </section>
+                            <section title="octave.dataset.PlantGrowth" ref="html/octave_002edataset_002ePlantGrowth.html">
+                            </section>
+                            <section title="octave.dataset.precip" ref="html/octave_002edataset_002eprecip.html">
+                            </section>
+                            <section title="octave.dataset.presidents" ref="html/octave_002edataset_002epresidents.html">
+                            </section>
+                            <section title="octave.dataset.pressure" ref="html/octave_002edataset_002epressure.html">
+                            </section>
+                            <section title="octave.dataset.Puromycin" ref="html/octave_002edataset_002ePuromycin.html">
+                            </section>
+                            <section title="octave.dataset.quakes" ref="html/octave_002edataset_002equakes.html">
+                            </section>
+                            <section title="octave.dataset.randu" ref="html/octave_002edataset_002erandu.html">
+                            </section>
+                            <section title="octave.dataset.rivers" ref="html/octave_002edataset_002erivers.html">
+                            </section>
+                            <section title="octave.dataset.rock" ref="html/octave_002edataset_002erock.html">
+                            </section>
+                            <section title="octave.dataset.sleep" ref="html/octave_002edataset_002esleep.html">
+                            </section>
+                            <section title="octave.dataset.stackloss" ref="html/octave_002edataset_002estackloss.html">
+                            </section>
+                            <section title="octave.dataset.state" ref="html/octave_002edataset_002estate.html">
+                            </section>
+                            <section title="octave.dataset.sunspot_month" ref="html/octave_002edataset_002esunspot_005fmonth.html">
+                            </section>
+                            <section title="octave.dataset.sunspot_year" ref="html/octave_002edataset_002esunspot_005fyear.html">
+                            </section>
+                            <section title="octave.dataset.sunspots" ref="html/octave_002edataset_002esunspots.html">
+                            </section>
+                            <section title="octave.dataset.swiss" ref="html/octave_002edataset_002eswiss.html">
+                            </section>
+                            <section title="octave.dataset.Theoph" ref="html/octave_002edataset_002eTheoph.html">
+                            </section>
+                            <section title="octave.dataset.Titanic" ref="html/octave_002edataset_002eTitanic.html">
+                            </section>
+                            <section title="octave.dataset.ToothGrowth" ref="html/octave_002edataset_002eToothGrowth.html">
+                            </section>
+                            <section title="octave.dataset.treering" ref="html/octave_002edataset_002etreering.html">
+                            </section>
+                            <section title="octave.dataset.trees" ref="html/octave_002edataset_002etrees.html">
+                            </section>
+                            <section title="octave.dataset.UCBAdmissions" ref="html/octave_002edataset_002eUCBAdmissions.html">
+                            </section>
+                            <section title="octave.dataset.UKDriverDeaths" ref="html/octave_002edataset_002eUKDriverDeaths.html">
+                            </section>
+                            <section title="octave.dataset.UKgas" ref="html/octave_002edataset_002eUKgas.html">
+                            </section>
+                            <section title="octave.dataset.UKLungDeaths" ref="html/octave_002edataset_002eUKLungDeaths.html">
+                            </section>
+                            <section title="octave.dataset.USArrests" ref="html/octave_002edataset_002eUSArrests.html">
+                            </section>
+                            <section title="octave.dataset.USJudgeRatings" ref="html/octave_002edataset_002eUSJudgeRatings.html">
+                            </section>
+                            <section title="octave.dataset.USPersonalExpenditure" ref="html/octave_002edataset_002eUSPersonalExpenditure.html">
                             </section>
                         </section>
                         <section title="octave.datasets" ref="html/octave_002edatasets.html">
@@ -798,6 +874,21 @@
             <keyword name="octave.dataset.LakeHuron" id="octave.dataset.LakeHuron" ref="html/octave_002edataset_002eLakeHuron.html"/>
             <keyword name="octave.dataset.LifeCycleSavings" id="octave.dataset.LifeCycleSavings" ref="html/octave_002edataset_002eLifeCycleSavings.html"/>
             <keyword name="octave.dataset.Loblolly" id="octave.dataset.Loblolly" ref="html/octave_002edataset_002eLoblolly.html"/>
+            <keyword name="octave.dataset.Nile" id="octave.dataset.Nile" ref="html/octave_002edataset_002eNile.html"/>
+            <keyword name="octave.dataset.Orange" id="octave.dataset.Orange" ref="html/octave_002edataset_002eOrange.html"/>
+            <keyword name="octave.dataset.OrchardSprays" id="octave.dataset.OrchardSprays" ref="html/octave_002edataset_002eOrchardSprays.html"/>
+            <keyword name="octave.dataset.PlantGrowth" id="octave.dataset.PlantGrowth" ref="html/octave_002edataset_002ePlantGrowth.html"/>
+            <keyword name="octave.dataset.Puromycin" id="octave.dataset.Puromycin" ref="html/octave_002edataset_002ePuromycin.html"/>
+            <keyword name="octave.dataset.Theoph" id="octave.dataset.Theoph" ref="html/octave_002edataset_002eTheoph.html"/>
+            <keyword name="octave.dataset.Titanic" id="octave.dataset.Titanic" ref="html/octave_002edataset_002eTitanic.html"/>
+            <keyword name="octave.dataset.ToothGrowth" id="octave.dataset.ToothGrowth" ref="html/octave_002edataset_002eToothGrowth.html"/>
+            <keyword name="octave.dataset.UCBAdmissions" id="octave.dataset.UCBAdmissions" ref="html/octave_002edataset_002eUCBAdmissions.html"/>
+            <keyword name="octave.dataset.UKDriverDeaths" id="octave.dataset.UKDriverDeaths" ref="html/octave_002edataset_002eUKDriverDeaths.html"/>
+            <keyword name="octave.dataset.UKLungDeaths" id="octave.dataset.UKLungDeaths" ref="html/octave_002edataset_002eUKLungDeaths.html"/>
+            <keyword name="octave.dataset.UKgas" id="octave.dataset.UKgas" ref="html/octave_002edataset_002eUKgas.html"/>
+            <keyword name="octave.dataset.USArrests" id="octave.dataset.USArrests" ref="html/octave_002edataset_002eUSArrests.html"/>
+            <keyword name="octave.dataset.USJudgeRatings" id="octave.dataset.USJudgeRatings" ref="html/octave_002edataset_002eUSJudgeRatings.html"/>
+            <keyword name="octave.dataset.USPersonalExpenditure" id="octave.dataset.USPersonalExpenditure" ref="html/octave_002edataset_002eUSPersonalExpenditure.html"/>
             <keyword name="octave.dataset.airmiles" id="octave.dataset.airmiles" ref="html/octave_002edataset_002eairmiles.html"/>
             <keyword name="octave.dataset.airquality" id="octave.dataset.airquality" ref="html/octave_002edataset_002eairquality.html"/>
             <keyword name="octave.dataset.anscombe" id="octave.dataset.anscombe" ref="html/octave_002edataset_002eanscombe.html"/>
@@ -820,7 +911,30 @@
             <keyword name="octave.dataset.iris" id="octave.dataset.iris" ref="html/octave_002edataset_002eiris.html"/>
             <keyword name="octave.dataset.islands" id="octave.dataset.islands" ref="html/octave_002edataset_002eislands.html"/>
             <keyword name="octave.dataset.lh" id="octave.dataset.lh" ref="html/octave_002edataset_002elh.html"/>
+            <keyword name="octave.dataset.longley" id="octave.dataset.longley" ref="html/octave_002edataset_002elongley.html"/>
+            <keyword name="octave.dataset.lynx" id="octave.dataset.lynx" ref="html/octave_002edataset_002elynx.html"/>
+            <keyword name="octave.dataset.morley" id="octave.dataset.morley" ref="html/octave_002edataset_002emorley.html"/>
             <keyword name="octave.dataset.mtcars" id="octave.dataset.mtcars" ref="html/octave_002edataset_002emtcars.html"/>
+            <keyword name="octave.dataset.nhtemp" id="octave.dataset.nhtemp" ref="html/octave_002edataset_002enhtemp.html"/>
+            <keyword name="octave.dataset.nottem" id="octave.dataset.nottem" ref="html/octave_002edataset_002enottem.html"/>
+            <keyword name="octave.dataset.npk" id="octave.dataset.npk" ref="html/octave_002edataset_002enpk.html"/>
+            <keyword name="octave.dataset.occupationalStatus" id="octave.dataset.occupationalStatus" ref="html/octave_002edataset_002eoccupationalStatus.html"/>
+            <keyword name="octave.dataset.precip" id="octave.dataset.precip" ref="html/octave_002edataset_002eprecip.html"/>
+            <keyword name="octave.dataset.presidents" id="octave.dataset.presidents" ref="html/octave_002edataset_002epresidents.html"/>
+            <keyword name="octave.dataset.pressure" id="octave.dataset.pressure" ref="html/octave_002edataset_002epressure.html"/>
+            <keyword name="octave.dataset.quakes" id="octave.dataset.quakes" ref="html/octave_002edataset_002equakes.html"/>
+            <keyword name="octave.dataset.randu" id="octave.dataset.randu" ref="html/octave_002edataset_002erandu.html"/>
+            <keyword name="octave.dataset.rivers" id="octave.dataset.rivers" ref="html/octave_002edataset_002erivers.html"/>
+            <keyword name="octave.dataset.rock" id="octave.dataset.rock" ref="html/octave_002edataset_002erock.html"/>
+            <keyword name="octave.dataset.sleep" id="octave.dataset.sleep" ref="html/octave_002edataset_002esleep.html"/>
+            <keyword name="octave.dataset.stackloss" id="octave.dataset.stackloss" ref="html/octave_002edataset_002estackloss.html"/>
+            <keyword name="octave.dataset.state" id="octave.dataset.state" ref="html/octave_002edataset_002estate.html"/>
+            <keyword name="octave.dataset.sunspot_month" id="octave.dataset.sunspot_month" ref="html/octave_002edataset_002esunspot_005fmonth.html"/>
+            <keyword name="octave.dataset.sunspot_year" id="octave.dataset.sunspot_year" ref="html/octave_002edataset_002esunspot_005fyear.html"/>
+            <keyword name="octave.dataset.sunspots" id="octave.dataset.sunspots" ref="html/octave_002edataset_002esunspots.html"/>
+            <keyword name="octave.dataset.swiss" id="octave.dataset.swiss" ref="html/octave_002edataset_002eswiss.html"/>
+            <keyword name="octave.dataset.treering" id="octave.dataset.treering" ref="html/octave_002edataset_002etreering.html"/>
+            <keyword name="octave.dataset.trees" id="octave.dataset.trees" ref="html/octave_002edataset_002etrees.html"/>
             <keyword name="octave.datasets" id="octave.datasets" ref="html/octave_002edatasets.html"/>
             <keyword name="octave.datasets.description" id="octave.datasets.description" ref="html/octave_002edatasets_002edescription.html"/>
             <keyword name="octave.datasets.list" id="octave.datasets.list" ref="html/octave_002edatasets_002elist.html"/>
@@ -1063,7 +1177,45 @@
             <file>html/octave_002edatasets_002eload.html</file>
             <file>html/octave_002edatasets_002elist.html</file>
             <file>html/octave_002edatasets.html</file>
+            <file>html/octave_002edataset_002eUSPersonalExpenditure.html</file>
+            <file>html/octave_002edataset_002eUSJudgeRatings.html</file>
+            <file>html/octave_002edataset_002eUSArrests.html</file>
+            <file>html/octave_002edataset_002eUKLungDeaths.html</file>
+            <file>html/octave_002edataset_002eUKgas.html</file>
+            <file>html/octave_002edataset_002eUKDriverDeaths.html</file>
+            <file>html/octave_002edataset_002eUCBAdmissions.html</file>
+            <file>html/octave_002edataset_002etrees.html</file>
+            <file>html/octave_002edataset_002etreering.html</file>
+            <file>html/octave_002edataset_002eToothGrowth.html</file>
+            <file>html/octave_002edataset_002eTitanic.html</file>
+            <file>html/octave_002edataset_002eTheoph.html</file>
+            <file>html/octave_002edataset_002eswiss.html</file>
+            <file>html/octave_002edataset_002esunspots.html</file>
+            <file>html/octave_002edataset_002esunspot_005fyear.html</file>
+            <file>html/octave_002edataset_002esunspot_005fmonth.html</file>
+            <file>html/octave_002edataset_002estate.html</file>
+            <file>html/octave_002edataset_002estackloss.html</file>
+            <file>html/octave_002edataset_002esleep.html</file>
+            <file>html/octave_002edataset_002erock.html</file>
+            <file>html/octave_002edataset_002erivers.html</file>
+            <file>html/octave_002edataset_002erandu.html</file>
+            <file>html/octave_002edataset_002equakes.html</file>
+            <file>html/octave_002edataset_002ePuromycin.html</file>
+            <file>html/octave_002edataset_002epressure.html</file>
+            <file>html/octave_002edataset_002epresidents.html</file>
+            <file>html/octave_002edataset_002eprecip.html</file>
+            <file>html/octave_002edataset_002ePlantGrowth.html</file>
+            <file>html/octave_002edataset_002eOrchardSprays.html</file>
+            <file>html/octave_002edataset_002eOrange.html</file>
+            <file>html/octave_002edataset_002eoccupationalStatus.html</file>
+            <file>html/octave_002edataset_002enpk.html</file>
+            <file>html/octave_002edataset_002enottem.html</file>
+            <file>html/octave_002edataset_002eNile.html</file>
+            <file>html/octave_002edataset_002enhtemp.html</file>
             <file>html/octave_002edataset_002emtcars.html</file>
+            <file>html/octave_002edataset_002emorley.html</file>
+            <file>html/octave_002edataset_002elynx.html</file>
+            <file>html/octave_002edataset_002elongley.html</file>
             <file>html/octave_002edataset_002eLoblolly.html</file>
             <file>html/octave_002edataset_002eLifeCycleSavings.html</file>
             <file>html/octave_002edataset_002elh.html</file>
