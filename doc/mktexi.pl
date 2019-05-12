@@ -123,6 +123,15 @@ sub setdiff {
     return @diff;
 }
 
+sub node_name_to_doc_file_name {
+    my ($node_name) = @_;
+    my $out = $node_name;
+    $out =~ s/_/_005f/g; # Have to do this one first to avoid double-escaping
+	$out =~ s/\./_002e/g;
+	$out =~ s/\//_002f/g;
+    return $out;
+}
+
 # Generate the <pkg>.texi file
 
 my $in_tex = 0;
@@ -279,8 +288,7 @@ while (my $line = <TEXI>) {
 	my $section_qhelp_title = $section_title =~ s/@\w+{(.*?)}/\1/rg;
 	my $html_title = $node_name =~ s/\s/-/gr;
 	$html_title = "index" if $html_title eq "Top";
-	my $html_file_base = $html_title =~ s/_/_005f/gr; # I don't know why this happens -apj
-    $html_file_base =~ s/\./_002e/g;
+    my $html_file_base = node_name_to_doc_file_name ($html_title);
 	my $html_file = "$html_file_base.html";
 	unshift @files, $html_file;
 	print "Node: '$node_name' ($section_type): \"$section_title\" => \"$section_qhelp_title\""
@@ -329,9 +337,7 @@ my @node_names = keys %$node_index;
 @node_names = sort (@node_names);
 qhp "        <keywords>\n";
 for my $node (@node_names) {
-	my $file_base = $node;
-    $file_base =~ s/_/_005f/g;
-	$file_base =~ s/\./_002e/g; # I don't know why this happens -apj
+    my $file_base = node_name_to_doc_file_name ($node);
 	qhp "            <keyword name=\"$node\" id=\"$node\" ref=\"html/$file_base.html\"/>\n";
 }
 qhp "        </keywords>\n";
