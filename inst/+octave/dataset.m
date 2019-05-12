@@ -3189,6 +3189,545 @@ classdef dataset
       endif
     endfunction
 
+    ## -*- texinfo -*-
+    ## @node dataset.occupationalStatus
+    ## @deftypefn {Static Method} {@var{out} =} occupationalStatus ()
+    ##
+    ## Occupational Status of Fathers and their Sons
+    ##
+    ## @subsubheading Description
+    ## 
+    ## Cross-classification of a sample of British males according to each subject’s
+    ## occupational status and his father’s occupational status.
+    ## 
+    ## @subsubheading Format
+    ## 
+    ## An 8-by-8 matrix of counts, with classifying fators @code{origin} (father’s
+    ## occupational status, levels 1:8) and @code{destination} (son’s
+    ## occupational status, levels 1:8).
+    ## 
+    ## @subsubheading Source
+    ## 
+    ## Goodman, L. A. (1979) Simple Models for the Analysis of Association in
+    ## Cross-Classifications having Ordered Categories. @cite{J. Am. Stat.
+    ## Assoc.}, 74 (367), 537–552.
+    ## 
+    ## @subsubheading Examples
+    ## 
+    ## @example
+    ## # TODO: Come up with example code here
+    ## @end example
+    ## 
+    ##
+    ## @end deftypefn
+    function out = occupationalStatus ()
+      name = 'occupationalStatus';
+      data = octave.datasets.load(name);
+      if nargout == 0
+        if isstruct (data)
+          s = data;
+          vars = fieldnames (s);
+          for i = 1:numel (vars)
+            assignin ('caller', vars{i}, s.(vars{i}));
+          endfor
+          loaded_vars = vars;
+        else
+          assignin ('caller', name, data);
+          loaded_vars = { name };
+        endif
+        printf ('Loaded ''%s''. Variables: %s\n', name, strjoin (loaded_vars, ', '));
+      else
+        out = data;
+      endif
+    endfunction
+
+    ## -*- texinfo -*-
+    ## @node dataset.Orange
+    ## @deftypefn {Static Method} {@var{out} =} Orange ()
+    ##
+    ## Growth of Orange Trees
+    ##
+    ## @subsubheading Description
+    ## 
+    ## Records of the growth of orange trees.
+    ## 
+    ## @subsubheading Format
+    ## 
+    ## @table @code
+    ## @item Tree
+    ## A categorical indicating on which tree the measurement is made.
+    ## Ordering is according to increasing maximum diameter.
+    ## @item age
+    ## Age of the tree (days since 1968-12-31).
+    ## @item circumference
+    ## Trunk circumference (mm).
+    ## This is probably “circumference at breast height”, a standard measurement in forestry.
+    ## @end table
+    ## 
+    ## @subsubheading Source
+    ## 
+    ## The data are given in Box & Jenkins (1976). Obtained from the Time Series Data
+    ## Library at @url{http://www-personal.buseco.monash.edu.au/~hyndman/TSDL/}.
+    ## 
+    ## @subsubheading References
+    ## 
+    ## Draper, N. R. and Smith, H. (1998), @cite{Applied Regression Analysis (3rd ed)},
+    ## Wiley (exercise 24.N).
+    ## 
+    ## Pinheiro, J. C. and Bates, D. M. (2000) @cite{Mixed-effects Models in S and
+    ## S-PLUS}, Springer.
+    ## 
+    ## @subsubheading Examples
+    ## 
+    ## @example
+    ## t = octave.dataset.Orange;
+    ## 
+    ## # TODO: Port coplot to Octave
+    ## 
+    ## # TODO: Linear model
+    ## 
+    ## @end example
+    ## 
+    ##
+    ## @end deftypefn
+    function out = Orange ()
+      name = 'Orange';
+      data = octave.datasets.load(name);
+      if nargout == 0
+        if isstruct (data)
+          s = data;
+          vars = fieldnames (s);
+          for i = 1:numel (vars)
+            assignin ('caller', vars{i}, s.(vars{i}));
+          endfor
+          loaded_vars = vars;
+        else
+          assignin ('caller', name, data);
+          loaded_vars = { name };
+        endif
+        printf ('Loaded ''%s''. Variables: %s\n', name, strjoin (loaded_vars, ', '));
+      else
+        out = data;
+      endif
+    endfunction
+
+    ## -*- texinfo -*-
+    ## @node dataset.OrchardSprays
+    ## @deftypefn {Static Method} {@var{out} =} OrchardSprays ()
+    ##
+    ## Potency of Orchard Sprays
+    ##
+    ## @subsubheading Description
+    ## 
+    ## An experiment was conducted to assess the potency of various constituents
+    ## of orchard sprays in repelling honeybees, using a Latin square design.
+    ## 
+    ## @subsubheading Format
+    ## 
+    ## @table @code
+    ## @item rowpos
+    ## Row of the design.
+    ## @item colpos
+    ## Column of the design
+    ## @item treatment
+    ## Treatment level.
+    ## @item decrease
+    ## Response.
+    ## @end table
+    ## 
+    ## @Details
+    ## 
+    ## Individual cells of dry comb were filled with measured amounts of lime
+    ## sulphur emulsion in sucrose solution. Seven different concentrations of lime
+    ## sulphur ranging from a concentration of 1/100 to 1/1,562,500 in successive
+    ## factors of 1/5 were used as well as a solution containing no lime sulphur.
+    ## 
+    ## The responses for the different solutions were obtained by releasing 100
+    ## bees into the chamber for two hours, and then measuring the decrease in volume
+    ## of the solutions in the various cells.
+    ## 
+    ## An 8 x 8 Latin square design was used and the treatments were coded as follows:
+    ## 
+    ## A – highest level of lime sulphur
+    ## B – next highest level of lime sulphur
+    ## @dots{}
+    ## G – lowest level of lime sulphur
+    ## H – no lime sulphur
+    ## 
+    ## @subsubheading Source
+    ## 
+    ## Finney, D. J. (1947) @cite{Probit Analysis}. Cambridge.
+    ## 
+    ## @subsubheading References
+    ## 
+    ## McNeil, D. R. (1977) @cite{Interactive Data Analysis}. New York: Wiley.
+    ## 
+    ## @subsubheading Examples
+    ## 
+    ## @example
+    ## t = octave.dataset.OrchardSprays;
+    ## 
+    ## octave.examples.plot_pairs (t);
+    ## 
+    ## @end example
+    ## 
+    ##
+    ## @end deftypefn
+    function out = OrchardSprays ()
+      name = 'OrchardSprays';
+      data = octave.datasets.load(name);
+      if nargout == 0
+        if isstruct (data)
+          s = data;
+          vars = fieldnames (s);
+          for i = 1:numel (vars)
+            assignin ('caller', vars{i}, s.(vars{i}));
+          endfor
+          loaded_vars = vars;
+        else
+          assignin ('caller', name, data);
+          loaded_vars = { name };
+        endif
+        printf ('Loaded ''%s''. Variables: %s\n', name, strjoin (loaded_vars, ', '));
+      else
+        out = data;
+      endif
+    endfunction
+
+    ## -*- texinfo -*-
+    ## @node dataset.PlantGrowth
+    ## @deftypefn {Static Method} {@var{out} =} PlantGrowth ()
+    ##
+    ## Results from an Experiment on Plant Growth
+    ##
+    ## @subsubheading Description
+    ## 
+    ## Results from an experiment to compare yields (as measured by dried weight of
+    ## plants) obtained under a control and two different treatment conditions.
+    ## 
+    ## @subsubheading Format
+    ## 
+    ## @table @code
+    ## @item group
+    ## Treatment condition group.
+    ## @item weight
+    ## Weight of plants.
+    ## @end table
+    ## 
+    ## @subsubheading Source
+    ## 
+    ## Dobson, A. J. (1983) @cite{An Introduction to Statistical Modelling}.
+    ## London: Chapman and Hall.
+    ## 
+    ## @subsubheading Examples
+    ## 
+    ## @example
+    ## t = octave.dataset.PlantGrowth;
+    ## 
+    ## # TODO: Port anova to Octave
+    ## 
+    ## @end example
+    ## 
+    ##
+    ## @end deftypefn
+    function out = PlantGrowth ()
+      name = 'PlantGrowth';
+      data = octave.datasets.load(name);
+      if nargout == 0
+        if isstruct (data)
+          s = data;
+          vars = fieldnames (s);
+          for i = 1:numel (vars)
+            assignin ('caller', vars{i}, s.(vars{i}));
+          endfor
+          loaded_vars = vars;
+        else
+          assignin ('caller', name, data);
+          loaded_vars = { name };
+        endif
+        printf ('Loaded ''%s''. Variables: %s\n', name, strjoin (loaded_vars, ', '));
+      else
+        out = data;
+      endif
+    endfunction
+
+    ## -*- texinfo -*-
+    ## @node dataset.precip
+    ## @deftypefn {Static Method} {@var{out} =} precip ()
+    ##
+    ## Annual Precipitation in US Cities
+    ##
+    ## @subsubheading Description
+    ## 
+    ## The average amount of precipitation (rainfall) in inches for each of 70 United
+    ## States (and Puerto Rico) cities.
+    ## 
+    ## @subsubheading Format
+    ## 
+    ## @table @code
+    ## @item city
+    ## City observed.
+    ## @item precip
+    ## Annual precipitation (in).
+    ## @end table
+    ## 
+    ## @subsubheading Source
+    ## 
+    ## @cite{Statistical Abstracts of the United States}, 1975.
+    ## 
+    ## @subsubheading References
+    ## 
+    ## McNeil, D. R. (1977) @cite{Interactive Data Analysis}. New York: Wiley.
+    ## 
+    ## @subsubheading Examples
+    ## 
+    ## @example
+    ## t = octave.dataset.precip;
+    ## 
+    ## # TODO: Port dot plot to Octave
+    ## 
+    ## @end example
+    ## 
+    ##
+    ## @end deftypefn
+    function out = precip ()
+      name = 'precip';
+      data = octave.datasets.load(name);
+      if nargout == 0
+        if isstruct (data)
+          s = data;
+          vars = fieldnames (s);
+          for i = 1:numel (vars)
+            assignin ('caller', vars{i}, s.(vars{i}));
+          endfor
+          loaded_vars = vars;
+        else
+          assignin ('caller', name, data);
+          loaded_vars = { name };
+        endif
+        printf ('Loaded ''%s''. Variables: %s\n', name, strjoin (loaded_vars, ', '));
+      else
+        out = data;
+      endif
+    endfunction
+
+    ## -*- texinfo -*-
+    ## @node dataset.presidents
+    ## @deftypefn {Static Method} {@var{out} =} presidents ()
+    ##
+    ## Quarterly Approval Ratings of US Presidents
+    ##
+    ## @subsubheading Description
+    ## 
+    ## The (approximately) quarterly approval rating for the President of the United
+    ## States from the first quarter of 1945 to the last quarter of 1974.
+    ## 
+    ## @subsubheading Format
+    ## 
+    ## @table @code
+    ## @item date
+    ## Approximate date of the observation.
+    ## @item approval
+    ## Approval rating (%).
+    ## @end table
+    ## 
+    ## @subsubheading Details
+    ## 
+    ## The data are actually a fudged version of the approval ratings. See McNeil’s book
+    ## for details.
+    ## 
+    ## @subsubheading Source
+    ## 
+    ## The Gallup Organisation.
+    ## 
+    ## @subsubheading References
+    ## 
+    ## McNeil, D. R. (1977) @cite{Interactive Data Analysis}. New York: Wiley.
+    ## 
+    ## @subsubheading Examples
+    ## 
+    ## @example
+    ## t = octave.dataset.presidents;
+    ## 
+    ## figure
+    ## plot (datenum (t.date), t.approval)
+    ## datetick ("x")
+    ## xlabel ("Date")
+    ## ylabel ("Approval rating (%)")
+    ## title ("presidents data")
+    ## 
+    ## @end example
+    ## 
+    ##
+    ## @end deftypefn
+    function out = presidents ()
+      name = 'presidents';
+      data = octave.datasets.load(name);
+      if nargout == 0
+        if isstruct (data)
+          s = data;
+          vars = fieldnames (s);
+          for i = 1:numel (vars)
+            assignin ('caller', vars{i}, s.(vars{i}));
+          endfor
+          loaded_vars = vars;
+        else
+          assignin ('caller', name, data);
+          loaded_vars = { name };
+        endif
+        printf ('Loaded ''%s''. Variables: %s\n', name, strjoin (loaded_vars, ', '));
+      else
+        out = data;
+      endif
+    endfunction
+
+    ## -*- texinfo -*-
+    ## @node dataset.pressure
+    ## @deftypefn {Static Method} {@var{out} =} pressure ()
+    ##
+    ## Vapor Pressure of Mercury as a Function of Temperature
+    ##
+    ## @subsubheading Description
+    ## 
+    ## Data on the relation between temperature in degrees Celsius and vapor pressure
+    ## of mercury in millimeters (of mercury).
+    ## 
+    ## @subsubheading Format
+    ## 
+    ## @table @code
+    ## @item temperature
+    ## Temperature (deg C).
+    ## @item pressure
+    ## Pressure (mm Hg).
+    ## @end table
+    ## 
+    ## @subsubheading Source
+    ## 
+    ## Weast, R. C., ed. (1973) @cite{Handbook of Chemistry and Physics}. CRC Press.
+    ## 
+    ## @subsubheading References
+    ## 
+    ## McNeil, D. R. (1977) @cite{Interactive Data Analysis}. New York: Wiley.
+    ## 
+    ## @subsubheading Examples
+    ## 
+    ## @example
+    ## t = octave.dataset.pressure;
+    ## 
+    ## figure
+    ## plot (t.temperature, t.pressure)
+    ## xlabel ("Temperature (deg C)")
+    ## ylabel ("Pressure (mm of Hg)")
+    ## title ("pressure data: Vapor Pressure of Mercury")
+    ## 
+    ## figure
+    ## semilogy (t.temperature, t.pressure)
+    ## xlabel ("Temperature (deg C)")
+    ## ylabel ("Pressure (mm of Hg)")
+    ## title ("pressure data: Vapor Pressure of Mercury")
+    ## 
+    ## 
+    ## @end example
+    ## 
+    ##
+    ## @end deftypefn
+    function out = pressure ()
+      name = 'pressure';
+      data = octave.datasets.load(name);
+      if nargout == 0
+        if isstruct (data)
+          s = data;
+          vars = fieldnames (s);
+          for i = 1:numel (vars)
+            assignin ('caller', vars{i}, s.(vars{i}));
+          endfor
+          loaded_vars = vars;
+        else
+          assignin ('caller', name, data);
+          loaded_vars = { name };
+        endif
+        printf ('Loaded ''%s''. Variables: %s\n', name, strjoin (loaded_vars, ', '));
+      else
+        out = data;
+      endif
+    endfunction
+
+    ## -*- texinfo -*-
+    ## @node dataset.Puromycin
+    ## @deftypefn {Static Method} {@var{out} =} Puromycin ()
+    ##
+    ## Reaction Velocity of an Enzymatic Reaction
+    ##
+    ## @subsubheading Description
+    ## 
+    ## Reaction velocity versus substrate concentration in an enzymatic reaction
+    ## involving untreated cells or cells treated with Puromycin.
+    ## 
+    ## @subsubheading Format
+    ## 
+    ## @table @code
+    ## @item state
+    ## Whether the cell was treated.
+    ## @item conc
+    ## Substrate concentrations (ppm).
+    ## @item rate
+    ## Instantaneous reaction rates (counts/min/min).
+    ## @end table
+    ## 
+    ## @subsubheading Details
+    ## 
+    ## Data on the velocity of an enzymatic reaction were obtained by Treloar
+    ## (1974). The number of counts per minute of radioactive product from the
+    ## reaction was measured as a function of substrate concentration in parts per
+    ## million (ppm) and from these counts the initial rate (or velocity) of the
+    ## reaction was calculated (counts/min/min). The experiment was conducted once
+    ## with the enzyme treated with Puromycin, and once with the enzyme untreated.
+    ## 
+    ## @subsubheading Source
+    ## 
+    ## The data are given in Box & Jenkins (1976). Obtained from the Time Series Data
+    ## Library at @url{http://www-personal.buseco.monash.edu.au/~hyndman/TSDL/}.
+    ## 
+    ## @subsubheading References
+    ## 
+    ## Bates, D.M. and Watts, D.G. (1988), @cite{Nonlinear Regression Analysis and
+    ## Its Applications}, Wiley, Appendix A1.3.
+    ## 
+    ## Treloar, M. A. (1974), @cite{Effects of Puromycin on Galactosyltransferase
+    ## in Golgi Membranes}, M.Sc. Thesis, U. of Toronto.
+    ## 
+    ## @subsubheading Examples
+    ## 
+    ## @example
+    ## t = octave.dataset.Puromycin
+    ## 
+    ## # TODO: Port example to Octave
+    ## 
+    ## @end example
+    ## 
+    ##
+    ## @end deftypefn
+    function out = Puromycin ()
+      name = 'Puromycin';
+      data = octave.datasets.load(name);
+      if nargout == 0
+        if isstruct (data)
+          s = data;
+          vars = fieldnames (s);
+          for i = 1:numel (vars)
+            assignin ('caller', vars{i}, s.(vars{i}));
+          endfor
+          loaded_vars = vars;
+        else
+          assignin ('caller', name, data);
+          loaded_vars = { name };
+        endif
+        printf ('Loaded ''%s''. Variables: %s\n', name, strjoin (loaded_vars, ', '));
+      else
+        out = data;
+      endif
+    endfunction
+
   endmethods
 
 endclassdef

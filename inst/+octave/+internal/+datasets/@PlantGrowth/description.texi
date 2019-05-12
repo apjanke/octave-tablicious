@@ -1,0 +1,24 @@
+@subsubheading Description
+
+Results from an experiment to compare yields (as measured by dried weight of
+plants) obtained under a control and two different treatment conditions.
+
+@subsubheading Format
+
+@table @code
+@item group
+Treatment condition group.
+@item weight
+Weight of plants.
+@end table
+
+@subsubheading Source
+
+Dobson, A. J. (1983) @cite{An Introduction to Statistical Modelling}.
+London: Chapman and Hall.
+
+@subsubheading Examples
+
+@example
+@INCLUDE_DATASET_EXAMPLE_SCRIPT{PlantGrowth_1.m}
+@end example

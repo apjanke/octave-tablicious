@@ -1,0 +1,22 @@
+@subsubheading Description
+
+Cross-classification of a sample of British males according to each subject’s
+occupational status and his father’s occupational status.
+
+@subsubheading Format
+
+An 8-by-8 matrix of counts, with classifying fators @code{origin} (father’s
+occupational status, levels 1:8) and @code{destination} (son’s
+occupational status, levels 1:8).
+
+@subsubheading Source
+
+Goodman, L. A. (1979) Simple Models for the Analysis of Association in
+Cross-Classifications having Ordered Categories. @cite{J. Am. Stat.
+Assoc.}, 74 (367), 537–552.
+
+@subsubheading Examples
+
+@example
+@INCLUDE_DATASET_EXAMPLE_SCRIPT{BJsales_1.m}
+@end example

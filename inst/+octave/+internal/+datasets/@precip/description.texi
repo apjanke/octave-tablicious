@@ -1,0 +1,27 @@
+@subsubheading Description
+
+The average amount of precipitation (rainfall) in inches for each of 70 United
+States (and Puerto Rico) cities.
+
+@subsubheading Format
+
+@table @code
+@item city
+City observed.
+@item precip
+Annual precipitation (in).
+@end table
+
+@subsubheading Source
+
+@cite{Statistical Abstracts of the United States}, 1975.
+
+@subsubheading References
+
+McNeil, D. R. (1977) @cite{Interactive Data Analysis}. New York: Wiley.
+
+@subsubheading Examples
+
+@example
+@INCLUDE_DATASET_EXAMPLE_SCRIPT{precip_1.m}
+@end example

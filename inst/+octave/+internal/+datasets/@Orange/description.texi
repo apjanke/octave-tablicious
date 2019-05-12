@@ -1,0 +1,35 @@
+@subsubheading Description
+
+Records of the growth of orange trees.
+
+@subsubheading Format
+
+@table @code
+@item Tree
+A categorical indicating on which tree the measurement is made.
+Ordering is according to increasing maximum diameter.
+@item age
+Age of the tree (days since 1968-12-31).
+@item circumference
+Trunk circumference (mm).
+This is probably “circumference at breast height”, a standard measurement in forestry.
+@end table
+
+@subsubheading Source
+
+The data are given in Box & Jenkins (1976). Obtained from the Time Series Data
+Library at @url{http://www-personal.buseco.monash.edu.au/~hyndman/TSDL/}.
+
+@subsubheading References
+
+Draper, N. R. and Smith, H. (1998), @cite{Applied Regression Analysis (3rd ed)},
+Wiley (exercise 24.N).
+
+Pinheiro, J. C. and Bates, D. M. (2000) @cite{Mixed-effects Models in S and
+S-PLUS}, Springer.
+
+@subsubheading Examples
+
+@example
+@INCLUDE_DATASET_EXAMPLE_SCRIPT{Orange_1.m}
+@end example

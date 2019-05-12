@@ -82,6 +82,14 @@ classdef (Abstract) dataset
       "Nile"
       "nottem"
       "npk"
+      "occupationalStatus"
+      "Orange"
+      "OrchardSprays"
+      "PlantGrowth"
+      "precip"
+      "presidents"
+      "pressure"
+      "Puromycin"
     }
 
   endproperties

@@ -1,0 +1,32 @@
+@subsubheading Description
+
+The (approximately) quarterly approval rating for the President of the United
+States from the first quarter of 1945 to the last quarter of 1974.
+
+@subsubheading Format
+
+@table @code
+@item date
+Approximate date of the observation.
+@item approval
+Approval rating (%).
+@end table
+
+@subsubheading Details
+
+The data are actually a fudged version of the approval ratings. See McNeil’s book
+for details.
+
+@subsubheading Source
+
+The Gallup Organisation.
+
+@subsubheading References
+
+McNeil, D. R. (1977) @cite{Interactive Data Analysis}. New York: Wiley.
+
+@subsubheading Examples
+
+@example
+@INCLUDE_DATASET_EXAMPLE_SCRIPT{presidents_1.m}
+@end example

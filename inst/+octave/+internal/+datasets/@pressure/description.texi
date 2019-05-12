@@ -1,0 +1,27 @@
+@subsubheading Description
+
+Data on the relation between temperature in degrees Celsius and vapor pressure
+of mercury in millimeters (of mercury).
+
+@subsubheading Format
+
+@table @code
+@item temperature
+Temperature (deg C).
+@item pressure
+Pressure (mm Hg).
+@end table
+
+@subsubheading Source
+
+Weast, R. C., ed. (1973) @cite{Handbook of Chemistry and Physics}. CRC Press.
+
+@subsubheading References
+
+McNeil, D. R. (1977) @cite{Interactive Data Analysis}. New York: Wiley.
+
+@subsubheading Examples
+
+@example
+@INCLUDE_DATASET_EXAMPLE_SCRIPT{pressure_1.m}
+@end example
