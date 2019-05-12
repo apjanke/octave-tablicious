@@ -4893,6 +4893,535 @@ classdef dataset
       endif
     endfunction
 
+    ## -*- texinfo -*-
+    ## @node dataset.UCBAdmissions
+    ## @deftypefn {Static Method} {@var{out} =} UCBAdmissions ()
+    ##
+    ## Student Admissions at UC Berkeley
+    ##
+    ## @subsubheading Description
+    ## 
+    ## Aggregate data on applicants to graduate school at Berkeley for the six
+    ## largest departments in 1973 classified by admission and sex.
+    ## 
+    ## @subsubheading Format
+    ## 
+    ## A 3-dimensional array resulting from cross-tabulating 4526 observations on
+    ## 3 variables. The variables and their levels are as follows:
+    ## 
+    ## @table @code
+    ## @item Admit
+    ## Admitted, Rejected.
+    ## @item Gender
+    ## Male, Female.
+    ## @item Dept
+    ## A, B, C, D, E, F.
+    ## @end table
+    ## 
+    ## @subsubheading Details
+    ## 
+    ## This data set is frequently used for illustrating Simpson's paradox, see
+    ## Bickel et al (1975). At issue is whether the data show evidence of sex bias
+    ## in admission practices. There were 2691 male applicants, of whom 1198 (44.5%)
+    ## were admitted, compared with 1835 female applicants of whom 557 (30.4%) were
+    ## admitted. This gives a sample odds ratio of 1.83, indicating that males were
+    ## almost twice as likely to be admitted. In fact, graphical methods (as in the
+    ## example below) or log-linear modelling show that the apparent association
+    ## between admission and sex stems from differences in the tendency of males
+    ## and females to apply to the individual departments (females used to apply
+    ## more to departments with higher rejection rates).
+    ## 
+    ## @subsubheading Source
+    ## 
+    ## The data are given in Box & Jenkins (1976). Obtained from the Time Series Data
+    ## Library at @url{http://www-personal.buseco.monash.edu.au/~hyndman/TSDL/}.
+    ## 
+    ## @subsubheading References
+    ## 
+    ## Bickel, P. J., Hammel, E. A., and O'Connell, J. W. (1975). Sex bias in
+    ## graduate admissions: Data from Berkeley. @cite{Science}, 187, 398–403. 
+    ## @url{http://www.jstor.org/stable/1739581}.
+    ## 
+    ## @subsubheading Examples
+    ## 
+    ## @example
+    ## octave.dataset.UCBAdmissions;
+    ## 
+    ## # TODO: Port mosaic plot to Octave
+    ## 
+    ## @end example
+    ## 
+    ##
+    ## @end deftypefn
+    function out = UCBAdmissions ()
+      name = 'UCBAdmissions';
+      data = octave.datasets.load(name);
+      if nargout == 0
+        if isstruct (data)
+          s = data;
+          vars = fieldnames (s);
+          for i = 1:numel (vars)
+            assignin ('caller', vars{i}, s.(vars{i}));
+          endfor
+          loaded_vars = vars;
+        else
+          assignin ('caller', name, data);
+          loaded_vars = { name };
+        endif
+        printf ('Loaded ''%s''. Variables: %s\n', name, strjoin (loaded_vars, ', '));
+      else
+        out = data;
+      endif
+    endfunction
+
+    ## -*- texinfo -*-
+    ## @node dataset.UKDriverDeaths
+    ## @deftypefn {Static Method} {@var{out} =} UKDriverDeaths ()
+    ##
+    ## Road Casualties in Great Britain 1969-84
+    ##
+    ## @subsubheading Description
+    ## 
+    ## @code{UKDriverDeaths} is a time series giving the monthly totals of car drivers in Great Britain killed
+    ## or seriously injured Jan 1969 to Dec 1984. Compulsory wearing of seat belts
+    ## was introduced on 31 Jan 1983.
+    ## 
+    ## @code{Seatbelts} is more information on the same problem.
+    ## 
+    ## @subsubheading Format
+    ## 
+    ## @code{UKDriverDeaths} is a table with the following variables:
+    ## 
+    ## @table @code
+    ## @item month
+    ## Month of the observation.
+    ## @item deaths
+    ## Number of deaths.
+    ## @end table
+    ## 
+    ## @code{Seatbelts} is a table with the following variables:
+    ## 
+    ## @table @code
+    ## @item month
+    ## Month of the observation.
+    ## @item DriversKilled
+    ## Car drivers killed.
+    ## @item drivers
+    ## Same as @code{UKDriverDeaths} @code{deaths} count.
+    ## @item front
+    ## Front-seat passengers killed or seriously injured.
+    ## @item rear
+    ## Rear-seat passengers killed or seriously injured.
+    ## @item kms
+    ## Distance driven.
+    ## @item PetrolPrice
+    ## Petrol price.
+    ## @item VanKilled
+    ## Number of van (“light goods vehicle”) drivers killed.
+    ## @item law
+    ## 0/1: was the seatbelt law in effect that month?
+    ## @end table
+    ## 
+    ## @subsubheading Source
+    ## 
+    ## Harvey, A.C. (1989). @cite{Forecasting, Structural Time Series Models and
+    ## the Kalman Filter}. Cambridge University Press, pp. 519–523.
+    ## 
+    ## Durbin, J. and Koopman, S. J. (2001). @cite{Time Series Analysis by State
+    ## Space Methods}. Oxford University Press. @url{http://www.ssfpack.com/dkbook/}
+    ## 
+    ## @subsubheading References
+    ## 
+    ## Harvey, A. C. and Durbin, J. (1986). The effects of seat belt legislation
+    ## on British road casualties: A case study in structural time series
+    ## modelling. @cite{Journal of the Royal Statistical Society} series A, 149, 187–227.
+    ## 
+    ## @subsubheading Examples
+    ## 
+    ## @example
+    ## octave.dataset.UKDriverDeaths;
+    ## d = UKDriverDeaths;
+    ## s = Seatbelts;
+    ## 
+    ## # TODO: Port the model and plots to Octave
+    ## 
+    ## @end example
+    ## 
+    ##
+    ## @end deftypefn
+    function out = UKDriverDeaths ()
+      name = 'UKDriverDeaths';
+      data = octave.datasets.load(name);
+      if nargout == 0
+        if isstruct (data)
+          s = data;
+          vars = fieldnames (s);
+          for i = 1:numel (vars)
+            assignin ('caller', vars{i}, s.(vars{i}));
+          endfor
+          loaded_vars = vars;
+        else
+          assignin ('caller', name, data);
+          loaded_vars = { name };
+        endif
+        printf ('Loaded ''%s''. Variables: %s\n', name, strjoin (loaded_vars, ', '));
+      else
+        out = data;
+      endif
+    endfunction
+
+    ## -*- texinfo -*-
+    ## @node dataset.UKgas
+    ## @deftypefn {Static Method} {@var{out} =} UKgas ()
+    ##
+    ## UK Quarterly Gas Consumption
+    ##
+    ## @subsubheading Description
+    ## 
+    ## Quarterly UK gas consumption from 1960Q1 to 1986Q4, in millions of therms.
+    ## 
+    ## @subsubheading Format
+    ## 
+    ## @table @code
+    ## @item date
+    ## Quarter of the observation
+    ## @item gas
+    ## Gas consumption (MM therms).
+    ## @end table
+    ## 
+    ## @subsubheading Source
+    ## 
+    ## Durbin, J. and Koopman, S. J. (2001) @cite{Time Series Analysis by State
+    ## Space Methods}. Oxford University Press. @url{http://www.ssfpack.com/dkbook/}.
+    ## 
+    ## @subsubheading Examples
+    ## 
+    ## @example
+    ## t = octave.dataset.UKgas;
+    ## 
+    ## plot (datenum (t.date), t.gas);
+    ## datetick ("x")
+    ## xlabel ("Month")
+    ## ylabel ("Gas consumption (MM therms)")
+    ## 
+    ## @end example
+    ## 
+    ##
+    ## @end deftypefn
+    function out = UKgas ()
+      name = 'UKgas';
+      data = octave.datasets.load(name);
+      if nargout == 0
+        if isstruct (data)
+          s = data;
+          vars = fieldnames (s);
+          for i = 1:numel (vars)
+            assignin ('caller', vars{i}, s.(vars{i}));
+          endfor
+          loaded_vars = vars;
+        else
+          assignin ('caller', name, data);
+          loaded_vars = { name };
+        endif
+        printf ('Loaded ''%s''. Variables: %s\n', name, strjoin (loaded_vars, ', '));
+      else
+        out = data;
+      endif
+    endfunction
+
+    ## -*- texinfo -*-
+    ## @node dataset.UKLungDeaths
+    ## @deftypefn {Static Method} {@var{out} =} UKLungDeaths ()
+    ##
+    ## Monthly Deaths from Lung Diseases in the UK
+    ##
+    ## @subsubheading Description
+    ## 
+    ## Three time series giving the monthly deaths from bronchitis, emphysema and
+    ## asthma in the UK, 1974–1979.
+    ## 
+    ## @subsubheading Format
+    ## 
+    ## @table @code
+    ## @item date
+    ## Month of the observation.
+    ## @item ldeaths
+    ## Total lung deaths.
+    ## @item fdeaths
+    ## Lung deaths among females.
+    ## @item mdeaths
+    ## Lung deaths among males.
+    ## @end table
+    ## 
+    ## @subsubheading Source
+    ## 
+    ## P. J. Diggle (1990) @cite{Time Series: A Biostatistical Introduction}. Oxford, table A.3
+    ## 
+    ## @subsubheading Examples
+    ## 
+    ## @example
+    ## t = octave.dataset.UKLungDeaths;
+    ## 
+    ## figure
+    ## plot (datenum (t.date), t.ldeaths);
+    ## title ("Total UK Lung Deaths")
+    ## xlabel ("Month")
+    ## ylabel ("Deaths")
+    ## 
+    ## figure
+    ## plot (datenum (t.date), [t.fdeaths t.mdeaths]);
+    ## title ("UK Lung Deaths buy sex")
+    ## legend (@{"Female", "Male"@})
+    ## xlabel ("Month")
+    ## ylabel ("Deaths")
+    ## 
+    ## @end example
+    ## 
+    ##
+    ## @end deftypefn
+    function out = UKLungDeaths ()
+      name = 'UKLungDeaths';
+      data = octave.datasets.load(name);
+      if nargout == 0
+        if isstruct (data)
+          s = data;
+          vars = fieldnames (s);
+          for i = 1:numel (vars)
+            assignin ('caller', vars{i}, s.(vars{i}));
+          endfor
+          loaded_vars = vars;
+        else
+          assignin ('caller', name, data);
+          loaded_vars = { name };
+        endif
+        printf ('Loaded ''%s''. Variables: %s\n', name, strjoin (loaded_vars, ', '));
+      else
+        out = data;
+      endif
+    endfunction
+
+    ## -*- texinfo -*-
+    ## @node dataset.USArrests
+    ## @deftypefn {Static Method} {@var{out} =} USArrests ()
+    ##
+    ## Violent Crime Rates by US State
+    ##
+    ## @subsubheading Description
+    ## 
+    ## This data set contains statistics, in arrests per 100,000 residents for
+    ## assault, murder, and rape in each of the 50 US states in 1973. Also given
+    ## is the percent of the population living in urban areas.
+    ## 
+    ## @subsubheading Format
+    ## 
+    ## @table @code
+    ## @item State
+    ## State name.
+    ## @item Murder
+    ## Murder arrests (per 100,000).
+    ## @item Assault
+    ## Assault arrests (per 100,000).
+    ## @item UrbanPop
+    ## Percent urban population.
+    ## @item Rape
+    ## Rape arrests (per 100,000).
+    ## @end table
+    ## 
+    ## @subsubheading Note
+    ## 
+    ## @code{USArrests} contains the data as in McNeil's monograph. For the
+    ## @code{UrbanPop} percentages, a review of the table (No. 21) in the
+    ## Statistical Abstracts 1975 reveals a transcription error for Maryland
+    ## (and that McNeil used the same “round to even” rule), as found by
+    ## Daniel S Coven (Arizona).
+    ## 
+    ## See the example below on how to correct the error and improve accuracy
+    ## for the ‘<n>.5’ percentages.
+    ## 
+    ## @subsubheading Source
+    ## 
+    ## @cite{World Almanac and Book of Facts 1975}. (Crime rates).
+    ## 
+    ## @cite{Statistical Abstracts of the United States 1975}, p.20, (Urban rates),
+    ## possibly available as @url{https://books.google.ch/books?id=zl9qAAAAMAAJ&pg=PA20}.
+    ## 
+    ## @subsubheading References
+    ## 
+    ## McNeil, D. R. (1977) @cite{Interactive Data Analysis}. New York: Wiley.
+    ## 
+    ## @subsubheading Examples
+    ## 
+    ## @example
+    ## t = octave.dataset.USArrests;
+    ## 
+    ## summary (t);
+    ## 
+    ## octave.examples.plot_pairs (t(:,2:end));
+    ## 
+    ## # TODO: Difference between USArrests and its correction
+    ## 
+    ## # TODO: +/- 0.5 to restore the original <n>.5 percentages
+    ## 
+    ## @end example
+    ## 
+    ##
+    ## @end deftypefn
+    function out = USArrests ()
+      name = 'USArrests';
+      data = octave.datasets.load(name);
+      if nargout == 0
+        if isstruct (data)
+          s = data;
+          vars = fieldnames (s);
+          for i = 1:numel (vars)
+            assignin ('caller', vars{i}, s.(vars{i}));
+          endfor
+          loaded_vars = vars;
+        else
+          assignin ('caller', name, data);
+          loaded_vars = { name };
+        endif
+        printf ('Loaded ''%s''. Variables: %s\n', name, strjoin (loaded_vars, ', '));
+      else
+        out = data;
+      endif
+    endfunction
+
+    ## -*- texinfo -*-
+    ## @node dataset.USJudgeRatings
+    ## @deftypefn {Static Method} {@var{out} =} USJudgeRatings ()
+    ##
+    ## Lawyers’ Ratings of State Judges in the US Superior Court
+    ##
+    ## @subsubheading Description
+    ## 
+    ## Lawyers’ ratings of state judges in the US Superior Court.
+    ## 
+    ## @subsubheading Format
+    ## 
+    ## @table @code
+    ## @item CONT
+    ## Number of contacts of lawyer with judge.
+    ## @item INTG
+    ## Judicial integrity.
+    ## @item DMNR
+    ## Demeanor.
+    ## @item DILG
+    ## Diligence.
+    ## @item CFMG
+    ## Case flow managing.
+    ## @item DECI
+    ## Prompt decisions.
+    ## @item PREP
+    ## Preparation for trial.
+    ## @item FAMI
+    ## Familiarity with law.
+    ## @item ORAL
+    ## Sound oral rulings.
+    ## @item WRIT
+    ## Sound written rulings.
+    ## @item PHYS
+    ## Physical ability.
+    ## @item RTEN
+    ## Worthy of retention.
+    ## @end table
+    ## 
+    ## @subsubheading Source
+    ## 
+    ## New Haven Register, 14 January, 1977 (from John Hartigan).
+    ## 
+    ## @subsubheading Examples
+    ## 
+    ## @example
+    ## t = octave.dataset.USJudgeRatings;
+    ## 
+    ## figure
+    ## octave.examples.plot_pairs (t(:,2:end));
+    ## title ("USJudgeRatings data")
+    ## @end example
+    ## 
+    ##
+    ## @end deftypefn
+    function out = USJudgeRatings ()
+      name = 'USJudgeRatings';
+      data = octave.datasets.load(name);
+      if nargout == 0
+        if isstruct (data)
+          s = data;
+          vars = fieldnames (s);
+          for i = 1:numel (vars)
+            assignin ('caller', vars{i}, s.(vars{i}));
+          endfor
+          loaded_vars = vars;
+        else
+          assignin ('caller', name, data);
+          loaded_vars = { name };
+        endif
+        printf ('Loaded ''%s''. Variables: %s\n', name, strjoin (loaded_vars, ', '));
+      else
+        out = data;
+      endif
+    endfunction
+
+    ## -*- texinfo -*-
+    ## @node dataset.USPersonalExpenditure
+    ## @deftypefn {Static Method} {@var{out} =} USPersonalExpenditure ()
+    ##
+    ## Personal Expenditure Data
+    ##
+    ## @subsubheading Description
+    ## 
+    ## This data set consists of United States personal expenditures (in billions
+    ## of dollars) in the categories: food and tobacco, household operation,
+    ## medical and health, personal care, and private education for the years 1940,
+    ## 1945, 1950, 1955 and 1960.
+    ## 
+    ## @subsubheading Format
+    ## 
+    ## A 2-dimensional matrix @code{x} with Category along dimension 1 and Year along dimension 2.
+    ## 
+    ## @subsubheading Source
+    ## 
+    ## @cite{The World Almanac and Book of Facts}, 1962, page 756.
+    ## 
+    ## @subsubheading References
+    ## 
+    ## Tukey, J. W. (1977) @cite{Exploratory Data Analysis}. Addison-Wesley.
+    ## 
+    ## McNeil, D. R. (1977) @cite{Interactive Data Analysis}. Wiley.
+    ## 
+    ## @subsubheading Examples
+    ## 
+    ## @example
+    ## octave.dataset.USPersonalExpenditure;
+    ## 
+    ## # TODO: Port medpolish() from R, whatever that is.
+    ## 
+    ## @end example
+    ## 
+    ##
+    ## @end deftypefn
+    function out = USPersonalExpenditure ()
+      name = 'USPersonalExpenditure';
+      data = octave.datasets.load(name);
+      if nargout == 0
+        if isstruct (data)
+          s = data;
+          vars = fieldnames (s);
+          for i = 1:numel (vars)
+            assignin ('caller', vars{i}, s.(vars{i}));
+          endfor
+          loaded_vars = vars;
+        else
+          assignin ('caller', name, data);
+          loaded_vars = { name };
+        endif
+        printf ('Loaded ''%s''. Variables: %s\n', name, strjoin (loaded_vars, ', '));
+      else
+        out = data;
+      endif
+    endfunction
+
   endmethods
 
 endclassdef

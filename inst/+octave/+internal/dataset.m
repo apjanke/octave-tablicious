@@ -106,6 +106,13 @@ classdef (Abstract) dataset
       "ToothGrowth"
       "treering"
       "trees"
+      "UCBAdmissions"
+      "UKDriverDeaths"
+      "UKgas"
+      "UKLungDeaths"
+      "USArrests"
+      "USJudgeRatings"
+      "USPersonalExpenditure"
     }
 
   endproperties

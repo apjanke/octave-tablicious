@@ -1,0 +1,48 @@
+@subsubheading Description
+
+This data set contains statistics, in arrests per 100,000 residents for
+assault, murder, and rape in each of the 50 US states in 1973. Also given
+is the percent of the population living in urban areas.
+
+@subsubheading Format
+
+@table @code
+@item State
+State name.
+@item Murder
+Murder arrests (per 100,000).
+@item Assault
+Assault arrests (per 100,000).
+@item UrbanPop
+Percent urban population.
+@item Rape
+Rape arrests (per 100,000).
+@end table
+
+@subsubheading Note
+
+@code{USArrests} contains the data as in McNeil's monograph. For the
+@code{UrbanPop} percentages, a review of the table (No. 21) in the
+Statistical Abstracts 1975 reveals a transcription error for Maryland
+(and that McNeil used the same “round to even” rule), as found by
+Daniel S Coven (Arizona).
+
+See the example below on how to correct the error and improve accuracy
+for the ‘<n>.5’ percentages.
+
+@subsubheading Source
+
+@cite{World Almanac and Book of Facts 1975}. (Crime rates).
+
+@cite{Statistical Abstracts of the United States 1975}, p.20, (Urban rates),
+possibly available as @url{https://books.google.ch/books?id=zl9qAAAAMAAJ&pg=PA20}.
+
+@subsubheading References
+
+McNeil, D. R. (1977) @cite{Interactive Data Analysis}. New York: Wiley.
+
+@subsubheading Examples
+
+@example
+@INCLUDE_DATASET_EXAMPLE_SCRIPT{USArrests_1.m}
+@end example

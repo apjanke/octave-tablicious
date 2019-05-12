@@ -1,0 +1,42 @@
+@subsubheading Description
+
+Lawyers’ ratings of state judges in the US Superior Court.
+
+@subsubheading Format
+
+@table @code
+@item CONT
+Number of contacts of lawyer with judge.
+@item INTG
+Judicial integrity.
+@item DMNR
+Demeanor.
+@item DILG
+Diligence.
+@item CFMG
+Case flow managing.
+@item DECI
+Prompt decisions.
+@item PREP
+Preparation for trial.
+@item FAMI
+Familiarity with law.
+@item ORAL
+Sound oral rulings.
+@item WRIT
+Sound written rulings.
+@item PHYS
+Physical ability.
+@item RTEN
+Worthy of retention.
+@end table
+
+@subsubheading Source
+
+New Haven Register, 14 January, 1977 (from John Hartigan).
+
+@subsubheading Examples
+
+@example
+@INCLUDE_DATASET_EXAMPLE_SCRIPT{USJudgeRatings_1.m}
+@end example

@@ -1,0 +1,27 @@
+@subsubheading Description
+
+Three time series giving the monthly deaths from bronchitis, emphysema and
+asthma in the UK, 1974–1979.
+
+@subsubheading Format
+
+@table @code
+@item date
+Month of the observation.
+@item ldeaths
+Total lung deaths.
+@item fdeaths
+Lung deaths among females.
+@item mdeaths
+Lung deaths among males.
+@end table
+
+@subsubheading Source
+
+P. J. Diggle (1990) @cite{Time Series: A Biostatistical Introduction}. Oxford, table A.3
+
+@subsubheading Examples
+
+@example
+@INCLUDE_DATASET_EXAMPLE_SCRIPT{UKLungDeaths_1.m}
+@end example
