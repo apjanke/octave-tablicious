@@ -2604,6 +2604,13 @@ classdef dataset
     ## @example
     ## t = octave.dataset.Loblolly;
     ## 
+    ## t2 = t(t.Seed == "329",:);
+    ## scatter (t2.age, t2.height)
+    ## xlabel ("Tree age (yr)");
+    ## ylabel ("Tree height (ft)");
+    ## title ("Loblolly data and fitted curve (Seed 329 only)")
+    ## 
+    ## # TODO: Compute and plot fitted curve
     ## 
     ## @end example
     ## 
@@ -2611,6 +2618,150 @@ classdef dataset
     ## @end deftypefn
     function out = Loblolly ()
       name = 'Loblolly';
+      data = octave.datasets.load(name);
+      if nargout == 0
+        if isstruct (data)
+          s = data;
+          vars = fieldnames (s);
+          for i = 1:numel (vars)
+            assignin ('caller', vars{i}, s.(vars{i}));
+          endfor
+          loaded_vars = vars;
+        else
+          assignin ('caller', name, data);
+          loaded_vars = { name };
+        endif
+        printf ('Loaded ''%s''. Variables: %s\n', name, strjoin (loaded_vars, ', '));
+      else
+        out = data;
+      endif
+    endfunction
+
+    ## -*- texinfo -*-
+    ## @node dataset.longley
+    ## @deftypefn {Static Method} {@var{out} =} longley ()
+    ##
+    ## Longley’s Economic Regression Data
+    ##
+    ## @subsubheading Description
+    ## 
+    ## A macroeconomic data set which provides a well-known example for a highly
+    ## collinear regression.
+    ## 
+    ## @subsubheading Format
+    ## 
+    ## @table @code
+    ## @item Year
+    ## The year.
+    ## @item GNP_deflator
+    ## GNP implicit price deflator (1954=100).
+    ## @item GNP
+    ## Gross National Product.
+    ## @item Unemployed
+    ## Number of unemployed.
+    ## @item Armed_Forces
+    ## Number of people in the armed forces.
+    ## @item Population
+    ## “Noninstitutionalized” population ≥ 14 years of age.
+    ## @item Employed
+    ## Number of people employed.
+    ## @end table
+    ## 
+    ## @subsubheading Source
+    ## 
+    ## J. W. Longley (1967) An appraisal of least-squares programs from the point of
+    ## view of the user. @cite{Journal of the American Statistical Association} 62,
+    ## 819–841.
+    ## 
+    ## @subsubheading References
+    ## 
+    ## Becker, R. A., Chambers, J. M. and Wilks, A. R. (1988) @cite{The New S
+    ## Language}. Wadsworth & Brooks/Cole.
+    ## 
+    ## @subsubheading Examples
+    ## 
+    ## @example
+    ## t = octave.dataset.longley;
+    ## 
+    ## # TODO: Linear model
+    ## # TODO: opar plot
+    ## 
+    ## @end example
+    ## 
+    ##
+    ## @end deftypefn
+    function out = longley ()
+      name = 'longley';
+      data = octave.datasets.load(name);
+      if nargout == 0
+        if isstruct (data)
+          s = data;
+          vars = fieldnames (s);
+          for i = 1:numel (vars)
+            assignin ('caller', vars{i}, s.(vars{i}));
+          endfor
+          loaded_vars = vars;
+        else
+          assignin ('caller', name, data);
+          loaded_vars = { name };
+        endif
+        printf ('Loaded ''%s''. Variables: %s\n', name, strjoin (loaded_vars, ', '));
+      else
+        out = data;
+      endif
+    endfunction
+
+    ## -*- texinfo -*-
+    ## @node dataset.lynx
+    ## @deftypefn {Static Method} {@var{out} =} lynx ()
+    ##
+    ## Annual Canadian Lynx trappings 1821-1934
+    ##
+    ## @subsubheading Description
+    ## 
+    ## Annual numbers of lynx trappings for 1821–1934 in Canada. Taken from Brockwell
+    ## & Davis (1991), this appears to be the series considered by Campbell & Walker
+    ## (1977).
+    ## 
+    ## @subsubheading Format
+    ## 
+    ## @table @code
+    ## @item year
+    ## Year of the record.
+    ## @item lynx
+    ## Number of lynx trapped.
+    ## @end table
+    ## 
+    ## @subsubheading Source
+    ## 
+    ## Brockwell, P. J. and Davis, R. A. (1991). @cite{Time Series and Forecasting
+    ## Methods}. Second edition. Springer. Series G (page 557).
+    ## 
+    ## @subsubheading References
+    ## 
+    ## Becker, R. A., Chambers, J. M. and Wilks, A. R. (1988). @cite{The New S
+    ## Language}. Wadsworth & Brooks/Cole.
+    ## 
+    ## Campbell, M. J. and Walker, A. M. (1977). A Survey of statistical work on
+    ## the Mackenzie River series of annual Canadian lynx trappings for the years
+    ## 1821–1934 and a new analysis. @cite{Journal of the Royal Statistical Society
+    ## series A}, 140, 411–431. 
+    ## 
+    ## @subsubheading Examples
+    ## 
+    ## @example
+    ## t = octave.dataset.lynx;
+    ## 
+    ## plot (t.year, t.lynx);
+    ## xlabel ("Year");
+    ## ylabel ("Lynx Trapped");
+    ## 
+    ## @end example
+    ## 
+    ##
+    ## @end deftypefn
+    function out = lynx ()
+      name = 'lynx';
       data = octave.datasets.load(name);
       if nargout == 0
         if isstruct (data)

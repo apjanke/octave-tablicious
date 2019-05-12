@@ -74,6 +74,8 @@ classdef (Abstract) dataset
       "lh"
       "LifeCycleSavings"
       "Loblolly"
+      "longley"
+      "lynx"
       "mtcars"
     }
 
