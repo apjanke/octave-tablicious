@@ -2782,6 +2782,80 @@ classdef dataset
     endfunction
 
     ## -*- texinfo -*-
+    ## @node dataset.morley
+    ## @deftypefn {Static Method} {@var{out} =} morley ()
+    ##
+    ## Michelson Speed of Light Data
+    ##
+    ## @subsubheading Description
+    ## 
+    ## A classical data of Michelson (but not this one with Morley) on measurements
+    ## done in 1879 on the speed of light. The data consists of five experiments,
+    ## each consisting of 20 consecutive ‘runs’. The response is the speed of
+    ## light measurement, suitably coded (km/sec, with 299000 subtracted).
+    ## 
+    ## @subsubheading Format
+    ## 
+    ## @table @code
+    ## @item Expt
+    ## The experiment number, from 1 to 5.
+    ## @item Run
+    ## The run number within each experiment.
+    ## @item Speed
+    ## Speed-of-light measurement.
+    ## @end table
+    ## 
+    ## @subsubheading Details
+    ## 
+    ## The data is here viewed as a randomized block experiment with @code{experiment}
+    ## and @code{run} as the factors. @code{run} may also be considered a quantitative
+    ## variate to account for linear (or polynomial) changes in the measurement over
+    ## the course of a single experiment.
+    ## 
+    ## @subsubheading Source
+    ## 
+    ## A. J. Weekes (1986) @cite{A Genstat Primer}. London: Edward Arnold.
+    ## 
+    ## S. M. Stigler (1977) Do robust estimators work with real data? @cite{Annals
+    ## of Statistics} 5, 1055–1098. (See Table 6.)
+    ## 
+    ## A. A. Michelson (1882) Experimental determination of the velocity of
+    ## light made at the United States Naval Academy, Annapolis. @cite{Astronomic
+    ## Papers} 1 135–8. U.S. Nautical Almanac Office. (See Table 24.).
+    ## 
+    ## @subsubheading Examples
+    ## 
+    ## @example
+    ## t = octave.dataset.morley;
+    ## 
+    ## # TODO: Port to Octave
+    ## 
+    ## @end example
+    ## 
+    ##
+    ## @end deftypefn
+    function out = morley ()
+      name = 'morley';
+      data = octave.datasets.load(name);
+      if nargout == 0
+        if isstruct (data)
+          s = data;
+          vars = fieldnames (s);
+          for i = 1:numel (vars)
+            assignin ('caller', vars{i}, s.(vars{i}));
+          endfor
+          loaded_vars = vars;
+        else
+          assignin ('caller', name, data);
+          loaded_vars = { name };
+        endif
+        printf ('Loaded ''%s''. Variables: %s\n', name, strjoin (loaded_vars, ', '));
+      else
+        out = data;
+      endif
+    endfunction
+
+    ## -*- texinfo -*-
     ## @node dataset.mtcars
     ## @deftypefn {Static Method} {@var{out} =} mtcars ()
     ##
@@ -2842,6 +2916,260 @@ classdef dataset
     ## @end deftypefn
     function out = mtcars ()
       name = 'mtcars';
+      data = octave.datasets.load(name);
+      if nargout == 0
+        if isstruct (data)
+          s = data;
+          vars = fieldnames (s);
+          for i = 1:numel (vars)
+            assignin ('caller', vars{i}, s.(vars{i}));
+          endfor
+          loaded_vars = vars;
+        else
+          assignin ('caller', name, data);
+          loaded_vars = { name };
+        endif
+        printf ('Loaded ''%s''. Variables: %s\n', name, strjoin (loaded_vars, ', '));
+      else
+        out = data;
+      endif
+    endfunction
+
+    ## -*- texinfo -*-
+    ## @node dataset.nhtemp
+    ## @deftypefn {Static Method} {@var{out} =} nhtemp ()
+    ##
+    ## Average Yearly Temperatures in New Haven
+    ##
+    ## @subsubheading Description
+    ## 
+    ## The mean annual temperature in degrees Fahrenheit in New Haven, Connecticut,
+    ## from 1912 to 1971.
+    ## 
+    ## @subsubheading Format
+    ## 
+    ## @table @code
+    ## @item year
+    ## Year of the observation.
+    ## @item temp
+    ## Mean annual temperature (degrees F).
+    ## @end table
+    ## 
+    ## @subsubheading Source
+    ## 
+    ## Vaux, J. E. and Brinker, N. B. (1972) @cite{Cycles}, 1972, 117–121.
+    ## 
+    ## @subsubheading References
+    ## 
+    ## McNeil, D. R. (1977) @cite{Interactive Data Analysis}. New York: Wiley.
+    ## 
+    ## @subsubheading Examples
+    ## 
+    ## @example
+    ## t = octave.dataset.nhtemp;
+    ## 
+    ## plot (t.year, t.temp);
+    ## title ("nhtemp data");
+    ## xlabel ("Mean annual temperature in New Haven, CT (deg. F)");
+    ## 
+    ## @end example
+    ## 
+    ##
+    ## @end deftypefn
+    function out = nhtemp ()
+      name = 'nhtemp';
+      data = octave.datasets.load(name);
+      if nargout == 0
+        if isstruct (data)
+          s = data;
+          vars = fieldnames (s);
+          for i = 1:numel (vars)
+            assignin ('caller', vars{i}, s.(vars{i}));
+          endfor
+          loaded_vars = vars;
+        else
+          assignin ('caller', name, data);
+          loaded_vars = { name };
+        endif
+        printf ('Loaded ''%s''. Variables: %s\n', name, strjoin (loaded_vars, ', '));
+      else
+        out = data;
+      endif
+    endfunction
+
+    ## -*- texinfo -*-
+    ## @node dataset.Nile
+    ## @deftypefn {Static Method} {@var{out} =} Nile ()
+    ##
+    ## Flow of the River Nile
+    ##
+    ## @subsubheading Description
+    ## 
+    ## Measurements of the annual flow of the river Nile at Aswan (formerly Assuan),
+    ## 1871–1970, in m^3, “with apparent changepoint near 1898”
+    ## (Cobb(1978), Table 1, p.249).
+    ## 
+    ## @subsubheading Format
+    ## 
+    ## @table @code
+    ## @item year
+    ## Year of the record.
+    ## @item flow
+    ## Annual flow (cubic meters).
+    ## @end table
+    ## 
+    ## @subsubheading Source
+    ## 
+    ## Durbin, J. and Koopman, S. J. (2001). @cite{Time Series Analysis by State
+    ## Space Methods}. Oxford University Press. @url{http://www.ssfpack.com/DKbook.html}
+    ## 
+    ## @subsubheading References
+    ## 
+    ## Balke, N. S. (1993). Detecting level shifts in time series. @cite{Journal of
+    ## Business and Economic Statistics}, 11, 81–92.
+    ## 
+    ## Cobb, G. W. (1978). The problem of the Nile: conditional solution to a
+    ## change-point problem. @cite{Biometrika} 65, 243–51.
+    ## 
+    ## @subsubheading Examples
+    ## 
+    ## @example
+    ## t = octave.dataset.Nile;
+    ## 
+    ## figure
+    ## plot (t.year, t.flow);
+    ## 
+    ## # TODO: Port the rest of the example to Octave
+    ## @end example
+    ## 
+    ##
+    ## @end deftypefn
+    function out = Nile ()
+      name = 'Nile';
+      data = octave.datasets.load(name);
+      if nargout == 0
+        if isstruct (data)
+          s = data;
+          vars = fieldnames (s);
+          for i = 1:numel (vars)
+            assignin ('caller', vars{i}, s.(vars{i}));
+          endfor
+          loaded_vars = vars;
+        else
+          assignin ('caller', name, data);
+          loaded_vars = { name };
+        endif
+        printf ('Loaded ''%s''. Variables: %s\n', name, strjoin (loaded_vars, ', '));
+      else
+        out = data;
+      endif
+    endfunction
+
+    ## -*- texinfo -*-
+    ## @node dataset.nottem
+    ## @deftypefn {Static Method} {@var{out} =} nottem ()
+    ##
+    ## Average Monthly Temperatures at Nottingham, 1920-1939
+    ##
+    ## @subsubheading Description
+    ## 
+    ## A time series object containing average air temperatures at
+    ## Nottingham Castle in degrees Fahrenheit for 20 years.
+    ## 
+    ## @subsubheading Format
+    ## 
+    ## @table @code
+    ## @item record
+    ## Index of the record.
+    ## @item lead
+    ## Leading indicator.
+    ## @item sales
+    ## Sales volume.
+    ## @end table
+    ## 
+    ## @subsubheading Source
+    ## 
+    ## Anderson, O. D. (1976) @cite{Time Series Analysis and Forecasting:
+    ## The Box-Jenkins approach}. Butterworths. Series R.
+    ## 
+    ## @subsubheading Examples
+    ## 
+    ## @example
+    ## # TODO: Come up with example code here
+    ## @end example
+    ## 
+    ##
+    ## @end deftypefn
+    function out = nottem ()
+      name = 'nottem';
+      data = octave.datasets.load(name);
+      if nargout == 0
+        if isstruct (data)
+          s = data;
+          vars = fieldnames (s);
+          for i = 1:numel (vars)
+            assignin ('caller', vars{i}, s.(vars{i}));
+          endfor
+          loaded_vars = vars;
+        else
+          assignin ('caller', name, data);
+          loaded_vars = { name };
+        endif
+        printf ('Loaded ''%s''. Variables: %s\n', name, strjoin (loaded_vars, ', '));
+      else
+        out = data;
+      endif
+    endfunction
+
+    ## -*- texinfo -*-
+    ## @node dataset.npk
+    ## @deftypefn {Static Method} {@var{out} =} npk ()
+    ##
+    ## Classical N, P, K Factorial Experiment
+    ##
+    ## @subsubheading Description
+    ## 
+    ## A classical N, P, K (nitrogen, phosphate, potassium) factorial experiment
+    ## on the growth of peas conducted on 6 blocks. Each half of a fractional
+    ## factorial design confounding the NPK interaction was used on 3 of the plots.
+    ## 
+    ## @subsubheading Format
+    ## 
+    ## @table @code
+    ## @item block
+    ## Which block (1 to 6).
+    ## @item N
+    ## Indicator (0/1) for the application of nitrogen.
+    ## @item P
+    ## Indicator (0/1) for the application of phosphate.
+    ## @item K
+    ## Indicator (0/1) for the application of potassium.
+    ## @item yield
+    ## Yield of peas, in pounds/plot. Plots were 1/70 acre.
+    ## @end table
+    ## 
+    ## @subsubheading Source
+    ## 
+    ## Imperial College, London, M.Sc. exercise sheet.
+    ## 
+    ## @subsubheading References
+    ## 
+    ## Venables, W. N. and Ripley, B. D. (2002) @cite{Modern Applied Statistics
+    ## with S}. Fourth edition. Springer.
+    ## 
+    ## @subsubheading Examples
+    ## 
+    ## @example
+    ## t = octave.dataset.npk;
+    ## 
+    ## # TODO: Port aov() and LM to Octave
+    ## 
+    ## @end example
+    ## 
+    ##
+    ## @end deftypefn
+    function out = npk ()
+      name = 'npk';
       data = octave.datasets.load(name);
       if nargout == 0
         if isstruct (data)

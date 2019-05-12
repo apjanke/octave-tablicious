@@ -76,7 +76,12 @@ classdef (Abstract) dataset
       "Loblolly"
       "longley"
       "lynx"
+      "morley"
       "mtcars"
+      "nhtemp"
+      "Nile"
+      "nottem"
+      "npk"
     }
 
   endproperties

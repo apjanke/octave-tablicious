@@ -1,0 +1,35 @@
+@subsubheading Description
+
+A classical N, P, K (nitrogen, phosphate, potassium) factorial experiment
+on the growth of peas conducted on 6 blocks. Each half of a fractional
+factorial design confounding the NPK interaction was used on 3 of the plots.
+
+@subsubheading Format
+
+@table @code
+@item block
+Which block (1 to 6).
+@item N
+Indicator (0/1) for the application of nitrogen.
+@item P
+Indicator (0/1) for the application of phosphate.
+@item K
+Indicator (0/1) for the application of potassium.
+@item yield
+Yield of peas, in pounds/plot. Plots were 1/70 acre.
+@end table
+
+@subsubheading Source
+
+Imperial College, London, M.Sc. exercise sheet.
+
+@subsubheading References
+
+Venables, W. N. and Ripley, B. D. (2002) @cite{Modern Applied Statistics
+with S}. Fourth edition. Springer.
+
+@subsubheading Examples
+
+@example
+@INCLUDE_DATASET_EXAMPLE_SCRIPT{npk_1.m}
+@end example

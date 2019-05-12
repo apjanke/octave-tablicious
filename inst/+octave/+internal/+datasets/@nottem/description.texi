@@ -1,0 +1,26 @@
+@subsubheading Description
+
+A time series object containing average air temperatures at
+Nottingham Castle in degrees Fahrenheit for 20 years.
+
+@subsubheading Format
+
+@table @code
+@item record
+Index of the record.
+@item lead
+Leading indicator.
+@item sales
+Sales volume.
+@end table
+
+@subsubheading Source
+
+Anderson, O. D. (1976) @cite{Time Series Analysis and Forecasting:
+The Box-Jenkins approach}. Butterworths. Series R.
+
+@subsubheading Examples
+
+@example
+@INCLUDE_DATASET_EXAMPLE_SCRIPT{BJsales_1.m}
+@end example

@@ -1,0 +1,33 @@
+@subsubheading Description
+
+Measurements of the annual flow of the river Nile at Aswan (formerly Assuan),
+1871–1970, in m^3, “with apparent changepoint near 1898”
+(Cobb(1978), Table 1, p.249).
+
+@subsubheading Format
+
+@table @code
+@item year
+Year of the record.
+@item flow
+Annual flow (cubic meters).
+@end table
+
+@subsubheading Source
+
+Durbin, J. and Koopman, S. J. (2001). @cite{Time Series Analysis by State
+Space Methods}. Oxford University Press. @url{http://www.ssfpack.com/DKbook.html}
+
+@subsubheading References
+
+Balke, N. S. (1993). Detecting level shifts in time series. @cite{Journal of
+Business and Economic Statistics}, 11, 81–92.
+
+Cobb, G. W. (1978). The problem of the Nile: conditional solution to a
+change-point problem. @cite{Biometrika} 65, 243–51.
+
+@subsubheading Examples
+
+@example
+@INCLUDE_DATASET_EXAMPLE_SCRIPT{Nile_1.m}
+@end example
