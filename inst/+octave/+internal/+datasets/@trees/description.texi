@@ -1,0 +1,33 @@
+@subsubheading Description
+
+This data set provides measurements of the diameter, height and volume of
+timber in 31 felled black cherry trees. Note that the diameter (in inches)
+is erroneously labelled Girth in the data. It is measured at 4 ft 6 in
+above the ground.
+
+@subsubheading Format
+
+@table @code
+@item Girth
+Tree diameter (rather than girth, actually) in inches.
+@item Height
+Height in ft.
+@item Volume
+Volume of timber in cubic feet.
+@end table
+
+@subsubheading Source
+
+Ryan, T. A., Joiner, B. L. and Ryan, B. F. (1976) @cite{The Minitab
+Student Handbook}. Duxbury Press.
+
+@subsubheading References
+
+Atkinson, A. C. (1985) @cite{Plots, Transformations and Regression}.
+Oxford University Press.
+
+@subsubheading Examples
+
+@example
+@INCLUDE_DATASET_EXAMPLE_SCRIPT{trees_1.m}
+@end example

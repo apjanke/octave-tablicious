@@ -4241,6 +4241,64 @@ classdef dataset
     endfunction
 
     ## -*- texinfo -*-
+    ## @node dataset.sunspot_month
+    ## @deftypefn {Static Method} {@var{out} =} sunspot_month ()
+    ##
+    ## Monthly Sunspot Data, from 1749 to “Present”
+    ##
+    ## @subsubheading Description
+    ## 
+    ## Monthly numbers of sunspots, as from the World Data Center, aka SIDC. This
+    ## is the version of the data that may occasionally be updated when new counts
+    ## become available.
+    ## 
+    ## @subsubheading Format
+    ## 
+    ## @table @code
+    ## @item month
+    ## Month of the observation.
+    ## @item sunspots
+    ## Number of sunspots.
+    ## @end table
+    ## 
+    ## @subsubheading Source
+    ## 
+    ## WDC-SILSO, Solar Influences Data Analysis Center (SIDC), Royal Observatory
+    ## of Belgium, Av. Circulaire, 3, B-1180 BRUSSELS.
+    ## Currently at @url{http://www.sidc.be/silso/datafiles}.
+    ## 
+    ## @subsubheading Examples
+    ## 
+    ## @example
+    ## t = octave.dataset.sunspot_month;
+    ## 
+    ## 
+    ## @end example
+    ## 
+    ##
+    ## @end deftypefn
+    function out = sunspot_month ()
+      name = 'sunspot_month';
+      data = octave.datasets.load(name);
+      if nargout == 0
+        if isstruct (data)
+          s = data;
+          vars = fieldnames (s);
+          for i = 1:numel (vars)
+            assignin ('caller', vars{i}, s.(vars{i}));
+          endfor
+          loaded_vars = vars;
+        else
+          assignin ('caller', name, data);
+          loaded_vars = { name };
+        endif
+        printf ('Loaded ''%s''. Variables: %s\n', name, strjoin (loaded_vars, ', '));
+      else
+        out = data;
+      endif
+    endfunction
+
+    ## -*- texinfo -*-
     ## @node dataset.sunspot_year
     ## @deftypefn {Static Method} {@var{out} =} sunspot_year ()
     ##
@@ -4430,6 +4488,392 @@ classdef dataset
     ## @end deftypefn
     function out = swiss ()
       name = 'swiss';
+      data = octave.datasets.load(name);
+      if nargout == 0
+        if isstruct (data)
+          s = data;
+          vars = fieldnames (s);
+          for i = 1:numel (vars)
+            assignin ('caller', vars{i}, s.(vars{i}));
+          endfor
+          loaded_vars = vars;
+        else
+          assignin ('caller', name, data);
+          loaded_vars = { name };
+        endif
+        printf ('Loaded ''%s''. Variables: %s\n', name, strjoin (loaded_vars, ', '));
+      else
+        out = data;
+      endif
+    endfunction
+
+    ## -*- texinfo -*-
+    ## @node dataset.Theoph
+    ## @deftypefn {Static Method} {@var{out} =} Theoph ()
+    ##
+    ## Pharmacokinetics of Theophylline
+    ##
+    ## @subsubheading Description
+    ## 
+    ## An experiment on the pharmacokinetics of theophylline.
+    ## 
+    ## @subsubheading Format
+    ## 
+    ## @table @code
+    ## @item Subject
+    ## Categorical identifying the subject on whom the observation was made. The
+    ## ordering is by increasing maximum concentration of theophylline observed.
+    ## @item Wt
+    ## Weight of the subject (kg).
+    ## @item Dose
+    ## Dose of theophylline administerred orally to the subject (mg/kg).
+    ## @item Time
+    ## Time since drug administration when the sample was drawn (hr).
+    ## @item conc
+    ## Theophylline concentration in the sample (mg/L).
+    ## @end table
+    ## 
+    ## @subsubheading Details
+    ## 
+    ## Boeckmann, Sheiner and Beal (1994) report data from a study by Dr. Robert
+    ## Upton of the kinetics of the anti-asthmatic drug theophylline. Twelve subjects
+    ## were given oral doses of theophylline then serum concentrations were measured
+    ## at 11 time points over the next 25 hours.
+    ## 
+    ## These data are analyzed in Davidian and Giltinan (1995) and Pinheiro and Bates
+    ## (2000) using a two-compartment open pharmacokinetic model, for which a
+    ## self-starting model function, SSfol, is available.
+    ## 
+    ## @subsubheading Source
+    ## 
+    ## The data are given in Box & Jenkins (1976). Obtained from the Time Series Data
+    ## Library at @url{http://www-personal.buseco.monash.edu.au/~hyndman/TSDL/}.
+    ## 
+    ## @subsubheading References
+    ## 
+    ## Boeckmann, A. J., Sheiner, L. B. and Beal, S. L. (1994), @cite{NONMEM Users
+    ## Guide: Part V}, NONMEM Project Group, University of California, San Francisco.
+    ## 
+    ## Davidian, M. and Giltinan, D. M. (1995) @cite{Nonlinear Models for Repeated
+    ## Measurement Data}, Chapman & Hall (section 5.5, p. 145 and section 6.6, p. 176)
+    ## 
+    ## Pinheiro, J. C. and Bates, D. M. (2000) @cite{Mixed-effects Models in
+    ## S and S-PLUS}, Springer (Appendix A.29)
+    ## 
+    ## @subsubheading Examples
+    ## 
+    ## @example
+    ## t = octave.dataset.Theoph;
+    ## 
+    ## # TODO: Coplot
+    ## # TODO: Yet another linear model to port to Octave
+    ## 
+    ## @end example
+    ## 
+    ##
+    ## @end deftypefn
+    function out = Theoph ()
+      name = 'Theoph';
+      data = octave.datasets.load(name);
+      if nargout == 0
+        if isstruct (data)
+          s = data;
+          vars = fieldnames (s);
+          for i = 1:numel (vars)
+            assignin ('caller', vars{i}, s.(vars{i}));
+          endfor
+          loaded_vars = vars;
+        else
+          assignin ('caller', name, data);
+          loaded_vars = { name };
+        endif
+        printf ('Loaded ''%s''. Variables: %s\n', name, strjoin (loaded_vars, ', '));
+      else
+        out = data;
+      endif
+    endfunction
+
+    ## -*- texinfo -*-
+    ## @node dataset.Titanic
+    ## @deftypefn {Static Method} {@var{out} =} Titanic ()
+    ##
+    ## Survival of passengers on the Titanic
+    ##
+    ## @subsubheading Description
+    ## 
+    ## This data set provides information on the fate of passengers on the fatal
+    ## maiden voyage of the ocean liner ‘Titanic’, summarized according to
+    ## economic status (class), sex, age and survival.
+    ## 
+    ## @subsubheading Format
+    ## 
+    ## @code{n} is a 4-dimensional array resulting from cross-tabulating 2201 observations
+    ## on 4 variables. The dimensions of the array correspond to the following variables:
+    ## 
+    ## @table @code
+    ## @item Class
+    ## 1st, 2nd, 3rd, Cre.
+    ## @item Sex
+    ## Male, Female.
+    ## @item Age
+    ## Child, Adult.
+    ## @item Survived
+    ## No, Yes.
+    ## @end table
+    ## 
+    ## @subsubheading Details
+    ## 
+    ## The sinking of the Titanic is a famous event, and new books are still being
+    ## published about it. Many well-known facts—from the proportions of first-class
+    ## passengers to the ‘women and children first’ policy, and the fact that that
+    ## policy was not entirely successful in saving the women and children in the
+    ## third class—are reflected in the survival rates for various classes of
+    ## passenger.
+    ## 
+    ## These data were originally collected by the British Board of Trade in their
+    ## investigation of the sinking. Note that there is not complete agreement among
+    ## primary sources as to the exact numbers on board, rescued, or lost.
+    ## 
+    ## Due in particular to the very successful film ‘Titanic’, the last years saw a
+    ## rise in public interest in the Titanic. Very detailed data about the passengers
+    ## is now available on the Internet, at sites such as Encyclopedia Titanica
+    ## (@url{https://www.encyclopedia-titanica.org/}).
+    ## 
+    ## @subsubheading Source
+    ## 
+    ## Dawson, Robert J. MacG. (1995), The ‘Unusual Episode’ Data Revisited.
+    ## @cite{Journal of Statistics Education}, 3.
+    ## 
+    ## The source provides a data set recording class, sex, age, and survival status
+    ## for each person on board of the Titanic, and is based on data originally
+    ## collected by the British Board of Trade and reprinted in:
+    ## 
+    ## British Board of Trade (1990), @cite{Report on the Loss of the ‘Titanic’
+    ## (S.S.)}. British Board of Trade Inquiry Report (reprint). Gloucester,
+    ## UK: Allan Sutton Publishing.
+    ## 
+    ## @subsubheading Examples
+    ## 
+    ## @example
+    ## octave.dataset.Titanic;
+    ## 
+    ## # TODO: Port mosaic plot to Octave
+    ## 
+    ## # TODO: Check for higher survival rates in children and females
+    ## 
+    ## @end example
+    ## 
+    ##
+    ## @end deftypefn
+    function out = Titanic ()
+      name = 'Titanic';
+      data = octave.datasets.load(name);
+      if nargout == 0
+        if isstruct (data)
+          s = data;
+          vars = fieldnames (s);
+          for i = 1:numel (vars)
+            assignin ('caller', vars{i}, s.(vars{i}));
+          endfor
+          loaded_vars = vars;
+        else
+          assignin ('caller', name, data);
+          loaded_vars = { name };
+        endif
+        printf ('Loaded ''%s''. Variables: %s\n', name, strjoin (loaded_vars, ', '));
+      else
+        out = data;
+      endif
+    endfunction
+
+    ## -*- texinfo -*-
+    ## @node dataset.ToothGrowth
+    ## @deftypefn {Static Method} {@var{out} =} ToothGrowth ()
+    ##
+    ## The Effect of Vitamin C on Tooth Growth in Guinea Pigs
+    ##
+    ## @subsubheading Description
+    ## 
+    ## The response is the length of odontoblasts (cells responsible for tooth growth)
+    ## in 60 guinea pigs. Each animal received one of three dose levels of vitamin C
+    ## (0.5, 1, and 2 mg/day) by one of two delivery methods, orange juice or
+    ## ascorbic acid (a form of vitamin C and coded as @code{VC}).
+    ## 
+    ## @subsubheading Format
+    ## 
+    ## @table @code
+    ## @item supp
+    ## Supplement type.
+    ## @item dose
+    ## Dose (mg/day).
+    ## @item len
+    ## Tooth length.
+    ## @end table
+    ## 
+    ## @subsubheading Source
+    ## 
+    ## C. I. Bliss (1952). @cite{The Statistics of Bioassay}. Academic Press.
+    ## 
+    ## @subsubheading References
+    ## 
+    ## McNeil, D. R. (1977). @cite{Interactive Data Analysis}. New York: Wiley.
+    ## 
+    ## Crampton, E. W. (1947). The growth of the odontoblast of the incisor
+    ## teeth as a criterion of vitamin C intake of the guinea pig. @cite{The
+    ## Journal of Nutrition}, 33(5), 491–504.
+    ## 
+    ## @subsubheading Examples
+    ## 
+    ## @example
+    ## t = octave.dataset.ToothGrowth;
+    ## 
+    ## octave.examples.coplot (t, "dose", "len", "supp");
+    ## 
+    ## # TODO: Port Lowess smoothing to Octave
+    ## 
+    ## @end example
+    ## 
+    ##
+    ## @end deftypefn
+    function out = ToothGrowth ()
+      name = 'ToothGrowth';
+      data = octave.datasets.load(name);
+      if nargout == 0
+        if isstruct (data)
+          s = data;
+          vars = fieldnames (s);
+          for i = 1:numel (vars)
+            assignin ('caller', vars{i}, s.(vars{i}));
+          endfor
+          loaded_vars = vars;
+        else
+          assignin ('caller', name, data);
+          loaded_vars = { name };
+        endif
+        printf ('Loaded ''%s''. Variables: %s\n', name, strjoin (loaded_vars, ', '));
+      else
+        out = data;
+      endif
+    endfunction
+
+    ## -*- texinfo -*-
+    ## @node dataset.treering
+    ## @deftypefn {Static Method} {@var{out} =} treering ()
+    ##
+    ## Yearly Treering Data, -6000-1979
+    ##
+    ## @subsubheading Description
+    ## 
+    ## Contains normalized tree-ring widths in dimensionless units.
+    ## 
+    ## @subsubheading Format
+    ## 
+    ## A univariate time series with 7981 observations.
+    ## 
+    ## Each tree ring corresponds to one year.
+    ## 
+    ## @subsubheading Details
+    ## 
+    ## The data were recorded by Donald A. Graybill, 1980, from Gt Basin
+    ## Bristlecone Pine 2805M, 3726-11810 in Methuselah Walk, California.
+    ## 
+    ## @subsubheading Source
+    ## 
+    ## Time Series Data Library: @url{http://www-personal.buseco.monash.edu.au/~hyndman/TSDL/},
+    ## series ‘CA535.DAT’.
+    ## 
+    ## @subsubheading References
+    ## 
+    ## For some photos of Methuselah Walk see
+    ## @url{https://web.archive.org/web/20110523225828/http://www.ltrr.arizona.edu/~hallman/sitephotos/meth.html}.
+    ## 
+    ## @subsubheading Examples
+    ## 
+    ## @example
+    ## t = octave.dataset.treering;
+    ## 
+    ## @end example
+    ## 
+    ##
+    ## @end deftypefn
+    function out = treering ()
+      name = 'treering';
+      data = octave.datasets.load(name);
+      if nargout == 0
+        if isstruct (data)
+          s = data;
+          vars = fieldnames (s);
+          for i = 1:numel (vars)
+            assignin ('caller', vars{i}, s.(vars{i}));
+          endfor
+          loaded_vars = vars;
+        else
+          assignin ('caller', name, data);
+          loaded_vars = { name };
+        endif
+        printf ('Loaded ''%s''. Variables: %s\n', name, strjoin (loaded_vars, ', '));
+      else
+        out = data;
+      endif
+    endfunction
+
+    ## -*- texinfo -*-
+    ## @node dataset.trees
+    ## @deftypefn {Static Method} {@var{out} =} trees ()
+    ##
+    ## Diameter, Height and Volume for Black Cherry Trees
+    ##
+    ## @subsubheading Description
+    ## 
+    ## This data set provides measurements of the diameter, height and volume of
+    ## timber in 31 felled black cherry trees. Note that the diameter (in inches)
+    ## is erroneously labelled Girth in the data. It is measured at 4 ft 6 in
+    ## above the ground.
+    ## 
+    ## @subsubheading Format
+    ## 
+    ## @table @code
+    ## @item Girth
+    ## Tree diameter (rather than girth, actually) in inches.
+    ## @item Height
+    ## Height in ft.
+    ## @item Volume
+    ## Volume of timber in cubic feet.
+    ## @end table
+    ## 
+    ## @subsubheading Source
+    ## 
+    ## Ryan, T. A., Joiner, B. L. and Ryan, B. F. (1976) @cite{The Minitab
+    ## Student Handbook}. Duxbury Press.
+    ## 
+    ## @subsubheading References
+    ## 
+    ## Atkinson, A. C. (1985) @cite{Plots, Transformations and Regression}.
+    ## Oxford University Press.
+    ## 
+    ## @subsubheading Examples
+    ## 
+    ## @example
+    ## t = octave.dataset.trees;
+    ## 
+    ## figure
+    ## octave.examples.plot_pairs (t);
+    ## 
+    ## figure
+    ## loglog (t.Girth, t.Volume)
+    ## xlabel ("Girth")
+    ## ylabel ("Volume")
+    ## 
+    ## # TODO: Transform to log space for the coplot
+    ## 
+    ## # TODO: Linear model
+    ## 
+    ## @end example
+    ## 
+    ##
+    ## @end deftypefn
+    function out = trees ()
+      name = 'trees';
       data = octave.datasets.load(name);
       if nargout == 0
         if isstruct (data)

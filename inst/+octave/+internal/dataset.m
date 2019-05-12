@@ -101,6 +101,11 @@ classdef (Abstract) dataset
       "sunspot_year"
       "sunspots"
       "swiss"
+      "Theoph"
+      "Titanic"
+      "ToothGrowth"
+      "treering"
+      "trees"
     }
 
   endproperties

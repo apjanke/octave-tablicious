@@ -1,0 +1,35 @@
+@subsubheading Description
+
+The response is the length of odontoblasts (cells responsible for tooth growth)
+in 60 guinea pigs. Each animal received one of three dose levels of vitamin C
+(0.5, 1, and 2 mg/day) by one of two delivery methods, orange juice or
+ascorbic acid (a form of vitamin C and coded as @code{VC}).
+
+@subsubheading Format
+
+@table @code
+@item supp
+Supplement type.
+@item dose
+Dose (mg/day).
+@item len
+Tooth length.
+@end table
+
+@subsubheading Source
+
+C. I. Bliss (1952). @cite{The Statistics of Bioassay}. Academic Press.
+
+@subsubheading References
+
+McNeil, D. R. (1977). @cite{Interactive Data Analysis}. New York: Wiley.
+
+Crampton, E. W. (1947). The growth of the odontoblast of the incisor
+teeth as a criterion of vitamin C intake of the guinea pig. @cite{The
+Journal of Nutrition}, 33(5), 491–504.
+
+@subsubheading Examples
+
+@example
+@INCLUDE_DATASET_EXAMPLE_SCRIPT{ToothGrowth_1.m}
+@end example
