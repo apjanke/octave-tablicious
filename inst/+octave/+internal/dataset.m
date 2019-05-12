@@ -110,9 +110,18 @@ classdef (Abstract) dataset
       "UKDriverDeaths"
       "UKgas"
       "UKLungDeaths"
+      "USAccDeaths"
       "USArrests"
       "USJudgeRatings"
       "USPersonalExpenditure"
+      "uspop"
+      "VADeaths"
+      "volcano"
+      "warpbreaks"
+      "women"
+      "WorldPhones"
+      "WWWusage"
+      "zCO2"
     }
 
   endproperties

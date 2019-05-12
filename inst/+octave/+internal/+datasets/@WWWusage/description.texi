@@ -1,0 +1,24 @@
+@subsubheading Description
+
+A time series of the numbers of users connected to the Internet through
+a server every minute.
+
+@subsubheading Format
+
+A time series of length 100.
+
+@subsubheading Source
+
+Durbin, J. and Koopman, S. J. (2001) @cite{Time Series Analysis by State
+Space Methods}. Oxford University Press. @url{http://www.ssfpack.com/dkbook/}
+
+@subsubheading References
+
+Makridakis, S., Wheelwright, S. C. and Hyndman, R. J. (1998) @cite{Forecasting:
+Methods and Applications}. Wiley.
+
+@subsubheading Examples
+
+@example
+@INCLUDE_DATASET_EXAMPLE_SCRIPT{BJsales_1.m}
+@end example

@@ -1,0 +1,23 @@
+@subsubheading Description
+
+This data set gives the population of the United States
+(in millions) as recorded by the decennial census for the period 1790–1970.
+
+@subsubheading Format
+
+@table @code
+@item year
+Year of the census.
+@item population
+Population, in millions.
+@end table
+
+@subsubheading Source
+
+McNeil, D. R. (1977) @cite{Interactive Data Analysis}. New York: Wiley.
+
+@subsubheading Examples
+
+@example
+@INCLUDE_DATASET_EXAMPLE_SCRIPT{uspop_1.m}
+@end example

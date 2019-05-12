@@ -1,33 +1,23 @@
 @subsubheading Description
 
-Sales Data with Leading Indicator
+A time series giving the monthly totals of accidental deaths in the USA.
 
 @subsubheading Format
 
 @table @code
-@item record
-Index of the record.
-@item lead
-Leading indicator.
-@item sales
-Sales volume.
+@item month
+Month of the observation.
+@item deaths
+Accidental deaths.
 @end table
 
 @subsubheading Source
 
-The data are given in Box & Jenkins (1976). Obtained from the Time Series Data
-Library at @url{http://www-personal.buseco.monash.edu.au/~hyndman/TSDL/}.
-
-@subsubheading References
-
-G. E. P. Box and G. M. Jenkins (1976): @cite{Time Series Analysis, Forecasting and
-Control}, Holden-Day, San Francisco, p. 537.
-
-P. J. Brockwell and R. A. Davis (1991): @cite{Time Series: Theory and Methods},
-Second edition, Springer Verlag, NY, pp. 414.
+P. J. Brockwell and R. A. Davis (1991) @cite{Time Series: Theory and Methods}.
+Springer, New York.
 
 @subsubheading Examples
 
 @example
-@INCLUDE_DATASET_EXAMPLE_SCRIPT{BJsales_1.m}
+@INCLUDE_DATASET_EXAMPLE_SCRIPT{USAccDeaths_1.m}
 @end example

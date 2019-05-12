@@ -1,0 +1,34 @@
+@subsubheading Description
+
+This data set gives the number of warp breaks per loom, where a loom
+corresponds to a fixed length of yarn.
+
+@subsubheading Format
+
+@table @code
+@item wool
+Type of wool (A or B).
+@item tension
+The level of tension (L, M, H).
+@item breaks
+Number of breaks.
+@end table
+
+There are measurements on 9 looms for each of the six types of warp (AL, AM, AH, BL, BM, BH).
+
+@subsubheading Source
+
+Tippett, L. H. C. (1950) @cite{Technological Applications of Statistics}.
+Wiley. Page 106.
+
+@subsubheading References
+
+Tukey, J. W. (1977) @cite{Exploratory Data Analysis}. Addison-Wesley.
+
+McNeil, D. R. (1977) @cite{Interactive Data Analysis}. Wiley.
+
+@subsubheading Examples
+
+@example
+@INCLUDE_DATASET_EXAMPLE_SCRIPT{warpbreaks_1.m}
+@end example

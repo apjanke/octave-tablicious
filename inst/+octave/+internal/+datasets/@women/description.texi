@@ -1,0 +1,34 @@
+@subsubheading Description
+
+This data set gives the average heights and weights for American women aged 30–39.
+
+@subsubheading Format
+
+@table @code
+@item height
+Height (in).
+@item weight
+Weight (lbs).
+@end table
+
+@subsubheading Details
+
+The data set appears to have been taken from the American Society of Actuaries
+Build and Blood Pressure Study for some (unknown to us) earlier year.
+
+The World Almanac notes: “The figures represent weights in ordinary indoor
+clothing and shoes, and heights with shoes”.
+
+@subsubheading Source
+
+@cite{The World Almanac and Book of Facts}, 1975.
+
+@subsubheading References
+
+McNeil, D. R. (1977) @cite{Interactive Data Analysis}. Wiley.
+
+@subsubheading Examples
+
+@example
+@INCLUDE_DATASET_EXAMPLE_SCRIPT{women_1.m}
+@end example
