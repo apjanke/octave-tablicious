@@ -15,7 +15,7 @@
                     <section title="Tables vs SQL" ref="html/Tables-vs-SQL.html">
                     </section>
                 </section>
-                <section title="Date/Time Representation" ref="html/Date/Time-Representation.html">
+                <section title="Date/Time Representation" ref="html/Date_002fTime-Representation.html">
                     <section title="datetime Class" ref="html/datetime-Class.html">
                         <section title="Datenum Compatibility" ref="html/Datenum-Compatibility.html">
                         </section>
@@ -318,11 +318,9 @@
                             </section>
                         </section>
                         <section title="octave.dataset" ref="html/octave_002edataset.html">
-                            <section title="octave.dataset.AirPassengers" ref="html/octave_002edataset_002eAirPassengers.html">
-                            </section>
-                            <section title="octave.dataset.ChickWeight" ref="html/octave_002edataset_002eChickWeight.html">
-                            </section>
                             <section title="octave.dataset.airmiles" ref="html/octave_002edataset_002eairmiles.html">
+                            </section>
+                            <section title="octave.dataset.AirPassengers" ref="html/octave_002edataset_002eAirPassengers.html">
                             </section>
                             <section title="octave.dataset.airquality" ref="html/octave_002edataset_002eairquality.html">
                             </section>
@@ -336,9 +334,65 @@
                             </section>
                             <section title="octave.dataset.beavers" ref="html/octave_002edataset_002ebeavers.html">
                             </section>
+                            <section title="octave.dataset.BJsales" ref="html/octave_002edataset_002eBJsales.html">
+                            </section>
+                            <section title="octave.dataset.BOD" ref="html/octave_002edataset_002eBOD.html">
+                            </section>
+                            <section title="octave.dataset.cars" ref="html/octave_002edataset_002ecars.html">
+                            </section>
+                            <section title="octave.dataset.ChickWeight" ref="html/octave_002edataset_002eChickWeight.html">
+                            </section>
+                            <section title="octave.dataset.chickwts" ref="html/octave_002edataset_002echickwts.html">
+                            </section>
+                            <section title="octave.dataset.co2" ref="html/octave_002edataset_002eco2.html">
+                            </section>
+                            <section title="octave.dataset.crimtab" ref="html/octave_002edataset_002ecrimtab.html">
+                            </section>
                             <section title="octave.dataset.cupcake" ref="html/octave_002edataset_002ecupcake.html">
                             </section>
+                            <section title="octave.dataset.discoveries" ref="html/octave_002edataset_002ediscoveries.html">
+                            </section>
+                            <section title="octave.dataset.DNase" ref="html/octave_002edataset_002eDNase.html">
+                            </section>
+                            <section title="octave.dataset.esoph" ref="html/octave_002edataset_002eesoph.html">
+                            </section>
+                            <section title="octave.dataset.euro" ref="html/octave_002edataset_002eeuro.html">
+                            </section>
+                            <section title="octave.dataset.eurodist" ref="html/octave_002edataset_002eeurodist.html">
+                            </section>
+                            <section title="octave.dataset.EuStockMarkets" ref="html/octave_002edataset_002eEuStockMarkets.html">
+                            </section>
+                            <section title="octave.dataset.faithful" ref="html/octave_002edataset_002efaithful.html">
+                            </section>
+                            <section title="octave.dataset.Formaldehyde" ref="html/octave_002edataset_002eFormaldehyde.html">
+                            </section>
+                            <section title="octave.dataset.freeny" ref="html/octave_002edataset_002efreeny.html">
+                            </section>
+                            <section title="octave.dataset.HairEyeColor" ref="html/octave_002edataset_002eHairEyeColor.html">
+                            </section>
+                            <section title="octave.dataset.Harman23cor" ref="html/octave_002edataset_002eHarman23cor.html">
+                            </section>
+                            <section title="octave.dataset.Harman74cor" ref="html/octave_002edataset_002eHarman74cor.html">
+                            </section>
+                            <section title="octave.dataset.Indometh" ref="html/octave_002edataset_002eIndometh.html">
+                            </section>
+                            <section title="octave.dataset.infert" ref="html/octave_002edataset_002einfert.html">
+                            </section>
+                            <section title="octave.dataset.InsectSprays" ref="html/octave_002edataset_002eInsectSprays.html">
+                            </section>
                             <section title="octave.dataset.iris" ref="html/octave_002edataset_002eiris.html">
+                            </section>
+                            <section title="octave.dataset.islands" ref="html/octave_002edataset_002eislands.html">
+                            </section>
+                            <section title="octave.dataset.JohnsonJohnson" ref="html/octave_002edataset_002eJohnsonJohnson.html">
+                            </section>
+                            <section title="octave.dataset.LakeHuron" ref="html/octave_002edataset_002eLakeHuron.html">
+                            </section>
+                            <section title="octave.dataset.lh" ref="html/octave_002edataset_002elh.html">
+                            </section>
+                            <section title="octave.dataset.LifeCycleSavings" ref="html/octave_002edataset_002eLifeCycleSavings.html">
+                            </section>
+                            <section title="octave.dataset.Loblolly" ref="html/octave_002edataset_002eLoblolly.html">
                             </section>
                             <section title="octave.dataset.mtcars" ref="html/octave_002edataset_002emtcars.html">
                             </section>
@@ -350,6 +404,8 @@
                             </section>
                             <section title="octave.datasets.description" ref="html/octave_002edatasets_002edescription.html">
                             </section>
+                        </section>
+                        <section title="octave.examples.coplot" ref="html/octave_002eexamples_002ecoplot.html">
                         </section>
                         <section title="octave.examples.plot_pairs" ref="html/octave_002eexamples_002eplot_005fpairs.html">
                         </section>
@@ -497,6 +553,10 @@
                             <section title="table.removevars" ref="html/table_002eremovevars.html">
                             </section>
                             <section title="table.movevars" ref="html/table_002emovevars.html">
+                            </section>
+                            <section title="table.getvar" ref="html/table_002egetvar.html">
+                            </section>
+                            <section title="table.getvars" ref="html/table_002egetvars.html">
                             </section>
                             <section title="table.setvar" ref="html/table_002esetvar.html">
                             </section>
@@ -723,7 +783,21 @@
             <keyword name="octave.chrono.dummy_function" id="octave.chrono.dummy_function" ref="html/octave_002echrono_002edummy_005ffunction.html"/>
             <keyword name="octave.dataset" id="octave.dataset" ref="html/octave_002edataset.html"/>
             <keyword name="octave.dataset.AirPassengers" id="octave.dataset.AirPassengers" ref="html/octave_002edataset_002eAirPassengers.html"/>
+            <keyword name="octave.dataset.BJsales" id="octave.dataset.BJsales" ref="html/octave_002edataset_002eBJsales.html"/>
+            <keyword name="octave.dataset.BOD" id="octave.dataset.BOD" ref="html/octave_002edataset_002eBOD.html"/>
             <keyword name="octave.dataset.ChickWeight" id="octave.dataset.ChickWeight" ref="html/octave_002edataset_002eChickWeight.html"/>
+            <keyword name="octave.dataset.DNase" id="octave.dataset.DNase" ref="html/octave_002edataset_002eDNase.html"/>
+            <keyword name="octave.dataset.EuStockMarkets" id="octave.dataset.EuStockMarkets" ref="html/octave_002edataset_002eEuStockMarkets.html"/>
+            <keyword name="octave.dataset.Formaldehyde" id="octave.dataset.Formaldehyde" ref="html/octave_002edataset_002eFormaldehyde.html"/>
+            <keyword name="octave.dataset.HairEyeColor" id="octave.dataset.HairEyeColor" ref="html/octave_002edataset_002eHairEyeColor.html"/>
+            <keyword name="octave.dataset.Harman23cor" id="octave.dataset.Harman23cor" ref="html/octave_002edataset_002eHarman23cor.html"/>
+            <keyword name="octave.dataset.Harman74cor" id="octave.dataset.Harman74cor" ref="html/octave_002edataset_002eHarman74cor.html"/>
+            <keyword name="octave.dataset.Indometh" id="octave.dataset.Indometh" ref="html/octave_002edataset_002eIndometh.html"/>
+            <keyword name="octave.dataset.InsectSprays" id="octave.dataset.InsectSprays" ref="html/octave_002edataset_002eInsectSprays.html"/>
+            <keyword name="octave.dataset.JohnsonJohnson" id="octave.dataset.JohnsonJohnson" ref="html/octave_002edataset_002eJohnsonJohnson.html"/>
+            <keyword name="octave.dataset.LakeHuron" id="octave.dataset.LakeHuron" ref="html/octave_002edataset_002eLakeHuron.html"/>
+            <keyword name="octave.dataset.LifeCycleSavings" id="octave.dataset.LifeCycleSavings" ref="html/octave_002edataset_002eLifeCycleSavings.html"/>
+            <keyword name="octave.dataset.Loblolly" id="octave.dataset.Loblolly" ref="html/octave_002edataset_002eLoblolly.html"/>
             <keyword name="octave.dataset.airmiles" id="octave.dataset.airmiles" ref="html/octave_002edataset_002eairmiles.html"/>
             <keyword name="octave.dataset.airquality" id="octave.dataset.airquality" ref="html/octave_002edataset_002eairquality.html"/>
             <keyword name="octave.dataset.anscombe" id="octave.dataset.anscombe" ref="html/octave_002edataset_002eanscombe.html"/>
@@ -731,13 +805,27 @@
             <keyword name="octave.dataset.attitude" id="octave.dataset.attitude" ref="html/octave_002edataset_002eattitude.html"/>
             <keyword name="octave.dataset.austres" id="octave.dataset.austres" ref="html/octave_002edataset_002eaustres.html"/>
             <keyword name="octave.dataset.beavers" id="octave.dataset.beavers" ref="html/octave_002edataset_002ebeavers.html"/>
+            <keyword name="octave.dataset.cars" id="octave.dataset.cars" ref="html/octave_002edataset_002ecars.html"/>
+            <keyword name="octave.dataset.chickwts" id="octave.dataset.chickwts" ref="html/octave_002edataset_002echickwts.html"/>
+            <keyword name="octave.dataset.co2" id="octave.dataset.co2" ref="html/octave_002edataset_002eco2.html"/>
+            <keyword name="octave.dataset.crimtab" id="octave.dataset.crimtab" ref="html/octave_002edataset_002ecrimtab.html"/>
             <keyword name="octave.dataset.cupcake" id="octave.dataset.cupcake" ref="html/octave_002edataset_002ecupcake.html"/>
+            <keyword name="octave.dataset.discoveries" id="octave.dataset.discoveries" ref="html/octave_002edataset_002ediscoveries.html"/>
+            <keyword name="octave.dataset.esoph" id="octave.dataset.esoph" ref="html/octave_002edataset_002eesoph.html"/>
+            <keyword name="octave.dataset.euro" id="octave.dataset.euro" ref="html/octave_002edataset_002eeuro.html"/>
+            <keyword name="octave.dataset.eurodist" id="octave.dataset.eurodist" ref="html/octave_002edataset_002eeurodist.html"/>
+            <keyword name="octave.dataset.faithful" id="octave.dataset.faithful" ref="html/octave_002edataset_002efaithful.html"/>
+            <keyword name="octave.dataset.freeny" id="octave.dataset.freeny" ref="html/octave_002edataset_002efreeny.html"/>
+            <keyword name="octave.dataset.infert" id="octave.dataset.infert" ref="html/octave_002edataset_002einfert.html"/>
             <keyword name="octave.dataset.iris" id="octave.dataset.iris" ref="html/octave_002edataset_002eiris.html"/>
+            <keyword name="octave.dataset.islands" id="octave.dataset.islands" ref="html/octave_002edataset_002eislands.html"/>
+            <keyword name="octave.dataset.lh" id="octave.dataset.lh" ref="html/octave_002edataset_002elh.html"/>
             <keyword name="octave.dataset.mtcars" id="octave.dataset.mtcars" ref="html/octave_002edataset_002emtcars.html"/>
             <keyword name="octave.datasets" id="octave.datasets" ref="html/octave_002edatasets.html"/>
             <keyword name="octave.datasets.description" id="octave.datasets.description" ref="html/octave_002edatasets_002edescription.html"/>
             <keyword name="octave.datasets.list" id="octave.datasets.list" ref="html/octave_002edatasets_002elist.html"/>
             <keyword name="octave.datasets.load" id="octave.datasets.load" ref="html/octave_002edatasets_002eload.html"/>
+            <keyword name="octave.examples.coplot" id="octave.examples.coplot" ref="html/octave_002eexamples_002ecoplot.html"/>
             <keyword name="octave.examples.plot_pairs" id="octave.examples.plot_pairs" ref="html/octave_002eexamples_002eplot_005fpairs.html"/>
             <keyword name="pp" id="pp" ref="html/pp.html"/>
             <keyword name="rmmissing" id="rmmissing" ref="html/rmmissing.html"/>
@@ -783,6 +871,8 @@
             <keyword name="table.convertvars" id="table.convertvars" ref="html/table_002econvertvars.html"/>
             <keyword name="table.evalWithVars" id="table.evalWithVars" ref="html/table_002eevalWithVars.html"/>
             <keyword name="table.findgroups" id="table.findgroups" ref="html/table_002efindgroups.html"/>
+            <keyword name="table.getvar" id="table.getvar" ref="html/table_002egetvar.html"/>
+            <keyword name="table.getvars" id="table.getvars" ref="html/table_002egetvars.html"/>
             <keyword name="table.groupby" id="table.groupby" ref="html/table_002egroupby.html"/>
             <keyword name="table.grpstats" id="table.grpstats" ref="html/table_002egrpstats.html"/>
             <keyword name="table.hasrownames" id="table.hasrownames" ref="html/table_002ehasrownames.html"/>
@@ -892,6 +982,8 @@
             <file>html/table_002econvertvars.html</file>
             <file>html/table_002eaddvars.html</file>
             <file>html/table_002esetvar.html</file>
+            <file>html/table_002egetvars.html</file>
+            <file>html/table_002egetvar.html</file>
             <file>html/table_002emovevars.html</file>
             <file>html/table_002eremovevars.html</file>
             <file>html/table_002esubsetvars.html</file>
@@ -966,22 +1058,50 @@
             <file>html/rmmissing.html</file>
             <file>html/pp.html</file>
             <file>html/octave_002eexamples_002eplot_005fpairs.html</file>
+            <file>html/octave_002eexamples_002ecoplot.html</file>
             <file>html/octave_002edatasets_002edescription.html</file>
             <file>html/octave_002edatasets_002eload.html</file>
             <file>html/octave_002edatasets_002elist.html</file>
             <file>html/octave_002edatasets.html</file>
             <file>html/octave_002edataset_002emtcars.html</file>
+            <file>html/octave_002edataset_002eLoblolly.html</file>
+            <file>html/octave_002edataset_002eLifeCycleSavings.html</file>
+            <file>html/octave_002edataset_002elh.html</file>
+            <file>html/octave_002edataset_002eLakeHuron.html</file>
+            <file>html/octave_002edataset_002eJohnsonJohnson.html</file>
+            <file>html/octave_002edataset_002eislands.html</file>
             <file>html/octave_002edataset_002eiris.html</file>
+            <file>html/octave_002edataset_002eInsectSprays.html</file>
+            <file>html/octave_002edataset_002einfert.html</file>
+            <file>html/octave_002edataset_002eIndometh.html</file>
+            <file>html/octave_002edataset_002eHarman74cor.html</file>
+            <file>html/octave_002edataset_002eHarman23cor.html</file>
+            <file>html/octave_002edataset_002eHairEyeColor.html</file>
+            <file>html/octave_002edataset_002efreeny.html</file>
+            <file>html/octave_002edataset_002eFormaldehyde.html</file>
+            <file>html/octave_002edataset_002efaithful.html</file>
+            <file>html/octave_002edataset_002eEuStockMarkets.html</file>
+            <file>html/octave_002edataset_002eeurodist.html</file>
+            <file>html/octave_002edataset_002eeuro.html</file>
+            <file>html/octave_002edataset_002eesoph.html</file>
+            <file>html/octave_002edataset_002eDNase.html</file>
+            <file>html/octave_002edataset_002ediscoveries.html</file>
             <file>html/octave_002edataset_002ecupcake.html</file>
+            <file>html/octave_002edataset_002ecrimtab.html</file>
+            <file>html/octave_002edataset_002eco2.html</file>
+            <file>html/octave_002edataset_002echickwts.html</file>
+            <file>html/octave_002edataset_002eChickWeight.html</file>
+            <file>html/octave_002edataset_002ecars.html</file>
+            <file>html/octave_002edataset_002eBOD.html</file>
+            <file>html/octave_002edataset_002eBJsales.html</file>
             <file>html/octave_002edataset_002ebeavers.html</file>
             <file>html/octave_002edataset_002eaustres.html</file>
             <file>html/octave_002edataset_002eattitude.html</file>
             <file>html/octave_002edataset_002eattenu.html</file>
             <file>html/octave_002edataset_002eanscombe.html</file>
             <file>html/octave_002edataset_002eairquality.html</file>
-            <file>html/octave_002edataset_002eairmiles.html</file>
-            <file>html/octave_002edataset_002eChickWeight.html</file>
             <file>html/octave_002edataset_002eAirPassengers.html</file>
+            <file>html/octave_002edataset_002eairmiles.html</file>
             <file>html/octave_002edataset.html</file>
             <file>html/octave_002echrono_002eDummyClass_002ebar.html</file>
             <file>html/octave_002echrono_002eDummyClass_002efoo.html</file>
@@ -1134,7 +1254,7 @@
             <file>html/Time-Zones.html</file>
             <file>html/Datenum-Compatibility.html</file>
             <file>html/datetime-Class.html</file>
-            <file>html/Date/Time-Representation.html</file>
+            <file>html/Date_002fTime-Representation.html</file>
             <file>html/Tables-vs-SQL.html</file>
             <file>html/Table-Construction.html</file>
             <file>html/Table-Representation.html</file>
