@@ -1,0 +1,26 @@
+@subsubheading Description
+
+Annual measurements of the level, in feet, of Lake Huron 1875–1972.
+
+@subsubheading Format
+
+@table @code
+@item year
+Year of the measurement
+@item level
+Lake level (ft).
+@end table
+
+@subsubheading Source
+
+Brockwell, P. J. and Davis, R. A. (1991). @cite{Time Series and Forecasting
+Methods}. Second edition. Springer, New York. Series A, page 555.
+
+Brockwell, P. J. and Davis, R. A. (1996). @cite{Introduction to Time Series
+and Forecasting}. Springer, New York. Sections 5.1 and 7.6.
+
+@subsubheading Examples
+
+@example
+@INCLUDE_DATASET_EXAMPLE_SCRIPT{LakeHuron_1.m}
+@end example

@@ -70,6 +70,10 @@ classdef (Abstract) dataset
       "iris"
       "islands"
       "JohnsonJohnson"
+      "LakeHuron"
+      "lh"
+      "LifeCycleSavings"
+      "Loblolly"
       "mtcars"
     }
 

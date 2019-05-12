@@ -1,0 +1,49 @@
+@subsubheading Description
+
+Data on the savings ratio 1960–1970.
+
+@subsubheading Format
+
+@table @code
+@item country
+Name of the country.
+@item sr
+Aggregate personal savings.
+@item pop15
+Percentage of population under 15.
+@item pop75
+Percentage of population over 75.
+@item dpi
+Real per-capita disposable income.
+@item ddpi
+Percent growth rate of dpi.
+@end table
+
+@subsubheading Details
+
+Under the life-cycle savings hypothesis as developed by Franco Modigliani, the
+savings ratio (aggregate personal saving divided by disposable income) is
+explained by per-capita disposable income, the percentage rate of change in
+per-capita disposable income, and two demographic variables: the percentage
+of population less than 15 years old and the percentage of the population over
+75 years old. The data are averaged over the decade 1960–1970 to remove the
+business cycle or other short-term fluctuations.
+
+@subsubheading Source
+
+The data were obtained from Belsley, Kuh and Welsch (1980). They in turn
+obtained the data from Sterling (1977).
+
+@subsubheading References
+
+Sterling, Arnie (1977) Unpublished BS Thesis. Massachusetts Institute of
+Technology.
+
+Belsley, D. A., Kuh. E. and Welsch, R. E. (1980) @cite{Regression Diagnostics}.
+New York: Wiley.
+
+@subsubheading Examples
+
+@example
+@INCLUDE_DATASET_EXAMPLE_SCRIPT{LifeCycleSavings_1.m}
+@end example

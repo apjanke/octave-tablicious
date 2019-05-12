@@ -2366,6 +2366,271 @@ classdef dataset
     endfunction
 
     ## -*- texinfo -*-
+    ## @node dataset.LakeHuron
+    ## @deftypefn {Static Method} {@var{out} =} LakeHuron ()
+    ##
+    ## Level of Lake Huron 1875-1972
+    ##
+    ## @subsubheading Description
+    ## 
+    ## Annual measurements of the level, in feet, of Lake Huron 1875–1972.
+    ## 
+    ## @subsubheading Format
+    ## 
+    ## @table @code
+    ## @item year
+    ## Year of the measurement
+    ## @item level
+    ## Lake level (ft).
+    ## @end table
+    ## 
+    ## @subsubheading Source
+    ## 
+    ## Brockwell, P. J. and Davis, R. A. (1991). @cite{Time Series and Forecasting
+    ## Methods}. Second edition. Springer, New York. Series A, page 555.
+    ## 
+    ## Brockwell, P. J. and Davis, R. A. (1996). @cite{Introduction to Time Series
+    ## and Forecasting}. Springer, New York. Sections 5.1 and 7.6.
+    ## 
+    ## @subsubheading Examples
+    ## 
+    ## @example
+    ## t = octave.dataset.LakeHuron;
+    ## 
+    ## plot (t.year, t.level)
+    ## xlabel ("Year")
+    ## ylabel ("Lake level (ft)")
+    ## title ("Level of Lake Huron")
+    ## 
+    ## @end example
+    ## 
+    ##
+    ## @end deftypefn
+    function out = LakeHuron ()
+      name = 'LakeHuron';
+      data = octave.datasets.load(name);
+      if nargout == 0
+        if isstruct (data)
+          s = data;
+          vars = fieldnames (s);
+          for i = 1:numel (vars)
+            assignin ('caller', vars{i}, s.(vars{i}));
+          endfor
+          loaded_vars = vars;
+        else
+          assignin ('caller', name, data);
+          loaded_vars = { name };
+        endif
+        printf ('Loaded ''%s''. Variables: %s\n', name, strjoin (loaded_vars, ', '));
+      else
+        out = data;
+      endif
+    endfunction
+
+    ## -*- texinfo -*-
+    ## @node dataset.lh
+    ## @deftypefn {Static Method} {@var{out} =} lh ()
+    ##
+    ## Luteinizing Hormone in Blood Samples
+    ##
+    ## @subsubheading Description
+    ## 
+    ## A regular time series giving the luteinizing hormone in blood samples at 10
+    ## minute intervals from a human female, 48 samples.
+    ## 
+    ## @subsubheading Format
+    ## 
+    ## @table @code
+    ## @item sample
+    ## The number of the observation.
+    ## @item lh
+    ## Level of luteinizing hormone.
+    ## @end table
+    ## 
+    ## @subsubheading Source
+    ## 
+    ## P.J. Diggle (1990) @cite{Time Series: A Biostatistical Introduction}. Oxford,
+    ## table A.1, series 3
+    ## 
+    ## @subsubheading Examples
+    ## 
+    ## @example
+    ## t = octave.dataset.lh;
+    ## 
+    ## plot (t.sample, t.lh);
+    ## xlabel ("Sample Number");
+    ## ylabel ("lh level");
+    ## @end example
+    ## 
+    ##
+    ## @end deftypefn
+    function out = lh ()
+      name = 'lh';
+      data = octave.datasets.load(name);
+      if nargout == 0
+        if isstruct (data)
+          s = data;
+          vars = fieldnames (s);
+          for i = 1:numel (vars)
+            assignin ('caller', vars{i}, s.(vars{i}));
+          endfor
+          loaded_vars = vars;
+        else
+          assignin ('caller', name, data);
+          loaded_vars = { name };
+        endif
+        printf ('Loaded ''%s''. Variables: %s\n', name, strjoin (loaded_vars, ', '));
+      else
+        out = data;
+      endif
+    endfunction
+
+    ## -*- texinfo -*-
+    ## @node dataset.LifeCycleSavings
+    ## @deftypefn {Static Method} {@var{out} =} LifeCycleSavings ()
+    ##
+    ## Intercountry Life-Cycle Savings Data
+    ##
+    ## @subsubheading Description
+    ## 
+    ## Data on the savings ratio 1960–1970.
+    ## 
+    ## @subsubheading Format
+    ## 
+    ## @table @code
+    ## @item country
+    ## Name of the country.
+    ## @item sr
+    ## Aggregate personal savings.
+    ## @item pop15
+    ## Percentage of population under 15.
+    ## @item pop75
+    ## Percentage of population over 75.
+    ## @item dpi
+    ## Real per-capita disposable income.
+    ## @item ddpi
+    ## Percent growth rate of dpi.
+    ## @end table
+    ## 
+    ## @subsubheading Details
+    ## 
+    ## Under the life-cycle savings hypothesis as developed by Franco Modigliani, the
+    ## savings ratio (aggregate personal saving divided by disposable income) is
+    ## explained by per-capita disposable income, the percentage rate of change in
+    ## per-capita disposable income, and two demographic variables: the percentage
+    ## of population less than 15 years old and the percentage of the population over
+    ## 75 years old. The data are averaged over the decade 1960–1970 to remove the
+    ## business cycle or other short-term fluctuations.
+    ## 
+    ## @subsubheading Source
+    ## 
+    ## The data were obtained from Belsley, Kuh and Welsch (1980). They in turn
+    ## obtained the data from Sterling (1977).
+    ## 
+    ## @subsubheading References
+    ## 
+    ## Sterling, Arnie (1977) Unpublished BS Thesis. Massachusetts Institute of
+    ## Technology.
+    ## 
+    ## Belsley, D. A., Kuh. E. and Welsch, R. E. (1980) @cite{Regression Diagnostics}.
+    ## New York: Wiley.
+    ## 
+    ## @subsubheading Examples
+    ## 
+    ## @example
+    ## t = octave.dataset.LifeCycleSavings;
+    ## 
+    ## # TODO: linear model
+    ## 
+    ## # TODO: pairs plot with Lowess smoothed line
+    ## 
+    ## @end example
+    ## 
+    ##
+    ## @end deftypefn
+    function out = LifeCycleSavings ()
+      name = 'LifeCycleSavings';
+      data = octave.datasets.load(name);
+      if nargout == 0
+        if isstruct (data)
+          s = data;
+          vars = fieldnames (s);
+          for i = 1:numel (vars)
+            assignin ('caller', vars{i}, s.(vars{i}));
+          endfor
+          loaded_vars = vars;
+        else
+          assignin ('caller', name, data);
+          loaded_vars = { name };
+        endif
+        printf ('Loaded ''%s''. Variables: %s\n', name, strjoin (loaded_vars, ', '));
+      else
+        out = data;
+      endif
+    endfunction
+
+    ## -*- texinfo -*-
+    ## @node dataset.Loblolly
+    ## @deftypefn {Static Method} {@var{out} =} Loblolly ()
+    ##
+    ## Growth of Loblolly pine trees
+    ##
+    ## @subsubheading Description
+    ## 
+    ## Records of the growth of Loblolly pine trees.
+    ## 
+    ## @subsubheading Format
+    ## 
+    ## @table @code
+    ## @item height
+    ## Tree height (ft).
+    ## @item age
+    ## Tree age (years).
+    ## @item Seed
+    ## Seed source for the tree. Ordering is according to increasing maximum height.
+    ## @end table
+    ## 
+    ## @subsubheading Source
+    ## 
+    ## Kung, F. H. (1986), Fitting logistic growth curve with predetermined carrying
+    ## capacity, in @cite{Proceedings of the Statistical Computing Section}, American
+    ## Statistical Association, 340–343.
+    ## 
+    ## Pinheiro, J. C. and Bates, D. M. (2000) @cite{Mixed-effects Models in S and
+    ## S-PLUS}, Springer.
+    ## 
+    ## @subsubheading Examples
+    ## 
+    ## @example
+    ## t = octave.dataset.Loblolly;
+    ## 
+    ## 
+    ## @end example
+    ## 
+    ##
+    ## @end deftypefn
+    function out = Loblolly ()
+      name = 'Loblolly';
+      data = octave.datasets.load(name);
+      if nargout == 0
+        if isstruct (data)
+          s = data;
+          vars = fieldnames (s);
+          for i = 1:numel (vars)
+            assignin ('caller', vars{i}, s.(vars{i}));
+          endfor
+          loaded_vars = vars;
+        else
+          assignin ('caller', name, data);
+          loaded_vars = { name };
+        endif
+        printf ('Loaded ''%s''. Variables: %s\n', name, strjoin (loaded_vars, ', '));
+      else
+        out = data;
+      endif
+    endfunction
+
+    ## -*- texinfo -*-
     ## @node dataset.mtcars
     ## @deftypefn {Static Method} {@var{out} =} mtcars ()
     ##

@@ -1,0 +1,24 @@
+@subsubheading Description
+
+A regular time series giving the luteinizing hormone in blood samples at 10
+minute intervals from a human female, 48 samples.
+
+@subsubheading Format
+
+@table @code
+@item sample
+The number of the observation.
+@item lh
+Level of luteinizing hormone.
+@end table
+
+@subsubheading Source
+
+P.J. Diggle (1990) @cite{Time Series: A Biostatistical Introduction}. Oxford,
+table A.1, series 3
+
+@subsubheading Examples
+
+@example
+@INCLUDE_DATASET_EXAMPLE_SCRIPT{lh_1.m}
+@end example
