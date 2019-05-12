@@ -94,6 +94,12 @@ classdef (Abstract) dataset
       "randu"
       "rivers"
       "rock"
+      "sleep"
+      "stackloss"
+      "state"
+      "sunspot_year"
+      "sunspots"
+      "swiss"
     }
 
   endproperties

@@ -1,0 +1,22 @@
+@subsubheading Description
+
+Yearly numbers of sunspots from 1700 to 1988 (rounded to one digit).
+
+@subsubheading Format
+
+@table @code
+@item year
+Year of the observation.
+@item sunspots
+Number of sunspots.
+@end table
+
+@subsubheading Source
+
+H. Tong (1996) @cite{Non-Linear Time Series}. Clarendon Press, Oxford, p. 471.
+
+@subsubheading Examples
+
+@example
+@INCLUDE_DATASET_EXAMPLE_SCRIPT{sunspot_year_1.m}
+@end example

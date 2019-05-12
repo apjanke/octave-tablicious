@@ -1,0 +1,37 @@
+@subsubheading Description
+
+Data which show the effect of two soporific drugs (increase in hours of sleep
+compared to control) on 10 patients.
+
+@subsubheading Format
+
+@table @code
+@item id
+Patient ID.
+@item group
+Drug given.
+@item extra
+Increase in hours of sleep.
+@end table
+
+@subsubheading Details
+
+The @code{group} variable name may be misleading about the data: They
+represent measurements on 10 persons, not in groups.
+
+@subsubheading Source
+
+Cushny, A. R. and Peebles, A. R. (1905) The action of optical isomers:
+II hyoscines. @cite{The Journal of Physiology} 32, 501–510.
+
+Student (1908) The probable error of the mean. @cite{Biometrika}, 6, 20.
+
+@subsubheading References
+
+Scheffé, Henry (1959) @cite{The Analysis of Variance}. New York, NY: Wiley.
+
+@subsubheading Examples
+
+@example
+@INCLUDE_DATASET_EXAMPLE_SCRIPT{sleep_1.m}
+@end example

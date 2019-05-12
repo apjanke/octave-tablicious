@@ -1,0 +1,25 @@
+@subsubheading Description
+
+Monthly mean relative sunspot numbers from 1749 to 1983. Collected at Swiss
+Federal Observatory, Zurich until 1960, then Tokyo Astronomical Observatory.
+
+@subsubheading Format
+
+@table @code
+@item month
+Month of the observation.
+@item sunspots
+Number of observed sunspots.
+@end table
+
+@subsubheading Source
+
+Andrews, D. F. and Herzberg, A. M. (1985) @cite{Data: A Collection
+of Problems from Many Fields for the Student and Research Worker}. 
+New York: Springer-Verlag.
+
+@subsubheading Examples
+
+@example
+@INCLUDE_DATASET_EXAMPLE_SCRIPT{sunspots_1.m}
+@end example

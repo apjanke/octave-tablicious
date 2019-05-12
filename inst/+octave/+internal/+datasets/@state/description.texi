@@ -1,0 +1,56 @@
+@subsubheading Description
+
+Data related to the 50 states of the United States of America.
+
+@subsubheading Format
+
+@table @code
+@item abb
+State abbreviation.
+@item name
+State name.
+@item area
+Area (sq mi).
+@item lat
+Approximate center (latitude).
+@item lon
+Approximate center (longitude).
+@item division
+State division.
+@item revion
+State region.
+@item Population
+Population estimate as of July 1, 1975.
+@item Income
+Per capita income (1974).
+@item Illiteracy
+Illiteracy as of 1970 (percent of population).
+@item LifeExp
+Lfe expectancy in years (1969-71).
+@item Murder
+Murder and non-negligent manslaughter rate per 100,000 population (1976).
+@item HSGrad
+Percent high-school graduates (1970).
+@item Frost
+Mean number of days with minimum temperature below freezing (1931-1960)
+in capital or large city.
+@end table
+
+@subsubheading Source
+
+U.S. Department of Commerce, Bureau of the Census (1977) @cite{Statistical
+Abstract of the United States}.
+
+U.S. Department of Commerce, Bureau of the Census (1977) @cite{County
+and City Data Book}.
+
+@subsubheading References
+
+Becker, R. A., Chambers, J. M. and Wilks, A. R. (1988) @cite{The New S
+Language}. Wadsworth & Brooks/Cole.
+
+@subsubheading Examples
+
+@example
+@INCLUDE_DATASET_EXAMPLE_SCRIPT{state_1.m}
+@end example

@@ -4000,6 +4000,455 @@ classdef dataset
       endif
     endfunction
 
+    ## -*- texinfo -*-
+    ## @node dataset.sleep
+    ## @deftypefn {Static Method} {@var{out} =} sleep ()
+    ##
+    ## Student’s Sleep Data
+    ##
+    ## @subsubheading Description
+    ## 
+    ## Data which show the effect of two soporific drugs (increase in hours of sleep
+    ## compared to control) on 10 patients.
+    ## 
+    ## @subsubheading Format
+    ## 
+    ## @table @code
+    ## @item id
+    ## Patient ID.
+    ## @item group
+    ## Drug given.
+    ## @item extra
+    ## Increase in hours of sleep.
+    ## @end table
+    ## 
+    ## @subsubheading Details
+    ## 
+    ## The @code{group} variable name may be misleading about the data: They
+    ## represent measurements on 10 persons, not in groups.
+    ## 
+    ## @subsubheading Source
+    ## 
+    ## Cushny, A. R. and Peebles, A. R. (1905) The action of optical isomers:
+    ## II hyoscines. @cite{The Journal of Physiology} 32, 501–510.
+    ## 
+    ## Student (1908) The probable error of the mean. @cite{Biometrika}, 6, 20.
+    ## 
+    ## @subsubheading References
+    ## 
+    ## Scheffé, Henry (1959) @cite{The Analysis of Variance}. New York, NY: Wiley.
+    ## 
+    ## @subsubheading Examples
+    ## 
+    ## @example
+    ## t = octave.dataset.sleep;
+    ## 
+    ## # TODO: Port to Octave
+    ## 
+    ## @end example
+    ## 
+    ##
+    ## @end deftypefn
+    function out = sleep ()
+      name = 'sleep';
+      data = octave.datasets.load(name);
+      if nargout == 0
+        if isstruct (data)
+          s = data;
+          vars = fieldnames (s);
+          for i = 1:numel (vars)
+            assignin ('caller', vars{i}, s.(vars{i}));
+          endfor
+          loaded_vars = vars;
+        else
+          assignin ('caller', name, data);
+          loaded_vars = { name };
+        endif
+        printf ('Loaded ''%s''. Variables: %s\n', name, strjoin (loaded_vars, ', '));
+      else
+        out = data;
+      endif
+    endfunction
+
+    ## -*- texinfo -*-
+    ## @node dataset.stackloss
+    ## @deftypefn {Static Method} {@var{out} =} stackloss ()
+    ##
+    ## Brownlee's Stack Loss Plant Data
+    ##
+    ## @subsubheading Description
+    ## 
+    ## Operational data of a plant for the oxidation of ammonia to nitric acid.
+    ## 
+    ## @subsubheading Format
+    ## 
+    ## @table @code
+    ## @item AirFlow
+    ## Flow of cooling air.
+    ## @item WaterTemp
+    ## Cooling Water Inlet temperature.
+    ## @item AcidConc
+    ## Concentration of acid (per 1000, minus 500).
+    ## @item StackLoss
+    ## Stack loss
+    ## @end table
+    ## 
+    ## @subsubheading Details
+    ## 
+    ## “Obtained from 21 days of operation of a plant for the oxidation of ammonia
+    ## (NH3) to nitric acid (HNO3). The nitric oxides produced are absorbed in a
+    ## countercurrent absorption tower”. (Brownlee, cited by Dodge, slightly reformatted by MM.)
+    ## 
+    ## @code{AirFlow} represents the rate of operation of the plant. @code{WaterTemp} is the
+    ## temperature of cooling water circulated through coils in the absorption tower.
+    ## @code{AcidConc} is the concentration of the acid circulating, minus 50, times 10:
+    ## that is, 89 corresponds to 58.9 per cent acid. @code{StackLoss} (the dependent variable)
+    ## is 10 times the percentage of the ingoing ammonia to the plant that escapes from
+    ## the absorption column unabsorbed; that is, an (inverse) measure of the over-all
+    ## efficiency of the plant.
+    ## 
+    ## @subsubheading Source
+    ## 
+    ## Brownlee, K. A. (1960, 2nd ed. 1965) @cite{Statistical Theory and Methodology
+    ## in Science and Engineering}. New York: Wiley. pp. 491–500.
+    ## 
+    ## @subsubheading References
+    ## 
+    ## Becker, R. A., Chambers, J. M. and Wilks, A. R. (1988) @cite{The New S
+    ## Language}. Wadsworth & Brooks/Cole.
+    ## 
+    ## Dodge, Y. (1996) The guinea pig of multiple regression. In: @cite{Robust
+    ## Statistics, Data Analysis, and Computer Intensive Methods; In Honor of
+    ## Peter Huber’s 60th Birthday}, 1996, @cite{Lecture Notes in Statistics}
+    ## 109, Springer-Verlag, New York.
+    ## 
+    ## @subsubheading Examples
+    ## 
+    ## @example
+    ## t = octave.dataset.stackloss;
+    ## 
+    ## # TODO: Create linear model and print summary
+    ## 
+    ## @end example
+    ## 
+    ##
+    ## @end deftypefn
+    function out = stackloss ()
+      name = 'stackloss';
+      data = octave.datasets.load(name);
+      if nargout == 0
+        if isstruct (data)
+          s = data;
+          vars = fieldnames (s);
+          for i = 1:numel (vars)
+            assignin ('caller', vars{i}, s.(vars{i}));
+          endfor
+          loaded_vars = vars;
+        else
+          assignin ('caller', name, data);
+          loaded_vars = { name };
+        endif
+        printf ('Loaded ''%s''. Variables: %s\n', name, strjoin (loaded_vars, ', '));
+      else
+        out = data;
+      endif
+    endfunction
+
+    ## -*- texinfo -*-
+    ## @node dataset.state
+    ## @deftypefn {Static Method} {@var{out} =} state ()
+    ##
+    ## US State Facts and Figures
+    ##
+    ## @subsubheading Description
+    ## 
+    ## Data related to the 50 states of the United States of America.
+    ## 
+    ## @subsubheading Format
+    ## 
+    ## @table @code
+    ## @item abb
+    ## State abbreviation.
+    ## @item name
+    ## State name.
+    ## @item area
+    ## Area (sq mi).
+    ## @item lat
+    ## Approximate center (latitude).
+    ## @item lon
+    ## Approximate center (longitude).
+    ## @item division
+    ## State division.
+    ## @item revion
+    ## State region.
+    ## @item Population
+    ## Population estimate as of July 1, 1975.
+    ## @item Income
+    ## Per capita income (1974).
+    ## @item Illiteracy
+    ## Illiteracy as of 1970 (percent of population).
+    ## @item LifeExp
+    ## Lfe expectancy in years (1969-71).
+    ## @item Murder
+    ## Murder and non-negligent manslaughter rate per 100,000 population (1976).
+    ## @item HSGrad
+    ## Percent high-school graduates (1970).
+    ## @item Frost
+    ## Mean number of days with minimum temperature below freezing (1931-1960)
+    ## in capital or large city.
+    ## @end table
+    ## 
+    ## @subsubheading Source
+    ## 
+    ## U.S. Department of Commerce, Bureau of the Census (1977) @cite{Statistical
+    ## Abstract of the United States}.
+    ## 
+    ## U.S. Department of Commerce, Bureau of the Census (1977) @cite{County
+    ## and City Data Book}.
+    ## 
+    ## @subsubheading References
+    ## 
+    ## Becker, R. A., Chambers, J. M. and Wilks, A. R. (1988) @cite{The New S
+    ## Language}. Wadsworth & Brooks/Cole.
+    ## 
+    ## @subsubheading Examples
+    ## 
+    ## @example
+    ## t = octave.dataset.state;
+    ## @end example
+    ## 
+    ##
+    ## @end deftypefn
+    function out = state ()
+      name = 'state';
+      data = octave.datasets.load(name);
+      if nargout == 0
+        if isstruct (data)
+          s = data;
+          vars = fieldnames (s);
+          for i = 1:numel (vars)
+            assignin ('caller', vars{i}, s.(vars{i}));
+          endfor
+          loaded_vars = vars;
+        else
+          assignin ('caller', name, data);
+          loaded_vars = { name };
+        endif
+        printf ('Loaded ''%s''. Variables: %s\n', name, strjoin (loaded_vars, ', '));
+      else
+        out = data;
+      endif
+    endfunction
+
+    ## -*- texinfo -*-
+    ## @node dataset.sunspot_year
+    ## @deftypefn {Static Method} {@var{out} =} sunspot_year ()
+    ##
+    ## Yearly Sunspot Data, 1700-1988
+    ##
+    ## @subsubheading Description
+    ## 
+    ## Yearly numbers of sunspots from 1700 to 1988 (rounded to one digit).
+    ## 
+    ## @subsubheading Format
+    ## 
+    ## @table @code
+    ## @item year
+    ## Year of the observation.
+    ## @item sunspots
+    ## Number of sunspots.
+    ## @end table
+    ## 
+    ## @subsubheading Source
+    ## 
+    ## H. Tong (1996) @cite{Non-Linear Time Series}. Clarendon Press, Oxford, p. 471.
+    ## 
+    ## @subsubheading Examples
+    ## 
+    ## @example
+    ## t = octave.dataset.sunspot_year;
+    ## 
+    ## figure
+    ## plot (t.year, t.sunspots)
+    ## xlabel ("Year")
+    ## ylabel ("Sunspots")
+    ## @end example
+    ## 
+    ##
+    ## @end deftypefn
+    function out = sunspot_year ()
+      name = 'sunspot_year';
+      data = octave.datasets.load(name);
+      if nargout == 0
+        if isstruct (data)
+          s = data;
+          vars = fieldnames (s);
+          for i = 1:numel (vars)
+            assignin ('caller', vars{i}, s.(vars{i}));
+          endfor
+          loaded_vars = vars;
+        else
+          assignin ('caller', name, data);
+          loaded_vars = { name };
+        endif
+        printf ('Loaded ''%s''. Variables: %s\n', name, strjoin (loaded_vars, ', '));
+      else
+        out = data;
+      endif
+    endfunction
+
+    ## -*- texinfo -*-
+    ## @node dataset.sunspots
+    ## @deftypefn {Static Method} {@var{out} =} sunspots ()
+    ##
+    ## Monthly Sunspot Numbers, 1749-1983
+    ##
+    ## @subsubheading Description
+    ## 
+    ## Monthly mean relative sunspot numbers from 1749 to 1983. Collected at Swiss
+    ## Federal Observatory, Zurich until 1960, then Tokyo Astronomical Observatory.
+    ## 
+    ## @subsubheading Format
+    ## 
+    ## @table @code
+    ## @item month
+    ## Month of the observation.
+    ## @item sunspots
+    ## Number of observed sunspots.
+    ## @end table
+    ## 
+    ## @subsubheading Source
+    ## 
+    ## Andrews, D. F. and Herzberg, A. M. (1985) @cite{Data: A Collection
+    ## of Problems from Many Fields for the Student and Research Worker}. 
+    ## New York: Springer-Verlag.
+    ## 
+    ## @subsubheading Examples
+    ## 
+    ## @example
+    ## t = octave.dataset.sunspots;
+    ## 
+    ## figure
+    ## plot (datenum (t.month), t.sunspots)
+    ## datetick ("x")
+    ## xlabel ("Date")
+    ## ylabel ("Monthly sunspot numbers")
+    ## title ("sunspots data")
+    ## 
+    ## 
+    ## @end example
+    ## 
+    ##
+    ## @end deftypefn
+    function out = sunspots ()
+      name = 'sunspots';
+      data = octave.datasets.load(name);
+      if nargout == 0
+        if isstruct (data)
+          s = data;
+          vars = fieldnames (s);
+          for i = 1:numel (vars)
+            assignin ('caller', vars{i}, s.(vars{i}));
+          endfor
+          loaded_vars = vars;
+        else
+          assignin ('caller', name, data);
+          loaded_vars = { name };
+        endif
+        printf ('Loaded ''%s''. Variables: %s\n', name, strjoin (loaded_vars, ', '));
+      else
+        out = data;
+      endif
+    endfunction
+
+    ## -*- texinfo -*-
+    ## @node dataset.swiss
+    ## @deftypefn {Static Method} {@var{out} =} swiss ()
+    ##
+    ## Swiss Fertility and Socioeconomic Indicators (1888) Data
+    ##
+    ## @subsubheading Description
+    ## 
+    ## Standardized fertility measure and socio-economic indicators for each of 47
+    ## French-speaking provinces of Switzerland at about 1888.
+    ## 
+    ## @subsubheading Format
+    ## 
+    ## @table @code
+    ## @item Fertility
+    ## Ig, ‘common standardized fertility measure’.
+    ## @item Agriculture
+    ## % of males involved in agriculture as occupation.
+    ## @item Examination
+    ## % draftees receiving highest mark on army examination.
+    ## @item Education
+    ## % education beyond primary school for draftees.
+    ## @item Catholic
+    ## % ‘Catholic’ (as opposed to ‘Protestant’).
+    ## @item InfantMortality
+    ## Live births who live less than 1 year.
+    ## @end table
+    ## 
+    ## All variables but ‘Fertility’ give proportions of the population.
+    ## 
+    ## @subsubheading Source
+    ## 
+    ## (paraphrasing Mosteller and Tukey):
+    ## 
+    ## Switzerland, in 1888, was entering a period known as the demographic transition;
+    ## i.e., its fertility was beginning to fall from the high level typical of
+    ## underdeveloped countries.
+    ## 
+    ## The data collected are for 47 French-speaking “provinces” at about 1888.
+    ## 
+    ## Here, all variables are scaled to [0, 100], where in the original, all but
+    ## @code{Catholic} were scaled to [0, 1].
+    ## 
+    ## @subsubheading Note
+    ## 
+    ## Files for all 182 districts in 1888 and other years have been available at 
+    ## @url{https://opr.princeton.edu/archive/pefp/switz.aspx}.
+    ## 
+    ## They state that variables @code{Examination} and @code{Education} are averages
+    ## for 1887, 1888 and 1889.
+    ## 
+    ## @subsubheading References
+    ## 
+    ## Becker, R. A., Chambers, J. M. and Wilks, A. R. (1988) @cite{The New S
+    ## Language}. Wadsworth & Brooks/Cole.
+    ## 
+    ## @subsubheading Examples
+    ## 
+    ## @example
+    ## t = octave.dataset.swiss;
+    ## 
+    ## # TODO: Port linear model to Octave
+    ## 
+    ## @end example
+    ## 
+    ##
+    ## @end deftypefn
+    function out = swiss ()
+      name = 'swiss';
+      data = octave.datasets.load(name);
+      if nargout == 0
+        if isstruct (data)
+          s = data;
+          vars = fieldnames (s);
+          for i = 1:numel (vars)
+            assignin ('caller', vars{i}, s.(vars{i}));
+          endfor
+          loaded_vars = vars;
+        else
+          assignin ('caller', name, data);
+          loaded_vars = { name };
+        endif
+        printf ('Loaded ''%s''. Variables: %s\n', name, strjoin (loaded_vars, ', '));
+      else
+        out = data;
+      endif
+    endfunction
+
   endmethods
 
 endclassdef

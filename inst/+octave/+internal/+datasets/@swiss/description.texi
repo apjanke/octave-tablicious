@@ -1,0 +1,55 @@
+@subsubheading Description
+
+Standardized fertility measure and socio-economic indicators for each of 47
+French-speaking provinces of Switzerland at about 1888.
+
+@subsubheading Format
+
+@table @code
+@item Fertility
+Ig, ‘common standardized fertility measure’.
+@item Agriculture
+% of males involved in agriculture as occupation.
+@item Examination
+% draftees receiving highest mark on army examination.
+@item Education
+% education beyond primary school for draftees.
+@item Catholic
+% ‘Catholic’ (as opposed to ‘Protestant’).
+@item InfantMortality
+Live births who live less than 1 year.
+@end table
+
+All variables but ‘Fertility’ give proportions of the population.
+
+@subsubheading Source
+
+(paraphrasing Mosteller and Tukey):
+
+Switzerland, in 1888, was entering a period known as the demographic transition;
+i.e., its fertility was beginning to fall from the high level typical of
+underdeveloped countries.
+
+The data collected are for 47 French-speaking “provinces” at about 1888.
+
+Here, all variables are scaled to [0, 100], where in the original, all but
+@code{Catholic} were scaled to [0, 1].
+
+@subsubheading Note
+
+Files for all 182 districts in 1888 and other years have been available at 
+@url{https://opr.princeton.edu/archive/pefp/switz.aspx}.
+
+They state that variables @code{Examination} and @code{Education} are averages
+for 1887, 1888 and 1889.
+
+@subsubheading References
+
+Becker, R. A., Chambers, J. M. and Wilks, A. R. (1988) @cite{The New S
+Language}. Wadsworth & Brooks/Cole.
+
+@subsubheading Examples
+
+@example
+@INCLUDE_DATASET_EXAMPLE_SCRIPT{swiss_1.m}
+@end example
