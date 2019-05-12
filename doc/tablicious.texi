@@ -7006,6 +7006,40 @@ ylabel ("Deaths")
 
 @end deftypefn
 
+@node octave.dataset.USAccDeaths
+@subsubsection octave.dataset.USAccDeaths
+
+@deftypefn {Static Method} {@var{out} =} USAccDeaths ()
+
+Accidental Deaths in the US 1973-1978
+
+@subsubheading Description
+
+A time series giving the monthly totals of accidental deaths in the USA.
+
+@subsubheading Format
+
+@table @code
+@item month
+Month of the observation.
+@item deaths
+Accidental deaths.
+@end table
+
+@subsubheading Source
+
+P. J. Brockwell and R. A. Davis (1991) @cite{Time Series: Theory and Methods}.
+Springer, New York.
+
+@subsubheading Examples
+
+@example
+t = octave.dataset.USAccDeaths;
+@end example
+
+
+@end deftypefn
+
 @node octave.dataset.USArrests
 @subsubsection octave.dataset.USArrests
 
@@ -7165,6 +7199,357 @@ McNeil, D. R. (1977) @cite{Interactive Data Analysis}. Wiley.
 octave.dataset.USPersonalExpenditure;
 
 # TODO: Port medpolish() from R, whatever that is.
+
+@end example
+
+
+@end deftypefn
+
+@node octave.dataset.uspop
+@subsubsection octave.dataset.uspop
+
+@deftypefn {Static Method} {@var{out} =} uspop ()
+
+Populations Recorded by the US Census
+
+@subsubheading Description
+
+This data set gives the population of the United States
+(in millions) as recorded by the decennial census for the period 1790–1970.
+
+@subsubheading Format
+
+@table @code
+@item year
+Year of the census.
+@item population
+Population, in millions.
+@end table
+
+@subsubheading Source
+
+McNeil, D. R. (1977) @cite{Interactive Data Analysis}. New York: Wiley.
+
+@subsubheading Examples
+
+@example
+t = octave.dataset.uspop;
+
+figure
+semilogy (t.year, t.population)
+xlabel ("Year")
+ylabel ("U.S. Population (millions)")
+
+@end example
+
+
+@end deftypefn
+
+@node octave.dataset.VADeaths
+@subsubsection octave.dataset.VADeaths
+
+@deftypefn {Static Method} {@var{out} =} VADeaths ()
+
+Death Rates in Virginia (1940)
+
+@subsubheading Description
+
+Death rates per 1000 in Virginia in 1940.
+
+@subsubheading Format
+
+A 2-dimensional matrix @code{deaths}, with age group along dimension 1 and
+demographic group along dimension 2.
+
+@subsubheading Details
+
+The death rates are measured per 1000 population per year. They are
+cross-classified by age group (rows) and population group (columns). The
+age groups are: 50–54, 55–59, 60–64, 65–69, 70–74 and the population groups
+are Rural/Male, Rural/Female, Urban/Male and Urban/Female.
+
+This provides a rather nice 3-way analysis of variance example.
+
+@subsubheading Source
+
+Molyneaux, L., Gilliam, S. K., and Florant, L. C.(1947) Differences
+in Virginia death rates by color, sex, age, and rural or urban
+residence. @cite{American Sociological Review}, 12, 525–535.
+
+@subsubheading References
+
+McNeil, D. R. (1977) @cite{Interactive Data Analysis}. Wiley.
+
+@subsubheading Examples
+
+@example
+octave.dataset.VADeaths;
+
+# TODO: Port to Octave
+
+@end example
+
+
+@end deftypefn
+
+@node octave.dataset.volcano
+@subsubsection octave.dataset.volcano
+
+@deftypefn {Static Method} {@var{out} =} volcano ()
+
+Topographic Information on Auckland’s Maunga Whau Volcano
+
+@subsubheading Description
+
+Maunga Whau (Mt Eden) is one of about 50 volcanos in the Auckland volcanic
+field. This data set gives topographic information for Maunga Whau on a
+10m by 10m grid.
+
+@subsubheading Format
+
+A matrix @code{volcano} with 87 rows and 61 columns, rows corresponding
+to grid lines running east to west and columns to grid lines running south
+to north.
+
+@subsubheading Source
+
+Digitized from a topographic map by Ross Ihaka. These data should not be regarded as accurate.
+
+@subsubheading References
+
+G. E. P. Box and G. M. Jenkins (1976): @cite{Time Series Analysis, Forecasting and
+Control}, Holden-Day, San Francisco, p. 537.
+
+P. J. Brockwell and R. A. Davis (1991): @cite{Time Series: Theory and Methods},
+Second edition, Springer Verlag, NY, pp. 414.
+
+@subsubheading Examples
+
+@example
+octave.dataset.volcano;
+
+# TODO: Figure out how to do a topo map in Octave. Just a gridded color plot
+# should be fine. And then maybe do a 3-d mesh plot.
+
+@end example
+
+
+@end deftypefn
+
+@node octave.dataset.warpbreaks
+@subsubsection octave.dataset.warpbreaks
+
+@deftypefn {Static Method} {@var{out} =} warpbreaks ()
+
+The Number of Breaks in Yarn during Weaving
+
+@subsubheading Description
+
+This data set gives the number of warp breaks per loom, where a loom
+corresponds to a fixed length of yarn.
+
+@subsubheading Format
+
+@table @code
+@item wool
+Type of wool (A or B).
+@item tension
+The level of tension (L, M, H).
+@item breaks
+Number of breaks.
+@end table
+
+There are measurements on 9 looms for each of the six types of warp (AL, AM, AH, BL, BM, BH).
+
+@subsubheading Source
+
+Tippett, L. H. C. (1950) @cite{Technological Applications of Statistics}.
+Wiley. Page 106.
+
+@subsubheading References
+
+Tukey, J. W. (1977) @cite{Exploratory Data Analysis}. Addison-Wesley.
+
+McNeil, D. R. (1977) @cite{Interactive Data Analysis}. Wiley.
+
+@subsubheading Examples
+
+@example
+t = octave.dataset.warpbreaks;
+
+summary (t)
+
+# TODO: Port the plotting code and OPAR to Octave
+
+@end example
+
+
+@end deftypefn
+
+@node octave.dataset.women
+@subsubsection octave.dataset.women
+
+@deftypefn {Static Method} {@var{out} =} women ()
+
+Average Heights and Weights for American Women
+
+@subsubheading Description
+
+This data set gives the average heights and weights for American women aged 30–39.
+
+@subsubheading Format
+
+@table @code
+@item height
+Height (in).
+@item weight
+Weight (lbs).
+@end table
+
+@subsubheading Details
+
+The data set appears to have been taken from the American Society of Actuaries
+Build and Blood Pressure Study for some (unknown to us) earlier year.
+
+The World Almanac notes: “The figures represent weights in ordinary indoor
+clothing and shoes, and heights with shoes”.
+
+@subsubheading Source
+
+@cite{The World Almanac and Book of Facts}, 1975.
+
+@subsubheading References
+
+McNeil, D. R. (1977) @cite{Interactive Data Analysis}. Wiley.
+
+@subsubheading Examples
+
+@example
+t = octave.dataset.women;
+
+figure
+scatter (t.height, t.weight)
+xlabel ("Height (in)")
+ylabel ("Weight (lb")
+title ("women data: American women aged 30-39")
+
+@end example
+
+
+@end deftypefn
+
+@node octave.dataset.WorldPhones
+@subsubsection octave.dataset.WorldPhones
+
+@deftypefn {Static Method} {@var{out} =} WorldPhones ()
+
+The World’s Telephones
+
+@subsubheading Description
+
+The number of telephones in various regions of the world (in thousands).
+
+@subsubheading Format
+
+A matrix with 7 rows and 8 columns. The columns of the matrix give the
+figures for a given region, and the rows the figures for a year.
+
+The regions are: North America, Europe, Asia, South America, Oceania,
+Africa, Central America.
+
+The years are: 1951, 1956, 1957, 1958, 1959, 1960, 1961.
+
+@subsubheading Source
+
+AT&T (1961) @cite{The World’s Telephones}.
+
+@subsubheading References
+
+McNeil, D. R. (1977) @cite{Interactive Data Analysis}. New York: Wiley.
+
+@subsubheading Examples
+
+@example
+octave.dataset.WorldPhones;
+
+# TODO: Port matplot() to Octave
+
+@end example
+
+
+@end deftypefn
+
+@node octave.dataset.WWWusage
+@subsubsection octave.dataset.WWWusage
+
+@deftypefn {Static Method} {@var{out} =} WWWusage ()
+
+WWWusage
+
+@subsubheading Description
+
+A time series of the numbers of users connected to the Internet through
+a server every minute.
+
+@subsubheading Format
+
+A time series of length 100.
+
+@subsubheading Source
+
+Durbin, J. and Koopman, S. J. (2001) @cite{Time Series Analysis by State
+Space Methods}. Oxford University Press. @url{http://www.ssfpack.com/dkbook/}
+
+@subsubheading References
+
+Makridakis, S., Wheelwright, S. C. and Hyndman, R. J. (1998) @cite{Forecasting:
+Methods and Applications}. Wiley.
+
+@subsubheading Examples
+
+@example
+# TODO: Come up with example code here
+@end example
+
+
+@end deftypefn
+
+@node octave.dataset.zCO2
+@subsubsection octave.dataset.zCO2
+
+@deftypefn {Static Method} {@var{out} =} zCO2 ()
+
+Carbon Dioxide Uptake in Grass Plants
+
+@subsubheading Description
+
+The @code{CO2} data set has 84 rows and 5 columns of data from an experiment
+on the cold tolerance of the grass species Echinochloa crus-galli.
+
+@subsubheading Format
+
+@subsubheading Details
+
+The CO2 uptake of six plants from Quebec and six plants from Mississippi was
+measured at several levels of ambient CO2 concentration. Half the plants of
+each type were chilled overnight before the experiment was conducted.
+
+@subsubheading Source
+
+Potvin, C., Lechowicz, M. J. and Tardif, S. (1990) “The statistical
+analysis of ecophysiological response curves obtained from experiments
+involving repeated measures”, @cite{Ecology}, 71, 1389–1400.
+
+Pinheiro, J. C. and Bates, D. M. (2000) @cite{Mixed-effects Models
+in S and S-PLUS}, Springer.
+
+@subsubheading Examples
+
+@example
+t = octave.dataset.zCO2;
+
+# TODO: Coplot
+# TODO: Port the linear model to Octave
 
 @end example
 

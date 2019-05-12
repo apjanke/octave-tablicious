@@ -3592,9 +3592,18 @@ File: tablicious.info,  Node: octave.dataset,  Next: octave.datasets,  Prev: oct
 * octave.dataset.UKDriverDeaths::
 * octave.dataset.UKgas::
 * octave.dataset.UKLungDeaths::
+* octave.dataset.USAccDeaths::
 * octave.dataset.USArrests::
 * octave.dataset.USJudgeRatings::
 * octave.dataset.USPersonalExpenditure::
+* octave.dataset.uspop::
+* octave.dataset.VADeaths::
+* octave.dataset.volcano::
+* octave.dataset.warpbreaks::
+* octave.dataset.women::
+* octave.dataset.WorldPhones::
+* octave.dataset.WWWusage::
+* octave.dataset.zCO2::
 
 
 File: tablicious.info,  Node: octave.dataset.airmiles,  Next: octave.dataset.AirPassengers,  Up: octave.dataset
@@ -7482,7 +7491,7 @@ File: tablicious.info,  Node: octave.dataset.UKgas,  Next: octave.dataset.UKLung
 
 
 
-File: tablicious.info,  Node: octave.dataset.UKLungDeaths,  Next: octave.dataset.USArrests,  Prev: octave.dataset.UKgas,  Up: octave.dataset
+File: tablicious.info,  Node: octave.dataset.UKLungDeaths,  Next: octave.dataset.USAccDeaths,  Prev: octave.dataset.UKgas,  Up: octave.dataset
 
 8.2.46.74 octave.dataset.UKLungDeaths
 .....................................
@@ -7535,9 +7544,44 @@ File: tablicious.info,  Node: octave.dataset.UKLungDeaths,  Next: octave.dataset
 
 
 
-File: tablicious.info,  Node: octave.dataset.USArrests,  Next: octave.dataset.USJudgeRatings,  Prev: octave.dataset.UKLungDeaths,  Up: octave.dataset
+File: tablicious.info,  Node: octave.dataset.USAccDeaths,  Next: octave.dataset.USArrests,  Prev: octave.dataset.UKLungDeaths,  Up: octave.dataset
 
-8.2.46.75 octave.dataset.USArrests
+8.2.46.75 octave.dataset.USAccDeaths
+....................................
+
+ -- Static Method: OUT = USAccDeaths ()
+
+     Accidental Deaths in the US 1973-1978
+
+     Description
+     ...........
+
+     A time series giving the monthly totals of accidental deaths in the
+     USA.
+
+     Format
+     ......
+
+     ‘month’
+          Month of the observation.
+     ‘deaths’
+          Accidental deaths.
+
+     Source
+     ......
+
+     P. J. Brockwell and R. A. Davis (1991) ‘Time Series: Theory and
+     Methods’.  Springer, New York.
+
+     Examples
+     ........
+
+          t = octave.dataset.USAccDeaths;
+
+
+File: tablicious.info,  Node: octave.dataset.USArrests,  Next: octave.dataset.USJudgeRatings,  Prev: octave.dataset.USAccDeaths,  Up: octave.dataset
+
+8.2.46.76 octave.dataset.USArrests
 ..................................
 
  -- Static Method: OUT = USArrests ()
@@ -7608,7 +7652,7 @@ File: tablicious.info,  Node: octave.dataset.USArrests,  Next: octave.dataset.US
 
 File: tablicious.info,  Node: octave.dataset.USJudgeRatings,  Next: octave.dataset.USPersonalExpenditure,  Prev: octave.dataset.USArrests,  Up: octave.dataset
 
-8.2.46.76 octave.dataset.USJudgeRatings
+8.2.46.77 octave.dataset.USJudgeRatings
 .......................................
 
  -- Static Method: OUT = USJudgeRatings ()
@@ -7663,9 +7707,9 @@ File: tablicious.info,  Node: octave.dataset.USJudgeRatings,  Next: octave.datas
           title ("USJudgeRatings data")
 
 
-File: tablicious.info,  Node: octave.dataset.USPersonalExpenditure,  Prev: octave.dataset.USJudgeRatings,  Up: octave.dataset
+File: tablicious.info,  Node: octave.dataset.USPersonalExpenditure,  Next: octave.dataset.uspop,  Prev: octave.dataset.USJudgeRatings,  Up: octave.dataset
 
-8.2.46.77 octave.dataset.USPersonalExpenditure
+8.2.46.78 octave.dataset.USPersonalExpenditure
 ..............................................
 
  -- Static Method: OUT = USPersonalExpenditure ()
@@ -7704,6 +7748,387 @@ File: tablicious.info,  Node: octave.dataset.USPersonalExpenditure,  Prev: octav
           octave.dataset.USPersonalExpenditure;
 
           # TODO: Port medpolish() from R, whatever that is.
+
+
+
+File: tablicious.info,  Node: octave.dataset.uspop,  Next: octave.dataset.VADeaths,  Prev: octave.dataset.USPersonalExpenditure,  Up: octave.dataset
+
+8.2.46.79 octave.dataset.uspop
+..............................
+
+ -- Static Method: OUT = uspop ()
+
+     Populations Recorded by the US Census
+
+     Description
+     ...........
+
+     This data set gives the population of the United States (in
+     millions) as recorded by the decennial census for the period
+     1790–1970.
+
+     Format
+     ......
+
+     ‘year’
+          Year of the census.
+     ‘population’
+          Population, in millions.
+
+     Source
+     ......
+
+     McNeil, D. R. (1977) ‘Interactive Data Analysis’.  New York: Wiley.
+
+     Examples
+     ........
+
+          t = octave.dataset.uspop;
+
+          figure
+          semilogy (t.year, t.population)
+          xlabel ("Year")
+          ylabel ("U.S. Population (millions)")
+
+
+
+File: tablicious.info,  Node: octave.dataset.VADeaths,  Next: octave.dataset.volcano,  Prev: octave.dataset.uspop,  Up: octave.dataset
+
+8.2.46.80 octave.dataset.VADeaths
+.................................
+
+ -- Static Method: OUT = VADeaths ()
+
+     Death Rates in Virginia (1940)
+
+     Description
+     ...........
+
+     Death rates per 1000 in Virginia in 1940.
+
+     Format
+     ......
+
+     A 2-dimensional matrix ‘deaths’, with age group along dimension 1
+     and demographic group along dimension 2.
+
+     Details
+     .......
+
+     The death rates are measured per 1000 population per year.  They
+     are cross-classified by age group (rows) and population group
+     (columns).  The age groups are: 50–54, 55–59, 60–64, 65–69, 70–74
+     and the population groups are Rural/Male, Rural/Female, Urban/Male
+     and Urban/Female.
+
+     This provides a rather nice 3-way analysis of variance example.
+
+     Source
+     ......
+
+     Molyneaux, L., Gilliam, S. K., and Florant, L. C.(1947) Differences
+     in Virginia death rates by color, sex, age, and rural or urban
+     residence.  ‘American Sociological Review’, 12, 525–535.
+
+     References
+     ..........
+
+     McNeil, D. R. (1977) ‘Interactive Data Analysis’.  Wiley.
+
+     Examples
+     ........
+
+          octave.dataset.VADeaths;
+
+          # TODO: Port to Octave
+
+
+
+File: tablicious.info,  Node: octave.dataset.volcano,  Next: octave.dataset.warpbreaks,  Prev: octave.dataset.VADeaths,  Up: octave.dataset
+
+8.2.46.81 octave.dataset.volcano
+................................
+
+ -- Static Method: OUT = volcano ()
+
+     Topographic Information on Auckland’s Maunga Whau Volcano
+
+     Description
+     ...........
+
+     Maunga Whau (Mt Eden) is one of about 50 volcanos in the Auckland
+     volcanic field.  This data set gives topographic information for
+     Maunga Whau on a 10m by 10m grid.
+
+     Format
+     ......
+
+     A matrix ‘volcano’ with 87 rows and 61 columns, rows corresponding
+     to grid lines running east to west and columns to grid lines
+     running south to north.
+
+     Source
+     ......
+
+     Digitized from a topographic map by Ross Ihaka.  These data should
+     not be regarded as accurate.
+
+     References
+     ..........
+
+     G. E. P. Box and G. M. Jenkins (1976): ‘Time Series Analysis,
+     Forecasting and Control’, Holden-Day, San Francisco, p.  537.
+
+     P. J. Brockwell and R. A. Davis (1991): ‘Time Series: Theory and
+     Methods’, Second edition, Springer Verlag, NY, pp.  414.
+
+     Examples
+     ........
+
+          octave.dataset.volcano;
+
+          # TODO: Figure out how to do a topo map in Octave. Just a gridded color plot
+          # should be fine. And then maybe do a 3-d mesh plot.
+
+
+
+File: tablicious.info,  Node: octave.dataset.warpbreaks,  Next: octave.dataset.women,  Prev: octave.dataset.volcano,  Up: octave.dataset
+
+8.2.46.82 octave.dataset.warpbreaks
+...................................
+
+ -- Static Method: OUT = warpbreaks ()
+
+     The Number of Breaks in Yarn during Weaving
+
+     Description
+     ...........
+
+     This data set gives the number of warp breaks per loom, where a
+     loom corresponds to a fixed length of yarn.
+
+     Format
+     ......
+
+     ‘wool’
+          Type of wool (A or B).
+     ‘tension’
+          The level of tension (L, M, H).
+     ‘breaks’
+          Number of breaks.
+
+     There are measurements on 9 looms for each of the six types of warp
+     (AL, AM, AH, BL, BM, BH).
+
+     Source
+     ......
+
+     Tippett, L. H. C. (1950) ‘Technological Applications of
+     Statistics’.  Wiley.  Page 106.
+
+     References
+     ..........
+
+     Tukey, J. W. (1977) ‘Exploratory Data Analysis’.  Addison-Wesley.
+
+     McNeil, D. R. (1977) ‘Interactive Data Analysis’.  Wiley.
+
+     Examples
+     ........
+
+          t = octave.dataset.warpbreaks;
+
+          summary (t)
+
+          # TODO: Port the plotting code and OPAR to Octave
+
+
+
+File: tablicious.info,  Node: octave.dataset.women,  Next: octave.dataset.WorldPhones,  Prev: octave.dataset.warpbreaks,  Up: octave.dataset
+
+8.2.46.83 octave.dataset.women
+..............................
+
+ -- Static Method: OUT = women ()
+
+     Average Heights and Weights for American Women
+
+     Description
+     ...........
+
+     This data set gives the average heights and weights for American
+     women aged 30–39.
+
+     Format
+     ......
+
+     ‘height’
+          Height (in).
+     ‘weight’
+          Weight (lbs).
+
+     Details
+     .......
+
+     The data set appears to have been taken from the American Society
+     of Actuaries Build and Blood Pressure Study for some (unknown to
+     us) earlier year.
+
+     The World Almanac notes: “The figures represent weights in ordinary
+     indoor clothing and shoes, and heights with shoes”.
+
+     Source
+     ......
+
+     ‘The World Almanac and Book of Facts’, 1975.
+
+     References
+     ..........
+
+     McNeil, D. R. (1977) ‘Interactive Data Analysis’.  Wiley.
+
+     Examples
+     ........
+
+          t = octave.dataset.women;
+
+          figure
+          scatter (t.height, t.weight)
+          xlabel ("Height (in)")
+          ylabel ("Weight (lb")
+          title ("women data: American women aged 30-39")
+
+
+
+File: tablicious.info,  Node: octave.dataset.WorldPhones,  Next: octave.dataset.WWWusage,  Prev: octave.dataset.women,  Up: octave.dataset
+
+8.2.46.84 octave.dataset.WorldPhones
+....................................
+
+ -- Static Method: OUT = WorldPhones ()
+
+     The World’s Telephones
+
+     Description
+     ...........
+
+     The number of telephones in various regions of the world (in
+     thousands).
+
+     Format
+     ......
+
+     A matrix with 7 rows and 8 columns.  The columns of the matrix give
+     the figures for a given region, and the rows the figures for a
+     year.
+
+     The regions are: North America, Europe, Asia, South America,
+     Oceania, Africa, Central America.
+
+     The years are: 1951, 1956, 1957, 1958, 1959, 1960, 1961.
+
+     Source
+     ......
+
+     AT&T (1961) ‘The World’s Telephones’.
+
+     References
+     ..........
+
+     McNeil, D. R. (1977) ‘Interactive Data Analysis’.  New York: Wiley.
+
+     Examples
+     ........
+
+          octave.dataset.WorldPhones;
+
+          # TODO: Port matplot() to Octave
+
+
+
+File: tablicious.info,  Node: octave.dataset.WWWusage,  Next: octave.dataset.zCO2,  Prev: octave.dataset.WorldPhones,  Up: octave.dataset
+
+8.2.46.85 octave.dataset.WWWusage
+.................................
+
+ -- Static Method: OUT = WWWusage ()
+
+     WWWusage
+
+     Description
+     ...........
+
+     A time series of the numbers of users connected to the Internet
+     through a server every minute.
+
+     Format
+     ......
+
+     A time series of length 100.
+
+     Source
+     ......
+
+     Durbin, J. and Koopman, S. J. (2001) ‘Time Series Analysis by State
+     Space Methods’.  Oxford University Press.
+     <http://www.ssfpack.com/dkbook/>
+
+     References
+     ..........
+
+     Makridakis, S., Wheelwright, S. C. and Hyndman, R. J. (1998)
+     ‘Forecasting: Methods and Applications’.  Wiley.
+
+     Examples
+     ........
+
+          # TODO: Come up with example code here
+
+
+File: tablicious.info,  Node: octave.dataset.zCO2,  Prev: octave.dataset.WWWusage,  Up: octave.dataset
+
+8.2.46.86 octave.dataset.zCO2
+.............................
+
+ -- Static Method: OUT = zCO2 ()
+
+     Carbon Dioxide Uptake in Grass Plants
+
+     Description
+     ...........
+
+     The ‘CO2’ data set has 84 rows and 5 columns of data from an
+     experiment on the cold tolerance of the grass species Echinochloa
+     crus-galli.
+
+     Format
+     ......
+
+     Details
+     .......
+
+     The CO2 uptake of six plants from Quebec and six plants from
+     Mississippi was measured at several levels of ambient CO2
+     concentration.  Half the plants of each type were chilled overnight
+     before the experiment was conducted.
+
+     Source
+     ......
+
+     Potvin, C., Lechowicz, M. J. and Tardif, S. (1990) “The statistical
+     analysis of ecophysiological response curves obtained from
+     experiments involving repeated measures”, ‘Ecology’, 71, 1389–1400.
+
+     Pinheiro, J. C. and Bates, D. M. (2000) ‘Mixed-effects Models in S
+     and S-PLUS’, Springer.
+
+     Examples
+     ........
+
+          t = octave.dataset.zCO2;
+
+          # TODO: Coplot
+          # TODO: Port the linear model to Octave
 
 
 
@@ -10348,203 +10773,212 @@ Node: octave.chrono.DummyClass.DummyClass110496
 Node: octave.chrono.DummyClass.foo110967
 Node: octave.chrono.DummyClass.bar111506
 Node: octave.dataset112001
-Node: octave.dataset.airmiles114676
-Node: octave.dataset.AirPassengers115430
-Node: octave.dataset.airquality116180
-Node: octave.dataset.anscombe118275
-Node: octave.dataset.attenu120240
-Node: octave.dataset.attitude121677
-Node: octave.dataset.austres122905
-Node: octave.dataset.beavers123796
-Node: octave.dataset.BJsales124937
-Node: octave.dataset.BOD126029
-Node: octave.dataset.cars126968
-Node: octave.dataset.ChickWeight128657
-Node: octave.dataset.chickwts130118
-Node: octave.dataset.co2131601
-Node: octave.dataset.crimtab133087
-Node: octave.dataset.cupcake136567
-Node: octave.dataset.discoveries137537
-Node: octave.dataset.DNase138552
-Node: octave.dataset.esoph139801
-Node: octave.dataset.euro140959
-Node: octave.dataset.eurodist142631
-Node: octave.dataset.EuStockMarkets143540
-Node: octave.dataset.faithful145076
-Node: octave.dataset.Formaldehyde146911
-Node: octave.dataset.freeny148338
-Node: octave.dataset.HairEyeColor149934
-Node: octave.dataset.Harman23cor152463
-Node: octave.dataset.Harman74cor153375
-Node: octave.dataset.Indometh154329
-Node: octave.dataset.infert155624
-Node: octave.dataset.InsectSprays157030
-Node: octave.dataset.iris157969
-Node: octave.dataset.islands159489
-Node: octave.dataset.JohnsonJohnson160365
-Node: octave.dataset.LakeHuron161250
-Node: octave.dataset.lh162318
-Node: octave.dataset.LifeCycleSavings163203
-Node: octave.dataset.Loblolly165101
-Node: octave.dataset.longley166385
-Node: octave.dataset.lynx167757
-Node: octave.dataset.morley169144
-Node: octave.dataset.mtcars170870
-Node: octave.dataset.nhtemp172606
-Node: octave.dataset.Nile173588
-Node: octave.dataset.nottem174868
-Node: octave.dataset.npk175715
-Node: octave.dataset.occupationalStatus176994
-Node: octave.dataset.Orange178019
-Node: octave.dataset.OrchardSprays179378
-Node: octave.dataset.PlantGrowth181206
-Node: octave.dataset.precip182090
-Node: octave.dataset.presidents182965
-Node: octave.dataset.pressure184172
-Node: octave.dataset.Puromycin185487
-Node: octave.dataset.quakes187295
-Node: octave.dataset.randu188839
-Node: octave.dataset.rivers190090
-Node: octave.dataset.rock190976
-Node: octave.dataset.sleep192196
-Node: octave.dataset.stackloss193411
-Node: octave.dataset.state195660
-Node: octave.dataset.sunspot_month197432
-Node: octave.dataset.sunspot_year198398
-Node: octave.dataset.sunspots199246
-Node: octave.dataset.swiss200347
-Node: octave.dataset.Theoph202425
-Node: octave.dataset.Titanic204730
-Node: octave.dataset.ToothGrowth207402
-Node: octave.dataset.treering208825
-Node: octave.dataset.trees209919
-Node: octave.dataset.UCBAdmissions211325
-Node: octave.dataset.UKDriverDeaths213495
-Node: octave.dataset.UKgas215797
-Node: octave.dataset.UKLungDeaths216733
-Node: octave.dataset.USArrests218004
-Node: octave.dataset.USJudgeRatings219973
-Node: octave.dataset.USPersonalExpenditure221287
-Node: octave.datasets222434
-Node: octave.datasets.list222952
-Node: octave.datasets.load223460
-Node: octave.datasets.description223891
-Node: octave.examples.coplot224471
-Node: octave.examples.plot_pairs226437
-Node: pp227563
-Node: rmmissing228225
-Node: scalarexpand229262
-Node: seconds230186
-Node: size2str230685
-Node: splitapply231288
-Node: standardizeMissing232411
-Node: startsWith233238
-Node: string234048
-Node: string.string237360
-Node: string.isstring238030
-Node: string.dispstrs238355
-Node: string.sizeof238934
-Node: string.ismissing239152
-Node: string.isnannish239631
-Node: string.cellstr240014
-Node: string.cell240359
-Node: string.char240846
-Node: string.encode241371
-Node: string.strlength_bytes241887
-Node: string.strlength242560
-Node: string.reverse_bytes243127
-Node: string.reverse243865
-Node: string.strcat244337
-Node: string.lower244915
-Node: string.upper245417
-Node: string.erase245918
-Node: string.strrep246255
-Node: string.strfind246860
-Node: string.regexprep247383
-Node: string.strcmp247859
-Node: string.cmp248552
-Node: string.missing249531
-Node: string.decode249933
-Node: struct2table250343
-Node: table250810
-Node: table.table253953
-Node: table.summary255005
-Node: table.prettyprint255349
-Node: table.table2cell255808
-Node: table.table2struct256296
-Node: table.table2array256931
-Node: table.varnames257178
-Node: table.istable257430
-Node: table.size257642
-Node: table.length257971
-Node: table.ndims258270
-Node: table.squeeze258521
-Node: table.sizeof258868
-Node: table.height259299
-Node: table.rows259507
-Node: table.width259708
-Node: table.columns260039
-Node: table.numel260377
-Node: table.isempty260897
-Node: table.ismatrix261221
-Node: table.isrow261510
-Node: table.iscol261728
-Node: table.isvector262088
-Node: table.isscalar262314
-Node: table.hasrownames262544
-Node: table.vertcat262794
-Node: table.horzcat263315
-Node: table.repmat263935
-Node: table.repelem264461
-Node: table.setVariableNames264902
-Node: table.setDimensionNames265695
-Node: table.setRowNames266580
-Node: table.resolveVarRef266953
-Node: table.subsetrows267955
-Node: table.subsetvars268300
-Node: table.removevars268807
-Node: table.movevars269192
-Node: table.getvar269920
-Node: table.getvars270412
-Node: table.setvar270885
-Node: table.addvars271609
-Node: table.convertvars272076
-Node: table.mergevars273064
-Node: table.splitvars273467
-Node: table.stack274025
-Node: table.head274434
-Node: table.tail274803
-Node: table.join275169
-Node: table.innerjoin275915
-Node: table.outerjoin276576
-Node: table.outerfillvals277383
-Node: table.semijoin277816
-Node: table.antijoin278585
-Node: table.cartesian279237
-Node: table.groupby280505
-Node: table.grpstats281356
-Node: table.splitapply281689
-Node: table.rows2vars282190
-Node: table.congruentize283315
-Node: table.union284184
-Node: table.intersect284756
-Node: table.setxor285364
-Node: table.setdiff285999
-Node: table.ismember286536
-Node: table.ismissing286938
-Node: table.rmmissing287622
-Node: table.standardizeMissing288414
-Node: table.varfun289404
-Node: table.rowfun289971
-Node: table.findgroups293057
-Node: table.evalWithVars293642
-Node: table.restrict294492
-Node: tableOuterFillValue295621
-Node: timezones296858
-Node: vartype297903
-Node: vecfun298616
-Node: years299343
-Node: Copying300020
+Node: octave.dataset.airmiles114925
+Node: octave.dataset.AirPassengers115679
+Node: octave.dataset.airquality116429
+Node: octave.dataset.anscombe118524
+Node: octave.dataset.attenu120489
+Node: octave.dataset.attitude121926
+Node: octave.dataset.austres123154
+Node: octave.dataset.beavers124045
+Node: octave.dataset.BJsales125186
+Node: octave.dataset.BOD126278
+Node: octave.dataset.cars127217
+Node: octave.dataset.ChickWeight128906
+Node: octave.dataset.chickwts130367
+Node: octave.dataset.co2131850
+Node: octave.dataset.crimtab133336
+Node: octave.dataset.cupcake136816
+Node: octave.dataset.discoveries137786
+Node: octave.dataset.DNase138801
+Node: octave.dataset.esoph140050
+Node: octave.dataset.euro141208
+Node: octave.dataset.eurodist142880
+Node: octave.dataset.EuStockMarkets143789
+Node: octave.dataset.faithful145325
+Node: octave.dataset.Formaldehyde147160
+Node: octave.dataset.freeny148587
+Node: octave.dataset.HairEyeColor150183
+Node: octave.dataset.Harman23cor152712
+Node: octave.dataset.Harman74cor153624
+Node: octave.dataset.Indometh154578
+Node: octave.dataset.infert155873
+Node: octave.dataset.InsectSprays157279
+Node: octave.dataset.iris158218
+Node: octave.dataset.islands159738
+Node: octave.dataset.JohnsonJohnson160614
+Node: octave.dataset.LakeHuron161499
+Node: octave.dataset.lh162567
+Node: octave.dataset.LifeCycleSavings163452
+Node: octave.dataset.Loblolly165350
+Node: octave.dataset.longley166634
+Node: octave.dataset.lynx168006
+Node: octave.dataset.morley169393
+Node: octave.dataset.mtcars171119
+Node: octave.dataset.nhtemp172855
+Node: octave.dataset.Nile173837
+Node: octave.dataset.nottem175117
+Node: octave.dataset.npk175964
+Node: octave.dataset.occupationalStatus177243
+Node: octave.dataset.Orange178268
+Node: octave.dataset.OrchardSprays179627
+Node: octave.dataset.PlantGrowth181455
+Node: octave.dataset.precip182339
+Node: octave.dataset.presidents183214
+Node: octave.dataset.pressure184421
+Node: octave.dataset.Puromycin185736
+Node: octave.dataset.quakes187544
+Node: octave.dataset.randu189088
+Node: octave.dataset.rivers190339
+Node: octave.dataset.rock191225
+Node: octave.dataset.sleep192445
+Node: octave.dataset.stackloss193660
+Node: octave.dataset.state195909
+Node: octave.dataset.sunspot_month197681
+Node: octave.dataset.sunspot_year198647
+Node: octave.dataset.sunspots199495
+Node: octave.dataset.swiss200596
+Node: octave.dataset.Theoph202674
+Node: octave.dataset.Titanic204979
+Node: octave.dataset.ToothGrowth207651
+Node: octave.dataset.treering209074
+Node: octave.dataset.trees210168
+Node: octave.dataset.UCBAdmissions211574
+Node: octave.dataset.UKDriverDeaths213744
+Node: octave.dataset.UKgas216046
+Node: octave.dataset.UKLungDeaths216982
+Node: octave.dataset.USAccDeaths218255
+Node: octave.dataset.USArrests219017
+Node: octave.dataset.USJudgeRatings220985
+Node: octave.dataset.USPersonalExpenditure222299
+Node: octave.dataset.uspop223475
+Node: octave.dataset.VADeaths224387
+Node: octave.dataset.volcano225746
+Node: octave.dataset.warpbreaks227129
+Node: octave.dataset.women228334
+Node: octave.dataset.WorldPhones229624
+Node: octave.dataset.WWWusage230678
+Node: octave.dataset.zCO2231567
+Node: octave.datasets232796
+Node: octave.datasets.list233314
+Node: octave.datasets.load233822
+Node: octave.datasets.description234253
+Node: octave.examples.coplot234833
+Node: octave.examples.plot_pairs236799
+Node: pp237925
+Node: rmmissing238587
+Node: scalarexpand239624
+Node: seconds240548
+Node: size2str241047
+Node: splitapply241650
+Node: standardizeMissing242773
+Node: startsWith243600
+Node: string244410
+Node: string.string247722
+Node: string.isstring248392
+Node: string.dispstrs248717
+Node: string.sizeof249296
+Node: string.ismissing249514
+Node: string.isnannish249993
+Node: string.cellstr250376
+Node: string.cell250721
+Node: string.char251208
+Node: string.encode251733
+Node: string.strlength_bytes252249
+Node: string.strlength252922
+Node: string.reverse_bytes253489
+Node: string.reverse254227
+Node: string.strcat254699
+Node: string.lower255277
+Node: string.upper255779
+Node: string.erase256280
+Node: string.strrep256617
+Node: string.strfind257222
+Node: string.regexprep257745
+Node: string.strcmp258221
+Node: string.cmp258914
+Node: string.missing259893
+Node: string.decode260295
+Node: struct2table260705
+Node: table261172
+Node: table.table264315
+Node: table.summary265367
+Node: table.prettyprint265711
+Node: table.table2cell266170
+Node: table.table2struct266658
+Node: table.table2array267293
+Node: table.varnames267540
+Node: table.istable267792
+Node: table.size268004
+Node: table.length268333
+Node: table.ndims268632
+Node: table.squeeze268883
+Node: table.sizeof269230
+Node: table.height269661
+Node: table.rows269869
+Node: table.width270070
+Node: table.columns270401
+Node: table.numel270739
+Node: table.isempty271259
+Node: table.ismatrix271583
+Node: table.isrow271872
+Node: table.iscol272090
+Node: table.isvector272450
+Node: table.isscalar272676
+Node: table.hasrownames272906
+Node: table.vertcat273156
+Node: table.horzcat273677
+Node: table.repmat274297
+Node: table.repelem274823
+Node: table.setVariableNames275264
+Node: table.setDimensionNames276057
+Node: table.setRowNames276942
+Node: table.resolveVarRef277315
+Node: table.subsetrows278317
+Node: table.subsetvars278662
+Node: table.removevars279169
+Node: table.movevars279554
+Node: table.getvar280282
+Node: table.getvars280774
+Node: table.setvar281247
+Node: table.addvars281971
+Node: table.convertvars282438
+Node: table.mergevars283426
+Node: table.splitvars283829
+Node: table.stack284387
+Node: table.head284796
+Node: table.tail285165
+Node: table.join285531
+Node: table.innerjoin286277
+Node: table.outerjoin286938
+Node: table.outerfillvals287745
+Node: table.semijoin288178
+Node: table.antijoin288947
+Node: table.cartesian289599
+Node: table.groupby290867
+Node: table.grpstats291718
+Node: table.splitapply292051
+Node: table.rows2vars292552
+Node: table.congruentize293677
+Node: table.union294546
+Node: table.intersect295118
+Node: table.setxor295726
+Node: table.setdiff296361
+Node: table.ismember296898
+Node: table.ismissing297300
+Node: table.rmmissing297984
+Node: table.standardizeMissing298776
+Node: table.varfun299766
+Node: table.rowfun300333
+Node: table.findgroups303419
+Node: table.evalWithVars304004
+Node: table.restrict304854
+Node: tableOuterFillValue305983
+Node: timezones307220
+Node: vartype308265
+Node: vecfun308978
+Node: years309705
+Node: Copying310382
 
 End Tag Table
 

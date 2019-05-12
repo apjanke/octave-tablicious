@@ -466,11 +466,29 @@
                             </section>
                             <section title="octave.dataset.UKLungDeaths" ref="html/octave_002edataset_002eUKLungDeaths.html">
                             </section>
+                            <section title="octave.dataset.USAccDeaths" ref="html/octave_002edataset_002eUSAccDeaths.html">
+                            </section>
                             <section title="octave.dataset.USArrests" ref="html/octave_002edataset_002eUSArrests.html">
                             </section>
                             <section title="octave.dataset.USJudgeRatings" ref="html/octave_002edataset_002eUSJudgeRatings.html">
                             </section>
                             <section title="octave.dataset.USPersonalExpenditure" ref="html/octave_002edataset_002eUSPersonalExpenditure.html">
+                            </section>
+                            <section title="octave.dataset.uspop" ref="html/octave_002edataset_002euspop.html">
+                            </section>
+                            <section title="octave.dataset.VADeaths" ref="html/octave_002edataset_002eVADeaths.html">
+                            </section>
+                            <section title="octave.dataset.volcano" ref="html/octave_002edataset_002evolcano.html">
+                            </section>
+                            <section title="octave.dataset.warpbreaks" ref="html/octave_002edataset_002ewarpbreaks.html">
+                            </section>
+                            <section title="octave.dataset.women" ref="html/octave_002edataset_002ewomen.html">
+                            </section>
+                            <section title="octave.dataset.WorldPhones" ref="html/octave_002edataset_002eWorldPhones.html">
+                            </section>
+                            <section title="octave.dataset.WWWusage" ref="html/octave_002edataset_002eWWWusage.html">
+                            </section>
+                            <section title="octave.dataset.zCO2" ref="html/octave_002edataset_002ezCO2.html">
                             </section>
                         </section>
                         <section title="octave.datasets" ref="html/octave_002edatasets.html">
@@ -886,9 +904,13 @@
             <keyword name="octave.dataset.UKDriverDeaths" id="octave.dataset.UKDriverDeaths" ref="html/octave_002edataset_002eUKDriverDeaths.html"/>
             <keyword name="octave.dataset.UKLungDeaths" id="octave.dataset.UKLungDeaths" ref="html/octave_002edataset_002eUKLungDeaths.html"/>
             <keyword name="octave.dataset.UKgas" id="octave.dataset.UKgas" ref="html/octave_002edataset_002eUKgas.html"/>
+            <keyword name="octave.dataset.USAccDeaths" id="octave.dataset.USAccDeaths" ref="html/octave_002edataset_002eUSAccDeaths.html"/>
             <keyword name="octave.dataset.USArrests" id="octave.dataset.USArrests" ref="html/octave_002edataset_002eUSArrests.html"/>
             <keyword name="octave.dataset.USJudgeRatings" id="octave.dataset.USJudgeRatings" ref="html/octave_002edataset_002eUSJudgeRatings.html"/>
             <keyword name="octave.dataset.USPersonalExpenditure" id="octave.dataset.USPersonalExpenditure" ref="html/octave_002edataset_002eUSPersonalExpenditure.html"/>
+            <keyword name="octave.dataset.VADeaths" id="octave.dataset.VADeaths" ref="html/octave_002edataset_002eVADeaths.html"/>
+            <keyword name="octave.dataset.WWWusage" id="octave.dataset.WWWusage" ref="html/octave_002edataset_002eWWWusage.html"/>
+            <keyword name="octave.dataset.WorldPhones" id="octave.dataset.WorldPhones" ref="html/octave_002edataset_002eWorldPhones.html"/>
             <keyword name="octave.dataset.airmiles" id="octave.dataset.airmiles" ref="html/octave_002edataset_002eairmiles.html"/>
             <keyword name="octave.dataset.airquality" id="octave.dataset.airquality" ref="html/octave_002edataset_002eairquality.html"/>
             <keyword name="octave.dataset.anscombe" id="octave.dataset.anscombe" ref="html/octave_002edataset_002eanscombe.html"/>
@@ -935,6 +957,11 @@
             <keyword name="octave.dataset.swiss" id="octave.dataset.swiss" ref="html/octave_002edataset_002eswiss.html"/>
             <keyword name="octave.dataset.treering" id="octave.dataset.treering" ref="html/octave_002edataset_002etreering.html"/>
             <keyword name="octave.dataset.trees" id="octave.dataset.trees" ref="html/octave_002edataset_002etrees.html"/>
+            <keyword name="octave.dataset.uspop" id="octave.dataset.uspop" ref="html/octave_002edataset_002euspop.html"/>
+            <keyword name="octave.dataset.volcano" id="octave.dataset.volcano" ref="html/octave_002edataset_002evolcano.html"/>
+            <keyword name="octave.dataset.warpbreaks" id="octave.dataset.warpbreaks" ref="html/octave_002edataset_002ewarpbreaks.html"/>
+            <keyword name="octave.dataset.women" id="octave.dataset.women" ref="html/octave_002edataset_002ewomen.html"/>
+            <keyword name="octave.dataset.zCO2" id="octave.dataset.zCO2" ref="html/octave_002edataset_002ezCO2.html"/>
             <keyword name="octave.datasets" id="octave.datasets" ref="html/octave_002edatasets.html"/>
             <keyword name="octave.datasets.description" id="octave.datasets.description" ref="html/octave_002edatasets_002edescription.html"/>
             <keyword name="octave.datasets.list" id="octave.datasets.list" ref="html/octave_002edatasets_002elist.html"/>
@@ -1177,9 +1204,18 @@
             <file>html/octave_002edatasets_002eload.html</file>
             <file>html/octave_002edatasets_002elist.html</file>
             <file>html/octave_002edatasets.html</file>
+            <file>html/octave_002edataset_002ezCO2.html</file>
+            <file>html/octave_002edataset_002eWWWusage.html</file>
+            <file>html/octave_002edataset_002eWorldPhones.html</file>
+            <file>html/octave_002edataset_002ewomen.html</file>
+            <file>html/octave_002edataset_002ewarpbreaks.html</file>
+            <file>html/octave_002edataset_002evolcano.html</file>
+            <file>html/octave_002edataset_002eVADeaths.html</file>
+            <file>html/octave_002edataset_002euspop.html</file>
             <file>html/octave_002edataset_002eUSPersonalExpenditure.html</file>
             <file>html/octave_002edataset_002eUSJudgeRatings.html</file>
             <file>html/octave_002edataset_002eUSArrests.html</file>
+            <file>html/octave_002edataset_002eUSAccDeaths.html</file>
             <file>html/octave_002edataset_002eUKLungDeaths.html</file>
             <file>html/octave_002edataset_002eUKgas.html</file>
             <file>html/octave_002edataset_002eUKDriverDeaths.html</file>
