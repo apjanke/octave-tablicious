@@ -103,7 +103,10 @@ ul.no-bullet {list-style: none}
     </ul></li>
   </ul></li>
   <li><a id="toc-Validation-Functions-1" href="#Validation-Functions">5 Validation Functions</a></li>
-  <li><a id="toc-Example-Data-Sets-1" href="#Example-Data-Sets">6 Example Data Sets</a></li>
+  <li><a id="toc-Example-Data-Sets-1" href="#Example-Data-Sets">6 Example Data Sets</a>
+  <ul class="no-bullet">
+    <li><a id="toc-Data-Sets-from-R-1" href="#Data-Sets-from-R">6.1 Data Sets from R</a></li>
+  </ul></li>
   <li><a id="toc-Missing-Functionality-1" href="#Missing-Functionality">7 Missing Functionality</a></li>
   <li><a id="toc-API-Reference-1" href="#API-Reference">8 API Reference</a>
   <ul class="no-bullet">
@@ -1027,12 +1030,31 @@ the data set.
 currently doesn’t. This may be due to an issue with Octave’s <code>help</code>
 command.)
 </p>
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top">&bull; <a href="#Data-Sets-from-R" accesskey="1">Data Sets from R</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+</table>
+
+<hr>
+<span id="Data-Sets-from-R"></span><div class="header">
+<p>
+Up: <a href="#Example-Data-Sets" accesskey="u" rel="up">Example Data Sets</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<span id="Data-Sets-from-R-1"></span><h3 class="section">6.1 Data Sets from R</h3>
+
 <p>Many of Tablicious’ example data sets are based on the example datasets
 found in R’s <code>datasets</code> package. R can be found at
 <a href="https://www.r-project.org/">https://www.r-project.org/</a>, and documentation for its <code>datasets</code>
-is at <a href="https://rdrr.io/r/datasets/datasets-package.html">https://rdrr.io/r/datasets/datasets-package.html</a>. Our examples’
-code tries to replicate their examples, so it can be useful to compare the
-two of them if you are moving from one language to another.
+is at <a href="https://rdrr.io/r/datasets/datasets-package.html">https://rdrr.io/r/datasets/datasets-package.html</a>.
+Thanks to the R developers for producing the original data sets here.
+</p>
+<p>Tablicious’ examples’ code tries to replicate the R examples, so it can
+be useful to compare the two of them if you are moving from one language to
+another.
+</p>
+<p>Core Octave currently lacks some of the plotting features found in the R
+examples, such as LOWESS smoothing and linear model characteristic plots, so
+you will just find “TODO” placeholders for these in Tablicious’ example code.
 </p>
 <hr>
 <span id="Missing-Functionality"></span><div class="header">

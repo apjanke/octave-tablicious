@@ -34,6 +34,8 @@
                 <section title="Validation Functions" ref="html/Validation-Functions.html">
                 </section>
                 <section title="Example Data Sets" ref="html/Example-Data-Sets.html">
+                    <section title="Data Sets from R" ref="html/Data-Sets-from-R.html">
+                    </section>
                 </section>
                 <section title="Missing Functionality" ref="html/Missing-Functionality.html">
                 </section>
@@ -1433,6 +1435,7 @@
             <file>html/API-by-Category.html</file>
             <file>html/API-Reference.html</file>
             <file>html/Missing-Functionality.html</file>
+            <file>html/Data-Sets-from-R.html</file>
             <file>html/Example-Data-Sets.html</file>
             <file>html/Validation-Functions.html</file>
             <file>html/calendarDuration-Class.html</file>
