@@ -3654,9 +3654,9 @@ File: tablicious.info,  Node: octave.dataset.AirPassengers,  Next: octave.datase
      Source
      ......
 
-     Box, G. E. P., Jenkins, G. M. and Reinsel, G. C. (1976) ‘Time
-     Series Analysis, Forecasting and Control’.  Third Edition.
-     Holden-Day.  Series G.
+     Box, G. E. P., Jenkins, G. M. and Reinsel, G. C. (1976).  ‘Time
+     Series Analysis, Forecasting and Control’.  Third Edition.  San
+     Francisco: Holden-Day.  Series G.
 
      Examples
      ........
@@ -3704,7 +3704,7 @@ File: tablicious.info,  Node: octave.dataset.airquality,  Next: octave.dataset.a
      ..........
 
      Chambers, J. M., Cleveland, W. S., Kleiner, B. and Tukey, P. A.
-     (1983) ‘Graphical Methods for Data Analysis’.  Belmont, CA:
+     (1983).  ‘Graphical Methods for Data Analysis’.  Belmont, CA:
      Wadsworth.
 
      Examples
@@ -3770,13 +3770,13 @@ File: tablicious.info,  Node: octave.dataset.anscombe,  Next: octave.dataset.att
      ......
 
      Tufte, Edward R. (1989).  ‘The Visual Display of Quantitative
-     Information’.  13–14.  Graphics Press.
+     Information’.  13–14.  Cheshire, CT: Graphics Press.
 
      References
      ..........
 
-     Anscombe, Francis J. (1973).  “Graphs in statistical analysis”.
-     ‘The American Statistician’, 27, 17–21.
+     Anscombe, Francis J. (1973).  Graphs in statistical analysis.  ‘The
+     American Statistician’, 27, 17–21.
 
      Examples
      ........
@@ -3845,13 +3845,13 @@ File: tablicious.info,  Node: octave.dataset.attenu,  Next: octave.dataset.attit
      Joyner, W.B., D.M. Boore and R.D. Porcella (1981).  Peak horizontal
      acceleration and velocity from strong-motion records including
      records from the 1979 Imperial Valley, California earthquake.  USGS
-     Open File report 81-365.  Menlo Park, Ca.
+     Open File report 81-365.  Menlo Park, CA.
 
      References
      ..........
 
-     Boore, D. M. and Joyner, W. B.(1982).  The empirical prediction of
-     ground motion, ‘Bulletin of the Seismological Society of America’,
+     Boore, D. M. and Joyner, W. B. (1982).  The empirical prediction of
+     ground motion.  ‘Bulletin of the Seismological Society of America’,
      72, S269–S268.
 
      Examples
@@ -3899,7 +3899,7 @@ File: tablicious.info,  Node: octave.dataset.attitude,  Next: octave.dataset.aus
      Source
      ......
 
-     Chatterjee, S. and Price, B. (1977) ‘Regression Analysis by
+     Chatterjee, S. and Price, B. (1977).  ‘Regression Analysis by
      Example’.  New York: Wiley.  (Section 3.7, p.68ff of 2nd
      ed.(1991).)
 
@@ -3943,8 +3943,8 @@ File: tablicious.info,  Node: octave.dataset.austres,  Next: octave.dataset.beav
      Source
      ......
 
-     P. J. Brockwell and R. A. Davis (1996) ‘Introduction to Time Series
-     and Forecasting’.  Springer
+     Brockwell, P. J. and Davis, R. A. (1996).  ‘Introduction to Time
+     Series and Forecasting’.  New York: Springer-Verlag.
 
      Examples
      ........
@@ -3988,8 +3988,8 @@ File: tablicious.info,  Node: octave.dataset.beavers,  Next: octave.dataset.BJsa
 
      P. S. Reynolds (1994) Time-series analyses of beaver body
      temperatures.  Chapter 11 of Lange, N., Ryan, L., Billard, L.,
-     Brillinger, D., Conquest, L. and Greenhouse, J. eds (1994) ‘Case
-     Studies in Biometry’.  New York: John Wiley and Sons.
+     Brillinger, D., Conquest, L. and Greenhouse, J. (Eds.)  (1994)
+     ‘Case Studies in Biometry’.  New York: John Wiley and Sons.
 
      Examples
      ........
@@ -4031,11 +4031,11 @@ File: tablicious.info,  Node: octave.dataset.BJsales,  Next: octave.dataset.BOD,
      References
      ..........
 
-     G. E. P. Box and G. M. Jenkins (1976): ‘Time Series Analysis,
-     Forecasting and Control’, Holden-Day, San Francisco, p.  537.
+     Box, G. E. P. and Jenkins, G. M. (1976).  ‘Time Series Analysis,
+     Forecasting and Control’.  San Francisco: Holden-Day.  p.  537.
 
-     P. J. Brockwell and R. A. Davis (1991): ‘Time Series: Theory and
-     Methods’, Second edition, Springer Verlag, NY, pp.  414.
+     Brockwell, P. J. and Davis, R. A. (1991).  ‘Time Series: Theory and
+     Methods’, Second edition.  New York: Springer-Verlag.  p.  414.
 
      Examples
      ........
@@ -4069,10 +4069,11 @@ File: tablicious.info,  Node: octave.dataset.BOD,  Next: octave.dataset.cars,  P
      Source
      ......
 
-     Bates, D.M. and Watts, D.G. (1988), ‘Nonlinear Regression Analysis
-     and Its Applications’, Wiley, Appendix A1.4.
+     Bates, D.M. and Watts, D.G. (1988).  ‘Nonlinear Regression Analysis
+     and Its Applications’.  New York: John Wiley & Sons.  Appendix
+     A1.4.
 
-     Originally from Marske (1967), ‘Biochemical Oxygen Demand Data
+     Originally from: Marske (1967).  ‘Biochemical Oxygen Demand Data
      Interpretation Using Sum of Squares Surface’, M.Sc.  Thesis,
      University of Wisconsin – Madison.
 
@@ -4108,12 +4109,14 @@ File: tablicious.info,  Node: octave.dataset.cars,  Next: octave.dataset.ChickWe
      Source
      ......
 
-     Ezekiel, M. (1930) ‘Methods of Correlation Analysis’.  Wiley.
+     Ezekiel, M. (1930).  ‘Methods of Correlation Analysis’.  New York:
+     Wiley.
 
      References
      ..........
 
-     McNeil, D. R. (1977) Interactive Data Analysis.  Wiley.
+     McNeil, D. R. (1977).  ‘Interactive Data Analysis’.  New York:
+     Wiley.
 
      Examples
      ........
@@ -4182,14 +4185,14 @@ File: tablicious.info,  Node: octave.dataset.ChickWeight,  Next: octave.dataset.
      Source
      ......
 
-     Crowder, M. and Hand, D. (1990), ‘Analysis of Repeated Measures’.
-     Chapman and Hall (example 5.3)
+     Crowder, M. and Hand, D. (1990).  ‘Analysis of Repeated Measures’.
+     London: Chapman and Hall.  (example 5.3)
 
      Hand, D. and Crowder, M. (1996), ‘Practical Longitudinal Data
-     Analysis’.  Chapman and Hall (table A.2)
+     Analysis’.  London: Chapman and Hall.  (table A.2)
 
      Pinheiro, J. C. and Bates, D. M. (2000) ‘Mixed-effects Models in S
-     and S-PLUS’. Springer.
+     and S-PLUS’. New York: Springer.
 
      Examples
      ........
@@ -4236,7 +4239,8 @@ File: tablicious.info,  Node: octave.dataset.chickwts,  Next: octave.dataset.co2
      References
      ..........
 
-     McNeil, D. R. (1977) ‘Interactive Data Analysis’.  New York: Wiley.
+     McNeil, D. R. (1977).  ‘Interactive Data Analysis’.  New York:
+     Wiley.
 
      Examples
      ........
@@ -4303,7 +4307,7 @@ File: tablicious.info,  Node: octave.dataset.co2,  Next: octave.dataset.crimtab,
      References
      ..........
 
-     Cleveland, W. S. (1993) ‘Visualizing Data’.  New Jersey: Summit
+     Cleveland, W. S. (1993).  ‘Visualizing Data’.  New Jersey: Summit
      Press.
 
      Examples
@@ -4479,7 +4483,8 @@ File: tablicious.info,  Node: octave.dataset.discoveries,  Next: octave.dataset.
      References
      ..........
 
-     McNeil, D. R. (1977) ‘Interactive Data Analysis’.  Wiley.
+     McNeil, D. R. (1977).  ‘Interactive Data Analysis’.  New York:
+     Wiley.
 
      Examples
      ........
@@ -4520,11 +4525,12 @@ File: tablicious.info,  Node: octave.dataset.DNase,  Next: octave.dataset.esoph,
      Source
      ......
 
-     Davidian, M. and Giltinan, D. M. (1995) ‘Nonlinear Models for
-     Repeated Measurement Data’, Chapman & Hall (section 5.2.4, p.  134)
+     Davidian, M. and Giltinan, D. M. (1995).  ‘Nonlinear Models for
+     Repeated Measurement Data’.  London: Chapman & Hall.  (section
+     5.2.4, p.  134)
 
-     Pinheiro, J. C. and Bates, D. M. (2000) ‘Mixed-effects Models in S
-     and S-PLUS’, Springer.
+     Pinheiro, J. C. and Bates, D. M. (2000).  ‘Mixed-effects Models in
+     S and S-PLUS’. New York: Springer.
 
      Examples
      ........
@@ -4572,8 +4578,8 @@ File: tablicious.info,  Node: octave.dataset.esoph,  Next: octave.dataset.euro, 
      ......
 
      Breslow, N. E. and Day, N. E. (1980) ‘Statistical Methods in Cancer
-     Research. Volume 1: The Analysis of Case-Control Studies’.  IARC
-     Lyon / Oxford University Press.
+     Research. Volume 1: The Analysis of Case-Control Studies’.  Oxford:
+     IARC Lyon / Oxford University Press.
 
      Examples
      ........
@@ -4677,8 +4683,8 @@ File: tablicious.info,  Node: octave.dataset.eurodist,  Next: octave.dataset.EuS
      Source
      ......
 
-     Crystal, D. Ed.  (1990) ‘The Cambridge Encyclopaedia’.  Cambridge:
-     Cambridge University Press,
+     Crystal, D. Ed.  (1990).  ‘The Cambridge Encyclopaedia’.
+     Cambridge: Cambridge University Press.
 
      The US cities distances were provided by Pierre Legendre.
 
@@ -4839,13 +4845,14 @@ File: tablicious.info,  Node: octave.dataset.Formaldehyde,  Next: octave.dataset
      Source
      ......
 
-     Bennett, N. A. and N. L. Franklin (1954) ‘Statistical Analysis in
+     Bennett, N. A. and N. L. Franklin (1954).  ‘Statistical Analysis in
      Chemistry and the Chemical Industry’.  New York: Wiley.
 
      References
      ..........
 
-     McNeil, D. R. (1977) ‘Interactive Data Analysis’.  New York: Wiley.
+     McNeil, D. R. (1977).  ‘Interactive Data Analysis’.  New York:
+     Wiley.
 
      Examples
      ........
@@ -4901,14 +4908,14 @@ File: tablicious.info,  Node: octave.dataset.freeny,  Next: octave.dataset.HairE
      Source
      ......
 
-     A. E. Freeny (1977) ‘A Portable Linear Regression Package with Test
-     Programs’.  Bell Laboratories memorandum.
+     Freeny, A. E. (1977).  ‘A Portable Linear Regression Package with
+     Test Programs’.  Bell Laboratories memorandum.
 
      References
      ..........
 
-     Becker, R. A., Chambers, J. M. and Wilks, A. R. (1988) ‘The New S
-     Language’.  Wadsworth & Brooks/Cole.
+     Becker, R. A., Chambers, J. M. and Wilks, A. R. (1988).  ‘The New S
+     Language’.  Monterey: Wadsworth & Brooks/Cole.
 
      Examples
      ........
@@ -5032,8 +5039,8 @@ File: tablicious.info,  Node: octave.dataset.Harman23cor,  Next: octave.dataset.
      Source
      ......
 
-     Harman, H. H. (1976) ‘Modern Factor Analysis’, Third Edition
-     Revised, University of Chicago Press, Table 2.3.
+     Harman, H. H. (1976).  ‘Modern Factor Analysis’, Third Edition
+     Revised.  Chicago: University of Chicago Press.  Table 2.3.
 
      Examples
      ........
@@ -5072,8 +5079,8 @@ File: tablicious.info,  Node: octave.dataset.Harman74cor,  Next: octave.dataset.
      Source
      ......
 
-     Harman, H. H. (1976) ‘Modern Factor Analysis’, Third Edition
-     Revised, University of Chicago Press, Table 7.4.
+     Harman, H. H. (1976).  ‘Modern Factor Analysis’, Third Edition
+     Revised.  Chicago: University of Chicago Press.  Table 7.4.
 
      Examples
      ........
@@ -5119,16 +5126,17 @@ File: tablicious.info,  Node: octave.dataset.Indometh,  Next: octave.dataset.inf
      Source
      ......
 
-     Kwan, Breault, Umbenhauer, McMahon and Duggan (1976) Kinetics of
+     Kwan, Breault, Umbenhauer, McMahon and Duggan (1976).  Kinetics of
      Indomethacin absorption, elimination, and enterohepatic circulation
      in man.  ‘Journal of Pharmacokinetics and Biopharmaceutics’ 4,
      255–280.
 
-     Davidian, M. and Giltinan, D. M. (1995) ‘Nonlinear Models for
-     Repeated Measurement Data’, Chapman & Hall (section 5.2.4, p.  129)
+     Davidian, M. and Giltinan, D. M. (1995).  ‘Nonlinear Models for
+     Repeated Measurement Data’.  London: Chapman & Hall.  (section
+     5.2.4, p.  129)
 
-     Pinheiro, J. C. and Bates, D. M. (2000) ‘Mixed-effects Models in S
-     and S-PLUS’, Springer.
+     Pinheiro, J. C. and Bates, D. M. (2000).  ‘Mixed-effects Models in
+     S and S-PLUS’. New York: Springer.
 
 
 File: tablicious.info,  Node: octave.dataset.infert,  Next: octave.dataset.InsectSprays,  Prev: octave.dataset.Indometh,  Up: octave.dataset
@@ -5177,7 +5185,7 @@ File: tablicious.info,  Node: octave.dataset.infert,  Next: octave.dataset.Insec
      Source
      ......
 
-     Trichopoulos et al (1976) ‘Br. J. of Obst. and Gynaec.’ 83,
+     Trichopoulos et al (1976).  ‘Br. J. of Obst. and Gynaec.’ 83,
      645–650.
 
      Examples
@@ -5215,13 +5223,13 @@ File: tablicious.info,  Node: octave.dataset.InsectSprays,  Next: octave.dataset
      Source
      ......
 
-     Beall, G., (1942) The Transformation of data from entomological
-     field experiments, ‘Biometrika’, 29, 243–262.
+     Beall, G., (1942).  The Transformation of data from entomological
+     field experiments.  ‘Biometrika’, 29, 243–262.
 
      References
      ..........
 
-     McNeil, D. (1977) ‘Interactive Data Analysis’.  New York: Wiley.
+     McNeil, D. (1977).  ‘Interactive Data Analysis’.  New York: Wiley.
 
      Examples
      ........
@@ -5272,16 +5280,17 @@ File: tablicious.info,  Node: octave.dataset.iris,  Next: octave.dataset.islands
 
      <https://en.wikipedia.org/wiki/Iris_flower_data_set>
 
-     Fisher, R.A. “The use of multiple measurements in taxonomic
-     problems” Annals of Eugenics, 7, Part II, 179-188 (1936); also in
-     ‘Contributions to Mathematical Statistics’ (John Wiley, NY, 1950).
+     Fisher, R. A. (1936).  The use of multiple measurements in
+     taxonomic problems.  Annals of Eugenics, 7, Part II, 179-188.  also
+     in ‘Contributions to Mathematical Statistics’ (John Wiley, NY,
+     1950).
 
-     Duda, R.O., & Hart, P.E. (1973) ‘Pattern Classification and Scene
-     Analysis’.  (Q327.D83) John Wiley & Sons.  ISBN 0-471-22361-1.  See
-     page 218.
+     Duda, R.O., & Hart, P.E. (1973).  ‘Pattern Classification and Scene
+     Analysis’.  (Q327.D83) New York: John Wiley & Sons.  ISBN
+     0-471-22361-1.  See page 218.
 
      The data were collected by Anderson, Edgar (1935).  The irises of
-     the Gaspe Peninsula, ‘Bulletin of the American Iris Society’, 59,
+     the Gaspe Peninsula.  ‘Bulletin of the American Iris Society’, 59,
      2–5.
 
      Examples
@@ -5321,7 +5330,8 @@ File: tablicious.info,  Node: octave.dataset.islands,  Next: octave.dataset.John
      References
      ..........
 
-     McNeil, D. R. (1977) ‘Interactive Data Analysis’.  Wiley.
+     McNeil, D. R. (1977).  ‘Interactive Data Analysis’.  New York:
+     Wiley.
 
      Examples
      ........
@@ -5357,8 +5367,9 @@ File: tablicious.info,  Node: octave.dataset.JohnsonJohnson,  Next: octave.datas
      Source
      ......
 
-     Shumway, R. H. and Stoffer, D. S. (2000) ‘Time Series Analysis and
-     its Applications’.  Second Edition.  Springer.  Example 1.1.
+     Shumway, R. H. and Stoffer, D. S. (2000).  ‘Time Series Analysis
+     and its Applications’.  Second Edition.  New York: Springer.
+     Example 1.1.
 
      Examples
      ........
@@ -5395,11 +5406,11 @@ File: tablicious.info,  Node: octave.dataset.LakeHuron,  Next: octave.dataset.lh
      ......
 
      Brockwell, P. J. and Davis, R. A. (1991).  ‘Time Series and
-     Forecasting Methods’.  Second edition.  Springer, New York.  Series
+     Forecasting Methods’.  Second edition.  New York: Springer.  Series
      A, page 555.
 
      Brockwell, P. J. and Davis, R. A. (1996).  ‘Introduction to Time
-     Series and Forecasting’.  Springer, New York.  Sections 5.1 and
+     Series and Forecasting’.  New York: Springer.  Sections 5.1 and
      7.6.
 
      Examples
@@ -5440,8 +5451,8 @@ File: tablicious.info,  Node: octave.dataset.lh,  Next: octave.dataset.LifeCycle
      Source
      ......
 
-     P.J. Diggle (1990) ‘Time Series: A Biostatistical Introduction’.
-     Oxford, table A.1, series 3
+     P.J. Diggle (1990).  ‘Time Series: A Biostatistical Introduction’.
+     Oxford.  Table A.1, series 3.
 
      Examples
      ........
@@ -5504,10 +5515,10 @@ File: tablicious.info,  Node: octave.dataset.LifeCycleSavings,  Next: octave.dat
      References
      ..........
 
-     Sterling, Arnie (1977) Unpublished BS Thesis.  Massachusetts
+     Sterling, Arnie (1977).  Unpublished BS Thesis.  Massachusetts
      Institute of Technology.
 
-     Belsley, D. A., Kuh.  E. and Welsch, R. E. (1980) ‘Regression
+     Belsley, D. A., Kuh.  E. and Welsch, R. E. (1980).  ‘Regression
      Diagnostics’.  New York: Wiley.
 
      Examples
@@ -5549,12 +5560,12 @@ File: tablicious.info,  Node: octave.dataset.Loblolly,  Next: octave.dataset.lon
      Source
      ......
 
-     Kung, F. H. (1986), Fitting logistic growth curve with
-     predetermined carrying capacity, in ‘Proceedings of the Statistical
+     Kung, F. H. (1986).  Fitting logistic growth curve with
+     predetermined carrying capacity.  ‘Proceedings of the Statistical
      Computing Section’, American Statistical Association, 340–343.
 
-     Pinheiro, J. C. and Bates, D. M. (2000) ‘Mixed-effects Models in S
-     and S-PLUS’, Springer.
+     Pinheiro, J. C. and Bates, D. M. (2000).  ‘Mixed-effects Models in
+     S and S-PLUS’. New York: Springer.
 
      Examples
      ........
@@ -5607,15 +5618,15 @@ File: tablicious.info,  Node: octave.dataset.longley,  Next: octave.dataset.lynx
      Source
      ......
 
-     J. W. Longley (1967) An appraisal of least-squares programs from
+     J. W. Longley (1967).  An appraisal of least-squares programs from
      the point of view of the user.  ‘Journal of the American
-     Statistical Association’ 62, 819–841.
+     Statistical Association’, 62, 819–841.
 
      References
      ..........
 
-     Becker, R. A., Chambers, J. M. and Wilks, A. R. (1988) ‘The New S
-     Language’.  Wadsworth & Brooks/Cole.
+     Becker, R. A., Chambers, J. M. and Wilks, A. R. (1988).  ‘The New S
+     Language’.  Monterey: Wadsworth & Brooks/Cole.
 
      Examples
      ........
@@ -5655,14 +5666,14 @@ File: tablicious.info,  Node: octave.dataset.lynx,  Next: octave.dataset.morley,
      ......
 
      Brockwell, P. J. and Davis, R. A. (1991).  ‘Time Series and
-     Forecasting Methods’.  Second edition.  Springer.  Series G (page
-     557).
+     Forecasting Methods’.  Second edition.  New York: Springer.  Series
+     G (page 557).
 
      References
      ..........
 
      Becker, R. A., Chambers, J. M. and Wilks, A. R. (1988).  ‘The New S
-     Language’.  Wadsworth & Brooks/Cole.
+     Language’.  Monterey: Wadsworth & Brooks/Cole.
 
      Campbell, M. J. and Walker, A. M. (1977).  A Survey of statistical
      work on the Mackenzie River series of annual Canadian lynx
@@ -5720,14 +5731,14 @@ File: tablicious.info,  Node: octave.dataset.morley,  Next: octave.dataset.mtcar
      Source
      ......
 
-     A. J. Weekes (1986) ‘A Genstat Primer’.  London: Edward Arnold.
+     A. J. Weekes (1986).  ‘A Genstat Primer’.  London: Edward Arnold.
 
-     S. M. Stigler (1977) Do robust estimators work with real data?
+     S. M. Stigler (1977).  Do robust estimators work with real data?
      ‘Annals of Statistics’ 5, 1055–1098.  (See Table 6.)
 
-     A. A. Michelson (1882) Experimental determination of the velocity
+     A. A. Michelson (1882).  Experimental determination of the velocity
      of light made at the United States Naval Academy, Annapolis.
-     ‘Astronomic Papers’ 1 135–8.  U.S. Nautical Almanac Office.  (See
+     ‘Astronomic Papers’, 1, 135–8.  U.S. Nautical Almanac Office.  (See
      Table 24.).
 
      Examples
@@ -5794,8 +5805,8 @@ File: tablicious.info,  Node: octave.dataset.mtcars,  Next: octave.dataset.nhtem
      Source
      ......
 
-     Henderson and Velleman (1981), “Building multiple regression models
-     interactively”.  Biometrics, 37, 391–411.
+     Henderson and Velleman (1981).  Building multiple regression models
+     interactively.  ‘Biometrics’, 37, 391–411.
 
      Examples
      ........
@@ -5834,7 +5845,8 @@ File: tablicious.info,  Node: octave.dataset.nhtemp,  Next: octave.dataset.Nile,
      References
      ..........
 
-     McNeil, D. R. (1977) ‘Interactive Data Analysis’.  New York: Wiley.
+     McNeil, D. R. (1977).  ‘Interactive Data Analysis’.  New York:
+     Wiley.
 
      Examples
      ........
@@ -5875,7 +5887,7 @@ File: tablicious.info,  Node: octave.dataset.Nile,  Next: octave.dataset.nottem,
      ......
 
      Durbin, J. and Koopman, S. J. (2001).  ‘Time Series Analysis by
-     State Space Methods’.  Oxford University Press.
+     State Space Methods’.  Oxford: Oxford University Press.
      <http://www.ssfpack.com/DKbook.html>
 
      References
@@ -5926,8 +5938,8 @@ File: tablicious.info,  Node: octave.dataset.nottem,  Next: octave.dataset.npk, 
      Source
      ......
 
-     Anderson, O. D. (1976) ‘Time Series Analysis and Forecasting: The
-     Box-Jenkins approach’.  Butterworths.  Series R.
+     Anderson, O. D. (1976).  ‘Time Series Analysis and Forecasting: The
+     Box-Jenkins approach’.  London: Butterworths.  Series R.
 
      Examples
      ........
@@ -5974,8 +5986,8 @@ File: tablicious.info,  Node: octave.dataset.npk,  Next: octave.dataset.occupati
      References
      ..........
 
-     Venables, W. N. and Ripley, B. D. (2002) ‘Modern Applied Statistics
-     with S’. Fourth edition.  Springer.
+     Venables, W. N. and Ripley, B. D. (2002).  ‘Modern Applied
+     Statistics with S’. Fourth edition.  New York: Springer.
 
      Examples
      ........
@@ -6011,9 +6023,9 @@ File: tablicious.info,  Node: octave.dataset.occupationalStatus,  Next: octave.d
      Source
      ......
 
-     Goodman, L. A. (1979) Simple Models for the Analysis of Association
-     in Cross-Classifications having Ordered Categories.  ‘J. Am. Stat.
-     Assoc.’, 74 (367), 537–552.
+     Goodman, L. A. (1979).  Simple Models for the Analysis of
+     Association in Cross-Classifications having Ordered Categories.
+     ‘J. Am. Stat. Assoc.’, 74 (367), 537–552.
 
      Examples
      ........
@@ -6057,11 +6069,11 @@ File: tablicious.info,  Node: octave.dataset.Orange,  Next: octave.dataset.Orcha
      References
      ..........
 
-     Draper, N. R. and Smith, H. (1998), ‘Applied Regression Analysis
-     (3rd ed)’, Wiley (exercise 24.N).
+     Draper, N. R. and Smith, H. (1998).  ‘Applied Regression Analysis
+     (3rd ed)’.  New York: Wiley.  (exercise 24.N).
 
-     Pinheiro, J. C. and Bates, D. M. (2000) ‘Mixed-effects Models in S
-     and S-PLUS’, Springer.
+     Pinheiro, J. C. and Bates, D. M. (2000).  ‘Mixed-effects Models in
+     S and S-PLUS’. New York: Springer.
 
      Examples
      ........
@@ -6125,12 +6137,13 @@ File: tablicious.info,  Node: octave.dataset.OrchardSprays,  Next: octave.datase
      Source
      ......
 
-     Finney, D. J. (1947) ‘Probit Analysis’.  Cambridge.
+     Finney, D. J. (1947).  ‘Probit Analysis’.  Cambridge.
 
      References
      ..........
 
-     McNeil, D. R. (1977) ‘Interactive Data Analysis’.  New York: Wiley.
+     McNeil, D. R. (1977).  ‘Interactive Data Analysis’.  New York:
+     Wiley.
 
      Examples
      ........
@@ -6168,7 +6181,7 @@ File: tablicious.info,  Node: octave.dataset.PlantGrowth,  Next: octave.dataset.
      Source
      ......
 
-     Dobson, A. J. (1983) ‘An Introduction to Statistical Modelling’.
+     Dobson, A. J. (1983).  ‘An Introduction to Statistical Modelling’.
      London: Chapman and Hall.
 
      Examples
@@ -6211,7 +6224,8 @@ File: tablicious.info,  Node: octave.dataset.precip,  Next: octave.dataset.presi
      References
      ..........
 
-     McNeil, D. R. (1977) ‘Interactive Data Analysis’.  New York: Wiley.
+     McNeil, D. R. (1977).  ‘Interactive Data Analysis’.  New York:
+     Wiley.
 
      Examples
      ........
@@ -6260,7 +6274,8 @@ File: tablicious.info,  Node: octave.dataset.presidents,  Next: octave.dataset.p
      References
      ..........
 
-     McNeil, D. R. (1977) ‘Interactive Data Analysis’.  New York: Wiley.
+     McNeil, D. R. (1977).  ‘Interactive Data Analysis’.  New York:
+     Wiley.
 
      Examples
      ........
@@ -6302,13 +6317,14 @@ File: tablicious.info,  Node: octave.dataset.pressure,  Next: octave.dataset.Pur
      Source
      ......
 
-     Weast, R. C., ed.  (1973) ‘Handbook of Chemistry and Physics’.  CRC
-     Press.
+     Weast, R. C., ed.  (1973).  ‘Handbook of Chemistry and Physics’.
+     Cleveland: CRC Press.
 
      References
      ..........
 
-     McNeil, D. R. (1977) ‘Interactive Data Analysis’.  New York: Wiley.
+     McNeil, D. R. (1977).  ‘Interactive Data Analysis’.  New York:
+     Wiley.
 
      Examples
      ........
@@ -6376,11 +6392,11 @@ File: tablicious.info,  Node: octave.dataset.Puromycin,  Next: octave.dataset.qu
      References
      ..........
 
-     Bates, D.M. and Watts, D.G. (1988), ‘Nonlinear Regression Analysis
-     and Its Applications’, Wiley, Appendix A1.3.
+     Bates, D.M. and Watts, D.G. (1988).  ‘Nonlinear Regression Analysis
+     and Its Applications’.  New York: Wiley.  Appendix A1.3.
 
-     Treloar, M. A. (1974), ‘Effects of Puromycin on
-     Galactosyltransferase in Golgi Membranes’, M.Sc.  Thesis, U. of
+     Treloar, M. A. (1974).  ‘Effects of Puromycin on
+     Galactosyltransferase in Golgi Membranes’.  M.Sc.  Thesis, U. of
      Toronto.
 
      Examples
@@ -6439,11 +6455,11 @@ File: tablicious.info,  Node: octave.dataset.quakes,  Next: octave.dataset.randu
      References
      ..........
 
-     G. E. P. Box and G. M. Jenkins (1976): ‘Time Series Analysis,
-     Forecasting and Control’, Holden-Day, San Francisco, p.  537.
+     G. E. P. Box and G. M. Jenkins (1976).  ‘Time Series Analysis,
+     Forecasting and Control’.  San Francisco: Holden-Day.  p.  537.
 
-     P. J. Brockwell and R. A. Davis (1991): ‘Time Series: Theory and
-     Methods’, Second edition, Springer Verlag, NY, pp.  414.
+     P. J. Brockwell and R. A. Davis (1991).  ‘Time Series: Theory and
+     Methods’.  Second edition.  New York: Springer-Verlag.  p.  414.
 
      Examples
      ........
@@ -6533,7 +6549,8 @@ File: tablicious.info,  Node: octave.dataset.rivers,  Next: octave.dataset.rock,
      References
      ..........
 
-     McNeil, D. R. (1977) ‘Interactive Data Analysis’.  New York: Wiley.
+     McNeil, D. R. (1977).  ‘Interactive Data Analysis’.  New York:
+     Wiley.
 
      Examples
      ........
@@ -6630,16 +6647,16 @@ File: tablicious.info,  Node: octave.dataset.sleep,  Next: octave.dataset.stackl
      Source
      ......
 
-     Cushny, A. R. and Peebles, A. R. (1905) The action of optical
-     isomers: II hyoscines.  ‘The Journal of Physiology’ 32, 501–510.
+     Cushny, A. R. and Peebles, A. R. (1905).  The action of optical
+     isomers: II hyoscines.  ‘The Journal of Physiology’, 32, 501–510.
 
-     Student (1908) The probable error of the mean.  ‘Biometrika’, 6,
+     Student (1908).  The probable error of the mean.  ‘Biometrika’, 6,
      20.
 
      References
      ..........
 
-     Scheffé, Henry (1959) ‘The Analysis of Variance’.  New York, NY:
+     Scheffé, Henry (1959).  ‘The Analysis of Variance’.  New York, NY:
      Wiley.
 
      Examples
@@ -6698,17 +6715,17 @@ File: tablicious.info,  Node: octave.dataset.stackloss,  Next: octave.dataset.st
      Source
      ......
 
-     Brownlee, K. A. (1960, 2nd ed.  1965) ‘Statistical Theory and
+     Brownlee, K. A. (1960, 2nd ed.  1965).  ‘Statistical Theory and
      Methodology in Science and Engineering’.  New York: Wiley.  pp.
      491–500.
 
      References
      ..........
 
-     Becker, R. A., Chambers, J. M. and Wilks, A. R. (1988) ‘The New S
-     Language’.  Wadsworth & Brooks/Cole.
+     Becker, R. A., Chambers, J. M. and Wilks, A. R. (1988).  ‘The New S
+     Language’.  Monterey: Wadsworth & Brooks/Cole.
 
-     Dodge, Y. (1996) The guinea pig of multiple regression.  In:
+     Dodge, Y. (1996).  The guinea pig of multiple regression.  In:
      ‘Robust Statistics, Data Analysis, and Computer Intensive Methods;
      In Honor of Peter Huber’s 60th Birthday’, 1996, ‘Lecture Notes in
      Statistics’ 109, Springer-Verlag, New York.
@@ -6782,8 +6799,8 @@ File: tablicious.info,  Node: octave.dataset.state,  Next: octave.dataset.sunspo
      References
      ..........
 
-     Becker, R. A., Chambers, J. M. and Wilks, A. R. (1988) ‘The New S
-     Language’.  Wadsworth & Brooks/Cole.
+     Becker, R. A., Chambers, J. M. and Wilks, A. R. (1988).  ‘The New S
+     Language’.  Monterey: Wadsworth & Brooks/Cole.
 
      Examples
      ........
@@ -6976,8 +6993,8 @@ File: tablicious.info,  Node: octave.dataset.swiss,  Next: octave.dataset.Theoph
      References
      ..........
 
-     Becker, R. A., Chambers, J. M. and Wilks, A. R. (1988) ‘The New S
-     Language’.  Wadsworth & Brooks/Cole.
+     Becker, R. A., Chambers, J. M. and Wilks, A. R. (1988).  ‘The New S
+     Language’.  Monterey: Wadsworth & Brooks/Cole.
 
      Examples
      ........
@@ -7043,16 +7060,16 @@ File: tablicious.info,  Node: octave.dataset.Theoph,  Next: octave.dataset.Titan
      References
      ..........
 
-     Boeckmann, A. J., Sheiner, L. B. and Beal, S. L. (1994), ‘NONMEM
-     Users Guide: Part V’, NONMEM Project Group, University of
+     Boeckmann, A. J., Sheiner, L. B. and Beal, S. L. (1994).  ‘NONMEM
+     Users Guide: Part V’. NONMEM Project Group, University of
      California, San Francisco.
 
-     Davidian, M. and Giltinan, D. M. (1995) ‘Nonlinear Models for
-     Repeated Measurement Data’, Chapman & Hall (section 5.5, p.  145
-     and section 6.6, p.  176)
+     Davidian, M. and Giltinan, D. M. (1995).  ‘Nonlinear Models for
+     Repeated Measurement Data’.  London: Chapman & Hall.  (section 5.5,
+     p.  145 and section 6.6, p.  176)
 
-     Pinheiro, J. C. and Bates, D. M. (2000) ‘Mixed-effects Models in S
-     and S-PLUS’, Springer (Appendix A.29)
+     Pinheiro, J. C. and Bates, D. M. (2000).  ‘Mixed-effects Models in
+     S and S-PLUS’. New York: Springer.  (Appendix A.29)
 
      Examples
      ........
@@ -7120,7 +7137,7 @@ File: tablicious.info,  Node: octave.dataset.Titanic,  Next: octave.dataset.Toot
      Source
      ......
 
-     Dawson, Robert J. MacG. (1995), The ‘Unusual Episode’ Data
+     Dawson, Robert J. MacG. (1995).  The ‘Unusual Episode’ Data
      Revisited.  ‘Journal of Statistics Education’, 3.
 
      The source provides a data set recording class, sex, age, and
@@ -7128,8 +7145,8 @@ File: tablicious.info,  Node: octave.dataset.Titanic,  Next: octave.dataset.Toot
      based on data originally collected by the British Board of Trade
      and reprinted in:
 
-     British Board of Trade (1990), ‘Report on the Loss of the ‘Titanic’
-     (S.S.)’. British Board of Trade Inquiry Report (reprint).
+     British Board of Trade (1990).  ‘Report on the Loss of the
+     ‘Titanic’ (S.S.)’. British Board of Trade Inquiry Report (reprint).
      Gloucester, UK: Allan Sutton Publishing.
 
      Examples
@@ -7274,14 +7291,14 @@ File: tablicious.info,  Node: octave.dataset.trees,  Next: octave.dataset.UCBAdm
      Source
      ......
 
-     Ryan, T. A., Joiner, B. L. and Ryan, B. F. (1976) ‘The Minitab
+     Ryan, T. A., Joiner, B. L. and Ryan, B. F. (1976).  ‘The Minitab
      Student Handbook’.  Duxbury Press.
 
      References
      ..........
 
-     Atkinson, A. C. (1985) ‘Plots, Transformations and Regression’.
-     Oxford University Press.
+     Atkinson, A. C. (1985).  ‘Plots, Transformations and Regression’.
+     Oxford: Oxford University Press.
 
      Examples
      ........
@@ -7424,10 +7441,11 @@ File: tablicious.info,  Node: octave.dataset.UKDriverDeaths,  Next: octave.datas
      ......
 
      Harvey, A.C. (1989).  ‘Forecasting, Structural Time Series Models
-     and the Kalman Filter’.  Cambridge University Press, pp.  519–523.
+     and the Kalman Filter’.  Cambridge: Cambridge University Press.
+     pp.  519–523.
 
      Durbin, J. and Koopman, S. J. (2001).  ‘Time Series Analysis by
-     State Space Methods’.  Oxford University Press.
+     State Space Methods’.  Oxford: Oxford University Press.
      <http://www.ssfpack.com/dkbook/>
 
      References
@@ -7475,8 +7493,8 @@ File: tablicious.info,  Node: octave.dataset.UKgas,  Next: octave.dataset.UKLung
      Source
      ......
 
-     Durbin, J. and Koopman, S. J. (2001) ‘Time Series Analysis by State
-     Space Methods’.  Oxford University Press.
+     Durbin, J. and Koopman, S. J. (2001).  ‘Time Series Analysis by
+     State Space Methods’.  Oxford: Oxford University Press.
      <http://www.ssfpack.com/dkbook/>.
 
      Examples
@@ -7521,8 +7539,8 @@ File: tablicious.info,  Node: octave.dataset.UKLungDeaths,  Next: octave.dataset
      Source
      ......
 
-     P. J. Diggle (1990) ‘Time Series: A Biostatistical Introduction’.
-     Oxford, table A.3
+     P. J. Diggle (1990).  ‘Time Series: A Biostatistical Introduction’.
+     Oxford.  table A.3
 
      Examples
      ........
@@ -7570,8 +7588,8 @@ File: tablicious.info,  Node: octave.dataset.USAccDeaths,  Next: octave.dataset.
      Source
      ......
 
-     P. J. Brockwell and R. A. Davis (1991) ‘Time Series: Theory and
-     Methods’.  Springer, New York.
+     Brockwell, P. J. and Davis, R. A. (1991).  ‘Time Series: Theory and
+     Methods’.  New York: Springer.
 
      Examples
      ........
@@ -7633,7 +7651,8 @@ File: tablicious.info,  Node: octave.dataset.USArrests,  Next: octave.dataset.US
      References
      ..........
 
-     McNeil, D. R. (1977) ‘Interactive Data Analysis’.  New York: Wiley.
+     McNeil, D. R. (1977).  ‘Interactive Data Analysis’.  New York:
+     Wiley.
 
      Examples
      ........
@@ -7738,9 +7757,11 @@ File: tablicious.info,  Node: octave.dataset.USPersonalExpenditure,  Next: octav
      References
      ..........
 
-     Tukey, J. W. (1977) ‘Exploratory Data Analysis’.  Addison-Wesley.
+     Tukey, J. W. (1977).  ‘Exploratory Data Analysis’.  Reading, Mass:
+     Addison-Wesley.
 
-     McNeil, D. R. (1977) ‘Interactive Data Analysis’.  Wiley.
+     McNeil, D. R. (1977).  ‘Interactive Data Analysis’.  New York:
+     Wiley.
 
      Examples
      ........
@@ -7778,7 +7799,8 @@ File: tablicious.info,  Node: octave.dataset.uspop,  Next: octave.dataset.VADeat
      Source
      ......
 
-     McNeil, D. R. (1977) ‘Interactive Data Analysis’.  New York: Wiley.
+     McNeil, D. R. (1977).  ‘Interactive Data Analysis’.  New York:
+     Wiley.
 
      Examples
      ........
@@ -7833,7 +7855,8 @@ File: tablicious.info,  Node: octave.dataset.VADeaths,  Next: octave.dataset.vol
      References
      ..........
 
-     McNeil, D. R. (1977) ‘Interactive Data Analysis’.  Wiley.
+     McNeil, D. R. (1977).  ‘Interactive Data Analysis’.  New York:
+     Wiley.
 
      Examples
      ........
@@ -7876,11 +7899,11 @@ File: tablicious.info,  Node: octave.dataset.volcano,  Next: octave.dataset.warp
      References
      ..........
 
-     G. E. P. Box and G. M. Jenkins (1976): ‘Time Series Analysis,
-     Forecasting and Control’, Holden-Day, San Francisco, p.  537.
+     Box, G. E. P. and Jenkins, G. M. (1976).  ‘Time Series Analysis,
+     Forecasting and Control’.  San Francisco: Holden-Day.  p.  537.
 
-     P. J. Brockwell and R. A. Davis (1991): ‘Time Series: Theory and
-     Methods’, Second edition, Springer Verlag, NY, pp.  414.
+     Brockwell, P. J. and Davis, R. A. (1991).  ‘Time Series: Theory and
+     Methods’.  Second edition.  New York: Springer-Verlag.  p.  414.
 
      Examples
      ........
@@ -7923,15 +7946,17 @@ File: tablicious.info,  Node: octave.dataset.warpbreaks,  Next: octave.dataset.w
      Source
      ......
 
-     Tippett, L. H. C. (1950) ‘Technological Applications of
-     Statistics’.  Wiley.  Page 106.
+     Tippett, L. H. C. (1950).  ‘Technological Applications of
+     Statistics’.  New York: Wiley.  Page 106.
 
      References
      ..........
 
-     Tukey, J. W. (1977) ‘Exploratory Data Analysis’.  Addison-Wesley.
+     Tukey, J. W. (1977).  ‘Exploratory Data Analysis’.  Reading, Mass:
+     Addison-Wesley.
 
-     McNeil, D. R. (1977) ‘Interactive Data Analysis’.  Wiley.
+     McNeil, D. R. (1977).  ‘Interactive Data Analysis’.  New York:
+     Wiley.
 
      Examples
      ........
@@ -7985,7 +8010,8 @@ File: tablicious.info,  Node: octave.dataset.women,  Next: octave.dataset.WorldP
      References
      ..........
 
-     McNeil, D. R. (1977) ‘Interactive Data Analysis’.  Wiley.
+     McNeil, D. R. (1977).  ‘Interactive Data Analysis’.  New York:
+     Wiley.
 
      Examples
      ........
@@ -8035,7 +8061,8 @@ File: tablicious.info,  Node: octave.dataset.WorldPhones,  Next: octave.dataset.
      References
      ..........
 
-     McNeil, D. R. (1977) ‘Interactive Data Analysis’.  New York: Wiley.
+     McNeil, D. R. (1977).  ‘Interactive Data Analysis’.  New York:
+     Wiley.
 
      Examples
      ........
@@ -8069,15 +8096,15 @@ File: tablicious.info,  Node: octave.dataset.WWWusage,  Next: octave.dataset.zCO
      Source
      ......
 
-     Durbin, J. and Koopman, S. J. (2001) ‘Time Series Analysis by State
-     Space Methods’.  Oxford University Press.
+     Durbin, J. and Koopman, S. J. (2001).  ‘Time Series Analysis by
+     State Space Methods’.  Oxford: Oxford University Press.
      <http://www.ssfpack.com/dkbook/>
 
      References
      ..........
 
-     Makridakis, S., Wheelwright, S. C. and Hyndman, R. J. (1998)
-     ‘Forecasting: Methods and Applications’.  Wiley.
+     Makridakis, S., Wheelwright, S. C. and Hyndman, R. J. (1998).
+     ‘Forecasting: Methods and Applications’.  New York: Wiley.
 
      Examples
      ........
@@ -8115,12 +8142,13 @@ File: tablicious.info,  Node: octave.dataset.zCO2,  Prev: octave.dataset.WWWusag
      Source
      ......
 
-     Potvin, C., Lechowicz, M. J. and Tardif, S. (1990) “The statistical
-     analysis of ecophysiological response curves obtained from
-     experiments involving repeated measures”, ‘Ecology’, 71, 1389–1400.
+     Potvin, C., Lechowicz, M. J. and Tardif, S. (1990).  The
+     statistical analysis of ecophysiological response curves obtained
+     from experiments involving repeated measures.  ‘Ecology’, 71,
+     1389–1400.
 
-     Pinheiro, J. C. and Bates, D. M. (2000) ‘Mixed-effects Models in S
-     and S-PLUS’, Springer.
+     Pinheiro, J. C. and Bates, D. M. (2000).  ‘Mixed-effects Models in
+     S and S-PLUS’. New York: Springer.
 
      Examples
      ........
@@ -10775,210 +10803,210 @@ Node: octave.chrono.DummyClass.bar111506
 Node: octave.dataset112001
 Node: octave.dataset.airmiles114925
 Node: octave.dataset.AirPassengers115679
-Node: octave.dataset.airquality116429
-Node: octave.dataset.anscombe118524
-Node: octave.dataset.attenu120489
-Node: octave.dataset.attitude121926
-Node: octave.dataset.austres123154
-Node: octave.dataset.beavers124045
-Node: octave.dataset.BJsales125186
-Node: octave.dataset.BOD126278
-Node: octave.dataset.cars127217
-Node: octave.dataset.ChickWeight128906
-Node: octave.dataset.chickwts130367
-Node: octave.dataset.co2131850
-Node: octave.dataset.crimtab133336
-Node: octave.dataset.cupcake136816
-Node: octave.dataset.discoveries137786
-Node: octave.dataset.DNase138801
-Node: octave.dataset.esoph140050
-Node: octave.dataset.euro141208
-Node: octave.dataset.eurodist142880
-Node: octave.dataset.EuStockMarkets143789
-Node: octave.dataset.faithful145325
-Node: octave.dataset.Formaldehyde147160
-Node: octave.dataset.freeny148587
-Node: octave.dataset.HairEyeColor150183
-Node: octave.dataset.Harman23cor152712
-Node: octave.dataset.Harman74cor153624
-Node: octave.dataset.Indometh154578
-Node: octave.dataset.infert155873
-Node: octave.dataset.InsectSprays157279
-Node: octave.dataset.iris158218
-Node: octave.dataset.islands159738
-Node: octave.dataset.JohnsonJohnson160614
-Node: octave.dataset.LakeHuron161499
-Node: octave.dataset.lh162567
-Node: octave.dataset.LifeCycleSavings163452
-Node: octave.dataset.Loblolly165350
-Node: octave.dataset.longley166634
-Node: octave.dataset.lynx168006
-Node: octave.dataset.morley169393
-Node: octave.dataset.mtcars171119
-Node: octave.dataset.nhtemp172855
-Node: octave.dataset.Nile173837
-Node: octave.dataset.nottem175117
-Node: octave.dataset.npk175964
-Node: octave.dataset.occupationalStatus177243
-Node: octave.dataset.Orange178268
-Node: octave.dataset.OrchardSprays179627
-Node: octave.dataset.PlantGrowth181455
-Node: octave.dataset.precip182339
-Node: octave.dataset.presidents183214
-Node: octave.dataset.pressure184421
-Node: octave.dataset.Puromycin185736
-Node: octave.dataset.quakes187544
-Node: octave.dataset.randu189088
-Node: octave.dataset.rivers190339
-Node: octave.dataset.rock191225
-Node: octave.dataset.sleep192445
-Node: octave.dataset.stackloss193660
-Node: octave.dataset.state195909
-Node: octave.dataset.sunspot_month197681
-Node: octave.dataset.sunspot_year198647
-Node: octave.dataset.sunspots199495
-Node: octave.dataset.swiss200596
-Node: octave.dataset.Theoph202674
-Node: octave.dataset.Titanic204979
-Node: octave.dataset.ToothGrowth207651
-Node: octave.dataset.treering209074
-Node: octave.dataset.trees210168
-Node: octave.dataset.UCBAdmissions211574
-Node: octave.dataset.UKDriverDeaths213744
-Node: octave.dataset.UKgas216046
-Node: octave.dataset.UKLungDeaths216982
-Node: octave.dataset.USAccDeaths218255
-Node: octave.dataset.USArrests219017
-Node: octave.dataset.USJudgeRatings220985
-Node: octave.dataset.USPersonalExpenditure222299
-Node: octave.dataset.uspop223475
-Node: octave.dataset.VADeaths224387
-Node: octave.dataset.volcano225746
-Node: octave.dataset.warpbreaks227129
-Node: octave.dataset.women228334
-Node: octave.dataset.WorldPhones229624
-Node: octave.dataset.WWWusage230678
-Node: octave.dataset.zCO2231567
-Node: octave.datasets232796
-Node: octave.datasets.list233314
-Node: octave.datasets.load233822
-Node: octave.datasets.description234253
-Node: octave.examples.coplot234833
-Node: octave.examples.plot_pairs236799
-Node: pp237925
-Node: rmmissing238587
-Node: scalarexpand239624
-Node: seconds240548
-Node: size2str241047
-Node: splitapply241650
-Node: standardizeMissing242773
-Node: startsWith243600
-Node: string244410
-Node: string.string247722
-Node: string.isstring248392
-Node: string.dispstrs248717
-Node: string.sizeof249296
-Node: string.ismissing249514
-Node: string.isnannish249993
-Node: string.cellstr250376
-Node: string.cell250721
-Node: string.char251208
-Node: string.encode251733
-Node: string.strlength_bytes252249
-Node: string.strlength252922
-Node: string.reverse_bytes253489
-Node: string.reverse254227
-Node: string.strcat254699
-Node: string.lower255277
-Node: string.upper255779
-Node: string.erase256280
-Node: string.strrep256617
-Node: string.strfind257222
-Node: string.regexprep257745
-Node: string.strcmp258221
-Node: string.cmp258914
-Node: string.missing259893
-Node: string.decode260295
-Node: struct2table260705
-Node: table261172
-Node: table.table264315
-Node: table.summary265367
-Node: table.prettyprint265711
-Node: table.table2cell266170
-Node: table.table2struct266658
-Node: table.table2array267293
-Node: table.varnames267540
-Node: table.istable267792
-Node: table.size268004
-Node: table.length268333
-Node: table.ndims268632
-Node: table.squeeze268883
-Node: table.sizeof269230
-Node: table.height269661
-Node: table.rows269869
-Node: table.width270070
-Node: table.columns270401
-Node: table.numel270739
-Node: table.isempty271259
-Node: table.ismatrix271583
-Node: table.isrow271872
-Node: table.iscol272090
-Node: table.isvector272450
-Node: table.isscalar272676
-Node: table.hasrownames272906
-Node: table.vertcat273156
-Node: table.horzcat273677
-Node: table.repmat274297
-Node: table.repelem274823
-Node: table.setVariableNames275264
-Node: table.setDimensionNames276057
-Node: table.setRowNames276942
-Node: table.resolveVarRef277315
-Node: table.subsetrows278317
-Node: table.subsetvars278662
-Node: table.removevars279169
-Node: table.movevars279554
-Node: table.getvar280282
-Node: table.getvars280774
-Node: table.setvar281247
-Node: table.addvars281971
-Node: table.convertvars282438
-Node: table.mergevars283426
-Node: table.splitvars283829
-Node: table.stack284387
-Node: table.head284796
-Node: table.tail285165
-Node: table.join285531
-Node: table.innerjoin286277
-Node: table.outerjoin286938
-Node: table.outerfillvals287745
-Node: table.semijoin288178
-Node: table.antijoin288947
-Node: table.cartesian289599
-Node: table.groupby290867
-Node: table.grpstats291718
-Node: table.splitapply292051
-Node: table.rows2vars292552
-Node: table.congruentize293677
-Node: table.union294546
-Node: table.intersect295118
-Node: table.setxor295726
-Node: table.setdiff296361
-Node: table.ismember296898
-Node: table.ismissing297300
-Node: table.rmmissing297984
-Node: table.standardizeMissing298776
-Node: table.varfun299766
-Node: table.rowfun300333
-Node: table.findgroups303419
-Node: table.evalWithVars304004
-Node: table.restrict304854
-Node: tableOuterFillValue305983
-Node: timezones307220
-Node: vartype308265
-Node: vecfun308978
-Node: years309705
-Node: Copying310382
+Node: octave.dataset.airquality116447
+Node: octave.dataset.anscombe118544
+Node: octave.dataset.attenu120518
+Node: octave.dataset.attitude121957
+Node: octave.dataset.austres123187
+Node: octave.dataset.beavers124100
+Node: octave.dataset.BJsales125245
+Node: octave.dataset.BOD126352
+Node: octave.dataset.cars127323
+Node: octave.dataset.ChickWeight129052
+Node: octave.dataset.chickwts130544
+Node: octave.dataset.co2132034
+Node: octave.dataset.crimtab133522
+Node: octave.dataset.cupcake137002
+Node: octave.dataset.discoveries137972
+Node: octave.dataset.DNase139004
+Node: octave.dataset.esoph140283
+Node: octave.dataset.euro141449
+Node: octave.dataset.eurodist143121
+Node: octave.dataset.EuStockMarkets144031
+Node: octave.dataset.faithful145567
+Node: octave.dataset.Formaldehyde147402
+Node: octave.dataset.freeny148838
+Node: octave.dataset.HairEyeColor150449
+Node: octave.dataset.Harman23cor152978
+Node: octave.dataset.Harman74cor153903
+Node: octave.dataset.Indometh154870
+Node: octave.dataset.infert156197
+Node: octave.dataset.InsectSprays157605
+Node: octave.dataset.iris158549
+Node: octave.dataset.islands160087
+Node: octave.dataset.JohnsonJohnson160980
+Node: octave.dataset.LakeHuron161881
+Node: octave.dataset.lh162949
+Node: octave.dataset.LifeCycleSavings163838
+Node: octave.dataset.Loblolly165740
+Node: octave.dataset.longley167035
+Node: octave.dataset.lynx168422
+Node: octave.dataset.morley169829
+Node: octave.dataset.mtcars171563
+Node: octave.dataset.nhtemp173300
+Node: octave.dataset.Nile174289
+Node: octave.dataset.nottem175577
+Node: octave.dataset.npk176434
+Node: octave.dataset.occupationalStatus177725
+Node: octave.dataset.Orange178751
+Node: octave.dataset.OrchardSprays180136
+Node: octave.dataset.PlantGrowth181973
+Node: octave.dataset.precip182859
+Node: octave.dataset.presidents183741
+Node: octave.dataset.pressure184955
+Node: octave.dataset.Puromycin186289
+Node: octave.dataset.quakes188112
+Node: octave.dataset.randu189668
+Node: octave.dataset.rivers190919
+Node: octave.dataset.rock191812
+Node: octave.dataset.sleep193032
+Node: octave.dataset.stackloss194254
+Node: octave.dataset.state196519
+Node: octave.dataset.sunspot_month198303
+Node: octave.dataset.sunspot_year199269
+Node: octave.dataset.sunspots200117
+Node: octave.dataset.swiss201218
+Node: octave.dataset.Theoph203308
+Node: octave.dataset.Titanic205641
+Node: octave.dataset.ToothGrowth208315
+Node: octave.dataset.treering209738
+Node: octave.dataset.trees210832
+Node: octave.dataset.UCBAdmissions212250
+Node: octave.dataset.UKDriverDeaths214420
+Node: octave.dataset.UKgas216746
+Node: octave.dataset.UKLungDeaths217692
+Node: octave.dataset.USAccDeaths218968
+Node: octave.dataset.USArrests219734
+Node: octave.dataset.USJudgeRatings221709
+Node: octave.dataset.USPersonalExpenditure223023
+Node: octave.dataset.uspop224238
+Node: octave.dataset.VADeaths225157
+Node: octave.dataset.volcano226533
+Node: octave.dataset.warpbreaks227932
+Node: octave.dataset.women229188
+Node: octave.dataset.WorldPhones230495
+Node: octave.dataset.WWWusage231556
+Node: octave.dataset.zCO2232466
+Node: octave.datasets233709
+Node: octave.datasets.list234227
+Node: octave.datasets.load234735
+Node: octave.datasets.description235166
+Node: octave.examples.coplot235746
+Node: octave.examples.plot_pairs237712
+Node: pp238838
+Node: rmmissing239500
+Node: scalarexpand240537
+Node: seconds241461
+Node: size2str241960
+Node: splitapply242563
+Node: standardizeMissing243686
+Node: startsWith244513
+Node: string245323
+Node: string.string248635
+Node: string.isstring249305
+Node: string.dispstrs249630
+Node: string.sizeof250209
+Node: string.ismissing250427
+Node: string.isnannish250906
+Node: string.cellstr251289
+Node: string.cell251634
+Node: string.char252121
+Node: string.encode252646
+Node: string.strlength_bytes253162
+Node: string.strlength253835
+Node: string.reverse_bytes254402
+Node: string.reverse255140
+Node: string.strcat255612
+Node: string.lower256190
+Node: string.upper256692
+Node: string.erase257193
+Node: string.strrep257530
+Node: string.strfind258135
+Node: string.regexprep258658
+Node: string.strcmp259134
+Node: string.cmp259827
+Node: string.missing260806
+Node: string.decode261208
+Node: struct2table261618
+Node: table262085
+Node: table.table265228
+Node: table.summary266280
+Node: table.prettyprint266624
+Node: table.table2cell267083
+Node: table.table2struct267571
+Node: table.table2array268206
+Node: table.varnames268453
+Node: table.istable268705
+Node: table.size268917
+Node: table.length269246
+Node: table.ndims269545
+Node: table.squeeze269796
+Node: table.sizeof270143
+Node: table.height270574
+Node: table.rows270782
+Node: table.width270983
+Node: table.columns271314
+Node: table.numel271652
+Node: table.isempty272172
+Node: table.ismatrix272496
+Node: table.isrow272785
+Node: table.iscol273003
+Node: table.isvector273363
+Node: table.isscalar273589
+Node: table.hasrownames273819
+Node: table.vertcat274069
+Node: table.horzcat274590
+Node: table.repmat275210
+Node: table.repelem275736
+Node: table.setVariableNames276177
+Node: table.setDimensionNames276970
+Node: table.setRowNames277855
+Node: table.resolveVarRef278228
+Node: table.subsetrows279230
+Node: table.subsetvars279575
+Node: table.removevars280082
+Node: table.movevars280467
+Node: table.getvar281195
+Node: table.getvars281687
+Node: table.setvar282160
+Node: table.addvars282884
+Node: table.convertvars283351
+Node: table.mergevars284339
+Node: table.splitvars284742
+Node: table.stack285300
+Node: table.head285709
+Node: table.tail286078
+Node: table.join286444
+Node: table.innerjoin287190
+Node: table.outerjoin287851
+Node: table.outerfillvals288658
+Node: table.semijoin289091
+Node: table.antijoin289860
+Node: table.cartesian290512
+Node: table.groupby291780
+Node: table.grpstats292631
+Node: table.splitapply292964
+Node: table.rows2vars293465
+Node: table.congruentize294590
+Node: table.union295459
+Node: table.intersect296031
+Node: table.setxor296639
+Node: table.setdiff297274
+Node: table.ismember297811
+Node: table.ismissing298213
+Node: table.rmmissing298897
+Node: table.standardizeMissing299689
+Node: table.varfun300679
+Node: table.rowfun301246
+Node: table.findgroups304332
+Node: table.evalWithVars304917
+Node: table.restrict305767
+Node: tableOuterFillValue306896
+Node: timezones308133
+Node: vartype309178
+Node: vecfun309891
+Node: years310618
+Node: Copying311295
 
 End Tag Table
 
