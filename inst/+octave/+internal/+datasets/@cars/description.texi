@@ -17,7 +17,7 @@ Ezekiel, M. (1930) @cite{Methods of Correlation Analysis}. Wiley.
 
 @subsubheading References
 
-McNeil, D. R. (1977) Interactive Data Analysis. Wiley.
+McNeil, D. R. (1977) @cite{Interactive Data Analysis}. Wiley.
 
 @subsubheading Examples
 
