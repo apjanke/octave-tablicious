@@ -25,15 +25,15 @@ Width of petals, in centimeters.
 
 @url{https://en.wikipedia.org/wiki/Iris_flower_data_set}
 
-Fisher, R.A. “The use of multiple measurements in taxonomic problems”
-Annals of Eugenics, 7, Part II, 179-188 (1936); also in @cite{Contributions 
+Fisher, R. A. (1936). The use of multiple measurements in taxonomic problems.
+Annals of Eugenics, 7, Part II, 179-188. also in @cite{Contributions 
 to Mathematical Statistics} (John Wiley, NY, 1950).
 
-Duda, R.O., & Hart, P.E. (1973) @cite{Pattern Classification and Scene Analysis}.
-(Q327.D83) John Wiley & Sons. ISBN 0-471-22361-1. See page 218.
+Duda, R.O., & Hart, P.E. (1973). @cite{Pattern Classification and Scene Analysis}.
+(Q327.D83) New York: John Wiley & Sons. ISBN 0-471-22361-1. See page 218.
 
 The data were collected by Anderson, Edgar (1935). The irises of the Gaspe
-Peninsula, @cite{Bulletin of the American Iris Society}, 59, 2–5.
+Peninsula. @cite{Bulletin of the American Iris Society}, 59, 2–5.
 
 @subsubheading Examples
 

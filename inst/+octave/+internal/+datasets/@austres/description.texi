@@ -13,8 +13,8 @@ The number of residents.
 
 @subsubheading Source
 
-P. J. Brockwell and R. A. Davis (1996) @cite{Introduction to Time Series and
-Forecasting}. Springer
+Brockwell, P. J. and Davis, R. A. (1996). @cite{Introduction to Time Series and
+Forecasting}. New York: Springer-Verlag.
 
 @subsubheading Examples
 

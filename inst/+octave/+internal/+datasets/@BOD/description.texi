@@ -13,10 +13,10 @@ Biochemical oxygen demand (mg/l).
 
 @subsubheading Source
 
-Bates, D.M. and Watts, D.G. (1988), @cite{Nonlinear Regression Analysis and Its
-Applications}, Wiley, Appendix A1.4.
+Bates, D.M. and Watts, D.G. (1988). @cite{Nonlinear Regression Analysis and Its
+Applications}. New York: John Wiley & Sons. Appendix A1.4.
 
-Originally from Marske (1967), @cite{Biochemical Oxygen Demand Data
+Originally from: Marske (1967). @cite{Biochemical Oxygen Demand Data
 Interpretation Using Sum of Squares Surface}, M.Sc. Thesis, University of
 Wisconsin – Madison.
 

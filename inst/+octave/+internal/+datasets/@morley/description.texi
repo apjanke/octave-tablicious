@@ -25,14 +25,14 @@ the course of a single experiment.
 
 @subsubheading Source
 
-A. J. Weekes (1986) @cite{A Genstat Primer}. London: Edward Arnold.
+A. J. Weekes (1986). @cite{A Genstat Primer}. London: Edward Arnold.
 
-S. M. Stigler (1977) Do robust estimators work with real data? @cite{Annals
+S. M. Stigler (1977). Do robust estimators work with real data? @cite{Annals
 of Statistics} 5, 1055–1098. (See Table 6.)
 
-A. A. Michelson (1882) Experimental determination of the velocity of
+A. A. Michelson (1882). Experimental determination of the velocity of
 light made at the United States Naval Academy, Annapolis. @cite{Astronomic
-Papers} 1 135–8. U.S. Nautical Almanac Office. (See Table 24.).
+Papers}, 1, 135–8. U.S. Nautical Almanac Office. (See Table 24.).
 
 @subsubheading Examples
 

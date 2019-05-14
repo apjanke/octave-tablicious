@@ -89,8 +89,9 @@ classdef dataset
     ## 
     ## @subsubheading Source
     ## 
-    ## Box, G. E. P., Jenkins, G. M. and Reinsel, G. C. (1976) @cite{Time Series
-    ## Analysis, Forecasting and Control}. Third Edition. Holden-Day. Series G.
+    ## Box, G. E. P., Jenkins, G. M. and Reinsel, G. C. (1976). @cite{Time Series
+    ## Analysis, Forecasting and Control}. Third Edition. San Francisco: Holden-Day.
+    ## Series G.
     ## 
     ## @subsubheading Examples
     ## 
@@ -155,7 +156,7 @@ classdef dataset
     ## 
     ## @subsubheading References
     ## 
-    ## Chambers, J. M., Cleveland, W. S., Kleiner, B. and Tukey, P. A. (1983)
+    ## Chambers, J. M., Cleveland, W. S., Kleiner, B. and Tukey, P. A. (1983).
     ## @cite{Graphical Methods for Data Analysis}. Belmont, CA: Wadsworth.
     ## 
     ## @subsubheading Examples
@@ -239,12 +240,12 @@ classdef dataset
     ## @subsubheading Source
     ## 
     ## Tufte, Edward R. (1989). @cite{The Visual Display of Quantitative Information}.
-    ## 13–14. Graphics Press.
+    ## 13–14. Cheshire, CT: Graphics Press.
     ## 
     ## @subsubheading References
     ## 
-    ## Anscombe, Francis J. (1973). “Graphs in statistical analysis”. @cite{The
-    ## American Statistician}, 27, 17–21. 
+    ## Anscombe, Francis J. (1973). Graphs in statistical analysis. @cite{The
+    ## American Statistician}, 27, 17–21.
     ## 
     ## @subsubheading Examples
     ## 
@@ -331,12 +332,12 @@ classdef dataset
     ## Joyner, W.B., D.M. Boore and R.D. Porcella (1981). Peak horizontal acceleration
     ## and velocity from strong-motion records including records from the 1979
     ## Imperial Valley, California earthquake. USGS Open File report 81-365. Menlo
-    ## Park, Ca.
+    ## Park, CA.
     ## 
     ## @subsubheading References
     ## 
-    ## Boore, D. M. and Joyner, W. B.(1982). The empirical prediction of ground
-    ## motion, @cite{Bulletin of the Seismological Society of America}, 72, S269–S268.
+    ## Boore, D. M. and Joyner, W. B. (1982). The empirical prediction of ground
+    ## motion. @cite{Bulletin of the Seismological Society of America}, 72, S269–S268.
     ## 
     ## @subsubheading Examples
     ## 
@@ -402,7 +403,7 @@ classdef dataset
     ## 
     ## @subsubheading Source
     ## 
-    ## Chatterjee, S. and Price, B. (1977) @cite{Regression Analysis by Example}. New York:
+    ## Chatterjee, S. and Price, B. (1977). @cite{Regression Analysis by Example}. New York:
     ## Wiley. (Section 3.7, p.68ff of 2nd ed.(1991).)
     ## 
     ## @subsubheading Examples
@@ -462,8 +463,8 @@ classdef dataset
     ## 
     ## @subsubheading Source
     ## 
-    ## P. J. Brockwell and R. A. Davis (1996) @cite{Introduction to Time Series and
-    ## Forecasting}. Springer
+    ## Brockwell, P. J. and Davis, R. A. (1996). @cite{Introduction to Time Series and
+    ## Forecasting}. New York: Springer-Verlag.
     ## 
     ## @subsubheading Examples
     ## 
@@ -526,7 +527,7 @@ classdef dataset
     ## 
     ## P. S. Reynolds (1994) Time-series analyses of beaver body temperatures.
     ## Chapter 11 of Lange, N., Ryan, L., Billard, L., Brillinger, D., Conquest,
-    ## L. and Greenhouse, J. eds (1994) @cite{Case Studies in Biometry}. New York: John Wiley
+    ## L. and Greenhouse, J. (Eds.) (1994) @cite{Case Studies in Biometry}. New York: John Wiley
     ## and Sons.
     ## 
     ## @subsubheading Examples
@@ -586,11 +587,11 @@ classdef dataset
     ## 
     ## @subsubheading References
     ## 
-    ## G. E. P. Box and G. M. Jenkins (1976): @cite{Time Series Analysis, Forecasting and
-    ## Control}, Holden-Day, San Francisco, p. 537.
+    ## Box, G. E. P. and Jenkins, G. M. (1976). @cite{Time Series Analysis, Forecasting and
+    ## Control}. San Francisco: Holden-Day. p. 537.
     ## 
-    ## P. J. Brockwell and R. A. Davis (1991): @cite{Time Series: Theory and Methods},
-    ## Second edition, Springer Verlag, NY, pp. 414.
+    ## Brockwell, P. J. and Davis, R. A. (1991). @cite{Time Series: Theory and Methods},
+    ## Second edition. New York: Springer-Verlag. p. 414.
     ## 
     ## @subsubheading Examples
     ## 
@@ -642,10 +643,10 @@ classdef dataset
     ## 
     ## @subsubheading Source
     ## 
-    ## Bates, D.M. and Watts, D.G. (1988), @cite{Nonlinear Regression Analysis and Its
-    ## Applications}, Wiley, Appendix A1.4.
+    ## Bates, D.M. and Watts, D.G. (1988). @cite{Nonlinear Regression Analysis and Its
+    ## Applications}. New York: John Wiley & Sons. Appendix A1.4.
     ## 
-    ## Originally from Marske (1967), @cite{Biochemical Oxygen Demand Data
+    ## Originally from: Marske (1967). @cite{Biochemical Oxygen Demand Data
     ## Interpretation Using Sum of Squares Surface}, M.Sc. Thesis, University of
     ## Wisconsin – Madison.
     ## 
@@ -699,11 +700,11 @@ classdef dataset
     ## 
     ## @subsubheading Source
     ## 
-    ## Ezekiel, M. (1930) @cite{Methods of Correlation Analysis}. Wiley.
+    ## Ezekiel, M. (1930). @cite{Methods of Correlation Analysis}. New York: Wiley.
     ## 
     ## @subsubheading References
     ## 
-    ## McNeil, D. R. (1977) Interactive Data Analysis. Wiley.
+    ## McNeil, D. R. (1977). @cite{Interactive Data Analysis}. New York: Wiley.
     ## 
     ## @subsubheading Examples
     ## 
@@ -792,14 +793,14 @@ classdef dataset
     ## 
     ## @subsubheading Source
     ## 
-    ## Crowder, M. and Hand, D. (1990), @cite{Analysis of Repeated Measures}. Chapman and
-    ## Hall (example 5.3)
+    ## Crowder, M. and Hand, D. (1990). @cite{Analysis of Repeated Measures}. London: Chapman and
+    ## Hall. (example 5.3)
     ## 
-    ## Hand, D. and Crowder, M. (1996), @cite{Practical Longitudinal Data Analysis}. Chapman
-    ## and Hall (table A.2)
+    ## Hand, D. and Crowder, M. (1996), @cite{Practical Longitudinal Data Analysis}. London: Chapman
+    ## and Hall. (table A.2)
     ## 
     ## Pinheiro, J. C. and Bates, D. M. (2000) @cite{Mixed-effects Models in S and S-PLUS}.
-    ## Springer.
+    ## New York: Springer.
     ## 
     ## @subsubheading Examples
     ## 
@@ -863,7 +864,7 @@ classdef dataset
     ## 
     ## @subsubheading References
     ## 
-    ## McNeil, D. R. (1977) @code{Interactive Data Analysis}. New York: Wiley.
+    ## McNeil, D. R. (1977). @code{Interactive Data Analysis}. New York: Wiley.
     ## 
     ## @subsubheading Examples
     ## 
@@ -945,7 +946,7 @@ classdef dataset
     ## 
     ## @subsubheading References
     ## 
-    ## Cleveland, W. S. (1993) @code{Visualizing Data}. New Jersey: Summit Press.
+    ## Cleveland, W. S. (1993). @code{Visualizing Data}. New Jersey: Summit Press.
     ## 
     ## @subsubheading Examples
     ## 
@@ -1165,7 +1166,7 @@ classdef dataset
     ## 
     ## @subsubheading References
     ## 
-    ## McNeil, D. R. (1977) @cite{Interactive Data Analysis}. Wiley.
+    ## McNeil, D. R. (1977). @cite{Interactive Data Analysis}. New York: Wiley.
     ## 
     ## @subsubheading Examples
     ## 
@@ -1224,11 +1225,11 @@ classdef dataset
     ## 
     ## @subsubheading Source
     ## 
-    ## Davidian, M. and Giltinan, D. M. (1995) @cite{Nonlinear Models for Repeated
-    ## Measurement Data}, Chapman & Hall (section 5.2.4, p. 134)
+    ## Davidian, M. and Giltinan, D. M. (1995). @cite{Nonlinear Models for Repeated
+    ## Measurement Data}. London: Chapman & Hall. (section 5.2.4, p. 134)
     ## 
-    ## Pinheiro, J. C. and Bates, D. M. (2000) @cite{Mixed-effects Models in S and
-    ## S-PLUS}, Springer.
+    ## Pinheiro, J. C. and Bates, D. M. (2000). @cite{Mixed-effects Models in S and
+    ## S-PLUS}. New York: Springer.
     ## 
     ## @subsubheading Examples
     ## 
@@ -1294,7 +1295,7 @@ classdef dataset
     ## @subsubheading Source
     ## 
     ## Breslow, N. E. and Day, N. E. (1980) @cite{Statistical Methods in Cancer Research.
-    ## Volume 1: The Analysis of Case-Control Studies}. IARC Lyon / Oxford University Press.
+    ## Volume 1: The Analysis of Case-Control Studies}. Oxford: IARC Lyon / Oxford University Press.
     ## 
     ## @subsubheading Examples
     ## 
@@ -1430,8 +1431,8 @@ classdef dataset
     ## 
     ## @subsubheading Source
     ## 
-    ## Crystal, D. Ed. (1990) @cite{The Cambridge Encyclopaedia}. Cambridge:
-    ## Cambridge University Press,
+    ## Crystal, D. Ed. (1990). @cite{The Cambridge Encyclopaedia}. Cambridge:
+    ## Cambridge University Press.
     ## 
     ## The US cities distances were provided by Pierre Legendre.
     ## 
@@ -1644,12 +1645,12 @@ classdef dataset
     ## 
     ## @subsubheading Source
     ## 
-    ## Bennett, N. A. and N. L. Franklin (1954) @cite{Statistical Analysis in
+    ## Bennett, N. A. and N. L. Franklin (1954). @cite{Statistical Analysis in
     ## Chemistry and the Chemical Industry}. New York: Wiley.
     ## 
     ## @subsubheading References
     ## 
-    ## McNeil, D. R. (1977) @cite{Interactive Data Analysis}. New York: Wiley.
+    ## McNeil, D. R. (1977). @cite{Interactive Data Analysis}. New York: Wiley.
     ## 
     ## @subsubheading Examples
     ## 
@@ -1724,13 +1725,13 @@ classdef dataset
     ## 
     ## @subsubheading Source
     ## 
-    ## A. E. Freeny (1977) @cite{A Portable Linear Regression Package with Test
+    ## Freeny, A. E. (1977). @cite{A Portable Linear Regression Package with Test
     ## Programs}. Bell Laboratories memorandum.
     ## 
     ## @subsubheading References
     ## 
-    ## Becker, R. A., Chambers, J. M. and Wilks, A. R. (1988) @cite{The New S
-    ## Language}. Wadsworth & Brooks/Cole.
+    ## Becker, R. A., Chambers, J. M. and Wilks, A. R. (1988). @cite{The New S
+    ## Language}. Monterey: Wadsworth & Brooks/Cole.
     ## 
     ## @subsubheading Examples
     ## 
@@ -1888,9 +1889,8 @@ classdef dataset
     ## 
     ## @subsubheading Source
     ## 
-    ## Harman, H. H. (1976) @cite{Modern Factor Analysis}, Third Edition Revised,
-    ## University of Chicago Press, Table 2.3.
-    ## 
+    ## Harman, H. H. (1976). @cite{Modern Factor Analysis}, Third Edition Revised.
+    ## Chicago: University of Chicago Press. Table 2.3.
     ## 
     ## @subsubheading Examples
     ## 
@@ -1947,8 +1947,8 @@ classdef dataset
     ## 
     ## @subsubheading Source
     ## 
-    ## Harman, H. H. (1976) @cite{Modern Factor Analysis}, Third Edition
-    ## Revised, University of Chicago Press, Table 7.4.
+    ## Harman, H. H. (1976). @cite{Modern Factor Analysis}, Third Edition
+    ## Revised. Chicago: University of Chicago Press. Table 7.4.
     ## 
     ## @subsubheading Examples
     ## 
@@ -2010,15 +2010,15 @@ classdef dataset
     ## 
     ## @subsubheading Source
     ## 
-    ## Kwan, Breault, Umbenhauer, McMahon and Duggan (1976) Kinetics of
+    ## Kwan, Breault, Umbenhauer, McMahon and Duggan (1976). Kinetics of
     ## Indomethacin absorption, elimination, and enterohepatic circulation in man.
     ## @cite{Journal of Pharmacokinetics and Biopharmaceutics} 4, 255–280.
     ## 
-    ## Davidian, M. and Giltinan, D. M. (1995) @cite{Nonlinear Models for Repeated
-    ## Measurement Data}, Chapman & Hall (section 5.2.4, p. 129)
+    ## Davidian, M. and Giltinan, D. M. (1995). @cite{Nonlinear Models for Repeated
+    ## Measurement Data}. London: Chapman & Hall. (section 5.2.4, p. 129)
     ## 
-    ## Pinheiro, J. C. and Bates, D. M. (2000) @cite{Mixed-effects Models in S and
-    ## S-PLUS}, Springer.
+    ## Pinheiro, J. C. and Bates, D. M. (2000). @cite{Mixed-effects Models in S and
+    ## S-PLUS}. New York: Springer.
     ## 
     ##
     ## @end deftypefn
@@ -2081,7 +2081,7 @@ classdef dataset
     ## 
     ## @subsubheading Source
     ## 
-    ## Trichopoulos et al (1976) @cite{Br. J. of Obst. and Gynaec.} 83, 645–650.
+    ## Trichopoulos et al (1976). @cite{Br. J. of Obst. and Gynaec.} 83, 645–650.
     ## 
     ## @subsubheading Examples
     ## 
@@ -2137,12 +2137,12 @@ classdef dataset
     ## 
     ## @subsubheading Source
     ## 
-    ## Beall, G., (1942) The Transformation of data from entomological field
-    ## experiments, @cite{Biometrika}, 29, 243–262.
+    ## Beall, G., (1942). The Transformation of data from entomological field
+    ## experiments. @cite{Biometrika}, 29, 243–262.
     ## 
     ## @subsubheading References
     ## 
-    ## McNeil, D. (1977) @cite{Interactive Data Analysis}. New York: Wiley.
+    ## McNeil, D. (1977). @cite{Interactive Data Analysis}. New York: Wiley.
     ## 
     ## @subsubheading Examples
     ## 
@@ -2211,15 +2211,15 @@ classdef dataset
     ## 
     ## @url{https://en.wikipedia.org/wiki/Iris_flower_data_set}
     ## 
-    ## Fisher, R.A. “The use of multiple measurements in taxonomic problems”
-    ## Annals of Eugenics, 7, Part II, 179-188 (1936); also in @cite{Contributions 
+    ## Fisher, R. A. (1936). The use of multiple measurements in taxonomic problems.
+    ## Annals of Eugenics, 7, Part II, 179-188. also in @cite{Contributions 
     ## to Mathematical Statistics} (John Wiley, NY, 1950).
     ## 
-    ## Duda, R.O., & Hart, P.E. (1973) @cite{Pattern Classification and Scene Analysis}.
-    ## (Q327.D83) John Wiley & Sons. ISBN 0-471-22361-1. See page 218.
+    ## Duda, R.O., & Hart, P.E. (1973). @cite{Pattern Classification and Scene Analysis}.
+    ## (Q327.D83) New York: John Wiley & Sons. ISBN 0-471-22361-1. See page 218.
     ## 
     ## The data were collected by Anderson, Edgar (1935). The irises of the Gaspe
-    ## Peninsula, @cite{Bulletin of the American Iris Society}, 59, 2–5.
+    ## Peninsula. @cite{Bulletin of the American Iris Society}, 59, 2–5.
     ## 
     ## @subsubheading Examples
     ## 
@@ -2275,7 +2275,7 @@ classdef dataset
     ## 
     ## @subsubheading References
     ## 
-    ## McNeil, D. R. (1977) @cite{Interactive Data Analysis}. Wiley.
+    ## McNeil, D. R. (1977). @cite{Interactive Data Analysis}. New York: Wiley.
     ## 
     ## @subsubheading Examples
     ## 
@@ -2330,8 +2330,8 @@ classdef dataset
     ## 
     ## @subsubheading Source
     ## 
-    ## Shumway, R. H. and Stoffer, D. S. (2000) @cite{Time Series Analysis and its
-    ## Applications}. Second Edition. Springer. Example 1.1.
+    ## Shumway, R. H. and Stoffer, D. S. (2000). @cite{Time Series Analysis and its
+    ## Applications}. Second Edition. New York: Springer. Example 1.1.
     ## 
     ## @subsubheading Examples
     ## 
@@ -2387,10 +2387,10 @@ classdef dataset
     ## @subsubheading Source
     ## 
     ## Brockwell, P. J. and Davis, R. A. (1991). @cite{Time Series and Forecasting
-    ## Methods}. Second edition. Springer, New York. Series A, page 555.
+    ## Methods}. Second edition. New York: Springer. Series A, page 555.
     ## 
     ## Brockwell, P. J. and Davis, R. A. (1996). @cite{Introduction to Time Series
-    ## and Forecasting}. Springer, New York. Sections 5.1 and 7.6.
+    ## and Forecasting}. New York: Springer. Sections 5.1 and 7.6.
     ## 
     ## @subsubheading Examples
     ## 
@@ -2449,8 +2449,8 @@ classdef dataset
     ## 
     ## @subsubheading Source
     ## 
-    ## P.J. Diggle (1990) @cite{Time Series: A Biostatistical Introduction}. Oxford,
-    ## table A.1, series 3
+    ## P.J. Diggle (1990). @cite{Time Series: A Biostatistical Introduction}. Oxford.
+    ## Table A.1, series 3.
     ## 
     ## @subsubheading Examples
     ## 
@@ -2529,10 +2529,10 @@ classdef dataset
     ## 
     ## @subsubheading References
     ## 
-    ## Sterling, Arnie (1977) Unpublished BS Thesis. Massachusetts Institute of
+    ## Sterling, Arnie (1977). Unpublished BS Thesis. Massachusetts Institute of
     ## Technology.
     ## 
-    ## Belsley, D. A., Kuh. E. and Welsch, R. E. (1980) @cite{Regression Diagnostics}.
+    ## Belsley, D. A., Kuh. E. and Welsch, R. E. (1980). @cite{Regression Diagnostics}.
     ## New York: Wiley.
     ## 
     ## @subsubheading Examples
@@ -2592,12 +2592,12 @@ classdef dataset
     ## 
     ## @subsubheading Source
     ## 
-    ## Kung, F. H. (1986), Fitting logistic growth curve with predetermined carrying
-    ## capacity, in @cite{Proceedings of the Statistical Computing Section}, American
+    ## Kung, F. H. (1986). Fitting logistic growth curve with predetermined carrying
+    ## capacity. @cite{Proceedings of the Statistical Computing Section}, American
     ## Statistical Association, 340–343.
     ## 
-    ## Pinheiro, J. C. and Bates, D. M. (2000) @cite{Mixed-effects Models in S and
-    ## S-PLUS}, Springer.
+    ## Pinheiro, J. C. and Bates, D. M. (2000). @cite{Mixed-effects Models in S and
+    ## S-PLUS}. New York: Springer.
     ## 
     ## @subsubheading Examples
     ## 
@@ -2669,14 +2669,14 @@ classdef dataset
     ## 
     ## @subsubheading Source
     ## 
-    ## J. W. Longley (1967) An appraisal of least-squares programs from the point of
-    ## view of the user. @cite{Journal of the American Statistical Association} 62,
+    ## J. W. Longley (1967). An appraisal of least-squares programs from the point of
+    ## view of the user. @cite{Journal of the American Statistical Association}, 62,
     ## 819–841.
     ## 
     ## @subsubheading References
     ## 
-    ## Becker, R. A., Chambers, J. M. and Wilks, A. R. (1988) @cite{The New S
-    ## Language}. Wadsworth & Brooks/Cole.
+    ## Becker, R. A., Chambers, J. M. and Wilks, A. R. (1988). @cite{The New S
+    ## Language}. Monterey: Wadsworth & Brooks/Cole.
     ## 
     ## @subsubheading Examples
     ## 
@@ -2735,12 +2735,12 @@ classdef dataset
     ## @subsubheading Source
     ## 
     ## Brockwell, P. J. and Davis, R. A. (1991). @cite{Time Series and Forecasting
-    ## Methods}. Second edition. Springer. Series G (page 557).
+    ## Methods}. Second edition. New York: Springer. Series G (page 557).
     ## 
     ## @subsubheading References
     ## 
     ## Becker, R. A., Chambers, J. M. and Wilks, A. R. (1988). @cite{The New S
-    ## Language}. Wadsworth & Brooks/Cole.
+    ## Language}. Monterey: Wadsworth & Brooks/Cole.
     ## 
     ## Campbell, M. J. and Walker, A. M. (1977). A Survey of statistical work on
     ## the Mackenzie River series of annual Canadian lynx trappings for the years
@@ -2814,14 +2814,14 @@ classdef dataset
     ## 
     ## @subsubheading Source
     ## 
-    ## A. J. Weekes (1986) @cite{A Genstat Primer}. London: Edward Arnold.
+    ## A. J. Weekes (1986). @cite{A Genstat Primer}. London: Edward Arnold.
     ## 
-    ## S. M. Stigler (1977) Do robust estimators work with real data? @cite{Annals
+    ## S. M. Stigler (1977). Do robust estimators work with real data? @cite{Annals
     ## of Statistics} 5, 1055–1098. (See Table 6.)
     ## 
-    ## A. A. Michelson (1882) Experimental determination of the velocity of
+    ## A. A. Michelson (1882). Experimental determination of the velocity of
     ## light made at the United States Naval Academy, Annapolis. @cite{Astronomic
-    ## Papers} 1 135–8. U.S. Nautical Almanac Office. (See Table 24.).
+    ## Papers}, 1, 135–8. U.S. Nautical Almanac Office. (See Table 24.).
     ## 
     ## @subsubheading Examples
     ## 
@@ -2904,8 +2904,8 @@ classdef dataset
     ## 
     ## @subsubheading Source
     ## 
-    ## Henderson and Velleman (1981), “Building multiple regression models
-    ## interactively”. Biometrics, 37, 391–411.
+    ## Henderson and Velleman (1981). Building multiple regression models
+    ## interactively. @cite{Biometrics}, 37, 391–411.
     ## 
     ## @subsubheading Examples
     ## 
@@ -2961,7 +2961,7 @@ classdef dataset
     ## 
     ## @subsubheading References
     ## 
-    ## McNeil, D. R. (1977) @cite{Interactive Data Analysis}. New York: Wiley.
+    ## McNeil, D. R. (1977). @cite{Interactive Data Analysis}. New York: Wiley.
     ## 
     ## @subsubheading Examples
     ## 
@@ -3021,7 +3021,7 @@ classdef dataset
     ## @subsubheading Source
     ## 
     ## Durbin, J. and Koopman, S. J. (2001). @cite{Time Series Analysis by State
-    ## Space Methods}. Oxford University Press. @url{http://www.ssfpack.com/DKbook.html}
+    ## Space Methods}. Oxford: Oxford University Press. @url{http://www.ssfpack.com/DKbook.html}
     ## 
     ## @subsubheading References
     ## 
@@ -3089,8 +3089,8 @@ classdef dataset
     ## 
     ## @subsubheading Source
     ## 
-    ## Anderson, O. D. (1976) @cite{Time Series Analysis and Forecasting:
-    ## The Box-Jenkins approach}. Butterworths. Series R.
+    ## Anderson, O. D. (1976). @cite{Time Series Analysis and Forecasting:
+    ## The Box-Jenkins approach}. London: Butterworths. Series R.
     ## 
     ## @subsubheading Examples
     ## 
@@ -3154,8 +3154,8 @@ classdef dataset
     ## 
     ## @subsubheading References
     ## 
-    ## Venables, W. N. and Ripley, B. D. (2002) @cite{Modern Applied Statistics
-    ## with S}. Fourth edition. Springer.
+    ## Venables, W. N. and Ripley, B. D. (2002). @cite{Modern Applied Statistics
+    ## with S}. Fourth edition. New York: Springer.
     ## 
     ## @subsubheading Examples
     ## 
@@ -3208,7 +3208,7 @@ classdef dataset
     ## 
     ## @subsubheading Source
     ## 
-    ## Goodman, L. A. (1979) Simple Models for the Analysis of Association in
+    ## Goodman, L. A. (1979). Simple Models for the Analysis of Association in
     ## Cross-Classifications having Ordered Categories. @cite{J. Am. Stat.
     ## Assoc.}, 74 (367), 537–552.
     ## 
@@ -3271,11 +3271,11 @@ classdef dataset
     ## 
     ## @subsubheading References
     ## 
-    ## Draper, N. R. and Smith, H. (1998), @cite{Applied Regression Analysis (3rd ed)},
-    ## Wiley (exercise 24.N).
+    ## Draper, N. R. and Smith, H. (1998). @cite{Applied Regression Analysis (3rd ed)}.
+    ## New York: Wiley. (exercise 24.N).
     ## 
-    ## Pinheiro, J. C. and Bates, D. M. (2000) @cite{Mixed-effects Models in S and
-    ## S-PLUS}, Springer.
+    ## Pinheiro, J. C. and Bates, D. M. (2000). @cite{Mixed-effects Models in S and
+    ## S-PLUS}. New York: Springer.
     ## 
     ## @subsubheading Examples
     ## 
@@ -3356,11 +3356,11 @@ classdef dataset
     ## 
     ## @subsubheading Source
     ## 
-    ## Finney, D. J. (1947) @cite{Probit Analysis}. Cambridge.
+    ## Finney, D. J. (1947). @cite{Probit Analysis}. Cambridge.
     ## 
     ## @subsubheading References
     ## 
-    ## McNeil, D. R. (1977) @cite{Interactive Data Analysis}. New York: Wiley.
+    ## McNeil, D. R. (1977). @cite{Interactive Data Analysis}. New York: Wiley.
     ## 
     ## @subsubheading Examples
     ## 
@@ -3416,7 +3416,7 @@ classdef dataset
     ## 
     ## @subsubheading Source
     ## 
-    ## Dobson, A. J. (1983) @cite{An Introduction to Statistical Modelling}.
+    ## Dobson, A. J. (1983). @cite{An Introduction to Statistical Modelling}.
     ## London: Chapman and Hall.
     ## 
     ## @subsubheading Examples
@@ -3477,7 +3477,7 @@ classdef dataset
     ## 
     ## @subsubheading References
     ## 
-    ## McNeil, D. R. (1977) @cite{Interactive Data Analysis}. New York: Wiley.
+    ## McNeil, D. R. (1977). @cite{Interactive Data Analysis}. New York: Wiley.
     ## 
     ## @subsubheading Examples
     ## 
@@ -3542,7 +3542,7 @@ classdef dataset
     ## 
     ## @subsubheading References
     ## 
-    ## McNeil, D. R. (1977) @cite{Interactive Data Analysis}. New York: Wiley.
+    ## McNeil, D. R. (1977). @cite{Interactive Data Analysis}. New York: Wiley.
     ## 
     ## @subsubheading Examples
     ## 
@@ -3603,11 +3603,11 @@ classdef dataset
     ## 
     ## @subsubheading Source
     ## 
-    ## Weast, R. C., ed. (1973) @cite{Handbook of Chemistry and Physics}. CRC Press.
+    ## Weast, R. C., ed. (1973). @cite{Handbook of Chemistry and Physics}. Cleveland: CRC Press.
     ## 
     ## @subsubheading References
     ## 
-    ## McNeil, D. R. (1977) @cite{Interactive Data Analysis}. New York: Wiley.
+    ## McNeil, D. R. (1977). @cite{Interactive Data Analysis}. New York: Wiley.
     ## 
     ## @subsubheading Examples
     ## 
@@ -3690,11 +3690,11 @@ classdef dataset
     ## 
     ## @subsubheading References
     ## 
-    ## Bates, D.M. and Watts, D.G. (1988), @cite{Nonlinear Regression Analysis and
-    ## Its Applications}, Wiley, Appendix A1.3.
+    ## Bates, D.M. and Watts, D.G. (1988). @cite{Nonlinear Regression Analysis and
+    ## Its Applications}. New York: Wiley. Appendix A1.3.
     ## 
-    ## Treloar, M. A. (1974), @cite{Effects of Puromycin on Galactosyltransferase
-    ## in Golgi Membranes}, M.Sc. Thesis, U. of Toronto.
+    ## Treloar, M. A. (1974). @cite{Effects of Puromycin on Galactosyltransferase
+    ## in Golgi Membranes}. M.Sc. Thesis, U. of Toronto.
     ## 
     ## @subsubheading Examples
     ## 
@@ -3756,9 +3756,9 @@ classdef dataset
     ## 
     ## @subsubheading Details
     ## 
-    ##  There are two clear planes of seismic activity. One is a major plate junction;
-    ##  the other is the Tonga trench off New Zealand. These data constitute a subsample
-    ##  from a larger dataset of containing 5000 observations.
+    ## There are two clear planes of seismic activity. One is a major plate junction;
+    ## the other is the Tonga trench off New Zealand. These data constitute a subsample
+    ## from a larger dataset of containing 5000 observations.
     ## 
     ## @subsubheading Source
     ## 
@@ -3767,11 +3767,11 @@ classdef dataset
     ## 
     ## @subsubheading References
     ## 
-    ## G. E. P. Box and G. M. Jenkins (1976): @cite{Time Series Analysis, Forecasting and
-    ## Control}, Holden-Day, San Francisco, p. 537.
+    ## G. E. P. Box and G. M. Jenkins (1976). @cite{Time Series Analysis, Forecasting and
+    ## Control}. San Francisco: Holden-Day. p. 537.
     ## 
-    ## P. J. Brockwell and R. A. Davis (1991): @cite{Time Series: Theory and Methods},
-    ## Second edition, Springer Verlag, NY, pp. 414.
+    ## P. J. Brockwell and R. A. Davis (1991). @cite{Time Series: Theory and Methods}.
+    ## Second edition. New York: Springer-Verlag. p. 414.
     ## 
     ## @subsubheading Examples
     ## 
@@ -3897,7 +3897,7 @@ classdef dataset
     ## 
     ## @subsubheading References
     ## 
-    ## McNeil, D. R. (1977) @cite{Interactive Data Analysis}. New York: Wiley.
+    ## McNeil, D. R. (1977). @cite{Interactive Data Analysis}. New York: Wiley.
     ## 
     ## @subsubheading Examples
     ## 
@@ -4029,14 +4029,14 @@ classdef dataset
     ## 
     ## @subsubheading Source
     ## 
-    ## Cushny, A. R. and Peebles, A. R. (1905) The action of optical isomers:
-    ## II hyoscines. @cite{The Journal of Physiology} 32, 501–510.
+    ## Cushny, A. R. and Peebles, A. R. (1905). The action of optical isomers:
+    ## II hyoscines. @cite{The Journal of Physiology}, 32, 501–510.
     ## 
-    ## Student (1908) The probable error of the mean. @cite{Biometrika}, 6, 20.
+    ## Student (1908). The probable error of the mean. @cite{Biometrika}, 6, 20.
     ## 
     ## @subsubheading References
     ## 
-    ## Scheffé, Henry (1959) @cite{The Analysis of Variance}. New York, NY: Wiley.
+    ## Scheffé, Henry (1959). @cite{The Analysis of Variance}. New York, NY: Wiley.
     ## 
     ## @subsubheading Examples
     ## 
@@ -4109,15 +4109,15 @@ classdef dataset
     ## 
     ## @subsubheading Source
     ## 
-    ## Brownlee, K. A. (1960, 2nd ed. 1965) @cite{Statistical Theory and Methodology
+    ## Brownlee, K. A. (1960, 2nd ed. 1965). @cite{Statistical Theory and Methodology
     ## in Science and Engineering}. New York: Wiley. pp. 491–500.
     ## 
     ## @subsubheading References
     ## 
-    ## Becker, R. A., Chambers, J. M. and Wilks, A. R. (1988) @cite{The New S
-    ## Language}. Wadsworth & Brooks/Cole.
+    ## Becker, R. A., Chambers, J. M. and Wilks, A. R. (1988). @cite{The New S
+    ## Language}. Monterey: Wadsworth & Brooks/Cole.
     ## 
-    ## Dodge, Y. (1996) The guinea pig of multiple regression. In: @cite{Robust
+    ## Dodge, Y. (1996). The guinea pig of multiple regression. In: @cite{Robust
     ## Statistics, Data Analysis, and Computer Intensive Methods; In Honor of
     ## Peter Huber’s 60th Birthday}, 1996, @cite{Lecture Notes in Statistics}
     ## 109, Springer-Verlag, New York.
@@ -4208,8 +4208,8 @@ classdef dataset
     ## 
     ## @subsubheading References
     ## 
-    ## Becker, R. A., Chambers, J. M. and Wilks, A. R. (1988) @cite{The New S
-    ## Language}. Wadsworth & Brooks/Cole.
+    ## Becker, R. A., Chambers, J. M. and Wilks, A. R. (1988). @cite{The New S
+    ## Language}. Monterey: Wadsworth & Brooks/Cole.
     ## 
     ## @subsubheading Examples
     ## 
@@ -4472,8 +4472,8 @@ classdef dataset
     ## 
     ## @subsubheading References
     ## 
-    ## Becker, R. A., Chambers, J. M. and Wilks, A. R. (1988) @cite{The New S
-    ## Language}. Wadsworth & Brooks/Cole.
+    ## Becker, R. A., Chambers, J. M. and Wilks, A. R. (1988). @cite{The New S
+    ## Language}. Monterey: Wadsworth & Brooks/Cole.
     ## 
     ## @subsubheading Examples
     ## 
@@ -4551,14 +4551,14 @@ classdef dataset
     ## 
     ## @subsubheading References
     ## 
-    ## Boeckmann, A. J., Sheiner, L. B. and Beal, S. L. (1994), @cite{NONMEM Users
-    ## Guide: Part V}, NONMEM Project Group, University of California, San Francisco.
+    ## Boeckmann, A. J., Sheiner, L. B. and Beal, S. L. (1994). @cite{NONMEM Users
+    ## Guide: Part V}. NONMEM Project Group, University of California, San Francisco.
     ## 
-    ## Davidian, M. and Giltinan, D. M. (1995) @cite{Nonlinear Models for Repeated
-    ## Measurement Data}, Chapman & Hall (section 5.5, p. 145 and section 6.6, p. 176)
+    ## Davidian, M. and Giltinan, D. M. (1995). @cite{Nonlinear Models for Repeated
+    ## Measurement Data}. London: Chapman & Hall. (section 5.5, p. 145 and section 6.6, p. 176)
     ## 
-    ## Pinheiro, J. C. and Bates, D. M. (2000) @cite{Mixed-effects Models in
-    ## S and S-PLUS}, Springer (Appendix A.29)
+    ## Pinheiro, J. C. and Bates, D. M. (2000). @cite{Mixed-effects Models in
+    ## S and S-PLUS}. New York: Springer. (Appendix A.29)
     ## 
     ## @subsubheading Examples
     ## 
@@ -4641,14 +4641,14 @@ classdef dataset
     ## 
     ## @subsubheading Source
     ## 
-    ## Dawson, Robert J. MacG. (1995), The ‘Unusual Episode’ Data Revisited.
+    ## Dawson, Robert J. MacG. (1995). The ‘Unusual Episode’ Data Revisited.
     ## @cite{Journal of Statistics Education}, 3.
     ## 
     ## The source provides a data set recording class, sex, age, and survival status
     ## for each person on board of the Titanic, and is based on data originally
     ## collected by the British Board of Trade and reprinted in:
     ## 
-    ## British Board of Trade (1990), @cite{Report on the Loss of the ‘Titanic’
+    ## British Board of Trade (1990). @cite{Report on the Loss of the ‘Titanic’
     ## (S.S.)}. British Board of Trade Inquiry Report (reprint). Gloucester,
     ## UK: Allan Sutton Publishing.
     ## 
@@ -4843,13 +4843,13 @@ classdef dataset
     ## 
     ## @subsubheading Source
     ## 
-    ## Ryan, T. A., Joiner, B. L. and Ryan, B. F. (1976) @cite{The Minitab
+    ## Ryan, T. A., Joiner, B. L. and Ryan, B. F. (1976). @cite{The Minitab
     ## Student Handbook}. Duxbury Press.
     ## 
     ## @subsubheading References
     ## 
-    ## Atkinson, A. C. (1985) @cite{Plots, Transformations and Regression}.
-    ## Oxford University Press.
+    ## Atkinson, A. C. (1985). @cite{Plots, Transformations and Regression}.
+    ## Oxford: Oxford University Press.
     ## 
     ## @subsubheading Examples
     ## 
@@ -5025,10 +5025,10 @@ classdef dataset
     ## @subsubheading Source
     ## 
     ## Harvey, A.C. (1989). @cite{Forecasting, Structural Time Series Models and
-    ## the Kalman Filter}. Cambridge University Press, pp. 519–523.
+    ## the Kalman Filter}. Cambridge: Cambridge University Press. pp. 519–523.
     ## 
     ## Durbin, J. and Koopman, S. J. (2001). @cite{Time Series Analysis by State
-    ## Space Methods}. Oxford University Press. @url{http://www.ssfpack.com/dkbook/}
+    ## Space Methods}. Oxford: Oxford University Press. @url{http://www.ssfpack.com/dkbook/}
     ## 
     ## @subsubheading References
     ## 
@@ -5091,8 +5091,8 @@ classdef dataset
     ## 
     ## @subsubheading Source
     ## 
-    ## Durbin, J. and Koopman, S. J. (2001) @cite{Time Series Analysis by State
-    ## Space Methods}. Oxford University Press. @url{http://www.ssfpack.com/dkbook/}.
+    ## Durbin, J. and Koopman, S. J. (2001). @cite{Time Series Analysis by State
+    ## Space Methods}. Oxford: Oxford University Press. @url{http://www.ssfpack.com/dkbook/}.
     ## 
     ## @subsubheading Examples
     ## 
@@ -5155,7 +5155,7 @@ classdef dataset
     ## 
     ## @subsubheading Source
     ## 
-    ## P. J. Diggle (1990) @cite{Time Series: A Biostatistical Introduction}. Oxford, table A.3
+    ## P. J. Diggle (1990). @cite{Time Series: A Biostatistical Introduction}. Oxford. table A.3
     ## 
     ## @subsubheading Examples
     ## 
@@ -5221,8 +5221,8 @@ classdef dataset
     ## 
     ## @subsubheading Source
     ## 
-    ## P. J. Brockwell and R. A. Davis (1991) @cite{Time Series: Theory and Methods}.
-    ## Springer, New York.
+    ## Brockwell, P. J. and Davis, R. A. (1991). @cite{Time Series: Theory and Methods}.
+    ## New York: Springer.
     ## 
     ## @subsubheading Examples
     ## 
@@ -5300,7 +5300,7 @@ classdef dataset
     ## 
     ## @subsubheading References
     ## 
-    ## McNeil, D. R. (1977) @cite{Interactive Data Analysis}. New York: Wiley.
+    ## McNeil, D. R. (1977). @cite{Interactive Data Analysis}. New York: Wiley.
     ## 
     ## @subsubheading Examples
     ## 
@@ -5439,9 +5439,9 @@ classdef dataset
     ## 
     ## @subsubheading References
     ## 
-    ## Tukey, J. W. (1977) @cite{Exploratory Data Analysis}. Addison-Wesley.
+    ## Tukey, J. W. (1977). @cite{Exploratory Data Analysis}. Reading, Mass: Addison-Wesley.
     ## 
-    ## McNeil, D. R. (1977) @cite{Interactive Data Analysis}. Wiley.
+    ## McNeil, D. R. (1977). @cite{Interactive Data Analysis}. New York: Wiley.
     ## 
     ## @subsubheading Examples
     ## 
@@ -5497,7 +5497,7 @@ classdef dataset
     ## 
     ## @subsubheading Source
     ## 
-    ## McNeil, D. R. (1977) @cite{Interactive Data Analysis}. New York: Wiley.
+    ## McNeil, D. R. (1977). @cite{Interactive Data Analysis}. New York: Wiley.
     ## 
     ## @subsubheading Examples
     ## 
@@ -5566,7 +5566,7 @@ classdef dataset
     ## 
     ## @subsubheading References
     ## 
-    ## McNeil, D. R. (1977) @cite{Interactive Data Analysis}. Wiley.
+    ## McNeil, D. R. (1977). @cite{Interactive Data Analysis}. New York: Wiley.
     ## 
     ## @subsubheading Examples
     ## 
@@ -5624,11 +5624,11 @@ classdef dataset
     ## 
     ## @subsubheading References
     ## 
-    ## G. E. P. Box and G. M. Jenkins (1976): @cite{Time Series Analysis, Forecasting and
-    ## Control}, Holden-Day, San Francisco, p. 537.
+    ## Box, G. E. P. and Jenkins, G. M. (1976). @cite{Time Series Analysis, Forecasting and
+    ## Control}. San Francisco: Holden-Day. p. 537.
     ## 
-    ## P. J. Brockwell and R. A. Davis (1991): @cite{Time Series: Theory and Methods},
-    ## Second edition, Springer Verlag, NY, pp. 414.
+    ## Brockwell, P. J. and Davis, R. A. (1991). @cite{Time Series: Theory and Methods}.
+    ## Second edition. New York: Springer-Verlag. p. 414.
     ## 
     ## @subsubheading Examples
     ## 
@@ -5689,14 +5689,14 @@ classdef dataset
     ## 
     ## @subsubheading Source
     ## 
-    ## Tippett, L. H. C. (1950) @cite{Technological Applications of Statistics}.
-    ## Wiley. Page 106.
+    ## Tippett, L. H. C. (1950). @cite{Technological Applications of Statistics}.
+    ## New York: Wiley. Page 106.
     ## 
     ## @subsubheading References
     ## 
-    ## Tukey, J. W. (1977) @cite{Exploratory Data Analysis}. Addison-Wesley.
+    ## Tukey, J. W. (1977). @cite{Exploratory Data Analysis}. Reading, Mass: Addison-Wesley.
     ## 
-    ## McNeil, D. R. (1977) @cite{Interactive Data Analysis}. Wiley.
+    ## McNeil, D. R. (1977). @cite{Interactive Data Analysis}. New York: Wiley.
     ## 
     ## @subsubheading Examples
     ## 
@@ -5765,7 +5765,7 @@ classdef dataset
     ## 
     ## @subsubheading References
     ## 
-    ## McNeil, D. R. (1977) @cite{Interactive Data Analysis}. Wiley.
+    ## McNeil, D. R. (1977). @cite{Interactive Data Analysis}. New York: Wiley.
     ## 
     ## @subsubheading Examples
     ## 
@@ -5829,7 +5829,7 @@ classdef dataset
     ## 
     ## @subsubheading References
     ## 
-    ## McNeil, D. R. (1977) @cite{Interactive Data Analysis}. New York: Wiley.
+    ## McNeil, D. R. (1977). @cite{Interactive Data Analysis}. New York: Wiley.
     ## 
     ## @subsubheading Examples
     ## 
@@ -5880,13 +5880,13 @@ classdef dataset
     ## 
     ## @subsubheading Source
     ## 
-    ## Durbin, J. and Koopman, S. J. (2001) @cite{Time Series Analysis by State
-    ## Space Methods}. Oxford University Press. @url{http://www.ssfpack.com/dkbook/}
+    ## Durbin, J. and Koopman, S. J. (2001). @cite{Time Series Analysis by State
+    ## Space Methods}. Oxford: Oxford University Press. @url{http://www.ssfpack.com/dkbook/}
     ## 
     ## @subsubheading References
     ## 
-    ## Makridakis, S., Wheelwright, S. C. and Hyndman, R. J. (1998) @cite{Forecasting:
-    ## Methods and Applications}. Wiley.
+    ## Makridakis, S., Wheelwright, S. C. and Hyndman, R. J. (1998). @cite{Forecasting:
+    ## Methods and Applications}. New York: Wiley.
     ## 
     ## @subsubheading Examples
     ## 
@@ -5938,12 +5938,12 @@ classdef dataset
     ## 
     ## @subsubheading Source
     ## 
-    ## Potvin, C., Lechowicz, M. J. and Tardif, S. (1990) “The statistical
+    ## Potvin, C., Lechowicz, M. J. and Tardif, S. (1990). The statistical
     ## analysis of ecophysiological response curves obtained from experiments
-    ## involving repeated measures”, @cite{Ecology}, 71, 1389–1400.
+    ## involving repeated measures. @cite{Ecology}, 71, 1389–1400.
     ## 
-    ## Pinheiro, J. C. and Bates, D. M. (2000) @cite{Mixed-effects Models
-    ## in S and S-PLUS}, Springer.
+    ## Pinheiro, J. C. and Bates, D. M. (2000). @cite{Mixed-effects Models
+    ## in S and S-PLUS}. New York: Springer.
     ## 
     ## @subsubheading Examples
     ## 

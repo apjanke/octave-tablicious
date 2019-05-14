@@ -43,10 +43,10 @@ Number of van (“light goods vehicle”) drivers killed.
 @subsubheading Source
 
 Harvey, A.C. (1989). @cite{Forecasting, Structural Time Series Models and
-the Kalman Filter}. Cambridge University Press, pp. 519–523.
+the Kalman Filter}. Cambridge: Cambridge University Press. pp. 519–523.
 
 Durbin, J. and Koopman, S. J. (2001). @cite{Time Series Analysis by State
-Space Methods}. Oxford University Press. @url{http://www.ssfpack.com/dkbook/}
+Space Methods}. Oxford: Oxford University Press. @url{http://www.ssfpack.com/dkbook/}
 
 @subsubheading References
 

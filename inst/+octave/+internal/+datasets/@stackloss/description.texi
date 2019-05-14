@@ -31,15 +31,15 @@ efficiency of the plant.
 
 @subsubheading Source
 
-Brownlee, K. A. (1960, 2nd ed. 1965) @cite{Statistical Theory and Methodology
+Brownlee, K. A. (1960, 2nd ed. 1965). @cite{Statistical Theory and Methodology
 in Science and Engineering}. New York: Wiley. pp. 491–500.
 
 @subsubheading References
 
-Becker, R. A., Chambers, J. M. and Wilks, A. R. (1988) @cite{The New S
-Language}. Wadsworth & Brooks/Cole.
+Becker, R. A., Chambers, J. M. and Wilks, A. R. (1988). @cite{The New S
+Language}. Monterey: Wadsworth & Brooks/Cole.
 
-Dodge, Y. (1996) The guinea pig of multiple regression. In: @cite{Robust
+Dodge, Y. (1996). The guinea pig of multiple regression. In: @cite{Robust
 Statistics, Data Analysis, and Computer Intensive Methods; In Honor of
 Peter Huber’s 60th Birthday}, 1996, @cite{Lecture Notes in Statistics}
 109, Springer-Verlag, New York.

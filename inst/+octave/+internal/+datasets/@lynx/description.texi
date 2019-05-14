@@ -16,12 +16,12 @@ Number of lynx trapped.
 @subsubheading Source
 
 Brockwell, P. J. and Davis, R. A. (1991). @cite{Time Series and Forecasting
-Methods}. Second edition. Springer. Series G (page 557).
+Methods}. Second edition. New York: Springer. Series G (page 557).
 
 @subsubheading References
 
 Becker, R. A., Chambers, J. M. and Wilks, A. R. (1988). @cite{The New S
-Language}. Wadsworth & Brooks/Cole.
+Language}. Monterey: Wadsworth & Brooks/Cole.
 
 Campbell, M. J. and Walker, A. M. (1977). A Survey of statistical work on
 the Mackenzie River series of annual Canadian lynx trappings for the years

@@ -24,7 +24,7 @@ residence. @cite{American Sociological Review}, 12, 525–535.
 
 @subsubheading References
 
-McNeil, D. R. (1977) @cite{Interactive Data Analysis}. Wiley.
+McNeil, D. R. (1977). @cite{Interactive Data Analysis}. New York: Wiley.
 
 @subsubheading Examples
 

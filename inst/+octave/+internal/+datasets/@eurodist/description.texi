@@ -16,8 +16,8 @@ TODO: Finish this.
 
 @subsubheading Source
 
-Crystal, D. Ed. (1990) @cite{The Cambridge Encyclopaedia}. Cambridge:
-Cambridge University Press,
+Crystal, D. Ed. (1990). @cite{The Cambridge Encyclopaedia}. Cambridge:
+Cambridge University Press.
 
 The US cities distances were provided by Pierre Legendre.
 

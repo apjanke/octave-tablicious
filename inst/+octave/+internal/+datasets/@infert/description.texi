@@ -30,7 +30,7 @@ One case with two prior spontaneous abortions and two prior induced abortions is
 
 @subsubheading Source
 
-Trichopoulos et al (1976) @cite{Br. J. of Obst. and Gynaec.} 83, 645–650.
+Trichopoulos et al (1976). @cite{Br. J. of Obst. and Gynaec.} 83, 645–650.
 
 @subsubheading Examples
 

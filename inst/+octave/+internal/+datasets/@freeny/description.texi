@@ -26,13 +26,13 @@ A price index
 
 @subsubheading Source
 
-A. E. Freeny (1977) @cite{A Portable Linear Regression Package with Test
+Freeny, A. E. (1977). @cite{A Portable Linear Regression Package with Test
 Programs}. Bell Laboratories memorandum.
 
 @subsubheading References
 
-Becker, R. A., Chambers, J. M. and Wilks, A. R. (1988) @cite{The New S
-Language}. Wadsworth & Brooks/Cole.
+Becker, R. A., Chambers, J. M. and Wilks, A. R. (1988). @cite{The New S
+Language}. Monterey: Wadsworth & Brooks/Cole.
 
 @subsubheading Examples
 

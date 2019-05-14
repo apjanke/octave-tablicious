@@ -18,12 +18,12 @@ Optical Density
 
 @subsubheading Source
 
-Bennett, N. A. and N. L. Franklin (1954) @cite{Statistical Analysis in
+Bennett, N. A. and N. L. Franklin (1954). @cite{Statistical Analysis in
 Chemistry and the Chemical Industry}. New York: Wiley.
 
 @subsubheading References
 
-McNeil, D. R. (1977) @cite{Interactive Data Analysis}. New York: Wiley.
+McNeil, D. R. (1977). @cite{Interactive Data Analysis}. New York: Wiley.
 
 @subsubheading Examples
 

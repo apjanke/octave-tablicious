@@ -16,7 +16,7 @@ Annual flow (cubic meters).
 @subsubheading Source
 
 Durbin, J. and Koopman, S. J. (2001). @cite{Time Series Analysis by State
-Space Methods}. Oxford University Press. @url{http://www.ssfpack.com/DKbook.html}
+Space Methods}. Oxford: Oxford University Press. @url{http://www.ssfpack.com/DKbook.html}
 
 @subsubheading References
 

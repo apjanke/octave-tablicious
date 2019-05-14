@@ -18,14 +18,14 @@ There are measurements on 9 looms for each of the six types of warp (AL, AM, AH,
 
 @subsubheading Source
 
-Tippett, L. H. C. (1950) @cite{Technological Applications of Statistics}.
-Wiley. Page 106.
+Tippett, L. H. C. (1950). @cite{Technological Applications of Statistics}.
+New York: Wiley. Page 106.
 
 @subsubheading References
 
-Tukey, J. W. (1977) @cite{Exploratory Data Analysis}. Addison-Wesley.
+Tukey, J. W. (1977). @cite{Exploratory Data Analysis}. Reading, Mass: Addison-Wesley.
 
-McNeil, D. R. (1977) @cite{Interactive Data Analysis}. Wiley.
+McNeil, D. R. (1977). @cite{Interactive Data Analysis}. New York: Wiley.
 
 @subsubheading Examples
 

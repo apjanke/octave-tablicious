@@ -15,8 +15,8 @@ Names of the variables corresponding to the indexes along the dimensions of
 
 @subsubheading Source
 
-Harman, H. H. (1976) @cite{Modern Factor Analysis}, Third Edition
-Revised, University of Chicago Press, Table 7.4.
+Harman, H. H. (1976). @cite{Modern Factor Analysis}, Third Edition
+Revised. Chicago: University of Chicago Press. Table 7.4.
 
 @subsubheading Examples
 

@@ -16,8 +16,8 @@ Sales volume.
 
 @subsubheading Source
 
-Anderson, O. D. (1976) @cite{Time Series Analysis and Forecasting:
-The Box-Jenkins approach}. Butterworths. Series R.
+Anderson, O. D. (1976). @cite{Time Series Analysis and Forecasting:
+The Box-Jenkins approach}. London: Butterworths. Series R.
 
 @subsubheading Examples
 

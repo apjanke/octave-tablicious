@@ -25,7 +25,7 @@ clothing and shoes, and heights with shoes”.
 
 @subsubheading References
 
-McNeil, D. R. (1977) @cite{Interactive Data Analysis}. Wiley.
+McNeil, D. R. (1977). @cite{Interactive Data Analysis}. New York: Wiley.
 
 @subsubheading Examples
 

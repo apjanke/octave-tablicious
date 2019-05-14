@@ -22,7 +22,7 @@ Anonymous (1948) @cite{Biometrika}, 35, 214.
 
 @subsubheading References
 
-McNeil, D. R. (1977) @code{Interactive Data Analysis}. New York: Wiley.
+McNeil, D. R. (1977). @code{Interactive Data Analysis}. New York: Wiley.
 
 @subsubheading Examples
 

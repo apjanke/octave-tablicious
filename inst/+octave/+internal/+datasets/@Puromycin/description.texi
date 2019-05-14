@@ -30,11 +30,11 @@ Library at @url{http://www-personal.buseco.monash.edu.au/~hyndman/TSDL/}.
 
 @subsubheading References
 
-Bates, D.M. and Watts, D.G. (1988), @cite{Nonlinear Regression Analysis and
-Its Applications}, Wiley, Appendix A1.3.
+Bates, D.M. and Watts, D.G. (1988). @cite{Nonlinear Regression Analysis and
+Its Applications}. New York: Wiley. Appendix A1.3.
 
-Treloar, M. A. (1974), @cite{Effects of Puromycin on Galactosyltransferase
-in Golgi Membranes}, M.Sc. Thesis, U. of Toronto.
+Treloar, M. A. (1974). @cite{Effects of Puromycin on Galactosyltransferase
+in Golgi Membranes}. M.Sc. Thesis, U. of Toronto.
 
 @subsubheading Examples
 

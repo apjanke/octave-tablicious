@@ -36,14 +36,14 @@ Library at @url{http://www-personal.buseco.monash.edu.au/~hyndman/TSDL/}.
 
 @subsubheading References
 
-Boeckmann, A. J., Sheiner, L. B. and Beal, S. L. (1994), @cite{NONMEM Users
-Guide: Part V}, NONMEM Project Group, University of California, San Francisco.
+Boeckmann, A. J., Sheiner, L. B. and Beal, S. L. (1994). @cite{NONMEM Users
+Guide: Part V}. NONMEM Project Group, University of California, San Francisco.
 
-Davidian, M. and Giltinan, D. M. (1995) @cite{Nonlinear Models for Repeated
-Measurement Data}, Chapman & Hall (section 5.5, p. 145 and section 6.6, p. 176)
+Davidian, M. and Giltinan, D. M. (1995). @cite{Nonlinear Models for Repeated
+Measurement Data}. London: Chapman & Hall. (section 5.5, p. 145 and section 6.6, p. 176)
 
-Pinheiro, J. C. and Bates, D. M. (2000) @cite{Mixed-effects Models in
-S and S-PLUS}, Springer (Appendix A.29)
+Pinheiro, J. C. and Bates, D. M. (2000). @cite{Mixed-effects Models in
+S and S-PLUS}. New York: Springer. (Appendix A.29)
 
 @subsubheading Examples
 

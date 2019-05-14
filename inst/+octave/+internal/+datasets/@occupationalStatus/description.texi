@@ -11,7 +11,7 @@ occupational status, levels 1:8).
 
 @subsubheading Source
 
-Goodman, L. A. (1979) Simple Models for the Analysis of Association in
+Goodman, L. A. (1979). Simple Models for the Analysis of Association in
 Cross-Classifications having Ordered Categories. @cite{J. Am. Stat.
 Assoc.}, 74 (367), 537–552.
 

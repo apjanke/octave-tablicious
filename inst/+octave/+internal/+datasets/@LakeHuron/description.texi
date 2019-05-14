@@ -14,10 +14,10 @@ Lake level (ft).
 @subsubheading Source
 
 Brockwell, P. J. and Davis, R. A. (1991). @cite{Time Series and Forecasting
-Methods}. Second edition. Springer, New York. Series A, page 555.
+Methods}. Second edition. New York: Springer. Series A, page 555.
 
 Brockwell, P. J. and Davis, R. A. (1996). @cite{Introduction to Time Series
-and Forecasting}. Springer, New York. Sections 5.1 and 7.6.
+and Forecasting}. New York: Springer. Sections 5.1 and 7.6.
 
 @subsubheading Examples
 

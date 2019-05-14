@@ -36,10 +36,10 @@ obtained the data from Sterling (1977).
 
 @subsubheading References
 
-Sterling, Arnie (1977) Unpublished BS Thesis. Massachusetts Institute of
+Sterling, Arnie (1977). Unpublished BS Thesis. Massachusetts Institute of
 Technology.
 
-Belsley, D. A., Kuh. E. and Welsch, R. E. (1980) @cite{Regression Diagnostics}.
+Belsley, D. A., Kuh. E. and Welsch, R. E. (1980). @cite{Regression Diagnostics}.
 New York: Wiley.
 
 @subsubheading Examples

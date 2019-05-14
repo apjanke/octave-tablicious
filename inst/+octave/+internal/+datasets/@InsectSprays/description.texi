@@ -14,12 +14,12 @@ Insect count.
 
 @subsubheading Source
 
-Beall, G., (1942) The Transformation of data from entomological field
-experiments, @cite{Biometrika}, 29, 243–262.
+Beall, G., (1942). The Transformation of data from entomological field
+experiments. @cite{Biometrika}, 29, 243–262.
 
 @subsubheading References
 
-McNeil, D. (1977) @cite{Interactive Data Analysis}. New York: Wiley.
+McNeil, D. (1977). @cite{Interactive Data Analysis}. New York: Wiley.
 
 @subsubheading Examples
 

@@ -13,11 +13,11 @@ Stopping distance (ft).
 
 @subsubheading Source
 
-Ezekiel, M. (1930) @cite{Methods of Correlation Analysis}. Wiley.
+Ezekiel, M. (1930). @cite{Methods of Correlation Analysis}. New York: Wiley.
 
 @subsubheading References
 
-McNeil, D. R. (1977) @cite{Interactive Data Analysis}. Wiley.
+McNeil, D. R. (1977). @cite{Interactive Data Analysis}. New York: Wiley.
 
 @subsubheading Examples
 

@@ -9,13 +9,13 @@ A time series of length 100.
 
 @subsubheading Source
 
-Durbin, J. and Koopman, S. J. (2001) @cite{Time Series Analysis by State
-Space Methods}. Oxford University Press. @url{http://www.ssfpack.com/dkbook/}
+Durbin, J. and Koopman, S. J. (2001). @cite{Time Series Analysis by State
+Space Methods}. Oxford: Oxford University Press. @url{http://www.ssfpack.com/dkbook/}
 
 @subsubheading References
 
-Makridakis, S., Wheelwright, S. C. and Hyndman, R. J. (1998) @cite{Forecasting:
-Methods and Applications}. Wiley.
+Makridakis, S., Wheelwright, S. C. and Hyndman, R. J. (1998). @cite{Forecasting:
+Methods and Applications}. New York: Wiley.
 
 @subsubheading Examples
 

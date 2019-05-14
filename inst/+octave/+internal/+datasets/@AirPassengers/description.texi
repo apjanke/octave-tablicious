@@ -5,8 +5,9 @@ airline passengers, 1949 to 1960.
 
 @subsubheading Source
 
-Box, G. E. P., Jenkins, G. M. and Reinsel, G. C. (1976) @cite{Time Series
-Analysis, Forecasting and Control}. Third Edition. Holden-Day. Series G.
+Box, G. E. P., Jenkins, G. M. and Reinsel, G. C. (1976). @cite{Time Series
+Analysis, Forecasting and Control}. Third Edition. San Francisco: Holden-Day.
+Series G.
 
 @subsubheading Examples
 

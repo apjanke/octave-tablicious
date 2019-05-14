@@ -45,8 +45,8 @@ for 1887, 1888 and 1889.
 
 @subsubheading References
 
-Becker, R. A., Chambers, J. M. and Wilks, A. R. (1988) @cite{The New S
-Language}. Wadsworth & Brooks/Cole.
+Becker, R. A., Chambers, J. M. and Wilks, A. R. (1988). @cite{The New S
+Language}. Monterey: Wadsworth & Brooks/Cole.
 
 @subsubheading Examples
 

@@ -28,7 +28,7 @@ Keeling, C. D. and Whorf, T. P., Scripps Institution of Oceanography
 
 @subsubheading References
 
-Cleveland, W. S. (1993) @code{Visualizing Data}. New Jersey: Summit Press.
+Cleveland, W. S. (1993). @code{Visualizing Data}. New Jersey: Summit Press.
 
 @subsubheading Examples
 

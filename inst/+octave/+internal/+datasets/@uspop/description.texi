@@ -14,7 +14,7 @@ Population, in millions.
 
 @subsubheading Source
 
-McNeil, D. R. (1977) @cite{Interactive Data Analysis}. New York: Wiley.
+McNeil, D. R. (1977). @cite{Interactive Data Analysis}. New York: Wiley.
 
 @subsubheading Examples
 

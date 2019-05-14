@@ -20,7 +20,7 @@ Number of controls
 @subsubheading Source
 
 Breslow, N. E. and Day, N. E. (1980) @cite{Statistical Methods in Cancer Research.
-Volume 1: The Analysis of Case-Control Studies}. IARC Lyon / Oxford University Press.
+Volume 1: The Analysis of Case-Control Studies}. Oxford: IARC Lyon / Oxford University Press.
 
 @subsubheading Examples
 

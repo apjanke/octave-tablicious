@@ -17,12 +17,12 @@ The Y values for this pair.
 @subsubheading Source
 
 Tufte, Edward R. (1989). @cite{The Visual Display of Quantitative Information}.
-13–14. Graphics Press.
+13–14. Cheshire, CT: Graphics Press.
 
 @subsubheading References
 
-Anscombe, Francis J. (1973). “Graphs in statistical analysis”. @cite{The
-American Statistician}, 27, 17–21. 
+Anscombe, Francis J. (1973). Graphs in statistical analysis. @cite{The
+American Statistician}, 27, 17–21.
 
 @subsubheading Examples
 

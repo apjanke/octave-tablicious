@@ -37,11 +37,11 @@ H – no lime sulphur
 
 @subsubheading Source
 
-Finney, D. J. (1947) @cite{Probit Analysis}. Cambridge.
+Finney, D. J. (1947). @cite{Probit Analysis}. Cambridge.
 
 @subsubheading References
 
-McNeil, D. R. (1977) @cite{Interactive Data Analysis}. New York: Wiley.
+McNeil, D. R. (1977). @cite{Interactive Data Analysis}. New York: Wiley.
 
 @subsubheading Examples
 

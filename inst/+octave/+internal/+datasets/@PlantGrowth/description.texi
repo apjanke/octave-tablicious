@@ -14,7 +14,7 @@ Weight of plants.
 
 @subsubheading Source
 
-Dobson, A. J. (1983) @cite{An Introduction to Statistical Modelling}.
+Dobson, A. J. (1983). @cite{An Introduction to Statistical Modelling}.
 London: Chapman and Hall.
 
 @subsubheading Examples

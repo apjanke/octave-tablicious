@@ -40,14 +40,14 @@ is now available on the Internet, at sites such as Encyclopedia Titanica
 
 @subsubheading Source
 
-Dawson, Robert J. MacG. (1995), The ‘Unusual Episode’ Data Revisited.
+Dawson, Robert J. MacG. (1995). The ‘Unusual Episode’ Data Revisited.
 @cite{Journal of Statistics Education}, 3.
 
 The source provides a data set recording class, sex, age, and survival status
 for each person on board of the Titanic, and is based on data originally
 collected by the British Board of Trade and reprinted in:
 
-British Board of Trade (1990), @cite{Report on the Loss of the ‘Titanic’
+British Board of Trade (1990). @cite{Report on the Loss of the ‘Titanic’
 (S.S.)}. British Board of Trade Inquiry Report (reprint). Gloucester,
 UK: Allan Sutton Publishing.
 

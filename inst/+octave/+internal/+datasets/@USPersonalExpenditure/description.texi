@@ -15,9 +15,9 @@ A 2-dimensional matrix @code{x} with Category along dimension 1 and Year along d
 
 @subsubheading References
 
-Tukey, J. W. (1977) @cite{Exploratory Data Analysis}. Addison-Wesley.
+Tukey, J. W. (1977). @cite{Exploratory Data Analysis}. Reading, Mass: Addison-Wesley.
 
-McNeil, D. R. (1977) @cite{Interactive Data Analysis}. Wiley.
+McNeil, D. R. (1977). @cite{Interactive Data Analysis}. New York: Wiley.
 
 @subsubheading Examples
 

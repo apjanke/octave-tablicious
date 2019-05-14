@@ -14,8 +14,8 @@ Level of luteinizing hormone.
 
 @subsubheading Source
 
-P.J. Diggle (1990) @cite{Time Series: A Biostatistical Introduction}. Oxford,
-table A.1, series 3
+P.J. Diggle (1990). @cite{Time Series: A Biostatistical Introduction}. Oxford.
+Table A.1, series 3.
 
 @subsubheading Examples
 

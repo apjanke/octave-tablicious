@@ -39,7 +39,7 @@ possibly available as @url{https://books.google.ch/books?id=zl9qAAAAMAAJ&pg=PA20
 
 @subsubheading References
 
-McNeil, D. R. (1977) @cite{Interactive Data Analysis}. New York: Wiley.
+McNeil, D. R. (1977). @cite{Interactive Data Analysis}. New York: Wiley.
 
 @subsubheading Examples
 

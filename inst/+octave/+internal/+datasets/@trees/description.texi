@@ -18,13 +18,13 @@ Volume of timber in cubic feet.
 
 @subsubheading Source
 
-Ryan, T. A., Joiner, B. L. and Ryan, B. F. (1976) @cite{The Minitab
+Ryan, T. A., Joiner, B. L. and Ryan, B. F. (1976). @cite{The Minitab
 Student Handbook}. Duxbury Press.
 
 @subsubheading References
 
-Atkinson, A. C. (1985) @cite{Plots, Transformations and Regression}.
-Oxford University Press.
+Atkinson, A. C. (1985). @cite{Plots, Transformations and Regression}.
+Oxford: Oxford University Press.
 
 @subsubheading Examples
 

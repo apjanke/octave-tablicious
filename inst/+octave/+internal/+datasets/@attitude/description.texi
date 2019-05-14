@@ -24,7 +24,7 @@ Advancement.
 
 @subsubheading Source
 
-Chatterjee, S. and Price, B. (1977) @cite{Regression Analysis by Example}. New York:
+Chatterjee, S. and Price, B. (1977). @cite{Regression Analysis by Example}. New York:
 Wiley. (Section 3.7, p.68ff of 2nd ed.(1991).)
 
 @subsubheading Examples

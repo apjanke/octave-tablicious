@@ -18,7 +18,7 @@ Lung deaths among males.
 
 @subsubheading Source
 
-P. J. Diggle (1990) @cite{Time Series: A Biostatistical Introduction}. Oxford, table A.3
+P. J. Diggle (1990). @cite{Time Series: A Biostatistical Introduction}. Oxford. table A.3
 
 @subsubheading Examples
 

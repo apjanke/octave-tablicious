@@ -18,7 +18,7 @@ Vaux, J. E. and Brinker, N. B. (1972) @cite{Cycles}, 1972, 117–121.
 
 @subsubheading References
 
-McNeil, D. R. (1977) @cite{Interactive Data Analysis}. New York: Wiley.
+McNeil, D. R. (1977). @cite{Interactive Data Analysis}. New York: Wiley.
 
 @subsubheading Examples
 

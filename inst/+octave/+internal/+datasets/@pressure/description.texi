@@ -14,11 +14,11 @@ Pressure (mm Hg).
 
 @subsubheading Source
 
-Weast, R. C., ed. (1973) @cite{Handbook of Chemistry and Physics}. CRC Press.
+Weast, R. C., ed. (1973). @cite{Handbook of Chemistry and Physics}. Cleveland: CRC Press.
 
 @subsubheading References
 
-McNeil, D. R. (1977) @cite{Interactive Data Analysis}. New York: Wiley.
+McNeil, D. R. (1977). @cite{Interactive Data Analysis}. New York: Wiley.
 
 @subsubheading Examples
 

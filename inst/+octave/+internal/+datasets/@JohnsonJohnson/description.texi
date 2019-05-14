@@ -13,8 +13,8 @@ Earnings per share (USD).
 
 @subsubheading Source
 
-Shumway, R. H. and Stoffer, D. S. (2000) @cite{Time Series Analysis and its
-Applications}. Second Edition. Springer. Example 1.1.
+Shumway, R. H. and Stoffer, D. S. (2000). @cite{Time Series Analysis and its
+Applications}. Second Edition. New York: Springer. Example 1.1.
 
 @subsubheading Examples
 

@@ -41,8 +41,8 @@ retained to enable direct comparisons to be made with previous analyses.”
 
 @subsubheading Source
 
-Henderson and Velleman (1981), “Building multiple regression models
-interactively”. @cite{Biometrics}, 37, 391–411.
+Henderson and Velleman (1981). Building multiple regression models
+interactively. @cite{Biometrics}, 37, 391–411.
 
 @subsubheading Examples
 

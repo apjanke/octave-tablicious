@@ -22,12 +22,12 @@ Peak acceleration (g)
 Joyner, W.B., D.M. Boore and R.D. Porcella (1981). Peak horizontal acceleration
 and velocity from strong-motion records including records from the 1979
 Imperial Valley, California earthquake. USGS Open File report 81-365. Menlo
-Park, Ca.
+Park, CA.
 
 @subsubheading References
 
-Boore, D. M. and Joyner, W. B.(1982). The empirical prediction of ground
-motion, @cite{Bulletin of the Seismological Society of America}, 72, S269–S268.
+Boore, D. M. and Joyner, W. B. (1982). The empirical prediction of ground
+motion. @cite{Bulletin of the Seismological Society of America}, 72, S269–S268.
 
 @subsubheading Examples
 

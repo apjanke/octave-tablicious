@@ -24,14 +24,14 @@ Number of people employed.
 
 @subsubheading Source
 
-J. W. Longley (1967) An appraisal of least-squares programs from the point of
-view of the user. @cite{Journal of the American Statistical Association} 62,
+J. W. Longley (1967). An appraisal of least-squares programs from the point of
+view of the user. @cite{Journal of the American Statistical Association}, 62,
 819–841.
 
 @subsubheading References
 
-Becker, R. A., Chambers, J. M. and Wilks, A. R. (1988) @cite{The New S
-Language}. Wadsworth & Brooks/Cole.
+Becker, R. A., Chambers, J. M. and Wilks, A. R. (1988). @cite{The New S
+Language}. Monterey: Wadsworth & Brooks/Cole.
 
 @subsubheading Examples
 

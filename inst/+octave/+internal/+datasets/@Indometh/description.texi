@@ -20,12 +20,12 @@ Each of the six subjects were given an intravenous injection of indometacin.
 
 @subsubheading Source
 
-Kwan, Breault, Umbenhauer, McMahon and Duggan (1976) Kinetics of
+Kwan, Breault, Umbenhauer, McMahon and Duggan (1976). Kinetics of
 Indomethacin absorption, elimination, and enterohepatic circulation in man.
 @cite{Journal of Pharmacokinetics and Biopharmaceutics} 4, 255–280.
 
-Davidian, M. and Giltinan, D. M. (1995) @cite{Nonlinear Models for Repeated
-Measurement Data}, Chapman & Hall (section 5.2.4, p. 129)
+Davidian, M. and Giltinan, D. M. (1995). @cite{Nonlinear Models for Repeated
+Measurement Data}. London: Chapman & Hall. (section 5.2.4, p. 129)
 
-Pinheiro, J. C. and Bates, D. M. (2000) @cite{Mixed-effects Models in S and
-S-PLUS}, Springer.
+Pinheiro, J. C. and Bates, D. M. (2000). @cite{Mixed-effects Models in S and
+S-PLUS}. New York: Springer.

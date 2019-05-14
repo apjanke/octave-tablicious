@@ -26,7 +26,7 @@ Weather Service (meteorological data).
 
 @subsubheading References
 
-Chambers, J. M., Cleveland, W. S., Kleiner, B. and Tukey, P. A. (1983)
+Chambers, J. M., Cleveland, W. S., Kleiner, B. and Tukey, P. A. (1983).
 @cite{Graphical Methods for Data Analysis}. Belmont, CA: Wadsworth.
 
 @subsubheading Examples
