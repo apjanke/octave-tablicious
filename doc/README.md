@@ -8,7 +8,7 @@ This is Andrew Janke’s summary of how the doco generation tools in this `doc/`
 
 This is not the standard Octave Forge doco toolchain.
 This is Andrew Janke’s enhancement of it to support classes and namespaces.
-It first appeared in Andrew’s Chrono package in April 2019.
+It first appeared in Andrew’s Tablicious package in April 2019.
 
 # Requirements
 
