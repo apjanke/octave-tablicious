@@ -66,16 +66,16 @@ This toolchain used to have more steps, broken out into `mkdoc.pl`, `mktexi.pl`,
 
 ## The process
 
-  * You launch `make doc` using the `Makefile`. It causes the rest to happen.
-  * `mktexi.pl`:
-    * Scans the source files (in `../inst` and `../src`) and extracts their embedded texinfo blocks
-    * Combines that with `<pkg>.texi.in`, `../DESCRIPTION`, and `../INDEX` to produce the unified actual Texinfo document `<pkg>.texi`
-      * Does some substitutions on stuff in `<pkg>.texi.in`
-      * `@DOCSTRING(...)` gets special handling
-      * `%%%%PACKAGE_VERSION%%%%` gets replaced with the version from `../DESCRIPTION`
-    * Generates a `<pkg>.qhcp` index file that can be used to build a QHelp collection from the generated HTML help files
-  * The rest of `make doc` uses standard Texinfo and Qt tools to generate target help files in various formats
-  * You check the resulting files in to source control if they’re good
+* You launch `make doc` using the `Makefile`. It causes the rest to happen.
+* `mktexi.pl`:
+  * Scans the source files (in `../inst` and `../src`) and extracts their embedded texinfo blocks
+  * Combines that with `<pkg>.texi.in`, `../DESCRIPTION`, and `../INDEX` to produce the unified actual Texinfo document `<pkg>.texi`
+    * Does some substitutions on stuff in `<pkg>.texi.in`
+    * `@DOCSTRING(...)` gets special handling
+    * `%%%%PACKAGE_VERSION%%%%` gets replaced with the version from `../DESCRIPTION`
+  * Generates a `<pkg>.qhcp` index file that can be used to build a QHelp collection from the generated HTML help files
+* The rest of `make doc` uses standard Texinfo and Qt tools to generate target help files in various formats
+* You check the resulting files in to source control if they’re good
 
 # Writing Octave Texinfo documentation
 
