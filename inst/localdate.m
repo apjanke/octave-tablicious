@@ -539,9 +539,44 @@ classdef localdate
 
     % Arithmetic
     
-    % TODO: Implement arithmetic
-    % TBD what the arguments are. Should we take durations and calendarDurations,
-    % and just restrict them to have zero time-of-day components?
+    function out = plus (this, b)
+      mustBeA (this, 'localdate');
+      if isnumeric (b)
+        if ! all (b == floor (b))
+          error('Numeric addends must be integer-valued');
+        endif
+        b = duration.ofDays (b);
+      endif
+      mustBeScalar (b);
+      if isa (b, 'duration')
+        days = b.days;
+        if days ~= floor (days)
+          error ('Duration addends must be whole-day valued');
+        endif
+        out = this;
+        out.dnums = this.dnums + days;
+      elseif isa (b, 'calendarDuration')
+        if ! all (b.Time == 0)
+          error('calendarDuration addends may not have non-zero Time components');
+        endif
+        year = this.Year + b.Years;
+        month = this.Month + b.Months;
+        day = this.Day + b.Days;
+        out = localdate (year, month, day);
+      else
+      endif
+    endfunction
+    
+    function out = minus (a, b)
+      if ! isa (a, 'localdate')
+        a = localdate (a);
+      endif
+      if ! isa (b, 'localdate')
+        b = localdate (b);
+      endif
+      delta = a.dnums - b.dnums;
+      out = duration.ofDays (delta);
+    endfunction
     
     % Planar boilerplate stuff
   
