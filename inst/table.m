@@ -201,6 +201,9 @@ classdef table
       else
         fprintf ('table: %d rows x %d variables\n', height (this), width (this));
         fprintf ('  VariableNames: %s\n', strjoin (this.VariableNames, ', '));
+        if hasrownames (this)
+          fprintf ('  Has RowNames\n');
+        endif
       end
     end
 
@@ -241,31 +244,42 @@ classdef table
       % will be displayed in a single output column.
       %FIXME: This display logic might be broken for multi-column variables.
       colNames = varNames;
+      
+      
+      nCols = nVars;
+      colNames = varNames;
       colStrs = cell (1, nVars);
-      colWidths = NaN (1, nVars);
       for iVar = 1:numel (this.VariableValues)
         vals = this.VariableValues{iVar};
         strs = tablevar_dispstrs (vals);
         lines = cell (height(this), 1);
         for iRow = 1:size (strs, 1)
           lines{iRow} = strjoin (strs(iRow,:), '   ');
-        end
+        endfor
         colStrs{iVar} = lines;
+      endfor
+      if hasrownames (this)
+        colStrs = [{this.RowNames(:)} colStrs];
+        colNames = [{'RowName'} colNames];
+        nCols++;
+      endif
+
+      colWidths = NaN (1, nCols);
+      for iCol = 1:nCols
         colWidths(iVar) = max (cellfun ('numel', lines));
-      end
-      colWidths;
-      nameWidths = cellfun ('numel', varNames);
+      endfor
+      nameWidths = cellfun ('numel', colNames);
       colWidths = max ([nameWidths; colWidths]);
-      totalWidth = sum (colWidths) + 4 + (3 * (nVars - 1));
+      totalWidth = sum (colWidths) + 4 + (3 * (nCols - 1));
       elementStrs = cat (2, colStrs{:});
       
-      rowFmts = cell (1, nVars);
-      for i = 1:nVars
+      rowFmts = cell (1, nCols);
+      for i = 1:nCols
         rowFmts{i} = ['%-' num2str(colWidths(i)) 's'];
       end
       rowFmt = ['| ' strjoin(rowFmts, ' | ')  ' |' sprintf('\n')];
       fprintf ('%s\n', repmat ('-', [1 totalWidth]));
-      fprintf (rowFmt, varNames{:});
+      fprintf (rowFmt, colNames{:});
       fprintf ('%s\n', repmat ('-', [1 totalWidth]));
       for i = 1:height (this)
         fprintf (rowFmt, elementStrs{i,:});
