@@ -109,13 +109,16 @@ TIMESTAMP: $(SRCFILES)
 	export SOURCE_DATE_EPOCH=`cat TIMESTAMP`; \
 	$(PERL) ./mktexi.pl $< $(INDEX) $@ $(package).qhp $(SRCDIRS)
 
-%.dvi: %.texi
+check-texinfo-version:
+	$(PERL) ./mktexi.pl --check-texinfo-version
+
+%.dvi: %.texi check-texinfo-version
 	$(TEXI2DVI) --quiet --clean -o $@ $<
 
-%.info: %.texi
+%.info: %.texi check-texinfo-version
 	$(MAKEINFO) --no-split -o $@ $<
 
-%.pdf: %.texi TIMESTAMP
+%.pdf: %.texi TIMESTAMP check-texinfo-version
 	export SOURCE_DATE_EPOCH=`cat TIMESTAMP`; \
 	$(TEXI2PDF) --quiet --clean -o $@ $<
 
@@ -129,7 +132,7 @@ $(package).html: $(package).texi
 	$(TEXI2HTML) --no-split -o $(package).html $<
 
 # "html" is a phony target, not the actual html/ directory
-html: $(package).texi $(package).html
+html: $(package).texi $(package).html check-texinfo-version
 	rm -rf html
 	$(TEXI2HTML) -o html $<
 
@@ -159,4 +162,4 @@ $(PDFDOC): $(DVIDOC)
 maintainer-clean: 
 	rm -rf *.dvi *.eps html *.html *.info *.pdf *.ps *.png *.texi *.qhp *.qch *.qhc *.tmp images.mk
 
-.PHONY: default all maintainer-clean dvi html info pdf ps qhelp
+.PHONY: default all maintainer-clean dvi html info pdf ps qhelp check-texinfo-version

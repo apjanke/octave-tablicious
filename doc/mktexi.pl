@@ -64,6 +64,18 @@ use POSIX qw(strftime);
 
 use OctTexiDoc;
 
+if ($ARGV[0] eq "--check-texinfo-version") {
+    my $texi_ver = `texi2any --version | head -1`;
+    $texi_ver =~ m/texi2any.*(\d+)\.(\d+)/;
+    my $major = $1;
+    my $minor = $2;
+    if ($major < 6) {
+        die "Texinfo version $major.$minor is too old. Need 6.0 or newer\n"; 
+    }
+    printf "Texinfo version $major.$minor is new enough\n";
+    exit 0;
+}
+
 my $infile = shift @ARGV;
 my $indexfile = shift @ARGV;
 my $outfile = shift @ARGV;
