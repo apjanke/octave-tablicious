@@ -379,14 +379,21 @@ classdef table
     ## -*- texinfo -*-
     ## @node table.varnames
     ## @deftypefn {Method} {@var{out} =} varnames (@var{obj})
+    ## @deftypefnx {Method} {@var{out} =} varnames (@var{obj}, @var{varNames})
     ##
-    ## Get variable names for a table.
+    ## Get or set variable names for a table.
     ##
-    ## Returns cellstr.
+    ## Returns cellstr in the getter form. Returns an updated datetime in the
+    ## setter form.
     ##
     ## @end deftypefn
-    function out = varnames (this)
-      out = this.VariableNames;
+    function out = varnames (this, newVarNames)
+      if nargin == 1
+        out = this.VariableNames;
+      else
+        out = this;
+        out.VariableNames = newVarNames;
+      endif  
     endfunction
 
     ## -*- texinfo -*-
