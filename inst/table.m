@@ -1046,156 +1046,6 @@ classdef table
       endif
       this.RowNames = names;
     endfunction
-
-    ## -*- texinfo -*-
-    ## @node table.resolveVarRef
-    ## @deftypefn {Method} {[@var{ixVar}, @var{varNames}] =} resolveVarRef (@var{obj}, @var{varRef})
-    ## @deftypefnx {Method} {[@var{ixVar}, @var{varNames}] =} resolveVarRef (@var{obj}, @var{varRef}, @var{strictness})
-    ##
-    ## Resolve a variable reference against this table.
-    ##
-    ## A @var{varRef} is a numeric or char/cellstr indicator of which variables within
-    ## @var{obj} are being referenced.
-    ##
-    ## @var{strictness} controls what to do when the given variable references
-    ## could not be resolved. It may be 'strict' (the default) or 'lenient'.
-    ##
-    ## Returns:
-    ##   @var{ixVar} - the indexes of the variables in @var{obj}
-    ##   @var{varNames} - a cellstr of the names of the variables in @var{obj}
-    ##
-    ## Raises an error if any of the specified variables could not be resolved,
-    ## unless strictness is 'lenient', in which case it will return 0 for the
-    ## index and '' for the name for each variable which could not be resolved.
-    ##
-    ## @end deftypefn
-    function [ixVar, varNames] = resolveVarRef (this, varRef, strictness)
-      %RESOLVEVARREF Resolve a reference to variables
-      %
-      % A varRef is a numeric or char/cellstr indicator of which variables within
-      % this table are being referenced.
-      if nargin < 3 || isempty (strictness); strictness = 'strict'; end
-      mustBeMember (strictness, {'strict','lenient'});
-      if isnumeric (varRef) || islogical (varRef)
-        ixVar = varRef;
-        ix_bad = find(ixVar > width (this) | ixVar < 1);
-        if ! isempty (ix_bad)
-          error ('table: variable index out of bounds: %d (table has %d variables)', ...
-            ix_bad(1), width (this));
-        endif
-      elseif isequal (varRef, ':')
-        ixVar = 1:width (this);
-      elseif ischar (varRef) || iscellstr (varRef)
-        varRef = cellstr (varRef);
-        [tf, ixVar] = ismember (varRef, this.VariableNames);
-        if isequal (strictness, 'strict')
-          if ~all (tf)
-            error ('table: No such variable in table: %s', strjoin (varRef(~tf), ', '));
-          endif
-        else
-          ixVar(~tf) = 0;
-        endif
-      elseif isa (varRef, 'octave.table.internal.vartype_filter')
-        ixVar = [];
-        for i = 1:width (this)
-          if varRef.matches (this.VariableValues{i})
-            ixVar(end+1) = i;
-          endif
-        endfor
-      else
-        error ('table: Unsupported variable indexing operand type: %s', class (varRef));
-      end
-      varNames = repmat ({''}, size (ixVar));
-      varNames(ixVar != 0) = this.VariableNames(ixVar(ixVar != 0));
-    end
-
-    function [ixRow, ixVar] = resolveRowVarRefs (this, rowRef, varRef)
-      %RESOLVEROWVARREFS Internal implementation method
-      %
-      % This resolves both row and variable refs to indexes.
-      if isnumeric (rowRef) || islogical (rowRef)
-        ixRow = rowRef;
-      elseif iscellstr (rowRef)
-        if isempty (this.RowNames)
-          error ('table: this table has no RowNames');
-        end
-        [tf, ixRow] = ismember (rowRef, this.RowNames);
-        if ~all (tf)
-          error ('table: No such named row in table: %s', strjoin (rowRef(~tf), ', '));
-        end
-      elseif isequal (rowRef, ':')
-        ixRow = 1:height (this);
-      else
-        error ('table: Unsupported row indexing operand type: %s', class (rowRef));
-      end
-      
-      ixVar = resolveVarRef (this, varRef);
-    end
-    
-    ## -*- texinfo -*-
-    ## @node table.subsetrows
-    ## @deftypefn {Method} {@var{out} =} subsetrows (@var{obj}, @var{ixRows})
-    ##
-    ## Subset table by rows.
-    ##
-    ## Subsets this table by rows.
-    ##
-    ## @var{ixRows} may be a numeric or logical index into the rows of @var{obj}.
-    ##
-    ## @end deftypefn
-    function out = subsetrows (this, ixRows)
-      out = this;
-      if ~isnumeric (ixRows) && ~islogical (ixRows)
-        % TODO: Hmm. Maybe we ought not to do this check, but just defer to the
-        % individual variable values' indexing logic, so SUBSREF/SUBSINDX overrides
-        % are respected. Would produce worse error messages, but be more "right"
-        % type-wise.
-        error ('table.subsetrows: ixRows must be numeric or logical; got a %s', ...
-          class (ixRows));
-      endif
-      for i = 1:width (this)
-        out.VariableValues{i} = out.VariableValues{i}(ixRows,:);
-      end
-      if ~isempty (this.RowNames)
-        out.RowNames = out.RowNames(ixRows);
-      end
-    end
-    
-    ## -*- texinfo -*-
-    ## @node table.subsetvars
-    ## @deftypefn {Method} {@var{out} =} subsetvars (@var{obj}, @var{ixVars})
-    ##
-    ## Subset table by variables.
-    ##
-    ## Subsets table @var{obj} by subsetting it along its variables.
-    ##
-    ## ixVars may be:
-    ##   - a numeric index vector
-    ##   - a logical index vector
-    ##   - ":"
-    ##   - a cellstr vector of variable names
-    ##
-    ## The resulting table will have its variables reordered to match ixVars.
-    ##
-    ## @end deftypefn
-    function out = subsetvars (this, ixVars)      
-      if ischar (ixVars)
-        if ~isequal (ixVars, ':')
-          ixVars = cellstr (ixVars);
-        endif
-      endif
-      if iscellstr (ixVars)
-        [tf,ix] = ismember (ixVars, this.VariableNames);
-        if ~all (tf)
-          error ('table.subsetvars: no such variables in this table: %s', ...
-            strjoin (ixVars(~tf), ', '));
-        endif
-        ixVars = ix;
-      endif
-      out = this;
-      out.VariableNames = this.VariableNames(ixVars);
-      out.VariableValues = this.VariableValues(ixVars);
-    end
     
     ## -*- texinfo -*-
     ## @node table.removevars
@@ -3332,6 +3182,157 @@ classdef table
   end
   
   methods (Access = private)
+    
+    ## -*- texinfo -*-
+    ## @node table.resolveVarRef
+    ## @deftypefn {Method} {[@var{ixVar}, @var{varNames}] =} resolveVarRef (@var{obj}, @var{varRef})
+    ## @deftypefnx {Method} {[@var{ixVar}, @var{varNames}] =} resolveVarRef (@var{obj}, @var{varRef}, @var{strictness})
+    ##
+    ## Resolve a variable reference against this table.
+    ##
+    ## A @var{varRef} is a numeric or char/cellstr indicator of which variables within
+    ## @var{obj} are being referenced.
+    ##
+    ## @var{strictness} controls what to do when the given variable references
+    ## could not be resolved. It may be 'strict' (the default) or 'lenient'.
+    ##
+    ## Returns:
+    ##   @var{ixVar} - the indexes of the variables in @var{obj}
+    ##   @var{varNames} - a cellstr of the names of the variables in @var{obj}
+    ##
+    ## Raises an error if any of the specified variables could not be resolved,
+    ## unless strictness is 'lenient', in which case it will return 0 for the
+    ## index and '' for the name for each variable which could not be resolved.
+    ##
+    ## @end deftypefn
+    function [ixVar, varNames] = resolveVarRef (this, varRef, strictness)
+      %RESOLVEVARREF Resolve a reference to variables
+      %
+      % A varRef is a numeric or char/cellstr indicator of which variables within
+      % this table are being referenced.
+      if nargin < 3 || isempty (strictness); strictness = 'strict'; end
+      mustBeMember (strictness, {'strict','lenient'});
+      if isnumeric (varRef) || islogical (varRef)
+        ixVar = varRef;
+        ix_bad = find(ixVar > width (this) | ixVar < 1);
+        if ! isempty (ix_bad)
+          error ('table: variable index out of bounds: %d (table has %d variables)', ...
+            ix_bad(1), width (this));
+        endif
+      elseif isequal (varRef, ':')
+        ixVar = 1:width (this);
+      elseif ischar (varRef) || iscellstr (varRef)
+        varRef = cellstr (varRef);
+        [tf, ixVar] = ismember (varRef, this.VariableNames);
+        if isequal (strictness, 'strict')
+          if ~all (tf)
+            error ('table: No such variable in table: %s', strjoin (varRef(~tf), ', '));
+          endif
+        else
+          ixVar(~tf) = 0;
+        endif
+      elseif isa (varRef, 'octave.table.internal.vartype_filter')
+        ixVar = [];
+        for i = 1:width (this)
+          if varRef.matches (this.VariableValues{i})
+            ixVar(end+1) = i;
+          endif
+        endfor
+      else
+        error ('table: Unsupported variable indexing operand type: %s', class (varRef));
+      end
+      varNames = repmat ({''}, size (ixVar));
+      varNames(ixVar != 0) = this.VariableNames(ixVar(ixVar != 0));
+    end
+
+    function [ixRow, ixVar] = resolveRowVarRefs (this, rowRef, varRef)
+      %RESOLVEROWVARREFS Internal implementation method
+      %
+      % This resolves both row and variable refs to indexes.
+      if isnumeric (rowRef) || islogical (rowRef)
+        ixRow = rowRef;
+      elseif iscellstr (rowRef)
+        if isempty (this.RowNames)
+          error ('table: this table has no RowNames');
+        end
+        [tf, ixRow] = ismember (rowRef, this.RowNames);
+        if ~all (tf)
+          error ('table: No such named row in table: %s', strjoin (rowRef(~tf), ', '));
+        end
+      elseif isequal (rowRef, ':')
+        ixRow = 1:height (this);
+      else
+        error ('table: Unsupported row indexing operand type: %s', class (rowRef));
+      end
+      
+      ixVar = resolveVarRef (this, varRef);
+    end
+    
+    ## -*- texinfo -*-
+    ## @node table.subsetrows
+    ## @deftypefn {Method} {@var{out} =} subsetrows (@var{obj}, @var{ixRows})
+    ##
+    ## Subset table by rows.
+    ##
+    ## Subsets this table by rows.
+    ##
+    ## @var{ixRows} may be a numeric or logical index into the rows of @var{obj}.
+    ##
+    ## @end deftypefn
+    function out = subsetrows (this, ixRows)
+      out = this;
+      if ~isnumeric (ixRows) && ~islogical (ixRows)
+        % TODO: Hmm. Maybe we ought not to do this check, but just defer to the
+        % individual variable values' indexing logic, so SUBSREF/SUBSINDX overrides
+        % are respected. Would produce worse error messages, but be more "right"
+        % type-wise.
+        error ('table.subsetrows: ixRows must be numeric or logical; got a %s', ...
+          class (ixRows));
+      endif
+      for i = 1:width (this)
+        out.VariableValues{i} = out.VariableValues{i}(ixRows,:);
+      end
+      if ~isempty (this.RowNames)
+        out.RowNames = out.RowNames(ixRows);
+      end
+    end
+    
+    ## -*- texinfo -*-
+    ## @node table.subsetvars
+    ## @deftypefn {Method} {@var{out} =} subsetvars (@var{obj}, @var{ixVars})
+    ##
+    ## Subset table by variables.
+    ##
+    ## Subsets table @var{obj} by subsetting it along its variables.
+    ##
+    ## ixVars may be:
+    ##   - a numeric index vector
+    ##   - a logical index vector
+    ##   - ":"
+    ##   - a cellstr vector of variable names
+    ##
+    ## The resulting table will have its variables reordered to match ixVars.
+    ##
+    ## @end deftypefn
+    function out = subsetvars (this, ixVars)      
+      if ischar (ixVars)
+        if ~isequal (ixVars, ':')
+          ixVars = cellstr (ixVars);
+        endif
+      endif
+      if iscellstr (ixVars)
+        [tf,ix] = ismember (ixVars, this.VariableNames);
+        if ~all (tf)
+          error ('table.subsetvars: no such variables in this table: %s', ...
+            strjoin (ixVars(~tf), ', '));
+        endif
+        ixVars = ix;
+      endif
+      out = this;
+      out.VariableNames = this.VariableNames(ixVars);
+      out.VariableValues = this.VariableValues(ixVars);
+    end
+
     function [outA, outB] = makeVarNamesUnique (A, B)
       %MAKEVARNAMESUNIQUE Internal implementation method
       seenNames = struct;
