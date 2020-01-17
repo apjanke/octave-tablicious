@@ -154,7 +154,7 @@ classdef localdate
                                        'java.time.TemporalAccessor[]'})
             error ('localdate: Java date conversion is not implemented yet. Sorry.');
           elseif isa (x, 'datetime')
-            error ('localdate: datetime to localdate conversion semantics have not been decided yet. Sorry.');
+            dnums = datenum (x);
           else
             error ('localdate: Invalid input type: %s', class (x));
           endif
@@ -237,6 +237,10 @@ classdef localdate
 
     function validate (this)
       mustBeNumeric (this.dnums, 'datenum values');
+    endfunction
+    
+    function out = datetime (this)
+      out = datetime (this.dnums, 'ConvertFrom','datenum');
     endfunction
 
     function [keysA,keysB] = proxyKeys (a, b)
