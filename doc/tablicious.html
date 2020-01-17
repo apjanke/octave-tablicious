@@ -15,7 +15,7 @@ notice identical to this one.
 
 Permission is granted to copy and distribute translations of this manual
 into another language, under the same conditions as for modified versions. -->
-<!-- Created by GNU Texinfo 6.6, http://www.gnu.org/software/texinfo/ -->
+<!-- Created by GNU Texinfo 6.7, http://www.gnu.org/software/texinfo/ -->
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>Octave Tablicious v0.2.0+</title>
@@ -64,7 +64,7 @@ ul.no-bullet {list-style: none}
 <li><a id="stoc-Introduction-1" href="#toc-Introduction-1">1 Introduction</a></li>
 <li><a id="stoc-Getting-Started-1" href="#toc-Getting-Started-1">2 Getting Started</a></li>
 <li><a id="stoc-Table-Representation-1" href="#toc-Table-Representation-1">3 Table Representation</a></li>
-<li><a id="stoc-Date_002fTime-Representation-1" href="#toc-Date_002fTime-Representation-1">4 Date/Time Representation</a></li>
+<li><a id="stoc-Date-and-Time-Representation-1" href="#toc-Date-and-Time-Representation-1">4 Date and Time Representation</a></li>
 <li><a id="stoc-Validation-Functions-1" href="#toc-Validation-Functions-1">5 Validation Functions</a></li>
 <li><a id="stoc-Example-Data-Sets-1" href="#toc-Example-Data-Sets-1">6 Example Data Sets</a></li>
 <li><a id="stoc-Missing-Functionality-1" href="#toc-Missing-Functionality-1">7 Missing Functionality</a></li>
@@ -86,7 +86,7 @@ ul.no-bullet {list-style: none}
     <li><a id="toc-Table-Construction-1" href="#Table-Construction">3.1 Table Construction</a></li>
     <li><a id="toc-Tables-vs-SQL-1" href="#Tables-vs-SQL">3.2 Tables vs SQL</a></li>
   </ul></li>
-  <li><a id="toc-Date_002fTime-Representation-1" href="#Date_002fTime-Representation">4 Date/Time Representation</a>
+  <li><a id="toc-Date-and-Time-Representation-1" href="#Date-and-Time-Representation">4 Date and Time Representation</a>
   <ul class="no-bullet">
     <li><a id="toc-datetime-Class-1" href="#datetime-Class">4.1 <code>datetime</code> Class</a>
     <ul class="no-bullet">
@@ -525,7 +525,7 @@ Next: <a href="#Introduction" accesskey="n" rel="next">Introduction</a> &nbsp; [
 </td></tr>
 <tr><td align="left" valign="top">&bull; <a href="#Table-Representation" accesskey="3">Table Representation</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
-<tr><td align="left" valign="top">&bull; <a href="#Date_002fTime-Representation" accesskey="4">Date/Time Representation</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+<tr><td align="left" valign="top">&bull; <a href="#Date-and-Time-Representation" accesskey="4">Date and Time Representation</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
 <tr><td align="left" valign="top">&bull; <a href="#Validation-Functions" accesskey="5">Validation Functions</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
@@ -603,7 +603,7 @@ Then add the <samp>inst</samp> directory in the repo to your Octave path.
 <hr>
 <span id="Table-Representation"></span><div class="header">
 <p>
-Next: <a href="#Date_002fTime-Representation" accesskey="n" rel="next">Date/Time Representation</a>, Previous: <a href="#Getting-Started" accesskey="p" rel="prev">Getting Started</a>, Up: <a href="#Top" accesskey="u" rel="up">Top</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+Next: <a href="#Date-and-Time-Representation" accesskey="n" rel="next">Date and Time Representation</a>, Previous: <a href="#Getting-Started" accesskey="p" rel="prev">Getting Started</a>, Up: <a href="#Top" accesskey="u" rel="up">Top</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
 </div>
 <span id="Table-Representation-1"></span><h2 class="chapter">3 Table Representation</h2>
 
@@ -701,11 +701,11 @@ C. J. Date books. Other people’s understanding and terminology may differ. - a
 
 
 <hr>
-<span id="Date_002fTime-Representation"></span><div class="header">
+<span id="Date-and-Time-Representation"></span><div class="header">
 <p>
 Next: <a href="#Validation-Functions" accesskey="n" rel="next">Validation Functions</a>, Previous: <a href="#Table-Representation" accesskey="p" rel="prev">Table Representation</a>, Up: <a href="#Top" accesskey="u" rel="up">Top</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
 </div>
-<span id="Date_002fTime-Representation-1"></span><h2 class="chapter">4 Date/Time Representation</h2>
+<span id="Date-and-Time-Representation-1"></span><h2 class="chapter">4 Date and Time Representation</h2>
 
 <p>Tablicious provides the <code>datetime</code> class for representing points in time.
 </p>
@@ -725,7 +725,7 @@ as opposed to <code>datetime</code> being a point along the time line.
 <hr>
 <span id="datetime-Class"></span><div class="header">
 <p>
-Next: <a href="#Time-Zones" accesskey="n" rel="next">Time Zones</a>, Up: <a href="#Date_002fTime-Representation" accesskey="u" rel="up">Date/Time Representation</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+Next: <a href="#Time-Zones" accesskey="n" rel="next">Time Zones</a>, Up: <a href="#Date-and-Time-Representation" accesskey="u" rel="up">Date and Time Representation</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
 </div>
 <span id="datetime-Class-1"></span><h3 class="section">4.1 <code>datetime</code> Class</h3>
 
@@ -791,7 +791,7 @@ do not carry time zone information.
 <hr>
 <span id="Time-Zones"></span><div class="header">
 <p>
-Next: <a href="#Durations" accesskey="n" rel="next">Durations</a>, Previous: <a href="#datetime-Class" accesskey="p" rel="prev">datetime Class</a>, Up: <a href="#Date_002fTime-Representation" accesskey="u" rel="up">Date/Time Representation</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+Next: <a href="#Durations" accesskey="n" rel="next">Durations</a>, Previous: <a href="#datetime-Class" accesskey="p" rel="prev">datetime Class</a>, Up: <a href="#Date-and-Time-Representation" accesskey="u" rel="up">Date and Time Representation</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
 </div>
 <span id="Time-Zones-1"></span><h3 class="section">4.2 Time Zones</h3>
 
@@ -884,7 +884,7 @@ behavior outside that date range.)
 <hr>
 <span id="Durations"></span><div class="header">
 <p>
-Previous: <a href="#Time-Zones" accesskey="p" rel="prev">Time Zones</a>, Up: <a href="#Date_002fTime-Representation" accesskey="u" rel="up">Date/Time Representation</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+Previous: <a href="#Time-Zones" accesskey="p" rel="prev">Time Zones</a>, Up: <a href="#Date-and-Time-Representation" accesskey="u" rel="up">Date and Time Representation</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
 </div>
 <span id="Durations-1"></span><h3 class="section">4.3 Durations</h3>
 
@@ -943,7 +943,7 @@ d2 = d + cdur
 <hr>
 <span id="Validation-Functions"></span><div class="header">
 <p>
-Next: <a href="#Example-Data-Sets" accesskey="n" rel="next">Example Data Sets</a>, Previous: <a href="#Date_002fTime-Representation" accesskey="p" rel="prev">Date/Time Representation</a>, Up: <a href="#Top" accesskey="u" rel="up">Top</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+Next: <a href="#Example-Data-Sets" accesskey="n" rel="next">Example Data Sets</a>, Previous: <a href="#Date-and-Time-Representation" accesskey="p" rel="prev">Date and Time Representation</a>, Up: <a href="#Top" accesskey="u" rel="up">Top</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
 </div>
 <span id="Validation-Functions-1"></span><h2 class="chapter">5 Validation Functions</h2>
 

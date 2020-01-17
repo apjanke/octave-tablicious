@@ -15,7 +15,7 @@
                     <section title="Tables vs SQL" ref="html/Tables-vs-SQL.html">
                     </section>
                 </section>
-                <section title="Date/Time Representation" ref="html/Date_002fTime-Representation.html">
+                <section title="Date and Time Representation" ref="html/Date-and-Time-Representation.html">
                     <section title="datetime Class" ref="html/datetime-Class.html">
                         <section title="Datenum Compatibility" ref="html/Datenum-Compatibility.html">
                         </section>
@@ -1445,7 +1445,7 @@
             <file>html/Time-Zones.html</file>
             <file>html/Datenum-Compatibility.html</file>
             <file>html/datetime-Class.html</file>
-            <file>html/Date_002fTime-Representation.html</file>
+            <file>html/Date-and-Time-Representation.html</file>
             <file>html/Tables-vs-SQL.html</file>
             <file>html/Table-Construction.html</file>
             <file>html/Table-Representation.html</file>

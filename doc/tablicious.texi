@@ -57,7 +57,7 @@ This manual is for Tablicious, version @value{VERSION}.
 * Introduction::
 * Getting Started::
 * Table Representation::
-* Date/Time Representation::
+* Date and Time Representation::
 * Validation Functions::
 * Example Data Sets::
 * Missing Functionality::
@@ -213,8 +213,8 @@ C. J. Date books. Other people’s understanding and terminology may differ. - a
 
 
 
-@node Date/Time Representation
-@chapter Date/Time Representation
+@node Date and Time Representation
+@chapter Date and Time Representation
 
 Tablicious provides the @code{datetime} class for representing points in time.
 
