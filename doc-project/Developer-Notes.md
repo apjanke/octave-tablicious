@@ -21,8 +21,6 @@ the design of this library.
 * Description, Units, and CustomProperties for variables in table
 * timetable
 * More documentation for individual methods
-* Texinfo documentation
-* Once implementation is finished, clean up interface by making methods private/protected
 * File I/O
   * readtable, writetable
   * tableread
