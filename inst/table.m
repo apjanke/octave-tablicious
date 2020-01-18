@@ -245,7 +245,6 @@ classdef table
       %FIXME: This display logic might be broken for multi-column variables.
       colNames = varNames;
       
-      
       nCols = nVars;
       colNames = varNames;
       colStrs = cell (1, nVars);
@@ -3353,7 +3352,7 @@ classdef table
       out.VariableNames = this.VariableNames(ixVars);
       out.VariableValues = this.VariableValues(ixVars);
     end
-
+    
     function [outA, outB] = makeVarNamesUnique (A, B)
       %MAKEVARNAMESUNIQUE Internal implementation method
       seenNames = struct;
