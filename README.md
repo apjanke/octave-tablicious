@@ -3,7 +3,7 @@ Tablicious for GNU Octave
 
 Tablicious provides tabular data structures for Octave.
 
-| WARNING: All the code in here is currently experimental. (Pre-beta quality, that is.) Do not use it in any production or business code! Seriously!! |
+| WARNING: This library is currently beta quality. Do not use it in any production or business code! Seriously!! |
 | ---- |
 
 This package attempts to provide a set of mostly-Matlab-compatible implementation of the table class and related structures and functions.
@@ -33,7 +33,7 @@ The `string` and `categorical` support are incomplete, and less mature than the 
 To get started using or testing this project, install it using Octave's `pkg` function:
 
 ```
-pkg install https://github.com/apjanke/octave-tablicious/releases/download/v0.2.0/tablicious-0.2.0.tar.gz
+pkg install https://github.com/apjanke/octave-tablicious/releases/download/v0.3.0/tablicious-0.3.0.tar.gz
 pkg load tablicious
 ```
 

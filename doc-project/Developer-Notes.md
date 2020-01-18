@@ -45,10 +45,10 @@ The texinfo format we use requires Texinfo 6.0 or newer. This is newer than the 
 
 * Update release in `DESCRIPTION`
 * Update download instructions version in `README.md`
-* `git commit -a -c <version>`
+* `git commit -a -m <version>`
 * Regenerate the docs
   * `cd doc; make maintainer-clean; make all`
-* `git commit -a -c 'regenerate doco'`
+* `git commit -a -m 'regenerate doco'`
 * Do `make dist` to make sure that it works
 * `git tag v<version>`
 * `git push; git push --tags`
