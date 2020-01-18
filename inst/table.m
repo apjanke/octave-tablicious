@@ -1242,10 +1242,10 @@ classdef table
     ## Adds the specified variables to a table.
     ##
     ## @end deftypefn
-    function out = addvars (obj, varargin)
+    function out = addvars (this, varargin)
       [opts, args] = peelOffNameValueOptions (varargin, ...
         {'Before', 'After', 'NewVariableNames'});
-      ix_insertion = width (obj);
+      ix_insertion = width (this);
       if isfield (opts, 'Before')
         ix_insertion = resolveVarRef (this, opts.Before) - 1;
       endif
