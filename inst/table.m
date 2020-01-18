@@ -1184,6 +1184,9 @@ classdef table
     ## may be used to change the value of an existing variable, or add a new
     ## variable.
     ##
+    ## This method exists primarily because I cannot get @code{obj.foo = value} to work,
+    ## apparently due to an issue with Octave's subsasgn support.
+    ##
     ## @var{varRef} is a variable reference, either the index or name of a variable.
     ## If you are adding a new variable, it must be a name, and not an index.
     ##
