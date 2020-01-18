@@ -239,8 +239,6 @@
                         </section>
                         <section title="isnannish" ref="html/isnannish.html">
                         </section>
-                        <section title="isstring" ref="html/isstring.html">
-                        </section>
                         <section title="localdate" ref="html/localdate.html">
                             <section title="localdate.localdate" ref="html/localdate_002elocaldate.html">
                             </section>
@@ -640,12 +638,6 @@
                             </section>
                             <section title="table.setRowNames" ref="html/table_002esetRowNames.html">
                             </section>
-                            <section title="table.resolveVarRef" ref="html/table_002eresolveVarRef.html">
-                            </section>
-                            <section title="table.subsetrows" ref="html/table_002esubsetrows.html">
-                            </section>
-                            <section title="table.subsetvars" ref="html/table_002esubsetvars.html">
-                            </section>
                             <section title="table.removevars" ref="html/table_002eremovevars.html">
                             </section>
                             <section title="table.movevars" ref="html/table_002emovevars.html">
@@ -719,6 +711,14 @@
                             <section title="table.evalWithVars" ref="html/table_002eevalWithVars.html">
                             </section>
                             <section title="table.restrict" ref="html/table_002erestrict.html">
+                            </section>
+                            <section title="table.renamevars" ref="html/table_002erenamevars.html">
+                            </section>
+                            <section title="table.resolveVarRef" ref="html/table_002eresolveVarRef.html">
+                            </section>
+                            <section title="table.subsetrows" ref="html/table_002esubsetrows.html">
+                            </section>
+                            <section title="table.subsetvars" ref="html/table_002esubsetvars.html">
                             </section>
                         </section>
                         <section title="tableOuterFillValue" ref="html/tableOuterFillValue.html">
@@ -838,7 +838,6 @@
             <keyword name="isfolder" id="isfolder" ref="html/isfolder.html"/>
             <keyword name="ismissing" id="ismissing" ref="html/ismissing.html"/>
             <keyword name="isnannish" id="isnannish" ref="html/isnannish.html"/>
-            <keyword name="isstring" id="isstring" ref="html/isstring.html"/>
             <keyword name="localdate" id="localdate" ref="html/localdate.html"/>
             <keyword name="localdate.NaT" id="localdate.NaT" ref="html/localdate_002eNaT.html"/>
             <keyword name="localdate.datenum" id="localdate.datenum" ref="html/localdate_002edatenum.html"/>
@@ -1043,6 +1042,7 @@
             <keyword name="table.outerjoin" id="table.outerjoin" ref="html/table_002eouterjoin.html"/>
             <keyword name="table.prettyprint" id="table.prettyprint" ref="html/table_002eprettyprint.html"/>
             <keyword name="table.removevars" id="table.removevars" ref="html/table_002eremovevars.html"/>
+            <keyword name="table.renamevars" id="table.renamevars" ref="html/table_002erenamevars.html"/>
             <keyword name="table.repelem" id="table.repelem" ref="html/table_002erepelem.html"/>
             <keyword name="table.repmat" id="table.repmat" ref="html/table_002erepmat.html"/>
             <keyword name="table.resolveVarRef" id="table.resolveVarRef" ref="html/table_002eresolveVarRef.html"/>
@@ -1092,6 +1092,10 @@
             <file>html/vartype.html</file>
             <file>html/timezones.html</file>
             <file>html/tableOuterFillValue.html</file>
+            <file>html/table_002esubsetvars.html</file>
+            <file>html/table_002esubsetrows.html</file>
+            <file>html/table_002eresolveVarRef.html</file>
+            <file>html/table_002erenamevars.html</file>
             <file>html/table_002erestrict.html</file>
             <file>html/table_002eevalWithVars.html</file>
             <file>html/table_002efindgroups.html</file>
@@ -1129,9 +1133,6 @@
             <file>html/table_002egetvar.html</file>
             <file>html/table_002emovevars.html</file>
             <file>html/table_002eremovevars.html</file>
-            <file>html/table_002esubsetvars.html</file>
-            <file>html/table_002esubsetrows.html</file>
-            <file>html/table_002eresolveVarRef.html</file>
             <file>html/table_002esetRowNames.html</file>
             <file>html/table_002esetDimensionNames.html</file>
             <file>html/table_002esetVariableNames.html</file>
@@ -1332,7 +1333,6 @@
             <file>html/localdate_002eNaT.html</file>
             <file>html/localdate_002elocaldate.html</file>
             <file>html/localdate.html</file>
-            <file>html/isstring.html</file>
             <file>html/isnannish.html</file>
             <file>html/ismissing.html</file>
             <file>html/isfolder.html</file>

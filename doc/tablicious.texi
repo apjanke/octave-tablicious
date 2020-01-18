@@ -2,7 +2,7 @@
 
 @c %**start of header
 
-@set VERSION 0.2.0+
+@set VERSION 0.3.0
 
 @setfilename tablicious.info
 @settitle Octave Tablicious v@value{VERSION}
@@ -106,7 +106,7 @@ The easiest way to obtain Tablicious is by using Octave's @code{pkg} package man
 To install the development prerelease of Tablicious, run this in Octave:
 
 @example
-pkg install https://github.com/apjanke/octave-tablicious/releases/download/v0.2.0+/tablicious-0.2.0+.tar.gz
+pkg install https://github.com/apjanke/octave-tablicious/releases/download/v0.3.0/tablicious-0.3.0.tar.gz
 @end example
 
 (Check the releases page at @url{https://github.com/apjanke/octave-tablicious/releases} to
@@ -752,9 +752,6 @@ Plot pairs of variables against each other.
 @item @ref{iscategorical}
 True if input is a 'categorical' array, false otherwise.
 
-@item @ref{isstring}
-True if input is a 'string' array, false otherwise.
-
 @item @ref{octave.chrono.dummy_function}
 A dummy function just for testing the doco tools.
 
@@ -800,7 +797,6 @@ Conditioning plot.
 * isfolder::	Test whether file exists and is a folder.
 * ismissing::	Find missing values.
 * isnannish::	Test if elements are NaN or NaN-like
-* isstring::	True if input is a 'string' array, false otherwise.
 * localdate::	Represents a complete day using the Gregorian calendar.
 * milliseconds::	Create a 'duration' X milliseconds long, or get the
 		milliseconds in a 'duration' X.
@@ -2593,17 +2589,6 @@ Under normal operation, @code{isnannish()} should not throw an error for any typ
 value of input.
 
 See also: @code{isnan}, @code{isnat}, @ref{ismissing}, @ref{eqn}, @code{isequaln}
-
-@end deftypefn
-
-
-@node isstring
-@subsection isstring
-@deftypefn {Function} {@var{out} =} isstring (@var{x})
-
-True if input is a @code{string} array, false otherwise.
-
-Returns a scalar logical.
 
 @end deftypefn
 
@@ -8534,10 +8519,12 @@ Converts @var{obj} to a homogeneous array.
 @subsubsection table.varnames
 
 @deftypefn {Method} {@var{out} =} varnames (@var{obj})
+@deftypefnx {Method} {@var{out} =} varnames (@var{obj}, @var{varNames})
 
-Get variable names for a table.
+Get or set variable names for a table.
 
-Returns cellstr.
+Returns cellstr in the getter form. Returns an updated datetime in the
+setter form.
 
 @end deftypefn
 
@@ -8863,62 +8850,6 @@ Sets the row names on @var{obj} to @var{names}.
 
 @end deftypefn
 
-@node table.resolveVarRef
-@subsubsection table.resolveVarRef
-
-@deftypefn {Method} {[@var{ixVar}, @var{varNames}] =} resolveVarRef (@var{obj}, @var{varRef})
-@deftypefnx {Method} {[@var{ixVar}, @var{varNames}] =} resolveVarRef (@var{obj}, @var{varRef}, @var{strictness})
-
-Resolve a variable reference against this table.
-
-A @var{varRef} is a numeric or char/cellstr indicator of which variables within
-@var{obj} are being referenced.
-
-@var{strictness} controls what to do when the given variable references
-could not be resolved. It may be 'strict' (the default) or 'lenient'.
-
-Returns:
-  @var{ixVar} - the indexes of the variables in @var{obj}
-  @var{varNames} - a cellstr of the names of the variables in @var{obj}
-
-Raises an error if any of the specified variables could not be resolved,
-unless strictness is 'lenient', in which case it will return 0 for the
-index and '' for the name for each variable which could not be resolved.
-
-@end deftypefn
-
-@node table.subsetrows
-@subsubsection table.subsetrows
-
-@deftypefn {Method} {@var{out} =} subsetrows (@var{obj}, @var{ixRows})
-
-Subset table by rows.
-
-Subsets this table by rows.
-
-@var{ixRows} may be a numeric or logical index into the rows of @var{obj}.
-
-@end deftypefn
-
-@node table.subsetvars
-@subsubsection table.subsetvars
-
-@deftypefn {Method} {@var{out} =} subsetvars (@var{obj}, @var{ixVars})
-
-Subset table by variables.
-
-Subsets table @var{obj} by subsetting it along its variables.
-
-ixVars may be:
-  - a numeric index vector
-  - a logical index vector
-  - ":"
-  - a cellstr vector of variable names
-
-The resulting table will have its variables reordered to match ixVars.
-
-@end deftypefn
-
 @node table.removevars
 @subsubsection table.removevars
 
@@ -8994,6 +8925,9 @@ Set value for a variable in table.
 This sets (adds or replaces) the value for a variable in @var{obj}. It
 may be used to change the value of an existing variable, or add a new
 variable.
+
+This method exists primarily because I cannot get @code{obj.foo = value} to work,
+apparently due to an issue with Octave's subsasgn support.
 
 @var{varRef} is a variable reference, either the index or name of a variable.
 If you are adding a new variable, it must be a name, and not an index.
@@ -9656,6 +9590,84 @@ Examples:
 [s,p,sp] = table_examples.SpDb;
 prettyprint (restrict (p, 'Weight >= 14 & strcmp(Color, "Red")'))
 @end example
+
+@end deftypefn
+
+@node table.renamevars
+@subsubsection table.renamevars
+
+@deftypefn {Method} {@var{out} =} renamevars (@var{obj}, @var{renameMap})
+
+Rename variables in a table.
+
+Renames selected variables in the table @var{obj} based on the mapping
+provided in @var{renameMap}.
+
+@var{renameMap} is an n-by-2 cellstr array, with the old variable names
+in the first column, and the corresponding new variable names in the
+second column.
+
+Variables which are not included in @var{renameMap} are not modified.
+
+It is an error if any variables named in the first column of @var{renameMap}
+are not present in @var{obj}.
+
+Renames
+@end deftypefn
+
+@node table.resolveVarRef
+@subsubsection table.resolveVarRef
+
+@deftypefn {Method} {[@var{ixVar}, @var{varNames}] =} resolveVarRef (@var{obj}, @var{varRef})
+@deftypefnx {Method} {[@var{ixVar}, @var{varNames}] =} resolveVarRef (@var{obj}, @var{varRef}, @var{strictness})
+
+Resolve a variable reference against this table.
+
+A @var{varRef} is a numeric or char/cellstr indicator of which variables within
+@var{obj} are being referenced.
+
+@var{strictness} controls what to do when the given variable references
+could not be resolved. It may be 'strict' (the default) or 'lenient'.
+
+Returns:
+  @var{ixVar} - the indexes of the variables in @var{obj}
+  @var{varNames} - a cellstr of the names of the variables in @var{obj}
+
+Raises an error if any of the specified variables could not be resolved,
+unless strictness is 'lenient', in which case it will return 0 for the
+index and '' for the name for each variable which could not be resolved.
+
+@end deftypefn
+
+@node table.subsetrows
+@subsubsection table.subsetrows
+
+@deftypefn {Method} {@var{out} =} subsetrows (@var{obj}, @var{ixRows})
+
+Subset table by rows.
+
+Subsets this table by rows.
+
+@var{ixRows} may be a numeric or logical index into the rows of @var{obj}.
+
+@end deftypefn
+
+@node table.subsetvars
+@subsubsection table.subsetvars
+
+@deftypefn {Method} {@var{out} =} subsetvars (@var{obj}, @var{ixVars})
+
+Subset table by variables.
+
+Subsets table @var{obj} by subsetting it along its variables.
+
+ixVars may be:
+  - a numeric index vector
+  - a logical index vector
+  - ":"
+  - a cellstr vector of variable names
+
+The resulting table will have its variables reordered to match ixVars.
 
 @end deftypefn
 
