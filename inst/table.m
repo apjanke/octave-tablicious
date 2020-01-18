@@ -265,7 +265,7 @@ classdef table
 
       colWidths = NaN (1, nCols);
       for iCol = 1:nCols
-        colWidths(iVar) = max (cellfun ('numel', lines));
+        colWidths(iCol) = max (cellfun ('numel', colStrs{iCol}));
       endfor
       nameWidths = cellfun ('numel', colNames);
       colWidths = max ([nameWidths; colWidths]);
