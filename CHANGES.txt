@@ -1,0 +1,26 @@
+Tablicious ChangeLog
+====================
+
+## Version 0.4.0 (???)
+
+## Version 0.3.0 (2020-01-18)
+
+* Various bugfixes
+* Added some examples
+
+This is the release that I think is ready for general consumption by the user community.
+
+## Version 0.2.0 (2019-05-05)
+
+* More basic table stuff
+* Now with datetime and duration, since I’ve merged the Chrono package into this project
+* Documentation
+* @string and @categorical
+* The start of some example data sets
+* Bug fixes, of course
+
+## Version 0.1.0 (2019-04-30)
+
+Initial release!
+
+This library is about 2/3 feature complete. Most basic table, string, categorical, and Missing Data stuff is working, and there's documentation.
