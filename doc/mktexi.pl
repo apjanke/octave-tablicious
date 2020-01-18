@@ -70,7 +70,7 @@ if ($ARGV[0] eq "--check-texinfo-version") {
     my $major = $1;
     my $minor = $2;
     if ($major < 6) {
-        die "Texinfo version $major.$minor is too old. Need 6.0 or newer\n"; 
+        die "Texinfo version $major.$minor is too old. Need 6.0 or newer.\n"; 
     }
     printf "Texinfo version $major.$minor is new enough\n";
     exit 0;
