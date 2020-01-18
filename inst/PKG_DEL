@@ -4,12 +4,15 @@
 % names to reduce risk of collision with user variables, and clear them all 
 % at the end.
 
+% See PKG_ADD for commentary
+
 % Have to hardcode this since it's not available from context
 __my_pkg_name = 'Tablicious';
 
-% See PKG_ADD for commentary
-
 __this_dir = fileparts (mfilename ('fullpath'));
+
+rmpath (fullfile (__this_dir, 'shims', 'compat'))
+
 if exist (fullfile (__this_dir, "doc", [__my_pkg_name ".qch"]), "file")
   __my_qhelp_file = fullfile (__this_dir, "doc", [__my_pkg_name ".qch"]);
 elseif exist (fullfile (fileparts (__this_dir), "doc", [__my_pkg_name ".qch"]), "file")

@@ -7,11 +7,18 @@
 % Have to hardcode this since it's not available from context
 __my_pkg_name = 'Tablicious';
 
+__this_dir = fileparts (mfilename ('fullpath'));
+
+% Load compatibility shims
+__orig_warning_state = warning;
+warning off Octave:shadowed-function
+addpath (fullfile (__this_dir, 'shims', 'compat'))
+warning (__orig_warning_state)
+
 % When a package is installed, the doc/ directory is added as a subdir
 % of the main installation dir, which contains the inst/ files. But when
 % running from the repo, doc/ is a sibling of inst/.
 
-__this_dir = fileparts (mfilename ('fullpath'));
 if exist (fullfile (__this_dir, "doc", [__my_pkg_name ".qch"]), "file")
   __my_qhelp_file = fullfile (__this_dir, "doc", [__my_pkg_name ".qch"]);
 elseif exist (fullfile (fileparts (__this_dir), "doc", [__my_pkg_name ".qch"]), "file")
@@ -28,4 +35,4 @@ if compare_versions (version, '4.4.0', '>=')
   __octave_link_register_doc__ (__my_qhelp_file);
 endif
 
-clear __my_pkg_name __this_dir __my_qhelp_file
+clear __my_pkg_name __this_dir __my_qhelp_file __orig_warning_state
