@@ -678,6 +678,38 @@ classdef datetime
       out = reshape (c, size (this));
     endfunction
     
+    function out = sprintf(fmt, varargin)
+      args = varargin;
+      for i = 1:numel (args)
+        if isa (args{i}, 'datetime')
+          args{i} = datestr (args{i});
+        endif
+      endfor
+      out = sprintf (fmt, args{:});
+    endfunction
+    
+    function out = fprintf(varargin)
+      args = varargin;
+      if isnumeric (args{1})
+        fid = args{1};
+        args(1) = [];
+      else
+        fid = [];
+      endif
+      fmt = args{1};
+      args(1) = [];
+      for i = 1:numel (args)
+        if isa (args{i}, 'datetime')
+          args{i} = datestr (args{i});
+        endif
+      endfor
+      if isempty (fid)
+        fprintf (fmt, args{:});
+      else
+        fprintf (fid, fmt, args{:});
+      endif
+    endfunction
+
     ## -*- texinfo -*-
     ## @node datetime.datestruct
     ## @deftypefn {Method} {@var{out} =} datestruct (@var{obj})
