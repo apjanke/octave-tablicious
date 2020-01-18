@@ -25,4 +25,5 @@ This is the release that I think is ready for general consumption by the user co
 
 Initial release!
 
-This library is about 2/3 feature complete. Most basic table, string, categorical, and Missing Data stuff is working, and there's documentation.
+This library is about 2/3 feature complete. Most basic table, string, categorical, and 
+Missing Data stuff is working, and there's documentation.
