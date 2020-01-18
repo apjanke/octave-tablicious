@@ -4,6 +4,7 @@ Tablicious ChangeLog
 ## Version 0.4.0 (???)
 
 * sprintf and fprintf support for datetime, categorical, and other classes
+* Added this ChangeLog
 
 ## Version 0.3.0 (2020-01-18)
 
