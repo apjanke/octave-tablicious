@@ -42,7 +42,7 @@ The texinfo format we use requires Texinfo 6.0 or newer. This is newer than the 
 
 # Release Checklist
 
-* Update release in `DESCRIPTION`
+* Update release version and date in `DESCRIPTION`
 * Update download instructions version in `README.md`
 * `git commit -a -m <version>`
 * Regenerate the docs
