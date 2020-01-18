@@ -3178,6 +3178,39 @@ classdef table
       endif
     endfunction
 
+    ## -*- texinfo -*-
+    ## @node table.renamevars
+    ## @deftypefn {Method} {@var{out} =} renamevars (@var{obj}, @var{renameMap})
+    ##
+    ## Rename variables in a table.
+    ##
+    ## Renames selected variables in the table @var{obj} based on the mapping
+    ## provided in @var{renameMap}.
+    ##
+    ## @var{renameMap} is an n-by-2 cellstr array, with the old variable names
+    ## in the first column, and the corresponding new variable names in the
+    ## second column.
+    ##
+    ## Variables which are not included in @var{renameMap} are not modified.
+    ##
+    ## It is an error if any variables named in the first column of @var{renameMap}
+    ## are not present in @var{obj}.
+    ##
+    ## Renames 
+    ## @end deftypefn
+    function out = renamevars (this, renameMap)
+      if ! iscellstr (renameMap) || size (renameMap, 2) ~= 2
+        error ('renameMap must be an n-by-2 cellstr; got a %s %s', ...
+          size2str (size (renameMap)), class (renameMap));
+      endif
+      [tf,loc] = ismember (renameMap(:,1), this.VariableNames);
+      if ! all (tf)
+        error ('No such variables in this: %s', strjoin (renameMap(~tf,1), ', '));
+      endif
+      out = this;
+      out.VariableNames(loc) = renameMap(:,2);
+    endfunction
+
     % Prohibited operations
     
     function out = shiftdims (this, varargin)
