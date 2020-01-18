@@ -66,7 +66,7 @@ function [ixs, ixUnmatchedA, ixUnmatchedB] = matchrows_two_way_ismember (A, B)
   ixsKA = octave.table.internal.jndx2kndxs (ixJA);
   ixsKB = octave.table.internal.jndx2kndxs (ixJB);
   
-  [tf, loc] = ismember (uA, uB);
+  [tf, loc] = ismember (uA, uB, 'rows');
   tfUnmatchedUA = !tf;
   ixUnmatchedUA = find (tfUnmatchedUA);
   ixUnmatchedUB = setdiff (1:size(uB,1), loc(tf));
