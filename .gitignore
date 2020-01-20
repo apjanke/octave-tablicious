@@ -10,3 +10,5 @@ cmake-build-debug
 .idea/workspace.xml
 datasets/iris/iris.csv
 datasets/iris/iris.mat
+.vscode
+
