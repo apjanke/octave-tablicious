@@ -20,7 +20,7 @@ function unload_tablicious
   
   if ! isempty (qhelp_file)
     if compare_versions (version, "4.4.0", ">=")
-      __octave_link_uregister_doc__ (qhelp_file);
+      __octave_link_unregister_doc__ (qhelp_file);
     endif
   endif
   
