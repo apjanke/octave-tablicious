@@ -6,6 +6,11 @@ Tablicious ChangeLog
 * sprintf and fprintf support for datetime, categorical, and other classes
 * Added this ChangeLog
 
+## Version 0.3.1 (2020-01-27)
+
+* Fix a dumb bug that broke string
+* Fix "shadowed function" warning in Octave 5.x
+
 ## Version 0.3.0 (2020-01-18)
 
 * Various bugfixes
