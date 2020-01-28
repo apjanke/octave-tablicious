@@ -1,10 +1,11 @@
 Tablicious ChangeLog
 ====================
 
-## Version 0.4.0 (???)
+## Version 0.3.2 (2020-01-28)
 
 * sprintf and fprintf support for datetime, categorical, and other classes
 * Added this ChangeLog
+* Octave 6.x compatibility fix
 
 ## Version 0.3.1 (2020-01-27)
 
