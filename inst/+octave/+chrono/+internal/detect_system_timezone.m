@@ -35,47 +35,56 @@ endfunction
 function out = do_detection ()
   %DO_DETECTION Actual detection logic
   
+  out = [];
+
   % Let TZ env var take precedence
   tz_env = getenv ('TZ');
   if ~isempty (tz_env)
     out = tz_env;
-  else
-    % Get actual system default
-    out = [];
-    if exist ('/etc/localtime', 'file')
-      % This exists on macOS and RHEL/CentOS 7/some Fedora
+  endif
+
+  % Get actual system default, using OS-specific mechanisms
+  if isempty (out) && exist ('/etc/localtime', 'file')
+    % This exists on macOS and RHEL/CentOS 7/some Fedora
+    st = stat ('/etc/localtime');
+    if S_ISLNK(st.mode)
+      % By convention, when it's a symlink, it points into a file whose path is the same
+      % as the IANA time zone identifier.
       [target,err,msg] = readlink ('/etc/localtime');
       if err
-        warning ('Failed detecting time zone from /etc/localtime even though it exists: Failed reading /etc/localtime: %s\n', ...
+        warning ('tablicious:TimeZoneDetectionFailure', ...
+          'Failed detecting time zone from /etc/localtime even though it exists: Failed reading /etc/localtime: %s', ...
           msg);
       else
         out = regexprep (target, '.*/zoneinfo/', '');
       endif
+    else
+      % I don't know how to parse the file contents yet; can't use non-symlink localtime files
     endif
-    if isempty (out) && exist ('/etc/timezone')
-      % This exists on Debian
-      out = strtrim (octave.chrono.internal.slurpTextFile ('/etc/timezone'));
+  endif
+  if isempty (out) && exist ('/etc/timezone')
+    % This exists on Debian
+    out = strtrim (octave.chrono.internal.slurpTextFile ('/etc/timezone'));
+  endif
+  if isempty (out) && ispc
+    % Newer Windows can do it with PowerShell
+    win_zone = detect_timezone_using_powershell;
+    if ~isempty (win_zone)
+      converter = octave.chrono.internal.tzinfo.WindowsIanaZoneConverter;
+      out = converter.windows2iana (win_zone);
     endif
-    if isempty (out) && ispc
-      % Newer Windows can do it with PowerShell
-      win_zone = detect_timezone_using_powershell;
-      if ~isempty (win_zone)
-        converter = octave.chrono.internal.tzinfo.WindowsIanaZoneConverter;
-        out = converter.windows2iana (win_zone);
-      endif
+  endif
+  if isempty (out)
+    % Fall back to Java if nothing else worked
+    if ~usejava ('jvm')
+      warning ('tablicious:TimeZoneDetectionFailure', 'Detecting time zone on this OS requires Java, which is not available in this Octave build.');
+    else
+      zone = javaMethod ('getDefault', 'java.util.TimeZone');
+      out = char (zone.getID());
     endif
-    if isempty (out)
-      % Fall back to Java if nothing else worked
-      if ~usejava ('jvm')
-        warning ('Detecting time zone on this OS requires Java, which is not available in this Octave.\n');
-      else
-        zone = javaMethod ('getDefault', 'java.util.TimeZone');
-        out = char (zone.getID());
-      endif
-    endif
-    if isempty (out)
-      fprintf ('Warning: Failed detecting system time zone.\n');
-    endif
+  endif
+  if isempty (out)
+    warning ('tablicious:TimeZoneDetectionFailure', 'Warning: Failed detecting system time zone.');
   endif
 endfunction
 
