@@ -24,7 +24,7 @@ function unload_tablicious
     elseif compare_versions (version, "6.0.0", ">=")
       __event_manager_unregister_doc__ (qhelp_file);
     endif
-endif
+  endif
   
   % Unload compatibility shims
   

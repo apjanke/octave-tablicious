@@ -2,7 +2,7 @@
 
 @c %**start of header
 
-@set VERSION 0.4.0-SNAPSHOT
+@set VERSION 0.3.2
 
 @setfilename tablicious.info
 @settitle Octave Tablicious v@value{VERSION}
@@ -36,7 +36,7 @@ User manual for Tablicious for Octave.
 
 @titlepage
 @title  Tablicious for Octave
-@subtitle version @value{VERSION}, May 2019
+@subtitle version @value{VERSION}, January 2020
 @author Andrew Janke
 @page
 @vskip 0pt plus 1filll
@@ -106,7 +106,7 @@ The easiest way to obtain Tablicious is by using Octave's @code{pkg} package man
 To install the development prerelease of Tablicious, run this in Octave:
 
 @example
-pkg install https://github.com/apjanke/octave-tablicious/releases/download/v0.4.0-SNAPSHOT/tablicious-0.4.0-SNAPSHOT.tar.gz
+pkg install https://github.com/apjanke/octave-tablicious/releases/download/v0.3.2/tablicious-0.3.2.tar.gz
 @end example
 
 (Check the releases page at @url{https://github.com/apjanke/octave-tablicious/releases} to
@@ -645,7 +645,7 @@ Fill missing values.
 Find missing values.
 
 @item @ref{rmmissing}
-Remove missing values.
+MINNUMMISSING)
 
 @item @ref{standardizeMissing}
 Insert standard missing values.
@@ -711,10 +711,10 @@ Apply a function to column vectors in array.
 Display strings for array.
 
 @item @ref{isfile}
-Test whether file exists and is not a folder.
+
 
 @item @ref{isfolder}
-Test whether file exists and is a folder.
+
 
 @item @ref{pp}
 Alias for prettyprint, for interactive use.
@@ -793,8 +793,8 @@ Conditioning plot.
 		otherwise.
 * isdatetime::	True if input is a 'datetime' array, false otherwise.
 * isduration::	True if input is a 'duration' array, false otherwise.
-* isfile::	Test whether file exists and is not a folder.
-* isfolder::	Test whether file exists and is a folder.
+* isfile::	
+* isfolder::	
 * ismissing::	Find missing values.
 * isnannish::	Test if elements are NaN or NaN-like
 * localdate::	Represents a complete day using the Gregorian calendar.
@@ -829,7 +829,7 @@ Conditioning plot.
 * octave.examples.coplot::	Conditioning plot.
 * octave.examples.plot_pairs::	Plot pairs of variables against each other.
 * pp::	Alias for prettyprint, for interactive use.
-* rmmissing::	Remove missing values.
+* rmmissing::	MINNUMMISSING)
 * scalarexpand::	Expand scalar inputs to match size of non-scalar
 		inputs.
 * seconds::	Create a 'duration' X seconds long, or get the seconds in a
@@ -2450,57 +2450,10 @@ Returns a scalar logical.
 
 @node isfile
 @subsection isfile
-@deftypefn {Function} {@var{out} =} isfile (@var{file})
-
-Test whether file exists and is not a folder.
-
-Tests whether the given file path @var{file} exists on the filesystem, and
-is not a folder (aka “directory”). Files of any type except for directories
-are considered files by this function.
-
-TODO: Handling of symlinks is undetermined as of yet.
-
-@var{file} is a charvec containing the path to the file to test. It may be
-an absolute or relative path.
-
-This is a new, more specific replacement for @code{exist(file, "file")}. Unlike
-@code{exist}, @code{isfile} will not search the Octave load path for files.
-
-The underlying logic defers to @code{stat(file)} for determining file existence
-and attributes, so any paths supported by @code{stat} are also supported by
-@code{isfile}. In particular, it seems that the @code{~} alias for the home
-directory is supported, at least on Unix platforms.
-
-See also: @ref{isfolder}, @code{exist}
-
-@end deftypefn
-
-
+@emph{Not documented}
 @node isfolder
 @subsection isfolder
-@deftypefn {Function} {@var{out} =} isfolder (@var{file})
-
-Test whether file exists and is a folder.
-
-Tests whether the given file path @var{file} exists on the filesystem, and
-is a folder (aka “directory”).
-
-@var{file} is a charvec containing the path to the file to test. It may be
-an absolute or relative path.
-
-This is a new, more specific replacement for @code{exist(file, "dir")}. Unlike
-@code{exist}, @code{isfolder} will not search the Octave load path for files.
-
-The underlying logic defers to @code{stat(file)} for determining file existence
-and attributes, so any paths supported by @code{stat} are also supported by
-@code{isfolder}. In particular, it seems that the @code{~} alias for the home
-directory is supported, at least on Unix platforms.
-
-See also: @ref{isfile}, @code{exist}
-
-@end deftypefn
-
-
+@emph{Not documented}
 @node ismissing
 @subsection ismissing
 @deftypefn {Function} {@var{out} =} ismissing (@var{X})

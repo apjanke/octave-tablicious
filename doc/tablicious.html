@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<!-- This manual is for Tablicious, version 0.4.0-SNAPSHOT.
+<!-- This manual is for Tablicious, version 0.3.2.
 
 Copyright (C) 2019 Andrew Janke
 
@@ -18,10 +18,10 @@ into another language, under the same conditions as for modified versions. -->
 <!-- Created by GNU Texinfo 6.7, http://www.gnu.org/software/texinfo/ -->
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>Octave Tablicious v0.4.0-SNAPSHOT</title>
+<title>Octave Tablicious v0.3.2</title>
 
 <meta name="description" content="User manual for Tablicious for Octave.">
-<meta name="keywords" content="Octave Tablicious v0.4.0-SNAPSHOT">
+<meta name="keywords" content="Octave Tablicious v0.3.2">
 <meta name="resource-type" content="document">
 <meta name="distribution" content="global">
 <meta name="Generator" content="makeinfo">
@@ -50,7 +50,7 @@ ul.no-bullet {list-style: none}
 </head>
 
 <body lang="en">
-<h1 class="settitle" align="center">Octave Tablicious v0.4.0-SNAPSHOT</h1>
+<h1 class="settitle" align="center">Octave Tablicious v0.3.2</h1>
 
 
 
@@ -516,7 +516,7 @@ Next: <a href="#Introduction" accesskey="n" rel="next">Introduction</a> &nbsp; [
 </div>
 <span id="Tablicious-for-GNU-Octave"></span><h1 class="top">Tablicious for GNU Octave</h1>
 
-<p>This manual is for Tablicious, version 0.4.0-SNAPSHOT.
+<p>This manual is for Tablicious, version 0.3.2.
 </p>
 <table class="menu" border="0" cellspacing="0">
 <tr><td align="left" valign="top">&bull; <a href="#Introduction" accesskey="1">Introduction</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
@@ -554,7 +554,7 @@ Next: <a href="#Getting-Started" accesskey="n" rel="next">Getting Started</a>, U
 <div align="center">&mdash; <em>Douglas Adams</em>
 </div>
 
-<p>This is the manual for the Tablicious package version 0.4.0-SNAPSHOT for GNU Octave.
+<p>This is the manual for the Tablicious package version 0.3.2 for GNU Octave.
 </p>
 <p>Tablicious provides Matlab-compatible tabular data and date/time support for GNU Octave.
 This includes a <code>table</code> class with support for filtering and join operations;
@@ -588,7 +588,7 @@ Next: <a href="#Table-Representation" accesskey="n" rel="next">Table Representat
 To install the development prerelease of Tablicious, run this in Octave:
 </p>
 <div class="example">
-<pre class="example">pkg install https://github.com/apjanke/octave-tablicious/releases/download/v0.4.0-SNAPSHOT/tablicious-0.4.0-SNAPSHOT.tar.gz
+<pre class="example">pkg install https://github.com/apjanke/octave-tablicious/releases/download/v0.3.2/tablicious-0.3.2.tar.gz
 </pre></div>
 
 <p>(Check the releases page at <a href="https://github.com/apjanke/octave-tablicious/releases">https://github.com/apjanke/octave-tablicious/releases</a> to
@@ -1250,7 +1250,7 @@ Next: <a href="#API-Alphabetically" accesskey="n" rel="next">API Alphabetically<
 </p>
 </dd>
 <dt><a href="#rmmissing">rmmissing</a></dt>
-<dd><p>Remove missing values.
+<dd><p>MINNUMMISSING)
 </p>
 </dd>
 <dt><a href="#standardizeMissing">standardizeMissing</a></dt>
@@ -1336,13 +1336,7 @@ Next: <a href="#API-Alphabetically" accesskey="n" rel="next">API Alphabetically<
 </p>
 </dd>
 <dt><a href="#isfile">isfile</a></dt>
-<dd><p>Test whether file exists and is not a folder.
-</p>
-</dd>
 <dt><a href="#isfolder">isfolder</a></dt>
-<dd><p>Test whether file exists and is a folder.
-</p>
-</dd>
 <dt><a href="#pp">pp</a></dt>
 <dd><p>Alias for prettyprint, for interactive use.
 </p>
@@ -1456,9 +1450,9 @@ Previous: <a href="#API-by-Category" accesskey="p" rel="prev">API by Category</a
 </td></tr>
 <tr><td align="left" valign="top">&bull; <a href="#isduration">isduration</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">True if input is a &rsquo;duration&rsquo; array, false otherwise.
 </td></tr>
-<tr><td align="left" valign="top">&bull; <a href="#isfile">isfile</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">Test whether file exists and is not a folder.
+<tr><td align="left" valign="top">&bull; <a href="#isfile">isfile</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
-<tr><td align="left" valign="top">&bull; <a href="#isfolder">isfolder</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">Test whether file exists and is a folder.
+<tr><td align="left" valign="top">&bull; <a href="#isfolder">isfolder</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
 <tr><td align="left" valign="top">&bull; <a href="#ismissing">ismissing</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">Find missing values.
 </td></tr>
@@ -1521,7 +1515,7 @@ Previous: <a href="#API-by-Category" accesskey="p" rel="prev">API by Category</a
 </td></tr>
 <tr><td align="left" valign="top">&bull; <a href="#pp">pp</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">Alias for prettyprint, for interactive use.
 </td></tr>
-<tr><td align="left" valign="top">&bull; <a href="#rmmissing">rmmissing</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">Remove missing values.
+<tr><td align="left" valign="top">&bull; <a href="#rmmissing">rmmissing</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">MINNUMMISSING)
 </td></tr>
 <tr><td align="left" valign="top">&bull; <a href="#scalarexpand">scalarexpand</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">Expand scalar inputs to match size of non-scalar
 		inputs.
@@ -3804,64 +3798,15 @@ Next: <a href="#isfile" accesskey="n" rel="next">isfile</a>, Previous: <a href="
 Next: <a href="#isfolder" accesskey="n" rel="next">isfolder</a>, Previous: <a href="#isduration" accesskey="p" rel="prev">isduration</a>, Up: <a href="#API-Alphabetically" accesskey="u" rel="up">API Alphabetically</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
 </div>
 <span id="isfile-1"></span><h4 class="subsection">8.2.21 isfile</h4>
-<dl>
-<dt id="index-isfile">Function: <em><var>out</var> =</em> <strong>isfile</strong> <em>(<var>file</var>)</em></dt>
-<dd>
-<p>Test whether file exists and is not a folder.
-</p>
-<p>Tests whether the given file path <var>file</var> exists on the filesystem, and
-is not a folder (aka “directory”). Files of any type except for directories
-are considered files by this function.
-</p>
-<p>TODO: Handling of symlinks is undetermined as of yet.
-</p>
-<p><var>file</var> is a charvec containing the path to the file to test. It may be
-an absolute or relative path.
-</p>
-<p>This is a new, more specific replacement for <code>exist(file, &quot;file&quot;)</code>. Unlike
-<code>exist</code>, <code>isfile</code> will not search the Octave load path for files.
-</p>
-<p>The underlying logic defers to <code>stat(file)</code> for determining file existence
-and attributes, so any paths supported by <code>stat</code> are also supported by
-<code>isfile</code>. In particular, it seems that the <code>~</code> alias for the home
-directory is supported, at least on Unix platforms.
-</p>
-<p>See also: <a href="#isfolder">isfolder</a>, <code>exist</code>
-</p>
-</dd></dl>
-
-
-<hr>
+<p><em>Not documented</em>
+</p><hr>
 <span id="isfolder"></span><div class="header">
 <p>
 Next: <a href="#ismissing" accesskey="n" rel="next">ismissing</a>, Previous: <a href="#isfile" accesskey="p" rel="prev">isfile</a>, Up: <a href="#API-Alphabetically" accesskey="u" rel="up">API Alphabetically</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
 </div>
 <span id="isfolder-1"></span><h4 class="subsection">8.2.22 isfolder</h4>
-<dl>
-<dt id="index-isfolder">Function: <em><var>out</var> =</em> <strong>isfolder</strong> <em>(<var>file</var>)</em></dt>
-<dd>
-<p>Test whether file exists and is a folder.
-</p>
-<p>Tests whether the given file path <var>file</var> exists on the filesystem, and
-is a folder (aka “directory”).
-</p>
-<p><var>file</var> is a charvec containing the path to the file to test. It may be
-an absolute or relative path.
-</p>
-<p>This is a new, more specific replacement for <code>exist(file, &quot;dir&quot;)</code>. Unlike
-<code>exist</code>, <code>isfolder</code> will not search the Octave load path for files.
-</p>
-<p>The underlying logic defers to <code>stat(file)</code> for determining file existence
-and attributes, so any paths supported by <code>stat</code> are also supported by
-<code>isfolder</code>. In particular, it seems that the <code>~</code> alias for the home
-directory is supported, at least on Unix platforms.
-</p>
-<p>See also: <a href="#isfile">isfile</a>, <code>exist</code>
-</p>
-</dd></dl>
-
-
-<hr>
+<p><em>Not documented</em>
+</p><hr>
 <span id="ismissing"></span><div class="header">
 <p>
 Next: <a href="#isnannish" accesskey="n" rel="next">isnannish</a>, Previous: <a href="#isfolder" accesskey="p" rel="prev">isfolder</a>, Up: <a href="#API-Alphabetically" accesskey="u" rel="up">API Alphabetically</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
@@ -13123,7 +13068,7 @@ Previous: <a href="#API-Reference" accesskey="p" rel="prev">API Reference</a>, U
 </p>
 <span id="Manual-Copyright"></span><h3 class="section">9.2 Manual Copyright</h3>
 
-<p>This manual is for Tablicious, version 0.4.0-SNAPSHOT.
+<p>This manual is for Tablicious, version 0.3.2.
 </p>
 <p>Copyright &copy; 2019 Andrew Janke
 </p>

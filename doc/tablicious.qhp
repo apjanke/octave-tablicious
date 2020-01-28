@@ -834,8 +834,6 @@
             <keyword name="iscategorical" id="iscategorical" ref="html/iscategorical.html"/>
             <keyword name="isdatetime" id="isdatetime" ref="html/isdatetime.html"/>
             <keyword name="isduration" id="isduration" ref="html/isduration.html"/>
-            <keyword name="isfile" id="isfile" ref="html/isfile.html"/>
-            <keyword name="isfolder" id="isfolder" ref="html/isfolder.html"/>
             <keyword name="ismissing" id="ismissing" ref="html/ismissing.html"/>
             <keyword name="isnannish" id="isnannish" ref="html/isnannish.html"/>
             <keyword name="localdate" id="localdate" ref="html/localdate.html"/>
