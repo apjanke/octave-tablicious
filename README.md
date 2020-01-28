@@ -1,5 +1,4 @@
-Tablicious for GNU Octave
-=========================
+# Tablicious for GNU Octave
 
 Tablicious provides tabular data structures for Octave.
 
@@ -9,20 +8,20 @@ Tablicious provides tabular data structures for Octave.
 This package attempts to provide a set of mostly-Matlab-compatible implementation of the table class and related structures and functions.
 It provides:
 
-  * `table` and related construction/conversion functions
-  * Missing Data support
-    * `ismissing` and friends: `rmmissing`, `standardizeMissing`
-    * `@missing`
-    * `fillmissing` is not implemented yet, because that requires some actual math.
-  * `eqn` and `isnannish`
-    * These are experimental Octave extensions for dealing with NaN-like values. They are used by `table`, `ismissing`, and friends, but should be generally useful, and need to be global so they can be overridden by user-defined classes.
-  * `string`
-  * `categorical`
+* `table` and related construction/conversion functions
+* Missing Data support
+  * `ismissing` and friends: `rmmissing`, `standardizeMissing`
+  * `@missing`
+  * `fillmissing` is not implemented yet, because that requires some actual math.
+* `eqn` and `isnannish`
+  * These are experimental Octave extensions for dealing with NaN-like values. They are used by `table`, `ismissing`, and friends, but should be generally useful, and need to be global so they can be overridden by user-defined classes.
+* `string`
+* `categorical`
 
 It currently does not provide, but we would like to add:
 
-  * `timetable`
-  * Table I/O, such as `readtable`, `writetable`, and `csvread`/`dlmread` `table` support
+* `timetable`
+* Table I/O, such as `readtable`, `writetable`, and `csvread`/`dlmread` `table` support
 
 The `string` and `categorical` support are incomplete, and less mature than the rest of the package.
 
@@ -32,8 +31,8 @@ The `string` and `categorical` support are incomplete, and less mature than the 
 
 To get started using or testing this project, install it using Octave's `pkg` function:
 
-```
-pkg install https://github.com/apjanke/octave-tablicious/releases/download/v0.3.1/tablicious-0.3.1.tar.gz
+```octave
+pkg install https://github.com/apjanke/octave-tablicious/releases/download/v0.3.3/tablicious-0.3.3.tar.gz
 pkg load tablicious
 ```
 

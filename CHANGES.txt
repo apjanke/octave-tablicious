@@ -1,8 +1,10 @@
 Tablicious Changelog
 ====================
 
-Version ??? (???)
+Version 0.3.3 (2020-01-28)
 -----------------------------
+
+* Fix version metadata in the distribution
 
 Version 0.3.2 (2020-01-28)
 -----------------------------
