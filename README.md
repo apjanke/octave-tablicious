@@ -33,7 +33,7 @@ The `string` and `categorical` support are incomplete, and less mature than the 
 To get started using or testing this project, install it using Octave's `pkg` function:
 
 ```
-pkg install https://github.com/apjanke/octave-tablicious/releases/download/v0.3.0/tablicious-0.3.0.tar.gz
+pkg install https://github.com/apjanke/octave-tablicious/releases/download/v0.3.1/tablicious-0.3.1.tar.gz
 pkg load tablicious
 ```
 

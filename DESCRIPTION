@@ -1,6 +1,6 @@
 Name: tablicious
-Version: 0.4.0-SNAPSHOT
-Date: 2019-05-05
+Version: 0.3.1
+Date: 2020-01-27
 Title: Tablicious - Tabular/Relational data for Octave
 Author: Andrew Janke <floss@apjanke.net>
 Maintainer: Andrew Janke <floss@apjanke.net>
