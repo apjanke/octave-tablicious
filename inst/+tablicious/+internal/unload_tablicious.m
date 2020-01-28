@@ -19,10 +19,12 @@ function unload_tablicious
   endif
   
   if ! isempty (qhelp_file)
-    if compare_versions (version, "4.4.0", ">=")
+    if compare_versions (version, "4.4.0", ">=") && compare_versions (version, "6.0.0", "<")
       __octave_link_unregister_doc__ (qhelp_file);
+    elseif compare_versions (version, "6.0.0", ">=")
+      __event_manager_unregister_doc__ (qhelp_file);
     endif
-  endif
+endif
   
   % Unload compatibility shims
   
