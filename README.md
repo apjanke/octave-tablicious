@@ -5,7 +5,7 @@ Tablicious provides tabular data structures for Octave.
 | WARNING: This library is currently beta quality. Do not use it in any production or business code! Seriously!! |
 | ---- |
 
-This package attempts to provide a set of mostly-Matlab-compatible implementation of the table class and related structures and functions.
+This package attempts to provide a set of mostly-Matlab-compatible implementations of the table class and related structures and functions.
 It provides:
 
 * `table` and related construction/conversion functions
@@ -45,6 +45,9 @@ If you want to hack on the Tablicious code itself, set it up like this:
 * Add the `inst/` directory from the repo to your Octave path.
 
 ## Documentation
+
+Once you have Tablicious installed, the user manual will show up in the Octave GUI’s documentation browser.
+You can also run `help <foo>` or `doc <foo>` for any of the classes or functions in Tablicious.
 
 The documentation for the latest development version can be viewed online at <https://apjanke.github.io/octave-tablicious/doc/tablicious.html>.
 
