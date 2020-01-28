@@ -46,11 +46,13 @@ function out = do_detection ()
       % This exists on macOS and RHEL/CentOS 7/some Fedora
       [target,err,msg] = readlink ('/etc/localtime');
       if err
-        error ('Can''t determine time zone: Failed reading /etc/localtime: %s', ...
+        warning ('Failed detecting time zone from /etc/localtime even though it exists: Failed reading /etc/localtime: %s\n', ...
           msg);
+      else
+        out = regexprep (target, '.*/zoneinfo/', '');
       end
-      out = regexprep (target, '.*/zoneinfo/', '');
-    elseif exist ('/etc/timezone')
+    end
+    if isempty (out) && exist ('/etc/timezone')
       % This exists on Debian
       out = strtrim (octave.chrono.internal.slurpTextFile ('/etc/timezone'));
     endif
@@ -65,11 +67,14 @@ function out = do_detection ()
     if isempty (out)
       % Fall back to Java if nothing else worked
       if ~usejava ('jvm')
-        error ('Detecting time zone on this OS requires Java, which is not available in this Octave.');
+        warning ('Detecting time zone on this OS requires Java, which is not available in this Octave.\n');
+      else
+        zone = javaMethod ('getDefault', 'java.util.TimeZone');
+        out = char (zone.getID());
       endif
-      zone = javaMethod ('getDefault', 'java.util.TimeZone');
-      out = char (zone.getID());
     endif
+    if isempty (out)
+      fprintf ('Warning: Failed detecting system time zone.\n');
   endif
 endfunction
 
