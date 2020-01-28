@@ -48,7 +48,7 @@ octave_idx_type *binsearch (const T vals[], octave_idx_type vals_len, const T ar
       } else {
         //std::string msg = std::string ("Total ordering violation: neither <, >, nor == was true. ")
         //        + "vals[" + i + "] = " + val + ", arr[" + mid + "] = " + arr[mid];
-        error ("Total ordering violation: neither <, >, nor == was true. i=%ld, mid=%ld",
+        error ("Total ordering violation: neither <, >, nor == was true. i=%lld, mid=%lld",
           i, mid);
       }
     }
