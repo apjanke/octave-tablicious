@@ -50,8 +50,8 @@ function out = do_detection ()
           msg);
       else
         out = regexprep (target, '.*/zoneinfo/', '');
-      end
-    end
+      endif
+    endif
     if isempty (out) && exist ('/etc/timezone')
       % This exists on Debian
       out = strtrim (octave.chrono.internal.slurpTextFile ('/etc/timezone'));
@@ -75,6 +75,7 @@ function out = do_detection ()
     endif
     if isempty (out)
       fprintf ('Warning: Failed detecting system time zone.\n');
+    endif
   endif
 endfunction
 
