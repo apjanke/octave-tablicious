@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<!-- This manual is for Tablicious, version 0.3.2.
+<!-- This manual is for Tablicious, version 0.3.4.
 
 Copyright (C) 2019 Andrew Janke
 
@@ -18,10 +18,10 @@ into another language, under the same conditions as for modified versions. -->
 <!-- Created by GNU Texinfo 6.7, http://www.gnu.org/software/texinfo/ -->
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>Octave Tablicious v0.3.2</title>
+<title>Octave Tablicious v0.3.4</title>
 
 <meta name="description" content="User manual for Tablicious for Octave.">
-<meta name="keywords" content="Octave Tablicious v0.3.2">
+<meta name="keywords" content="Octave Tablicious v0.3.4">
 <meta name="resource-type" content="document">
 <meta name="distribution" content="global">
 <meta name="Generator" content="makeinfo">
@@ -50,7 +50,7 @@ ul.no-bullet {list-style: none}
 </head>
 
 <body lang="en">
-<h1 class="settitle" align="center">Octave Tablicious v0.3.2</h1>
+<h1 class="settitle" align="center">Octave Tablicious v0.3.4</h1>
 
 
 
@@ -516,7 +516,7 @@ Next: <a href="#Introduction" accesskey="n" rel="next">Introduction</a> &nbsp; [
 </div>
 <span id="Tablicious-for-GNU-Octave"></span><h1 class="top">Tablicious for GNU Octave</h1>
 
-<p>This manual is for Tablicious, version 0.3.2.
+<p>This manual is for Tablicious, version 0.3.4.
 </p>
 <table class="menu" border="0" cellspacing="0">
 <tr><td align="left" valign="top">&bull; <a href="#Introduction" accesskey="1">Introduction</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
@@ -554,7 +554,7 @@ Next: <a href="#Getting-Started" accesskey="n" rel="next">Getting Started</a>, U
 <div align="center">&mdash; <em>Douglas Adams</em>
 </div>
 
-<p>This is the manual for the Tablicious package version 0.3.2 for GNU Octave.
+<p>This is the manual for the Tablicious package version 0.3.4 for GNU Octave.
 </p>
 <p>Tablicious provides Matlab-compatible tabular data and date/time support for GNU Octave.
 This includes a <code>table</code> class with support for filtering and join operations;
@@ -588,7 +588,7 @@ Next: <a href="#Table-Representation" accesskey="n" rel="next">Table Representat
 To install the development prerelease of Tablicious, run this in Octave:
 </p>
 <div class="example">
-<pre class="example">pkg install https://github.com/apjanke/octave-tablicious/releases/download/v0.3.2/tablicious-0.3.2.tar.gz
+<pre class="example">pkg install https://github.com/apjanke/octave-tablicious/releases/download/v0.3.4/tablicious-0.3.4.tar.gz
 </pre></div>
 
 <p>(Check the releases page at <a href="https://github.com/apjanke/octave-tablicious/releases">https://github.com/apjanke/octave-tablicious/releases</a> to
@@ -1285,29 +1285,11 @@ Next: <a href="#API-Alphabetically" accesskey="n" rel="next">API Alphabetically<
 </p>
 </dd>
 <dt><a href="#mustBeFinite">mustBeFinite</a></dt>
-<dd><p>Requires that input is finite.
-</p>
-</dd>
 <dt><a href="#mustBeInteger">mustBeInteger</a></dt>
-<dd><p>Requires that input is integer-valued (but not necessarily integer-typed).
-</p>
-</dd>
 <dt><a href="#mustBeMember">mustBeMember</a></dt>
-<dd><p>Requires that input is a member of a set of given valid values.
-</p>
-</dd>
 <dt><a href="#mustBeNonempty">mustBeNonempty</a></dt>
-<dd><p>Requires that input is nonempty.
-</p>
-</dd>
 <dt><a href="#mustBeNumeric">mustBeNumeric</a></dt>
-<dd><p>Requires that input is numeric.
-</p>
-</dd>
 <dt><a href="#mustBeReal">mustBeReal</a></dt>
-<dd><p>Requires that input is finite.
-</p>
-</dd>
 <dt><a href="#mustBeSameSize">mustBeSameSize</a></dt>
 <dd><p>Requires that the inputs are the same size.
 </p>
@@ -1474,19 +1456,17 @@ Previous: <a href="#API-by-Category" accesskey="p" rel="prev">API by Category</a
 </td></tr>
 <tr><td align="left" valign="top">&bull; <a href="#mustBeCharvec">mustBeCharvec</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">Requires that input is a char row vector.
 </td></tr>
-<tr><td align="left" valign="top">&bull; <a href="#mustBeFinite">mustBeFinite</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">Requires that input is finite.
+<tr><td align="left" valign="top">&bull; <a href="#mustBeFinite">mustBeFinite</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
-<tr><td align="left" valign="top">&bull; <a href="#mustBeInteger">mustBeInteger</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">Requires that input is integer-valued (but not
-		necessarily integer-typed).
+<tr><td align="left" valign="top">&bull; <a href="#mustBeInteger">mustBeInteger</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
-<tr><td align="left" valign="top">&bull; <a href="#mustBeMember">mustBeMember</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">Requires that input is a member of a set of given
-		valid values.
+<tr><td align="left" valign="top">&bull; <a href="#mustBeMember">mustBeMember</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
-<tr><td align="left" valign="top">&bull; <a href="#mustBeNonempty">mustBeNonempty</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">Requires that input is nonempty.
+<tr><td align="left" valign="top">&bull; <a href="#mustBeNonempty">mustBeNonempty</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
-<tr><td align="left" valign="top">&bull; <a href="#mustBeNumeric">mustBeNumeric</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">Requires that input is numeric.
+<tr><td align="left" valign="top">&bull; <a href="#mustBeNumeric">mustBeNumeric</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
-<tr><td align="left" valign="top">&bull; <a href="#mustBeReal">mustBeReal</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">Requires that input is finite.
+<tr><td align="left" valign="top">&bull; <a href="#mustBeReal">mustBeReal</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
 <tr><td align="left" valign="top">&bull; <a href="#mustBeSameSize">mustBeSameSize</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">Requires that the inputs are the same size.
 </td></tr>
@@ -4421,131 +4401,43 @@ empty, it falls back to &quot;input&quot;.
 Next: <a href="#mustBeInteger" accesskey="n" rel="next">mustBeInteger</a>, Previous: <a href="#mustBeCharvec" accesskey="p" rel="prev">mustBeCharvec</a>, Up: <a href="#API-Alphabetically" accesskey="u" rel="up">API Alphabetically</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
 </div>
 <span id="mustBeFinite-1"></span><h4 class="subsection">8.2.32 mustBeFinite</h4>
-<dl>
-<dt id="index-mustBeFinite">Function File: <em><var>x</var> =</em> <strong>mustBeFinite</strong> <em>(<var>x</var>, <var>label</var>)</em></dt>
-<dd>
-<p>Requires that input is finite.
-</p>
-<p>Raises an error if the input <var>x</var> is not finite, as determined by
-<code>isfinite (x)</code>.
-</p>
-<p><var>label</var> is an optional input that determines how the input will be described in
-error messages. If not supplied, <code>inputname (1)</code> is used, and if that is
-empty, it falls back to &quot;input&quot;.
-</p>
-</dd></dl>
-
-
-<hr>
+<p><em>Not documented</em>
+</p><hr>
 <span id="mustBeInteger"></span><div class="header">
 <p>
 Next: <a href="#mustBeMember" accesskey="n" rel="next">mustBeMember</a>, Previous: <a href="#mustBeFinite" accesskey="p" rel="prev">mustBeFinite</a>, Up: <a href="#API-Alphabetically" accesskey="u" rel="up">API Alphabetically</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
 </div>
 <span id="mustBeInteger-1"></span><h4 class="subsection">8.2.33 mustBeInteger</h4>
-<dl>
-<dt id="index-mustBeInteger">Function File: <em><var>x</var> =</em> <strong>mustBeInteger</strong> <em>(<var>x</var>, <var>label</var>)</em></dt>
-<dd>
-<p>Requires that input is integer-valued (but not necessarily integer-typed).
-</p>
-<p>Raises an error if any element of the input <var>x</var> is not a finite,
-real, integer-valued numeric value, as determined by various checks.
-</p>
-<p><var>label</var> is an optional input that determines how the input will be described in
-error messages. If not supplied, <code>inputname (1)</code> is used, and if that is
-empty, it falls back to &quot;input&quot;.
-</p>
-</dd></dl>
-
-
-<hr>
+<p><em>Not documented</em>
+</p><hr>
 <span id="mustBeMember"></span><div class="header">
 <p>
 Next: <a href="#mustBeNonempty" accesskey="n" rel="next">mustBeNonempty</a>, Previous: <a href="#mustBeInteger" accesskey="p" rel="prev">mustBeInteger</a>, Up: <a href="#API-Alphabetically" accesskey="u" rel="up">API Alphabetically</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
 </div>
 <span id="mustBeMember-1"></span><h4 class="subsection">8.2.34 mustBeMember</h4>
-<dl>
-<dt id="index-mustBeMember">Function File: <em><var>x</var> =</em> <strong>mustBeMember</strong> <em>(<var>x</var>, <var>valid</var>, <var>label</var>)</em></dt>
-<dd>
-<p>Requires that input is a member of a set of given valid values.
-</p>
-<p>Raises an error if any element of the input <var>x</var> is not a member
-of <var>valid</var>, as determined by <code>ismember (x)</code>.
-</p>
-<p>Note that char inputs may behave weirdly, because of the interaction between
-chars and cellstrs when calling ismember() on them. But it will probably
-&quot;do what you mean&quot; if you just use it naturally.
-</p>
-<p><var>label</var> is an optional input that determines how the input will be described in
-error messages. If not supplied, <code>inputname (1)</code> is used, and if that is
-empty, it falls back to &quot;input&quot;.
-</p>
-</dd></dl>
-
-
-<hr>
+<p><em>Not documented</em>
+</p><hr>
 <span id="mustBeNonempty"></span><div class="header">
 <p>
 Next: <a href="#mustBeNumeric" accesskey="n" rel="next">mustBeNumeric</a>, Previous: <a href="#mustBeMember" accesskey="p" rel="prev">mustBeMember</a>, Up: <a href="#API-Alphabetically" accesskey="u" rel="up">API Alphabetically</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
 </div>
 <span id="mustBeNonempty-1"></span><h4 class="subsection">8.2.35 mustBeNonempty</h4>
-<dl>
-<dt id="index-mustBeNonempty">Function File: <em><var>x</var> =</em> <strong>mustBeNonempty</strong> <em>(<var>x</var>, <var>label</var>)</em></dt>
-<dd>
-<p>Requires that input is nonempty.
-</p>
-<p>Raises an error if the input <var>x</var> is not empty, as determined by
-<code>! isempty (x)</code>.
-</p>
-<p><var>label</var> is an optional input that determines how the input will be described in
-error messages. If not supplied, <code>inputname (1)</code> is used, and if that is
-empty, it falls back to &quot;input&quot;.
-</p>
-</dd></dl>
-
-
-<hr>
+<p><em>Not documented</em>
+</p><hr>
 <span id="mustBeNumeric"></span><div class="header">
 <p>
 Next: <a href="#mustBeReal" accesskey="n" rel="next">mustBeReal</a>, Previous: <a href="#mustBeNonempty" accesskey="p" rel="prev">mustBeNonempty</a>, Up: <a href="#API-Alphabetically" accesskey="u" rel="up">API Alphabetically</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
 </div>
 <span id="mustBeNumeric-1"></span><h4 class="subsection">8.2.36 mustBeNumeric</h4>
-<dl>
-<dt id="index-mustBeNumeric">Function File: <em><var>x</var> =</em> <strong>mustBeNumeric</strong> <em>(<var>x</var>, <var>label</var>)</em></dt>
-<dd>
-<p>Requires that input is numeric.
-</p>
-<p>Raises an error if the input <var>x</var> is not numeric, as determined by
-<code>isnumeric (x)</code>.
-</p>
-<p><var>label</var> is an optional input that determines how the input will be described in
-error messages. If not supplied, <code>inputname (1)</code> is used, and if that is
-empty, it falls back to &quot;input&quot;.
-</p>
-</dd></dl>
-
-
-<hr>
+<p><em>Not documented</em>
+</p><hr>
 <span id="mustBeReal"></span><div class="header">
 <p>
 Next: <a href="#mustBeSameSize" accesskey="n" rel="next">mustBeSameSize</a>, Previous: <a href="#mustBeNumeric" accesskey="p" rel="prev">mustBeNumeric</a>, Up: <a href="#API-Alphabetically" accesskey="u" rel="up">API Alphabetically</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
 </div>
 <span id="mustBeReal-1"></span><h4 class="subsection">8.2.37 mustBeReal</h4>
-<dl>
-<dt id="index-mustBeReal">Function File: <em><var>x</var> =</em> <strong>mustBeReal</strong> <em>(<var>x</var>, <var>label</var>)</em></dt>
-<dd>
-<p>Requires that input is finite.
-</p>
-<p>Raises an error if the input <var>x</var> is not real, as determined by
-<code>isreal (x)</code>.
-</p>
-<p><var>label</var> is an optional input that determines how the input will be described in
-error messages. If not supplied, <code>inputname (1)</code> is used, and if that is
-empty, it falls back to &quot;input&quot;.
-</p>
-</dd></dl>
-
-
-<hr>
+<p><em>Not documented</em>
+</p><hr>
 <span id="mustBeSameSize"></span><div class="header">
 <p>
 Next: <a href="#mustBeScalar" accesskey="n" rel="next">mustBeScalar</a>, Previous: <a href="#mustBeReal" accesskey="p" rel="prev">mustBeReal</a>, Up: <a href="#API-Alphabetically" accesskey="u" rel="up">API Alphabetically</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
@@ -13068,7 +12960,7 @@ Previous: <a href="#API-Reference" accesskey="p" rel="prev">API Reference</a>, U
 </p>
 <span id="Manual-Copyright"></span><h3 class="section">9.2 Manual Copyright</h3>
 
-<p>This manual is for Tablicious, version 0.3.2.
+<p>This manual is for Tablicious, version 0.3.4.
 </p>
 <p>Copyright &copy; 2019 Andrew Janke
 </p>

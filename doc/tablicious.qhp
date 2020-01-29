@@ -859,12 +859,6 @@
             <keyword name="mustBeA" id="mustBeA" ref="html/mustBeA.html"/>
             <keyword name="mustBeCellstr" id="mustBeCellstr" ref="html/mustBeCellstr.html"/>
             <keyword name="mustBeCharvec" id="mustBeCharvec" ref="html/mustBeCharvec.html"/>
-            <keyword name="mustBeFinite" id="mustBeFinite" ref="html/mustBeFinite.html"/>
-            <keyword name="mustBeInteger" id="mustBeInteger" ref="html/mustBeInteger.html"/>
-            <keyword name="mustBeMember" id="mustBeMember" ref="html/mustBeMember.html"/>
-            <keyword name="mustBeNonempty" id="mustBeNonempty" ref="html/mustBeNonempty.html"/>
-            <keyword name="mustBeNumeric" id="mustBeNumeric" ref="html/mustBeNumeric.html"/>
-            <keyword name="mustBeReal" id="mustBeReal" ref="html/mustBeReal.html"/>
             <keyword name="mustBeSameSize" id="mustBeSameSize" ref="html/mustBeSameSize.html"/>
             <keyword name="mustBeScalar" id="mustBeScalar" ref="html/mustBeScalar.html"/>
             <keyword name="mustBeScalarLogical" id="mustBeScalarLogical" ref="html/mustBeScalarLogical.html"/>

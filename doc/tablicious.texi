@@ -2,7 +2,7 @@
 
 @c %**start of header
 
-@set VERSION 0.3.2
+@set VERSION 0.3.4
 
 @setfilename tablicious.info
 @settitle Octave Tablicious v@value{VERSION}
@@ -106,7 +106,7 @@ The easiest way to obtain Tablicious is by using Octave's @code{pkg} package man
 To install the development prerelease of Tablicious, run this in Octave:
 
 @example
-pkg install https://github.com/apjanke/octave-tablicious/releases/download/v0.3.2/tablicious-0.3.2.tar.gz
+pkg install https://github.com/apjanke/octave-tablicious/releases/download/v0.3.4/tablicious-0.3.4.tar.gz
 @end example
 
 (Check the releases page at @url{https://github.com/apjanke/octave-tablicious/releases} to
@@ -672,22 +672,22 @@ Requires that input is a cellstr.
 Requires that input is a char row vector.
 
 @item @ref{mustBeFinite}
-Requires that input is finite.
+
 
 @item @ref{mustBeInteger}
-Requires that input is integer-valued (but not necessarily integer-typed).
+
 
 @item @ref{mustBeMember}
-Requires that input is a member of a set of given valid values.
+
 
 @item @ref{mustBeNonempty}
-Requires that input is nonempty.
+
 
 @item @ref{mustBeNumeric}
-Requires that input is numeric.
+
 
 @item @ref{mustBeReal}
-Requires that input is finite.
+
 
 @item @ref{mustBeSameSize}
 Requires that the inputs are the same size.
@@ -806,14 +806,12 @@ Conditioning plot.
 * mustBeA::	Requires that input is of a given type.
 * mustBeCellstr::	Requires that input is a cellstr.
 * mustBeCharvec::	Requires that input is a char row vector.
-* mustBeFinite::	Requires that input is finite.
-* mustBeInteger::	Requires that input is integer-valued (but not
-		necessarily integer-typed).
-* mustBeMember::	Requires that input is a member of a set of given
-		valid values.
-* mustBeNonempty::	Requires that input is nonempty.
-* mustBeNumeric::	Requires that input is numeric.
-* mustBeReal::	Requires that input is finite.
+* mustBeFinite::	
+* mustBeInteger::	
+* mustBeMember::	
+* mustBeNonempty::	
+* mustBeNumeric::	
+* mustBeReal::	
 * mustBeSameSize::	Requires that the inputs are the same size.
 * mustBeScalar::	Requires that input is scalar.
 * mustBeScalarLogical:: Requires that input is a scalar logical.
@@ -2912,104 +2910,22 @@ empty, it falls back to "input".
 
 @node mustBeFinite
 @subsection mustBeFinite
-@deftypefn {Function File} {@var{x} =} mustBeFinite (@var{x}, @var{label})
-
-Requires that input is finite.
-
-Raises an error if the input @var{x} is not finite, as determined by
-@code{isfinite (x)}.
-
-@var{label} is an optional input that determines how the input will be described in
-error messages. If not supplied, @code{inputname (1)} is used, and if that is
-empty, it falls back to "input".
-
-@end deftypefn
-
-
+@emph{Not documented}
 @node mustBeInteger
 @subsection mustBeInteger
-@deftypefn {Function File} {@var{x} =} mustBeInteger (@var{x}, @var{label})
-
-Requires that input is integer-valued (but not necessarily integer-typed).
-
-Raises an error if any element of the input @var{x} is not a finite,
-real, integer-valued numeric value, as determined by various checks.
-
-@var{label} is an optional input that determines how the input will be described in
-error messages. If not supplied, @code{inputname (1)} is used, and if that is
-empty, it falls back to "input".
-
-@end deftypefn
-
-
+@emph{Not documented}
 @node mustBeMember
 @subsection mustBeMember
-@deftypefn {Function File} {@var{x} =} mustBeMember (@var{x}, @var{valid}, @var{label})
-
-Requires that input is a member of a set of given valid values.
-
-Raises an error if any element of the input @var{x} is not a member
-of @var{valid}, as determined by @code{ismember (x)}.
-
-Note that char inputs may behave weirdly, because of the interaction between
-chars and cellstrs when calling ismember() on them. But it will probably
-"do what you mean" if you just use it naturally.
-
-@var{label} is an optional input that determines how the input will be described in
-error messages. If not supplied, @code{inputname (1)} is used, and if that is
-empty, it falls back to "input".
-
-@end deftypefn
-
-
+@emph{Not documented}
 @node mustBeNonempty
 @subsection mustBeNonempty
-@deftypefn {Function File} {@var{x} =} mustBeNonempty (@var{x}, @var{label})
-
-Requires that input is nonempty.
-
-Raises an error if the input @var{x} is not empty, as determined by
-@code{! isempty (x)}.
-
-@var{label} is an optional input that determines how the input will be described in
-error messages. If not supplied, @code{inputname (1)} is used, and if that is
-empty, it falls back to "input".
-
-@end deftypefn
-
-
+@emph{Not documented}
 @node mustBeNumeric
 @subsection mustBeNumeric
-@deftypefn {Function File} {@var{x} =} mustBeNumeric (@var{x}, @var{label})
-
-Requires that input is numeric.
-
-Raises an error if the input @var{x} is not numeric, as determined by
-@code{isnumeric (x)}.
-
-@var{label} is an optional input that determines how the input will be described in
-error messages. If not supplied, @code{inputname (1)} is used, and if that is
-empty, it falls back to "input".
-
-@end deftypefn
-
-
+@emph{Not documented}
 @node mustBeReal
 @subsection mustBeReal
-@deftypefn {Function File} {@var{x} =} mustBeReal (@var{x}, @var{label})
-
-Requires that input is finite.
-
-Raises an error if the input @var{x} is not real, as determined by
-@code{isreal (x)}.
-
-@var{label} is an optional input that determines how the input will be described in
-error messages. If not supplied, @code{inputname (1)} is used, and if that is
-empty, it falls back to "input".
-
-@end deftypefn
-
-
+@emph{Not documented}
 @node mustBeSameSize
 @subsection mustBeSameSize
 @deftypefn {Function File} {[@var{a}, @var{b}] =} mustBeSameSize (@var{a}, @var{b}, @var{labelA}, @var{labelB})

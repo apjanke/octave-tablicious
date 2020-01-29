@@ -14,6 +14,9 @@ function load_tablicious
   if compare_versions (version, "5.0.0", "<")
     addpath (fullfile (shims_dir, "pre-5.0.0"));
   endif
+  if compare_versions (version, "6.0.0", "<")
+    addpath (fullfile (shims_dir, "pre-6.0.0"));
+  endif
   warning (orig_warn);
   
   % Load doco
