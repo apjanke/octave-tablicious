@@ -169,41 +169,9 @@ classdef TzDb
           "This is probably an error in the tzinfo database files."], ...
             zoneId, zoneFile);
       endif
-      data = octave.chrono.internal.slurpBinaryFile (zoneFile);
-      
-      % Parse tzinfo format file
-      ix = 1;
-      section_data = data(ix:end);
-      [section1, n_bytes_read] = this.parseZoneSection (section_data, 1);
-      out.section1 = section1;
-      
-      % Version 2 stuff
-      if ismember (section1.header.format_id, {'2','3'})
-        % A whole nother header/data, except using 8-byte transition/leap times
-        ix = ix + n_bytes_read;
-        % Scan for the magic cookie to double-check our parsing.
-        magic_ixs = strfind (char (data(ix:end)), 'TZif');
-        if isempty (magic_ixs)
-          % No second section found
-        else
-          % Advance to where we found the magic cookie
-          if magic_ixs(1) ~= 1
-            warning (['Unexpected extra data at end of section in tzinfo file for %s.\n' ...
-              'Possible bug in chrono''s parsing code.'], zoneId);
-          endif
-          ix = ix + magic_ixs(1) - 1;
-          section_data = data(ix:end);
-          [out.section2, n_bytes_read_2] = this.parseZoneSection (section_data, 2);
-          ix = ix + n_bytes_read_2;
-          % And then there's the going-forward zone at the end.
-          % The first LF should be the very next byte.
-          data_left = data(ix:end);
-          ixLF = find (data_left == uint8 (sprintf ('\n')));
-          if numel (ixLF) >= 2
-            out.goingForwardPosixZone = char (data_left(ixLF(1)+1:ixLF(2)-1));
-          endif
-        endif
-      endif
+
+      tzZoneFile = octave.chrono.internal.TzZoneFile (zoneFile);
+      out = tzZoneFile.readZoneFile ();
     endfunction
     
     function [out, n_bytes_read] = parseZoneSection(this, data, sectionFormat)

@@ -44,20 +44,15 @@ function out = do_detection ()
   endif
 
   % Get actual system default, using OS-specific mechanisms
-  if isempty (out) && exist ('/etc/localtime', 'file')
+  if isempty (out) && isfile ('/etc/localtime')
     % This exists on macOS and RHEL/CentOS 7/some Fedora
     % By convention, when it's a symlink, it points into a file whose path is the same
     % as the IANA time zone identifier.
     [target,err,msg] = readlink ('/etc/localtime');
     if err
-      % Ignore this failure for now and fall back to another detection method
-      % This failure will happen on RHEL 6, where /etc/localtime is a regular file
-      % instead of a symlink
-      % TODO: Actually detect whether it's a symlink, and use that
-      % TODO: Read the zone name out of the file contents
-      %warning ('tablicious:TimeZoneDetectionFailure', ...
-      %  'Failed detecting time zone from /etc/localtime even though it exists: Failed reading /etc/localtime: %s', ...
-      %  msg);
+      % It's not a symlink. And we can't pull the zone name out of the file contents
+      % because zone info files do not store their names internally. (LOL.)
+      % Ignore and fall back to another detection method
     else
       out = regexprep (target, '.*/zoneinfo/', '');
     endif

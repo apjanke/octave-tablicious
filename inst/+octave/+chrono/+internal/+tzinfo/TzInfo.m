@@ -18,6 +18,7 @@
 
 classdef TzInfo
   %TZINFO Zone definition for a single time zone
+  %
   
   properties (Constant)
     utcZoneAliases = {'Etc/GMT' 'Etc/GMT+0' 'Etc/GMT-0' 'Etc/Greenwich' ...
