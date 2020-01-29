@@ -1,6 +1,11 @@
 Tablicious Changelog
 ====================
 
+Version 0.3.4 (2020-01-28)
+-----------------------------
+
+* Octave 6.x compatibility: move some mustBe* validators into compatibility shims
+
 Version 0.3.3 (2020-01-28)
 -----------------------------
 
@@ -11,7 +16,7 @@ Version 0.3.2 (2020-01-28)
 
 * sprintf and fprintf support for datetime, categorical, and other classes
 * Added this ChangeLog
-* Octave 6.x compatibility fix
+* Octave 6.x compatibility fix: use different function for registering QHelp doco
 
 Version 0.3.1 (2020-01-27)
 -----------------------------
