@@ -1,8 +1,10 @@
 Tablicious Changelog
 ====================
 
-Version ??? (???)
+Version 0.3.5 (2020-01-30)
 -----------------------------
+
+* Fix compiler warnings on systems with 32-bit `octave_idx_type`
 
 Version 0.3.4 (2020-01-28)
 -----------------------------
