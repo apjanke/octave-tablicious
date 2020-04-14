@@ -2,7 +2,7 @@
 
 @c %**start of header
 
-@set VERSION 0.3.5
+@set VERSION 0.3.6-SNAPSHOT
 
 @setfilename tablicious.info
 @settitle Octave Tablicious v@value{VERSION}
@@ -106,7 +106,7 @@ The easiest way to obtain Tablicious is by using Octave's @code{pkg} package man
 To install the development prerelease of Tablicious, run this in Octave:
 
 @example
-pkg install https://github.com/apjanke/octave-tablicious/releases/download/v0.3.5/tablicious-0.3.5.tar.gz
+pkg install https://github.com/apjanke/octave-tablicious/releases/download/v0.3.6-SNAPSHOT/tablicious-0.3.6-SNAPSHOT.tar.gz
 @end example
 
 (Check the releases page at @url{https://github.com/apjanke/octave-tablicious/releases} to
@@ -645,7 +645,7 @@ Fill missing values.
 Find missing values.
 
 @item @ref{rmmissing}
-MINNUMMISSING)
+Remove missing values.
 
 @item @ref{standardizeMissing}
 Insert standard missing values.
@@ -749,8 +749,14 @@ Plot pairs of variables against each other.
 @end table
 @subsection Uncategorized
 @table @asis
+@item @ref{detectImportOptions}
+Detect import options based on file content.
+
 @item @ref{iscategorical}
 True if input is a 'categorical' array, false otherwise.
+
+@item @ref{matlab.io.spreadsheet.SpreadsheetImportOptions}
+Options controlling how table data is imported from a spreadsheet.
 
 @item @ref{octave.chrono.dummy_function}
 A dummy function just for testing the doco tools.
@@ -760,6 +766,9 @@ A do-nothing class just for testing the doco tools.
 
 @item @ref{octave.examples.coplot}
 Conditioning plot.
+
+@item @ref{readtable}
+Read a table from a file.
 
 @end table
 
@@ -780,6 +789,7 @@ Conditioning plot.
 * contains::	Test if strings contain a pattern.
 * datetime::	Represents points in time using the Gregorian calendar.
 * days::	Duration in days.
+* detectImportOptions:: Detect import options based on file content.
 * discretize::	Group data into discrete bins or categories.
 * dispstrs::	Display strings for array.
 * duration::	Represents durations or periods of time as an amount of
@@ -798,6 +808,8 @@ Conditioning plot.
 * ismissing::	Find missing values.
 * isnannish::	Test if elements are NaN or NaN-like
 * localdate::	Represents a complete day using the Gregorian calendar.
+* matlab.io.spreadsheet.SpreadsheetImportOptions::	Options controlling
+		how table data is imported from a spreadsheet.
 * milliseconds::	Create a 'duration' X milliseconds long, or get the
 		milliseconds in a 'duration' X.
 * minutes::	Create a 'duration' X hours long, or get the hours in a
@@ -827,7 +839,8 @@ Conditioning plot.
 * octave.examples.coplot::	Conditioning plot.
 * octave.examples.plot_pairs::	Plot pairs of variables against each other.
 * pp::	Alias for prettyprint, for interactive use.
-* rmmissing::	MINNUMMISSING)
+* readtable::	Read a table from a file.
+* rmmissing::	Remove missing values.
 * scalarexpand::	Expand scalar inputs to match size of non-scalar
 		inputs.
 * seconds::	Create a 'duration' X seconds long, or get the seconds in a
@@ -2092,6 +2105,16 @@ is.
 @end deftypefn
 
 
+@node detectImportOptions
+@subsection detectImportOptions
+@deftypefn {Function} {@var{out} =} detectImportOptions (@var{filename})
+@deftypefnx {Function} {@var{out} =} detectImportOptions (@dots{}, @var{Name}, @var{Value})
+
+Detect import options based on file content.
+
+@end deftypefn
+
+
 @node discretize
 @subsection discretize
 @deftypefn {Function} {[@var{Y}, @var{E}] =} discretize (@var{X}, @var{n})
@@ -2732,6 +2755,18 @@ to support type compatibility and polymorphic programming.
 Returns logical array the same size as @var{obj}.
 
 @end deftypefn
+
+@node matlab.io.spreadsheet.SpreadsheetImportOptions
+@subsection matlab.io.spreadsheet.SpreadsheetImportOptions
+@deftp {Class} matlab.io.spreadsheet.SpreadsheetImportOptions
+
+Options controlling how table data is imported from a spreadsheet.
+
+A SpreadsheetImportOptions object specifies the options for importing
+a single table of data from a spreadsheet file.
+
+@end deftp
+
 
 @node milliseconds
 @subsection milliseconds
@@ -7570,6 +7605,17 @@ This is an alias for prettyprint(), with additional name-conversion magic.
 If you pass in a char, instead of pretty-printing that directly, it will
 grab and pretty-print the variable of that name from the caller’s workspace.
 This is so you can conveniently run it from the command line.
+
+@end deftypefn
+
+
+@node readtable
+@subsection readtable
+@deftypefn {Function} {@var{out} =} readtable (@var{filename})
+@deftypefnx {Function} {@var{out} =} readtable (@var{filename}, @var{opts})
+@deftypefnx {Function} {@var{out} =} readtable (@dots{}, @var{Name}, @var{Value})
+
+Read a table from a file.
 
 @end deftypefn
 

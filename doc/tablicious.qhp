@@ -191,6 +191,8 @@
                         </section>
                         <section title="days" ref="html/days.html">
                         </section>
+                        <section title="detectImportOptions" ref="html/detectImportOptions.html">
+                        </section>
                         <section title="discretize" ref="html/discretize.html">
                         </section>
                         <section title="dispstrs" ref="html/dispstrs.html">
@@ -262,6 +264,8 @@
                             </section>
                             <section title="localdate.isnan" ref="html/localdate_002eisnan.html">
                             </section>
+                        </section>
+                        <section title="matlab.io.spreadsheet.SpreadsheetImportOptions" ref="html/matlab_002eio_002espreadsheet_002eSpreadsheetImportOptions.html">
                         </section>
                         <section title="milliseconds" ref="html/milliseconds.html">
                         </section>
@@ -504,6 +508,8 @@
                         <section title="octave.examples.plot_pairs" ref="html/octave_002eexamples_002eplot_005fpairs.html">
                         </section>
                         <section title="pp" ref="html/pp.html">
+                        </section>
+                        <section title="readtable" ref="html/readtable.html">
                         </section>
                         <section title="rmmissing" ref="html/rmmissing.html">
                         </section>
@@ -814,6 +820,7 @@
             <keyword name="datetime.ymd" id="datetime.ymd" ref="html/datetime_002eymd.html"/>
             <keyword name="datetime.ymdhms" id="datetime.ymdhms" ref="html/datetime_002eymdhms.html"/>
             <keyword name="days" id="days" ref="html/days.html"/>
+            <keyword name="detectImportOptions" id="detectImportOptions" ref="html/detectImportOptions.html"/>
             <keyword name="discretize" id="discretize" ref="html/discretize.html"/>
             <keyword name="dispstrs" id="dispstrs" ref="html/dispstrs.html"/>
             <keyword name="duration" id="duration" ref="html/duration.html"/>
@@ -848,6 +855,7 @@
             <keyword name="localdate.localdate" id="localdate.localdate" ref="html/localdate_002elocaldate.html"/>
             <keyword name="localdate.posixtime" id="localdate.posixtime" ref="html/localdate_002eposixtime.html"/>
             <keyword name="localdate.ymd" id="localdate.ymd" ref="html/localdate_002eymd.html"/>
+            <keyword name="matlab.io.spreadsheet.SpreadsheetImportOptions" id="matlab.io.spreadsheet.SpreadsheetImportOptions" ref="html/matlab_002eio_002espreadsheet_002eSpreadsheetImportOptions.html"/>
             <keyword name="milliseconds" id="milliseconds" ref="html/milliseconds.html"/>
             <keyword name="minutes" id="minutes" ref="html/minutes.html"/>
             <keyword name="missing" id="missing" ref="html/missing.html"/>
@@ -962,6 +970,7 @@
             <keyword name="octave.examples.coplot" id="octave.examples.coplot" ref="html/octave_002eexamples_002ecoplot.html"/>
             <keyword name="octave.examples.plot_pairs" id="octave.examples.plot_pairs" ref="html/octave_002eexamples_002eplot_005fpairs.html"/>
             <keyword name="pp" id="pp" ref="html/pp.html"/>
+            <keyword name="readtable" id="readtable" ref="html/readtable.html"/>
             <keyword name="rmmissing" id="rmmissing" ref="html/rmmissing.html"/>
             <keyword name="scalarexpand" id="scalarexpand" ref="html/scalarexpand.html"/>
             <keyword name="seconds" id="seconds" ref="html/seconds.html"/>
@@ -1192,6 +1201,7 @@
             <file>html/seconds.html</file>
             <file>html/scalarexpand.html</file>
             <file>html/rmmissing.html</file>
+            <file>html/readtable.html</file>
             <file>html/pp.html</file>
             <file>html/octave_002eexamples_002eplot_005fpairs.html</file>
             <file>html/octave_002eexamples_002ecoplot.html</file>
@@ -1313,6 +1323,7 @@
             <file>html/missing.html</file>
             <file>html/minutes.html</file>
             <file>html/milliseconds.html</file>
+            <file>html/matlab_002eio_002espreadsheet_002eSpreadsheetImportOptions.html</file>
             <file>html/localdate_002eisnan.html</file>
             <file>html/localdate_002eisnat.html</file>
             <file>html/localdate_002edatenum.html</file>
@@ -1349,6 +1360,7 @@
             <file>html/duration.html</file>
             <file>html/dispstrs.html</file>
             <file>html/discretize.html</file>
+            <file>html/detectImportOptions.html</file>
             <file>html/days.html</file>
             <file>html/datetime_002econvertDatenumTimeZone.html</file>
             <file>html/datetime_002elinspace.html</file>
