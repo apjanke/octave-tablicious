@@ -1,5 +1,4 @@
-These package documentation tools
-=================================
+# README for these package documentation tools
 
 This is the README for the doco toolchain of this Octave package.
 It goes with the files `mktexi.pl`, `OctTexiDoc.pm`, and `Makefile`, all of which should be found in the `doc/` subdirectory of an Octave package.
@@ -10,61 +9,66 @@ This is not the standard Octave Forge doco toolchain.
 This is Andrew Janke’s enhancement of it to support classes and namespaces.
 It first appeared in Andrew’s Tablicious package in April 2019.
 
-# Requirements
+## Requirements
 
 This toolchain requires Texinfo version 6.0 or newer.
 Versions 5.x and older will result in a lot of errors complaining about node relationships and whatnot.
 
 Perl modules:
-  * `Moose`
-  * `Data::Dumper`
-  * `Date::Parse`
-  * `Text::Wrap`
-  * `IPC::Open3`
+
+* `Moose`
+* `Data::Dumper`
+* `Date::Parse`
+* `Text::Wrap`
+* `IPC::Open3`
 
 Sorry for the dependencies.
 
-# How it works
+## How it works
 
-## The files
+### The files
 
 Here’s a list of the files involved in the doco toolchain. In this document, `<pkg>` means the package name. E.g. `chrono` or `tablicious`.
 
 User-maintained input files:
-  * `../DESCRIPTION`
-  * `../INDEX`
-  * `<pkg>.texi.in`
-  * `<pkg>.qhcp`
+
+* `../DESCRIPTION`
+* `../INDEX`
+* `<pkg>.texi.in`
+* `<pkg>.qhcp`
 
 Doco toolchain script files:
-  * `mktexi.pl`
-    * `OctTexiDoc.pm`
-  * `Makefile`
+
+* `mktexi.pl`
+  * `OctTexiDoc.pm`
+* `Makefile`
 
 Generated intermediate files:
-  * `<pkg>.texi`
-  * `TIMESTAMP`
-  * `html/*`
-  * `*.dvi`
-  * `<pkg>.log`
-  * `<pkg>.qhp`
+
+* `<pkg>.texi`
+* `TIMESTAMP`
+* `html/*`
+* `*.dvi`
+* `<pkg>.log`
+* `<pkg>.qhp`
 
 Generated output target files:
-  * `<pkg>.html`
-  * `<pkg>.info`
-  * `<pkg>.pdf`
-  * `<pkg>.qch`
-  * `<pkg>.qhc`
+
+* `<pkg>.html`
+* `<pkg>.info`
+* `<pkg>.pdf`
+* `<pkg>.qch`
+* `<pkg>.qhc`
 
 `html/*` is an intermediate file because it's just used for packaging up into `<pkg>.qch`, the QHelp collection file. It's not intended for users to read directly; the single-node `<pkg>.html` is for that. So it’s excluded from source control in `.gitignore`.
 
 The `<pkg>.{html|info|pdf|qch|qhc}` files are checked in to source control so they are included in the package distribution. Technically, since they are entirely generated from the source and human-maintained index files, they could be re-generated as part of the `pkg install` step for this package. But that would require that users install heavyweight tools like Qt and TeX which are required for their generation, which is undesirable. So we just have the package maintainer generate them at package authoring time and include them in source control and the package distribution file.
 
-### Developer note
+#### Developer note
 
 This toolchain used to have more steps, broken out into `mkdoc.pl`, `mktexi.pl`, and `mkqhp.pl`. `mkdoc.pl` would scan the source files and build a function index with the extracted texinfo blocks; `mktexi.pl` would take that function index and build `<pkg>.texi`, and `mkqhp.pl` would take `<pkg>.texi`, `../INDEX`, and the function index and build the `<pkg>.qhp` file. I changed the code to unify these three steps into a single `mktexi.pl` because I needed to use a multi-level function/topic index that didn’t fit into the existing function index file format, and doing everything in-memory in a single process simplified the code and resulted in faster execution times.
 
-## The process
+### The process
 
 * You launch `make doc` using the `Makefile`. It causes the rest to happen.
 * `mktexi.pl`:
@@ -77,19 +81,19 @@ This toolchain used to have more steps, broken out into `mkdoc.pl`, `mktexi.pl`,
 * The rest of `make doc` uses standard Texinfo and Qt tools to generate target help files in various formats
 * You check the resulting files in to source control if they’re good
 
-# Writing Octave Texinfo documentation
+## Writing Octave Texinfo documentation
 
 Here’s how to write the variant of Octave Texinfo doco that’s supported by this package’s doco toolchain.
 
 Octave Texinfo doco is a way of writing embedded user documentation as part of Octave `.m` or `.cc` source files. It’s like Perldoc or Javadoc.
 
-## Texinfo doco format
+### Texinfo doco format
 
 The Texinfo doco in a source file is comprised of one or more Texinfo comment blocks. A regular function file has exactly one Texinfo block. A classdef file can have multiple Texinfo blocks. A class method file has one Texinfo comment block.
 
 Each Texinfo block becomes one topic or subtopic in the generated Texinfo documentation.
 
-### Texinfo in `.m` files
+#### Texinfo in `.m` files
 
 In `.m` files, a Texinfo block is comprised of a contiguous run of comment lines each starting with “`## `” (that’s two octothorps (`#`) followed by a space), with optional spaces before the first “`#`”. The first line in a Texinfo block must be “`## -*- texinfo -*-`”; that’s how the parser knows it’s a Texinfo block instead of a regular comment.
 
@@ -105,24 +109,26 @@ For method definition files inside a `@<class>` directory, there should be a sin
 
 Neither the top-level nor additional blocks should include `@section`, `@subsection`, or `@subsubsection` statements. Those are added implicitly by the doco generation tools. Currently, each top-level block is turned into a `@subsection` and each method-level block is turned into a `@subsubsection`, but that may change.
 
-### Texinfo in `.cc` files
+#### Texinfo in `.cc` files
 
 Texinfo blocks in oct-file `.cc` source files are included in comment strings inside the `DEFUN_DLD` macro call.
 
-### Formatting Texinfo elements
+#### Formatting Texinfo elements
 
 These are the conventions that Andrew settled on while documenting the Chrono package. They seem to work okay.
 
 Functions should be documented with `@deftypefn` and optionally `@deftypefnx` statements.
 
 Top-level class Texinfo blocks should contain:
-  * a `@deftp {Class} <class>` that documents the overall class
-  * `@deftypeivar <class> <type> <property>` items that document the user-visible properties
+
+* a `@deftp {Class} <class>` that documents the overall class
+* `@deftypeivar <class> <type> <property>` items that document the user-visible properties
 
 Method-level Texinfo blocks should have `@deftypefn {<type>} <signature>` items that document the method, with optional `@deftypefnx {<type>} <signature>` items to document alternate calling forms. The `<type>` should be:
-  * `{Constructor}` for constructors
-  * `{Method}` for instance methods
-  * `{Static Method}` for static methods
+
+* `{Constructor}` for constructors
+* `{Method}` for instance methods
+* `{Static Method}` for static methods
 
 Use `@var{...}` for input and ouptut function parameters. Use `@code{...}` for class, method, and function names.
 
@@ -133,13 +139,13 @@ The first thing in each function, class, or method doco block should be a one-se
 In class doco, use “`obj`” as the conventional name for the method dispatch object in the documentation, even though you might use “`this`” or something else as the parameter in the actual code.
 Documentation is viewed from the caller’s perspective, not the implementation’s perspective, so “`this`” makes less sense.
 
-## Examples
+### Examples
 
-### Example: Function documentation
+#### Example: Function documentation
 
 Here’s what documentation of the regular (global) function `foonly` should look like.
 
-```
+```octave
 ## Copyright (C) 2019 John Doe <jdoe@example.com>
 ##
 ## [...]
@@ -163,11 +169,11 @@ function out = foonly (x, y, varargin)
 endfunction
 ```
 
-### Example: Class documentation
+#### Example: Class documentation
 
 Here’s what documentation of a classdef class named `Example` should look like.
 
-```
+```octave
 ## Copyright (C) 2019 Jane Doe <jdoe@example.com>
 ##
 ## [...]
@@ -204,7 +210,7 @@ classdef Example
   endproperties
 
   methods
-    
+
     ## -*- texinfo -*-
     ## @node Example.Example
     ## @deftypefn {Constructor} {@var{obj} =} Example ()
