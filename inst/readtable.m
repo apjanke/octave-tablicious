@@ -19,6 +19,8 @@
 ## @deftypefnx {Function} {@var{out} =} readtable (@dots{}, @var{Name}, @var{Value})
 ##
 ## Read a table from a file.
+##
+## @end deftypefn
 
 function out = readtable (filename, varargin)
 
