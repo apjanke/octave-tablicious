@@ -1,6 +1,6 @@
 # Tablicious for GNU Octave
 
-Tablicious provides tabular data structures for Octave.
+Tablicious provides tabular/relational data structures for Octave. You can think of it as "pandas for Octave".
 
 | WARNING: This library is currently beta quality. Do not use it in any production or business code! Seriously!! |
 | ---- |
