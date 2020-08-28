@@ -148,7 +148,10 @@ classdef datetime
           dnums = now;
         case 1
           x = args{1};
-          if isnumeric (x)
+          if isa(x, 'datetime')
+            this = x;
+            return
+          elseif isnumeric (x)
             % Convert date vectors
             dnums = datenum (x);
           elseif ischar (x) || iscellstr (x) || isa (x, 'string')
