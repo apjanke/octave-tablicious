@@ -75,7 +75,7 @@ function out = ismissing (x, indicator)
   if nargin == 1
     out = ismissing_standard (x);
   else
-    out = ismissing_indicator (x, indicator);
+    out = ismissing_with_indicator (x, indicator);
   endif
 endfunction
 
