@@ -170,7 +170,7 @@ classdef TzDb
             zoneId, zoneFile);
       endif
 
-      tzZoneFile = octave.chrono.internal.TzZoneFile (zoneFile);
+      tzZoneFile = octave.chrono.internal.tzinfo.TzZoneFile (zoneFile);
       out = tzZoneFile.readZoneFile ();
     endfunction
     
