@@ -11,3 +11,6 @@ cmake-build-debug
 datasets/iris/iris.csv
 datasets/iris/iris.mat
 
+# GitHub Pages stuff
+/docs/Gemfile.lock
+/docs/_site
