@@ -23,11 +23,13 @@ A user-defined class only needs to define an `ismissing` method if it implements
 
 An exception is made for `table` itself: `table` does not support `(:)` for conversion to a column vector, and its `unique` method violates the general contract of the `unique` function, because it operates row-wise even when you do not specify its `'rows'` option. This is handled with special-case code for nested `table`s inside `table` itself.
 
-Still TBD: we may require support for the `'rows'` option of `unique`. I'm still undecided on this. If we require this, then the requirement for `(:)` reshaping goes away.
-
 The following functions or methods are optional, but if your type supports them, then `table` will respect that and enhance its behavior to use them. In particular, this allows you to define custom display formats for how your type is displayed when it is used as a variable in a `table`:
 
 * `dispstrs()` and `reprstrs()`
+
+TBD: We may require support for the `'rows'` option of `unique`. I'm still undecided on this. If we require this, then the requirement for `(:)` reshaping goes away.
+
+TBD: We may require support for conversion from `missing` or some other way of specifing a default fill value. This is needed to support outer joins. Right now we're doing it with tricks using array expansion via `()`-indexing; unclear whether that's sufficient.
 
 ## Document conventions
 
