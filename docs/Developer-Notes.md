@@ -1,11 +1,11 @@
 # Tablicious Developer Notes
 
-See also [Design and Justification](Design-and-Justification.html) for info on
+See also:
+
+[Design and Justification](Design-and-Justification.html) for info on
 the design of this library.
 
-See [Join Behavior](Join-Behavior.html) for a description of the "proxy keys" and other stuff related to join semantics and implementation.
-
-See also:
+[Join Behavior](Join-Behavior.html) for a description of the "proxy keys" and other stuff related to join semantics and implementation.
 
 * [TODO](TODO.html)
 * [Release Checklist](Release-Checklist.html)

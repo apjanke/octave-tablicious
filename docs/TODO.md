@@ -21,6 +21,22 @@
 
 ## Areas
 
+* `table`
+  * summary
+  * Get subsasgn assignment to work on variables in table
+    * It's currently erroring: `error: invalid dot name structure assignment because the structure array is empty.  Specify a subscript on the structure array to resolve.`
+  * Description, Units, and CustomProperties for variables in table
+  * `timetable`
+  * More documentation for individual methods
+  * File I/O
+    * readtable, writetable
+    * tableread
+    * table.textscan, table.csvread, table.dlmread
+    * Probably pull in Apache FOP for this. Will need to write custom Java layer for acceptable performance.
+  * viewtable()
+    * Takes single table or struct with tabular field contents
+    * Doing this in Java would be easier; in Qt would be nicer
+      * But doing it in Qt would require users installing the package to have Qt dev tools installed. Yuck.
 * `datetime`
   * Convert internal dnums representation to UTC
     * Math goes bad around DST and other zone transitions if you don't do that
@@ -71,6 +87,12 @@
     * Currently, `which datetime` gives `'datetime' is a built-in function` and `help datetime` gives `error: help: 'datetime' is not documented`
   * Get `mkdoc.pl` to ignore files in `+internal` namespaces.
   * Get `mkdoc.pl` to include namespaces in class/function definition items.
+* categorical stuff
+  * summary
+  * countcats
+* Other "Missing Data" stuff
+  * fillmissing()
+  * <https://www.mathworks.com/help/matlab/data_analysis/missing-data-in-matlab.html>
 
 ## Examples stuff
 
