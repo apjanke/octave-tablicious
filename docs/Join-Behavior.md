@@ -10,7 +10,7 @@ For basic structural operations, the type just needs to itself support basic str
 * `size` and `numel`
 * `vertcat`
 
-For join operations, `unique`, and other `table` methods to work, the variables used as keys in these operations must support the following small set of operations:
+For relational operations, such as joins, `unique`, and other `table` methods to work, the variables used as keys in these operations must support the following small set of operations:
 
 * `unique`
 * `ismember`
