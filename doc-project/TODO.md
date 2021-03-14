@@ -1,7 +1,6 @@
-Chrono TODO
-===========
+# Tablicious TODO
 
-# Overall
+## Overall
 
 * Convert internal dnums representation to UTC
   * Math goes bad around DST and other zone transitions if you don't do that
@@ -12,7 +11,7 @@ Chrono TODO
 
 * Report crash: giving duration a days method while it has a days property results in a crash.
 
-# Doco stuff
+## Doco stuff
 
 * Document my new class/namespace-supporting stuff
   * Stick a README in the doc/ directory describing how my new stuff works, and detailing the texinfo conventions needed to work with it.
@@ -20,7 +19,7 @@ Chrono TODO
   * Recursively find files
   * Establish node naming convention for things in namespaces
 
-# Areas
+## Areas
 
 * `datetime`
   * Convert internal dnums representation to UTC
@@ -65,23 +64,15 @@ Chrono TODO
   * Fix Travis CI doco build
   * Figure out how to get `doc/chrono.texi.in` to draw its version number from `DESCRIPTION`
   * Correct asciibetical ordering in Functions Alphabetically
-  * Fix this:
-```
-warning: doc_cache_create: unusable help text found in file 'datetime'
-```
+  * Fix this: `warning: doc_cache_create: unusable help text found in file 'datetime'`
   * Make my Texinfo documentation work with Octave's `doc` command
     * Expose it as QHelpEngine file?
   * Get `help datetime` to recognize my datetime
-```
->> which datetime
-'datetime' is a built-in function
->> help datetime
-error: help: 'datetime' is not documented
-```
+    * Currently, `which datetime` gives `'datetime' is a built-in function` and `help datetime` gives `error: help: 'datetime' is not documented`
   * Get `mkdoc.pl` to ignore files in `+internal` namespaces.
   * Get `mkdoc.pl` to include namespaces in class/function definition items.
 
-# Examples stuff
+## Examples stuff
 
 * Lowess smoothing (several datasets)
 * ANOVA display (`chickwts`)
@@ -92,7 +83,7 @@ error: help: 'datetime' is not documented
 * Equivalent of R’s “mosaic plot” (`esoph`)
   * Good luck on this one
 
-# Wishlist and maybes
+## Wishlist and maybes
 
 * MAT-file representation compatibility with Matlab?
 * Documentation

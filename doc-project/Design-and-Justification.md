@@ -1,5 +1,4 @@
-Tablicious Design and Justifications
-====================================
+# Tablicious Design and Justifications
 
 This document describes the design choices I made in Tablicious, and some
 justifications for them and why I think they should be allowed into core
@@ -14,7 +13,7 @@ Octave, or at least an Octave Forge package
 Each data object has a copy constructor calling form. The Matlab trick
 of doing this:
 
-```
+```octave
 function this = Foo(x)
   if isa (x, 'Foo')
     this = x;
@@ -25,7 +24,7 @@ end
 ```
 
 doesn’t seem to be supported in Octave; or at least it seemed to lead to
-some instability when I tried it. Besides, it introduces the problem 
+some instability when I tried it. Besides, it introduces the problem
 that the output of the constructor might be a subclass instead of an
 object of the exact type of the constructor.
 
@@ -48,7 +47,7 @@ in Octave/Matlab.
 
 For example, an M-by-N `datetime` array is a single object wrapper
 around an M-by-N double array in the `dnums` property. Instead of it
-being an M-by-N array of blessed structs, each of which holds a 
+being an M-by-N array of blessed structs, each of which holds a
 scalar `dnums`.
 
 The downside is that implementing a planar-organized class requires
@@ -140,7 +139,7 @@ The Example code sections in the `description.texi` for the example
 datasets are stored separately as scripts so that you can view them
 as M-code in an editor (with syntax highlighting, indentation
 assistance, and so on) and conveniently run them to test them
-(instead of having to copy-and-paste them from a view of the 
+(instead of having to copy-and-paste them from a view of the
 helptext, which would require you to go through the doco building
 cycle each time you made a change and wanted to run the code to test it).
 
@@ -260,7 +259,7 @@ object methods.
 
 ### Justify `scalarexpand`
 
-This one is really useful. I use it in the input handling for a lot of 
+This one is really useful. I use it in the input handling for a lot of
 functions, and I think it should exist.
 
 This one could probably go in the `+octave` namespace, though. It does not
@@ -291,4 +290,3 @@ and just having `table.outerjoin` test its variable values to see if they are
 objects which define a `tableOuterFillValue`, and only call that if they are
 defined. But this will be hard because Octave currently doesn’t support calling
 `methods` on user-defined classes.
-

@@ -1,19 +1,18 @@
-Chrono FAQ
-==========
+# Tablicious FAQ
 
 ## General
 
 ### Is this code ready for production use?
 
-*NO!* This is alpha code, not even in a beta release yet. Do *NOT* use this for your business or production code needs yet!
+*NO!* This is beta quality code. Do *NOT* use this for your business or production code needs yet!
 
 ## Build issues
 
-###
+### I'm getting Texinfo errors
 
 Like this?
 
-```
+```text
 $ make doc                                                                                                                                         master ✱
 cd doc && make maintainer-clean && make all
 rm -rf *.tmp
@@ -42,17 +41,16 @@ Your Texinfo is too old. Get a newer one.
 
 On macOS, you can do this with Homebrew.
 
-```
+```bash
 brew install texinfo
 PATH="$(brew --prefix texinfo)/bin:$PATH" make doc
 ```
-
 
 ### I'm getting weird `sed: ...@documenten...` warnings in the `make doc` step?
 
 Like this?
 
-```
+```text
 $ make doc
 [...]
 /usr/local/opt/texinfo/bin/texi2pdf --quiet --clean -o chrono.pdf chrono.texi
@@ -64,7 +62,7 @@ sed: 6: "s/\(^\|.* \)@documenten ...": undefined label 'found
 
 Those warnings are produced by older Texinfo programs, like Texinfo 4.8, which is the default on macOS 10.13 and 10.14. [Install a newer Texinfo using Homebrew](https://github.com/apjanke/octave-chrono/issues/17) and pull that in explicitly for your build.
 
-```
+```bash
 brew install texinfo
 PATH="$(brew --prefix texinfo)/bin:$PATH" make doc
 ```

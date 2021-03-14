@@ -1,12 +1,11 @@
-Chrono Release Checklist
-========================
+# TAblicious Release Checklist
 
 * Run all the tests.
   * `make test`, duh.
   * Wouldn't hurt to do `make clean && git status && make test`/manual-cleanup, just to be sure.
 * Double-check the version number and date in `DESCRIPTION`
 * Update the installation instructions in README to use the upcoming release tarball URL.
-  * Format is: `https://github.com/apjanke/octave-chrono/releases/download/v<version>/chrono-<version>.tar.gz`
+  * Format is: `https://github.com/apjanke/octave-tablicious/releases/download/v<version>/tablicious-<version>.tar.gz`
 * Regenerate the doco
   * `(cd doc; make maintainer-clean; make all)` if you had to change it.
 * Commit all the files changed by the above steps.
@@ -24,7 +23,7 @@ Chrono Release Checklist
   * On Ubuntu.
   * *sigh* I suppose, on Windows.
   * Try this by copy-and-pasting the `pkg install` example from the 
-    [live README page](https://github.com/apjanke/octave-chrono/blob/master/README.md) 
+    [live README page](https://github.com/apjanke/octave-tablicious/blob/master/README.md) 
     on the GitHub repo. This makes sure the current install instructions are correct.
     * Don't short-circuit this and just edit an entry from your Octave command history! Open GitHub in a browser and actually copy-and-paste it!
     * I wish there there was a `pkg test <package>` command to run all the BISTs from a package.

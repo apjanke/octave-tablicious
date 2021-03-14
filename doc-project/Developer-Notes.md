@@ -1,10 +1,9 @@
-Tablicious Developer Notes
-==========================
+# Tablicious Developer Notes
 
 See also [Design and Justification](Design-and-Justification.html) for info on
 the design of this library.
 
-# TODO
+## TODO
 
 * table
   * summary
@@ -13,7 +12,7 @@ the design of this library.
   * countcats
 * Other "Missing Data" stuff
   * fillmissing()
-  * https://www.mathworks.com/help/matlab/data_analysis/missing-data-in-matlab.html
+  * <https://www.mathworks.com/help/matlab/data_analysis/missing-data-in-matlab.html>
 * Get subsasgn assignment to work in table
   * It's currently erroring: `error: invalid dot name structure assignment because the structure array is empty.  Specify a subscript on the structure array to resolve.`
 * Validation: enforce that all variables in a table have the same height
@@ -31,16 +30,16 @@ the design of this library.
     * But doing it in Qt would require users installing the package to have Qt dev tools installed. Yuck.
 * Various TODOs scattered throughout the code
 
-# Code Style and Principles
+## Code Style and Principles
 
 * Standard [GNU Octave code style](https://wiki.octave.org/Octave_style_guide)
 * In general, use reallyLongDescriptiveNames for non-standard-Matlab-or-Octave functions you are adding, to reduce chance of name collisions.
 
-# Building the Docs
+## Building the Docs
 
 The texinfo format we use requires Texinfo 6.0 or newer. This is newer than the Texinfo that comes with macOS, which ships a 5.x Texinfo. To build the docs on Mac, you will need to install a newer Texinfo (e.g. with Homebrew) and then make sure that Texinfo is on your path ahead of the system Texinfo.
 
-# Release Checklist
+## Release Checklist
 
 * Update release version and date in `DESCRIPTION`
 * Update download instructions version in `README.md`
