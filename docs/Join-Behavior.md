@@ -79,6 +79,12 @@ The key variables or "join keys" are the variables which appear in both tables, 
 
 Two tuples (or rows) match if their key tuples are equal. Two tuples are equal if, for every variable v (in our example case, `k1` and `k2`), their values are equal for that row, as determined by `isequal(tblA.v(i,:), tblB.v(j,:))`.
 
+For the various relational operations (joins, setdiffs, and so on), we need to compute some combination of:
+
+* The list of all pairs of matching rows between `tblA` and `tblB`
+* The list of rows in `tblA` that match no rows in `tblB`
+* The list of rows in `tblB` that match no rows in `tblA`
+
 This is tricky because if you want to Go Fast in Octave, you need to use vectorized operations, but Octave has no built-in efficient operations for the comparison of heterogenous tuple-like structures. There's no form of `ismember` or the like which takes multiple column vectors on either side. And even cell's `ismember` doesn't support non-cellstr cells.
 
 A naive implementation of the key-tuple-matching logic in a `table` join might look something like the following. Assume the two `table`s to be joined are `tblA` with columns `k1`, `k2`, `k3`, `v1`, and `v2`, and `tblB` with columns `k1`, `k2`, `k3`, and `v3`.
