@@ -4,14 +4,18 @@ This page describes the semantics and implementation of join-related stuff in Ta
 
 Variables in `table` arrays may be of just about any Octave data type, including user-defined classes.
 
-For join operations, `unique`, and other `table` methods to work, the variables used as keys in these operations must support the following small set of operations:
+For basic structural operations, the type just needs to itself support basic structural operations:
 
 * `()`-indexing
+* `size` and `numel`
+* `vertcat`
+
+For join operations, `unique`, and other `table` methods to work, the variables used as keys in these operations must support the following small set of operations:
+
 * `unique`
 * `ismember`
 * `eq`
 * `isequal`
-* `vertcat`
 * Maybe `(:)`-indexing to reshape to a column vector
 
 An exception is made for `table` itself: `table` does not support `(:)` for conversion to a column vector, and its `unique` method violates the general contract of the `unique` function, because it operates row-wise even when you do not specify its `'rows'` option. This is handled with special-case code for nested `table`s inside `table` itself.
