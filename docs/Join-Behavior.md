@@ -49,6 +49,8 @@ The "cardinality" of an array is the number of unique values in it. Each missing
 
 ### What we need
 
+The basic problem here is how to efficiently compute matches and ordering for heterogeneously-typed multi-column record-oriented data structures in Octave.
+
 The logic for most table operations, like `sort`, `unique`, and all the joins, boils down to doing ordering or equality tests on multi-column values that may have columns of heterogeneous types: a `table` array may have variables of any type, so the variables used as keys may have mixed types. We need to compare the value of "tuples" which are composed of the i-th rows from one or more variables, and either sort the tuples within a single `table`, or produce a list of matches between the tuples in two different `table`s.
 
 For example, let's say you have this `tblA` and `tblB`:
