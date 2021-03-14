@@ -74,6 +74,7 @@ For example, let's say you have this `tblA` and `tblB`:
 | "baz" | 1 | 567 | "a" |
 | "qux" | 1 | 678 | "b" |
 | "qux" | 2 | 789 | "c" |
+| "scooby" | 42 | 123 | "d" |
 
 The key variables or "join keys" are the variables which appear in both tables, identified by their variable names. You can reduce these tables to just "key tables" by subsetting them by variables to just the key variables. The "key tuples" are the tuples subsetted to just the key variables.
 
