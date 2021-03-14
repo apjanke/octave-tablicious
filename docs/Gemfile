@@ -1,0 +1,47 @@
+source 'https://rubygems.org'
+
+# Hello! This is where you manage which Jekyll version is used to run.
+# When you want to use a different version, change it below, save the
+# file and run `bundle install`. Run Jekyll with `bundle exec`, like so:
+#
+#     bundle exec jekyll serve
+#
+# This will help ensure the proper Jekyll version is running.
+# Happy Jekylling!
+gem 'jekyll' #, '~> 3.8.5'
+
+gem 'minima' #, '~> 2.0'
+gem 'kramdown-parser-gfm'
+gem 'github-pages'
+
+group :jekyll_plugins do
+  gem 'jekyll-theme-cayman'
+  gem 'jekyll-asciidoc'
+  gem 'jekyll-coffeescript'
+  gem 'jekyll-default-layout'
+  gem 'jekyll-gist'
+  gem 'jekyll-github-metadata'
+  gem 'jekyll-paginate'
+  gem 'jekyll-readme-index'
+  gem 'jekyll-relative-links'
+  gem 'jekyll-titles-from-headings'
+  gem 'jekyll-feed'
+  gem 'jekyll-seo-tag'
+  gem 'jekyll-theme-slate'
+  gem 'jekyll-last-modified-at'
+  gem 'jekyll-toc'
+  gem 'jekyll-sitemap'
+  gem 'jekyll-optional-front-matter'
+end
+
+# Asciidoctor uses pygments for source highlighting
+gem 'pygments.rb'
+
+# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
+gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+# Performance-booster for watching directories on Windows
+gem 'wdm', '~> 0.1.0' if Gem.win_platform?
+
+# I don't know why we need these
+gem 'rexml'
+gem 'webrick'

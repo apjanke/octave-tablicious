@@ -1,0 +1,46 @@
+title: Tablicious
+email: andrew@apjanke.net
+description: Table and related classes for Octave
+
+baseurl: "/"
+url: ""
+
+theme: jekyll-theme-cayman
+
+github_username: apjanke
+
+# Fixed GitHub Pages configuration
+markdown: kramdown
+lsi: false
+safe: true
+incremental: false
+highlighter: rouge
+gist:
+  noscript: false
+kramdown:
+  math_engine: mathjax
+  syntax_highlighter: rouge
+
+exclude:
+  - Gemfile*
+
+keep_files:
+  - images
+
+plugins:
+  # Forced by GitHub Pages
+  - jekyll-asciidoc
+  - jekyll-coffeescript
+  - jekyll-default-layout
+  - jekyll-gist
+  - jekyll-github-metadata
+  - jekyll-last-modified-at
+  - jekyll-optional-front-matter
+  - jekyll-paginate
+  - jekyll-readme-index
+  - jekyll-relative-links
+  - jekyll-titles-from-headings
+  # Supported by GitHub Pages
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-sitemap
