@@ -16,7 +16,10 @@ For join operations, `unique`, and other `table` methods to work, the variables 
 * `ismember`
 * `eq`
 * `isequal`
+* `ismissing`, under certain conditions
 * Maybe `(:)`-indexing to reshape to a column vector
+
+A user-defined class only needs to define an `ismissing` method if it implements missing or NaN-like semantics, in which case it needs to define an `ismissing` that is consistent with its `eq`, `ismember`, and `unique` methods.
 
 An exception is made for `table` itself: `table` does not support `(:)` for conversion to a column vector, and its `unique` method violates the general contract of the `unique` function, because it operates row-wise even when you do not specify its `'rows'` option. This is handled with special-case code for nested `table`s inside `table` itself.
 
