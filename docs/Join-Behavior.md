@@ -1,4 +1,4 @@
-This page describes the semantics and implementation of join-related stuff in Tablicious's `table` class.
+This page describes the semantics and implementation of join-related stuff in Tablicious's `table` class, including its special "proxy keys" trick.
 
 ## Supported variable data types
 
@@ -39,11 +39,45 @@ Many people may think of the data items in a `table` array as "columns" or "vari
 
 A "tuple" is a set of named values. It's the formal term from relational algebra for a row or record within a SQL table or result set, or any similar structure. A row in a `table` array can be considered a tuple.
 
-The "cardinality" of an array is the number of unique values in it. Each missing or NaN value counts as a separate value. For example, the cardinality of `[1 1 2 2 NaN NaN NaN]` is 5.
+The "cardinality" of an array is the number of unique values in it. Each missing or NaN value counts as a separate value. For example, the cardinality of `[1 1 2 2 NaN NaN NaN]` is 5. The cardinality of a `table` is the number of distinct tuple values in it.
 
 ## "Proxy Keys"
 
+### Background
+
+"Proxy keys" is a trick I came up with around 2004, and have used successfully in a couple implementations of `table` in Matlab back in the day before Matlab had its own `table` class. I think that's a good indication that it will work in Octave.
+
+### What we need
+
 The logic for most table operations, like `sort`, `unique`, and all the joins, boils down to doing ordering or equality tests on multi-column values that may have columns of heterogeneous types: a `table` array may have variables of any type, so the variables used as keys may have mixed types. We need to compare the value of "tuples" which are composed of the i-th rows from one or more variables, and either sort the tuples within a single `table`, or produce a list of matches between the tuples in two different `table`s.
+
+For example, let's say you have this `tblA` and `tblB`:
+
+`tblA`:
+
+| k1 | k2 | v1 |
+| -- | -- | -- |
+| "foo" | 1 | 1.2 |
+| "foo" | 2 | 3.4 |
+| "bar" | 1 | 5.6 |
+| "bar" | 2 | 7.8 |
+| "baz" | 3 | 1.2 |
+
+`tblB`:
+
+| k1 | k2 | v2 | v3 |
+| -- | -- | -- | -- |
+| "foo" | 2 | 123 | "x" |
+| "foo" | 1 | 234 | "xx" |
+| "baz" | 4 | 345 | "y" |
+| "baz" | 3 | 456 | "z" |
+| "baz" | 1 | 567 | "a" |
+| "qux" | 1 | 678 | "b" |
+| "qux" | 2 | 789 | "c" |
+
+The key variables or "join keys" are the variables which appear in both tables, identified by their variable names. You can reduce these tables to just "key tables" by subsetting them by variables to just the key variables. The "key tuples" are the tuples subsetted to just the key variables.
+
+Two tuples (or rows) match if their key tuples are equal. Two tuples are equal if, for every variable v (in our example case, `k1` and `k2`), their values are equal for that row, as determined by `isequal(tblA.v(i,:), tblB.v(j,:))`.
 
 This is tricky because if you want to Go Fast in Octave, you need to use vectorized operations, but Octave has no built-in efficient operations for the comparison of heterogenous tuple-like structures. There's no form of `ismember` or the like which takes multiple column vectors on either side. And even cell's `ismember` doesn't support non-cellstr cells.
 
@@ -69,6 +103,8 @@ end
 This is not going to be efficient: loops are slow, the conversion from table to cell will be inefficient because it breaks up any primitive variables into a bunch of cells containing scalars or single rows, and the repeated isequal() calls will have overhead.
 
 Your next idea might be to do two-way `ismember` calls on each of the individual key variables, and then combine those results. But there's no easy way (that I know of) to compose this single-variable ismember results into the correct result that considers all the variables at once.
+
+### How proxy keys work
 
 Tablicious' approach to this problem is a trick I call "proxy keys". For an input key variable of any type, it transforms the values present in that array into a corresponding set of numeric values which have the same equality and ordering relationships as the original input values. (These numeric replacement values are the "proxy keys" for the original keys.) Then you can combine those numeric proxy key vectors into homogeneous numeric matrixes and do `ismember` and similar calls on them, which will be fast because they use the vectorized Octave built-ins defined for numerics.
 
