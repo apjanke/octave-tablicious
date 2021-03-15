@@ -10,6 +10,10 @@ the design of this library.
 * [TODO](TODO.html)
 * [Release Checklist](Release-Checklist.html)
 
+## Code
+
+Tablicious is a fairly large package. As of March 2021, it's about 33,000 lines of code and documentation.
+
 ## Code Style and Principles
 
 * Standard [GNU Octave code style](https://wiki.octave.org/Octave_style_guide)
