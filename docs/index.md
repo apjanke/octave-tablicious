@@ -1,10 +1,12 @@
 This is the documentation site for Tablicious.
 
-This website currently only holds developer documentation.
+Tablicious is a package for GNU Octave that provides implementations of `table` arrays, `datetime`, `string`, `categorical`, and some other related stuff.
 
-The user documentation and API reference is included as Texinfo in the package itself.
+## User Documentation
 
-## Sections
+See the online [User Guide](user-guide/html/index.html) for info and API Reference.
+
+## Developer Documentation
 
 * [Developer Notes](Developer-Notes.html) – documentation for developers of Tablicious itself
   * [Join Behavior](Join-Behavior.html) – Notes on "proxy keys" and other join-related stuff

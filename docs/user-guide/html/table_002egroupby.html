@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- This manual is for Tablicious, version 0.3.6-SNAPSHOT.
+
+Copyright (C) 2019 Andrew Janke
+
+Permission is granted to make and distribute verbatim copies of
+this manual provided the copyright notice and this permission notice
+are preserved on all copies.
+
+Permission is granted to copy and distribute modified versions of this
+manual under the conditions for verbatim copying, provided that the entire
+resulting derived work is distributed under the terms of a permission
+notice identical to this one.
+
+Permission is granted to copy and distribute translations of this manual
+into another language, under the same conditions as for modified versions. -->
+<!-- Created by GNU Texinfo 6.7, http://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>table.groupby (Octave Tablicious v0.3.6-SNAPSHOT)</title>
+
+<meta name="description" content="User manual for Tablicious for Octave.">
+<meta name="keywords" content="table.groupby (Octave Tablicious v0.3.6-SNAPSHOT)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<link href="index.html" rel="start" title="Top">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="table.html" rel="up" title="table">
+<link href="table_002egrpstats.html" rel="next" title="table.grpstats">
+<link href="table_002ecartesian.html" rel="prev" title="table.cartesian">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<span id="table_002egroupby"></span><div class="header">
+<p>
+Next: <a href="table_002egrpstats.html" accesskey="n" rel="next">table.grpstats</a>, Previous: <a href="table_002ecartesian.html" accesskey="p" rel="prev">table.cartesian</a>, Up: <a href="table.html" accesskey="u" rel="up">table</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<hr>
+<span id="table_002egroupby-1"></span><h4 class="subsubsection">8.2.59.52 table.groupby</h4>
+
+<dl>
+<dt id="index-groupby">Method: <em>[<var>out</var>] =</em> <strong>groupby</strong> <em>(<var>obj</var>, <var>groupvars</var>, <var>aggcalcs</var>)</em></dt>
+<dd>
+<p>Find groups in table data and apply functions to variables within groups.
+</p>
+<p>This works like an SQL <code>&quot;SELECT ... GROUP BY ...&quot;</code> statement.
+</p>
+<p><var>groupvars</var> (cellstr, numeric) is a list of the grouping variables,
+identified by name or index.
+</p>
+<p><var>aggcalcs</var> is a specification of the aggregate calculations to perform
+on them, in the form <code>{</code><var>out_var</var><code>,</code> <var>fcn</var><code>,</code> <var>in_vars</var><code>; ...}</code>, where:
+  <var>out_var</var> (char) is the name of the output variable
+  <var>fcn</var> (function handle) is the function to apply to produce it
+  <var>in_vars</var> (cellstr) is a list of the input variables to pass to fcn
+</p>
+<p>Returns a table.
+</p>
+</dd></dl>
+
+
+
+
+</body>
+</html>

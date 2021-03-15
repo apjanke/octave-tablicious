@@ -1,0 +1,181 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- This manual is for Tablicious, version 0.3.6-SNAPSHOT.
+
+Copyright (C) 2019 Andrew Janke
+
+Permission is granted to make and distribute verbatim copies of
+this manual provided the copyright notice and this permission notice
+are preserved on all copies.
+
+Permission is granted to copy and distribute modified versions of this
+manual under the conditions for verbatim copying, provided that the entire
+resulting derived work is distributed under the terms of a permission
+notice identical to this one.
+
+Permission is granted to copy and distribute translations of this manual
+into another language, under the same conditions as for modified versions. -->
+<!-- Created by GNU Texinfo 6.7, http://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>string (Octave Tablicious v0.3.6-SNAPSHOT)</title>
+
+<meta name="description" content="User manual for Tablicious for Octave.">
+<meta name="keywords" content="string (Octave Tablicious v0.3.6-SNAPSHOT)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<link href="index.html" rel="start" title="Top">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="API-Alphabetically.html" rel="up" title="API Alphabetically">
+<link href="string_002estring.html" rel="next" title="string.string">
+<link href="startsWith.html" rel="prev" title="startsWith">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<span id="string"></span><div class="header">
+<p>
+Next: <a href="struct2table.html" accesskey="n" rel="next">struct2table</a>, Previous: <a href="startsWith.html" accesskey="p" rel="prev">startsWith</a>, Up: <a href="API-Alphabetically.html" accesskey="u" rel="up">API Alphabetically</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<hr>
+<span id="string-1"></span><h4 class="subsection">8.2.57 string</h4>
+<dl>
+<dt id="index-string-3">Class: <strong>string</strong></dt>
+<dd>
+<p>A string array of Unicode strings.
+</p>
+<p>A string array is an array of strings, where each array element is a single
+string.
+</p>
+<p>The string class represents strings, where:
+  - Each element of a string array is a single string
+  - A single string is a 1-dimensional row vector of Unicode characters
+  - Those characters are encoded in UTF-8
+</p>
+<p>This should correspond pretty well to what people think of as strings, and
+is pretty compatible with people’s typical notion of strings in Octave.
+</p>
+<p>String arrays also have a special “missing” value, that is like the string
+equivalent of NaN for doubles or “undefined” for categoricals, or SQL NULL.
+</p>
+<p>This is a slightly higher-level and more strongly-typed way of representing
+strings than cellstrs are. (A cellstr array is of type cell, not a text-
+specific type, and allows assignment of non-string data into it.)
+</p>
+<p>Be aware that while string arrays interconvert with Octave chars and cellstrs,
+Octave char elements represent 8-bit UTF-8 code units, not Unicode code points.
+</p>
+<p>This class really serves three roles.
+  - It is an object wrapper around Octave’s base primitive character types.
+  - It adds ismissing() semantics.
+  - And it introduces Unicode support.
+Not clear whether it’s a good fit to have the Unicode support wrapped
+up in this. Maybe it should just be a simple object wrapper
+wrapper, and defer Unicode semantics to when core Octave adopts them for
+char and cellstr. On the other hand, because Octave chars are UTF-8, not UCS-2,
+some methods like strlength() and reverse() are just going to be wrong if
+they delegate straight to chars.
+</p>
+<p>“Missing” string values work like NaNs. They are never considered equal,
+less than, or greater to any other string, including other missing strings.
+This applies to set membership and other equivalence tests.
+</p>
+<p>The current implementation depends on Java for its Unicode and encoding
+support. This means your Octave session must be running Java to call those
+methods. This should be changed in the future to use a native C/C++ library
+and avoid the Java dependency, especially before this class is merged into
+core Octave.
+</p>
+<p>TODO: Need to decide how far to go with Unicode semantics, and how much to
+just make this an object wrapper over cellstr and defer to Octave&rsquo;s existing
+char/string-handling functions.
+</p>
+<p>TODO: demote_strings should probably be static or global, so that other
+functions can use it to hack themselves into being string-aware.
+</p>
+</dd></dl>
+
+
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top">&bull; <a href="string_002estring.html" accesskey="1">string.string</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="string_002eisstring.html" accesskey="2">string.isstring</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="string_002edispstrs.html" accesskey="3">string.dispstrs</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="string_002esizeof.html" accesskey="4">string.sizeof</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="string_002eismissing.html" accesskey="5">string.ismissing</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="string_002eisnanny.html" accesskey="6">string.isnanny</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="string_002ecellstr.html" accesskey="7">string.cellstr</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="string_002ecell.html" accesskey="8">string.cell</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="string_002echar.html" accesskey="9">string.char</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="string_002eencode.html">string.encode</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="string_002estrlength_005fbytes.html">string.strlength_bytes</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="string_002estrlength.html">string.strlength</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="string_002ereverse_005fbytes.html">string.reverse_bytes</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="string_002ereverse.html">string.reverse</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="string_002estrcat.html">string.strcat</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="string_002elower.html">string.lower</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="string_002eupper.html">string.upper</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="string_002eerase.html">string.erase</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="string_002estrrep.html">string.strrep</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="string_002estrfind.html">string.strfind</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="string_002eregexprep.html">string.regexprep</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="string_002estrcmp.html">string.strcmp</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="string_002ecmp.html">string.cmp</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="string_002emissing.html">string.missing</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="string_002edecode.html">string.decode</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+</table>
+
+<hr>
+<div class="header">
+<p>
+Next: <a href="struct2table.html" accesskey="n" rel="next">struct2table</a>, Previous: <a href="startsWith.html" accesskey="p" rel="prev">startsWith</a>, Up: <a href="API-Alphabetically.html" accesskey="u" rel="up">API Alphabetically</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+
+
+
+</body>
+</html>

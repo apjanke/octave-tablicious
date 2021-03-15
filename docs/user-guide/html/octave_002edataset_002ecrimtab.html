@@ -1,0 +1,156 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- This manual is for Tablicious, version 0.3.6-SNAPSHOT.
+
+Copyright (C) 2019 Andrew Janke
+
+Permission is granted to make and distribute verbatim copies of
+this manual provided the copyright notice and this permission notice
+are preserved on all copies.
+
+Permission is granted to copy and distribute modified versions of this
+manual under the conditions for verbatim copying, provided that the entire
+resulting derived work is distributed under the terms of a permission
+notice identical to this one.
+
+Permission is granted to copy and distribute translations of this manual
+into another language, under the same conditions as for modified versions. -->
+<!-- Created by GNU Texinfo 6.7, http://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>octave.dataset.crimtab (Octave Tablicious v0.3.6-SNAPSHOT)</title>
+
+<meta name="description" content="User manual for Tablicious for Octave.">
+<meta name="keywords" content="octave.dataset.crimtab (Octave Tablicious v0.3.6-SNAPSHOT)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<link href="index.html" rel="start" title="Top">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="octave_002edataset.html" rel="up" title="octave.dataset">
+<link href="octave_002edataset_002ecupcake.html" rel="next" title="octave.dataset.cupcake">
+<link href="octave_002edataset_002eco2.html" rel="prev" title="octave.dataset.co2">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<span id="octave_002edataset_002ecrimtab"></span><div class="header">
+<p>
+Next: <a href="octave_002edataset_002ecupcake.html" accesskey="n" rel="next">octave.dataset.cupcake</a>, Previous: <a href="octave_002edataset_002eco2.html" accesskey="p" rel="prev">octave.dataset.co2</a>, Up: <a href="octave_002edataset.html" accesskey="u" rel="up">octave.dataset</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<hr>
+<span id="octave_002edataset_002ecrimtab-1"></span><h4 class="subsubsection">8.2.45.15 octave.dataset.crimtab</h4>
+
+<dl>
+<dt id="index-crimtab">Static Method: <em><var>out</var> =</em> <strong>crimtab</strong> <em>()</em></dt>
+<dd>
+<p>Student’s 3000 Criminals Data
+</p>
+<span id="Description-13"></span><h4 class="subsubheading">Description</h4>
+
+<p>Data of 3000 male criminals over 20 years old undergoing their sentences in the
+chief prisons of England and Wales.
+</p>
+<span id="Format-12"></span><h4 class="subsubheading">Format</h4>
+
+<p>This dataset contains three separate variables. The <code>finger_length</code> and
+<code>body_height</code> variables correspond to the rows and columns of the
+<code>count</code> matrix.
+</p>
+<dl compact="compact">
+<dt><code>finger_length</code></dt>
+<dd><p>Midpoints of intervals of finger lengths (cm).
+</p></dd>
+<dt><code>body_height</code></dt>
+<dd><p>Body heights (cm).
+</p></dd>
+<dt><code>count</code></dt>
+<dd><p>Number of prisoners in this bin.
+</p></dd>
+</dl>
+
+<span id="Details-1"></span><h4 class="subsubheading">Details</h4>
+
+<p>Student is the pseudonym of William Sealy Gosset. In his 1908 paper he wrote
+(on page 13) at the beginning of section VI entitled Practical Test of the
+forgoing Equations:
+</p>
+<p>“Before I had succeeded in solving my problem analytically, I had endeavoured
+to do so empirically. The material used was a correlation table containing
+the height and left middle finger measurements of 3000 criminals, from a
+paper by W. R. MacDonell (Biometrika, Vol. I., p. 219). The measurements
+were written out on 3000 pieces of cardboard, which were then very thoroughly
+shuffled and drawn at random. As each card was drawn its numbers were written
+down in a book, which thus contains the measurements of 3000 criminals in a
+random order. Finally, each consecutive set of 4 was taken as a sample—750
+in all—and the mean, standard deviation, and correlation of each sample
+etermined. The difference between the mean of each sample and the mean of
+the population was then divided by the standard deviation of the sample, giving
+us the z of Section III.”
+</p>
+<p>The table is in fact page 216 and not page 219 in MacDonell(1902). In the
+MacDonell table, the middle finger lengths were given in mm and the heights
+in feet/inches intervals, they are both converted into cm here. The midpoints
+of intervals were used, e.g., where MacDonell has “4&rsquo; 7&quot;9/16 &ndash; 8&quot;9/16”, we
+have 142.24 which is 2.54*56 = 2.54*(4&rsquo; 8&quot;).
+</p>
+<p>MacDonell credited the source of data (page 178) as follows: “The data on which
+the memoir is based were obtained, through the kindness of Dr Garson, from the
+Central Metric Office, New Scotland Yard... He pointed out on page 179 that:
+“The forms were drawn at random from the mass on the office shelves; we are
+therefore dealing with a random sampling.”
+</p>
+<span id="Source-14"></span><h4 class="subsubheading">Source</h4>
+
+<p><a href="http://pbil.univ-lyon1.fr/R/donnees/criminals1902.txt">http://pbil.univ-lyon1.fr/R/donnees/criminals1902.txt</a> thanks to Jean R.
+Lobry and Anne-Béatrice Dufour.
+</p>
+<span id="References-7"></span><h4 class="subsubheading">References</h4>
+
+<p>Garson, J.G. (1900). The metric system of identification of criminals, as used
+in in Great Britain and Ireland. <cite>The Journal of the Anthropological
+Institute of Great Britain and Ireland</cite>, 30, 161–198.
+</p>
+<p>MacDonell, W.R. (1902). On criminal anthropometry and the identification of
+criminals. <cite>Biometrika</cite>, 1(2), 177–227.
+</p>
+<p>Student (1908). The probable error of a mean. <code>Biometrika</code>, 6, 1–25.
+</p>
+<span id="Examples-14"></span><h4 class="subsubheading">Examples</h4>
+
+<div class="example">
+<pre class="example"># TODO: Port this from R
+</pre></div>
+
+
+</dd></dl>
+
+<hr>
+<div class="header">
+<p>
+Next: <a href="octave_002edataset_002ecupcake.html" accesskey="n" rel="next">octave.dataset.cupcake</a>, Previous: <a href="octave_002edataset_002eco2.html" accesskey="p" rel="prev">octave.dataset.co2</a>, Up: <a href="octave_002edataset.html" accesskey="u" rel="up">octave.dataset</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+
+
+
+</body>
+</html>

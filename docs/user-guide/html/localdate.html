@@ -1,0 +1,124 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- This manual is for Tablicious, version 0.3.6-SNAPSHOT.
+
+Copyright (C) 2019 Andrew Janke
+
+Permission is granted to make and distribute verbatim copies of
+this manual provided the copyright notice and this permission notice
+are preserved on all copies.
+
+Permission is granted to copy and distribute modified versions of this
+manual under the conditions for verbatim copying, provided that the entire
+resulting derived work is distributed under the terms of a permission
+notice identical to this one.
+
+Permission is granted to copy and distribute translations of this manual
+into another language, under the same conditions as for modified versions. -->
+<!-- Created by GNU Texinfo 6.7, http://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>localdate (Octave Tablicious v0.3.6-SNAPSHOT)</title>
+
+<meta name="description" content="User manual for Tablicious for Octave.">
+<meta name="keywords" content="localdate (Octave Tablicious v0.3.6-SNAPSHOT)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<link href="index.html" rel="start" title="Top">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="API-Alphabetically.html" rel="up" title="API Alphabetically">
+<link href="localdate_002elocaldate.html" rel="next" title="localdate.localdate">
+<link href="isnanny.html" rel="prev" title="isnanny">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<span id="localdate"></span><div class="header">
+<p>
+Next: <a href="milliseconds.html" accesskey="n" rel="next">milliseconds</a>, Previous: <a href="isnanny.html" accesskey="p" rel="prev">isnanny</a>, Up: <a href="API-Alphabetically.html" accesskey="u" rel="up">API Alphabetically</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<hr>
+<span id="localdate-1"></span><h4 class="subsection">8.2.25 localdate</h4>
+<dl>
+<dt id="index-localdate-5">Class: <strong>localdate</strong></dt>
+<dd>
+<p>Represents a complete day using the Gregorian calendar.
+</p>
+<p>This class is useful for indexing daily-granularity data or representing
+time periods that cover an entire day in local time somewhere. The major
+purpose of this class is &quot;type safety&quot;, to prevent time-of-day values
+from sneaking in to data sets that should be daily only. As a secondary
+benefit, this uses less memory than datetimes.
+</p>
+</dd></dl>
+
+<dl>
+<dt id="index-dnums-of-localdate">Instance Variable of localdate: <em><code>double</code></em> <strong>dnums</strong></dt>
+<dd>
+<p>The underlying datenum values that represent the days. The datenums are at
+the midnight that is at the start of the day it represents.
+</p>
+<p>These are doubles, but
+they are restricted to be integer-valued, so they represent complete days, with
+no time-of-day component.
+</p>
+</dd></dl>
+
+<dl>
+<dt id="index-Format-of-localdate">Instance Variable of localdate: <em><code>char</code></em> <strong>Format</strong></dt>
+<dd>
+<p>The format to display this <code>localdate</code> in. Currently unsupported.
+</p>
+</dd></dl>
+
+
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top">&bull; <a href="localdate_002elocaldate.html" accesskey="1">localdate.localdate</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="localdate_002eNaT.html" accesskey="2">localdate.NaT</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="localdate_002eymd.html" accesskey="3">localdate.ymd</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="localdate_002edispstrs.html" accesskey="4">localdate.dispstrs</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="localdate_002edatestr.html" accesskey="5">localdate.datestr</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="localdate_002edatestrs.html" accesskey="6">localdate.datestrs</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="localdate_002edatestruct.html" accesskey="7">localdate.datestruct</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="localdate_002eposixtime.html" accesskey="8">localdate.posixtime</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="localdate_002edatenum.html" accesskey="9">localdate.datenum</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="localdate_002eisnat.html">localdate.isnat</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="localdate_002eisnan.html">localdate.isnan</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+</table>
+
+
+
+
+</body>
+</html>

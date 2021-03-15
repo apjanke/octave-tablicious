@@ -1,0 +1,83 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- This manual is for Tablicious, version 0.3.6-SNAPSHOT.
+
+Copyright (C) 2019 Andrew Janke
+
+Permission is granted to make and distribute verbatim copies of
+this manual provided the copyright notice and this permission notice
+are preserved on all copies.
+
+Permission is granted to copy and distribute modified versions of this
+manual under the conditions for verbatim copying, provided that the entire
+resulting derived work is distributed under the terms of a permission
+notice identical to this one.
+
+Permission is granted to copy and distribute translations of this manual
+into another language, under the same conditions as for modified versions. -->
+<!-- Created by GNU Texinfo 6.7, http://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>mustBeCellstr (Octave Tablicious v0.3.6-SNAPSHOT)</title>
+
+<meta name="description" content="User manual for Tablicious for Octave.">
+<meta name="keywords" content="mustBeCellstr (Octave Tablicious v0.3.6-SNAPSHOT)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<link href="index.html" rel="start" title="Top">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="API-Alphabetically.html" rel="up" title="API Alphabetically">
+<link href="mustBeCharvec.html" rel="next" title="mustBeCharvec">
+<link href="mustBeA.html" rel="prev" title="mustBeA">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<span id="mustBeCellstr"></span><div class="header">
+<p>
+Next: <a href="mustBeCharvec.html" accesskey="n" rel="next">mustBeCharvec</a>, Previous: <a href="mustBeA.html" accesskey="p" rel="prev">mustBeA</a>, Up: <a href="API-Alphabetically.html" accesskey="u" rel="up">API Alphabetically</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<hr>
+<span id="mustBeCellstr-1"></span><h4 class="subsection">8.2.30 mustBeCellstr</h4>
+<dl>
+<dt id="index-mustBeCellstr">Function File: <em><code>x</code> =</em> <strong>mustBeCellstr</strong> <em>(<var>x</var>, <var>label</var>)</em></dt>
+<dd>
+<p>Requires that input is a cellstr.
+</p>
+<p>Raises an error if the input <var>x</var> is not a cellstr (a cell array
+of <code>char</code> arrays).
+</p>
+<p>TODO: Decide whether to require the contained char arrays be rowvec/empty.
+</p>
+<p><var>label</var> is an optional input that determines how the input will be described in
+error messages. If not supplied, <code>inputname (1)</code> is used, and if that is
+empty, it falls back to &quot;input&quot;.
+</p>
+</dd></dl>
+
+
+
+
+
+</body>
+</html>

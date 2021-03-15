@@ -1,0 +1,89 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- This manual is for Tablicious, version 0.3.6-SNAPSHOT.
+
+Copyright (C) 2019 Andrew Janke
+
+Permission is granted to make and distribute verbatim copies of
+this manual provided the copyright notice and this permission notice
+are preserved on all copies.
+
+Permission is granted to copy and distribute modified versions of this
+manual under the conditions for verbatim copying, provided that the entire
+resulting derived work is distributed under the terms of a permission
+notice identical to this one.
+
+Permission is granted to copy and distribute translations of this manual
+into another language, under the same conditions as for modified versions. -->
+<!-- Created by GNU Texinfo 6.7, http://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>string.cmp (Octave Tablicious v0.3.6-SNAPSHOT)</title>
+
+<meta name="description" content="User manual for Tablicious for Octave.">
+<meta name="keywords" content="string.cmp (Octave Tablicious v0.3.6-SNAPSHOT)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<link href="index.html" rel="start" title="Top">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="string.html" rel="up" title="string">
+<link href="string_002emissing.html" rel="next" title="string.missing">
+<link href="string_002estrcmp.html" rel="prev" title="string.strcmp">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<span id="string_002ecmp"></span><div class="header">
+<p>
+Next: <a href="string_002emissing.html" accesskey="n" rel="next">string.missing</a>, Previous: <a href="string_002estrcmp.html" accesskey="p" rel="prev">string.strcmp</a>, Up: <a href="string.html" accesskey="u" rel="up">string</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<hr>
+<span id="string_002ecmp-1"></span><h4 class="subsubsection">8.2.57.23 string.cmp</h4>
+
+<dl>
+<dt id="index-cmp">Method: <em>[<var>out</var>, <var>outA</var>, <var>outB</var>] =</em> <strong>cmp</strong> <em>(<var>A</var>, <var>B</var>)</em></dt>
+<dd>
+<p>Value ordering comparison, returning -1/0/+1.
+</p>
+<p>Compares each element of <var>A</var> and <var>B</var>, returning for
+each element <code>i</code> whether <code>A(i)</code> was less than (-1),
+equal to (0), or greater than (1) the corresponding <code>B(i)</code>.
+</p>
+<p>TODO: What to do about missing values? Should missings sort to the end
+(preserving total ordering over the full domain), or should their comparisons
+result in a fourth &quot;null&quot;/&quot;undef&quot; return value, probably represented by NaN?
+FIXME: The current implementation does not handle missings.
+</p>
+<p>Returns a numeric array <var>out</var> of the same size as the scalar expansion
+of <var>A</var> and <var>B</var>. Each value in it will be -1, 0, or 1.
+</p>
+<p>Also returns scalar-expanded copies of <var>A</var> and <var>B</var> as <var>outA</var> and
+<var>outB</var>, as a programming convenience.
+</p>
+</dd></dl>
+
+
+
+
+</body>
+</html>

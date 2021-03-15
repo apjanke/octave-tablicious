@@ -1,0 +1,161 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- This manual is for Tablicious, version 0.3.6-SNAPSHOT.
+
+Copyright (C) 2019 Andrew Janke
+
+Permission is granted to make and distribute verbatim copies of
+this manual provided the copyright notice and this permission notice
+are preserved on all copies.
+
+Permission is granted to copy and distribute modified versions of this
+manual under the conditions for verbatim copying, provided that the entire
+resulting derived work is distributed under the terms of a permission
+notice identical to this one.
+
+Permission is granted to copy and distribute translations of this manual
+into another language, under the same conditions as for modified versions. -->
+<!-- Created by GNU Texinfo 6.7, http://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>calendarDuration (Octave Tablicious v0.3.6-SNAPSHOT)</title>
+
+<meta name="description" content="User manual for Tablicious for Octave.">
+<meta name="keywords" content="calendarDuration (Octave Tablicious v0.3.6-SNAPSHOT)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<link href="index.html" rel="start" title="Top">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="API-Alphabetically.html" rel="up" title="API Alphabetically">
+<link href="calendarDuration_002ecalendarDuration.html" rel="next" title="calendarDuration.calendarDuration">
+<link href="array2table.html" rel="prev" title="array2table">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<span id="calendarDuration"></span><div class="header">
+<p>
+Next: <a href="calmonths.html" accesskey="n" rel="next">calmonths</a>, Previous: <a href="array2table.html" accesskey="p" rel="prev">array2table</a>, Up: <a href="API-Alphabetically.html" accesskey="u" rel="up">API Alphabetically</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<hr>
+<span id="calendarDuration-1"></span><h4 class="subsection">8.2.2 calendarDuration</h4>
+<dl>
+<dt id="index-calendarDuration-3">Class: <strong>calendarDuration</strong></dt>
+<dd>
+<p>Durations of time using variable-length calendar periods, such as days,
+months, and years, which may vary in length over time. (For example, a
+calendar month may have 28, 30, or 31 days.)
+</p>
+</dd></dl>
+
+<dl>
+<dt id="index-Sign-of-calendarDuration">Instance Variable of calendarDuration: <em><code>char</code></em> <strong>Sign</strong></dt>
+<dd>
+<p>The sign (1 or -1) of this duration, which indicates whether it is a
+positive or negative span of time.
+</p>
+</dd></dl>
+
+<dl>
+<dt id="index-Years-of-calendarDuration">Instance Variable of calendarDuration: <em><code>char</code></em> <strong>Years</strong></dt>
+<dd>
+<p>The number of whole calendar years in this duration. Must be integer-valued.
+</p>
+</dd></dl>
+
+<dl>
+<dt id="index-Months-of-calendarDuration">Instance Variable of calendarDuration: <em><code>char</code></em> <strong>Months</strong></dt>
+<dd>
+<p>The number of whole calendar months in this duration. Must be integer-valued.
+</p>
+</dd></dl>
+
+<dl>
+<dt id="index-Days-of-calendarDuration">Instance Variable of calendarDuration: <em><code>char</code></em> <strong>Days</strong></dt>
+<dd>
+<p>The number of whole calendar days in this duration. Must be integer-valued.
+</p>
+</dd></dl>
+
+<dl>
+<dt id="index-Hours-of-calendarDuration">Instance Variable of calendarDuration: <em><code>char</code></em> <strong>Hours</strong></dt>
+<dd>
+<p>The number of whole hours in this duration. Must be integer-valued.
+</p>
+</dd></dl>
+
+<dl>
+<dt id="index-Minutes-of-calendarDuration">Instance Variable of calendarDuration: <em><code>char</code></em> <strong>Minutes</strong></dt>
+<dd>
+<p>The number of whole minutes in this duration. Must be integer-valued.
+</p>
+</dd></dl>
+
+<dl>
+<dt id="index-Seconds-of-calendarDuration">Instance Variable of calendarDuration: <em><code>char</code></em> <strong>Seconds</strong></dt>
+<dd>
+<p>The number of seconds in this duration. May contain fractional values.
+</p>
+</dd></dl>
+
+<dl>
+<dt id="index-Format-of-calendarDuration">Instance Variable of calendarDuration: <em><code>char</code></em> <strong>Format</strong></dt>
+<dd>
+<p>The format to display this <code>calendarDuration</code> in. Currently unsupported.
+</p>
+<p>This is a single value that applies to the whole array.
+</p>
+</dd></dl>
+
+
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top">&bull; <a href="calendarDuration_002ecalendarDuration.html" accesskey="1">calendarDuration.calendarDuration</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="calendarDuration_002esizeof.html" accesskey="2">calendarDuration.sizeof</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="calendarDuration_002eisnat.html" accesskey="3">calendarDuration.isnat</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="calendarDuration_002euminus.html" accesskey="4">calendarDuration.uminus</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="calendarDuration_002eplus.html" accesskey="5">calendarDuration.plus</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="calendarDuration_002etimes.html" accesskey="6">calendarDuration.times</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="calendarDuration_002eminus.html" accesskey="7">calendarDuration.minus</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="calendarDuration_002edispstrs.html" accesskey="8">calendarDuration.dispstrs</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="calendarDuration_002eisnan.html" accesskey="9">calendarDuration.isnan</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+</table>
+
+<hr>
+<div class="header">
+<p>
+Next: <a href="calmonths.html" accesskey="n" rel="next">calmonths</a>, Previous: <a href="array2table.html" accesskey="p" rel="prev">array2table</a>, Up: <a href="API-Alphabetically.html" accesskey="u" rel="up">API Alphabetically</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+
+
+
+</body>
+</html>

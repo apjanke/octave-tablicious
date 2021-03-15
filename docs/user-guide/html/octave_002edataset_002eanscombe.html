@@ -1,0 +1,135 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- This manual is for Tablicious, version 0.3.6-SNAPSHOT.
+
+Copyright (C) 2019 Andrew Janke
+
+Permission is granted to make and distribute verbatim copies of
+this manual provided the copyright notice and this permission notice
+are preserved on all copies.
+
+Permission is granted to copy and distribute modified versions of this
+manual under the conditions for verbatim copying, provided that the entire
+resulting derived work is distributed under the terms of a permission
+notice identical to this one.
+
+Permission is granted to copy and distribute translations of this manual
+into another language, under the same conditions as for modified versions. -->
+<!-- Created by GNU Texinfo 6.7, http://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>octave.dataset.anscombe (Octave Tablicious v0.3.6-SNAPSHOT)</title>
+
+<meta name="description" content="User manual for Tablicious for Octave.">
+<meta name="keywords" content="octave.dataset.anscombe (Octave Tablicious v0.3.6-SNAPSHOT)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<link href="index.html" rel="start" title="Top">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="octave_002edataset.html" rel="up" title="octave.dataset">
+<link href="octave_002edataset_002eattenu.html" rel="next" title="octave.dataset.attenu">
+<link href="octave_002edataset_002eairquality.html" rel="prev" title="octave.dataset.airquality">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<span id="octave_002edataset_002eanscombe"></span><div class="header">
+<p>
+Next: <a href="octave_002edataset_002eattenu.html" accesskey="n" rel="next">octave.dataset.attenu</a>, Previous: <a href="octave_002edataset_002eairquality.html" accesskey="p" rel="prev">octave.dataset.airquality</a>, Up: <a href="octave_002edataset.html" accesskey="u" rel="up">octave.dataset</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<hr>
+<span id="octave_002edataset_002eanscombe-1"></span><h4 class="subsubsection">8.2.45.4 octave.dataset.anscombe</h4>
+
+<dl>
+<dt id="index-anscombe">Static Method: <em><var>out</var> =</em> <strong>anscombe</strong> <em>()</em></dt>
+<dd>
+<p>Anscombe’s Quartet of “Identical” Simple Linear Regressions
+</p>
+<span id="Description-3"></span><h4 class="subsubheading">Description</h4>
+
+<p>Four sets of x/y pairs which have the same statistical properties, but are
+very different.
+</p>
+<span id="Format-1"></span><h4 class="subsubheading">Format</h4>
+
+<p>The data comes in an array of 4 structs, each with fields as follows:
+</p>
+<dl compact="compact">
+<dt><code>x</code></dt>
+<dd><p>The X values for this pair.
+</p></dd>
+<dt><code>y</code></dt>
+<dd><p>The Y values for this pair.
+</p></dd>
+</dl>
+
+<span id="Source-3"></span><h4 class="subsubheading">Source</h4>
+
+<p>Tufte, Edward R. (1989). <cite>The Visual Display of Quantitative Information</cite>.
+13–14. Cheshire, CT: Graphics Press.
+</p>
+<span id="References-1"></span><h4 class="subsubheading">References</h4>
+
+<p>Anscombe, Francis J. (1973). Graphs in statistical analysis. <cite>The
+American Statistician</cite>, 27, 17–21.
+</p>
+<span id="Examples-3"></span><h4 class="subsubheading">Examples</h4>
+
+<div class="example">
+<pre class="example">data = octave.dataset.anscombe
+
+# Pick good limits for the plots
+all_x = [data.x];
+all_y = [data.y];
+x_limits = [min(0, min(all_x)) max(all_x)*1.2];
+y_limits = [min(0, min(all_y)) max(all_y)*1.2];
+
+# Do regression on each pair and plot the input and results
+figure;
+haxs = NaN (1, 4);
+for i_pair = 1:4
+  x = data(i_pair).x;
+  y = data(i_pair).y;
+  # TODO: Port the anova and other characterizations from the R code
+  # TODO: Do a linear regression and plot its line
+  hax = subplot (2, 2, i_pair);
+  haxs(i_pair) = hax;
+  xlabel (sprintf (&quot;x%d&quot;, i_pair));
+  ylabel (sprintf (&quot;y%d&quot;, i_pair));
+  scatter (x, y, &quot;r&quot;);
+endfor
+
+# Fiddle with the plot axes parameters
+linkaxes (haxs);
+xlim(haxs(1), x_limits);
+ylim(haxs(1), y_limits);
+</pre></div>
+
+
+</dd></dl>
+
+
+
+
+</body>
+</html>

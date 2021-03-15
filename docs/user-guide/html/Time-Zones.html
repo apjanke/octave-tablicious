@@ -1,0 +1,136 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- This manual is for Tablicious, version 0.3.6-SNAPSHOT.
+
+Copyright (C) 2019 Andrew Janke
+
+Permission is granted to make and distribute verbatim copies of
+this manual provided the copyright notice and this permission notice
+are preserved on all copies.
+
+Permission is granted to copy and distribute modified versions of this
+manual under the conditions for verbatim copying, provided that the entire
+resulting derived work is distributed under the terms of a permission
+notice identical to this one.
+
+Permission is granted to copy and distribute translations of this manual
+into another language, under the same conditions as for modified versions. -->
+<!-- Created by GNU Texinfo 6.7, http://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Time Zones (Octave Tablicious v0.3.6-SNAPSHOT)</title>
+
+<meta name="description" content="User manual for Tablicious for Octave.">
+<meta name="keywords" content="Time Zones (Octave Tablicious v0.3.6-SNAPSHOT)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<link href="index.html" rel="start" title="Top">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Date-and-Time-Representation.html" rel="up" title="Date and Time Representation">
+<link href="Defined-Time-Zones.html" rel="next" title="Defined Time Zones">
+<link href="Datenum-Compatibility.html" rel="prev" title="Datenum Compatibility">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<span id="Time-Zones"></span><div class="header">
+<p>
+Next: <a href="Durations.html" accesskey="n" rel="next">Durations</a>, Previous: <a href="datetime-Class.html" accesskey="p" rel="prev">datetime Class</a>, Up: <a href="Date-and-Time-Representation.html" accesskey="u" rel="up">Date and Time Representation</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<hr>
+<span id="Time-Zones-1"></span><h3 class="section">4.2 Time Zones</h3>
+
+<p>Chrono has support for representing dates in time zones and for converting between time zones.
+</p>
+<p>A <code>datetime</code> may be &quot;zoned&quot; or &quot;zoneless&quot;. A zoneless <code>datetime</code> does not have a time zone
+associated with it. This is represented by an empty <code>TimeZone</code> property on the <code>datetime</code>
+object. A zoneless <code>datetime</code> represents the local time in some unknown time zone, and assumes a
+continuous time scale (no DST shifts).
+</p>
+<p>A zoned <code>datetime</code> is associated with a time zone. It is represented by having the time zone&rsquo;s
+IANA zone identifier (e.g. <code>'UTC'</code> or <code>'America/New_York'</code>) in its <code>TimeZone</code> 
+property. A zoned <code>datetime</code> represents the local time in that time zone.
+</p>
+<p>By default, the <code>datetime</code> constructor creates unzoned <code>datetime</code>s. To 
+make a zoned <code>datetime</code>, either pass the <code>'TimeZone'</code> option to the constructor, 
+or set the <code>TimeZone</code> property after object creation. Setting the <code>TimeZone</code>
+property on a zoneless <code>datetime</code> declares that it&rsquo;s a local time in that time zone.
+Setting the <code>TimeZone</code> property on a zoned <code>datetime</code> turns it back into a 
+zoneless <code>datetime</code> without changing the local time it represents.
+</p>
+<p>You can tell a zoned from a zoneless time zone in the object display because the time zone
+is included for zoned <code>datetime</code>s.
+</p>
+<div class="example">
+<pre class="example">% Create an unzoned datetime
+d = datetime('2011-03-04 06:00:00')
+    &rArr;  04-Mar-2011 06:00:00
+
+% Create a zoned datetime
+d_ny = datetime('2011-03-04 06:00:00', 'TimeZone', 'America/New_York')
+    &rArr;  04-Mar-2011 06:00:00 America/New_York
+% This is equivalent
+d_ny = datetime('2011-03-04 06:00:00');
+d_ny.TimeZone = 'America/New_York'
+    &rArr;  04-Mar-2011 06:00:00 America/New_York
+
+% Convert it to Chicago time
+d_chi.TimeZone = 'America/Chicago'
+    &rArr;  04-Mar-2011 05:00:00 America/Chicago
+</pre></div>
+
+<p>When you combine two zoned <code>datetime</code>s via concatenation, assignment, or 
+arithmetic, if their time zones differ, they are converted to the time zone of
+the left-hand input.
+</p>
+<div class="example">
+<pre class="example">d_ny = datetime('2011-03-04 06:00:00', 'TimeZone', 'America/New_York')
+d_la = datetime('2011-03-04 06:00:00', 'TimeZone', 'America/Los_Angeles')
+d_la - d_ny
+    &rArr; 03:00:00
+</pre></div>
+
+<p>You cannot combine a zoned and an unzoned <code>datetime</code>. This results in an error
+being raised.
+</p>
+<blockquote>
+<p><b>Warning:</b> Normalization of &quot;nonexistent&quot; times (like between 02:00 and 03:00 on a &quot;spring forward&quot;
+DST change day) is not implemented yet. The results of converting a zoneless local time
+into a time zone where that local time did not exist are currently undefined.
+</p></blockquote>
+
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top">&bull; <a href="Defined-Time-Zones.html" accesskey="1">Defined Time Zones</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+</table>
+
+<hr>
+<div class="header">
+<p>
+Next: <a href="Durations.html" accesskey="n" rel="next">Durations</a>, Previous: <a href="datetime-Class.html" accesskey="p" rel="prev">datetime Class</a>, Up: <a href="Date-and-Time-Representation.html" accesskey="u" rel="up">Date and Time Representation</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+
+
+
+</body>
+</html>

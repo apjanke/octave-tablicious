@@ -1,0 +1,88 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- This manual is for Tablicious, version 0.3.6-SNAPSHOT.
+
+Copyright (C) 2019 Andrew Janke
+
+Permission is granted to make and distribute verbatim copies of
+this manual provided the copyright notice and this permission notice
+are preserved on all copies.
+
+Permission is granted to copy and distribute modified versions of this
+manual under the conditions for verbatim copying, provided that the entire
+resulting derived work is distributed under the terms of a permission
+notice identical to this one.
+
+Permission is granted to copy and distribute translations of this manual
+into another language, under the same conditions as for modified versions. -->
+<!-- Created by GNU Texinfo 6.7, http://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>years (Octave Tablicious v0.3.6-SNAPSHOT)</title>
+
+<meta name="description" content="User manual for Tablicious for Octave.">
+<meta name="keywords" content="years (Octave Tablicious v0.3.6-SNAPSHOT)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<link href="index.html" rel="start" title="Top">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="API-Alphabetically.html" rel="up" title="API Alphabetically">
+<link href="Copying.html" rel="next" title="Copying">
+<link href="vecfun.html" rel="prev" title="vecfun">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<span id="years"></span><div class="header">
+<p>
+Previous: <a href="vecfun.html" accesskey="p" rel="prev">vecfun</a>, Up: <a href="API-Alphabetically.html" accesskey="u" rel="up">API Alphabetically</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<hr>
+<span id="years-1"></span><h4 class="subsection">8.2.64 years</h4>
+<dl>
+<dt id="index-years-1">Function File: <em><var>out</var> =</em> <strong>years</strong> <em>(<var>x</var>)</em></dt>
+<dd><p>Create a <code>duration</code> <var>x</var> years long, or get the years in a <code>duration</code>
+<var>x</var>.
+</p>
+<p>If input is numeric, returns a <code>duration</code> array in units of fixed-length
+years of 365.2425 days each.
+</p>
+<p>If input is a <code>duration</code>, converts the <code>duration</code> to a number of fixed-length
+years as double.
+</p>
+<p>Note: <code>years</code> creates fixed-length years, which may not be what you want.
+To create a duration of calendar years (which account for actual leap days),
+use <code>calyears</code>.
+</p>
+<p>See <a href="calyears.html">calyears</a>.
+</p></dd></dl>
+
+
+
+
+
+
+
+
+</body>
+</html>

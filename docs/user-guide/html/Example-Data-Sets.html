@@ -1,0 +1,111 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- This manual is for Tablicious, version 0.3.6-SNAPSHOT.
+
+Copyright (C) 2019 Andrew Janke
+
+Permission is granted to make and distribute verbatim copies of
+this manual provided the copyright notice and this permission notice
+are preserved on all copies.
+
+Permission is granted to copy and distribute modified versions of this
+manual under the conditions for verbatim copying, provided that the entire
+resulting derived work is distributed under the terms of a permission
+notice identical to this one.
+
+Permission is granted to copy and distribute translations of this manual
+into another language, under the same conditions as for modified versions. -->
+<!-- Created by GNU Texinfo 6.7, http://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Example Data Sets (Octave Tablicious v0.3.6-SNAPSHOT)</title>
+
+<meta name="description" content="User manual for Tablicious for Octave.">
+<meta name="keywords" content="Example Data Sets (Octave Tablicious v0.3.6-SNAPSHOT)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<link href="index.html" rel="start" title="Top">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="index.html" rel="up" title="Top">
+<link href="Data-Sets-from-R.html" rel="next" title="Data Sets from R">
+<link href="Validation-Functions.html" rel="prev" title="Validation Functions">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<span id="Example-Data-Sets"></span><div class="header">
+<p>
+Next: <a href="Missing-Functionality.html" accesskey="n" rel="next">Missing Functionality</a>, Previous: <a href="Validation-Functions.html" accesskey="p" rel="prev">Validation Functions</a>, Up: <a href="index.html" accesskey="u" rel="up">Top</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<hr>
+<span id="Example-Data-Sets-1"></span><h2 class="chapter">6 Example Data Sets</h2>
+
+<p>Tablicious comes with several example data sets that you can use to explore how
+its functions and objects work. These are accessed through the
+<code>octave.datasets</code> and <code>octave.dataset</code> classes.
+</p>
+<p>To see a list of the available data sets, run <code>octave.datasets.list()</code>.
+Then to load one of the example data sets, run
+<code>octave.datasets.load('examplename')</code>. For example:
+</p>
+<div class="example">
+<pre class="example">octave.datasets.list
+t = octave.datasets.load('cupcake')
+</pre></div>
+
+<p>You can also load it by calling <code>octave.dataset.&lt;name&gt;</code>. This does
+the same thing. For example:
+</p>
+<div class="example">
+<pre class="example">t = octave.dataset.cupcake
+</pre></div>
+
+<p>When you load a data set, it either returns all its data in a single variable
+(if you capture it), or loads its data into one or more variables in your
+workspace (if you call it with no outputs).
+</p>
+<p>Each example data set comes with help text that describes the data set and
+provides examples of how to work with it. This help is found using the <code>doc</code>
+command on <code>octave.dataset.&lt;name&gt;</code>, where <var>&lt;name&gt;</var> is the name of
+the data set.
+</p>
+<p>For example:
+</p>
+<div class="example">
+<pre class="example">doc octave.dataset.cupcake
+</pre></div>
+
+<p>(The command <code>help octave.dataset.&lt;name&gt;</code> ought to work too, but it
+currently doesn’t. This may be due to an issue with Octave’s <code>help</code>
+command.)
+</p>
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top">&bull; <a href="Data-Sets-from-R.html" accesskey="1">Data Sets from R</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+</table>
+
+
+
+
+</body>
+</html>

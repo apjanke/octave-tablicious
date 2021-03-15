@@ -1,0 +1,259 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- This manual is for Tablicious, version 0.3.6-SNAPSHOT.
+
+Copyright (C) 2019 Andrew Janke
+
+Permission is granted to make and distribute verbatim copies of
+this manual provided the copyright notice and this permission notice
+are preserved on all copies.
+
+Permission is granted to copy and distribute modified versions of this
+manual under the conditions for verbatim copying, provided that the entire
+resulting derived work is distributed under the terms of a permission
+notice identical to this one.
+
+Permission is granted to copy and distribute translations of this manual
+into another language, under the same conditions as for modified versions. -->
+<!-- Created by GNU Texinfo 6.7, http://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>octave.dataset (Octave Tablicious v0.3.6-SNAPSHOT)</title>
+
+<meta name="description" content="User manual for Tablicious for Octave.">
+<meta name="keywords" content="octave.dataset (Octave Tablicious v0.3.6-SNAPSHOT)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<link href="index.html" rel="start" title="Top">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="API-Alphabetically.html" rel="up" title="API Alphabetically">
+<link href="octave_002edataset_002eairmiles.html" rel="next" title="octave.dataset.airmiles">
+<link href="octave_002echrono_002eDummyClass_002ebar.html" rel="prev" title="octave.chrono.DummyClass.bar">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<span id="octave_002edataset"></span><div class="header">
+<p>
+Next: <a href="octave_002edatasets.html" accesskey="n" rel="next">octave.datasets</a>, Previous: <a href="octave_002echrono_002eDummyClass.html" accesskey="p" rel="prev">octave.chrono.DummyClass</a>, Up: <a href="API-Alphabetically.html" accesskey="u" rel="up">API Alphabetically</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<hr>
+<span id="octave_002edataset-1"></span><h4 class="subsection">8.2.45 octave.dataset</h4>
+<dl>
+<dt id="index-dataset">Class: <strong>dataset</strong></dt>
+<dd>
+<p>The <code>dataset</code> class provides convenient access to the various
+datasets included with Tablicious.
+</p>
+<p>This class just contains a bunch of static methods, each of which loads
+the dataset of that name. It’s provided so you can use tab completion
+on the dataset list.
+</p>
+</dd></dl>
+
+
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top">&bull; <a href="octave_002edataset_002eairmiles.html" accesskey="1">octave.dataset.airmiles</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="octave_002edataset_002eAirPassengers.html" accesskey="2">octave.dataset.AirPassengers</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="octave_002edataset_002eairquality.html" accesskey="3">octave.dataset.airquality</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="octave_002edataset_002eanscombe.html" accesskey="4">octave.dataset.anscombe</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="octave_002edataset_002eattenu.html" accesskey="5">octave.dataset.attenu</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="octave_002edataset_002eattitude.html" accesskey="6">octave.dataset.attitude</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="octave_002edataset_002eaustres.html" accesskey="7">octave.dataset.austres</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="octave_002edataset_002ebeavers.html" accesskey="8">octave.dataset.beavers</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="octave_002edataset_002eBJsales.html" accesskey="9">octave.dataset.BJsales</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="octave_002edataset_002eBOD.html">octave.dataset.BOD</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="octave_002edataset_002ecars.html">octave.dataset.cars</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="octave_002edataset_002eChickWeight.html">octave.dataset.ChickWeight</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="octave_002edataset_002echickwts.html">octave.dataset.chickwts</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="octave_002edataset_002eco2.html">octave.dataset.co2</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="octave_002edataset_002ecrimtab.html">octave.dataset.crimtab</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="octave_002edataset_002ecupcake.html">octave.dataset.cupcake</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="octave_002edataset_002ediscoveries.html">octave.dataset.discoveries</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="octave_002edataset_002eDNase.html">octave.dataset.DNase</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="octave_002edataset_002eesoph.html">octave.dataset.esoph</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="octave_002edataset_002eeuro.html">octave.dataset.euro</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="octave_002edataset_002eeurodist.html">octave.dataset.eurodist</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="octave_002edataset_002eEuStockMarkets.html">octave.dataset.EuStockMarkets</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="octave_002edataset_002efaithful.html">octave.dataset.faithful</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="octave_002edataset_002eFormaldehyde.html">octave.dataset.Formaldehyde</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="octave_002edataset_002efreeny.html">octave.dataset.freeny</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="octave_002edataset_002eHairEyeColor.html">octave.dataset.HairEyeColor</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="octave_002edataset_002eHarman23cor.html">octave.dataset.Harman23cor</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="octave_002edataset_002eHarman74cor.html">octave.dataset.Harman74cor</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="octave_002edataset_002eIndometh.html">octave.dataset.Indometh</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="octave_002edataset_002einfert.html">octave.dataset.infert</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="octave_002edataset_002eInsectSprays.html">octave.dataset.InsectSprays</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="octave_002edataset_002eiris.html">octave.dataset.iris</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="octave_002edataset_002eislands.html">octave.dataset.islands</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="octave_002edataset_002eJohnsonJohnson.html">octave.dataset.JohnsonJohnson</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="octave_002edataset_002eLakeHuron.html">octave.dataset.LakeHuron</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="octave_002edataset_002elh.html">octave.dataset.lh</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="octave_002edataset_002eLifeCycleSavings.html">octave.dataset.LifeCycleSavings</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="octave_002edataset_002eLoblolly.html">octave.dataset.Loblolly</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="octave_002edataset_002elongley.html">octave.dataset.longley</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="octave_002edataset_002elynx.html">octave.dataset.lynx</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="octave_002edataset_002emorley.html">octave.dataset.morley</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="octave_002edataset_002emtcars.html">octave.dataset.mtcars</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="octave_002edataset_002enhtemp.html">octave.dataset.nhtemp</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="octave_002edataset_002eNile.html">octave.dataset.Nile</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="octave_002edataset_002enottem.html">octave.dataset.nottem</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="octave_002edataset_002enpk.html">octave.dataset.npk</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="octave_002edataset_002eoccupationalStatus.html">octave.dataset.occupationalStatus</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="octave_002edataset_002eOrange.html">octave.dataset.Orange</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="octave_002edataset_002eOrchardSprays.html">octave.dataset.OrchardSprays</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="octave_002edataset_002ePlantGrowth.html">octave.dataset.PlantGrowth</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="octave_002edataset_002eprecip.html">octave.dataset.precip</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="octave_002edataset_002epresidents.html">octave.dataset.presidents</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="octave_002edataset_002epressure.html">octave.dataset.pressure</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="octave_002edataset_002ePuromycin.html">octave.dataset.Puromycin</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="octave_002edataset_002equakes.html">octave.dataset.quakes</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="octave_002edataset_002erandu.html">octave.dataset.randu</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="octave_002edataset_002erivers.html">octave.dataset.rivers</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="octave_002edataset_002erock.html">octave.dataset.rock</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="octave_002edataset_002esleep.html">octave.dataset.sleep</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="octave_002edataset_002estackloss.html">octave.dataset.stackloss</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="octave_002edataset_002estate.html">octave.dataset.state</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="octave_002edataset_002esunspot_005fmonth.html">octave.dataset.sunspot_month</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="octave_002edataset_002esunspot_005fyear.html">octave.dataset.sunspot_year</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="octave_002edataset_002esunspots.html">octave.dataset.sunspots</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="octave_002edataset_002eswiss.html">octave.dataset.swiss</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="octave_002edataset_002eTheoph.html">octave.dataset.Theoph</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="octave_002edataset_002eTitanic.html">octave.dataset.Titanic</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="octave_002edataset_002eToothGrowth.html">octave.dataset.ToothGrowth</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="octave_002edataset_002etreering.html">octave.dataset.treering</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="octave_002edataset_002etrees.html">octave.dataset.trees</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="octave_002edataset_002eUCBAdmissions.html">octave.dataset.UCBAdmissions</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="octave_002edataset_002eUKDriverDeaths.html">octave.dataset.UKDriverDeaths</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="octave_002edataset_002eUKgas.html">octave.dataset.UKgas</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="octave_002edataset_002eUKLungDeaths.html">octave.dataset.UKLungDeaths</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="octave_002edataset_002eUSAccDeaths.html">octave.dataset.USAccDeaths</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="octave_002edataset_002eUSArrests.html">octave.dataset.USArrests</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="octave_002edataset_002eUSJudgeRatings.html">octave.dataset.USJudgeRatings</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="octave_002edataset_002eUSPersonalExpenditure.html">octave.dataset.USPersonalExpenditure</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="octave_002edataset_002euspop.html">octave.dataset.uspop</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="octave_002edataset_002eVADeaths.html">octave.dataset.VADeaths</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="octave_002edataset_002evolcano.html">octave.dataset.volcano</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="octave_002edataset_002ewarpbreaks.html">octave.dataset.warpbreaks</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="octave_002edataset_002ewomen.html">octave.dataset.women</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="octave_002edataset_002eWorldPhones.html">octave.dataset.WorldPhones</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="octave_002edataset_002eWWWusage.html">octave.dataset.WWWusage</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="octave_002edataset_002ezCO2.html">octave.dataset.zCO2</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+</table>
+
+<hr>
+<div class="header">
+<p>
+Next: <a href="octave_002edatasets.html" accesskey="n" rel="next">octave.datasets</a>, Previous: <a href="octave_002echrono_002eDummyClass.html" accesskey="p" rel="prev">octave.chrono.DummyClass</a>, Up: <a href="API-Alphabetically.html" accesskey="u" rel="up">API Alphabetically</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+
+
+
+</body>
+</html>

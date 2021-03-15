@@ -1,0 +1,135 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- This manual is for Tablicious, version 0.3.6-SNAPSHOT.
+
+Copyright (C) 2019 Andrew Janke
+
+Permission is granted to make and distribute verbatim copies of
+this manual provided the copyright notice and this permission notice
+are preserved on all copies.
+
+Permission is granted to copy and distribute modified versions of this
+manual under the conditions for verbatim copying, provided that the entire
+resulting derived work is distributed under the terms of a permission
+notice identical to this one.
+
+Permission is granted to copy and distribute translations of this manual
+into another language, under the same conditions as for modified versions. -->
+<!-- Created by GNU Texinfo 6.7, http://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>octave.dataset.UCBAdmissions (Octave Tablicious v0.3.6-SNAPSHOT)</title>
+
+<meta name="description" content="User manual for Tablicious for Octave.">
+<meta name="keywords" content="octave.dataset.UCBAdmissions (Octave Tablicious v0.3.6-SNAPSHOT)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<link href="index.html" rel="start" title="Top">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="octave_002edataset.html" rel="up" title="octave.dataset">
+<link href="octave_002edataset_002eUKDriverDeaths.html" rel="next" title="octave.dataset.UKDriverDeaths">
+<link href="octave_002edataset_002etrees.html" rel="prev" title="octave.dataset.trees">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<span id="octave_002edataset_002eUCBAdmissions"></span><div class="header">
+<p>
+Next: <a href="octave_002edataset_002eUKDriverDeaths.html" accesskey="n" rel="next">octave.dataset.UKDriverDeaths</a>, Previous: <a href="octave_002edataset_002etrees.html" accesskey="p" rel="prev">octave.dataset.trees</a>, Up: <a href="octave_002edataset.html" accesskey="u" rel="up">octave.dataset</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<hr>
+<span id="octave_002edataset_002eUCBAdmissions-1"></span><h4 class="subsubsection">8.2.45.71 octave.dataset.UCBAdmissions</h4>
+
+<dl>
+<dt id="index-UCBAdmissions">Static Method: <em><var>out</var> =</em> <strong>UCBAdmissions</strong> <em>()</em></dt>
+<dd>
+<p>Student Admissions at UC Berkeley
+</p>
+<span id="Description-69"></span><h4 class="subsubheading">Description</h4>
+
+<p>Aggregate data on applicants to graduate school at Berkeley for the six
+largest departments in 1973 classified by admission and sex.
+</p>
+<span id="Format-68"></span><h4 class="subsubheading">Format</h4>
+
+<p>A 3-dimensional array resulting from cross-tabulating 4526 observations on
+3 variables. The variables and their levels are as follows:
+</p>
+<dl compact="compact">
+<dt><code>Admit</code></dt>
+<dd><p>Admitted, Rejected.
+</p></dd>
+<dt><code>Gender</code></dt>
+<dd><p>Male, Female.
+</p></dd>
+<dt><code>Dept</code></dt>
+<dd><p>A, B, C, D, E, F.
+</p></dd>
+</dl>
+
+<span id="Details-18"></span><h4 class="subsubheading">Details</h4>
+
+<p>This data set is frequently used for illustrating Simpson&rsquo;s paradox, see
+Bickel et al (1975). At issue is whether the data show evidence of sex bias
+in admission practices. There were 2691 male applicants, of whom 1198 (44.5%)
+were admitted, compared with 1835 female applicants of whom 557 (30.4%) were
+admitted. This gives a sample odds ratio of 1.83, indicating that males were
+almost twice as likely to be admitted. In fact, graphical methods (as in the
+example below) or log-linear modelling show that the apparent association
+between admission and sex stems from differences in the tendency of males
+and females to apply to the individual departments (females used to apply
+more to departments with higher rejection rates).
+</p>
+<span id="Source-70"></span><h4 class="subsubheading">Source</h4>
+
+<p>The data are given in Box &amp; Jenkins (1976). Obtained from the Time Series Data
+Library at <a href="http://www-personal.buseco.monash.edu.au/~hyndman/TSDL/">http://www-personal.buseco.monash.edu.au/~hyndman/TSDL/</a>.
+</p>
+<span id="References-38"></span><h4 class="subsubheading">References</h4>
+
+<p>Bickel, P. J., Hammel, E. A., and O&rsquo;Connell, J. W. (1975). Sex bias in
+graduate admissions: Data from Berkeley. <cite>Science</cite>, 187, 398–403.
+<a href="http://www.jstor.org/stable/1739581">http://www.jstor.org/stable/1739581</a>.
+</p>
+<span id="Examples-69"></span><h4 class="subsubheading">Examples</h4>
+
+<div class="example">
+<pre class="example">octave.dataset.UCBAdmissions;
+
+# TODO: Port mosaic plot to Octave
+
+</pre></div>
+
+
+</dd></dl>
+
+<hr>
+<div class="header">
+<p>
+Next: <a href="octave_002edataset_002eUKDriverDeaths.html" accesskey="n" rel="next">octave.dataset.UKDriverDeaths</a>, Previous: <a href="octave_002edataset_002etrees.html" accesskey="p" rel="prev">octave.dataset.trees</a>, Up: <a href="octave_002edataset.html" accesskey="u" rel="up">octave.dataset</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+
+
+
+</body>
+</html>

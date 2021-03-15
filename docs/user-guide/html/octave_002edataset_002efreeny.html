@@ -1,0 +1,132 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- This manual is for Tablicious, version 0.3.6-SNAPSHOT.
+
+Copyright (C) 2019 Andrew Janke
+
+Permission is granted to make and distribute verbatim copies of
+this manual provided the copyright notice and this permission notice
+are preserved on all copies.
+
+Permission is granted to copy and distribute modified versions of this
+manual under the conditions for verbatim copying, provided that the entire
+resulting derived work is distributed under the terms of a permission
+notice identical to this one.
+
+Permission is granted to copy and distribute translations of this manual
+into another language, under the same conditions as for modified versions. -->
+<!-- Created by GNU Texinfo 6.7, http://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>octave.dataset.freeny (Octave Tablicious v0.3.6-SNAPSHOT)</title>
+
+<meta name="description" content="User manual for Tablicious for Octave.">
+<meta name="keywords" content="octave.dataset.freeny (Octave Tablicious v0.3.6-SNAPSHOT)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<link href="index.html" rel="start" title="Top">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="octave_002edataset.html" rel="up" title="octave.dataset">
+<link href="octave_002edataset_002eHairEyeColor.html" rel="next" title="octave.dataset.HairEyeColor">
+<link href="octave_002edataset_002eFormaldehyde.html" rel="prev" title="octave.dataset.Formaldehyde">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<span id="octave_002edataset_002efreeny"></span><div class="header">
+<p>
+Next: <a href="octave_002edataset_002eHairEyeColor.html" accesskey="n" rel="next">octave.dataset.HairEyeColor</a>, Previous: <a href="octave_002edataset_002eFormaldehyde.html" accesskey="p" rel="prev">octave.dataset.Formaldehyde</a>, Up: <a href="octave_002edataset.html" accesskey="u" rel="up">octave.dataset</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<hr>
+<span id="octave_002edataset_002efreeny-1"></span><h4 class="subsubsection">8.2.45.25 octave.dataset.freeny</h4>
+
+<dl>
+<dt id="index-freeny">Static Method: <em><var>out</var> =</em> <strong>freeny</strong> <em>()</em></dt>
+<dd>
+<p>Freeny&rsquo;s Revenue Data
+</p>
+<span id="Description-23"></span><h4 class="subsubheading">Description</h4>
+
+<p>Freeny’s data on quarterly revenue and explanatory variables.
+</p>
+<span id="Format-22"></span><h4 class="subsubheading">Format</h4>
+
+<p>Freeny’s dataset consists of one observed dependent variable
+(revenue) and four explanatory variables (lagged quartery
+revenue, price index, income level, and market potential).
+</p>
+<dl compact="compact">
+<dt><code>date</code></dt>
+<dd><p>Start date of the quarter for the observation.
+</p></dd>
+<dt><code>y</code></dt>
+<dd><p>Observed quarterly revenue.
+TODO: Determine units (probably millions of USD?)
+</p></dd>
+<dt><code>lag_quarterly_revenue</code></dt>
+<dd><p>Quarterly revenue (<code>y</code>), lagged 1 quarter.
+</p></dd>
+<dt><code>price_index</code></dt>
+<dd><p>A price index
+</p></dd>
+<dt><code>income_level</code></dt>
+<dd><p>??? TODO: Fill this in
+</p></dd>
+<dt><code>market_potential</code></dt>
+<dd><p>??? TODO: Fill this in
+</p></dd>
+</dl>
+
+<span id="Source-24"></span><h4 class="subsubheading">Source</h4>
+
+<p>Freeny, A. E. (1977). <cite>A Portable Linear Regression Package with Test
+Programs</cite>. Bell Laboratories memorandum.
+</p>
+<span id="References-11"></span><h4 class="subsubheading">References</h4>
+
+<p>Becker, R. A., Chambers, J. M. and Wilks, A. R. (1988). <cite>The New S
+Language</cite>. Monterey: Wadsworth &amp; Brooks/Cole.
+</p>
+<span id="Examples-24"></span><h4 class="subsubheading">Examples</h4>
+
+<div class="example">
+<pre class="example">t = octave.dataset.freeny;
+
+summary(t)
+
+octave.examples.plot_pairs (removevars (t, &quot;date&quot;))
+
+# TODO: Create linear model and print summary
+
+# TODO: Linear model plot
+
+</pre></div>
+
+
+</dd></dl>
+
+
+
+
+</body>
+</html>

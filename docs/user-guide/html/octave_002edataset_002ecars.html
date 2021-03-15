@@ -1,0 +1,137 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- This manual is for Tablicious, version 0.3.6-SNAPSHOT.
+
+Copyright (C) 2019 Andrew Janke
+
+Permission is granted to make and distribute verbatim copies of
+this manual provided the copyright notice and this permission notice
+are preserved on all copies.
+
+Permission is granted to copy and distribute modified versions of this
+manual under the conditions for verbatim copying, provided that the entire
+resulting derived work is distributed under the terms of a permission
+notice identical to this one.
+
+Permission is granted to copy and distribute translations of this manual
+into another language, under the same conditions as for modified versions. -->
+<!-- Created by GNU Texinfo 6.7, http://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>octave.dataset.cars (Octave Tablicious v0.3.6-SNAPSHOT)</title>
+
+<meta name="description" content="User manual for Tablicious for Octave.">
+<meta name="keywords" content="octave.dataset.cars (Octave Tablicious v0.3.6-SNAPSHOT)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<link href="index.html" rel="start" title="Top">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="octave_002edataset.html" rel="up" title="octave.dataset">
+<link href="octave_002edataset_002eChickWeight.html" rel="next" title="octave.dataset.ChickWeight">
+<link href="octave_002edataset_002eBOD.html" rel="prev" title="octave.dataset.BOD">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<span id="octave_002edataset_002ecars"></span><div class="header">
+<p>
+Next: <a href="octave_002edataset_002eChickWeight.html" accesskey="n" rel="next">octave.dataset.ChickWeight</a>, Previous: <a href="octave_002edataset_002eBOD.html" accesskey="p" rel="prev">octave.dataset.BOD</a>, Up: <a href="octave_002edataset.html" accesskey="u" rel="up">octave.dataset</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<hr>
+<span id="octave_002edataset_002ecars-1"></span><h4 class="subsubsection">8.2.45.11 octave.dataset.cars</h4>
+
+<dl>
+<dt id="index-cars">Static Method: <em><var>out</var> =</em> <strong>cars</strong> <em>()</em></dt>
+<dd>
+<p>Speed and Stopping Distances of Cars
+</p>
+<span id="Description-10"></span><h4 class="subsubheading">Description</h4>
+
+<p>Speed of cars and distances taken to stop. Note that the data were recorded in the 1920s.
+</p>
+<span id="Format-8"></span><h4 class="subsubheading">Format</h4>
+
+<dl compact="compact">
+<dt><code>speed</code></dt>
+<dd><p>Speed (mph).
+</p></dd>
+<dt><code>dist</code></dt>
+<dd><p>Stopping distance (ft).
+</p></dd>
+</dl>
+
+<span id="Source-10"></span><h4 class="subsubheading">Source</h4>
+
+<p>Ezekiel, M. (1930). <cite>Methods of Correlation Analysis</cite>. New York: Wiley.
+</p>
+<span id="References-4"></span><h4 class="subsubheading">References</h4>
+
+<p>McNeil, D. R. (1977). <cite>Interactive Data Analysis</cite>. New York: Wiley.
+</p>
+<span id="Examples-10"></span><h4 class="subsubheading">Examples</h4>
+
+<div class="example">
+<pre class="example">
+
+t = octave.dataset.cars;
+
+
+# TODO: Add Lowess smoothed lines to the plots
+
+figure;
+plot (t.speed, t.dist, &quot;o&quot;);
+xlabel (&quot;Speed (mph)&quot;); ylabel(&quot;Stopping distance (ft)&quot;);
+title (&quot;cars data&quot;);
+
+figure;
+loglog (t.speed, t.dist, &quot;o&quot;);
+xlabel (&quot;Speed (mph)&quot;); ylabel(&quot;Stopping distance (ft)&quot;);
+title (&quot;cars data (logarithmic scales)&quot;);
+
+# TODO: Do the linear model plot
+
+# Polynomial regression
+figure;
+plot (t.speed, t.dist, &quot;o&quot;);
+xlabel (&quot;Speed (mph)&quot;); ylabel(&quot;Stopping distance (ft)&quot;);
+title (&quot;cars polynomial regressions&quot;);
+hold on
+xlim ([0 25]);
+x2 = linspace (0, 25, 200);
+for degree = 1:4
+  [P, S, mu] = polyfit (t.speed, t.dist, degree);
+  y2 = polyval(P, x2, [], mu);
+  plot (x2, y2);
+endfor
+
+
+</pre></div>
+
+
+</dd></dl>
+
+
+
+
+</body>
+</html>

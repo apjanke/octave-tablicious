@@ -1,0 +1,218 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- This manual is for Tablicious, version 0.3.6-SNAPSHOT.
+
+Copyright (C) 2019 Andrew Janke
+
+Permission is granted to make and distribute verbatim copies of
+this manual provided the copyright notice and this permission notice
+are preserved on all copies.
+
+Permission is granted to copy and distribute modified versions of this
+manual under the conditions for verbatim copying, provided that the entire
+resulting derived work is distributed under the terms of a permission
+notice identical to this one.
+
+Permission is granted to copy and distribute translations of this manual
+into another language, under the same conditions as for modified versions. -->
+<!-- Created by GNU Texinfo 6.7, http://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>API Alphabetically (Octave Tablicious v0.3.6-SNAPSHOT)</title>
+
+<meta name="description" content="User manual for Tablicious for Octave.">
+<meta name="keywords" content="API Alphabetically (Octave Tablicious v0.3.6-SNAPSHOT)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<link href="index.html" rel="start" title="Top">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="API-Reference.html" rel="up" title="API Reference">
+<link href="array2table.html" rel="next" title="array2table">
+<link href="API-by-Category.html" rel="prev" title="API by Category">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<span id="API-Alphabetically"></span><div class="header">
+<p>
+Previous: <a href="API-by-Category.html" accesskey="p" rel="prev">API by Category</a>, Up: <a href="API-Reference.html" accesskey="u" rel="up">API Reference</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<hr>
+<span id="API-Alphabetically-1"></span><h3 class="section">8.2 API Alphabetically</h3>
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top">&bull; <a href="array2table.html" accesskey="1">array2table</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">Convert an array to a table.
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="calendarDuration.html" accesskey="2">calendarDuration</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">Durations of time using variable-length calendar
+		periods, such as days, months, and years, which may vary in
+		length over time.
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="calmonths.html" accesskey="3">calmonths</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">Create a &rsquo;calendarDuration&rsquo; that is a given number of
+		calendar months long.
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="calyears.html" accesskey="4">calyears</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">Construct a &rsquo;calendarDuration&rsquo; a given number of years
+		long.
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="categorical.html" accesskey="5">categorical</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">Categorical variable array.
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="cell2table.html" accesskey="6">cell2table</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">Convert a cell array to a table.
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="colvecfun.html" accesskey="7">colvecfun</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">Apply a function to column vectors in array.
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="contains.html" accesskey="8">contains</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">Test if strings contain a pattern.
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="datetime.html" accesskey="9">datetime</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">Represents points in time using the Gregorian calendar.
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="days.html">days</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">Duration in days.
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="discretize.html">discretize</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">Group data into discrete bins or categories.
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="dispstrs.html">dispstrs</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">Display strings for array.
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="duration.html">duration</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">Represents durations or periods of time as an amount of
+		fixed-length time (i.e.
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="endsWith.html">endsWith</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">Test if strings end with a pattern.
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="eqn.html">eqn</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">Determine element-wise equality, treating NaNs as equal
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="fillmissing.html">fillmissing</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">Fill missing values.
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="hours.html">hours</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">Create a &rsquo;duration&rsquo; X hours long, or get the hours in a
+		&rsquo;duration&rsquo; X.
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="iscategorical.html">iscategorical</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">True if input is a &rsquo;categorical&rsquo; array, false
+		otherwise.
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="isdatetime.html">isdatetime</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">True if input is a &rsquo;datetime&rsquo; array, false otherwise.
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="isduration.html">isduration</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">True if input is a &rsquo;duration&rsquo; array, false otherwise.
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="isfile.html">isfile</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="isfolder.html">isfolder</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="ismissing.html">ismissing</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">Find missing values.
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="isnanny.html">isnanny</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">Test if elements are NaN or NaN-like
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="localdate.html">localdate</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">Represents a complete day using the Gregorian calendar.
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="milliseconds.html">milliseconds</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">Create a &rsquo;duration&rsquo; X milliseconds long, or get the
+		milliseconds in a &rsquo;duration&rsquo; X.
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="minutes.html">minutes</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">Create a &rsquo;duration&rsquo; X hours long, or get the hours in a
+		&rsquo;duration&rsquo; X.
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="missing.html">missing</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">Generic auto-converting missing value.
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="mustBeA.html">mustBeA</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">Requires that input is of a given type.
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="mustBeCellstr.html">mustBeCellstr</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">Requires that input is a cellstr.
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="mustBeCharvec.html">mustBeCharvec</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">Requires that input is a char row vector.
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="mustBeFinite.html">mustBeFinite</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="mustBeInteger.html">mustBeInteger</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="mustBeMember.html">mustBeMember</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="mustBeNonempty.html">mustBeNonempty</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="mustBeNumeric.html">mustBeNumeric</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="mustBeReal.html">mustBeReal</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="mustBeSameSize.html">mustBeSameSize</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">Requires that the inputs are the same size.
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="mustBeScalar.html">mustBeScalar</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">Requires that input is scalar.
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="mustBeScalarLogical.html">mustBeScalarLogical</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">Requires that input is a scalar logical.
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="mustBeVector.html">mustBeVector</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">Requires that input is a vector or empty.
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="NaT.html">NaT</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">“Not-a-Time”.
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="octave_002echrono_002edummy_005ffunction.html">octave.chrono.dummy_function</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">A dummy function just for testing
+		the doco tools.
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="octave_002echrono_002eDummyClass.html">octave.chrono.DummyClass</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">A do-nothing class just for testing the
+		doco tools.
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="octave_002edataset.html">octave.dataset</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">The &rsquo;dataset&rsquo; class provides convenient access to
+		the various datasets included with Tablicious.
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="octave_002edatasets.html">octave.datasets</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">Example dataset collection.
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="octave_002eexamples_002ecoplot.html">octave.examples.coplot</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">Conditioning plot.
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="octave_002eexamples_002eplot_005fpairs.html">octave.examples.plot_pairs</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">Plot pairs of variables against each other.
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="pp.html">pp</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">Alias for prettyprint, for interactive use.
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="rmmissing.html">rmmissing</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">MINNUMMISSING)
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="scalarexpand.html">scalarexpand</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">Expand scalar inputs to match size of non-scalar
+		inputs.
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="seconds.html">seconds</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">Create a &rsquo;duration&rsquo; X seconds long, or get the seconds in a
+		&rsquo;duration&rsquo; X.
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="size2str.html">size2str</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">Format an array size for display.
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="splitapply.html">splitapply</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">Split data into groups and apply function.
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="standardizeMissing.html">standardizeMissing</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">Insert standard missing values.
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="startsWith.html">startsWith</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">Test if strings start with a pattern.
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="string.html">string</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">A string array of Unicode strings.
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="struct2table.html">struct2table</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">Convert struct to a table.
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="table.html">table</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">Tabular data array containing multiple columnar variables.
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="tableOuterFillValue.html">tableOuterFillValue</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">Outer fill value for variable within a table.
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="timezones.html">timezones</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">List all the time zones defined on this system.
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="vartype.html">vartype</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">Filter by variable type for use in suscripting.
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="vecfun.html">vecfun</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">Apply function to vectors in array along arbitrary
+		dimension.
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="years.html">years</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">Create a &rsquo;duration&rsquo; X years long, or get the years in a
+		&rsquo;duration&rsquo; X.
+</td></tr>
+</table>
+
+<hr>
+<div class="header">
+<p>
+Previous: <a href="API-by-Category.html" accesskey="p" rel="prev">API by Category</a>, Up: <a href="API-Reference.html" accesskey="u" rel="up">API Reference</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+
+
+
+</body>
+</html>

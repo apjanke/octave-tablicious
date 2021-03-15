@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- This manual is for Tablicious, version 0.3.6-SNAPSHOT.
+
+Copyright (C) 2019 Andrew Janke
+
+Permission is granted to make and distribute verbatim copies of
+this manual provided the copyright notice and this permission notice
+are preserved on all copies.
+
+Permission is granted to copy and distribute modified versions of this
+manual under the conditions for verbatim copying, provided that the entire
+resulting derived work is distributed under the terms of a permission
+notice identical to this one.
+
+Permission is granted to copy and distribute translations of this manual
+into another language, under the same conditions as for modified versions. -->
+<!-- Created by GNU Texinfo 6.7, http://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Defined Time Zones (Octave Tablicious v0.3.6-SNAPSHOT)</title>
+
+<meta name="description" content="User manual for Tablicious for Octave.">
+<meta name="keywords" content="Defined Time Zones (Octave Tablicious v0.3.6-SNAPSHOT)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<link href="index.html" rel="start" title="Top">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Time-Zones.html" rel="up" title="Time Zones">
+<link href="Durations.html" rel="next" title="Durations">
+<link href="Time-Zones.html" rel="prev" title="Time Zones">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<span id="Defined-Time-Zones"></span><div class="header">
+<p>
+Up: <a href="Time-Zones.html" accesskey="u" rel="up">Time Zones</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<hr>
+<span id="Defined-Time-Zones-1"></span><h4 class="subsection">4.2.1 Defined Time Zones</h4>
+
+<p>Chrono&rsquo;s time zone data is drawn from the <a href="https://www.iana.org/time-zones">IANA Time Zone Database</a>, also known as the “Olson Database”. Chrono includes a
+copy of this database in its distribution so it can work on Windows, which does
+not supply it like Unix systems do.
+</p>
+<p>You can use the <code>timezones</code> function to list the time zones known to Chrono. These will be
+all the time zones in the IANA database on your system (for Linux and macOS) or in the IANA
+time zone database redistributed with Chrono (for Windows).
+</p>
+<blockquote>
+<p><b>Note:</b> The IANA Time Zone Database only covers dates from about the year 1880 to 2038. Converting
+time zones for <code>datetime</code>s outside that range is currently unimplemented. (Chrono 
+needs to add support for proleptic POSIX time zone rules, which are used to govern
+behavior outside that date range.)
+</p></blockquote>
+
+
+
+
+</body>
+</html>
