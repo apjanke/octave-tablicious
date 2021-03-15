@@ -216,6 +216,7 @@ gh-pages:
 	mkdir docs/user-guide
 	cp -R doc/html docs/user-guide
 	cp doc/tablicious.pdf docs/user-guide
+	cp doc/tablicious.html docs/user-guide
 
 ##
 ## CLEAN
