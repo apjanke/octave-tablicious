@@ -278,7 +278,7 @@ do not carry time zone information.
 @node Time Zones
 @section Time Zones
 
-Chrono has support for representing dates in time zones and for converting between time zones.
+Tablicious has support for representing dates in time zones and for converting between time zones.
 
 A @code{datetime} may be "zoned" or "zoneless". A zoneless @code{datetime} does not have a time zone
 associated with it. This is represented by an empty @code{TimeZone} property on the @code{datetime}
@@ -340,18 +340,18 @@ into a time zone where that local time did not exist are currently undefined.
 @node Defined Time Zones
 @subsection Defined Time Zones
 
-Chrono's time zone data is drawn from the @uref{https://www.iana.org/time-zones, 
-IANA Time Zone Database}, also known as the “Olson Database”. Chrono includes a
+Tablicious's time zone data is drawn from the @uref{https://www.iana.org/time-zones, 
+IANA Time Zone Database}, also known as the “Olson Database”. Tablicious includes a
 copy of this database in its distribution so it can work on Windows, which does
 not supply it like Unix systems do.
 
-You can use the @code{timezones} function to list the time zones known to Chrono. These will be
+You can use the @code{timezones} function to list the time zones known to Tablicious. These will be
 all the time zones in the IANA database on your system (for Linux and macOS) or in the IANA
-time zone database redistributed with Chrono (for Windows).
+time zone database redistributed with Tablicious (for Windows).
 
 @quotation Note
 The IANA Time Zone Database only covers dates from about the year 1880 to 2038. Converting
-time zones for @code{datetime}s outside that range is currently unimplemented. (Chrono 
+time zones for @code{datetime}s outside that range is currently unimplemented. (Tablicious 
 needs to add support for proleptic POSIX time zone rules, which are used to govern
 behavior outside that date range.)
 @end quotation
@@ -645,7 +645,7 @@ Fill missing values.
 Find missing values.
 
 @item @ref{rmmissing}
-MINNUMMISSING)
+Remove missing values.
 
 @item @ref{standardizeMissing}
 Insert standard missing values.
@@ -827,7 +827,7 @@ Conditioning plot.
 * octave.examples.coplot::	Conditioning plot.
 * octave.examples.plot_pairs::	Plot pairs of variables against each other.
 * pp::	Alias for prettyprint, for interactive use.
-* rmmissing::	MINNUMMISSING)
+* rmmissing::	Remove missing values.
 * scalarexpand::	Expand scalar inputs to match size of non-scalar
 		inputs.
 * seconds::	Create a 'duration' X seconds long, or get the seconds in a
@@ -1598,7 +1598,7 @@ Returns an unzoned @code{datetime} array of the same size as the input.
 
 Converts a datestruct to a datetime array.
 
-A datestruct is a special struct format used by Chrono that has fields
+A datestruct is a special struct format used by Tablicious that has fields
 Year, Month, Day, Hour, Minute, and Second. It is not a standard Octave datatype.
 
 Returns an unzoned @code{datetime} array.
@@ -1667,7 +1667,7 @@ Computes proxy key values for two datetime arrays. Proxy keys are numeric
 values whose rows have the same equivalence relationships as the elements of
 the inputs.
 
-This is primarily for Chrono's internal use; users will typically not need to call
+This is primarily for Tablicious's internal use; users will typically not need to call
 it or know how it works.
 
 Returns two 2-D numeric matrices of size n-by-k, where n is the number of elements
@@ -1783,7 +1783,7 @@ Returns a cellstr array the same size as @var{obj}.
 
 Converts this to a "datestruct" broken-down time structure.
 
-A "datestruct" is a format of struct that Chrono came up with. It is a scalar
+A "datestruct" is a format of struct that Tablicious came up with. It is a scalar
 struct with fields Year, Month, Day, Hour, Minute, and Second, each containing
 a double array the same size as the date array it represents.
 
@@ -2670,7 +2670,7 @@ Returns a cellstr array the same size as @var{obj}.
 
 Converts this to a “datestruct” broken-down time structure.
 
-A “datestruct” is a format of struct that Chrono came up with. It is a scalar
+A “datestruct” is a format of struct that Tablicious came up with. It is a scalar
 struct with fields Year, Month, and Day, each containing
 a double array the same size as the date array it represents. This format
 differs from the “datestruct” used by @code{datetime} in that it lacks
@@ -9577,7 +9577,7 @@ List all the time zones defined on this system.
 This lists all the time zones that are defined in the IANA time zone database
 used by this Octave. (On Linux and macOS, that will generally be the system
 time zone database from @file{/usr/share/zoneinfo}. On Windows, it will be
-the database redistributed with the Chrono package.
+the database redistributed with the Tablicious package.
 
 If the return is captured, the output is returned as a table if your Octave
 has table support, or a struct if it does not. It will have fields/variables

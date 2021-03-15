@@ -21,7 +21,7 @@
 # OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
 # SUCH DAMAGE.
 
-# OctTexiDoc module: common code for mk*.pl in Chrono Octave package
+# OctTexiDoc module: common code for mk*.pl in Tablicious Octave package
 
 use strict;
 

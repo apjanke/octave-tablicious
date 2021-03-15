@@ -25,7 +25,7 @@
 ## This lists all the time zones that are defined in the IANA time zone database
 ## used by this Octave. (On Linux and macOS, that will generally be the system
 ## time zone database from @file{/usr/share/zoneinfo}. On Windows, it will be
-## the database redistributed with the Chrono package.
+## the database redistributed with the Tablicious package.
 ##
 ## If the return is captured, the output is returned as a table if your Octave
 ## has table support, or a struct if it does not. It will have fields/variables

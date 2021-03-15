@@ -159,7 +159,7 @@ classdef localdate
             error ('localdate: Invalid input type: %s', class (x));
           endif
         case 2
-          % Undocumented calling form for Chrono's internal use
+          % Undocumented calling form for Tablicious's internal use
           if ~isequal (args{2}, 'Backdoor')
             error ('Invalid number of inputs (excluding options): %d', numel (args));
           endif
@@ -442,7 +442,7 @@ classdef localdate
     ##
     ## Converts this to a “datestruct” broken-down time structure.
     ##
-    ## A “datestruct” is a format of struct that Chrono came up with. It is a scalar
+    ## A “datestruct” is a format of struct that Tablicious came up with. It is a scalar
     ## struct with fields Year, Month, and Day, each containing
     ## a double array the same size as the date array it represents. This format
     ## differs from the “datestruct” used by @code{datetime} in that it lacks

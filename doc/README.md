@@ -111,7 +111,7 @@ Texinfo blocks in oct-file `.cc` source files are included in comment strings in
 
 ### Formatting Texinfo elements
 
-These are the conventions that Andrew settled on while documenting the Chrono package. They seem to work okay.
+These are the conventions that Andrew settled on while documenting the Tablicious package. They seem to work okay.
 
 Functions should be documented with `@deftypefn` and optionally `@deftypefnx` statements.
 

@@ -19,7 +19,7 @@
 # - On Ubuntu, don't forget to `apt-get install qt5-defaults`!
 # - On macOS, `brew install findutils`
 #
-# This Makefile originates from the Chrono package (https://github.com/apjanke/octave-chrono)
+# This Makefile originates from the Tablicious package (https://github.com/apjanke/octave-tablicious)
 # and is based on the one from the Octave Forge communications package
 # (https://octave.sourceforge.io/communications/index.html).
 

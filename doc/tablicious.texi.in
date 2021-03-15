@@ -278,7 +278,7 @@ do not carry time zone information.
 @node Time Zones
 @section Time Zones
 
-Chrono has support for representing dates in time zones and for converting between time zones.
+Tablicious has support for representing dates in time zones and for converting between time zones.
 
 A @code{datetime} may be "zoned" or "zoneless". A zoneless @code{datetime} does not have a time zone
 associated with it. This is represented by an empty @code{TimeZone} property on the @code{datetime}
@@ -340,18 +340,18 @@ into a time zone where that local time did not exist are currently undefined.
 @node Defined Time Zones
 @subsection Defined Time Zones
 
-Chrono's time zone data is drawn from the @uref{https://www.iana.org/time-zones, 
-IANA Time Zone Database}, also known as the “Olson Database”. Chrono includes a
+Tablicious's time zone data is drawn from the @uref{https://www.iana.org/time-zones, 
+IANA Time Zone Database}, also known as the “Olson Database”. Tablicious includes a
 copy of this database in its distribution so it can work on Windows, which does
 not supply it like Unix systems do.
 
-You can use the @code{timezones} function to list the time zones known to Chrono. These will be
+You can use the @code{timezones} function to list the time zones known to Tablicious. These will be
 all the time zones in the IANA database on your system (for Linux and macOS) or in the IANA
-time zone database redistributed with Chrono (for Windows).
+time zone database redistributed with Tablicious (for Windows).
 
 @quotation Note
 The IANA Time Zone Database only covers dates from about the year 1880 to 2038. Converting
-time zones for @code{datetime}s outside that range is currently unimplemented. (Chrono 
+time zones for @code{datetime}s outside that range is currently unimplemented. (Tablicious 
 needs to add support for proleptic POSIX time zone rules, which are used to govern
 behavior outside that date range.)
 @end quotation

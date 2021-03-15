@@ -27,7 +27,7 @@
     on the GitHub repo. This makes sure the current install instructions are correct.
     * Don't short-circuit this and just edit an entry from your Octave command history! Open GitHub in a browser and actually copy-and-paste it!
     * I wish there there was a `pkg test <package>` command to run all the BISTs from a package.
-    * Barring that, do a manual `pkg ls`, copy and paste the Chrono package path into a `cd('<package_path>')`, and then do `runtests .`
+    * Barring that, do a manual `pkg ls`, copy and paste the Tablicious package path into a `cd('<package_path>')`, and then do `runtests .`
   * Aw crap, looks like Octave 4.2 and earlier don't support URLs as arguments to `pkg install`; only filenames?
     * Sigh. Manually download the release tarball (with `wget`, using the URL copy-and-pasted from the live project README page) and install from there.
       * In Octave, you need to use `system('wget ...')`, not `!wget ...`.
@@ -35,7 +35,6 @@
   * ANY failure borks the release once we get near 1.0!
     * Let ’em go for now so we can get code out for review.
     * TODO: Decide on policy on what to do then. Can git tags/GitHub Releases be removed?
-* Post an announcement comment on the ["Updates" issue](https://github.com/apjanke/octave-chrono/issues/2).
 * Post an announcement on the [Savannah bug for datetime support](https://savannah.gnu.org/bugs/index.php?47032) if this is a significant release.
 * Open development for next version
   * Update version number in `DESCRIPTION` to next patch or minor version, as appropriate.

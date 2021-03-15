@@ -186,7 +186,7 @@ classdef TzDb
   methods (Static)
     function out = defaultPath ()
       if ispc
-        % Use the zoneinfo database bundled with Chrono, because Windows doesn't
+        % Use the zoneinfo database bundled with Tablicious, because Windows doesn't
         % supply one.
         this_dir = fileparts (mfilename ('fullpath'));
         out = fullfile (this_dir, 'resources', 'zoneinfo');

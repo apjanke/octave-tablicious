@@ -795,7 +795,7 @@ Next: <a href="#Durations" accesskey="n" rel="next">Durations</a>, Previous: <a 
 </div>
 <span id="Time-Zones-1"></span><h3 class="section">4.2 Time Zones</h3>
 
-<p>Chrono has support for representing dates in time zones and for converting between time zones.
+<p>Tablicious has support for representing dates in time zones and for converting between time zones.
 </p>
 <p>A <code>datetime</code> may be &quot;zoned&quot; or &quot;zoneless&quot;. A zoneless <code>datetime</code> does not have a time zone
 associated with it. This is represented by an empty <code>TimeZone</code> property on the <code>datetime</code>
@@ -866,17 +866,17 @@ Up: <a href="#Time-Zones" accesskey="u" rel="up">Time Zones</a> &nbsp; [<a href=
 </div>
 <span id="Defined-Time-Zones-1"></span><h4 class="subsection">4.2.1 Defined Time Zones</h4>
 
-<p>Chrono&rsquo;s time zone data is drawn from the <a href="https://www.iana.org/time-zones">IANA Time Zone Database</a>, also known as the “Olson Database”. Chrono includes a
+<p>Tablicious&rsquo;s time zone data is drawn from the <a href="https://www.iana.org/time-zones">IANA Time Zone Database</a>, also known as the “Olson Database”. Tablicious includes a
 copy of this database in its distribution so it can work on Windows, which does
 not supply it like Unix systems do.
 </p>
-<p>You can use the <code>timezones</code> function to list the time zones known to Chrono. These will be
+<p>You can use the <code>timezones</code> function to list the time zones known to Tablicious. These will be
 all the time zones in the IANA database on your system (for Linux and macOS) or in the IANA
-time zone database redistributed with Chrono (for Windows).
+time zone database redistributed with Tablicious (for Windows).
 </p>
 <blockquote>
 <p><b>Note:</b> The IANA Time Zone Database only covers dates from about the year 1880 to 2038. Converting
-time zones for <code>datetime</code>s outside that range is currently unimplemented. (Chrono 
+time zones for <code>datetime</code>s outside that range is currently unimplemented. (Tablicious 
 needs to add support for proleptic POSIX time zone rules, which are used to govern
 behavior outside that date range.)
 </p></blockquote>
@@ -1250,7 +1250,7 @@ Next: <a href="#API-Alphabetically" accesskey="n" rel="next">API Alphabetically<
 </p>
 </dd>
 <dt><a href="#rmmissing">rmmissing</a></dt>
-<dd><p>MINNUMMISSING)
+<dd><p>Remove missing values.
 </p>
 </dd>
 <dt><a href="#standardizeMissing">standardizeMissing</a></dt>
@@ -1495,7 +1495,7 @@ Previous: <a href="#API-by-Category" accesskey="p" rel="prev">API by Category</a
 </td></tr>
 <tr><td align="left" valign="top">&bull; <a href="#pp">pp</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">Alias for prettyprint, for interactive use.
 </td></tr>
-<tr><td align="left" valign="top">&bull; <a href="#rmmissing">rmmissing</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">MINNUMMISSING)
+<tr><td align="left" valign="top">&bull; <a href="#rmmissing">rmmissing</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">Remove missing values.
 </td></tr>
 <tr><td align="left" valign="top">&bull; <a href="#scalarexpand">scalarexpand</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">Expand scalar inputs to match size of non-scalar
 		inputs.
@@ -2636,7 +2636,7 @@ Next: <a href="#datetime_002eNaT" accesskey="n" rel="next">datetime.NaT</a>, Pre
 <dd>
 <p>Converts a datestruct to a datetime array.
 </p>
-<p>A datestruct is a special struct format used by Chrono that has fields
+<p>A datestruct is a special struct format used by Tablicious that has fields
 Year, Month, Day, Hour, Minute, and Second. It is not a standard Octave datatype.
 </p>
 <p>Returns an unzoned <code>datetime</code> array.
@@ -2730,7 +2730,7 @@ Next: <a href="#datetime_002eymd" accesskey="n" rel="next">datetime.ymd</a>, Pre
 values whose rows have the same equivalence relationships as the elements of
 the inputs.
 </p>
-<p>This is primarily for Chrono&rsquo;s internal use; users will typically not need to call
+<p>This is primarily for Tablicious&rsquo;s internal use; users will typically not need to call
 it or know how it works.
 </p>
 <p>Returns two 2-D numeric matrices of size n-by-k, where n is the number of elements
@@ -2890,7 +2890,7 @@ Next: <a href="#datetime_002eposixtime" accesskey="n" rel="next">datetime.posixt
 <dd>
 <p>Converts this to a &quot;datestruct&quot; broken-down time structure.
 </p>
-<p>A &quot;datestruct&quot; is a format of struct that Chrono came up with. It is a scalar
+<p>A &quot;datestruct&quot; is a format of struct that Tablicious came up with. It is a scalar
 struct with fields Year, Month, Day, Hour, Minute, and Second, each containing
 a double array the same size as the date array it represents.
 </p>
@@ -4069,7 +4069,7 @@ Next: <a href="#localdate_002eposixtime" accesskey="n" rel="next">localdate.posi
 <dd>
 <p>Converts this to a “datestruct” broken-down time structure.
 </p>
-<p>A “datestruct” is a format of struct that Chrono came up with. It is a scalar
+<p>A “datestruct” is a format of struct that Tablicious came up with. It is a scalar
 struct with fields Year, Month, and Day, each containing
 a double array the same size as the date array it represents. This format
 differs from the “datestruct” used by <code>datetime</code> in that it lacks
@@ -12839,7 +12839,7 @@ Next: <a href="#vartype" accesskey="n" rel="next">vartype</a>, Previous: <a href
 <p>This lists all the time zones that are defined in the IANA time zone database
 used by this Octave. (On Linux and macOS, that will generally be the system
 time zone database from <samp>/usr/share/zoneinfo</samp>. On Windows, it will be
-the database redistributed with the Chrono package.
+the database redistributed with the Tablicious package.
 </p>
 <p>If the return is captured, the output is returned as a table if your Octave
 has table support, or a struct if it does not. It will have fields/variables
