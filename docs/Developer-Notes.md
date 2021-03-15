@@ -2,11 +2,9 @@
 
 See also:
 
-[Design and Justification](Design-and-Justification.html) for info on
+* [Design and Justification](Design-and-Justification.html) for info on
 the design of this library.
-
-[Join Behavior](Join-Behavior.html) for a description of the "proxy keys" and other stuff related to join semantics and implementation.
-
+* [Join Behavior](Join-Behavior.html) for a description of the "proxy keys" and other stuff related to join semantics and implementation.
 * [TODO](TODO.html)
 * [Release Checklist](Release-Checklist.html)
 
