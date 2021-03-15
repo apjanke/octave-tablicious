@@ -2,7 +2,7 @@
 
 This document describes the design choices I made in Tablicious, and some
 justifications for them and why I think they should be allowed into core
-Octave, or at least an Octave Forge package
+Octave, or at least an Octave Forge package.
 
 # Design
 
@@ -162,6 +162,8 @@ won’t spam your scrollback.
 I’ve spent years working with `table`-style objects that operate
 each way, and found the summary style to be much more usable.
 
+I think this is fine because `disp()` is mostly used for interactive use, and is not frequently used to produce actual program output, so this shouldn't be a real compatibility issue.
+
 ## Justify all these new top-level functions
 
 Tablicious defines several new top-level (global, not in namespaces or
@@ -192,6 +194,8 @@ Because of Octave’s pervasive array nature, we need both a variant for
 “one string describing the entire array” (`dispstr`) and “N strings
 describing each of the array’s elements” (`dispstrs`).
 
+This dispstr stuff is all based on the [Dispstr API](http://dispstr.janklab.net/) I created for use with Matlab.
+
 ### Justify `eqn`
 
 This is a straightforward extension if `isequaln` behavior to the element-wise
@@ -213,6 +217,8 @@ and you may not want that broadness in a NaN-ness test. `isnannish()`
 smooths over the NaN/NaT difference without becoming as broad as
 `ismissing()`.
 
+UPDATE 2021-03-14: I've changed my mind. I now think that `ismissing` probably is a fine generalization of `isnan`/`isnat`, and we should just use that, and `isnannish` should go away.
+
 I made this a global function so that user-defined classes could override
 it with object methods. Without `methods(klass)` working for classdef
 objects, it’d be hard to detect whether a user-defined object supports
@@ -225,7 +231,6 @@ this is the best approach.
 Many of the `mustBeXxx()` functions are just ports of Matlab’s existing
 validator functions. But I added a few new ones:
 
-* `makeItBeA`
 * `mustBeA`
 * `mustBeCellstr`
 * `mustBeCharvec`
@@ -233,6 +238,7 @@ validator functions. But I added a few new ones:
 * `mustBeScalar`
 * `mustBeScalarLogical`
 * `mustBeVector`
+* `makeItBeA`
 
 These all see a lot of use in my experience, so they’d be useful to provide.
 And I think their semantics and implementation are obvious enough that we

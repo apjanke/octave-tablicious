@@ -1,6 +1,8 @@
 This is the documentation site for Tablicious.
 
-The API reference is included as Texinfo in the package itself.
+This website currently only holds developer documentation.
+
+The user documentation and API reference is included as Texinfo in the package itself.
 
 ## Sections
 
