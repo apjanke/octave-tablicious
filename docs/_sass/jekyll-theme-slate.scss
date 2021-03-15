@@ -1,4 +1,10 @@
-@import "rouge-github";
+/*
+ * This is a customized version of jekyll-theme-slate.scss that turns off the
+ * background coloring on inline code spans, which I think improves readability.
+ * -apjanke
+ */
+
+ @import "rouge-github";
 
 /*******************************************************************************
 MeyerWeb Reset
