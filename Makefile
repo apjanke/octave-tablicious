@@ -211,6 +211,9 @@ local: src/__oct_time_binsearch__.cc octave_chrono_make_local.m
 doc:
 	cd doc && make all
 
+gh-pages:
+	rm -rf docs/user-guide
+	cp -R doc/html docs/user-guide
 
 ##
 ## CLEAN
