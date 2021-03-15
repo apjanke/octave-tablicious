@@ -14,7 +14,7 @@
 ## along with this program; If not, see <http://www.gnu.org/licenses/>.
 
 ## -*- texinfo -*-
-## @deftypefn {Function} {@var{out} =} isnannish (@var{X})
+## @deftypefn {Function} {@var{out} =} isnanny (@var{X})
 ##
 ## Test if elements are NaN or NaN-like
 ##
@@ -32,16 +32,16 @@
 ## isnan() errors out for some types that do not support isnan(), like cells.
 ## @end enumerate
 ##
-## @code{isnannish()} smooths over those differences so you can call it polymorphically on
+## @code{isnanny()} smooths over those differences so you can call it polymorphically on
 ## any input type.
 ##
-## Under normal operation, @code{isnannish()} should not throw an error for any type or
+## Under normal operation, @code{isnanny()} should not throw an error for any type or
 ## value of input.
 ##
 ## See also: @code{isnan}, @code{isnat}, @ref{ismissing}, @ref{eqn}, @code{isequaln}
 ##
 ## @end deftypefn
-function out = isnannish (x)  
+function out = isnanny (x)  
   if isnumeric (x)
     out = isnan (x);
   elseif isa (x, 'datetime')

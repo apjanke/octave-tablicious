@@ -737,8 +737,8 @@ classdef categorical
     endfunction
     
     ## -*- texinfo -*-
-    ## @node categorical.isnannish
-    ## @deftypefn {Method} {@var{out} =} isnannish (@var{obj})
+    ## @node categorical.isnanny
+    ## @deftypefn {Method} {@var{out} =} isnanny (@var{obj})
     ##
     ## Test whethere elements are NaN-ish.
     ##
@@ -749,7 +749,7 @@ classdef categorical
     ## Returns a logical array the same size as @var{obj}.
     ##
     ## @end deftypefn
-    function out = isnannish (this)
+    function out = isnanny (this)
       out = ismissing (this);
     endfunction
     

@@ -106,7 +106,7 @@
                             </section>
                             <section title="categorical.ismissing" ref="html/categorical_002eismissing.html">
                             </section>
-                            <section title="categorical.isnannish" ref="html/categorical_002eisnannish.html">
+                            <section title="categorical.isnanny" ref="html/categorical_002eisnanny.html">
                             </section>
                             <section title="categorical.squeezecats" ref="html/categorical_002esqueezecats.html">
                             </section>
@@ -237,7 +237,7 @@
                         </section>
                         <section title="ismissing" ref="html/ismissing.html">
                         </section>
-                        <section title="isnannish" ref="html/isnannish.html">
+                        <section title="isnanny" ref="html/isnanny.html">
                         </section>
                         <section title="localdate" ref="html/localdate.html">
                             <section title="localdate.localdate" ref="html/localdate_002elocaldate.html">
@@ -276,7 +276,7 @@
                             </section>
                             <section title="missing.isnan" ref="html/missing_002eisnan.html">
                             </section>
-                            <section title="missing.isnannish" ref="html/missing_002eisnannish.html">
+                            <section title="missing.isnanny" ref="html/missing_002eisnanny.html">
                             </section>
                         </section>
                         <section title="mustBeA" ref="html/mustBeA.html">
@@ -530,7 +530,7 @@
                             </section>
                             <section title="string.ismissing" ref="html/string_002eismissing.html">
                             </section>
-                            <section title="string.isnannish" ref="html/string_002eisnannish.html">
+                            <section title="string.isnanny" ref="html/string_002eisnanny.html">
                             </section>
                             <section title="string.cellstr" ref="html/string_002ecellstr.html">
                             </section>
@@ -761,7 +761,7 @@
             <keyword name="categorical.dispstrs" id="categorical.dispstrs" ref="html/categorical_002edispstrs.html"/>
             <keyword name="categorical.iscategory" id="categorical.iscategory" ref="html/categorical_002eiscategory.html"/>
             <keyword name="categorical.ismissing" id="categorical.ismissing" ref="html/categorical_002eismissing.html"/>
-            <keyword name="categorical.isnannish" id="categorical.isnannish" ref="html/categorical_002eisnannish.html"/>
+            <keyword name="categorical.isnanny" id="categorical.isnanny" ref="html/categorical_002eisnanny.html"/>
             <keyword name="categorical.isordinal" id="categorical.isordinal" ref="html/categorical_002eisordinal.html"/>
             <keyword name="categorical.isundefined" id="categorical.isundefined" ref="html/categorical_002eisundefined.html"/>
             <keyword name="categorical.mergecats" id="categorical.mergecats" ref="html/categorical_002emergecats.html"/>
@@ -835,7 +835,7 @@
             <keyword name="isdatetime" id="isdatetime" ref="html/isdatetime.html"/>
             <keyword name="isduration" id="isduration" ref="html/isduration.html"/>
             <keyword name="ismissing" id="ismissing" ref="html/ismissing.html"/>
-            <keyword name="isnannish" id="isnannish" ref="html/isnannish.html"/>
+            <keyword name="isnanny" id="isnanny" ref="html/isnanny.html"/>
             <keyword name="localdate" id="localdate" ref="html/localdate.html"/>
             <keyword name="localdate.NaT" id="localdate.NaT" ref="html/localdate_002eNaT.html"/>
             <keyword name="localdate.datenum" id="localdate.datenum" ref="html/localdate_002edatenum.html"/>
@@ -854,7 +854,7 @@
             <keyword name="missing.dispstrs" id="missing.dispstrs" ref="html/missing_002edispstrs.html"/>
             <keyword name="missing.ismissing" id="missing.ismissing" ref="html/missing_002eismissing.html"/>
             <keyword name="missing.isnan" id="missing.isnan" ref="html/missing_002eisnan.html"/>
-            <keyword name="missing.isnannish" id="missing.isnannish" ref="html/missing_002eisnannish.html"/>
+            <keyword name="missing.isnanny" id="missing.isnanny" ref="html/missing_002eisnanny.html"/>
             <keyword name="missing.missing" id="missing.missing" ref="html/missing_002emissing.html"/>
             <keyword name="mustBeA" id="mustBeA" ref="html/mustBeA.html"/>
             <keyword name="mustBeCellstr" id="mustBeCellstr" ref="html/mustBeCellstr.html"/>
@@ -979,7 +979,7 @@
             <keyword name="string.encode" id="string.encode" ref="html/string_002eencode.html"/>
             <keyword name="string.erase" id="string.erase" ref="html/string_002eerase.html"/>
             <keyword name="string.ismissing" id="string.ismissing" ref="html/string_002eismissing.html"/>
-            <keyword name="string.isnannish" id="string.isnannish" ref="html/string_002eisnannish.html"/>
+            <keyword name="string.isnanny" id="string.isnanny" ref="html/string_002eisnanny.html"/>
             <keyword name="string.isstring" id="string.isstring" ref="html/string_002eisstring.html"/>
             <keyword name="string.lower" id="string.lower" ref="html/string_002elower.html"/>
             <keyword name="string.missing" id="string.missing" ref="html/string_002emissing.html"/>
@@ -1178,7 +1178,7 @@
             <file>html/string_002echar.html</file>
             <file>html/string_002ecell.html</file>
             <file>html/string_002ecellstr.html</file>
-            <file>html/string_002eisnannish.html</file>
+            <file>html/string_002eisnanny.html</file>
             <file>html/string_002eismissing.html</file>
             <file>html/string_002esizeof.html</file>
             <file>html/string_002edispstrs.html</file>
@@ -1305,7 +1305,7 @@
             <file>html/mustBeCharvec.html</file>
             <file>html/mustBeCellstr.html</file>
             <file>html/mustBeA.html</file>
-            <file>html/missing_002eisnannish.html</file>
+            <file>html/missing_002eisnanny.html</file>
             <file>html/missing_002eisnan.html</file>
             <file>html/missing_002eismissing.html</file>
             <file>html/missing_002edispstrs.html</file>
@@ -1325,7 +1325,7 @@
             <file>html/localdate_002eNaT.html</file>
             <file>html/localdate_002elocaldate.html</file>
             <file>html/localdate.html</file>
-            <file>html/isnannish.html</file>
+            <file>html/isnanny.html</file>
             <file>html/ismissing.html</file>
             <file>html/isfolder.html</file>
             <file>html/isfile.html</file>
@@ -1390,7 +1390,7 @@
             <file>html/colvecfun.html</file>
             <file>html/cell2table.html</file>
             <file>html/categorical_002esqueezecats.html</file>
-            <file>html/categorical_002eisnannish.html</file>
+            <file>html/categorical_002eisnanny.html</file>
             <file>html/categorical_002eismissing.html</file>
             <file>html/categorical_002eisundefined.html</file>
             <file>html/categorical_002esetcats.html</file>

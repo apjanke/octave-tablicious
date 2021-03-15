@@ -132,17 +132,17 @@ classdef missing
     endfunction
     
     ## -*- texinfo -*-
-    ## @node missing.isnannish
-    ## @deftypefn {Method} {@var{out} =} isnannish (@var{obj})
+    ## @node missing.isnanny
+    ## @deftypefn {Method} {@var{out} =} isnanny (@var{obj})
     ##
     ## Test whether elements are NaN-like.
     ##
-    ## @code{isnannish} is always true for @code{missing} arrays.
+    ## @code{isnanny} is always true for @code{missing} arrays.
     ##
     ## Returns a logical array the same size as @var{obj}.
     ##
     ## @end deftypefn
-    function out = isnannish (this)
+    function out = isnanny (this)
       out = true (size (this));
     endfunction
     

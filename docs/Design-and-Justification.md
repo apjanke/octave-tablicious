@@ -204,7 +204,7 @@ case.
 Needs to be global so user-defined classes can override it with object
 methods.
 
-### Justify `isnannish`
+### Justify `isnanny`
 
 For some reason, Matlab chose to name the NaN values for `datetime` objects
 “NaT” instead, and define a new `isnat()` function to work with them. So
@@ -213,17 +213,17 @@ you can’t write generic polymorphic code that works on both numerics and
 
 The new `ismissing()` function doesn’t fit the bill, because it’s too
 broad: it also considers empty strings and blank characters to be missing,
-and you may not want that broadness in a NaN-ness test. `isnannish()`
+and you may not want that broadness in a NaN-ness test. `isnanny()`
 smooths over the NaN/NaT difference without becoming as broad as
 `ismissing()`.
 
-UPDATE 2021-03-14: I've changed my mind. I now think that `ismissing` probably is a fine generalization of `isnan`/`isnat`, and we should just use that, and `isnannish` should go away.
+UPDATE 2021-03-14: I've changed my mind. I now think that `ismissing` probably is a fine generalization of `isnan`/`isnat`, and we should just use that, and `isnanny` should go away.
 
 I made this a global function so that user-defined classes could override
 it with object methods. Without `methods(klass)` working for classdef
 objects, it’d be hard to detect whether a user-defined object supports
 `isnan()` and/or `isnat()`, so classes might want to override
-`isnannish` itself. This is not ideal; I'm still thinking about whether
+`isnanny` itself. This is not ideal; I'm still thinking about whether
 this is the best approach.
 
 ### Justify these extra `mustBeXxx` functions

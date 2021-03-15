@@ -653,7 +653,7 @@ Insert standard missing values.
 @item @ref{missing}
 Generic auto-converting missing value.
 
-@item @ref{isnannish}
+@item @ref{isnanny}
 Test if elements are NaN or NaN-like
 
 @item @ref{eqn}
@@ -796,7 +796,7 @@ Conditioning plot.
 * isfile::	
 * isfolder::	
 * ismissing::	Find missing values.
-* isnannish::	Test if elements are NaN or NaN-like
+* isnanny::	Test if elements are NaN or NaN-like
 * localdate::	Represents a complete day using the Gregorian calendar.
 * milliseconds::	Create a 'duration' X milliseconds long, or get the
 		milliseconds in a 'duration' X.
@@ -1416,10 +1416,10 @@ Returns a logical array the same size as @var{obj}.
 
 @end deftypefn
 
-@node categorical.isnannish
-@subsubsection categorical.isnannish
+@node categorical.isnanny
+@subsubsection categorical.isnanny
 
-@deftypefn {Method} {@var{out} =} isnannish (@var{obj})
+@deftypefn {Method} {@var{out} =} isnanny (@var{obj})
 
 Test whethere elements are NaN-ish.
 
@@ -2351,7 +2351,7 @@ out = eqn (A, B)
 that it considers NaN and NaN-like values to be equal. This is the element-wise
 equivalent of @code{isequaln}.
 
-@code{eqn} uses @code{isnannish} to test for NaN and NaN-like values,
+@code{eqn} uses @code{isnanny} to test for NaN and NaN-like values,
 which means that NaNs and NaTs are considered to be NaN-like, and
 string arrays’ “missing” and categorical objects’ “undefined” values
 are considered equal, because they are NaN-ish.
@@ -2361,7 +2361,7 @@ because “eqn” could also be an abbreviation for “equation”. But this
 name follows the @code{isequaln} pattern of appending an “n” to the
 corresponding non-NaN-equivocating function.
 
-See also: @code{eq}, @code{isequaln}, @ref{isnannish}
+See also: @code{eq}, @code{isequaln}, @ref{isnanny}
 
 @end deftypefn
 
@@ -2492,7 +2492,7 @@ TODO: Determine whether this should really be an error, or if it should
 default to never considering those types as missing.
 @item
 TODO: Decide whether, for classdef objects, @code{ismissing} should polymorphically
-detect isnan()/isnat()/isnannish() methods and use those, or whether we should
+detect isnan()/isnat()/isnanny() methods and use those, or whether we should
 require classes to override ismissing() itself.
 @end itemize
 @end itemize
@@ -2513,9 +2513,9 @@ data types; see @ref{table.ismissing}.
 @end deftypefn
 
 
-@node isnannish
-@subsection isnannish
-@deftypefn {Function} {@var{out} =} isnannish (@var{X})
+@node isnanny
+@subsection isnanny
+@deftypefn {Function} {@var{out} =} isnanny (@var{X})
 
 Test if elements are NaN or NaN-like
 
@@ -2533,10 +2533,10 @@ test for them with a different “isnat()” function, and
 isnan() errors out for some types that do not support isnan(), like cells.
 @end enumerate
 
-@code{isnannish()} smooths over those differences so you can call it polymorphically on
+@code{isnanny()} smooths over those differences so you can call it polymorphically on
 any input type.
 
-Under normal operation, @code{isnannish()} should not throw an error for any type or
+Under normal operation, @code{isnanny()} should not throw an error for any type or
 value of input.
 
 See also: @code{isnan}, @code{isnat}, @ref{ismissing}, @ref{eqn}, @code{isequaln}
@@ -2839,14 +2839,14 @@ Returns a logical array the same size as @var{obj}.
 
 @end deftypefn
 
-@node missing.isnannish
-@subsubsection missing.isnannish
+@node missing.isnanny
+@subsubsection missing.isnanny
 
-@deftypefn {Method} {@var{out} =} isnannish (@var{obj})
+@deftypefn {Method} {@var{out} =} isnanny (@var{obj})
 
 Test whether elements are NaN-like.
 
-@code{isnannish} is always true for @code{missing} arrays.
+@code{isnanny} is always true for @code{missing} arrays.
 
 Returns a logical array the same size as @var{obj}.
 
@@ -7875,10 +7875,10 @@ Returns a logical array the same size as @code{obj}.
 
 @end deftypefn
 
-@node string.isnannish
-@subsubsection string.isnannish
+@node string.isnanny
+@subsubsection string.isnanny
 
-@deftypefn {Method} {@var{out} =} isnannish (@var{obj})
+@deftypefn {Method} {@var{out} =} isnanny (@var{obj})
 
 Test whether array elements are NaN-like.
 

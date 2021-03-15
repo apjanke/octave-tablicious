@@ -43,8 +43,8 @@ function [pkA, pkB] = proxykeysForMatrixes (A, B)
   %
   %   all(pkA(i,:) == pkB(j,:), 2) == all(A(i,:), B(j,:), 2)   % For any i, j
   %
-  %   any(isnan(pkA), 2) == any(isnannish(A), 2)
-  %   % where "isnannish()" uses whichever of isnan() or isnat() is defined for A
+  %   any(isnan(pkA), 2) == any(isnanny(A), 2)
+  %   % where "isnanny()" uses whichever of isnan() or isnat() is defined for A
   %   
   %   [~, s_idx] = sortrows(A)
   %   [~, s_idx] = sortrows(pkA)  % same s_idx result
@@ -168,7 +168,7 @@ function pkA = uniqueTrickForOneMatrix (A)
   for i = 1:size (A, 2)
     a_i = A(:,i);
     [ux, indx, jndx] = unique (a_i);
-    tfNan = isnannish (a_i);
+    tfNan = isnanny (a_i);
     pkA(:,i) = jndx;
     pkA(tfNan,i) = NaN;
   endfor  
@@ -183,7 +183,7 @@ function [pkA, pkB] = uniqueTrickForTwoMatrixes (A, B)
     a = A(:,iCol);
     b = B(:,iCol);
     both = [a; b];
-    tfNan = isnannish (both);
+    tfNan = isnanny (both);
     [~, indx, jndx] = unique (both);
     pkForCol = jndx;
     pkForCol(tfNan) = NaN;

@@ -52,7 +52,7 @@
 ## default to never considering those types as missing.
 ## @item
 ## TODO: Decide whether, for classdef objects, @code{ismissing} should polymorphically
-## detect isnan()/isnat()/isnannish() methods and use those, or whether we should
+## detect isnan()/isnat()/isnanny() methods and use those, or whether we should
 ## require classes to override ismissing() itself.
 ## @end itemize
 ## @end itemize

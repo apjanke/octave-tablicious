@@ -704,7 +704,7 @@ File: tablicious.info,  Node: API by Category,  Next: API Alphabetically,  Up: A
 *note missing::
      Generic auto-converting missing value.
 
-*note isnannish::
+*note isnanny::
      Test if elements are NaN or NaN-like
 
 *note eqn::
@@ -843,7 +843,7 @@ File: tablicious.info,  Node: API Alphabetically,  Prev: API by Category,  Up: A
 * isfile::
 * isfolder::
 * ismissing::	Find missing values.
-* isnannish::	Test if elements are NaN or NaN-like
+* isnanny::	Test if elements are NaN or NaN-like
 * localdate::	Represents a complete day using the Gregorian calendar.
 * milliseconds::	Create a ’duration’ X milliseconds long, or get the
 		milliseconds in a ’duration’ X.
@@ -1204,7 +1204,7 @@ File: tablicious.info,  Node: categorical,  Next: cell2table,  Prev: calyears,  
 * categorical.setcats::
 * categorical.isundefined::
 * categorical.ismissing::
-* categorical.isnannish::
+* categorical.isnanny::
 * categorical.squeezecats::
 
 
@@ -1487,7 +1487,7 @@ File: tablicious.info,  Node: categorical.isundefined,  Next: categorical.ismiss
      Returns a logical array the same size as OBJ.
 
 
-File: tablicious.info,  Node: categorical.ismissing,  Next: categorical.isnannish,  Prev: categorical.isundefined,  Up: categorical
+File: tablicious.info,  Node: categorical.ismissing,  Next: categorical.isnanny,  Prev: categorical.isundefined,  Up: categorical
 
 8.2.5.18 categorical.ismissing
 ..............................
@@ -1502,12 +1502,12 @@ File: tablicious.info,  Node: categorical.ismissing,  Next: categorical.isnannis
      Returns a logical array the same size as OBJ.
 
 
-File: tablicious.info,  Node: categorical.isnannish,  Next: categorical.squeezecats,  Prev: categorical.ismissing,  Up: categorical
+File: tablicious.info,  Node: categorical.isnanny,  Next: categorical.squeezecats,  Prev: categorical.ismissing,  Up: categorical
 
-8.2.5.19 categorical.isnannish
+8.2.5.19 categorical.isnanny
 ..............................
 
- -- Method: OUT = isnannish (OBJ)
+ -- Method: OUT = isnanny (OBJ)
 
      Test whethere elements are NaN-ish.
 
@@ -1518,7 +1518,7 @@ File: tablicious.info,  Node: categorical.isnannish,  Next: categorical.squeezec
      Returns a logical array the same size as OBJ.
 
 
-File: tablicious.info,  Node: categorical.squeezecats,  Prev: categorical.isnannish,  Up: categorical
+File: tablicious.info,  Node: categorical.squeezecats,  Prev: categorical.isnanny,  Up: categorical
 
 8.2.5.20 categorical.squeezecats
 ................................
@@ -2560,7 +2560,7 @@ File: tablicious.info,  Node: eqn,  Next: fillmissing,  Prev: endsWith,  Up: API
      operator), except that it considers NaN and NaN-like values to be
      equal.  This is the element-wise equivalent of ‘isequaln’.
 
-     ‘eqn’ uses ‘isnannish’ to test for NaN and NaN-like values, which
+     ‘eqn’ uses ‘isnanny’ to test for NaN and NaN-like values, which
      means that NaNs and NaTs are considered to be NaN-like, and string
      arrays’ “missing” and categorical objects’ “undefined” values are
      considered equal, because they are NaN-ish.
@@ -2570,7 +2570,7 @@ File: tablicious.info,  Node: eqn,  Next: fillmissing,  Prev: endsWith,  Up: API
      follows the ‘isequaln’ pattern of appending an “n” to the
      corresponding non-NaN-equivocating function.
 
-     See also: ‘eq’, ‘isequaln’, *note isnannish::
+     See also: ‘eq’, ‘isequaln’, *note isnanny::
 
 
 File: tablicious.info,  Node: fillmissing,  Next: hours,  Prev: eqn,  Up: API Alphabetically
@@ -2668,7 +2668,7 @@ File: tablicious.info,  Node: isfolder,  Next: ismissing,  Prev: isfile,  Up: AP
 _Not documented_
 
 
-File: tablicious.info,  Node: ismissing,  Next: isnannish,  Prev: isfolder,  Up: API Alphabetically
+File: tablicious.info,  Node: ismissing,  Next: isnanny,  Prev: isfolder,  Up: API Alphabetically
 
 8.2.23 ismissing
 ----------------
@@ -2700,7 +2700,7 @@ File: tablicious.info,  Node: ismissing,  Next: isnannish,  Prev: isfolder,  Up:
                or if it should default to never considering those types
                as missing.
              − TODO: Decide whether, for classdef objects, ‘ismissing’
-               should polymorphically detect isnan()/isnat()/isnannish()
+               should polymorphically detect isnan()/isnat()/isnanny()
                methods and use those, or whether we should require
                classes to override ismissing() itself.
 
@@ -2719,12 +2719,12 @@ File: tablicious.info,  Node: ismissing,  Next: isnannish,  Prev: isfolder,  Up:
      individual variables’ data types; see *note table.ismissing::.
 
 
-File: tablicious.info,  Node: isnannish,  Next: localdate,  Prev: ismissing,  Up: API Alphabetically
+File: tablicious.info,  Node: isnanny,  Next: localdate,  Prev: ismissing,  Up: API Alphabetically
 
-8.2.24 isnannish
+8.2.24 isnanny
 ----------------
 
- -- Function: OUT = isnannish (X)
+ -- Function: OUT = isnanny (X)
 
      Test if elements are NaN or NaN-like
 
@@ -2740,17 +2740,17 @@ File: tablicious.info,  Node: isnannish,  Next: localdate,  Prev: ismissing,  Up
        b. isnan() errors out for some types that do not support isnan(),
           like cells.
 
-     ‘isnannish()’ smooths over those differences so you can call it
+     ‘isnanny()’ smooths over those differences so you can call it
      polymorphically on any input type.
 
-     Under normal operation, ‘isnannish()’ should not throw an error for
+     Under normal operation, ‘isnanny()’ should not throw an error for
      any type or value of input.
 
      See also: ‘isnan’, ‘isnat’, *note ismissing::, *note eqn::,
      ‘isequaln’
 
 
-File: tablicious.info,  Node: localdate,  Next: milliseconds,  Prev: isnannish,  Up: API Alphabetically
+File: tablicious.info,  Node: localdate,  Next: milliseconds,  Prev: isnanny,  Up: API Alphabetically
 
 8.2.25 localdate
 ----------------
@@ -3027,7 +3027,7 @@ File: tablicious.info,  Node: missing,  Next: mustBeA,  Prev: minutes,  Up: API 
 * missing.dispstrs::
 * missing.ismissing::
 * missing.isnan::
-* missing.isnannish::
+* missing.isnanny::
 
 
 File: tablicious.info,  Node: missing.missing,  Next: missing.dispstrs,  Up: missing
@@ -3073,7 +3073,7 @@ File: tablicious.info,  Node: missing.ismissing,  Next: missing.isnan,  Prev: mi
      Returns a logical array the same size as OBJ.
 
 
-File: tablicious.info,  Node: missing.isnan,  Next: missing.isnannish,  Prev: missing.ismissing,  Up: missing
+File: tablicious.info,  Node: missing.isnan,  Next: missing.isnanny,  Prev: missing.ismissing,  Up: missing
 
 8.2.28.4 missing.isnan
 ......................
@@ -3087,16 +3087,16 @@ File: tablicious.info,  Node: missing.isnan,  Next: missing.isnannish,  Prev: mi
      Returns a logical array the same size as OBJ.
 
 
-File: tablicious.info,  Node: missing.isnannish,  Prev: missing.isnan,  Up: missing
+File: tablicious.info,  Node: missing.isnanny,  Prev: missing.isnan,  Up: missing
 
-8.2.28.5 missing.isnannish
+8.2.28.5 missing.isnanny
 ..........................
 
- -- Method: OUT = isnannish (OBJ)
+ -- Method: OUT = isnanny (OBJ)
 
      Test whether elements are NaN-like.
 
-     ‘isnannish’ is always true for ‘missing’ arrays.
+     ‘isnanny’ is always true for ‘missing’ arrays.
 
      Returns a logical array the same size as OBJ.
 
@@ -8463,7 +8463,7 @@ File: tablicious.info,  Node: string,  Next: struct2table,  Prev: startsWith,  U
 * string.dispstrs::
 * string.sizeof::
 * string.ismissing::
-* string.isnannish::
+* string.isnanny::
 * string.cellstr::
 * string.cell::
 * string.char::
@@ -8546,7 +8546,7 @@ File: tablicious.info,  Node: string.sizeof,  Next: string.ismissing,  Prev: str
      Size of array in bytes.
 
 
-File: tablicious.info,  Node: string.ismissing,  Next: string.isnannish,  Prev: string.sizeof,  Up: string
+File: tablicious.info,  Node: string.ismissing,  Next: string.isnanny,  Prev: string.sizeof,  Up: string
 
 8.2.57.5 string.ismissing
 .........................
@@ -8562,12 +8562,12 @@ File: tablicious.info,  Node: string.ismissing,  Next: string.isnannish,  Prev: 
      Returns a logical array the same size as ‘obj’.
 
 
-File: tablicious.info,  Node: string.isnannish,  Next: string.cellstr,  Prev: string.ismissing,  Up: string
+File: tablicious.info,  Node: string.isnanny,  Next: string.cellstr,  Prev: string.ismissing,  Up: string
 
-8.2.57.6 string.isnannish
+8.2.57.6 string.isnanny
 .........................
 
- -- Method: OUT = isnannish (OBJ)
+ -- Method: OUT = isnanny (OBJ)
 
      Test whether array elements are NaN-like.
 
@@ -8577,7 +8577,7 @@ File: tablicious.info,  Node: string.isnannish,  Next: string.cellstr,  Prev: st
      Returns a logical array of the same size as OBJ.
 
 
-File: tablicious.info,  Node: string.cellstr,  Next: string.cell,  Prev: string.isnannish,  Up: string
+File: tablicious.info,  Node: string.cellstr,  Next: string.cell,  Prev: string.isnanny,  Up: string
 
 8.2.57.7 string.cellstr
 .......................
@@ -10613,7 +10613,7 @@ Node: categorical.reordercats48590
 Node: categorical.setcats49125
 Node: categorical.isundefined49571
 Node: categorical.ismissing50089
-Node: categorical.isnannish50499
+Node: categorical.isnanny50499
 Node: categorical.squeezecats50977
 Node: cell2table51347
 Node: colvecfun52087
@@ -10678,7 +10678,7 @@ Node: isduration83649
 Node: isfile83921
 Node: isfolder84069
 Node: ismissing84220
-Node: isnannish86511
+Node: isnanny86511
 Node: localdate87563
 Node: localdate.localdate88886
 Node: localdate.NaT89422
@@ -10698,7 +10698,7 @@ Node: missing.missing96050
 Node: missing.dispstrs96364
 Node: missing.ismissing96761
 Node: missing.isnan97126
-Node: missing.isnannish97465
+Node: missing.isnanny97465
 Node: mustBeA97799
 Node: mustBeCellstr98376
 Node: mustBeCharvec99011
@@ -10825,7 +10825,7 @@ Node: string.isstring244265
 Node: string.dispstrs244590
 Node: string.sizeof245169
 Node: string.ismissing245387
-Node: string.isnannish245866
+Node: string.isnanny245866
 Node: string.cellstr246249
 Node: string.cell246594
 Node: string.char247081

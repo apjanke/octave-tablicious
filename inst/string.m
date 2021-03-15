@@ -229,8 +229,8 @@ classdef string
     endfunction
     
     ## -*- texinfo -*-
-    ## @node string.isnannish
-    ## @deftypefn {Method} {@var{out} =} isnannish (@var{obj})
+    ## @node string.isnanny
+    ## @deftypefn {Method} {@var{out} =} isnanny (@var{obj})
     ##
     ## Test whether array elements are NaN-like.
     ##
@@ -239,7 +239,7 @@ classdef string
     ## Returns a logical array of the same size as @var{obj}.
     ##
     ## @end deftypefn
-    function out = isnannish (this)
+    function out = isnanny (this)
       out = ismissing (this);
     endfunction
     

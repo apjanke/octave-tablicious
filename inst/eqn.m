@@ -25,7 +25,7 @@
 ## that it considers NaN and NaN-like values to be equal. This is the element-wise
 ## equivalent of @code{isequaln}.
 ##
-## @code{eqn} uses @code{isnannish} to test for NaN and NaN-like values, 
+## @code{eqn} uses @code{isnanny} to test for NaN and NaN-like values, 
 ## which means that NaNs and NaTs are considered to be NaN-like, and 
 ## string arrays’ “missing” and categorical objects’ “undefined” values 
 ## are considered equal, because they are NaN-ish.
@@ -35,7 +35,7 @@
 ## name follows the @code{isequaln} pattern of appending an “n” to the
 ## corresponding non-NaN-equivocating function.
 ##
-## See also: @code{eq}, @code{isequaln}, @ref{isnannish}
+## See also: @code{eq}, @code{isequaln}, @ref{isnanny}
 ##
 ## @end deftypefn
 function out = eqn (A, B)
@@ -45,6 +45,6 @@ function out = eqn (A, B)
   % of appending an "N" to the corresponding non-NaN-aware function.
   
   out = A == B;
-  out(isnannish (A) & isnannish (B)) = true;
+  out(isnanny (A) & isnanny (B)) = true;
 
 endfunction
