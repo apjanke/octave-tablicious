@@ -6,6 +6,8 @@ Tablicious is a package for GNU Octave that provides implementations of `table` 
 
 See the online [User Guide](user-guide/html/index.html) for info and API Reference.
 
+You can also download a [PDF version of the User Guide](user-guide/tablicious.pdf).
+
 ## Developer Documentation
 
 * [Developer Notes](Developer-Notes.html) – documentation for developers of Tablicious itself
