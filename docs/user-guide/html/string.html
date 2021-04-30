@@ -71,6 +71,7 @@ string.
   - Each element of a string array is a single string
   - A single string is a 1-dimensional row vector of Unicode characters
   - Those characters are encoded in UTF-8
+    - This last bit depends on the fact that Octave chars are UTF-8 now
 </p>
 <p>This should correspond pretty well to what people think of as strings, and
 is pretty compatible with people’s typical notion of strings in Octave.
@@ -86,7 +87,7 @@ specific type, and allows assignment of non-string data into it.)
 Octave char elements represent 8-bit UTF-8 code units, not Unicode code points.
 </p>
 <p>This class really serves three roles.
-  - It is an object wrapper around Octave’s base primitive character types.
+  - It is a type-safe object wrapper around Octave’s base primitive character types.
   - It adds ismissing() semantics.
   - And it introduces Unicode support.
 Not clear whether it’s a good fit to have the Unicode support wrapped
@@ -99,12 +100,6 @@ they delegate straight to chars.
 <p>“Missing” string values work like NaNs. They are never considered equal,
 less than, or greater to any other string, including other missing strings.
 This applies to set membership and other equivalence tests.
-</p>
-<p>The current implementation depends on Java for its Unicode and encoding
-support. This means your Octave session must be running Java to call those
-methods. This should be changed in the future to use a native C/C++ library
-and avoid the Java dependency, especially before this class is merged into
-core Octave.
 </p>
 <p>TODO: Need to decide how far to go with Unicode semantics, and how much to
 just make this an object wrapper over cellstr and defer to Octave&rsquo;s existing

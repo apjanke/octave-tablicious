@@ -645,7 +645,7 @@ Fill missing values.
 Find missing values.
 
 @item @ref{rmmissing}
-Remove missing values.
+MINNUMMISSING)
 
 @item @ref{standardizeMissing}
 Insert standard missing values.
@@ -827,7 +827,7 @@ Conditioning plot.
 * octave.examples.coplot::	Conditioning plot.
 * octave.examples.plot_pairs::	Plot pairs of variables against each other.
 * pp::	Alias for prettyprint, for interactive use.
-* rmmissing::	Remove missing values.
+* rmmissing::	MINNUMMISSING)
 * scalarexpand::	Expand scalar inputs to match size of non-scalar
 		inputs.
 * seconds::	Create a 'duration' X seconds long, or get the seconds in a
@@ -7757,6 +7757,7 @@ The string class represents strings, where:
   - Each element of a string array is a single string
   - A single string is a 1-dimensional row vector of Unicode characters
   - Those characters are encoded in UTF-8
+    - This last bit depends on the fact that Octave chars are UTF-8 now
 
 This should correspond pretty well to what people think of as strings, and
 is pretty compatible with people’s typical notion of strings in Octave.
@@ -7772,7 +7773,7 @@ Be aware that while string arrays interconvert with Octave chars and cellstrs,
 Octave char elements represent 8-bit UTF-8 code units, not Unicode code points.
 
 This class really serves three roles.
-  - It is an object wrapper around Octave’s base primitive character types.
+  - It is a type-safe object wrapper around Octave’s base primitive character types.
   - It adds ismissing() semantics.
   - And it introduces Unicode support.
 Not clear whether it’s a good fit to have the Unicode support wrapped
@@ -7785,12 +7786,6 @@ they delegate straight to chars.
 “Missing” string values work like NaNs. They are never considered equal,
 less than, or greater to any other string, including other missing strings.
 This applies to set membership and other equivalence tests.
-
-The current implementation depends on Java for its Unicode and encoding
-support. This means your Octave session must be running Java to call those
-methods. This should be changed in the future to use a native C/C++ library
-and avoid the Java dependency, especially before this class is merged into
-core Octave.
 
 TODO: Need to decide how far to go with Unicode semantics, and how much to
 just make this an object wrapper over cellstr and defer to Octave's existing
@@ -7811,8 +7806,7 @@ functions can use it to hack themselves into being string-aware.
 Construct a new string array.
 
 The zero-argument constructor creates a new scalar string array
-whose value is the empty string. TODO: Determine if this should
-actually return a “missing” string instead.
+whose value is the empty string.
 
 The other constructors construct a new string array by converting
 various types of inputs.
@@ -7978,10 +7972,18 @@ See also: @ref{string.strlength}
 
 @deftypefn {Method} {@var{out} =} strlength (@var{obj})
 
-String length in characters.
+String length in characters (actually, UTF-16 code units).
 
-Gets the length of each string, counted in Unicode characters (code
-points). This is the string length method you probably want to use,
+Gets the length of each string, counted in UTF-16 code units. In most
+cases, this is the same as the number of characters. The exception is for
+characters outside the Unicode Basic Multilingual Plane, which are
+represented with UTF-16 surrogate pairs, and thus will count as 2 characters
+each.
+
+The reason this method counts UTF-16 code units, instead of Unicode code
+points (true characters), is for Matlab compatibility.
+
+This is the string length method you probably want to use,
 not @code{strlength_bytes}.
 
 Returns double array of the same size as @var{obj}. Returns NaNs for missing

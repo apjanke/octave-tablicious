@@ -25,6 +25,7 @@
 ##   - Each element of a string array is a single string
 ##   - A single string is a 1-dimensional row vector of Unicode characters
 ##   - Those characters are encoded in UTF-8
+##     - This last bit depends on the fact that Octave chars are UTF-8 now
 ##
 ## This should correspond pretty well to what people think of as strings, and
 ## is pretty compatible with people’s typical notion of strings in Octave.
@@ -40,7 +41,7 @@
 ## Octave char elements represent 8-bit UTF-8 code units, not Unicode code points.
 ##
 ## This class really serves three roles.
-##   - It is an object wrapper around Octave’s base primitive character types. 
+##   - It is a type-safe object wrapper around Octave’s base primitive character types. 
 ##   - It adds ismissing() semantics.
 ##   - And it introduces Unicode support. 
 ## Not clear whether it’s a good fit to have the Unicode support wrapped
@@ -54,12 +55,6 @@
 ## less than, or greater to any other string, including other missing strings.
 ## This applies to set membership and other equivalence tests.
 ##
-## The current implementation depends on Java for its Unicode and encoding
-## support. This means your Octave session must be running Java to call those
-## methods. This should be changed in the future to use a native C/C++ library
-## and avoid the Java dependency, especially before this class is merged into
-## core Octave.
-##
 ## TODO: Need to decide how far to go with Unicode semantics, and how much to
 ## just make this an object wrapper over cellstr and defer to Octave's existing
 ## char/string-handling functions.
@@ -69,17 +64,12 @@
 ##
 ## @end deftp
 classdef string
-  
-  % Developer's note: The string manipulation and encoding methods are implemented
-  % using Java here. This should be switched to use gnulib, ICU4C, or another 
-  % C++ library before moving these into Octave core (or a popular package),
-  % because not all Octaves are built with Java.
-  
+    
   properties
     % The underlying char data, as cellstr
     strs = {''};  % planar
     % A logical mask indicating whether each element is a missing value
-    tfMissing     % planar
+    tfMissing = false  % planar
   endproperties
   
   methods
@@ -91,8 +81,7 @@ classdef string
     ## Construct a new string array.
     ##
     ## The zero-argument constructor creates a new scalar string array
-    ## whose value is the empty string. TODO: Determine if this should
-    ## actually return a “missing” string instead.
+    ## whose value is the empty string. 
     ##
     ## The other constructors construct a new string array by converting
     ## various types of inputs.
@@ -350,13 +339,7 @@ classdef string
     ## @end deftypefn
     function out = encode (this, charsetName)
       mustBeScalar (this);
-      mustHavaJava ();
-      if this.tfMissing
-        error ('string.encode: cannot encode missing values');
-      endif
-      java_str = javaObject ('java.lang.String', this.strs{i});
-      java_bytes = javaMethod ('getBytes', java_str, charsetName);
-      out = typecast (java_bytes', 'uint8');
+      out = unicode2native (this.strs{1}, charsetName);
     endfunction
       
     % String manipulation methods
@@ -398,10 +381,18 @@ classdef string
     ## @node string.strlength
     ## @deftypefn {Method} {@var{out} =} strlength (@var{obj})
     ##
-    ## String length in characters.
+    ## String length in characters (actually, UTF-16 code units).
     ##
-    ## Gets the length of each string, counted in Unicode characters (code
-    ## points). This is the string length method you probably want to use,
+    ## Gets the length of each string, counted in UTF-16 code units. In most 
+    ## cases, this is the same as the number of characters. The exception is for
+    ## characters outside the Unicode Basic Multilingual Plane, which are
+    ## represented with UTF-16 surrogate pairs, and thus will count as 2 characters
+    ## each.
+    ##
+    ## The reason this method counts UTF-16 code units, instead of Unicode code
+    ## points (true characters), is for Matlab compatibility.
+    ##
+    ## This is the string length method you probably want to use,
     ## not @code{strlength_bytes}.
     ##
     ## Returns double array of the same size as @var{obj}. Returns NaNs for missing
@@ -411,14 +402,13 @@ classdef string
     ##
     ## @end deftypefn
     function out = strlength(this)
-      mustHaveJava ();
       out = NaN (size(this));
       for i = 1:numel (out)
         if this.tfMissing(i)
           continue
         endif
-        j_str = javaObject ('java.lang.String', this.strs{i});
-        out(i) = javaMethod ('codePointCount', j_str, 0, numel (this.strs{i}));
+        utf16 = unicode2native (this.strs{i}, 'UTF-16LE');
+        out(i) = numel (utf16) / 2;
       endfor
     endfunction
     
@@ -464,21 +454,16 @@ classdef string
     ##
     ## @end deftypefn
     function out = reverse(this)
-      out = this;
-      % Transcode to UTF-32 (since UTF-32 is a fixed-width encoding), 
-      % reverse that, and transcode back to original encoding
+      points = codepoints (this);
+      rev_points = points;
       for i = 1:numel (this)
         if this.tfMissing(i)
           continue
         endif
-        bytes = encode (this(i), 'UTF-32LE');
-        utf32 = typecast (bytes, 'uint32');
-        utf32_reverse = utf32(end:-1:1);
-        bytes2 = typecast (utf32_reverse, 'uint8');
-        java_str = javaObject ('java.lang.String', bytes2, 'UTF-32LE');
-        reversed = char (java_str);
-        out.strs{i} = reversed;
+        rev_points{i} = points{i}(end:-1:1);
       endfor
+      out = string.ofCodepoints (rev_points);
+      out.tfMissing = this.tfMissing;
     endfunction
     
     ## -*- texinfo -*-
@@ -1143,6 +1128,48 @@ classdef string
     
   endmethods
   
+  methods (Access=private)
+    
+    function out = codepoints(this)
+      % Convert to cell array of 32-bit Unicode code point vectors
+      %
+      % This is a little utility to support other Unicode-character-aware methods,
+      % like strlength() and reverse().
+      persistent native_utf32_encoding
+      if isempty (native_utf32_encoding)
+        [~,~,endian] = computer ();
+        native_utf32_encoding = sprintf ('UTF-32%cE', endian);
+      endif
+      
+      out = cell (size (this));
+      for i = 1:numel (out)
+        out{i} = typecast (unicode2native (this.strs{i}, native_utf32_encoding), 'uint32');
+      endfor
+    endfunction
+    
+  endmethods
+  
+  methods (Static, Access=private)
+    
+    function out = ofCodepoints(points)
+      %OFUTF32S Convert from a cell array of 32-bit Unicode code point vectors
+      %
+      % This is the inverse of codepoints().
+      persistent native_utf32_encoding
+      if isempty (native_utf32_encoding)
+        [~,~,endian] = computer ();
+        native_utf32_encoding = sprintf ('UTF-32%cE', endian);
+      endif
+      
+      cstr = cell (size (points));
+      for i = 1:numel (points)
+        cstr{i} = native2unicode (typecast (points{i}, 'uint8'), native_utf32_encoding);
+      endfor
+      out = string (cstr);
+    endfunction
+    
+  endmethods
+  
   methods (Static)
     ## -*- texinfo -*-
     ## @node string.missing
@@ -1178,7 +1205,7 @@ classdef string
     ##
     ## @end deftypefn
     function out = decode (bytes, charsetName)
-      out = string (char (javaObject ('java.lang.String', bytes, charsetName)));
+      out = string (native2unicode (bytes, charsetName));
     end
   end
 

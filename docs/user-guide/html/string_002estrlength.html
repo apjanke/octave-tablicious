@@ -63,10 +63,18 @@ Next: <a href="string_002ereverse_005fbytes.html" accesskey="n" rel="next">strin
 <dl>
 <dt id="index-strlength">Method: <em><var>out</var> =</em> <strong>strlength</strong> <em>(<var>obj</var>)</em></dt>
 <dd>
-<p>String length in characters.
+<p>String length in characters (actually, UTF-16 code units).
 </p>
-<p>Gets the length of each string, counted in Unicode characters (code
-points). This is the string length method you probably want to use,
+<p>Gets the length of each string, counted in UTF-16 code units. In most
+cases, this is the same as the number of characters. The exception is for
+characters outside the Unicode Basic Multilingual Plane, which are
+represented with UTF-16 surrogate pairs, and thus will count as 2 characters
+each.
+</p>
+<p>The reason this method counts UTF-16 code units, instead of Unicode code
+points (true characters), is for Matlab compatibility.
+</p>
+<p>This is the string length method you probably want to use,
 not <code>strlength_bytes</code>.
 </p>
 <p>Returns double array of the same size as <var>obj</var>. Returns NaNs for missing

@@ -1250,7 +1250,7 @@ Next: <a href="#API-Alphabetically" accesskey="n" rel="next">API Alphabetically<
 </p>
 </dd>
 <dt><a href="#rmmissing">rmmissing</a></dt>
-<dd><p>Remove missing values.
+<dd><p>MINNUMMISSING)
 </p>
 </dd>
 <dt><a href="#standardizeMissing">standardizeMissing</a></dt>
@@ -1495,7 +1495,7 @@ Previous: <a href="#API-by-Category" accesskey="p" rel="prev">API by Category</a
 </td></tr>
 <tr><td align="left" valign="top">&bull; <a href="#pp">pp</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">Alias for prettyprint, for interactive use.
 </td></tr>
-<tr><td align="left" valign="top">&bull; <a href="#rmmissing">rmmissing</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">Remove missing values.
+<tr><td align="left" valign="top">&bull; <a href="#rmmissing">rmmissing</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">MINNUMMISSING)
 </td></tr>
 <tr><td align="left" valign="top">&bull; <a href="#scalarexpand">scalarexpand</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">Expand scalar inputs to match size of non-scalar
 		inputs.
@@ -10304,6 +10304,7 @@ string.
   - Each element of a string array is a single string
   - A single string is a 1-dimensional row vector of Unicode characters
   - Those characters are encoded in UTF-8
+    - This last bit depends on the fact that Octave chars are UTF-8 now
 </p>
 <p>This should correspond pretty well to what people think of as strings, and
 is pretty compatible with people’s typical notion of strings in Octave.
@@ -10319,7 +10320,7 @@ specific type, and allows assignment of non-string data into it.)
 Octave char elements represent 8-bit UTF-8 code units, not Unicode code points.
 </p>
 <p>This class really serves three roles.
-  - It is an object wrapper around Octave’s base primitive character types.
+  - It is a type-safe object wrapper around Octave’s base primitive character types.
   - It adds ismissing() semantics.
   - And it introduces Unicode support.
 Not clear whether it’s a good fit to have the Unicode support wrapped
@@ -10332,12 +10333,6 @@ they delegate straight to chars.
 <p>“Missing” string values work like NaNs. They are never considered equal,
 less than, or greater to any other string, including other missing strings.
 This applies to set membership and other equivalence tests.
-</p>
-<p>The current implementation depends on Java for its Unicode and encoding
-support. This means your Octave session must be running Java to call those
-methods. This should be changed in the future to use a native C/C++ library
-and avoid the Java dependency, especially before this class is merged into
-core Octave.
 </p>
 <p>TODO: Need to decide how far to go with Unicode semantics, and how much to
 just make this an object wrapper over cellstr and defer to Octave&rsquo;s existing
@@ -10416,8 +10411,7 @@ Next: <a href="#string_002eisstring" accesskey="n" rel="next">string.isstring</a
 <p>Construct a new string array.
 </p>
 <p>The zero-argument constructor creates a new scalar string array
-whose value is the empty string. TODO: Determine if this should
-actually return a “missing” string instead.
+whose value is the empty string.
 </p>
 <p>The other constructors construct a new string array by converting
 various types of inputs.
@@ -10638,10 +10632,18 @@ Next: <a href="#string_002ereverse_005fbytes" accesskey="n" rel="next">string.re
 <dl>
 <dt id="index-strlength">Method: <em><var>out</var> =</em> <strong>strlength</strong> <em>(<var>obj</var>)</em></dt>
 <dd>
-<p>String length in characters.
+<p>String length in characters (actually, UTF-16 code units).
 </p>
-<p>Gets the length of each string, counted in Unicode characters (code
-points). This is the string length method you probably want to use,
+<p>Gets the length of each string, counted in UTF-16 code units. In most
+cases, this is the same as the number of characters. The exception is for
+characters outside the Unicode Basic Multilingual Plane, which are
+represented with UTF-16 surrogate pairs, and thus will count as 2 characters
+each.
+</p>
+<p>The reason this method counts UTF-16 code units, instead of Unicode code
+points (true characters), is for Matlab compatibility.
+</p>
+<p>This is the string length method you probably want to use,
 not <code>strlength_bytes</code>.
 </p>
 <p>Returns double array of the same size as <var>obj</var>. Returns NaNs for missing
