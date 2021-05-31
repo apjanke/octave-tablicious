@@ -424,6 +424,7 @@ classdef table
     ## -*- texinfo -*-
     ## @node table.size
     ## @deftypefn {Method} {@var{sz} =} size (@var{obj})
+    ## @deftypefnx {Method} {[@var{nr}, @var{nv}] =} size (@var{obj})
     ##
     ## Gets the size of a table.
     ##
@@ -431,12 +432,18 @@ classdef table
     ## This is the same as @code{[height(obj), width(obj)]}.
     ##
     ## @end deftypefn
-    function out = size (this, dim)
-      if nargin == 1
-        out = [height(this), width(this)];
+    function [out, nv] = size (this, dim)
+      if nargout == 1
+        if nargin == 1
+          out = [height(this), width(this)];
+        elseif dim == 2
+          out = width(this);
+        else
+          out = height(this);
+        end
       else
-        sz = size (this);
-        out = sz(dim);
+        out = height(this);
+        nv  = width(this);
       end
     end
     
