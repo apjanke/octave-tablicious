@@ -425,6 +425,7 @@ classdef table
     ## @node table.size
     ## @deftypefn {Method} {@var{sz} =} size (@var{obj})
     ## @deftypefnx {Method} {[@var{nr}, @var{nv}] =} size (@var{obj})
+    ## @deftypefnx {Method} {[@var{nr}, @var{nv}, @dots{}] =} size (@var{obj})
     ##
     ## Gets the size of a table.
     ##
@@ -432,18 +433,22 @@ classdef table
     ## This is the same as @code{[height(obj), width(obj)]}.
     ##
     ## @end deftypefn
-    function [out, nv] = size (this, dim)
-      if nargout == 1
-        if nargin == 1
-          out = [height(this), width(this)];
+    function varargout = size (this, dim)
+      varargout = cell(1, nargout);
+      if nargin == 2
+        if dim == 1
+          varargout{1} = height(this);
         elseif dim == 2
-          out = width(this);
+          varargout{1} = width(this);
         else
-          out = height(this);
+          varargout{1} = 1;
         end
+      elseif nargout == 0 || nargout == 1
+        varargout{1} = [height(this), width(this)];
       else
-        out = height(this);
-        nv  = width(this);
+        varargout{1} = height(this);
+        varargout{2} = width(this);
+        [varargout{3:end}] = deal(1);
       end
     end
     
