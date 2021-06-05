@@ -11346,6 +11346,8 @@ Next: <a href="#table_002elength" accesskey="n" rel="next">table.length</a>, Pre
 
 <dl>
 <dt id="index-size">Method: <em><var>sz</var> =</em> <strong>size</strong> <em>(<var>obj</var>)</em></dt>
+<dt id="index-size-1">Method: <em>[<var>nr</var>, <var>nv</var>] =</em> <strong>size</strong> <em>(<var>obj</var>)</em></dt>
+<dt id="index-size-2">Method: <em>[<var>nr</var>, <var>nv</var>, &hellip;] =</em> <strong>size</strong> <em>(<var>obj</var>)</em></dt>
 <dd>
 <p>Gets the size of a table.
 </p>
@@ -11494,14 +11496,12 @@ Next: <a href="#table_002eisempty" accesskey="n" rel="next">table.isempty</a>, P
 <dl>
 <dt id="index-numel">Method: <em><var>out</var> =</em> <strong>numel</strong> <em>(<var>obj</var>)</em></dt>
 <dd>
-<p>Total number of elements in table.
+<p>Total number of elements in table (actually 1).
 </p>
-<p>This is the total number of elements in this table. This is calculated
-as the sum of numel for each variable.
-</p>
-<p>NOTE: Those semantics may be wrong. This may actually need to be defined
-as <code>height(obj) * width(obj)</code>. The behavior of <code>numel</code> may
-change in the future.
+<p>For compatibility reasons with Octave&rsquo;s OOP interface and subsasgn behavior,
+table&rsquo;s numel is defined to always return 1. It is not useful for client
+code to query a table&rsquo;s size using numel. This is an incompatibility with
+Matlab.
 </p>
 </dd></dl>
 

@@ -594,22 +594,18 @@ classdef table
     ## @node table.numel
     ## @deftypefn {Method} {@var{out} =} numel (@var{obj})
     ##
-    ## Total number of elements in table.
+    ## Total number of elements in table (actually 1).
     ##
-    ## This is the total number of elements in this table. This is calculated
-    ## as the sum of numel for each variable.
-    ##
-    ## NOTE: Those semantics may be wrong. This may actually need to be defined
-    ## as @code{height(obj) * width(obj)}. The behavior of @code{numel} may
-    ## change in the future.
+    ## For compatibility reasons with Octave's OOP interface and subsasgn behavior,
+    ## table's numel is defined to always return 1. It is not useful for client
+    ## code to query a table's size using numel. This is an incompatibility with
+    ## Matlab.
     ##
     ## @end deftypefn
     function out = numel (this)
-      n = 0;
-      for i = 1:numel (this.VariableValues)
-        n = n + numel (this.VariableValues{i});
-      end
-      out = n;
+      out = 1;
+      % This bit breaks subsasgn
+      %out = heignt (this) * width (this);
     end
     
     ## -*- texinfo -*-
