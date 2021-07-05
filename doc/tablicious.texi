@@ -645,7 +645,7 @@ Fill missing values.
 Find missing values.
 
 @item @ref{rmmissing}
-MINNUMMISSING)
+Remove missing values.
 
 @item @ref{standardizeMissing}
 Insert standard missing values.
@@ -827,7 +827,7 @@ Conditioning plot.
 * octave.examples.coplot::	Conditioning plot.
 * octave.examples.plot_pairs::	Plot pairs of variables against each other.
 * pp::	Alias for prettyprint, for interactive use.
-* rmmissing::	MINNUMMISSING)
+* rmmissing::	Remove missing values.
 * scalarexpand::	Expand scalar inputs to match size of non-scalar
 		inputs.
 * seconds::	Create a 'duration' X seconds long, or get the seconds in a
