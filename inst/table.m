@@ -149,11 +149,6 @@ classdef table
         error ('table: Inconsistent number of VariableNames (%d) and VariableValues (%d)', ...
          numel (varNames), numel (varVals));
       end
-      for i = 1:numel (varNames)
-        if ~isvarname (varNames{i})
-          error ('table: Invalid VariableName: ''%s''', varNames{i});
-        end
-      end
       if ~isempty (varVals)
         nrows = size (varVals{1}, 1);
         for i = 2:numel (varVals)
@@ -968,9 +963,6 @@ classdef table
         names = cellstr (names);
       endif
       mustBeCellstr (names);
-      if ~all (cellfun (@isvarname, names))
-        error ('table: VariableNames must be valid variable names');
-      endif
       if isempty (ix)
         n_assigned = width (this);
       else
@@ -3439,10 +3431,6 @@ classdef table
       %TRANSPOSE_TABLE This is for table's internal use
       if ~hasrownames (this)
         error ('table.transpose: this must have RowNames, but it does not');
-      endif
-      tfRowNamesAreVarNames = cellfun(@isvarname, this.RowNames);
-      if ~all (tfRowNamesAreVarNames)
-        error ('table.transpose: Row names must all be valid variable names');
       endif
       c = table2cell (this);
       out = cell2table(c', 'VariableNames', this.RowNames, 'RowNames', this.VariableNames);
