@@ -2,6 +2,7 @@
 
 * Run all the tests.
   * `make test`, duh.
+    * TODO: Fix the `make test` target! ;)
   * Wouldn't hurt to do `make clean && git status && make test`/manual-cleanup, just to be sure.
 * Double-check the version number and date in `DESCRIPTION`
 * Update the installation instructions in README to use the upcoming release tarball URL.
