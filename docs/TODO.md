@@ -1,5 +1,9 @@
 # Tablicious TODO
 
+## For this document
+
+* This TODO document is way out of date. Review it and remove stuff that got done or WONTFIXed.
+
 ## Overall
 
 * Convert internal dnums representation to UTC
@@ -23,8 +27,6 @@
 
 * `table`
   * summary
-  * Get subsasgn assignment to work on variables in table
-    * It's currently erroring: `error: invalid dot name structure assignment because the structure array is empty.  Specify a subscript on the structure array to resolve.`
   * Description, Units, and CustomProperties for variables in table
   * `timetable`
   * More documentation for individual methods
@@ -32,14 +34,16 @@
     * readtable, writetable
     * tableread
     * table.textscan, table.csvread, table.dlmread
-    * Probably pull in Apache FOP for this. Will need to write custom Java layer for acceptable performance.
+    * Maybe pull in Apache FOP for this. Will need to write custom Java layer for acceptable performance.
+      * But most Octave users don't want to use Java. Better to take a C/C++ dependency. Or even a Python one, these days, I think.
   * viewtable()
     * Takes single table or struct with tabular field contents
     * Doing this in Java would be easier; in Qt would be nicer
-      * But doing it in Qt would require users installing the package to have Qt dev tools installed. Yuck.
+      * But doing it in Qt would require users installing the package to have Qt dev tools installed so the build can work. Yuck.
 * `datetime`
   * Convert internal dnums representation to UTC
     * Math goes bad around DST and other zone transitions if you don't do that
+    * I think this is actually done already?
   * Time zone support
     * Normalization of "nonexistent" times like between 02:00 and 03:00 on DST leap ahead days
   * Leap second conversion
@@ -51,7 +55,6 @@
   * week() - ISO calendar week-of-year calculation
   * isdst/isweekend
   * Additional `ConvertFrom` types
-  * SystemTimeZone detection on pre-Vista Windows without using Java
   * POSIX zone rule support for dates outside range of Olson database
     * This affects dates before around 1880 and after around 2038
     * It also affects current dates for time zones that don't use DST!
@@ -73,20 +76,14 @@
 * `duration`
   * `InputFmt` support
   * `Format` support
-* Miscellaneous
-  * Reproduce crash - double setter/getters cause it? (Had duplicates for datetime.Month.)
 * Documentation
   * Keyword index, including all function and class names
   * Fix Travis CI doco build
-  * Figure out how to get `doc/chrono.texi.in` to draw its version number from `DESCRIPTION`
   * Correct asciibetical ordering in Functions Alphabetically
   * Fix this: `warning: doc_cache_create: unusable help text found in file 'datetime'`
-  * Make my Texinfo documentation work with Octave's `doc` command
-    * Expose it as QHelpEngine file?
   * Get `help datetime` to recognize my datetime
     * Currently, `which datetime` gives `'datetime' is a built-in function` and `help datetime` gives `error: help: 'datetime' is not documented`
   * Get `mkdoc.pl` to ignore files in `+internal` namespaces.
-  * Get `mkdoc.pl` to include namespaces in class/function definition items.
 * categorical stuff
   * summary
   * countcats

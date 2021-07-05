@@ -18,7 +18,7 @@ cd doc && make maintainer-clean && make all
 rm -rf *.tmp
 rm -rf *.dvi *.eps *.html *.info *.pdf *.ps *.png *.texi *.qhp *.qch *.qhc images.mk
 perl ./mkdoc.pl DOCSTRINGS.texi.tmp ../inst ../src
-perl ./mktexi.pl chrono.texi.in DOCSTRINGS.texi.tmp ../INDEX chrono.texi
+perl ./mktexi.pl src/tablicious.texi DOCSTRINGS.texi.tmp ../INDEX chrono.texi
 makeinfo --no-split -o chrono.info chrono.texi
 chrono.texi:10: warning: unrecognized encoding name `UTF-8'.
 chrono.texi:31: warning: undefined flag: VERSION.

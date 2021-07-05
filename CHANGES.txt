@@ -1,6 +1,15 @@
 Tablicious Changelog
 ====================
 
+Version 0.3.7 (in progress)
+-----------------------------
+
+* Fix orphaned sections in documentation.
+
+Internal refactoring:
+
+* Rearrange doco files so the main source file is named `*.texi` and its extension is recognized by editors.
+
 Version 0.3.6 (2021-07-05)
 -----------------------------
 

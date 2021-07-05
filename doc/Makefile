@@ -1,6 +1,6 @@
 # Makefile for Octave package documentation
 #
-# This setup uses the convention that "*.texi.in" files are the human-editable
+# This setup uses the convention that "*-in.texi" files are the human-editable
 # input files, and corresponding "*.texi" files are processed intermediate
 # files.
 #
@@ -104,8 +104,8 @@ TIMESTAMP: $(SRCFILES)
 	$(FIND) $(SRCDIRS) -type f -printf '%T@\n' | cut -d '.' -f 1 | sort -n | tail -1 > TIMESTAMP
 
 # This target generates <pkg>.texi and also <pkg>.qhp as a side effect
-.PRECIOUS: %.texi
-%.texi : %.texi.in mktexi.pl $(SRCFILES) TIMESTAMP
+.PRECIOUS: tablicious.texi
+tablicious.texi : src/tablicious.texi mktexi.pl $(SRCFILES) TIMESTAMP
 	export SOURCE_DATE_EPOCH=`cat TIMESTAMP`; \
 	$(PERL) ./mktexi.pl $< $(INDEX) $@ $(package).qhp $(SRCDIRS)
 

@@ -34,7 +34,7 @@ User-maintained input files:
 
 * `../DESCRIPTION`
 * `../INDEX`
-* `<pkg>.texi.in`
+* `src/<pkg>.texi`
 * `<pkg>.qhcp`
 
 Doco toolchain script files:
@@ -73,8 +73,8 @@ This toolchain used to have more steps, broken out into `mkdoc.pl`, `mktexi.pl`,
 * You launch `make doc` using the `Makefile`. It causes the rest to happen.
 * `mktexi.pl`:
   * Scans the source files (in `../inst` and `../src`) and extracts their embedded texinfo blocks
-  * Combines that with `<pkg>.texi.in`, `../DESCRIPTION`, and `../INDEX` to produce the unified actual Texinfo document `<pkg>.texi`
-    * Does some substitutions on stuff in `<pkg>.texi.in`
+  * Combines that with `src/<pkg>.texi`, `../DESCRIPTION`, and `../INDEX` to produce the unified actual Texinfo document `<pkg>.texi`
+    * Does some substitutions on stuff in `src/<pkg>.texi`
     * `@DOCSTRING(...)` gets special handling
     * `%%%%PACKAGE_VERSION%%%%` gets replaced with the version from `../DESCRIPTION`
   * Generates a `<pkg>.qhcp` index file that can be used to build a QHelp collection from the generated HTML help files
