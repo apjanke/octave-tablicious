@@ -60,6 +60,7 @@ This manual is for Tablicious, version @value{VERSION}.
 * Date and Time Representation::
 * Validation Functions::
 * Example Data Sets::
+* Data Sets from R::
 * Missing Functionality::
 * API Reference::
 * Copying::
@@ -241,6 +242,10 @@ indicating what time zone the datetimes are in.
 So, basically, a @code{datetime} is an object wrapper around a datenum array,
 plus time zone support.
 
+@menu
+* Datenum Compatibility::
+@end menu
+
 @node Datenum Compatibility
 @subsection Datenum Compatibility
 
@@ -336,6 +341,10 @@ Normalization of "nonexistent" times (like between 02:00 and 03:00 on a "spring 
 DST change day) is not implemented yet. The results of converting a zoneless local time
 into a time zone where that local time did not exist are currently undefined.
 @end quotation
+
+@menu
+* Defined Time Zones::
+@end menu
 
 @node Defined Time Zones
 @subsection Defined Time Zones
@@ -2174,7 +2183,6 @@ The format to display this @code{duration} in. Currently unsupported.
 @node duration.ofDays
 @subsubsection duration.ofDays
 
-@subsubsection duration.ofDays
 @deftypefn {Static Method} {@var{obj} =} duration.ofDays (@var{dnums})
 
 Converts a double array representing durations in whole and fractional days
@@ -2197,7 +2205,6 @@ Size of array in bytes.
 @node duration.years
 @subsubsection duration.years
 
-@subsubsection duration.years
 @deftypefn {Method} {@var{out} =} years (@var{obj})
 
 Equivalent number of years.
@@ -2212,7 +2219,6 @@ Returns double array the same size as @var{obj}.
 @node duration.hours
 @subsubsection duration.hours
 
-@subsubsection duration.hours
 @deftypefn {Method} {@var{out} =} hours (@var{obj})
 
 Equivalent number of hours.
@@ -2227,7 +2233,6 @@ Returns double array the same size as @var{obj}.
 @node duration.minutes
 @subsubsection duration.minutes
 
-@subsubsection duration.minutes
 @deftypefn {Method} {@var{out} =} minutes (@var{obj})
 
 Equivalent number of minutes.
@@ -2242,7 +2247,6 @@ Returns double array the same size as @var{obj}.
 @node duration.seconds
 @subsubsection duration.seconds
 
-@subsubsection duration.seconds
 @deftypefn {Method} {@var{out} =} seconds (@var{obj})
 
 Equivalent number of seconds.
@@ -2257,7 +2261,6 @@ Returns double array the same size as @var{obj}.
 @node duration.milliseconds
 @subsubsection duration.milliseconds
 
-@subsubsection duration.milliseconds
 @deftypefn {Method} {@var{out} =} milliseconds (@var{obj})
 
 Equivalent number of milliseconds.
@@ -2272,7 +2275,6 @@ Returns double array the same size as @var{obj}.
 @node duration.dispstrs
 @subsubsection duration.dispstrs
 
-@subsubsection duration.dispstrs
 @deftypefn {Method} {@var{out} =} duration (@var{obj})
 
 Get display strings for each element of @var{obj}.
@@ -2284,7 +2286,6 @@ Returns a cellstr the same size as @var{obj}.
 @node duration.char
 @subsubsection duration.char
 
-@subsubsection duration.char
 @deftypefn {Method} {@var{out} =} char (@var{obj})
 
 Convert to char. The contents of the strings will be the same as
@@ -2299,7 +2300,6 @@ Returns a 2-D char array with one row per element in @var{obj}.
 @node duration.linspace
 @subsubsection duration.linspace
 
-@subsubsection duration.linspace
 @deftypefn {Method} {@var{out} =} linspace (@var{from}, @var{to}, @var{n})
 
 Linearly-spaced values in time duration space.

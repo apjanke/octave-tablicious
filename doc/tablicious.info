@@ -34,6 +34,7 @@ This manual is for Tablicious, version 0.3.7-SNAPSHOT.
 * Date and Time Representation::
 * Validation Functions::
 * Example Data Sets::
+* Data Sets from R::
 * Missing Functionality::
 * API Reference::
 * Copying::
@@ -510,7 +511,7 @@ command.)
 * Data Sets from R::
 
 
-File: tablicious.info,  Node: Data Sets from R,  Up: Example Data Sets
+File: tablicious.info,  Node: Data Sets from R,  Next: Missing Functionality,  Prev: Example Data Sets,  Up: Example Data Sets
 
 6.1 Data Sets from R
 ====================
@@ -2349,12 +2350,9 @@ File: tablicious.info,  Node: duration,  Next: endsWith,  Prev: dispstrs,  Up: A
 * duration.linspace::
 
 
-File: tablicious.info,  Node: duration.ofDays,  Up: duration
+File: tablicious.info,  Node: duration.ofDays,  Next: duration.sizeof,  Up: duration
 
 8.2.13.1 duration.ofDays
-........................
-
-8.2.13.2 duration.ofDays
 ........................
 
  -- Static Method: OBJ = duration.ofDays (DNUMS)
@@ -2366,9 +2364,9 @@ File: tablicious.info,  Node: duration.ofDays,  Up: duration
      Returns a ‘duration’ array of the same size as the input.
 
 
-File: tablicious.info,  Node: duration.sizeof,  Next: duration.years,  Up: duration
+File: tablicious.info,  Node: duration.sizeof,  Next: duration.years,  Prev: duration.ofDays,  Up: duration
 
-8.2.13.3 duration.sizeof
+8.2.13.2 duration.sizeof
 ........................
 
  -- Method: OUT = sizeof (OBJ)
@@ -2376,12 +2374,9 @@ File: tablicious.info,  Node: duration.sizeof,  Next: duration.years,  Up: durat
      Size of array in bytes.
 
 
-File: tablicious.info,  Node: duration.years,  Prev: duration.sizeof,  Up: duration
+File: tablicious.info,  Node: duration.years,  Next: duration.hours,  Prev: duration.sizeof,  Up: duration
 
-8.2.13.4 duration.years
-.......................
-
-8.2.13.5 duration.years
+8.2.13.3 duration.years
 .......................
 
  -- Method: OUT = years (OBJ)
@@ -2394,12 +2389,9 @@ File: tablicious.info,  Node: duration.years,  Prev: duration.sizeof,  Up: durat
      Returns double array the same size as OBJ.
 
 
-File: tablicious.info,  Node: duration.hours,  Up: duration
+File: tablicious.info,  Node: duration.hours,  Next: duration.minutes,  Prev: duration.years,  Up: duration
 
-8.2.13.6 duration.hours
-.......................
-
-8.2.13.7 duration.hours
+8.2.13.4 duration.hours
 .......................
 
  -- Method: OUT = hours (OBJ)
@@ -2412,12 +2404,9 @@ File: tablicious.info,  Node: duration.hours,  Up: duration
      Returns double array the same size as OBJ.
 
 
-File: tablicious.info,  Node: duration.minutes,  Up: duration
+File: tablicious.info,  Node: duration.minutes,  Next: duration.seconds,  Prev: duration.hours,  Up: duration
 
-8.2.13.8 duration.minutes
-.........................
-
-8.2.13.9 duration.minutes
+8.2.13.5 duration.minutes
 .........................
 
  -- Method: OUT = minutes (OBJ)
@@ -2430,13 +2419,10 @@ File: tablicious.info,  Node: duration.minutes,  Up: duration
      Returns double array the same size as OBJ.
 
 
-File: tablicious.info,  Node: duration.seconds,  Up: duration
+File: tablicious.info,  Node: duration.seconds,  Next: duration.milliseconds,  Prev: duration.minutes,  Up: duration
 
-8.2.13.10 duration.seconds
-..........................
-
-8.2.13.11 duration.seconds
-..........................
+8.2.13.6 duration.seconds
+.........................
 
  -- Method: OUT = seconds (OBJ)
 
@@ -2447,13 +2433,10 @@ File: tablicious.info,  Node: duration.seconds,  Up: duration
      Returns double array the same size as OBJ.
 
 
-File: tablicious.info,  Node: duration.milliseconds,  Up: duration
+File: tablicious.info,  Node: duration.milliseconds,  Next: duration.dispstrs,  Prev: duration.seconds,  Up: duration
 
-8.2.13.12 duration.milliseconds
-...............................
-
-8.2.13.13 duration.milliseconds
-...............................
+8.2.13.7 duration.milliseconds
+..............................
 
  -- Method: OUT = milliseconds (OBJ)
 
@@ -2465,13 +2448,10 @@ File: tablicious.info,  Node: duration.milliseconds,  Up: duration
      Returns double array the same size as OBJ.
 
 
-File: tablicious.info,  Node: duration.dispstrs,  Up: duration
+File: tablicious.info,  Node: duration.dispstrs,  Next: duration.char,  Prev: duration.milliseconds,  Up: duration
 
-8.2.13.14 duration.dispstrs
-...........................
-
-8.2.13.15 duration.dispstrs
-...........................
+8.2.13.8 duration.dispstrs
+..........................
 
  -- Method: OUT = duration (OBJ)
 
@@ -2480,13 +2460,10 @@ File: tablicious.info,  Node: duration.dispstrs,  Up: duration
      Returns a cellstr the same size as OBJ.
 
 
-File: tablicious.info,  Node: duration.char,  Up: duration
+File: tablicious.info,  Node: duration.char,  Next: duration.linspace,  Prev: duration.dispstrs,  Up: duration
 
-8.2.13.16 duration.char
-.......................
-
-8.2.13.17 duration.char
-.......................
+8.2.13.9 duration.char
+......................
 
  -- Method: OUT = char (OBJ)
 
@@ -2498,12 +2475,9 @@ File: tablicious.info,  Node: duration.char,  Up: duration
      Returns a 2-D char array with one row per element in OBJ.
 
 
-File: tablicious.info,  Node: duration.linspace,  Up: duration
+File: tablicious.info,  Node: duration.linspace,  Prev: duration.char,  Up: duration
 
-8.2.13.18 duration.linspace
-...........................
-
-8.2.13.19 duration.linspace
+8.2.13.10 duration.linspace
 ...........................
 
  -- Method: OUT = linspace (FROM, TO, N)
@@ -10561,371 +10535,371 @@ This manual is for Tablicious, version 0.3.7-SNAPSHOT.
 
 Tag Table:
 Node: Top781
-Node: Introduction1168
-Node: Getting Started2540
-Node: Table Representation3372
-Node: Table Construction4931
-Node: Tables vs SQL6160
-Node: Date and Time Representation8108
-Node: datetime Class8655
-Node: Datenum Compatibility9621
-Node: Time Zones11157
-Node: Defined Time Zones14022
-Node: Durations15021
-Node: duration Class15203
-Node: calendarDuration Class15962
-Node: Validation Functions16871
-Node: Example Data Sets19182
-Node: Data Sets from R20623
-Node: Missing Functionality21476
-Node: API Reference22947
-Node: API by Category23136
-Node: API Alphabetically28022
-Node: array2table31914
-Node: calendarDuration32838
-Node: calendarDuration.calendarDuration34722
-Node: calendarDuration.sizeof35233
-Node: calendarDuration.isnat35513
-Node: calendarDuration.uminus35838
-Node: calendarDuration.plus36121
-Node: calendarDuration.times36730
-Node: calendarDuration.minus37091
-Node: calendarDuration.dispstrs37440
-Node: calendarDuration.isnan37784
-Node: calmonths38188
-Node: calyears38777
-Node: categorical39121
-Node: categorical.undefined41395
-Node: categorical.categorical41902
-Node: categorical.sizeof43173
-Node: categorical.categories43423
-Node: categorical.iscategory43821
-Node: categorical.isordinal44267
-Node: categorical.string44636
-Node: categorical.cellstr45083
-Node: categorical.dispstrs45522
-Node: categorical.summary45978
-Node: categorical.addcats46431
-Node: categorical.removecats46859
-Node: categorical.mergecats47501
-Node: categorical.renamecats48156
-Node: categorical.reordercats48573
-Node: categorical.setcats49108
-Node: categorical.isundefined49554
-Node: categorical.ismissing50072
-Node: categorical.isnanny50480
-Node: categorical.squeezecats50950
-Node: cell2table51318
-Node: colvecfun52046
-Node: contains52770
-Node: datetime53551
-Node: datetime.datetime55925
-Node: datetime.ofDatenum56711
-Node: datetime.ofDatestruct57071
-Node: datetime.NaT57578
-Node: datetime.posix2datenum58343
-Node: datetime.datenum2posix58820
-Node: datetime.sizeof59222
-Node: datetime.proxyKeys59455
-Node: datetime.ymd60096
-Node: datetime.hms60486
-Node: datetime.ymdhms60881
-Node: datetime.timeofday61324
-Node: datetime.week61744
-Node: datetime.dispstrs62004
-Node: datetime.datestr62303
-Node: datetime.datestrs62695
-Node: datetime.datestruct63116
-Node: datetime.posixtime63921
-Node: datetime.datenum64455
-Node: datetime.gmtime64772
-Node: datetime.localtime65213
-Node: datetime.isnat65935
-Node: datetime.isnan66216
-Node: datetime.lt66587
-Node: datetime.le67018
-Node: datetime.ne67458
-Node: datetime.eq67890
-Node: datetime.ge68318
-Node: datetime.gt68762
-Node: datetime.plus69195
-Node: datetime.minus69691
-Node: datetime.diff70336
-Node: datetime.isbetween70716
-Node: datetime.linspace71204
-Node: datetime.convertDatenumTimeZone71817
-Node: days72471
-Node: discretize72937
-Node: dispstrs73822
-Node: duration74606
-Node: duration.ofDays75799
-Node: duration.sizeof76286
-Node: duration.years76486
-Node: duration.hours76884
-Node: duration.minutes77255
-Node: duration.seconds77642
-Node: duration.milliseconds78005
-Node: duration.dispstrs78413
-Node: duration.char78724
-Node: duration.linspace79152
-Node: endsWith79761
-Node: eqn80538
-Node: fillmissing81622
-Node: hours82467
-Node: iscategorical82954
-Node: isdatetime83240
-Node: isduration83519
-Node: isfile83791
-Node: isfolder83939
-Node: ismissing84090
-Node: isnanny86377
-Node: localdate87417
-Node: localdate.localdate88726
-Node: localdate.NaT89256
-Node: localdate.ymd90144
-Node: localdate.dispstrs90448
-Node: localdate.datestr90752
-Node: localdate.datestrs91150
-Node: localdate.datestruct91577
-Node: localdate.posixtime92510
-Node: localdate.datenum93081
-Node: localdate.isnat93409
-Node: localdate.isnan93696
-Node: milliseconds94054
-Node: minutes94589
-Node: missing94847
-Node: missing.missing95885
-Node: missing.dispstrs96199
-Node: missing.ismissing96596
-Node: missing.isnan96961
-Node: missing.isnanny97298
-Node: mustBeA97622
-Node: mustBeCellstr98199
-Node: mustBeCharvec98828
-Node: mustBeFinite99728
-Node: mustBeInteger99902
-Node: mustBeMember100077
-Node: mustBeNonempty100252
-Node: mustBeNumeric100431
-Node: mustBeReal100606
-Node: mustBeSameSize100775
-Node: mustBeScalar101413
-Node: mustBeScalarLogical101960
-Node: mustBeVector102553
-Node: NaT103093
-Node: octave.chrono.dummy_function103938
-Node: octave.chrono.DummyClass104470
-Node: octave.chrono.DummyClass.DummyClass105261
-Node: octave.chrono.DummyClass.foo105732
-Node: octave.chrono.DummyClass.bar106271
-Node: octave.dataset106766
-Node: octave.dataset.airmiles109690
-Node: octave.dataset.AirPassengers110444
-Node: octave.dataset.airquality111212
-Node: octave.dataset.anscombe113309
-Node: octave.dataset.attenu115283
-Node: octave.dataset.attitude116722
-Node: octave.dataset.austres117952
-Node: octave.dataset.beavers118865
-Node: octave.dataset.BJsales120010
-Node: octave.dataset.BOD121117
-Node: octave.dataset.cars122088
-Node: octave.dataset.ChickWeight123817
-Node: octave.dataset.chickwts125309
-Node: octave.dataset.co2126799
-Node: octave.dataset.crimtab128287
-Node: octave.dataset.cupcake131767
-Node: octave.dataset.discoveries132737
-Node: octave.dataset.DNase133769
-Node: octave.dataset.esoph135048
-Node: octave.dataset.euro136214
-Node: octave.dataset.eurodist137886
-Node: octave.dataset.EuStockMarkets138796
-Node: octave.dataset.faithful140332
-Node: octave.dataset.Formaldehyde142167
-Node: octave.dataset.freeny143603
-Node: octave.dataset.HairEyeColor145214
-Node: octave.dataset.Harman23cor147743
-Node: octave.dataset.Harman74cor148668
-Node: octave.dataset.Indometh149635
-Node: octave.dataset.infert150962
-Node: octave.dataset.InsectSprays152370
-Node: octave.dataset.iris153314
-Node: octave.dataset.islands154852
-Node: octave.dataset.JohnsonJohnson155745
-Node: octave.dataset.LakeHuron156646
-Node: octave.dataset.lh157714
-Node: octave.dataset.LifeCycleSavings158603
-Node: octave.dataset.Loblolly160505
-Node: octave.dataset.longley161800
-Node: octave.dataset.lynx163187
-Node: octave.dataset.morley164594
-Node: octave.dataset.mtcars166328
-Node: octave.dataset.nhtemp168065
-Node: octave.dataset.Nile169054
-Node: octave.dataset.nottem170342
-Node: octave.dataset.npk171199
-Node: octave.dataset.occupationalStatus172490
-Node: octave.dataset.Orange173516
-Node: octave.dataset.OrchardSprays174901
-Node: octave.dataset.PlantGrowth176738
-Node: octave.dataset.precip177624
-Node: octave.dataset.presidents178506
-Node: octave.dataset.pressure179720
-Node: octave.dataset.Puromycin181054
-Node: octave.dataset.quakes182877
-Node: octave.dataset.randu184433
-Node: octave.dataset.rivers185684
-Node: octave.dataset.rock186577
-Node: octave.dataset.sleep187797
-Node: octave.dataset.stackloss189019
-Node: octave.dataset.state191284
-Node: octave.dataset.sunspot_month193068
-Node: octave.dataset.sunspot_year194034
-Node: octave.dataset.sunspots194882
-Node: octave.dataset.swiss195983
-Node: octave.dataset.Theoph198073
-Node: octave.dataset.Titanic200406
-Node: octave.dataset.ToothGrowth203080
-Node: octave.dataset.treering204503
-Node: octave.dataset.trees205597
-Node: octave.dataset.UCBAdmissions207015
-Node: octave.dataset.UKDriverDeaths209185
-Node: octave.dataset.UKgas211511
-Node: octave.dataset.UKLungDeaths212457
-Node: octave.dataset.USAccDeaths213733
-Node: octave.dataset.USArrests214499
-Node: octave.dataset.USJudgeRatings216474
-Node: octave.dataset.USPersonalExpenditure217788
-Node: octave.dataset.uspop219003
-Node: octave.dataset.VADeaths219922
-Node: octave.dataset.volcano221298
-Node: octave.dataset.warpbreaks222697
-Node: octave.dataset.women223953
-Node: octave.dataset.WorldPhones225260
-Node: octave.dataset.WWWusage226321
-Node: octave.dataset.zCO2227231
-Node: octave.datasets228474
-Node: octave.datasets.list228992
-Node: octave.datasets.load229500
-Node: octave.datasets.description229931
-Node: octave.examples.coplot230511
-Node: octave.examples.plot_pairs232477
-Node: pp233603
-Node: rmmissing234229
-Node: scalarexpand235260
-Node: seconds236184
-Node: size2str236683
-Node: splitapply237286
-Node: standardizeMissing238409
-Node: startsWith239236
-Node: string240040
-Node: string.string243093
-Node: string.isstring243678
-Node: string.dispstrs244003
-Node: string.sizeof244582
-Node: string.ismissing244800
-Node: string.isnanny245277
-Node: string.cellstr245652
-Node: string.cell245995
-Node: string.char246482
-Node: string.encode247007
-Node: string.strlength_bytes247523
-Node: string.strlength248196
-Node: string.reverse_bytes249171
-Node: string.reverse249909
-Node: string.strcat250381
-Node: string.lower250959
-Node: string.upper251461
-Node: string.erase251962
-Node: string.strrep252299
-Node: string.strfind252904
-Node: string.regexprep253427
-Node: string.strcmp253903
-Node: string.cmp254596
-Node: string.missing255575
-Node: string.decode255977
-Node: struct2table256387
-Node: table256848
-Node: table.table259994
-Node: table.summary261022
-Node: table.prettyprint261366
-Node: table.table2cell261825
-Node: table.table2struct262313
-Node: table.table2array262942
-Node: table.varnames263189
-Node: table.istable263564
-Node: table.size263776
-Node: table.length264178
-Node: table.ndims264477
-Node: table.squeeze264728
-Node: table.sizeof265075
-Node: table.height265506
-Node: table.rows265714
-Node: table.width265915
-Node: table.columns266246
-Node: table.numel266584
-Node: table.isempty267076
-Node: table.ismatrix267400
-Node: table.isrow267689
-Node: table.iscol267907
-Node: table.isvector268267
-Node: table.isscalar268493
-Node: table.hasrownames268723
-Node: table.vertcat268973
-Node: table.horzcat269494
-Node: table.repmat270114
-Node: table.repelem270640
-Node: table.setVariableNames271081
-Node: table.setDimensionNames271874
-Node: table.setRowNames272759
-Node: table.removevars273129
-Node: table.movevars273515
-Node: table.getvar274243
-Node: table.getvars274735
-Node: table.setvar275208
-Node: table.addvars276085
-Node: table.convertvars276534
-Node: table.mergevars277522
-Node: table.splitvars277913
-Node: table.stack278455
-Node: table.head278852
-Node: table.tail279221
-Node: table.join279587
-Node: table.innerjoin280333
-Node: table.outerjoin280994
-Node: table.outerfillvals281801
-Node: table.semijoin282234
-Node: table.antijoin283003
-Node: table.cartesian283655
-Node: table.groupby284923
-Node: table.grpstats285774
-Node: table.splitapply286101
-Node: table.rows2vars286602
-Node: table.congruentize287715
-Node: table.union288584
-Node: table.intersect289156
-Node: table.setxor289764
-Node: table.setdiff290399
-Node: table.ismember290936
-Node: table.ismissing291338
-Node: table.rmmissing292022
-Node: table.standardizeMissing292792
-Node: table.varfun293776
-Node: table.rowfun294325
-Node: table.findgroups297405
-Node: table.evalWithVars297990
-Node: table.restrict298840
-Node: table.renamevars299994
-Node: table.resolveVarRef300699
-Node: table.subsetrows301700
-Node: table.subsetvars302045
-Node: tableOuterFillValue302527
-Node: timezones303764
-Node: vartype304813
-Node: vecfun305526
-Node: years306253
-Node: Copying306930
+Node: Introduction1189
+Node: Getting Started2561
+Node: Table Representation3393
+Node: Table Construction4952
+Node: Tables vs SQL6181
+Node: Date and Time Representation8129
+Node: datetime Class8676
+Node: Datenum Compatibility9642
+Node: Time Zones11178
+Node: Defined Time Zones14043
+Node: Durations15042
+Node: duration Class15224
+Node: calendarDuration Class15983
+Node: Validation Functions16892
+Node: Example Data Sets19203
+Node: Data Sets from R20644
+Node: Missing Functionality21553
+Node: API Reference23024
+Node: API by Category23213
+Node: API Alphabetically28099
+Node: array2table31991
+Node: calendarDuration32915
+Node: calendarDuration.calendarDuration34799
+Node: calendarDuration.sizeof35310
+Node: calendarDuration.isnat35590
+Node: calendarDuration.uminus35915
+Node: calendarDuration.plus36198
+Node: calendarDuration.times36807
+Node: calendarDuration.minus37168
+Node: calendarDuration.dispstrs37517
+Node: calendarDuration.isnan37861
+Node: calmonths38265
+Node: calyears38854
+Node: categorical39198
+Node: categorical.undefined41472
+Node: categorical.categorical41979
+Node: categorical.sizeof43250
+Node: categorical.categories43500
+Node: categorical.iscategory43898
+Node: categorical.isordinal44344
+Node: categorical.string44713
+Node: categorical.cellstr45160
+Node: categorical.dispstrs45599
+Node: categorical.summary46055
+Node: categorical.addcats46508
+Node: categorical.removecats46936
+Node: categorical.mergecats47578
+Node: categorical.renamecats48233
+Node: categorical.reordercats48650
+Node: categorical.setcats49185
+Node: categorical.isundefined49631
+Node: categorical.ismissing50149
+Node: categorical.isnanny50557
+Node: categorical.squeezecats51027
+Node: cell2table51395
+Node: colvecfun52123
+Node: contains52847
+Node: datetime53628
+Node: datetime.datetime56002
+Node: datetime.ofDatenum56788
+Node: datetime.ofDatestruct57148
+Node: datetime.NaT57655
+Node: datetime.posix2datenum58420
+Node: datetime.datenum2posix58897
+Node: datetime.sizeof59299
+Node: datetime.proxyKeys59532
+Node: datetime.ymd60173
+Node: datetime.hms60563
+Node: datetime.ymdhms60958
+Node: datetime.timeofday61401
+Node: datetime.week61821
+Node: datetime.dispstrs62081
+Node: datetime.datestr62380
+Node: datetime.datestrs62772
+Node: datetime.datestruct63193
+Node: datetime.posixtime63998
+Node: datetime.datenum64532
+Node: datetime.gmtime64849
+Node: datetime.localtime65290
+Node: datetime.isnat66012
+Node: datetime.isnan66293
+Node: datetime.lt66664
+Node: datetime.le67095
+Node: datetime.ne67535
+Node: datetime.eq67967
+Node: datetime.ge68395
+Node: datetime.gt68839
+Node: datetime.plus69272
+Node: datetime.minus69768
+Node: datetime.diff70413
+Node: datetime.isbetween70793
+Node: datetime.linspace71281
+Node: datetime.convertDatenumTimeZone71894
+Node: days72548
+Node: discretize73014
+Node: dispstrs73899
+Node: duration74683
+Node: duration.ofDays75876
+Node: duration.sizeof76336
+Node: duration.years76560
+Node: duration.hours76932
+Node: duration.minutes77302
+Node: duration.seconds77684
+Node: duration.milliseconds78045
+Node: duration.dispstrs78437
+Node: duration.char78741
+Node: duration.linspace79170
+Node: endsWith79744
+Node: eqn80521
+Node: fillmissing81605
+Node: hours82450
+Node: iscategorical82937
+Node: isdatetime83223
+Node: isduration83502
+Node: isfile83774
+Node: isfolder83922
+Node: ismissing84073
+Node: isnanny86360
+Node: localdate87400
+Node: localdate.localdate88709
+Node: localdate.NaT89239
+Node: localdate.ymd90127
+Node: localdate.dispstrs90431
+Node: localdate.datestr90735
+Node: localdate.datestrs91133
+Node: localdate.datestruct91560
+Node: localdate.posixtime92493
+Node: localdate.datenum93064
+Node: localdate.isnat93392
+Node: localdate.isnan93679
+Node: milliseconds94037
+Node: minutes94572
+Node: missing94830
+Node: missing.missing95868
+Node: missing.dispstrs96182
+Node: missing.ismissing96579
+Node: missing.isnan96944
+Node: missing.isnanny97281
+Node: mustBeA97605
+Node: mustBeCellstr98182
+Node: mustBeCharvec98811
+Node: mustBeFinite99711
+Node: mustBeInteger99885
+Node: mustBeMember100060
+Node: mustBeNonempty100235
+Node: mustBeNumeric100414
+Node: mustBeReal100589
+Node: mustBeSameSize100758
+Node: mustBeScalar101396
+Node: mustBeScalarLogical101943
+Node: mustBeVector102536
+Node: NaT103076
+Node: octave.chrono.dummy_function103921
+Node: octave.chrono.DummyClass104453
+Node: octave.chrono.DummyClass.DummyClass105244
+Node: octave.chrono.DummyClass.foo105715
+Node: octave.chrono.DummyClass.bar106254
+Node: octave.dataset106749
+Node: octave.dataset.airmiles109673
+Node: octave.dataset.AirPassengers110427
+Node: octave.dataset.airquality111195
+Node: octave.dataset.anscombe113292
+Node: octave.dataset.attenu115266
+Node: octave.dataset.attitude116705
+Node: octave.dataset.austres117935
+Node: octave.dataset.beavers118848
+Node: octave.dataset.BJsales119993
+Node: octave.dataset.BOD121100
+Node: octave.dataset.cars122071
+Node: octave.dataset.ChickWeight123800
+Node: octave.dataset.chickwts125292
+Node: octave.dataset.co2126782
+Node: octave.dataset.crimtab128270
+Node: octave.dataset.cupcake131750
+Node: octave.dataset.discoveries132720
+Node: octave.dataset.DNase133752
+Node: octave.dataset.esoph135031
+Node: octave.dataset.euro136197
+Node: octave.dataset.eurodist137869
+Node: octave.dataset.EuStockMarkets138779
+Node: octave.dataset.faithful140315
+Node: octave.dataset.Formaldehyde142150
+Node: octave.dataset.freeny143586
+Node: octave.dataset.HairEyeColor145197
+Node: octave.dataset.Harman23cor147726
+Node: octave.dataset.Harman74cor148651
+Node: octave.dataset.Indometh149618
+Node: octave.dataset.infert150945
+Node: octave.dataset.InsectSprays152353
+Node: octave.dataset.iris153297
+Node: octave.dataset.islands154835
+Node: octave.dataset.JohnsonJohnson155728
+Node: octave.dataset.LakeHuron156629
+Node: octave.dataset.lh157697
+Node: octave.dataset.LifeCycleSavings158586
+Node: octave.dataset.Loblolly160488
+Node: octave.dataset.longley161783
+Node: octave.dataset.lynx163170
+Node: octave.dataset.morley164577
+Node: octave.dataset.mtcars166311
+Node: octave.dataset.nhtemp168048
+Node: octave.dataset.Nile169037
+Node: octave.dataset.nottem170325
+Node: octave.dataset.npk171182
+Node: octave.dataset.occupationalStatus172473
+Node: octave.dataset.Orange173499
+Node: octave.dataset.OrchardSprays174884
+Node: octave.dataset.PlantGrowth176721
+Node: octave.dataset.precip177607
+Node: octave.dataset.presidents178489
+Node: octave.dataset.pressure179703
+Node: octave.dataset.Puromycin181037
+Node: octave.dataset.quakes182860
+Node: octave.dataset.randu184416
+Node: octave.dataset.rivers185667
+Node: octave.dataset.rock186560
+Node: octave.dataset.sleep187780
+Node: octave.dataset.stackloss189002
+Node: octave.dataset.state191267
+Node: octave.dataset.sunspot_month193051
+Node: octave.dataset.sunspot_year194017
+Node: octave.dataset.sunspots194865
+Node: octave.dataset.swiss195966
+Node: octave.dataset.Theoph198056
+Node: octave.dataset.Titanic200389
+Node: octave.dataset.ToothGrowth203063
+Node: octave.dataset.treering204486
+Node: octave.dataset.trees205580
+Node: octave.dataset.UCBAdmissions206998
+Node: octave.dataset.UKDriverDeaths209168
+Node: octave.dataset.UKgas211494
+Node: octave.dataset.UKLungDeaths212440
+Node: octave.dataset.USAccDeaths213716
+Node: octave.dataset.USArrests214482
+Node: octave.dataset.USJudgeRatings216457
+Node: octave.dataset.USPersonalExpenditure217771
+Node: octave.dataset.uspop218986
+Node: octave.dataset.VADeaths219905
+Node: octave.dataset.volcano221281
+Node: octave.dataset.warpbreaks222680
+Node: octave.dataset.women223936
+Node: octave.dataset.WorldPhones225243
+Node: octave.dataset.WWWusage226304
+Node: octave.dataset.zCO2227214
+Node: octave.datasets228457
+Node: octave.datasets.list228975
+Node: octave.datasets.load229483
+Node: octave.datasets.description229914
+Node: octave.examples.coplot230494
+Node: octave.examples.plot_pairs232460
+Node: pp233586
+Node: rmmissing234212
+Node: scalarexpand235243
+Node: seconds236167
+Node: size2str236666
+Node: splitapply237269
+Node: standardizeMissing238392
+Node: startsWith239219
+Node: string240023
+Node: string.string243076
+Node: string.isstring243661
+Node: string.dispstrs243986
+Node: string.sizeof244565
+Node: string.ismissing244783
+Node: string.isnanny245260
+Node: string.cellstr245635
+Node: string.cell245978
+Node: string.char246465
+Node: string.encode246990
+Node: string.strlength_bytes247506
+Node: string.strlength248179
+Node: string.reverse_bytes249154
+Node: string.reverse249892
+Node: string.strcat250364
+Node: string.lower250942
+Node: string.upper251444
+Node: string.erase251945
+Node: string.strrep252282
+Node: string.strfind252887
+Node: string.regexprep253410
+Node: string.strcmp253886
+Node: string.cmp254579
+Node: string.missing255558
+Node: string.decode255960
+Node: struct2table256370
+Node: table256831
+Node: table.table259977
+Node: table.summary261005
+Node: table.prettyprint261349
+Node: table.table2cell261808
+Node: table.table2struct262296
+Node: table.table2array262925
+Node: table.varnames263172
+Node: table.istable263547
+Node: table.size263759
+Node: table.length264161
+Node: table.ndims264460
+Node: table.squeeze264711
+Node: table.sizeof265058
+Node: table.height265489
+Node: table.rows265697
+Node: table.width265898
+Node: table.columns266229
+Node: table.numel266567
+Node: table.isempty267059
+Node: table.ismatrix267383
+Node: table.isrow267672
+Node: table.iscol267890
+Node: table.isvector268250
+Node: table.isscalar268476
+Node: table.hasrownames268706
+Node: table.vertcat268956
+Node: table.horzcat269477
+Node: table.repmat270097
+Node: table.repelem270623
+Node: table.setVariableNames271064
+Node: table.setDimensionNames271857
+Node: table.setRowNames272742
+Node: table.removevars273112
+Node: table.movevars273498
+Node: table.getvar274226
+Node: table.getvars274718
+Node: table.setvar275191
+Node: table.addvars276068
+Node: table.convertvars276517
+Node: table.mergevars277505
+Node: table.splitvars277896
+Node: table.stack278438
+Node: table.head278835
+Node: table.tail279204
+Node: table.join279570
+Node: table.innerjoin280316
+Node: table.outerjoin280977
+Node: table.outerfillvals281784
+Node: table.semijoin282217
+Node: table.antijoin282986
+Node: table.cartesian283638
+Node: table.groupby284906
+Node: table.grpstats285757
+Node: table.splitapply286084
+Node: table.rows2vars286585
+Node: table.congruentize287698
+Node: table.union288567
+Node: table.intersect289139
+Node: table.setxor289747
+Node: table.setdiff290382
+Node: table.ismember290919
+Node: table.ismissing291321
+Node: table.rmmissing292005
+Node: table.standardizeMissing292775
+Node: table.varfun293759
+Node: table.rowfun294308
+Node: table.findgroups297388
+Node: table.evalWithVars297973
+Node: table.restrict298823
+Node: table.renamevars299977
+Node: table.resolveVarRef300682
+Node: table.subsetrows301683
+Node: table.subsetvars302028
+Node: tableOuterFillValue302510
+Node: timezones303747
+Node: vartype304796
+Node: vecfun305509
+Node: years306236
+Node: Copying306913
 
 End Tag Table
 

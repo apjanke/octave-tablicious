@@ -208,24 +208,15 @@ Next: <a href="#Introduction" accesskey="n" rel="next">Introduction</a> &nbsp; [
       <li><a id="toc-duration-1" href="#duration">8.2.13 duration</a>
       <ul class="no-bullet">
         <li><a id="toc-duration_002eofDays-1" href="#duration_002eofDays">8.2.13.1 duration.ofDays</a></li>
-        <li><a id="toc-duration_002eofDays-2" href="#duration_002eofDays-2">8.2.13.2 duration.ofDays</a></li>
-        <li><a id="toc-duration_002esizeof-1" href="#duration_002esizeof">8.2.13.3 duration.sizeof</a></li>
-        <li><a id="toc-duration_002eyears-1" href="#duration_002eyears">8.2.13.4 duration.years</a></li>
-        <li><a id="toc-duration_002eyears-2" href="#duration_002eyears-2">8.2.13.5 duration.years</a></li>
-        <li><a id="toc-duration_002ehours-1" href="#duration_002ehours">8.2.13.6 duration.hours</a></li>
-        <li><a id="toc-duration_002ehours-2" href="#duration_002ehours-2">8.2.13.7 duration.hours</a></li>
-        <li><a id="toc-duration_002eminutes-1" href="#duration_002eminutes">8.2.13.8 duration.minutes</a></li>
-        <li><a id="toc-duration_002eminutes-2" href="#duration_002eminutes-2">8.2.13.9 duration.minutes</a></li>
-        <li><a id="toc-duration_002eseconds-1" href="#duration_002eseconds">8.2.13.10 duration.seconds</a></li>
-        <li><a id="toc-duration_002eseconds-2" href="#duration_002eseconds-2">8.2.13.11 duration.seconds</a></li>
-        <li><a id="toc-duration_002emilliseconds-1" href="#duration_002emilliseconds">8.2.13.12 duration.milliseconds</a></li>
-        <li><a id="toc-duration_002emilliseconds-2" href="#duration_002emilliseconds-2">8.2.13.13 duration.milliseconds</a></li>
-        <li><a id="toc-duration_002edispstrs-1" href="#duration_002edispstrs">8.2.13.14 duration.dispstrs</a></li>
-        <li><a id="toc-duration_002edispstrs-2" href="#duration_002edispstrs-2">8.2.13.15 duration.dispstrs</a></li>
-        <li><a id="toc-duration_002echar-1" href="#duration_002echar">8.2.13.16 duration.char</a></li>
-        <li><a id="toc-duration_002echar-2" href="#duration_002echar-2">8.2.13.17 duration.char</a></li>
-        <li><a id="toc-duration_002elinspace-1" href="#duration_002elinspace">8.2.13.18 duration.linspace</a></li>
-        <li><a id="toc-duration_002elinspace-2" href="#duration_002elinspace-2">8.2.13.19 duration.linspace</a></li>
+        <li><a id="toc-duration_002esizeof-1" href="#duration_002esizeof">8.2.13.2 duration.sizeof</a></li>
+        <li><a id="toc-duration_002eyears-1" href="#duration_002eyears">8.2.13.3 duration.years</a></li>
+        <li><a id="toc-duration_002ehours-1" href="#duration_002ehours">8.2.13.4 duration.hours</a></li>
+        <li><a id="toc-duration_002eminutes-1" href="#duration_002eminutes">8.2.13.5 duration.minutes</a></li>
+        <li><a id="toc-duration_002eseconds-1" href="#duration_002eseconds">8.2.13.6 duration.seconds</a></li>
+        <li><a id="toc-duration_002emilliseconds-1" href="#duration_002emilliseconds">8.2.13.7 duration.milliseconds</a></li>
+        <li><a id="toc-duration_002edispstrs-1" href="#duration_002edispstrs">8.2.13.8 duration.dispstrs</a></li>
+        <li><a id="toc-duration_002echar-1" href="#duration_002echar">8.2.13.9 duration.char</a></li>
+        <li><a id="toc-duration_002elinspace-1" href="#duration_002elinspace">8.2.13.10 duration.linspace</a></li>
       </ul></li>
       <li><a id="toc-endsWith-1" href="#endsWith">8.2.14 endsWith</a></li>
       <li><a id="toc-eqn-1" href="#eqn">8.2.15 eqn</a></li>
@@ -735,6 +726,7 @@ indicating what time zone the datetimes are in.
 <p>So, basically, a <code>datetime</code> is an object wrapper around a datenum array,
 plus time zone support.
 </p>
+
 <ul class="section-toc">
 <li><a href="#Datenum-Compatibility" accesskey="1">Datenum Compatibility</a></li>
 </ul>
@@ -845,6 +837,7 @@ being raised.
 DST change day) is not implemented yet. The results of converting a zoneless local time
 into a time zone where that local time did not exist are currently undefined.
 </p></blockquote>
+
 
 <ul class="section-toc">
 <li><a href="#Defined-Time-Zones" accesskey="1">Defined Time Zones</a></li>
@@ -3431,36 +3424,24 @@ containing <code>duration</code> array object.
 
 <ul class="section-toc">
 <li><a href="#duration_002eofDays" accesskey="1">duration.ofDays</a></li>
-<li><a href="#duration_002eofDays-2" accesskey="2">duration.ofDays</a></li>
-<li><a href="#duration_002esizeof" accesskey="3">duration.sizeof</a></li>
-<li><a href="#duration_002eyears" accesskey="4">duration.years</a></li>
-<li><a href="#duration_002eyears-2" accesskey="5">duration.years</a></li>
-<li><a href="#duration_002ehours" accesskey="6">duration.hours</a></li>
-<li><a href="#duration_002ehours-2" accesskey="7">duration.hours</a></li>
-<li><a href="#duration_002eminutes" accesskey="8">duration.minutes</a></li>
-<li><a href="#duration_002eminutes-2" accesskey="9">duration.minutes</a></li>
-<li><a href="#duration_002eseconds">duration.seconds</a></li>
-<li><a href="#duration_002eseconds-2">duration.seconds</a></li>
-<li><a href="#duration_002emilliseconds">duration.milliseconds</a></li>
-<li><a href="#duration_002emilliseconds-2">duration.milliseconds</a></li>
-<li><a href="#duration_002edispstrs">duration.dispstrs</a></li>
-<li><a href="#duration_002edispstrs-2">duration.dispstrs</a></li>
-<li><a href="#duration_002echar">duration.char</a></li>
-<li><a href="#duration_002echar-2">duration.char</a></li>
+<li><a href="#duration_002esizeof" accesskey="2">duration.sizeof</a></li>
+<li><a href="#duration_002eyears" accesskey="3">duration.years</a></li>
+<li><a href="#duration_002ehours" accesskey="4">duration.hours</a></li>
+<li><a href="#duration_002eminutes" accesskey="5">duration.minutes</a></li>
+<li><a href="#duration_002eseconds" accesskey="6">duration.seconds</a></li>
+<li><a href="#duration_002emilliseconds" accesskey="7">duration.milliseconds</a></li>
+<li><a href="#duration_002edispstrs" accesskey="8">duration.dispstrs</a></li>
+<li><a href="#duration_002echar" accesskey="9">duration.char</a></li>
 <li><a href="#duration_002elinspace">duration.linspace</a></li>
-<li><a href="#duration_002elinspace-2">duration.linspace</a></li>
 </ul>
 <hr>
 <div class="subsubsection" id="duration_002eofDays">
 <div class="header">
 <p>
-Up: <a href="#duration" accesskey="u" rel="up">duration</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+Next: <a href="#duration_002esizeof" accesskey="n" rel="next">duration.sizeof</a>, Up: <a href="#duration" accesskey="u" rel="up">duration</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
 </div>
 <span id="duration_002eofDays-1"></span><h4 class="subsubsection">8.2.13.1 duration.ofDays</h4>
 
-</div>
-<div class="subsubsection" id="duration_002eofDays-2">
-<h4 class="subsubsection">8.2.13.2 duration.ofDays</h4>
 <dl class="def">
 <dt id="index-duration_002eofDays"><span class="category">Static Method: </span><span><em><var>obj</var> =</em> <strong>duration.ofDays</strong> <em>(<var>dnums</var>)</em><a href='#index-duration_002eofDays' class='copiable-anchor'> &para;</a></span></dt>
 <dd>
@@ -3477,9 +3458,9 @@ of numerics in many cases.
 <div class="subsubsection" id="duration_002esizeof">
 <div class="header">
 <p>
-Next: <a href="#duration_002eyears" accesskey="n" rel="next">duration.years</a>, Up: <a href="#duration" accesskey="u" rel="up">duration</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+Next: <a href="#duration_002eyears" accesskey="n" rel="next">duration.years</a>, Previous: <a href="#duration_002eofDays" accesskey="p" rel="prev">duration.ofDays</a>, Up: <a href="#duration" accesskey="u" rel="up">duration</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
 </div>
-<span id="duration_002esizeof-1"></span><h4 class="subsubsection">8.2.13.3 duration.sizeof</h4>
+<span id="duration_002esizeof-1"></span><h4 class="subsubsection">8.2.13.2 duration.sizeof</h4>
 
 <dl class="def">
 <dt id="index-sizeof-3"><span class="category">Method: </span><span><em><var>out</var> =</em> <strong>sizeof</strong> <em>(<var>obj</var>)</em><a href='#index-sizeof-3' class='copiable-anchor'> &para;</a></span></dt>
@@ -3493,13 +3474,10 @@ Next: <a href="#duration_002eyears" accesskey="n" rel="next">duration.years</a>,
 <div class="subsubsection" id="duration_002eyears">
 <div class="header">
 <p>
-Previous: <a href="#duration_002esizeof" accesskey="p" rel="prev">duration.sizeof</a>, Up: <a href="#duration" accesskey="u" rel="up">duration</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+Next: <a href="#duration_002ehours" accesskey="n" rel="next">duration.hours</a>, Previous: <a href="#duration_002esizeof" accesskey="p" rel="prev">duration.sizeof</a>, Up: <a href="#duration" accesskey="u" rel="up">duration</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
 </div>
-<span id="duration_002eyears-1"></span><h4 class="subsubsection">8.2.13.4 duration.years</h4>
+<span id="duration_002eyears-1"></span><h4 class="subsubsection">8.2.13.3 duration.years</h4>
 
-</div>
-<div class="subsubsection" id="duration_002eyears-2">
-<h4 class="subsubsection">8.2.13.5 duration.years</h4>
 <dl class="def">
 <dt id="index-years"><span class="category">Method: </span><span><em><var>out</var> =</em> <strong>years</strong> <em>(<var>obj</var>)</em><a href='#index-years' class='copiable-anchor'> &para;</a></span></dt>
 <dd>
@@ -3517,13 +3495,10 @@ to this duration.
 <div class="subsubsection" id="duration_002ehours">
 <div class="header">
 <p>
-Up: <a href="#duration" accesskey="u" rel="up">duration</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+Next: <a href="#duration_002eminutes" accesskey="n" rel="next">duration.minutes</a>, Previous: <a href="#duration_002eyears" accesskey="p" rel="prev">duration.years</a>, Up: <a href="#duration" accesskey="u" rel="up">duration</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
 </div>
-<span id="duration_002ehours-1"></span><h4 class="subsubsection">8.2.13.6 duration.hours</h4>
+<span id="duration_002ehours-1"></span><h4 class="subsubsection">8.2.13.4 duration.hours</h4>
 
-</div>
-<div class="subsubsection" id="duration_002ehours-2">
-<h4 class="subsubsection">8.2.13.7 duration.hours</h4>
 <dl class="def">
 <dt id="index-hours"><span class="category">Method: </span><span><em><var>out</var> =</em> <strong>hours</strong> <em>(<var>obj</var>)</em><a href='#index-hours' class='copiable-anchor'> &para;</a></span></dt>
 <dd>
@@ -3541,13 +3516,10 @@ to this duration.
 <div class="subsubsection" id="duration_002eminutes">
 <div class="header">
 <p>
-Up: <a href="#duration" accesskey="u" rel="up">duration</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+Next: <a href="#duration_002eseconds" accesskey="n" rel="next">duration.seconds</a>, Previous: <a href="#duration_002ehours" accesskey="p" rel="prev">duration.hours</a>, Up: <a href="#duration" accesskey="u" rel="up">duration</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
 </div>
-<span id="duration_002eminutes-1"></span><h4 class="subsubsection">8.2.13.8 duration.minutes</h4>
+<span id="duration_002eminutes-1"></span><h4 class="subsubsection">8.2.13.5 duration.minutes</h4>
 
-</div>
-<div class="subsubsection" id="duration_002eminutes-2">
-<h4 class="subsubsection">8.2.13.9 duration.minutes</h4>
 <dl class="def">
 <dt id="index-minutes"><span class="category">Method: </span><span><em><var>out</var> =</em> <strong>minutes</strong> <em>(<var>obj</var>)</em><a href='#index-minutes' class='copiable-anchor'> &para;</a></span></dt>
 <dd>
@@ -3565,13 +3537,10 @@ to this duration.
 <div class="subsubsection" id="duration_002eseconds">
 <div class="header">
 <p>
-Up: <a href="#duration" accesskey="u" rel="up">duration</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+Next: <a href="#duration_002emilliseconds" accesskey="n" rel="next">duration.milliseconds</a>, Previous: <a href="#duration_002eminutes" accesskey="p" rel="prev">duration.minutes</a>, Up: <a href="#duration" accesskey="u" rel="up">duration</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
 </div>
-<span id="duration_002eseconds-1"></span><h4 class="subsubsection">8.2.13.10 duration.seconds</h4>
+<span id="duration_002eseconds-1"></span><h4 class="subsubsection">8.2.13.6 duration.seconds</h4>
 
-</div>
-<div class="subsubsection" id="duration_002eseconds-2">
-<h4 class="subsubsection">8.2.13.11 duration.seconds</h4>
 <dl class="def">
 <dt id="index-seconds"><span class="category">Method: </span><span><em><var>out</var> =</em> <strong>seconds</strong> <em>(<var>obj</var>)</em><a href='#index-seconds' class='copiable-anchor'> &para;</a></span></dt>
 <dd>
@@ -3589,13 +3558,10 @@ to this duration.
 <div class="subsubsection" id="duration_002emilliseconds">
 <div class="header">
 <p>
-Up: <a href="#duration" accesskey="u" rel="up">duration</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+Next: <a href="#duration_002edispstrs" accesskey="n" rel="next">duration.dispstrs</a>, Previous: <a href="#duration_002eseconds" accesskey="p" rel="prev">duration.seconds</a>, Up: <a href="#duration" accesskey="u" rel="up">duration</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
 </div>
-<span id="duration_002emilliseconds-1"></span><h4 class="subsubsection">8.2.13.12 duration.milliseconds</h4>
+<span id="duration_002emilliseconds-1"></span><h4 class="subsubsection">8.2.13.7 duration.milliseconds</h4>
 
-</div>
-<div class="subsubsection" id="duration_002emilliseconds-2">
-<h4 class="subsubsection">8.2.13.13 duration.milliseconds</h4>
 <dl class="def">
 <dt id="index-milliseconds"><span class="category">Method: </span><span><em><var>out</var> =</em> <strong>milliseconds</strong> <em>(<var>obj</var>)</em><a href='#index-milliseconds' class='copiable-anchor'> &para;</a></span></dt>
 <dd>
@@ -3613,13 +3579,10 @@ to this duration.
 <div class="subsubsection" id="duration_002edispstrs">
 <div class="header">
 <p>
-Up: <a href="#duration" accesskey="u" rel="up">duration</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+Next: <a href="#duration_002echar" accesskey="n" rel="next">duration.char</a>, Previous: <a href="#duration_002emilliseconds" accesskey="p" rel="prev">duration.milliseconds</a>, Up: <a href="#duration" accesskey="u" rel="up">duration</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
 </div>
-<span id="duration_002edispstrs-1"></span><h4 class="subsubsection">8.2.13.14 duration.dispstrs</h4>
+<span id="duration_002edispstrs-1"></span><h4 class="subsubsection">8.2.13.8 duration.dispstrs</h4>
 
-</div>
-<div class="subsubsection" id="duration_002edispstrs-2">
-<h4 class="subsubsection">8.2.13.15 duration.dispstrs</h4>
 <dl class="def">
 <dt id="index-duration"><span class="category">Method: </span><span><em><var>out</var> =</em> <strong>duration</strong> <em>(<var>obj</var>)</em><a href='#index-duration' class='copiable-anchor'> &para;</a></span></dt>
 <dd>
@@ -3634,13 +3597,10 @@ Up: <a href="#duration" accesskey="u" rel="up">duration</a> &nbsp; [<a href="#SE
 <div class="subsubsection" id="duration_002echar">
 <div class="header">
 <p>
-Up: <a href="#duration" accesskey="u" rel="up">duration</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+Next: <a href="#duration_002elinspace" accesskey="n" rel="next">duration.linspace</a>, Previous: <a href="#duration_002edispstrs" accesskey="p" rel="prev">duration.dispstrs</a>, Up: <a href="#duration" accesskey="u" rel="up">duration</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
 </div>
-<span id="duration_002echar-1"></span><h4 class="subsubsection">8.2.13.16 duration.char</h4>
+<span id="duration_002echar-1"></span><h4 class="subsubsection">8.2.13.9 duration.char</h4>
 
-</div>
-<div class="subsubsection" id="duration_002echar-2">
-<h4 class="subsubsection">8.2.13.17 duration.char</h4>
 <dl class="def">
 <dt id="index-char"><span class="category">Method: </span><span><em><var>out</var> =</em> <strong>char</strong> <em>(<var>obj</var>)</em><a href='#index-char' class='copiable-anchor'> &para;</a></span></dt>
 <dd>
@@ -3658,13 +3618,10 @@ returned by <code>dispstrs</code>.
 <div class="subsubsection" id="duration_002elinspace">
 <div class="header">
 <p>
-Up: <a href="#duration" accesskey="u" rel="up">duration</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+Previous: <a href="#duration_002echar" accesskey="p" rel="prev">duration.char</a>, Up: <a href="#duration" accesskey="u" rel="up">duration</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
 </div>
-<span id="duration_002elinspace-1"></span><h4 class="subsubsection">8.2.13.18 duration.linspace</h4>
+<span id="duration_002elinspace-1"></span><h4 class="subsubsection">8.2.13.10 duration.linspace</h4>
 
-</div>
-<div class="subsubsection" id="duration_002elinspace-2">
-<h4 class="subsubsection">8.2.13.19 duration.linspace</h4>
 <dl class="def">
 <dt id="index-linspace-1"><span class="category">Method: </span><span><em><var>out</var> =</em> <strong>linspace</strong> <em>(<var>from</var>, <var>to</var>, <var>n</var>)</em><a href='#index-linspace-1' class='copiable-anchor'> &para;</a></span></dt>
 <dd>
