@@ -509,12 +509,15 @@ classdef table
     ## @end deftypefn
     function out = size_equal (varargin)
       %SIZE_EQUAL True if the dimensions of all arguments agree.
-      [nr, nv] = size(varargin{1});
-      out = 1;
-      for k = 2:length(varargin)
-        [nrk, nvk] = size(varargin{k});
-        out = out && nrk == nr && nvk == nv;
-      end
+      [nrows, nvars] = size (varargin{1});
+      out = true;
+      for i = 2:numel (varargin)
+        [nrowsi, nvarsi] = size (varargin{i});
+        if nrowsi ~= nrows || nvarsi ~= nvars;
+            out = false;
+            return;
+        end
+      endfor
     endfunction
   
     ## -*- texinfo -*-
