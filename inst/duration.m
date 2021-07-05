@@ -62,7 +62,6 @@ classdef duration
   methods (Static)
     ## -*- texinfo -*-
     ## @node duration.ofDays
-    ## @subsubsection duration.ofDays
     ## @deftypefn {Static Method} {@var{obj} =} duration.ofDays (@var{dnums})
     ##
     ## Converts a double array representing durations in whole and fractional days
@@ -170,7 +169,6 @@ classdef duration
 
     ## -*- texinfo -*-
     ## @node duration.years
-    ## @subsubsection duration.years
     ## @deftypefn {Method} {@var{out} =} years (@var{obj})
     ##
     ## Equivalent number of years.
@@ -198,7 +196,6 @@ classdef duration
 
     ## -*- texinfo -*-
     ## @node duration.hours
-    ## @subsubsection duration.hours
     ## @deftypefn {Method} {@var{out} =} hours (@var{obj})
     ##
     ## Equivalent number of hours.
@@ -216,7 +213,6 @@ classdef duration
     
     ## -*- texinfo -*-
     ## @node duration.minutes
-    ## @subsubsection duration.minutes
     ## @deftypefn {Method} {@var{out} =} minutes (@var{obj})
     ##
     ## Equivalent number of minutes.
@@ -234,7 +230,6 @@ classdef duration
     
     ## -*- texinfo -*-
     ## @node duration.seconds
-    ## @subsubsection duration.seconds
     ## @deftypefn {Method} {@var{out} =} seconds (@var{obj})
     ##
     ## Equivalent number of seconds.
@@ -252,7 +247,6 @@ classdef duration
     
     ## -*- texinfo -*-
     ## @node duration.milliseconds
-    ## @subsubsection duration.milliseconds
     ## @deftypefn {Method} {@var{out} =} milliseconds (@var{obj})
     ##
     ## Equivalent number of milliseconds.
@@ -295,7 +289,6 @@ classdef duration
     
     ## -*- texinfo -*-
     ## @node duration.dispstrs
-    ## @subsubsection duration.dispstrs
     ## @deftypefn {Method} {@var{out} =} duration (@var{obj})
     ##
     ## Get display strings for each element of @var{obj}.
@@ -378,7 +371,6 @@ classdef duration
     
     ## -*- texinfo -*-
     ## @node duration.char
-    ## @subsubsection duration.char
     ## @deftypefn {Method} {@var{out} =} char (@var{obj})
     ##
     ## Convert to char. The contents of the strings will be the same as
@@ -542,7 +534,6 @@ classdef duration
     
     ## -*- texinfo -*-
     ## @node duration.linspace
-    ## @subsubsection duration.linspace
     ## @deftypefn {Method} {@var{out} =} linspace (@var{from}, @var{to}, @var{n})
     ##
     ## Linearly-spaced values in time duration space.

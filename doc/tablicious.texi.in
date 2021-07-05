@@ -60,6 +60,7 @@ This manual is for Tablicious, version @value{VERSION}.
 * Date and Time Representation::
 * Validation Functions::
 * Example Data Sets::
+* Data Sets from R::
 * Missing Functionality::
 * API Reference::
 * Copying::
@@ -241,6 +242,10 @@ indicating what time zone the datetimes are in.
 So, basically, a @code{datetime} is an object wrapper around a datenum array,
 plus time zone support.
 
+@menu
+* Datenum Compatibility::
+@end menu
+
 @node Datenum Compatibility
 @subsection Datenum Compatibility
 
@@ -336,6 +341,10 @@ Normalization of "nonexistent" times (like between 02:00 and 03:00 on a "spring 
 DST change day) is not implemented yet. The results of converting a zoneless local time
 into a time zone where that local time did not exist are currently undefined.
 @end quotation
+
+@menu
+* Defined Time Zones::
+@end menu
 
 @node Defined Time Zones
 @subsection Defined Time Zones
