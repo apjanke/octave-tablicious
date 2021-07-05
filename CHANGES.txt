@@ -1,11 +1,12 @@
 Tablicious Changelog
 ====================
 
-Version 0.3.6 (???)
+Version 0.3.6 (2021-07-05)
 -----------------------------
 
 * Fix multi-argout calling form of table.size. (Thanks, @rdzman!)
 * Fix table dot-indexing assignment by having table.numel always return 1.
+* Support arbitrary strings as variable names (#82).
 
 Version 0.3.5 (2020-01-30)
 -----------------------------
