@@ -36,6 +36,7 @@
 * Open development for next version
   * Update version number in `DESCRIPTION` to next patch or minor version, as appropriate.
     * Include a `-SNAPSHOT` suffix to indicate this is a work in progress.
+  * Add a section to `CHANGES.txt` for the new upcoming release. Use `(in progress)` for its release date.
   * Rebuild the doco.
     * `(cd doc; make maintainer-clean; make all)`
   * `git commit -a -m 'Open development for v<version>'; git push`
