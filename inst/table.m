@@ -495,9 +495,24 @@ classdef table
       out = this;
     endfunction
     
-    function out = size_equal
+    ## -*- texinfo -*-
+    ## @node table.size_equal
+    ## @deftypefn {Method} {@var{out} =} size_equal (@var{varargin})
+    ##
+    ## True if the dimensions of all arguments agree.
+    ##
+    ## @end deftypefn
+    function out = size_equal (varargin)
       %SIZE_EQUAL True if the dimensions of all arguments agree.
-      error ('table.size_equal: size_equal is not yet implemented for tables');
+      [nrows, nvars] = size (varargin{1});
+      out = true;
+      for i = 2:numel (varargin)
+        [nrowsi, nvarsi] = size (varargin{i});
+        if nrowsi ~= nrows || nvarsi ~= nvars;
+            out = false;
+            return;
+        end
+      endfor
     endfunction
   
     ## -*- texinfo -*-
