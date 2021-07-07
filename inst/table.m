@@ -446,7 +446,18 @@ classdef table
         [varargout{3:end}] = deal(1);
       end
     end
-    
+
+    ## -*- texinfo -*-
+    ## @node table.end
+    ## @deftypefn {Method} {@var{out} =} end (@var{obj}, @var{k}, @var{n})
+    ##
+    ## Last index for given dimension of a table.
+    ##
+    ## @end deftypefn
+    function out = end (this, k, n)
+      out = size (this, k);
+    end
+
     ## -*- texinfo -*-
     ## @node table.length
     ## @deftypefn {Method} {@var{out} =} length (@var{obj})
