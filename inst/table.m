@@ -629,7 +629,7 @@ classdef table
     ##
     ## @end deftypefn
     function out = isempty (this)
-      out = isempty (this.VariableNames);
+      out = prod (size (this)) == 0;
     end
     
     ## -*- texinfo -*-
