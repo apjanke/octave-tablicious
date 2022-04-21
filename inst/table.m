@@ -3360,8 +3360,9 @@ classdef table
         error ('table.subsetrows: ixRows must be numeric or logical; got a %s', ...
           class (ixRows));
       endif
+      s = struct ('type', '()', 'subs', {{ixRows,':'}});
       for i = 1:width (this)
-        out.VariableValues{i} = out.VariableValues{i}(ixRows,:);
+        out.VariableValues{i} = subsref (out.VariableValues{i}, s);
       end
       if ~isempty (this.RowNames)
         out.RowNames = out.RowNames(ixRows);
