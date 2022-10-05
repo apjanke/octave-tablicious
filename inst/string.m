@@ -72,6 +72,38 @@ classdef string
     tfMissing = false  % planar
   endproperties
   
+  methods (Static = true)
+    
+    function out = empty(varargin)
+      ## -*- texinfo -*-
+      ## @node string.empty
+      ## @deftypefn {Function} {@var{out} =} empty (@var{sz})
+      ##
+      ## Get an empty string array of a specified size.
+      ##
+      ## The argument sz is optional. If supplied, it is a numeric size
+      ## array whose product must be zero. If omitted, it defaults to [0 0].
+      ##
+      ## The size may also be supplied as multiple arguments containing
+      ## scalar numerics.
+      ##
+      ## Returns an empty string array of the requested size.
+      if nargin == 0
+        out = string([]);
+      elseif nargin == 1
+        sz = varargin{1};
+        if isscalar(sz)
+          sz(2) = 0;
+        endif
+        out = reshape(string([]), sz);
+      else
+        sz = [varargin{:}];
+        out = reshape(string([]), sz);
+      endif
+    endfunction
+    
+  endmethods
+  
   methods
     ## -*- texinfo -*-
     ## @node string.string
