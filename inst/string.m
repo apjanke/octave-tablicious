@@ -116,10 +116,10 @@ classdef string
         this.strs = in;
         this.tfMissing = false (size (this.strs));
       elseif isnumeric (in)
-        this.strs = arrayfun (@(x) {num2str (x)}, in);
+        this.strs = arrayfun (@(x) {num2str(x)}, in);
         this.tfMissing = false (size (this.strs));
       elseif isa (in, 'datetime')
-        this.strs = arrayfun (@(x) {datestr (x)}, in);
+        this.strs = arrayfun (@(x) {datestr(x)}, in);
         this.tfMissing = false (size (this.strs));
       elseif isa (in, 'duration') || isa (in, 'calendarDuration')
         error ('string: duration and calendarDuration conversion are not implemented yet. Sorry.');
