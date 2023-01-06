@@ -8,5 +8,5 @@ Description: Matlab-compatible Octave table class for storing tabular/relational
   data. Also similar to R and Python Pandas DataFrames.
 License: GPLv3+
 Problems: Implementation is not complete.
-Url: https://github.com/apjanke/octave-table
+Url: https://github.com/apjanke/octave-tablicious
 Categories: data manipulation, statistics
