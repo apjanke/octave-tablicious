@@ -1,10 +1,13 @@
 Tablicious Changelog
 ====================
 
-Version 0.3.7 (in progress)
+Version 0.3.7 (2023-01-05)
 -----------------------------
 
+* Fix installation under Octave 7.x. (#91)
 * Fix orphaned sections in documentation.
+* Add table.size_equal method. (#81)
+* Add string.empty static method.
 
 Internal refactoring:
 

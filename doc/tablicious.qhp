@@ -520,6 +520,8 @@
                         <section title="startsWith" ref="html/startsWith.html">
                         </section>
                         <section title="string" ref="html/string.html">
+                            <section title="string.empty" ref="html/string_002eempty.html">
+                            </section>
                             <section title="string.string" ref="html/string_002estring.html">
                             </section>
                             <section title="string.isstring" ref="html/string_002eisstring.html">
@@ -597,6 +599,8 @@
                             <section title="table.ndims" ref="html/table_002endims.html">
                             </section>
                             <section title="table.squeeze" ref="html/table_002esqueeze.html">
+                            </section>
+                            <section title="table.size_equal" ref="html/table_002esize_005fequal.html">
                             </section>
                             <section title="table.sizeof" ref="html/table_002esizeof.html">
                             </section>
@@ -976,6 +980,7 @@
             <keyword name="string.cmp" id="string.cmp" ref="html/string_002ecmp.html"/>
             <keyword name="string.decode" id="string.decode" ref="html/string_002edecode.html"/>
             <keyword name="string.dispstrs" id="string.dispstrs" ref="html/string_002edispstrs.html"/>
+            <keyword name="string.empty" id="string.empty" ref="html/string_002eempty.html"/>
             <keyword name="string.encode" id="string.encode" ref="html/string_002eencode.html"/>
             <keyword name="string.erase" id="string.erase" ref="html/string_002eerase.html"/>
             <keyword name="string.ismissing" id="string.ismissing" ref="html/string_002eismissing.html"/>
@@ -1051,6 +1056,7 @@
             <keyword name="table.setvar" id="table.setvar" ref="html/table_002esetvar.html"/>
             <keyword name="table.setxor" id="table.setxor" ref="html/table_002esetxor.html"/>
             <keyword name="table.size" id="table.size" ref="html/table_002esize.html"/>
+            <keyword name="table.size_equal" id="table.size_equal" ref="html/table_002esize_005fequal.html"/>
             <keyword name="table.sizeof" id="table.sizeof" ref="html/table_002esizeof.html"/>
             <keyword name="table.splitapply" id="table.splitapply" ref="html/table_002esplitapply.html"/>
             <keyword name="table.splitvars" id="table.splitvars" ref="html/table_002esplitvars.html"/>
@@ -1145,6 +1151,7 @@
             <file>html/table_002erows.html</file>
             <file>html/table_002eheight.html</file>
             <file>html/table_002esizeof.html</file>
+            <file>html/table_002esize_005fequal.html</file>
             <file>html/table_002esqueeze.html</file>
             <file>html/table_002endims.html</file>
             <file>html/table_002elength.html</file>
@@ -1184,6 +1191,7 @@
             <file>html/string_002edispstrs.html</file>
             <file>html/string_002eisstring.html</file>
             <file>html/string_002estring.html</file>
+            <file>html/string_002eempty.html</file>
             <file>html/string.html</file>
             <file>html/startsWith.html</file>
             <file>html/standardizeMissing.html</file>

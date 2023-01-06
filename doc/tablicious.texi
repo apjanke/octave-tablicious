@@ -2,7 +2,7 @@
 
 @c %**start of header
 
-@set VERSION 0.3.7-SNAPSHOT
+@set VERSION 0.3.7
 
 @setfilename tablicious.info
 @settitle Octave Tablicious v@value{VERSION}
@@ -36,7 +36,7 @@ User manual for Tablicious for Octave.
 
 @titlepage
 @title  Tablicious for Octave
-@subtitle version @value{VERSION}, July 2021
+@subtitle version @value{VERSION}, January 2023
 @author Andrew Janke
 @page
 @vskip 0pt plus 1filll
@@ -107,7 +107,7 @@ The easiest way to obtain Tablicious is by using Octave's @code{pkg} package man
 To install the development prerelease of Tablicious, run this in Octave:
 
 @example
-pkg install https://github.com/apjanke/octave-tablicious/releases/download/v0.3.7-SNAPSHOT/tablicious-0.3.7-SNAPSHOT.tar.gz
+pkg install https://github.com/apjanke/octave-tablicious/releases/download/v0.3.7/tablicious-0.3.7.tar.gz
 @end example
 
 (Check the releases page at @url{https://github.com/apjanke/octave-tablicious/releases} to
@@ -603,7 +603,7 @@ Represents points in time using the Gregorian calendar.
 Represents a complete day using the Gregorian calendar.
 
 @item @ref{isdatetime}
-True if input is a 'datetime' array, false otherwise.
+True if input is a ‘datetime’ array, false otherwise.
 
 @item @ref{NaT}
 “Not-a-Time”.
@@ -612,10 +612,10 @@ True if input is a 'datetime' array, false otherwise.
 Durations of time using variable-length calendar periods, such as days, months, and years, which may vary in length over time.
 
 @item @ref{calmonths}
-Create a 'calendarDuration' that is a given number of calendar months long.
+Create a ‘calendarDuration’ that is a given number of calendar months long.
 
 @item @ref{calyears}
-Construct a 'calendarDuration' a given number of years long.
+Construct a ‘calendarDuration’ a given number of years long.
 
 @item @ref{days}
 Duration in days.
@@ -624,25 +624,25 @@ Duration in days.
 Represents durations or periods of time as an amount of fixed-length time (i.e.
 
 @item @ref{hours}
-Create a 'duration' X hours long, or get the hours in a 'duration' X.
+Create a ‘duration’ X hours long, or get the hours in a ‘duration’ X.
 
 @item @ref{isduration}
-True if input is a 'duration' array, false otherwise.
+True if input is a ‘duration’ array, false otherwise.
 
 @item @ref{milliseconds}
-Create a 'duration' X milliseconds long, or get the milliseconds in a 'duration' X.
+Create a ‘duration’ X milliseconds long, or get the milliseconds in a ‘duration’ X.
 
 @item @ref{minutes}
-Create a 'duration' X hours long, or get the hours in a 'duration' X.
+Create a ‘duration’ X hours long, or get the hours in a ‘duration’ X.
 
 @item @ref{seconds}
-Create a 'duration' X seconds long, or get the seconds in a 'duration' X.
+Create a ‘duration’ X seconds long, or get the seconds in a ‘duration’ X.
 
 @item @ref{timezones}
 List all the time zones defined on this system.
 
 @item @ref{years}
-Create a 'duration' X years long, or get the years in a 'duration' X.
+Create a ‘duration’ X years long, or get the years in a ‘duration’ X.
 
 @end table
 @subsection Missing Data
@@ -747,7 +747,7 @@ Apply function to vectors in array along arbitrary dimension.
 Example dataset collection.
 
 @item @ref{octave.dataset}
-The 'dataset' class provides convenient access to the various datasets included with Tablicious.
+The ‘dataset’ class provides convenient access to the various datasets included with Tablicious.
 
 @end table
 @subsection Example Code
@@ -759,7 +759,7 @@ Plot pairs of variables against each other.
 @subsection Uncategorized
 @table @asis
 @item @ref{iscategorical}
-True if input is a 'categorical' array, false otherwise.
+True if input is a ‘categorical’ array, false otherwise.
 
 @item @ref{octave.chrono.dummy_function}
 A dummy function just for testing the doco tools.
@@ -779,9 +779,9 @@ Conditioning plot.
 * calendarDuration::	Durations of time using variable-length calendar
 		periods, such as days, months, and years, which may vary in
 		length over time.
-* calmonths::	Create a 'calendarDuration' that is a given number of
+* calmonths::	Create a ‘calendarDuration’ that is a given number of
 		calendar months long.
-* calyears::	Construct a 'calendarDuration' a given number of years
+* calyears::	Construct a ‘calendarDuration’ a given number of years
 		long.
 * categorical:: Categorical variable array.
 * cell2table::	Convert a cell array to a table.
@@ -796,21 +796,21 @@ Conditioning plot.
 * endsWith::	Test if strings end with a pattern.
 * eqn:: Determine element-wise equality, treating NaNs as equal
 * fillmissing:: Fill missing values.
-* hours::	Create a 'duration' X hours long, or get the hours in a
-		'duration' X.
-* iscategorical::	True if input is a 'categorical' array, false
+* hours::	Create a ‘duration’ X hours long, or get the hours in a
+		‘duration’ X.
+* iscategorical::	True if input is a ‘categorical’ array, false
 		otherwise.
-* isdatetime::	True if input is a 'datetime' array, false otherwise.
-* isduration::	True if input is a 'duration' array, false otherwise.
+* isdatetime::	True if input is a ‘datetime’ array, false otherwise.
+* isduration::	True if input is a ‘duration’ array, false otherwise.
 * isfile::	
 * isfolder::	
 * ismissing::	Find missing values.
 * isnanny::	Test if elements are NaN or NaN-like
 * localdate::	Represents a complete day using the Gregorian calendar.
-* milliseconds::	Create a 'duration' X milliseconds long, or get the
-		milliseconds in a 'duration' X.
-* minutes::	Create a 'duration' X hours long, or get the hours in a
-		'duration' X.
+* milliseconds::	Create a ‘duration’ X milliseconds long, or get
+		the milliseconds in a ‘duration’ X.
+* minutes::	Create a ‘duration’ X hours long, or get the hours in a
+		‘duration’ X.
 * missing::	Generic auto-converting missing value.
 * mustBeA::	Requires that input is of a given type.
 * mustBeCellstr::	Requires that input is a cellstr.
@@ -830,8 +830,8 @@ Conditioning plot.
 		the doco tools.
 * octave.chrono.DummyClass::	A do-nothing class just for testing the
 		doco tools.
-* octave.dataset::	The 'dataset' class provides convenient access to
-		the various datasets included with Tablicious.
+* octave.dataset::	The ‘dataset’ class provides convenient access
+		to the various datasets included with Tablicious.
 * octave.datasets::	Example dataset collection.
 * octave.examples.coplot::	Conditioning plot.
 * octave.examples.plot_pairs::	Plot pairs of variables against each other.
@@ -839,8 +839,8 @@ Conditioning plot.
 * rmmissing::	Remove missing values.
 * scalarexpand::	Expand scalar inputs to match size of non-scalar
 		inputs.
-* seconds::	Create a 'duration' X seconds long, or get the seconds in a
-		'duration' X.
+* seconds::	Create a ‘duration’ X seconds long, or get the seconds
+		in a ‘duration’ X.
 * size2str::	Format an array size for display.
 * splitapply::	Split data into groups and apply function.
 * standardizeMissing::	Insert standard missing values.
@@ -853,8 +853,8 @@ Conditioning plot.
 * vartype::	Filter by variable type for use in suscripting.
 * vecfun::	Apply function to vectors in array along arbitrary
 		dimension.
-* years::	Create a 'duration' X years long, or get the years in a
-		'duration' X.
+* years::	Create a ‘duration’ X years long, or get the years in a
+		‘duration’ X.
 @end menu
 
 @node array2table
@@ -7797,6 +7797,23 @@ functions can use it to hack themselves into being string-aware.
 @end deftp
 
 
+@node string.empty
+@subsubsection string.empty
+
+@deftypefn {Function} {@var{out} =} empty (@var{sz})
+
+Get an empty string array of a specified size.
+
+The argument sz is optional. If supplied, it is a numeric size
+array whose product must be zero. If omitted, it defaults to [0 0].
+
+The size may also be supplied as multiple arguments containing
+scalar numerics.
+
+Returns an empty string array of the requested size.
+
+@end deftypefn
+
 @node string.string
 @subsubsection string.string
 
@@ -8454,6 +8471,15 @@ Remove singleton dimensions.
 
 For tables, this is always a no-op that returns the input
 unmodified, because tables always have exactly 2 dimensions.
+
+@end deftypefn
+
+@node table.size_equal
+@subsubsection table.size_equal
+
+@deftypefn {Method} {@var{out} =} size_equal (@var{varargin})
+
+True if the dimensions of all arguments agree.
 
 @end deftypefn
 
