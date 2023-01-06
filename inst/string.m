@@ -88,6 +88,8 @@ classdef string
       ## scalar numerics.
       ##
       ## Returns an empty string array of the requested size.
+      ##
+      ## @end deftypefn
       if nargin == 0
         out = string([]);
       elseif nargin == 1
