@@ -11,13 +11,15 @@
 #   - each @node must be followed immediately by a @chapter/@section/@subsection/@subsubsection
 #
 # Notes:
+# - You need to have Qt 5.x or newer installed, and its tools available on the path.
 # - Mac: This requires a newer version of Texinfo that ships with macOS. 4.8 and 5.2 are too
-#   old. 6.x is required; I tested on 6.6. You must
-#   `brew install texinfo` and manually add `$(brew --prefix texinfo)/bin` to the FRONT of your
-#   $PATH before using this Makefile. I do this by running
+#   old. 6.x or newer is required; I have tested on 6.6 and 7.0. You must get the new texinfo
+#   tools on your path in front of the system Texinfo before running these make targets.
+#   With Homebrew, you can do `brew install texinfo` and manually add 
+#   `$(brew --prefix texinfo)/bin` to the FRONT of your $PATH. I do this by running
 #   `PATH="$(brew --prefix texinfo)/bin:$PATH" when I start working with this code.
 # - On Ubuntu, don't forget to `apt-get install qt5-defaults`!
-# - On macOS, `brew install findutils`
+# - On Mac, `brew install findutils`
 #
 # This Makefile originates from the Tablicious package (https://github.com/apjanke/octave-tablicious)
 # and is based on the one from the Octave Forge communications package
@@ -55,6 +57,8 @@ TEXI2DVI = texi2dvi
 TEXI2HTML = makeinfo --html
 TEXI2PDF = texi2pdf
 
+# This discovery of the Qt tools is hacky BS. Help wanted with
+# a better way to do this.
 BREW=$(shell which brew 2>/dev/null)
 ifneq ($(BREW),)
 	BREW_QT = $(shell brew --prefix qt)
