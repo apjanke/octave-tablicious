@@ -66,7 +66,7 @@ use OctTexiDoc;
 
 if ($ARGV[0] eq "--check-texinfo-version") {
     my $texi_ver = `texi2any --version | head -1`;
-    $texi_ver =~ m/texi2any.*(\d+)\.(\d+)/;
+    $texi_ver =~ m/texi2any \D*(\d+)\.(\d+)/;
     my $major = $1;
     my $minor = $2;
     if ($major < 6) {
