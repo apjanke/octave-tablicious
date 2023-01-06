@@ -1,5 +1,4 @@
-Contributing to Tablicious for GNU Octave
-=========================================
+# Contributing to Tablicious for GNU Octave
 
 ## Introduction
 
@@ -12,6 +11,7 @@ work and interact within this project.
 ## Basics
 
 ### No MATLAB!
+
 Do not use MATLAB to develop this project!
 That could be a violation of your MATLAB license terms, because the Matlab license includes a Non-Compete clause.
 
