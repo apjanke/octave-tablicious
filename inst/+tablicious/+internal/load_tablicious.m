@@ -11,12 +11,14 @@ function load_tablicious
   orig_warn = warning;
   warning off Octave:shadowed-function
   addpath (fullfile (shims_dir, 'all'));
-  if compare_versions (version, "5.0.0", "<")
-    addpath (fullfile (shims_dir, "pre-5.0.0"));
-  endif
-  if compare_versions (version, "6.0.0", "<")
-    addpath (fullfile (shims_dir, "pre-6.0.0"));
-  endif
+  shim_compat_levels = {"5.0.0", "6.0.0", "7.0.0"};
+  for i_compat = 1:numel (shim_compat_levels)
+    compat_lvl = shim_compat_levels{i_compat};
+    compat_dir = sprintf ("pre-%s", compat_lvl);
+    if compare_versions (version, compat_lvl, "<")
+      addpath (fullfile (shims_dir, compat_dir));
+    endif
+  end
   warning (orig_warn);
   
   % Load doco
