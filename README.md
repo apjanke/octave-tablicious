@@ -31,6 +31,8 @@ The `string` and `categorical` support are incomplete, and less mature than the 
 
 Tablicious 0.4.x requires Octave 7.0 or newer. It may well work on earlier versions, but is not tested against them.
 
+Tablicious does not require the Octave Forge [Statistics package](https://gnu-octave.github.io/packages/statistics/), but you will probably want it, because it supplies functions that are frequently useful for data analysis in a tabular context. In particular, `ismissing()` is very useful, and the Statistics package supplies the general implementation of it.
+
 ### Quick start
 
 To get started using or testing this project, install it using Octave's `pkg` function:
