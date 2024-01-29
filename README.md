@@ -42,14 +42,16 @@ If you want to hack on the Tablicious code itself, set it up like this:
 
 * Clone the repo
   * `git clone https://github.com/apjanke/octave-tablicious`
-* Add the `inst/` directory from the repo to your Octave path.
+* Add the `inst/` directory from the cloned repo to your Octave path with `addpath`.
+
+That should get everything working except for time zone conversions inside `datetime`, which require a compiled oct-file. See the developer doco in the repo for that.
 
 ## Documentation
 
 Once you have Tablicious installed, the user manual will show up in the Octave GUI’s documentation browser.
 You can also run `help <foo>` or `doc <foo>` for any of the classes or functions in Tablicious.
 
-The documentation for the latest development version can be viewed online at <https://apjanke.github.io/octave-tablicious/user-guide/tablicious.html>.
+The documentation for the latest development version can be viewed online at <https://tablicious.janklab.net>. That site has the [Tablicious User Guide](https://tablicious.janklab.net/user-guide/html/index.html) containing the API reference (also available in [single-page form](https://tablicious.janklab.net/user-guide/tablicious.html)), plus some additional developer-oriented documentation.
 
 See the `docs/` directory for notes on this project, especially for [Developer Notes](docs/Developer-Notes.md) and [Design and Justification](docs/Design-and-Justification.md), which discusses how and why this library is written. Also see [CONTRIBUTING](CONTRIBUTING.md) if you would like to contribute to this project.
 

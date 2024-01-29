@@ -4,6 +4,8 @@ This is the documentation site for Tablicious.
 
 Tablicious is a package for GNU Octave that provides relational data structures for Octave. It includes implementations of `table` arrays, `datetime`, `string`, `categorical`, and some other related stuff. You can think of it as "pandas for Octave".
 
+The repo for this project is at <https://github.com/apjanke/octave-tablicious>, where you can get the source code, report issues, and find more information.
+
 ## User Documentation
 
 See the online [User Guide](user-guide/html/index.html) for info and API Reference. There's also a [single-page version of the User Guide](user-guide/tablicious.html).
