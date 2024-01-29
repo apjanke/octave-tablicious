@@ -179,10 +179,11 @@ while (my $line = <IN>) {
             emit "\@subsection $category\n";
             emit "\@table \@asis\n";
             for my $fcn (@ctg_fcns) {
-                emit "\@item \@ref{$fcn}\n";
+                emit "\@item $fcn\n";
                 my $description = $descriptions{$fcn} || $docs->get_node_summary($fcn);
                 emit "$description\n";
                 emit "\n";
+                emit "\@xref{$fcn}.\n";
             }
             emit "\@end table\n";
         }
@@ -191,10 +192,11 @@ while (my $line = <IN>) {
             emit "\@subsection Uncategorized\n";
             emit "\@table \@asis\n";
             for my $fcn (@uncategorized) {
-                emit "\@item \@ref{$fcn}\n";
+                emit "\@item $fcn\n";
                 my $description = $descriptions{$fcn} || $docs->get_node_summary($fcn);
                 emit "$description\n";
                 emit "\n";
+                emit "\@xref{$fcn}.\n";
             }
             emit "\@end table\n";
         }
