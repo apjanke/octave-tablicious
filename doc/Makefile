@@ -59,9 +59,11 @@ TEXI2PDF = texi2pdf
 
 # This discovery of the Qt tools is hacky BS. Help wanted with
 # a better way to do this.
+# As of 2023-ish, the plain "qt" brew formula is Qt 6, but Octave still
+# uses Qt 5, which the "qt@5" versioned formula will give.
 BREW=$(shell which brew 2>/dev/null)
 ifneq ($(BREW),)
-	BREW_QT = $(shell brew --prefix qt)
+	BREW_QT = $(shell brew --prefix qt@5)
 	ifeq ($(wildcard $(BREW_QT)/bin/qhelpgenerator),)
 		QHELPGENERATOR = $(BREW_QT)/bin/qcollectiongenerator
 	else
