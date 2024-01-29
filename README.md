@@ -51,7 +51,7 @@ That should get everything working except for time zone conversions inside `date
 Once you have Tablicious installed, the user manual will show up in the Octave GUI’s documentation browser.
 You can also run `help <foo>` or `doc <foo>` for any of the classes or functions in Tablicious.
 
-The documentation for the latest development version can be viewed online at <https://tablicious.janklab.net>. That site has the [Tablicious User Guide](https://tablicious.janklab.net/user-guide/html/index.html) containing the API reference (also available in [single-page form](https://tablicious.janklab.net/user-guide/tablicious.html)), plus some additional developer-oriented documentation.
+The documentation for the latest development version can be viewed online at <https://apjanke.github.io/octave-tablicious>. That site has the [Tablicious User Guide](https://apjanke.github.io/octave-tablicious/user-guide/html/index.html) containing the API reference (also available in [single-page form](https://apjanke.github.io/octave-tablicious/user-guide/tablicious.html)), plus some additional developer-oriented documentation.
 
 See the `docs/` directory for notes on this project, especially for [Developer Notes](docs/Developer-Notes.md) and [Design and Justification](docs/Design-and-Justification.md), which discusses how and why this library is written. Also see [CONTRIBUTING](CONTRIBUTING.md) if you would like to contribute to this project.
 
