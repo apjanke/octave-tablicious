@@ -239,6 +239,8 @@
                         </section>
                         <section title="isnanny" ref="html/isnanny.html">
                         </section>
+                        <section title="istable" ref="html/istable.html">
+                        </section>
                         <section title="localdate" ref="html/localdate.html">
                             <section title="localdate.localdate" ref="html/localdate_002elocaldate.html">
                             </section>
@@ -307,199 +309,9 @@
                         </section>
                         <section title="NaT" ref="html/NaT.html">
                         </section>
-                        <section title="octave.chrono.dummy_function" ref="html/octave_002echrono_002edummy_005ffunction.html">
-                        </section>
-                        <section title="octave.chrono.DummyClass" ref="html/octave_002echrono_002eDummyClass.html">
-                            <section title="octave.chrono.DummyClass.DummyClass" ref="html/octave_002echrono_002eDummyClass_002eDummyClass.html">
-                            </section>
-                            <section title="octave.chrono.DummyClass.foo" ref="html/octave_002echrono_002eDummyClass_002efoo.html">
-                            </section>
-                            <section title="octave.chrono.DummyClass.bar" ref="html/octave_002echrono_002eDummyClass_002ebar.html">
-                            </section>
-                        </section>
                         <section title="octave.dataset" ref="html/octave_002edataset.html">
-                            <section title="octave.dataset.airmiles" ref="html/octave_002edataset_002eairmiles.html">
-                            </section>
-                            <section title="octave.dataset.AirPassengers" ref="html/octave_002edataset_002eAirPassengers.html">
-                            </section>
-                            <section title="octave.dataset.airquality" ref="html/octave_002edataset_002eairquality.html">
-                            </section>
-                            <section title="octave.dataset.anscombe" ref="html/octave_002edataset_002eanscombe.html">
-                            </section>
-                            <section title="octave.dataset.attenu" ref="html/octave_002edataset_002eattenu.html">
-                            </section>
-                            <section title="octave.dataset.attitude" ref="html/octave_002edataset_002eattitude.html">
-                            </section>
-                            <section title="octave.dataset.austres" ref="html/octave_002edataset_002eaustres.html">
-                            </section>
-                            <section title="octave.dataset.beavers" ref="html/octave_002edataset_002ebeavers.html">
-                            </section>
-                            <section title="octave.dataset.BJsales" ref="html/octave_002edataset_002eBJsales.html">
-                            </section>
-                            <section title="octave.dataset.BOD" ref="html/octave_002edataset_002eBOD.html">
-                            </section>
-                            <section title="octave.dataset.cars" ref="html/octave_002edataset_002ecars.html">
-                            </section>
-                            <section title="octave.dataset.ChickWeight" ref="html/octave_002edataset_002eChickWeight.html">
-                            </section>
-                            <section title="octave.dataset.chickwts" ref="html/octave_002edataset_002echickwts.html">
-                            </section>
-                            <section title="octave.dataset.co2" ref="html/octave_002edataset_002eco2.html">
-                            </section>
-                            <section title="octave.dataset.crimtab" ref="html/octave_002edataset_002ecrimtab.html">
-                            </section>
-                            <section title="octave.dataset.cupcake" ref="html/octave_002edataset_002ecupcake.html">
-                            </section>
-                            <section title="octave.dataset.discoveries" ref="html/octave_002edataset_002ediscoveries.html">
-                            </section>
-                            <section title="octave.dataset.DNase" ref="html/octave_002edataset_002eDNase.html">
-                            </section>
-                            <section title="octave.dataset.esoph" ref="html/octave_002edataset_002eesoph.html">
-                            </section>
-                            <section title="octave.dataset.euro" ref="html/octave_002edataset_002eeuro.html">
-                            </section>
-                            <section title="octave.dataset.eurodist" ref="html/octave_002edataset_002eeurodist.html">
-                            </section>
-                            <section title="octave.dataset.EuStockMarkets" ref="html/octave_002edataset_002eEuStockMarkets.html">
-                            </section>
-                            <section title="octave.dataset.faithful" ref="html/octave_002edataset_002efaithful.html">
-                            </section>
-                            <section title="octave.dataset.Formaldehyde" ref="html/octave_002edataset_002eFormaldehyde.html">
-                            </section>
-                            <section title="octave.dataset.freeny" ref="html/octave_002edataset_002efreeny.html">
-                            </section>
-                            <section title="octave.dataset.HairEyeColor" ref="html/octave_002edataset_002eHairEyeColor.html">
-                            </section>
-                            <section title="octave.dataset.Harman23cor" ref="html/octave_002edataset_002eHarman23cor.html">
-                            </section>
-                            <section title="octave.dataset.Harman74cor" ref="html/octave_002edataset_002eHarman74cor.html">
-                            </section>
-                            <section title="octave.dataset.Indometh" ref="html/octave_002edataset_002eIndometh.html">
-                            </section>
-                            <section title="octave.dataset.infert" ref="html/octave_002edataset_002einfert.html">
-                            </section>
-                            <section title="octave.dataset.InsectSprays" ref="html/octave_002edataset_002eInsectSprays.html">
-                            </section>
-                            <section title="octave.dataset.iris" ref="html/octave_002edataset_002eiris.html">
-                            </section>
-                            <section title="octave.dataset.islands" ref="html/octave_002edataset_002eislands.html">
-                            </section>
-                            <section title="octave.dataset.JohnsonJohnson" ref="html/octave_002edataset_002eJohnsonJohnson.html">
-                            </section>
-                            <section title="octave.dataset.LakeHuron" ref="html/octave_002edataset_002eLakeHuron.html">
-                            </section>
-                            <section title="octave.dataset.lh" ref="html/octave_002edataset_002elh.html">
-                            </section>
-                            <section title="octave.dataset.LifeCycleSavings" ref="html/octave_002edataset_002eLifeCycleSavings.html">
-                            </section>
-                            <section title="octave.dataset.Loblolly" ref="html/octave_002edataset_002eLoblolly.html">
-                            </section>
-                            <section title="octave.dataset.longley" ref="html/octave_002edataset_002elongley.html">
-                            </section>
-                            <section title="octave.dataset.lynx" ref="html/octave_002edataset_002elynx.html">
-                            </section>
-                            <section title="octave.dataset.morley" ref="html/octave_002edataset_002emorley.html">
-                            </section>
-                            <section title="octave.dataset.mtcars" ref="html/octave_002edataset_002emtcars.html">
-                            </section>
-                            <section title="octave.dataset.nhtemp" ref="html/octave_002edataset_002enhtemp.html">
-                            </section>
-                            <section title="octave.dataset.Nile" ref="html/octave_002edataset_002eNile.html">
-                            </section>
-                            <section title="octave.dataset.nottem" ref="html/octave_002edataset_002enottem.html">
-                            </section>
-                            <section title="octave.dataset.npk" ref="html/octave_002edataset_002enpk.html">
-                            </section>
-                            <section title="octave.dataset.occupationalStatus" ref="html/octave_002edataset_002eoccupationalStatus.html">
-                            </section>
-                            <section title="octave.dataset.Orange" ref="html/octave_002edataset_002eOrange.html">
-                            </section>
-                            <section title="octave.dataset.OrchardSprays" ref="html/octave_002edataset_002eOrchardSprays.html">
-                            </section>
-                            <section title="octave.dataset.PlantGrowth" ref="html/octave_002edataset_002ePlantGrowth.html">
-                            </section>
-                            <section title="octave.dataset.precip" ref="html/octave_002edataset_002eprecip.html">
-                            </section>
-                            <section title="octave.dataset.presidents" ref="html/octave_002edataset_002epresidents.html">
-                            </section>
-                            <section title="octave.dataset.pressure" ref="html/octave_002edataset_002epressure.html">
-                            </section>
-                            <section title="octave.dataset.Puromycin" ref="html/octave_002edataset_002ePuromycin.html">
-                            </section>
-                            <section title="octave.dataset.quakes" ref="html/octave_002edataset_002equakes.html">
-                            </section>
-                            <section title="octave.dataset.randu" ref="html/octave_002edataset_002erandu.html">
-                            </section>
-                            <section title="octave.dataset.rivers" ref="html/octave_002edataset_002erivers.html">
-                            </section>
-                            <section title="octave.dataset.rock" ref="html/octave_002edataset_002erock.html">
-                            </section>
-                            <section title="octave.dataset.sleep" ref="html/octave_002edataset_002esleep.html">
-                            </section>
-                            <section title="octave.dataset.stackloss" ref="html/octave_002edataset_002estackloss.html">
-                            </section>
-                            <section title="octave.dataset.state" ref="html/octave_002edataset_002estate.html">
-                            </section>
-                            <section title="octave.dataset.sunspot_month" ref="html/octave_002edataset_002esunspot_005fmonth.html">
-                            </section>
-                            <section title="octave.dataset.sunspot_year" ref="html/octave_002edataset_002esunspot_005fyear.html">
-                            </section>
-                            <section title="octave.dataset.sunspots" ref="html/octave_002edataset_002esunspots.html">
-                            </section>
-                            <section title="octave.dataset.swiss" ref="html/octave_002edataset_002eswiss.html">
-                            </section>
-                            <section title="octave.dataset.Theoph" ref="html/octave_002edataset_002eTheoph.html">
-                            </section>
-                            <section title="octave.dataset.Titanic" ref="html/octave_002edataset_002eTitanic.html">
-                            </section>
-                            <section title="octave.dataset.ToothGrowth" ref="html/octave_002edataset_002eToothGrowth.html">
-                            </section>
-                            <section title="octave.dataset.treering" ref="html/octave_002edataset_002etreering.html">
-                            </section>
-                            <section title="octave.dataset.trees" ref="html/octave_002edataset_002etrees.html">
-                            </section>
-                            <section title="octave.dataset.UCBAdmissions" ref="html/octave_002edataset_002eUCBAdmissions.html">
-                            </section>
-                            <section title="octave.dataset.UKDriverDeaths" ref="html/octave_002edataset_002eUKDriverDeaths.html">
-                            </section>
-                            <section title="octave.dataset.UKgas" ref="html/octave_002edataset_002eUKgas.html">
-                            </section>
-                            <section title="octave.dataset.UKLungDeaths" ref="html/octave_002edataset_002eUKLungDeaths.html">
-                            </section>
-                            <section title="octave.dataset.USAccDeaths" ref="html/octave_002edataset_002eUSAccDeaths.html">
-                            </section>
-                            <section title="octave.dataset.USArrests" ref="html/octave_002edataset_002eUSArrests.html">
-                            </section>
-                            <section title="octave.dataset.USJudgeRatings" ref="html/octave_002edataset_002eUSJudgeRatings.html">
-                            </section>
-                            <section title="octave.dataset.USPersonalExpenditure" ref="html/octave_002edataset_002eUSPersonalExpenditure.html">
-                            </section>
-                            <section title="octave.dataset.uspop" ref="html/octave_002edataset_002euspop.html">
-                            </section>
-                            <section title="octave.dataset.VADeaths" ref="html/octave_002edataset_002eVADeaths.html">
-                            </section>
-                            <section title="octave.dataset.volcano" ref="html/octave_002edataset_002evolcano.html">
-                            </section>
-                            <section title="octave.dataset.warpbreaks" ref="html/octave_002edataset_002ewarpbreaks.html">
-                            </section>
-                            <section title="octave.dataset.women" ref="html/octave_002edataset_002ewomen.html">
-                            </section>
-                            <section title="octave.dataset.WorldPhones" ref="html/octave_002edataset_002eWorldPhones.html">
-                            </section>
-                            <section title="octave.dataset.WWWusage" ref="html/octave_002edataset_002eWWWusage.html">
-                            </section>
-                            <section title="octave.dataset.zCO2" ref="html/octave_002edataset_002ezCO2.html">
-                            </section>
                         </section>
                         <section title="octave.datasets" ref="html/octave_002edatasets.html">
-                            <section title="octave.datasets.list" ref="html/octave_002edatasets_002elist.html">
-                            </section>
-                            <section title="octave.datasets.load" ref="html/octave_002edatasets_002eload.html">
-                            </section>
-                            <section title="octave.datasets.description" ref="html/octave_002edatasets_002edescription.html">
-                            </section>
-                        </section>
-                        <section title="octave.examples.coplot" ref="html/octave_002eexamples_002ecoplot.html">
                         </section>
                         <section title="octave.examples.plot_pairs" ref="html/octave_002eexamples_002eplot_005fpairs.html">
                         </section>
@@ -593,6 +405,8 @@
                             <section title="table.istable" ref="html/table_002eistable.html">
                             </section>
                             <section title="table.size" ref="html/table_002esize.html">
+                            </section>
+                            <section title="table.end" ref="html/table_002eend.html">
                             </section>
                             <section title="table.length" ref="html/table_002elength.html">
                             </section>
@@ -702,10 +516,6 @@
                             </section>
                             <section title="table.ismissing" ref="html/table_002eismissing.html">
                             </section>
-                            <section title="table.rmmissing" ref="html/table_002ermmissing.html">
-                            </section>
-                            <section title="table.standardizeMissing" ref="html/table_002estandardizeMissing.html">
-                            </section>
                             <section title="table.varfun" ref="html/table_002evarfun.html">
                             </section>
                             <section title="table.rowfun" ref="html/table_002erowfun.html">
@@ -726,6 +536,202 @@
                             </section>
                         </section>
                         <section title="tableOuterFillValue" ref="html/tableOuterFillValue.html">
+                        </section>
+                        <section title="tblish.chrono.dummy_function" ref="html/tblish_002echrono_002edummy_005ffunction.html">
+                        </section>
+                        <section title="tblish.chrono.DummyClass" ref="html/tblish_002echrono_002eDummyClass.html">
+                            <section title="tblish.chrono.DummyClass.DummyClass" ref="html/tblish_002echrono_002eDummyClass_002eDummyClass.html">
+                            </section>
+                            <section title="tblish.chrono.DummyClass.foo" ref="html/tblish_002echrono_002eDummyClass_002efoo.html">
+                            </section>
+                            <section title="tblish.chrono.DummyClass.bar" ref="html/tblish_002echrono_002eDummyClass_002ebar.html">
+                            </section>
+                        </section>
+                        <section title="tblish.dataset" ref="html/tblish_002edataset.html">
+                            <section title="tblish.dataset.airmiles" ref="html/tblish_002edataset_002eairmiles.html">
+                            </section>
+                            <section title="tblish.dataset.AirPassengers" ref="html/tblish_002edataset_002eAirPassengers.html">
+                            </section>
+                            <section title="tblish.dataset.airquality" ref="html/tblish_002edataset_002eairquality.html">
+                            </section>
+                            <section title="tblish.dataset.anscombe" ref="html/tblish_002edataset_002eanscombe.html">
+                            </section>
+                            <section title="tblish.dataset.attenu" ref="html/tblish_002edataset_002eattenu.html">
+                            </section>
+                            <section title="tblish.dataset.attitude" ref="html/tblish_002edataset_002eattitude.html">
+                            </section>
+                            <section title="tblish.dataset.austres" ref="html/tblish_002edataset_002eaustres.html">
+                            </section>
+                            <section title="tblish.dataset.beavers" ref="html/tblish_002edataset_002ebeavers.html">
+                            </section>
+                            <section title="tblish.dataset.BJsales" ref="html/tblish_002edataset_002eBJsales.html">
+                            </section>
+                            <section title="tblish.dataset.BOD" ref="html/tblish_002edataset_002eBOD.html">
+                            </section>
+                            <section title="tblish.dataset.cars" ref="html/tblish_002edataset_002ecars.html">
+                            </section>
+                            <section title="tblish.dataset.ChickWeight" ref="html/tblish_002edataset_002eChickWeight.html">
+                            </section>
+                            <section title="tblish.dataset.chickwts" ref="html/tblish_002edataset_002echickwts.html">
+                            </section>
+                            <section title="tblish.dataset.co2" ref="html/tblish_002edataset_002eco2.html">
+                            </section>
+                            <section title="tblish.dataset.crimtab" ref="html/tblish_002edataset_002ecrimtab.html">
+                            </section>
+                            <section title="tblish.dataset.cupcake" ref="html/tblish_002edataset_002ecupcake.html">
+                            </section>
+                            <section title="tblish.dataset.discoveries" ref="html/tblish_002edataset_002ediscoveries.html">
+                            </section>
+                            <section title="tblish.dataset.DNase" ref="html/tblish_002edataset_002eDNase.html">
+                            </section>
+                            <section title="tblish.dataset.esoph" ref="html/tblish_002edataset_002eesoph.html">
+                            </section>
+                            <section title="tblish.dataset.euro" ref="html/tblish_002edataset_002eeuro.html">
+                            </section>
+                            <section title="tblish.dataset.eurodist" ref="html/tblish_002edataset_002eeurodist.html">
+                            </section>
+                            <section title="tblish.dataset.EuStockMarkets" ref="html/tblish_002edataset_002eEuStockMarkets.html">
+                            </section>
+                            <section title="tblish.dataset.faithful" ref="html/tblish_002edataset_002efaithful.html">
+                            </section>
+                            <section title="tblish.dataset.Formaldehyde" ref="html/tblish_002edataset_002eFormaldehyde.html">
+                            </section>
+                            <section title="tblish.dataset.freeny" ref="html/tblish_002edataset_002efreeny.html">
+                            </section>
+                            <section title="tblish.dataset.HairEyeColor" ref="html/tblish_002edataset_002eHairEyeColor.html">
+                            </section>
+                            <section title="tblish.dataset.Harman23cor" ref="html/tblish_002edataset_002eHarman23cor.html">
+                            </section>
+                            <section title="tblish.dataset.Harman74cor" ref="html/tblish_002edataset_002eHarman74cor.html">
+                            </section>
+                            <section title="tblish.dataset.Indometh" ref="html/tblish_002edataset_002eIndometh.html">
+                            </section>
+                            <section title="tblish.dataset.infert" ref="html/tblish_002edataset_002einfert.html">
+                            </section>
+                            <section title="tblish.dataset.InsectSprays" ref="html/tblish_002edataset_002eInsectSprays.html">
+                            </section>
+                            <section title="tblish.dataset.iris" ref="html/tblish_002edataset_002eiris.html">
+                            </section>
+                            <section title="tblish.dataset.islands" ref="html/tblish_002edataset_002eislands.html">
+                            </section>
+                            <section title="tblish.dataset.JohnsonJohnson" ref="html/tblish_002edataset_002eJohnsonJohnson.html">
+                            </section>
+                            <section title="tblish.dataset.LakeHuron" ref="html/tblish_002edataset_002eLakeHuron.html">
+                            </section>
+                            <section title="tblish.dataset.lh" ref="html/tblish_002edataset_002elh.html">
+                            </section>
+                            <section title="tblish.dataset.LifeCycleSavings" ref="html/tblish_002edataset_002eLifeCycleSavings.html">
+                            </section>
+                            <section title="tblish.dataset.Loblolly" ref="html/tblish_002edataset_002eLoblolly.html">
+                            </section>
+                            <section title="tblish.dataset.longley" ref="html/tblish_002edataset_002elongley.html">
+                            </section>
+                            <section title="tblish.dataset.lynx" ref="html/tblish_002edataset_002elynx.html">
+                            </section>
+                            <section title="tblish.dataset.morley" ref="html/tblish_002edataset_002emorley.html">
+                            </section>
+                            <section title="tblish.dataset.mtcars" ref="html/tblish_002edataset_002emtcars.html">
+                            </section>
+                            <section title="tblish.dataset.nhtemp" ref="html/tblish_002edataset_002enhtemp.html">
+                            </section>
+                            <section title="tblish.dataset.Nile" ref="html/tblish_002edataset_002eNile.html">
+                            </section>
+                            <section title="tblish.dataset.nottem" ref="html/tblish_002edataset_002enottem.html">
+                            </section>
+                            <section title="tblish.dataset.npk" ref="html/tblish_002edataset_002enpk.html">
+                            </section>
+                            <section title="tblish.dataset.occupationalStatus" ref="html/tblish_002edataset_002eoccupationalStatus.html">
+                            </section>
+                            <section title="tblish.dataset.Orange" ref="html/tblish_002edataset_002eOrange.html">
+                            </section>
+                            <section title="tblish.dataset.OrchardSprays" ref="html/tblish_002edataset_002eOrchardSprays.html">
+                            </section>
+                            <section title="tblish.dataset.PlantGrowth" ref="html/tblish_002edataset_002ePlantGrowth.html">
+                            </section>
+                            <section title="tblish.dataset.precip" ref="html/tblish_002edataset_002eprecip.html">
+                            </section>
+                            <section title="tblish.dataset.presidents" ref="html/tblish_002edataset_002epresidents.html">
+                            </section>
+                            <section title="tblish.dataset.pressure" ref="html/tblish_002edataset_002epressure.html">
+                            </section>
+                            <section title="tblish.dataset.Puromycin" ref="html/tblish_002edataset_002ePuromycin.html">
+                            </section>
+                            <section title="tblish.dataset.quakes" ref="html/tblish_002edataset_002equakes.html">
+                            </section>
+                            <section title="tblish.dataset.randu" ref="html/tblish_002edataset_002erandu.html">
+                            </section>
+                            <section title="tblish.dataset.rivers" ref="html/tblish_002edataset_002erivers.html">
+                            </section>
+                            <section title="tblish.dataset.rock" ref="html/tblish_002edataset_002erock.html">
+                            </section>
+                            <section title="tblish.dataset.sleep" ref="html/tblish_002edataset_002esleep.html">
+                            </section>
+                            <section title="tblish.dataset.stackloss" ref="html/tblish_002edataset_002estackloss.html">
+                            </section>
+                            <section title="tblish.dataset.state" ref="html/tblish_002edataset_002estate.html">
+                            </section>
+                            <section title="tblish.dataset.sunspot_month" ref="html/tblish_002edataset_002esunspot_005fmonth.html">
+                            </section>
+                            <section title="tblish.dataset.sunspot_year" ref="html/tblish_002edataset_002esunspot_005fyear.html">
+                            </section>
+                            <section title="tblish.dataset.sunspots" ref="html/tblish_002edataset_002esunspots.html">
+                            </section>
+                            <section title="tblish.dataset.swiss" ref="html/tblish_002edataset_002eswiss.html">
+                            </section>
+                            <section title="tblish.dataset.Theoph" ref="html/tblish_002edataset_002eTheoph.html">
+                            </section>
+                            <section title="tblish.dataset.Titanic" ref="html/tblish_002edataset_002eTitanic.html">
+                            </section>
+                            <section title="tblish.dataset.ToothGrowth" ref="html/tblish_002edataset_002eToothGrowth.html">
+                            </section>
+                            <section title="tblish.dataset.treering" ref="html/tblish_002edataset_002etreering.html">
+                            </section>
+                            <section title="tblish.dataset.trees" ref="html/tblish_002edataset_002etrees.html">
+                            </section>
+                            <section title="tblish.dataset.UCBAdmissions" ref="html/tblish_002edataset_002eUCBAdmissions.html">
+                            </section>
+                            <section title="tblish.dataset.UKDriverDeaths" ref="html/tblish_002edataset_002eUKDriverDeaths.html">
+                            </section>
+                            <section title="tblish.dataset.UKgas" ref="html/tblish_002edataset_002eUKgas.html">
+                            </section>
+                            <section title="tblish.dataset.UKLungDeaths" ref="html/tblish_002edataset_002eUKLungDeaths.html">
+                            </section>
+                            <section title="tblish.dataset.USAccDeaths" ref="html/tblish_002edataset_002eUSAccDeaths.html">
+                            </section>
+                            <section title="tblish.dataset.USArrests" ref="html/tblish_002edataset_002eUSArrests.html">
+                            </section>
+                            <section title="tblish.dataset.USJudgeRatings" ref="html/tblish_002edataset_002eUSJudgeRatings.html">
+                            </section>
+                            <section title="tblish.dataset.USPersonalExpenditure" ref="html/tblish_002edataset_002eUSPersonalExpenditure.html">
+                            </section>
+                            <section title="tblish.dataset.uspop" ref="html/tblish_002edataset_002euspop.html">
+                            </section>
+                            <section title="tblish.dataset.VADeaths" ref="html/tblish_002edataset_002eVADeaths.html">
+                            </section>
+                            <section title="tblish.dataset.volcano" ref="html/tblish_002edataset_002evolcano.html">
+                            </section>
+                            <section title="tblish.dataset.warpbreaks" ref="html/tblish_002edataset_002ewarpbreaks.html">
+                            </section>
+                            <section title="tblish.dataset.women" ref="html/tblish_002edataset_002ewomen.html">
+                            </section>
+                            <section title="tblish.dataset.WorldPhones" ref="html/tblish_002edataset_002eWorldPhones.html">
+                            </section>
+                            <section title="tblish.dataset.WWWusage" ref="html/tblish_002edataset_002eWWWusage.html">
+                            </section>
+                            <section title="tblish.dataset.zCO2" ref="html/tblish_002edataset_002ezCO2.html">
+                            </section>
+                        </section>
+                        <section title="tblish.datasets" ref="html/tblish_002edatasets.html">
+                            <section title="tblish.datasets.list" ref="html/tblish_002edatasets_002elist.html">
+                            </section>
+                            <section title="tblish.datasets.load" ref="html/tblish_002edatasets_002eload.html">
+                            </section>
+                            <section title="tblish.datasets.description" ref="html/tblish_002edatasets_002edescription.html">
+                            </section>
+                        </section>
+                        <section title="tblish.examples.coplot" ref="html/tblish_002eexamples_002ecoplot.html">
+                        </section>
+                        <section title="tblish.examples.plot_pairs" ref="html/tblish_002eexamples_002eplot_005fpairs.html">
                         </section>
                         <section title="timezones" ref="html/timezones.html">
                         </section>
@@ -831,15 +837,13 @@
             <keyword name="duration.seconds" id="duration.seconds" ref="html/duration_002eseconds.html"/>
             <keyword name="duration.sizeof" id="duration.sizeof" ref="html/duration_002esizeof.html"/>
             <keyword name="duration.years" id="duration.years" ref="html/duration_002eyears.html"/>
-            <keyword name="endsWith" id="endsWith" ref="html/endsWith.html"/>
             <keyword name="eqn" id="eqn" ref="html/eqn.html"/>
-            <keyword name="fillmissing" id="fillmissing" ref="html/fillmissing.html"/>
             <keyword name="hours" id="hours" ref="html/hours.html"/>
             <keyword name="iscategorical" id="iscategorical" ref="html/iscategorical.html"/>
             <keyword name="isdatetime" id="isdatetime" ref="html/isdatetime.html"/>
             <keyword name="isduration" id="isduration" ref="html/isduration.html"/>
-            <keyword name="ismissing" id="ismissing" ref="html/ismissing.html"/>
             <keyword name="isnanny" id="isnanny" ref="html/isnanny.html"/>
+            <keyword name="istable" id="istable" ref="html/istable.html"/>
             <keyword name="localdate" id="localdate" ref="html/localdate.html"/>
             <keyword name="localdate.NaT" id="localdate.NaT" ref="html/localdate_002eNaT.html"/>
             <keyword name="localdate.datenum" id="localdate.datenum" ref="html/localdate_002edatenum.html"/>
@@ -867,112 +871,11 @@
             <keyword name="mustBeScalar" id="mustBeScalar" ref="html/mustBeScalar.html"/>
             <keyword name="mustBeScalarLogical" id="mustBeScalarLogical" ref="html/mustBeScalarLogical.html"/>
             <keyword name="mustBeVector" id="mustBeVector" ref="html/mustBeVector.html"/>
-            <keyword name="octave.chrono.DummyClass" id="octave.chrono.DummyClass" ref="html/octave_002echrono_002eDummyClass.html"/>
-            <keyword name="octave.chrono.DummyClass.DummyClass" id="octave.chrono.DummyClass.DummyClass" ref="html/octave_002echrono_002eDummyClass_002eDummyClass.html"/>
-            <keyword name="octave.chrono.DummyClass.bar" id="octave.chrono.DummyClass.bar" ref="html/octave_002echrono_002eDummyClass_002ebar.html"/>
-            <keyword name="octave.chrono.DummyClass.foo" id="octave.chrono.DummyClass.foo" ref="html/octave_002echrono_002eDummyClass_002efoo.html"/>
-            <keyword name="octave.chrono.dummy_function" id="octave.chrono.dummy_function" ref="html/octave_002echrono_002edummy_005ffunction.html"/>
-            <keyword name="octave.dataset" id="octave.dataset" ref="html/octave_002edataset.html"/>
-            <keyword name="octave.dataset.AirPassengers" id="octave.dataset.AirPassengers" ref="html/octave_002edataset_002eAirPassengers.html"/>
-            <keyword name="octave.dataset.BJsales" id="octave.dataset.BJsales" ref="html/octave_002edataset_002eBJsales.html"/>
-            <keyword name="octave.dataset.BOD" id="octave.dataset.BOD" ref="html/octave_002edataset_002eBOD.html"/>
-            <keyword name="octave.dataset.ChickWeight" id="octave.dataset.ChickWeight" ref="html/octave_002edataset_002eChickWeight.html"/>
-            <keyword name="octave.dataset.DNase" id="octave.dataset.DNase" ref="html/octave_002edataset_002eDNase.html"/>
-            <keyword name="octave.dataset.EuStockMarkets" id="octave.dataset.EuStockMarkets" ref="html/octave_002edataset_002eEuStockMarkets.html"/>
-            <keyword name="octave.dataset.Formaldehyde" id="octave.dataset.Formaldehyde" ref="html/octave_002edataset_002eFormaldehyde.html"/>
-            <keyword name="octave.dataset.HairEyeColor" id="octave.dataset.HairEyeColor" ref="html/octave_002edataset_002eHairEyeColor.html"/>
-            <keyword name="octave.dataset.Harman23cor" id="octave.dataset.Harman23cor" ref="html/octave_002edataset_002eHarman23cor.html"/>
-            <keyword name="octave.dataset.Harman74cor" id="octave.dataset.Harman74cor" ref="html/octave_002edataset_002eHarman74cor.html"/>
-            <keyword name="octave.dataset.Indometh" id="octave.dataset.Indometh" ref="html/octave_002edataset_002eIndometh.html"/>
-            <keyword name="octave.dataset.InsectSprays" id="octave.dataset.InsectSprays" ref="html/octave_002edataset_002eInsectSprays.html"/>
-            <keyword name="octave.dataset.JohnsonJohnson" id="octave.dataset.JohnsonJohnson" ref="html/octave_002edataset_002eJohnsonJohnson.html"/>
-            <keyword name="octave.dataset.LakeHuron" id="octave.dataset.LakeHuron" ref="html/octave_002edataset_002eLakeHuron.html"/>
-            <keyword name="octave.dataset.LifeCycleSavings" id="octave.dataset.LifeCycleSavings" ref="html/octave_002edataset_002eLifeCycleSavings.html"/>
-            <keyword name="octave.dataset.Loblolly" id="octave.dataset.Loblolly" ref="html/octave_002edataset_002eLoblolly.html"/>
-            <keyword name="octave.dataset.Nile" id="octave.dataset.Nile" ref="html/octave_002edataset_002eNile.html"/>
-            <keyword name="octave.dataset.Orange" id="octave.dataset.Orange" ref="html/octave_002edataset_002eOrange.html"/>
-            <keyword name="octave.dataset.OrchardSprays" id="octave.dataset.OrchardSprays" ref="html/octave_002edataset_002eOrchardSprays.html"/>
-            <keyword name="octave.dataset.PlantGrowth" id="octave.dataset.PlantGrowth" ref="html/octave_002edataset_002ePlantGrowth.html"/>
-            <keyword name="octave.dataset.Puromycin" id="octave.dataset.Puromycin" ref="html/octave_002edataset_002ePuromycin.html"/>
-            <keyword name="octave.dataset.Theoph" id="octave.dataset.Theoph" ref="html/octave_002edataset_002eTheoph.html"/>
-            <keyword name="octave.dataset.Titanic" id="octave.dataset.Titanic" ref="html/octave_002edataset_002eTitanic.html"/>
-            <keyword name="octave.dataset.ToothGrowth" id="octave.dataset.ToothGrowth" ref="html/octave_002edataset_002eToothGrowth.html"/>
-            <keyword name="octave.dataset.UCBAdmissions" id="octave.dataset.UCBAdmissions" ref="html/octave_002edataset_002eUCBAdmissions.html"/>
-            <keyword name="octave.dataset.UKDriverDeaths" id="octave.dataset.UKDriverDeaths" ref="html/octave_002edataset_002eUKDriverDeaths.html"/>
-            <keyword name="octave.dataset.UKLungDeaths" id="octave.dataset.UKLungDeaths" ref="html/octave_002edataset_002eUKLungDeaths.html"/>
-            <keyword name="octave.dataset.UKgas" id="octave.dataset.UKgas" ref="html/octave_002edataset_002eUKgas.html"/>
-            <keyword name="octave.dataset.USAccDeaths" id="octave.dataset.USAccDeaths" ref="html/octave_002edataset_002eUSAccDeaths.html"/>
-            <keyword name="octave.dataset.USArrests" id="octave.dataset.USArrests" ref="html/octave_002edataset_002eUSArrests.html"/>
-            <keyword name="octave.dataset.USJudgeRatings" id="octave.dataset.USJudgeRatings" ref="html/octave_002edataset_002eUSJudgeRatings.html"/>
-            <keyword name="octave.dataset.USPersonalExpenditure" id="octave.dataset.USPersonalExpenditure" ref="html/octave_002edataset_002eUSPersonalExpenditure.html"/>
-            <keyword name="octave.dataset.VADeaths" id="octave.dataset.VADeaths" ref="html/octave_002edataset_002eVADeaths.html"/>
-            <keyword name="octave.dataset.WWWusage" id="octave.dataset.WWWusage" ref="html/octave_002edataset_002eWWWusage.html"/>
-            <keyword name="octave.dataset.WorldPhones" id="octave.dataset.WorldPhones" ref="html/octave_002edataset_002eWorldPhones.html"/>
-            <keyword name="octave.dataset.airmiles" id="octave.dataset.airmiles" ref="html/octave_002edataset_002eairmiles.html"/>
-            <keyword name="octave.dataset.airquality" id="octave.dataset.airquality" ref="html/octave_002edataset_002eairquality.html"/>
-            <keyword name="octave.dataset.anscombe" id="octave.dataset.anscombe" ref="html/octave_002edataset_002eanscombe.html"/>
-            <keyword name="octave.dataset.attenu" id="octave.dataset.attenu" ref="html/octave_002edataset_002eattenu.html"/>
-            <keyword name="octave.dataset.attitude" id="octave.dataset.attitude" ref="html/octave_002edataset_002eattitude.html"/>
-            <keyword name="octave.dataset.austres" id="octave.dataset.austres" ref="html/octave_002edataset_002eaustres.html"/>
-            <keyword name="octave.dataset.beavers" id="octave.dataset.beavers" ref="html/octave_002edataset_002ebeavers.html"/>
-            <keyword name="octave.dataset.cars" id="octave.dataset.cars" ref="html/octave_002edataset_002ecars.html"/>
-            <keyword name="octave.dataset.chickwts" id="octave.dataset.chickwts" ref="html/octave_002edataset_002echickwts.html"/>
-            <keyword name="octave.dataset.co2" id="octave.dataset.co2" ref="html/octave_002edataset_002eco2.html"/>
-            <keyword name="octave.dataset.crimtab" id="octave.dataset.crimtab" ref="html/octave_002edataset_002ecrimtab.html"/>
-            <keyword name="octave.dataset.cupcake" id="octave.dataset.cupcake" ref="html/octave_002edataset_002ecupcake.html"/>
-            <keyword name="octave.dataset.discoveries" id="octave.dataset.discoveries" ref="html/octave_002edataset_002ediscoveries.html"/>
-            <keyword name="octave.dataset.esoph" id="octave.dataset.esoph" ref="html/octave_002edataset_002eesoph.html"/>
-            <keyword name="octave.dataset.euro" id="octave.dataset.euro" ref="html/octave_002edataset_002eeuro.html"/>
-            <keyword name="octave.dataset.eurodist" id="octave.dataset.eurodist" ref="html/octave_002edataset_002eeurodist.html"/>
-            <keyword name="octave.dataset.faithful" id="octave.dataset.faithful" ref="html/octave_002edataset_002efaithful.html"/>
-            <keyword name="octave.dataset.freeny" id="octave.dataset.freeny" ref="html/octave_002edataset_002efreeny.html"/>
-            <keyword name="octave.dataset.infert" id="octave.dataset.infert" ref="html/octave_002edataset_002einfert.html"/>
-            <keyword name="octave.dataset.iris" id="octave.dataset.iris" ref="html/octave_002edataset_002eiris.html"/>
-            <keyword name="octave.dataset.islands" id="octave.dataset.islands" ref="html/octave_002edataset_002eislands.html"/>
-            <keyword name="octave.dataset.lh" id="octave.dataset.lh" ref="html/octave_002edataset_002elh.html"/>
-            <keyword name="octave.dataset.longley" id="octave.dataset.longley" ref="html/octave_002edataset_002elongley.html"/>
-            <keyword name="octave.dataset.lynx" id="octave.dataset.lynx" ref="html/octave_002edataset_002elynx.html"/>
-            <keyword name="octave.dataset.morley" id="octave.dataset.morley" ref="html/octave_002edataset_002emorley.html"/>
-            <keyword name="octave.dataset.mtcars" id="octave.dataset.mtcars" ref="html/octave_002edataset_002emtcars.html"/>
-            <keyword name="octave.dataset.nhtemp" id="octave.dataset.nhtemp" ref="html/octave_002edataset_002enhtemp.html"/>
-            <keyword name="octave.dataset.nottem" id="octave.dataset.nottem" ref="html/octave_002edataset_002enottem.html"/>
-            <keyword name="octave.dataset.npk" id="octave.dataset.npk" ref="html/octave_002edataset_002enpk.html"/>
-            <keyword name="octave.dataset.occupationalStatus" id="octave.dataset.occupationalStatus" ref="html/octave_002edataset_002eoccupationalStatus.html"/>
-            <keyword name="octave.dataset.precip" id="octave.dataset.precip" ref="html/octave_002edataset_002eprecip.html"/>
-            <keyword name="octave.dataset.presidents" id="octave.dataset.presidents" ref="html/octave_002edataset_002epresidents.html"/>
-            <keyword name="octave.dataset.pressure" id="octave.dataset.pressure" ref="html/octave_002edataset_002epressure.html"/>
-            <keyword name="octave.dataset.quakes" id="octave.dataset.quakes" ref="html/octave_002edataset_002equakes.html"/>
-            <keyword name="octave.dataset.randu" id="octave.dataset.randu" ref="html/octave_002edataset_002erandu.html"/>
-            <keyword name="octave.dataset.rivers" id="octave.dataset.rivers" ref="html/octave_002edataset_002erivers.html"/>
-            <keyword name="octave.dataset.rock" id="octave.dataset.rock" ref="html/octave_002edataset_002erock.html"/>
-            <keyword name="octave.dataset.sleep" id="octave.dataset.sleep" ref="html/octave_002edataset_002esleep.html"/>
-            <keyword name="octave.dataset.stackloss" id="octave.dataset.stackloss" ref="html/octave_002edataset_002estackloss.html"/>
-            <keyword name="octave.dataset.state" id="octave.dataset.state" ref="html/octave_002edataset_002estate.html"/>
-            <keyword name="octave.dataset.sunspot_month" id="octave.dataset.sunspot_month" ref="html/octave_002edataset_002esunspot_005fmonth.html"/>
-            <keyword name="octave.dataset.sunspot_year" id="octave.dataset.sunspot_year" ref="html/octave_002edataset_002esunspot_005fyear.html"/>
-            <keyword name="octave.dataset.sunspots" id="octave.dataset.sunspots" ref="html/octave_002edataset_002esunspots.html"/>
-            <keyword name="octave.dataset.swiss" id="octave.dataset.swiss" ref="html/octave_002edataset_002eswiss.html"/>
-            <keyword name="octave.dataset.treering" id="octave.dataset.treering" ref="html/octave_002edataset_002etreering.html"/>
-            <keyword name="octave.dataset.trees" id="octave.dataset.trees" ref="html/octave_002edataset_002etrees.html"/>
-            <keyword name="octave.dataset.uspop" id="octave.dataset.uspop" ref="html/octave_002edataset_002euspop.html"/>
-            <keyword name="octave.dataset.volcano" id="octave.dataset.volcano" ref="html/octave_002edataset_002evolcano.html"/>
-            <keyword name="octave.dataset.warpbreaks" id="octave.dataset.warpbreaks" ref="html/octave_002edataset_002ewarpbreaks.html"/>
-            <keyword name="octave.dataset.women" id="octave.dataset.women" ref="html/octave_002edataset_002ewomen.html"/>
-            <keyword name="octave.dataset.zCO2" id="octave.dataset.zCO2" ref="html/octave_002edataset_002ezCO2.html"/>
-            <keyword name="octave.datasets" id="octave.datasets" ref="html/octave_002edatasets.html"/>
-            <keyword name="octave.datasets.description" id="octave.datasets.description" ref="html/octave_002edatasets_002edescription.html"/>
-            <keyword name="octave.datasets.list" id="octave.datasets.list" ref="html/octave_002edatasets_002elist.html"/>
-            <keyword name="octave.datasets.load" id="octave.datasets.load" ref="html/octave_002edatasets_002eload.html"/>
-            <keyword name="octave.examples.coplot" id="octave.examples.coplot" ref="html/octave_002eexamples_002ecoplot.html"/>
-            <keyword name="octave.examples.plot_pairs" id="octave.examples.plot_pairs" ref="html/octave_002eexamples_002eplot_005fpairs.html"/>
             <keyword name="pp" id="pp" ref="html/pp.html"/>
-            <keyword name="rmmissing" id="rmmissing" ref="html/rmmissing.html"/>
             <keyword name="scalarexpand" id="scalarexpand" ref="html/scalarexpand.html"/>
             <keyword name="seconds" id="seconds" ref="html/seconds.html"/>
             <keyword name="size2str" id="size2str" ref="html/size2str.html"/>
             <keyword name="splitapply" id="splitapply" ref="html/splitapply.html"/>
-            <keyword name="standardizeMissing" id="standardizeMissing" ref="html/standardizeMissing.html"/>
-            <keyword name="startsWith" id="startsWith" ref="html/startsWith.html"/>
             <keyword name="string" id="string" ref="html/string.html"/>
             <keyword name="string.cell" id="string.cell" ref="html/string_002ecell.html"/>
             <keyword name="string.cellstr" id="string.cellstr" ref="html/string_002ecellstr.html"/>
@@ -1008,6 +911,7 @@
             <keyword name="table.columns" id="table.columns" ref="html/table_002ecolumns.html"/>
             <keyword name="table.congruentize" id="table.congruentize" ref="html/table_002econgruentize.html"/>
             <keyword name="table.convertvars" id="table.convertvars" ref="html/table_002econvertvars.html"/>
+            <keyword name="table.end" id="table.end" ref="html/table_002eend.html"/>
             <keyword name="table.evalWithVars" id="table.evalWithVars" ref="html/table_002eevalWithVars.html"/>
             <keyword name="table.findgroups" id="table.findgroups" ref="html/table_002efindgroups.html"/>
             <keyword name="table.getvar" id="table.getvar" ref="html/table_002egetvar.html"/>
@@ -1044,7 +948,6 @@
             <keyword name="table.repmat" id="table.repmat" ref="html/table_002erepmat.html"/>
             <keyword name="table.resolveVarRef" id="table.resolveVarRef" ref="html/table_002eresolveVarRef.html"/>
             <keyword name="table.restrict" id="table.restrict" ref="html/table_002erestrict.html"/>
-            <keyword name="table.rmmissing" id="table.rmmissing" ref="html/table_002ermmissing.html"/>
             <keyword name="table.rowfun" id="table.rowfun" ref="html/table_002erowfun.html"/>
             <keyword name="table.rows" id="table.rows" ref="html/table_002erows.html"/>
             <keyword name="table.rows2vars" id="table.rows2vars" ref="html/table_002erows2vars.html"/>
@@ -1062,7 +965,6 @@
             <keyword name="table.splitvars" id="table.splitvars" ref="html/table_002esplitvars.html"/>
             <keyword name="table.squeeze" id="table.squeeze" ref="html/table_002esqueeze.html"/>
             <keyword name="table.stack" id="table.stack" ref="html/table_002estack.html"/>
-            <keyword name="table.standardizeMissing" id="table.standardizeMissing" ref="html/table_002estandardizeMissing.html"/>
             <keyword name="table.subsetrows" id="table.subsetrows" ref="html/table_002esubsetrows.html"/>
             <keyword name="table.subsetvars" id="table.subsetvars" ref="html/table_002esubsetvars.html"/>
             <keyword name="table.summary" id="table.summary" ref="html/table_002esummary.html"/>
@@ -1077,6 +979,104 @@
             <keyword name="table.vertcat" id="table.vertcat" ref="html/table_002evertcat.html"/>
             <keyword name="table.width" id="table.width" ref="html/table_002ewidth.html"/>
             <keyword name="tableOuterFillValue" id="tableOuterFillValue" ref="html/tableOuterFillValue.html"/>
+            <keyword name="tblish.chrono.DummyClass" id="tblish.chrono.DummyClass" ref="html/tblish_002echrono_002eDummyClass.html"/>
+            <keyword name="tblish.chrono.DummyClass.DummyClass" id="tblish.chrono.DummyClass.DummyClass" ref="html/tblish_002echrono_002eDummyClass_002eDummyClass.html"/>
+            <keyword name="tblish.chrono.DummyClass.bar" id="tblish.chrono.DummyClass.bar" ref="html/tblish_002echrono_002eDummyClass_002ebar.html"/>
+            <keyword name="tblish.chrono.DummyClass.foo" id="tblish.chrono.DummyClass.foo" ref="html/tblish_002echrono_002eDummyClass_002efoo.html"/>
+            <keyword name="tblish.chrono.dummy_function" id="tblish.chrono.dummy_function" ref="html/tblish_002echrono_002edummy_005ffunction.html"/>
+            <keyword name="tblish.dataset" id="tblish.dataset" ref="html/tblish_002edataset.html"/>
+            <keyword name="tblish.dataset.AirPassengers" id="tblish.dataset.AirPassengers" ref="html/tblish_002edataset_002eAirPassengers.html"/>
+            <keyword name="tblish.dataset.BJsales" id="tblish.dataset.BJsales" ref="html/tblish_002edataset_002eBJsales.html"/>
+            <keyword name="tblish.dataset.BOD" id="tblish.dataset.BOD" ref="html/tblish_002edataset_002eBOD.html"/>
+            <keyword name="tblish.dataset.ChickWeight" id="tblish.dataset.ChickWeight" ref="html/tblish_002edataset_002eChickWeight.html"/>
+            <keyword name="tblish.dataset.DNase" id="tblish.dataset.DNase" ref="html/tblish_002edataset_002eDNase.html"/>
+            <keyword name="tblish.dataset.EuStockMarkets" id="tblish.dataset.EuStockMarkets" ref="html/tblish_002edataset_002eEuStockMarkets.html"/>
+            <keyword name="tblish.dataset.Formaldehyde" id="tblish.dataset.Formaldehyde" ref="html/tblish_002edataset_002eFormaldehyde.html"/>
+            <keyword name="tblish.dataset.HairEyeColor" id="tblish.dataset.HairEyeColor" ref="html/tblish_002edataset_002eHairEyeColor.html"/>
+            <keyword name="tblish.dataset.Harman23cor" id="tblish.dataset.Harman23cor" ref="html/tblish_002edataset_002eHarman23cor.html"/>
+            <keyword name="tblish.dataset.Harman74cor" id="tblish.dataset.Harman74cor" ref="html/tblish_002edataset_002eHarman74cor.html"/>
+            <keyword name="tblish.dataset.Indometh" id="tblish.dataset.Indometh" ref="html/tblish_002edataset_002eIndometh.html"/>
+            <keyword name="tblish.dataset.InsectSprays" id="tblish.dataset.InsectSprays" ref="html/tblish_002edataset_002eInsectSprays.html"/>
+            <keyword name="tblish.dataset.JohnsonJohnson" id="tblish.dataset.JohnsonJohnson" ref="html/tblish_002edataset_002eJohnsonJohnson.html"/>
+            <keyword name="tblish.dataset.LakeHuron" id="tblish.dataset.LakeHuron" ref="html/tblish_002edataset_002eLakeHuron.html"/>
+            <keyword name="tblish.dataset.LifeCycleSavings" id="tblish.dataset.LifeCycleSavings" ref="html/tblish_002edataset_002eLifeCycleSavings.html"/>
+            <keyword name="tblish.dataset.Loblolly" id="tblish.dataset.Loblolly" ref="html/tblish_002edataset_002eLoblolly.html"/>
+            <keyword name="tblish.dataset.Nile" id="tblish.dataset.Nile" ref="html/tblish_002edataset_002eNile.html"/>
+            <keyword name="tblish.dataset.Orange" id="tblish.dataset.Orange" ref="html/tblish_002edataset_002eOrange.html"/>
+            <keyword name="tblish.dataset.OrchardSprays" id="tblish.dataset.OrchardSprays" ref="html/tblish_002edataset_002eOrchardSprays.html"/>
+            <keyword name="tblish.dataset.PlantGrowth" id="tblish.dataset.PlantGrowth" ref="html/tblish_002edataset_002ePlantGrowth.html"/>
+            <keyword name="tblish.dataset.Puromycin" id="tblish.dataset.Puromycin" ref="html/tblish_002edataset_002ePuromycin.html"/>
+            <keyword name="tblish.dataset.Theoph" id="tblish.dataset.Theoph" ref="html/tblish_002edataset_002eTheoph.html"/>
+            <keyword name="tblish.dataset.Titanic" id="tblish.dataset.Titanic" ref="html/tblish_002edataset_002eTitanic.html"/>
+            <keyword name="tblish.dataset.ToothGrowth" id="tblish.dataset.ToothGrowth" ref="html/tblish_002edataset_002eToothGrowth.html"/>
+            <keyword name="tblish.dataset.UCBAdmissions" id="tblish.dataset.UCBAdmissions" ref="html/tblish_002edataset_002eUCBAdmissions.html"/>
+            <keyword name="tblish.dataset.UKDriverDeaths" id="tblish.dataset.UKDriverDeaths" ref="html/tblish_002edataset_002eUKDriverDeaths.html"/>
+            <keyword name="tblish.dataset.UKLungDeaths" id="tblish.dataset.UKLungDeaths" ref="html/tblish_002edataset_002eUKLungDeaths.html"/>
+            <keyword name="tblish.dataset.UKgas" id="tblish.dataset.UKgas" ref="html/tblish_002edataset_002eUKgas.html"/>
+            <keyword name="tblish.dataset.USAccDeaths" id="tblish.dataset.USAccDeaths" ref="html/tblish_002edataset_002eUSAccDeaths.html"/>
+            <keyword name="tblish.dataset.USArrests" id="tblish.dataset.USArrests" ref="html/tblish_002edataset_002eUSArrests.html"/>
+            <keyword name="tblish.dataset.USJudgeRatings" id="tblish.dataset.USJudgeRatings" ref="html/tblish_002edataset_002eUSJudgeRatings.html"/>
+            <keyword name="tblish.dataset.USPersonalExpenditure" id="tblish.dataset.USPersonalExpenditure" ref="html/tblish_002edataset_002eUSPersonalExpenditure.html"/>
+            <keyword name="tblish.dataset.VADeaths" id="tblish.dataset.VADeaths" ref="html/tblish_002edataset_002eVADeaths.html"/>
+            <keyword name="tblish.dataset.WWWusage" id="tblish.dataset.WWWusage" ref="html/tblish_002edataset_002eWWWusage.html"/>
+            <keyword name="tblish.dataset.WorldPhones" id="tblish.dataset.WorldPhones" ref="html/tblish_002edataset_002eWorldPhones.html"/>
+            <keyword name="tblish.dataset.airmiles" id="tblish.dataset.airmiles" ref="html/tblish_002edataset_002eairmiles.html"/>
+            <keyword name="tblish.dataset.airquality" id="tblish.dataset.airquality" ref="html/tblish_002edataset_002eairquality.html"/>
+            <keyword name="tblish.dataset.anscombe" id="tblish.dataset.anscombe" ref="html/tblish_002edataset_002eanscombe.html"/>
+            <keyword name="tblish.dataset.attenu" id="tblish.dataset.attenu" ref="html/tblish_002edataset_002eattenu.html"/>
+            <keyword name="tblish.dataset.attitude" id="tblish.dataset.attitude" ref="html/tblish_002edataset_002eattitude.html"/>
+            <keyword name="tblish.dataset.austres" id="tblish.dataset.austres" ref="html/tblish_002edataset_002eaustres.html"/>
+            <keyword name="tblish.dataset.beavers" id="tblish.dataset.beavers" ref="html/tblish_002edataset_002ebeavers.html"/>
+            <keyword name="tblish.dataset.cars" id="tblish.dataset.cars" ref="html/tblish_002edataset_002ecars.html"/>
+            <keyword name="tblish.dataset.chickwts" id="tblish.dataset.chickwts" ref="html/tblish_002edataset_002echickwts.html"/>
+            <keyword name="tblish.dataset.co2" id="tblish.dataset.co2" ref="html/tblish_002edataset_002eco2.html"/>
+            <keyword name="tblish.dataset.crimtab" id="tblish.dataset.crimtab" ref="html/tblish_002edataset_002ecrimtab.html"/>
+            <keyword name="tblish.dataset.cupcake" id="tblish.dataset.cupcake" ref="html/tblish_002edataset_002ecupcake.html"/>
+            <keyword name="tblish.dataset.discoveries" id="tblish.dataset.discoveries" ref="html/tblish_002edataset_002ediscoveries.html"/>
+            <keyword name="tblish.dataset.esoph" id="tblish.dataset.esoph" ref="html/tblish_002edataset_002eesoph.html"/>
+            <keyword name="tblish.dataset.euro" id="tblish.dataset.euro" ref="html/tblish_002edataset_002eeuro.html"/>
+            <keyword name="tblish.dataset.eurodist" id="tblish.dataset.eurodist" ref="html/tblish_002edataset_002eeurodist.html"/>
+            <keyword name="tblish.dataset.faithful" id="tblish.dataset.faithful" ref="html/tblish_002edataset_002efaithful.html"/>
+            <keyword name="tblish.dataset.freeny" id="tblish.dataset.freeny" ref="html/tblish_002edataset_002efreeny.html"/>
+            <keyword name="tblish.dataset.infert" id="tblish.dataset.infert" ref="html/tblish_002edataset_002einfert.html"/>
+            <keyword name="tblish.dataset.iris" id="tblish.dataset.iris" ref="html/tblish_002edataset_002eiris.html"/>
+            <keyword name="tblish.dataset.islands" id="tblish.dataset.islands" ref="html/tblish_002edataset_002eislands.html"/>
+            <keyword name="tblish.dataset.lh" id="tblish.dataset.lh" ref="html/tblish_002edataset_002elh.html"/>
+            <keyword name="tblish.dataset.longley" id="tblish.dataset.longley" ref="html/tblish_002edataset_002elongley.html"/>
+            <keyword name="tblish.dataset.lynx" id="tblish.dataset.lynx" ref="html/tblish_002edataset_002elynx.html"/>
+            <keyword name="tblish.dataset.morley" id="tblish.dataset.morley" ref="html/tblish_002edataset_002emorley.html"/>
+            <keyword name="tblish.dataset.mtcars" id="tblish.dataset.mtcars" ref="html/tblish_002edataset_002emtcars.html"/>
+            <keyword name="tblish.dataset.nhtemp" id="tblish.dataset.nhtemp" ref="html/tblish_002edataset_002enhtemp.html"/>
+            <keyword name="tblish.dataset.nottem" id="tblish.dataset.nottem" ref="html/tblish_002edataset_002enottem.html"/>
+            <keyword name="tblish.dataset.npk" id="tblish.dataset.npk" ref="html/tblish_002edataset_002enpk.html"/>
+            <keyword name="tblish.dataset.occupationalStatus" id="tblish.dataset.occupationalStatus" ref="html/tblish_002edataset_002eoccupationalStatus.html"/>
+            <keyword name="tblish.dataset.precip" id="tblish.dataset.precip" ref="html/tblish_002edataset_002eprecip.html"/>
+            <keyword name="tblish.dataset.presidents" id="tblish.dataset.presidents" ref="html/tblish_002edataset_002epresidents.html"/>
+            <keyword name="tblish.dataset.pressure" id="tblish.dataset.pressure" ref="html/tblish_002edataset_002epressure.html"/>
+            <keyword name="tblish.dataset.quakes" id="tblish.dataset.quakes" ref="html/tblish_002edataset_002equakes.html"/>
+            <keyword name="tblish.dataset.randu" id="tblish.dataset.randu" ref="html/tblish_002edataset_002erandu.html"/>
+            <keyword name="tblish.dataset.rivers" id="tblish.dataset.rivers" ref="html/tblish_002edataset_002erivers.html"/>
+            <keyword name="tblish.dataset.rock" id="tblish.dataset.rock" ref="html/tblish_002edataset_002erock.html"/>
+            <keyword name="tblish.dataset.sleep" id="tblish.dataset.sleep" ref="html/tblish_002edataset_002esleep.html"/>
+            <keyword name="tblish.dataset.stackloss" id="tblish.dataset.stackloss" ref="html/tblish_002edataset_002estackloss.html"/>
+            <keyword name="tblish.dataset.state" id="tblish.dataset.state" ref="html/tblish_002edataset_002estate.html"/>
+            <keyword name="tblish.dataset.sunspot_month" id="tblish.dataset.sunspot_month" ref="html/tblish_002edataset_002esunspot_005fmonth.html"/>
+            <keyword name="tblish.dataset.sunspot_year" id="tblish.dataset.sunspot_year" ref="html/tblish_002edataset_002esunspot_005fyear.html"/>
+            <keyword name="tblish.dataset.sunspots" id="tblish.dataset.sunspots" ref="html/tblish_002edataset_002esunspots.html"/>
+            <keyword name="tblish.dataset.swiss" id="tblish.dataset.swiss" ref="html/tblish_002edataset_002eswiss.html"/>
+            <keyword name="tblish.dataset.treering" id="tblish.dataset.treering" ref="html/tblish_002edataset_002etreering.html"/>
+            <keyword name="tblish.dataset.trees" id="tblish.dataset.trees" ref="html/tblish_002edataset_002etrees.html"/>
+            <keyword name="tblish.dataset.uspop" id="tblish.dataset.uspop" ref="html/tblish_002edataset_002euspop.html"/>
+            <keyword name="tblish.dataset.volcano" id="tblish.dataset.volcano" ref="html/tblish_002edataset_002evolcano.html"/>
+            <keyword name="tblish.dataset.warpbreaks" id="tblish.dataset.warpbreaks" ref="html/tblish_002edataset_002ewarpbreaks.html"/>
+            <keyword name="tblish.dataset.women" id="tblish.dataset.women" ref="html/tblish_002edataset_002ewomen.html"/>
+            <keyword name="tblish.dataset.zCO2" id="tblish.dataset.zCO2" ref="html/tblish_002edataset_002ezCO2.html"/>
+            <keyword name="tblish.datasets" id="tblish.datasets" ref="html/tblish_002edatasets.html"/>
+            <keyword name="tblish.datasets.description" id="tblish.datasets.description" ref="html/tblish_002edatasets_002edescription.html"/>
+            <keyword name="tblish.datasets.list" id="tblish.datasets.list" ref="html/tblish_002edatasets_002elist.html"/>
+            <keyword name="tblish.datasets.load" id="tblish.datasets.load" ref="html/tblish_002edatasets_002eload.html"/>
+            <keyword name="tblish.examples.coplot" id="tblish.examples.coplot" ref="html/tblish_002eexamples_002ecoplot.html"/>
+            <keyword name="tblish.examples.plot_pairs" id="tblish.examples.plot_pairs" ref="html/tblish_002eexamples_002eplot_005fpairs.html"/>
             <keyword name="timezones" id="timezones" ref="html/timezones.html"/>
             <keyword name="vartype" id="vartype" ref="html/vartype.html"/>
             <keyword name="vecfun" id="vecfun" ref="html/vecfun.html"/>
@@ -1089,6 +1089,104 @@
             <file>html/vecfun.html</file>
             <file>html/vartype.html</file>
             <file>html/timezones.html</file>
+            <file>html/tblish_002eexamples_002eplot_005fpairs.html</file>
+            <file>html/tblish_002eexamples_002ecoplot.html</file>
+            <file>html/tblish_002edatasets_002edescription.html</file>
+            <file>html/tblish_002edatasets_002eload.html</file>
+            <file>html/tblish_002edatasets_002elist.html</file>
+            <file>html/tblish_002edatasets.html</file>
+            <file>html/tblish_002edataset_002ezCO2.html</file>
+            <file>html/tblish_002edataset_002eWWWusage.html</file>
+            <file>html/tblish_002edataset_002eWorldPhones.html</file>
+            <file>html/tblish_002edataset_002ewomen.html</file>
+            <file>html/tblish_002edataset_002ewarpbreaks.html</file>
+            <file>html/tblish_002edataset_002evolcano.html</file>
+            <file>html/tblish_002edataset_002eVADeaths.html</file>
+            <file>html/tblish_002edataset_002euspop.html</file>
+            <file>html/tblish_002edataset_002eUSPersonalExpenditure.html</file>
+            <file>html/tblish_002edataset_002eUSJudgeRatings.html</file>
+            <file>html/tblish_002edataset_002eUSArrests.html</file>
+            <file>html/tblish_002edataset_002eUSAccDeaths.html</file>
+            <file>html/tblish_002edataset_002eUKLungDeaths.html</file>
+            <file>html/tblish_002edataset_002eUKgas.html</file>
+            <file>html/tblish_002edataset_002eUKDriverDeaths.html</file>
+            <file>html/tblish_002edataset_002eUCBAdmissions.html</file>
+            <file>html/tblish_002edataset_002etrees.html</file>
+            <file>html/tblish_002edataset_002etreering.html</file>
+            <file>html/tblish_002edataset_002eToothGrowth.html</file>
+            <file>html/tblish_002edataset_002eTitanic.html</file>
+            <file>html/tblish_002edataset_002eTheoph.html</file>
+            <file>html/tblish_002edataset_002eswiss.html</file>
+            <file>html/tblish_002edataset_002esunspots.html</file>
+            <file>html/tblish_002edataset_002esunspot_005fyear.html</file>
+            <file>html/tblish_002edataset_002esunspot_005fmonth.html</file>
+            <file>html/tblish_002edataset_002estate.html</file>
+            <file>html/tblish_002edataset_002estackloss.html</file>
+            <file>html/tblish_002edataset_002esleep.html</file>
+            <file>html/tblish_002edataset_002erock.html</file>
+            <file>html/tblish_002edataset_002erivers.html</file>
+            <file>html/tblish_002edataset_002erandu.html</file>
+            <file>html/tblish_002edataset_002equakes.html</file>
+            <file>html/tblish_002edataset_002ePuromycin.html</file>
+            <file>html/tblish_002edataset_002epressure.html</file>
+            <file>html/tblish_002edataset_002epresidents.html</file>
+            <file>html/tblish_002edataset_002eprecip.html</file>
+            <file>html/tblish_002edataset_002ePlantGrowth.html</file>
+            <file>html/tblish_002edataset_002eOrchardSprays.html</file>
+            <file>html/tblish_002edataset_002eOrange.html</file>
+            <file>html/tblish_002edataset_002eoccupationalStatus.html</file>
+            <file>html/tblish_002edataset_002enpk.html</file>
+            <file>html/tblish_002edataset_002enottem.html</file>
+            <file>html/tblish_002edataset_002eNile.html</file>
+            <file>html/tblish_002edataset_002enhtemp.html</file>
+            <file>html/tblish_002edataset_002emtcars.html</file>
+            <file>html/tblish_002edataset_002emorley.html</file>
+            <file>html/tblish_002edataset_002elynx.html</file>
+            <file>html/tblish_002edataset_002elongley.html</file>
+            <file>html/tblish_002edataset_002eLoblolly.html</file>
+            <file>html/tblish_002edataset_002eLifeCycleSavings.html</file>
+            <file>html/tblish_002edataset_002elh.html</file>
+            <file>html/tblish_002edataset_002eLakeHuron.html</file>
+            <file>html/tblish_002edataset_002eJohnsonJohnson.html</file>
+            <file>html/tblish_002edataset_002eislands.html</file>
+            <file>html/tblish_002edataset_002eiris.html</file>
+            <file>html/tblish_002edataset_002eInsectSprays.html</file>
+            <file>html/tblish_002edataset_002einfert.html</file>
+            <file>html/tblish_002edataset_002eIndometh.html</file>
+            <file>html/tblish_002edataset_002eHarman74cor.html</file>
+            <file>html/tblish_002edataset_002eHarman23cor.html</file>
+            <file>html/tblish_002edataset_002eHairEyeColor.html</file>
+            <file>html/tblish_002edataset_002efreeny.html</file>
+            <file>html/tblish_002edataset_002eFormaldehyde.html</file>
+            <file>html/tblish_002edataset_002efaithful.html</file>
+            <file>html/tblish_002edataset_002eEuStockMarkets.html</file>
+            <file>html/tblish_002edataset_002eeurodist.html</file>
+            <file>html/tblish_002edataset_002eeuro.html</file>
+            <file>html/tblish_002edataset_002eesoph.html</file>
+            <file>html/tblish_002edataset_002eDNase.html</file>
+            <file>html/tblish_002edataset_002ediscoveries.html</file>
+            <file>html/tblish_002edataset_002ecupcake.html</file>
+            <file>html/tblish_002edataset_002ecrimtab.html</file>
+            <file>html/tblish_002edataset_002eco2.html</file>
+            <file>html/tblish_002edataset_002echickwts.html</file>
+            <file>html/tblish_002edataset_002eChickWeight.html</file>
+            <file>html/tblish_002edataset_002ecars.html</file>
+            <file>html/tblish_002edataset_002eBOD.html</file>
+            <file>html/tblish_002edataset_002eBJsales.html</file>
+            <file>html/tblish_002edataset_002ebeavers.html</file>
+            <file>html/tblish_002edataset_002eaustres.html</file>
+            <file>html/tblish_002edataset_002eattitude.html</file>
+            <file>html/tblish_002edataset_002eattenu.html</file>
+            <file>html/tblish_002edataset_002eanscombe.html</file>
+            <file>html/tblish_002edataset_002eairquality.html</file>
+            <file>html/tblish_002edataset_002eAirPassengers.html</file>
+            <file>html/tblish_002edataset_002eairmiles.html</file>
+            <file>html/tblish_002edataset.html</file>
+            <file>html/tblish_002echrono_002eDummyClass_002ebar.html</file>
+            <file>html/tblish_002echrono_002eDummyClass_002efoo.html</file>
+            <file>html/tblish_002echrono_002eDummyClass_002eDummyClass.html</file>
+            <file>html/tblish_002echrono_002eDummyClass.html</file>
+            <file>html/tblish_002echrono_002edummy_005ffunction.html</file>
             <file>html/tableOuterFillValue.html</file>
             <file>html/table_002esubsetvars.html</file>
             <file>html/table_002esubsetrows.html</file>
@@ -1099,8 +1197,6 @@
             <file>html/table_002efindgroups.html</file>
             <file>html/table_002erowfun.html</file>
             <file>html/table_002evarfun.html</file>
-            <file>html/table_002estandardizeMissing.html</file>
-            <file>html/table_002ermmissing.html</file>
             <file>html/table_002eismissing.html</file>
             <file>html/table_002eismember.html</file>
             <file>html/table_002esetdiff.html</file>
@@ -1155,6 +1251,7 @@
             <file>html/table_002esqueeze.html</file>
             <file>html/table_002endims.html</file>
             <file>html/table_002elength.html</file>
+            <file>html/table_002eend.html</file>
             <file>html/table_002esize.html</file>
             <file>html/table_002eistable.html</file>
             <file>html/table_002evarnames.html</file>
@@ -1202,103 +1299,8 @@
             <file>html/rmmissing.html</file>
             <file>html/pp.html</file>
             <file>html/octave_002eexamples_002eplot_005fpairs.html</file>
-            <file>html/octave_002eexamples_002ecoplot.html</file>
-            <file>html/octave_002edatasets_002edescription.html</file>
-            <file>html/octave_002edatasets_002eload.html</file>
-            <file>html/octave_002edatasets_002elist.html</file>
             <file>html/octave_002edatasets.html</file>
-            <file>html/octave_002edataset_002ezCO2.html</file>
-            <file>html/octave_002edataset_002eWWWusage.html</file>
-            <file>html/octave_002edataset_002eWorldPhones.html</file>
-            <file>html/octave_002edataset_002ewomen.html</file>
-            <file>html/octave_002edataset_002ewarpbreaks.html</file>
-            <file>html/octave_002edataset_002evolcano.html</file>
-            <file>html/octave_002edataset_002eVADeaths.html</file>
-            <file>html/octave_002edataset_002euspop.html</file>
-            <file>html/octave_002edataset_002eUSPersonalExpenditure.html</file>
-            <file>html/octave_002edataset_002eUSJudgeRatings.html</file>
-            <file>html/octave_002edataset_002eUSArrests.html</file>
-            <file>html/octave_002edataset_002eUSAccDeaths.html</file>
-            <file>html/octave_002edataset_002eUKLungDeaths.html</file>
-            <file>html/octave_002edataset_002eUKgas.html</file>
-            <file>html/octave_002edataset_002eUKDriverDeaths.html</file>
-            <file>html/octave_002edataset_002eUCBAdmissions.html</file>
-            <file>html/octave_002edataset_002etrees.html</file>
-            <file>html/octave_002edataset_002etreering.html</file>
-            <file>html/octave_002edataset_002eToothGrowth.html</file>
-            <file>html/octave_002edataset_002eTitanic.html</file>
-            <file>html/octave_002edataset_002eTheoph.html</file>
-            <file>html/octave_002edataset_002eswiss.html</file>
-            <file>html/octave_002edataset_002esunspots.html</file>
-            <file>html/octave_002edataset_002esunspot_005fyear.html</file>
-            <file>html/octave_002edataset_002esunspot_005fmonth.html</file>
-            <file>html/octave_002edataset_002estate.html</file>
-            <file>html/octave_002edataset_002estackloss.html</file>
-            <file>html/octave_002edataset_002esleep.html</file>
-            <file>html/octave_002edataset_002erock.html</file>
-            <file>html/octave_002edataset_002erivers.html</file>
-            <file>html/octave_002edataset_002erandu.html</file>
-            <file>html/octave_002edataset_002equakes.html</file>
-            <file>html/octave_002edataset_002ePuromycin.html</file>
-            <file>html/octave_002edataset_002epressure.html</file>
-            <file>html/octave_002edataset_002epresidents.html</file>
-            <file>html/octave_002edataset_002eprecip.html</file>
-            <file>html/octave_002edataset_002ePlantGrowth.html</file>
-            <file>html/octave_002edataset_002eOrchardSprays.html</file>
-            <file>html/octave_002edataset_002eOrange.html</file>
-            <file>html/octave_002edataset_002eoccupationalStatus.html</file>
-            <file>html/octave_002edataset_002enpk.html</file>
-            <file>html/octave_002edataset_002enottem.html</file>
-            <file>html/octave_002edataset_002eNile.html</file>
-            <file>html/octave_002edataset_002enhtemp.html</file>
-            <file>html/octave_002edataset_002emtcars.html</file>
-            <file>html/octave_002edataset_002emorley.html</file>
-            <file>html/octave_002edataset_002elynx.html</file>
-            <file>html/octave_002edataset_002elongley.html</file>
-            <file>html/octave_002edataset_002eLoblolly.html</file>
-            <file>html/octave_002edataset_002eLifeCycleSavings.html</file>
-            <file>html/octave_002edataset_002elh.html</file>
-            <file>html/octave_002edataset_002eLakeHuron.html</file>
-            <file>html/octave_002edataset_002eJohnsonJohnson.html</file>
-            <file>html/octave_002edataset_002eislands.html</file>
-            <file>html/octave_002edataset_002eiris.html</file>
-            <file>html/octave_002edataset_002eInsectSprays.html</file>
-            <file>html/octave_002edataset_002einfert.html</file>
-            <file>html/octave_002edataset_002eIndometh.html</file>
-            <file>html/octave_002edataset_002eHarman74cor.html</file>
-            <file>html/octave_002edataset_002eHarman23cor.html</file>
-            <file>html/octave_002edataset_002eHairEyeColor.html</file>
-            <file>html/octave_002edataset_002efreeny.html</file>
-            <file>html/octave_002edataset_002eFormaldehyde.html</file>
-            <file>html/octave_002edataset_002efaithful.html</file>
-            <file>html/octave_002edataset_002eEuStockMarkets.html</file>
-            <file>html/octave_002edataset_002eeurodist.html</file>
-            <file>html/octave_002edataset_002eeuro.html</file>
-            <file>html/octave_002edataset_002eesoph.html</file>
-            <file>html/octave_002edataset_002eDNase.html</file>
-            <file>html/octave_002edataset_002ediscoveries.html</file>
-            <file>html/octave_002edataset_002ecupcake.html</file>
-            <file>html/octave_002edataset_002ecrimtab.html</file>
-            <file>html/octave_002edataset_002eco2.html</file>
-            <file>html/octave_002edataset_002echickwts.html</file>
-            <file>html/octave_002edataset_002eChickWeight.html</file>
-            <file>html/octave_002edataset_002ecars.html</file>
-            <file>html/octave_002edataset_002eBOD.html</file>
-            <file>html/octave_002edataset_002eBJsales.html</file>
-            <file>html/octave_002edataset_002ebeavers.html</file>
-            <file>html/octave_002edataset_002eaustres.html</file>
-            <file>html/octave_002edataset_002eattitude.html</file>
-            <file>html/octave_002edataset_002eattenu.html</file>
-            <file>html/octave_002edataset_002eanscombe.html</file>
-            <file>html/octave_002edataset_002eairquality.html</file>
-            <file>html/octave_002edataset_002eAirPassengers.html</file>
-            <file>html/octave_002edataset_002eairmiles.html</file>
             <file>html/octave_002edataset.html</file>
-            <file>html/octave_002echrono_002eDummyClass_002ebar.html</file>
-            <file>html/octave_002echrono_002eDummyClass_002efoo.html</file>
-            <file>html/octave_002echrono_002eDummyClass_002eDummyClass.html</file>
-            <file>html/octave_002echrono_002eDummyClass.html</file>
-            <file>html/octave_002echrono_002edummy_005ffunction.html</file>
             <file>html/NaT.html</file>
             <file>html/mustBeVector.html</file>
             <file>html/mustBeScalarLogical.html</file>
@@ -1333,6 +1335,7 @@
             <file>html/localdate_002eNaT.html</file>
             <file>html/localdate_002elocaldate.html</file>
             <file>html/localdate.html</file>
+            <file>html/istable.html</file>
             <file>html/isnanny.html</file>
             <file>html/ismissing.html</file>
             <file>html/isfolder.html</file>
