@@ -4,8 +4,6 @@ This document describes the design choices I made in Tablicious, and some
 justifications for them and why I think they should be allowed into core
 Octave, or at least an Octave Forge package.
 
-# Design
-
 ## Objects
 
 ### Copy constructors
@@ -147,9 +145,9 @@ I’m thinking about breaking the `load` step out into separate `load_raw`
 and `munge` steps, to make it easier for users to view the example
 dataset code and see how the data-packaging classes like `table` are used.
 
-# Justification
+## Justification
 
-## Why does `table` display differently than in Matlab?
+### Why does `table` display differently than in Matlab?
 
 In Matlab, doing `disp()` on a `table` will result in its printing the
 entire table contents in tabular form, as it does with primitives and
@@ -164,7 +162,7 @@ each way, and found the summary style to be much more usable.
 
 I think this is fine because `disp()` is mostly used for interactive use, and is not frequently used to produce actual program output, so this shouldn't be a real compatibility issue.
 
-## Justify all these new top-level functions
+### Justify all these new top-level functions
 
 Tablicious defines several new top-level (global, not in namespaces or
 `private/` directories) functions. Many of them are ports of Matlab

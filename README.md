@@ -49,16 +49,15 @@ If you want to hack on the Tablicious code itself, set it up like this:
 Once you have Tablicious installed, the user manual will show up in the Octave GUI’s documentation browser.
 You can also run `help <foo>` or `doc <foo>` for any of the classes or functions in Tablicious.
 
-The documentation for the latest development version can be viewed online at <https://apjanke.github.io/octave-tablicious/doc/tablicious.html>.
+The documentation for the latest development version can be viewed online at <https://apjanke.github.io/octave-tablicious/user-guide/tablicious.html>.
 
-See the `doc-project/` directory for notes on this project, especially for [Developer Notes](doc-project/Developer-Notes.md) and [Design and Justification](doc-project/Design-and-Justification.md), which discusses how and why this library is written.
-Also see [CONTRIBUTING](CONTRIBUTING.md) if you would like to contribute to this project.
+See the `docs/` directory for notes on this project, especially for [Developer Notes](docs/Developer-Notes.md) and [Design and Justification](docs/Design-and-Justification.md), which discusses how and why this library is written. Also see [CONTRIBUTING](CONTRIBUTING.md) if you would like to contribute to this project.
 
 ## Contributing
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for more details.
 
-### No Matlab usage!
+### No Matlab Usage
 
 To avoid issues with the Matlab license's Non-Compete clause, this project needs to be developed entirely using Octave, and not using Matlab at all, including for testing or benchmarking purposes. Please do not submit any Matlab test or benchmark results, or any code produced using Matlab. And if you know anything about how the Matlab internals work, please do not tell me!
 
