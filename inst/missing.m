@@ -512,7 +512,7 @@ classdef missing
     function out = demote (args)
       %DEMOTE Internal implementation method
       %
-      % This will become private before octave-table release 1.0.
+      % This will become private before tblish.table release 1.0.
       found_type = [];
       for i = 1:numel (args)
         if isa (args{i}, 'missing')

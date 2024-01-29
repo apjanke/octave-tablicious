@@ -340,7 +340,7 @@ classdef localdate
         str = str{1};
         fprintf (' %s\n', str);
       else
-        txt = octave.chrono.internal.format_dispstr_array (dispstrs (this));
+        txt = tblish.chrono.internal.format_dispstr_array (dispstrs (this));
         fprintf ('%s\n', txt);
       endif
     endfunction
@@ -921,7 +921,7 @@ classdef localdate
         rhs = localdate (rhs);
       endif
       out = this;
-      out.dnums = octave.chrono.internal.prefillNewSizeForSubsasgn(this.dnums, s.subs, NaN);
+      out.dnums = tblish.chrono.internal.prefillNewSizeForSubsasgn(this.dnums, s.subs, NaN);
       out.dnums(s.subs{:}) = rhs.dnums;
     endfunction
     

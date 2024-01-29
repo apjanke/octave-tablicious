@@ -1993,7 +1993,7 @@ classdef table
       keysA = subsetvars (A, opts2.keyIxA);
       keysB = subsetvars (B, opts2.keyIxB);
       [pkA, pkB] = proxykeysForMatrixes (keysA, keysB);
-      ixs = octave.table.internal.matchrows (pkA, pkB);
+      ixs = tblish.table.internal.matchrows (pkA, pkB);
       subA = subsetvars (A, opts2.varIxA);
       subB = subsetvars (B, opts2.varIxB);
       [subA, subB] = makeVarNamesUnique (subA, subB);
@@ -2073,7 +2073,7 @@ classdef table
       keysA = subsetvars (A, opts2.keyIxA);
       keysB = subsetvars (B, opts2.keyIxB);
       [pkA, pkB] = proxykeysForMatrixes (keysA, keysB);
-      [ixs, ixUnmatchedA, ixUnmatchedB] = octave.table.internal.matchrows (pkA, pkB);
+      [ixs, ixUnmatchedA, ixUnmatchedB] = tblish.table.internal.matchrows (pkA, pkB);
       subA = subsetvars (A, opts2.varIxA);
       subB = subsetvars (B, opts2.varIxB);
       [subA, subB] = makeVarNamesUnique (subA, subB);
@@ -2422,7 +2422,7 @@ classdef table
       mustBeA (func, 'function_handle');
       mustBeA (this, 'table');
       vars = this.VariableValues;
-      out = octave.internal.splitapply_impl (func, vars{:}, G);
+      out = tblish.internal.splitapply_impl (func, vars{:}, G);
     endfunction
 
     ## -*- texinfo -*-
@@ -3049,7 +3049,7 @@ classdef table
     ## Examples:
     ##
     ## @example
-    ## [s,p,sp] = table_examples.SpDb
+    ## [s,p,sp] = tblish.examples.SpDb
     ## tmp = join (sp, p);
     ## shipment_weight = evalWithVars (tmp, "Qty .* Weight")
     ## @end example
@@ -3086,7 +3086,7 @@ classdef table
     ##
     ## Examples:
     ## @example
-    ## [s,p,sp] = table_examples.SpDb;
+    ## [s,p,sp] = tblish.examples.SpDb;
     ## prettyprint (restrict (p, 'Weight >= 14 & strcmp(Color, "Red")'))
     ## @end example
     ##
@@ -3206,7 +3206,7 @@ classdef table
         else
           ixVar(~tf) = 0;
         endif
-      elseif isa (varRef, 'octave.table.internal.vartype_filter')
+      elseif isa (varRef, 'tblish.table.internal.vartype_filter')
         ixVar = [];
         for i = 1:width (this)
           if varRef.matches (this.VariableValues{i})

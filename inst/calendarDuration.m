@@ -164,7 +164,7 @@ classdef calendarDuration
       M = double (M);
       D = double (D);
       T = double (T);
-      [Y, M, D, T] = octave.chrono.internal.scalarexpand (Y, M, D, T);
+      [Y, M, D, T] = tblish.chrono.internal.scalarexpand (Y, M, D, T);
       % Construction
       this.Years = Y;
       this.Months = M;
@@ -342,7 +342,7 @@ classdef calendarDuration
         fprintf ('Empty %s %s\n', size2str (size (this)), class (this));
         return
       endif
-      fprintf ('%s\n', octave.chrono.internal.format_dispstr_array (dispstrs (this)));
+      fprintf ('%s\n', tblish.chrono.internal.format_dispstr_array (dispstrs (this)));
     endfunction
     
     ## -*- texinfo -*-
@@ -365,7 +365,7 @@ classdef calendarDuration
   
   methods (Access = private)
     function out = dispstrScalar (this)
-      octave.chrono.internal.mustBeScalar (this);
+      tblish.chrono.internal.mustBeScalar (this);
       if isnat (this)
         out = 'NaT';
         return

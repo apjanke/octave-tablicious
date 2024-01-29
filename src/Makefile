@@ -1,10 +1,10 @@
 MKOCTFILE ?= mkoctfile
 
 .PHONY: all
-all: __oct_time_binsearch__.oct
+all: __tblish_time_binsearch__.oct
 
-__oct_time_binsearch__.oct: __oct_time_binsearch__.cc
-	$(MKOCTFILE) __oct_time_binsearch__.cc
+__tblish_time_binsearch__.oct: __tblish_time_binsearch__.cc
+	$(MKOCTFILE) __tblish_time_binsearch__.cc
 
 .PHONY: clean
 clean:

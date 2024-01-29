@@ -60,7 +60,7 @@ function out = timezones (area)
   % Compatibility note: Matlab also includes UTCOffset and DSTOffset fields in
   % the output; these are currently unimplemented here.
   
-  tzdb = octave.chrono.internal.tzinfo.TzDb;
+  tzdb = tblish.chrono.internal.tzinfo.TzDb;
   ids = tzdb.definedZones;
   ids = ids(:);
   areas = cell (size (ids));
@@ -89,7 +89,7 @@ function out = timezones (area)
   
   if nargout == 0
     if octave_has_table
-      % This assumes you're using apjanke's octave-addons-table implementation
+      % This assumes you're using Tablicious's table implementation
       prettyprint (out);
     else
       fmt = '  %-32s  %-20s\n';

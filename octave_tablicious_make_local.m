@@ -42,7 +42,7 @@ function octave_tablicious_make_local
       me, my_dir);
   endif
   octfcns = {
-    '__oct_time_binsearch__'
+    '__tblish_time_binsearch__'
     };
   for i = 1:numel (octfcns)
     octfcn = octfcns{i};

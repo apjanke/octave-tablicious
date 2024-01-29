@@ -33,5 +33,5 @@
 ## @end deftypefn
 function out = vartype (type)
   mustBeCharvec (type);
-  out = octave.table.internal.vartype_filter (type);
+  out = tblish.table.internal.vartype_filter (type);
 endfunction

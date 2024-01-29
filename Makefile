@@ -177,7 +177,7 @@ test: local
 	./dev-tools/runtests.sh inst
 
 ## Start an Octave session with the package directories on the path for
-## interactice test of development sources.
+## interactive test of development sources.
 run: $(install_stamp)
 	$(run_in_place) --persist
 
@@ -205,8 +205,8 @@ check: $(install_stamp)
 
 .PHONY: local doc clean-local
 
-local: src/__oct_time_binsearch__.cc octave_chrono_make_local.m
-	$(OCTAVE) --eval="octave_chrono_make_local"
+local: src/__tblish_time_binsearch__.cc octave_tablicious_make_local.m
+	$(OCTAVE) --eval="octave_tablicious_make_local"
 
 doc:
 	cd doc && make all

@@ -1,2 +1,0 @@
-t = octave.dataset.randu;
-

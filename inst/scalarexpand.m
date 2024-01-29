@@ -56,7 +56,7 @@ function varargout = scalarexpand (varargin)
       else
         if ~isequal (sz, sz_i)
           error ('Matrix dimensions must agree (%s vs %s)',...
-            octave.chrono.internal.size2str (sz), octave.chrono.internal.size2str (sz_i))
+            tblish.chrono.internal.size2str (sz), tblish.chrono.internal.size2str (sz_i))
         endif
       endif
     endif

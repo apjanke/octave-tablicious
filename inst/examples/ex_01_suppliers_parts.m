@@ -1,9 +1,9 @@
 % This example shows how to work with the tables in C. J. Date's classic
 % Suppliers-Parts Database example
 
-% The Suppliers-Parts database is defined over in +table_examples
+% The Suppliers-Parts database is defined over in +tblish/+examples
 
-[s,p,sp] = table_examples.SpDb;
+[s,p,sp] = tblish.examples.SpDb;
 
 % Display one of the tables
 

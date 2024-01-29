@@ -43,5 +43,5 @@
 
 function varargout = splitapply (func, varargin)
   varargout = cell (1, nargout);
-  [varargout{:}] = octave.internal.splitapply_impl (func, varargin{:});
+  [varargout{:}] = tblish.internal.splitapply_impl (func, varargin{:});
 endfunction
