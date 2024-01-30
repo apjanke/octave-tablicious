@@ -456,22 +456,22 @@ mustBeScalar (this.foo, 'this.foo');
 
 Tablicious comes with several example data sets that you can use to explore how
 its functions and objects work. These are accessed through the
-@code{octave.datasets} and @code{octave.dataset} classes.
+@code{tblish.datasets} and @code{tblish.dataset} classes.
 
-To see a list of the available data sets, run @code{octave.datasets.list()}.
+To see a list of the available data sets, run @code{tblish.datasets.list()}.
 Then to load one of the example data sets, run
-@code{octave.datasets.load('examplename')}. For example:
+@code{tblish.datasets.load('examplename')}. For example:
 
 @example
-octave.datasets.list
-t = octave.datasets.load('cupcake')
+tblish.datasets.list
+t = tblish.datasets.load('cupcake')
 @end example
 
-You can also load it by calling @code{octave.dataset.<name>}. This does
+You can also load it by calling @code{tblish.dataset.<name>}. This does
 the same thing. For example:
 
 @example
-t = octave.dataset.cupcake
+t = tblish.dataset.cupcake
 @end example
 
 When you load a data set, it either returns all its data in a single variable
@@ -480,16 +480,16 @@ workspace (if you call it with no outputs).
 
 Each example data set comes with help text that describes the data set and
 provides examples of how to work with it. This help is found using the @code{doc}
-command on @code{octave.dataset.<name>}, where @var{<name>} is the name of
+command on @code{tblish.dataset.<name>}, where @var{<name>} is the name of
 the data set.
 
 For example:
 
 @example
-doc octave.dataset.cupcake
+doc tblish.dataset.cupcake
 @end example
 
-(The command @code{help octave.dataset.<name>} ought to work too, but it
+(The command @code{help tblish.dataset.<name>} ought to work too, but it
 currently doesn’t. This may be due to an issue with Octave’s @code{help}
 command.)
 
