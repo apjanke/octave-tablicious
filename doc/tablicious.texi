@@ -675,22 +675,10 @@ Create a ‘duration’ X years long, or get the years in a ‘duration’ X.
 @end table
 @subsection Missing Data
 @table @asis
-@item fillmissing
-
-
-@xref{fillmissing}.
 @item ismissing
 
 
 @xref{ismissing}.
-@item rmmissing
-
-
-@xref{rmmissing}.
-@item standardizeMissing
-
-
-@xref{standardizeMissing}.
 @item missing
 Generic auto-converting missing value.
 
@@ -875,7 +863,6 @@ Plot pairs of variables against each other.
 		fixed-length time (i.e.
 * endsWith::	
 * eqn:: Determine element-wise equality, treating NaNs as equal
-* fillmissing:: 
 * hours::	Create a ‘duration’ X hours long, or get the hours in a
 		‘duration’ X.
 * iscategorical::	True if input is a ‘categorical’ array, false
@@ -912,14 +899,12 @@ Plot pairs of variables against each other.
 * octave.datasets::	
 * octave.examples.plot_pairs::	
 * pp::	Alias for prettyprint, for interactive use.
-* rmmissing::	
 * scalarexpand::	Expand scalar inputs to match size of non-scalar
 		inputs.
 * seconds::	Create a ‘duration’ X seconds long, or get the seconds
 		in a ‘duration’ X.
 * size2str::	Format an array size for display.
 * splitapply::	Split data into groups and apply function.
-* standardizeMissing::	
 * startsWith::	
 * string::	A string array of Unicode strings.
 * struct2table::	Convert struct to a table.
@@ -2432,9 +2417,6 @@ See also: @code{eq}, @code{isequaln}, @ref{isnanny}
 @end deftypefn
 
 
-@node fillmissing
-@subsection fillmissing
-@emph{Not documented}
 @node hours
 @subsection hours
 @deftypefn {Function File} {@var{out} =} hours (@var{x})
@@ -3037,9 +3019,6 @@ This is so you can conveniently run it from the command line.
 @end deftypefn
 
 
-@node rmmissing
-@subsection rmmissing
-@emph{Not documented}
 @node scalarexpand
 @subsection scalarexpand
 @deftypefn {Function} {[@var{out1}, @var{out2}, @dots{}, @var{outN}] =} scalarexpand @
@@ -3139,9 +3118,6 @@ See also: @ref{table.groupby}, @ref{table.splitapply}
 @end deftypefn
 
 
-@node standardizeMissing
-@subsection standardizeMissing
-@emph{Not documented}
 @node startsWith
 @subsection startsWith
 @emph{Not documented}

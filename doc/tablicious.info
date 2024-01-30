@@ -719,18 +719,9 @@ years
 8.1.4 Missing Data
 ------------------
 
-fillmissing
-
-     *Note fillmissing::.
 ismissing
 
      *Note ismissing::.
-rmmissing
-
-     *Note rmmissing::.
-standardizeMissing
-
-     *Note standardizeMissing::.
 missing
      Generic auto-converting missing value.
 
@@ -915,7 +906,6 @@ File: tablicious.info,  Node: API Alphabetically,  Prev: API by Category,  Up: A
 		fixed-length time (i.e.
 * endsWith::
 * eqn:: Determine element-wise equality, treating NaNs as equal
-* fillmissing::
 * hours::	Create a ‘duration’ X hours long, or get the hours in a
 		‘duration’ X.
 * iscategorical::	True if input is a ‘categorical’ array, false
@@ -952,14 +942,12 @@ File: tablicious.info,  Node: API Alphabetically,  Prev: API by Category,  Up: A
 * octave.datasets::
 * octave.examples.plot_pairs::
 * pp::	Alias for prettyprint, for interactive use.
-* rmmissing::
 * scalarexpand::	Expand scalar inputs to match size of non-scalar
 		inputs.
 * seconds::	Create a ‘duration’ X seconds long, or get the seconds
 		in a ‘duration’ X.
 * size2str::	Format an array size for display.
 * splitapply::	Split data into groups and apply function.
-* standardizeMissing::
 * startsWith::
 * string::	A string array of Unicode strings.
 * struct2table::	Convert struct to a table.
@@ -2589,7 +2577,7 @@ File: tablicious.info,  Node: endsWith,  Next: eqn,  Prev: duration,  Up: API Al
 _Not documented_
 
 
-File: tablicious.info,  Node: eqn,  Next: fillmissing,  Prev: endsWith,  Up: API Alphabetically
+File: tablicious.info,  Node: eqn,  Next: hours,  Prev: endsWith,  Up: API Alphabetically
 
 8.2.15 eqn
 ----------
@@ -2617,17 +2605,9 @@ File: tablicious.info,  Node: eqn,  Next: fillmissing,  Prev: endsWith,  Up: API
      See also: ‘eq’, ‘isequaln’, *note isnanny::
 
 
-File: tablicious.info,  Node: fillmissing,  Next: hours,  Prev: eqn,  Up: API Alphabetically
+File: tablicious.info,  Node: hours,  Next: iscategorical,  Prev: eqn,  Up: API Alphabetically
 
-8.2.16 fillmissing
-------------------
-
-_Not documented_
-
-
-File: tablicious.info,  Node: hours,  Next: iscategorical,  Prev: fillmissing,  Up: API Alphabetically
-
-8.2.17 hours
+8.2.16 hours
 ------------
 
  -- Function File: OUT = hours (X)
@@ -2645,7 +2625,7 @@ File: tablicious.info,  Node: hours,  Next: iscategorical,  Prev: fillmissing,  
 
 File: tablicious.info,  Node: iscategorical,  Next: isdatetime,  Prev: hours,  Up: API Alphabetically
 
-8.2.18 iscategorical
+8.2.17 iscategorical
 --------------------
 
  -- Function: OUT = iscategorical (X)
@@ -2657,7 +2637,7 @@ File: tablicious.info,  Node: iscategorical,  Next: isdatetime,  Prev: hours,  U
 
 File: tablicious.info,  Node: isdatetime,  Next: isduration,  Prev: iscategorical,  Up: API Alphabetically
 
-8.2.19 isdatetime
+8.2.18 isdatetime
 -----------------
 
  -- Function: OUT = isdatetime (X)
@@ -2669,7 +2649,7 @@ File: tablicious.info,  Node: isdatetime,  Next: isduration,  Prev: iscategorica
 
 File: tablicious.info,  Node: isduration,  Next: isfile,  Prev: isdatetime,  Up: API Alphabetically
 
-8.2.20 isduration
+8.2.19 isduration
 -----------------
 
  -- Function: OUT = isduration (X)
@@ -2681,7 +2661,7 @@ File: tablicious.info,  Node: isduration,  Next: isfile,  Prev: isdatetime,  Up:
 
 File: tablicious.info,  Node: isfile,  Next: isfolder,  Prev: isduration,  Up: API Alphabetically
 
-8.2.21 isfile
+8.2.20 isfile
 -------------
 
 _Not documented_
@@ -2689,7 +2669,7 @@ _Not documented_
 
 File: tablicious.info,  Node: isfolder,  Next: ismissing,  Prev: isfile,  Up: API Alphabetically
 
-8.2.22 isfolder
+8.2.21 isfolder
 ---------------
 
 _Not documented_
@@ -2697,7 +2677,7 @@ _Not documented_
 
 File: tablicious.info,  Node: ismissing,  Next: isnanny,  Prev: isfolder,  Up: API Alphabetically
 
-8.2.23 ismissing
+8.2.22 ismissing
 ----------------
 
 _Not documented_
@@ -2705,7 +2685,7 @@ _Not documented_
 
 File: tablicious.info,  Node: isnanny,  Next: istable,  Prev: ismissing,  Up: API Alphabetically
 
-8.2.24 isnanny
+8.2.23 isnanny
 --------------
 
  -- Function: OUT = isnanny (X)
@@ -2736,7 +2716,7 @@ File: tablicious.info,  Node: isnanny,  Next: istable,  Prev: ismissing,  Up: AP
 
 File: tablicious.info,  Node: istable,  Next: localdate,  Prev: isnanny,  Up: API Alphabetically
 
-8.2.25 istable
+8.2.24 istable
 --------------
 
  -- Function: OUT = istable (X)
@@ -2758,7 +2738,7 @@ File: tablicious.info,  Node: istable,  Next: localdate,  Prev: isnanny,  Up: AP
 
 File: tablicious.info,  Node: localdate,  Next: milliseconds,  Prev: istable,  Up: API Alphabetically
 
-8.2.26 localdate
+8.2.25 localdate
 ----------------
 
  -- Class: localdate
@@ -2802,7 +2782,7 @@ File: tablicious.info,  Node: localdate,  Next: milliseconds,  Prev: istable,  U
 
 File: tablicious.info,  Node: localdate.localdate,  Next: localdate.NaT,  Up: localdate
 
-8.2.26.1 localdate.localdate
+8.2.25.1 localdate.localdate
 ............................
 
  -- Constructor: OBJ = localdate ()
@@ -2820,7 +2800,7 @@ File: tablicious.info,  Node: localdate.localdate,  Next: localdate.NaT,  Up: lo
 
 File: tablicious.info,  Node: localdate.NaT,  Next: localdate.ymd,  Prev: localdate.localdate,  Up: localdate
 
-8.2.26.2 localdate.NaT
+8.2.25.2 localdate.NaT
 ......................
 
  -- Static Method: OUT = localdate.NaT ()
@@ -2843,7 +2823,7 @@ File: tablicious.info,  Node: localdate.NaT,  Next: localdate.ymd,  Prev: locald
 
 File: tablicious.info,  Node: localdate.ymd,  Next: localdate.dispstrs,  Prev: localdate.NaT,  Up: localdate
 
-8.2.26.3 localdate.ymd
+8.2.25.3 localdate.ymd
 ......................
 
  -- Method: [Y, M, D] = ymd (OBJ)
@@ -2855,7 +2835,7 @@ File: tablicious.info,  Node: localdate.ymd,  Next: localdate.dispstrs,  Prev: l
 
 File: tablicious.info,  Node: localdate.dispstrs,  Next: localdate.datestr,  Prev: localdate.ymd,  Up: localdate
 
-8.2.26.4 localdate.dispstrs
+8.2.25.4 localdate.dispstrs
 ...........................
 
  -- Method: OUT = dispstrs (OBJ)
@@ -2867,7 +2847,7 @@ File: tablicious.info,  Node: localdate.dispstrs,  Next: localdate.datestr,  Pre
 
 File: tablicious.info,  Node: localdate.datestr,  Next: localdate.datestrs,  Prev: localdate.dispstrs,  Up: localdate
 
-8.2.26.5 localdate.datestr
+8.2.25.5 localdate.datestr
 ..........................
 
  -- Method: OUT = datestr (OBJ)
@@ -2881,7 +2861,7 @@ File: tablicious.info,  Node: localdate.datestr,  Next: localdate.datestrs,  Pre
 
 File: tablicious.info,  Node: localdate.datestrs,  Next: localdate.datestruct,  Prev: localdate.datestr,  Up: localdate
 
-8.2.26.6 localdate.datestrs
+8.2.25.6 localdate.datestrs
 ...........................
 
  -- Method: OUT = datestrs (OBJ)
@@ -2895,7 +2875,7 @@ File: tablicious.info,  Node: localdate.datestrs,  Next: localdate.datestruct,  
 
 File: tablicious.info,  Node: localdate.datestruct,  Next: localdate.posixtime,  Prev: localdate.datestrs,  Up: localdate
 
-8.2.26.7 localdate.datestruct
+8.2.25.7 localdate.datestruct
 .............................
 
  -- Method: OUT = datestruct (OBJ)
@@ -2918,7 +2898,7 @@ File: tablicious.info,  Node: localdate.datestruct,  Next: localdate.posixtime, 
 
 File: tablicious.info,  Node: localdate.posixtime,  Next: localdate.datenum,  Prev: localdate.datestruct,  Up: localdate
 
-8.2.26.8 localdate.posixtime
+8.2.25.8 localdate.posixtime
 ............................
 
  -- Method: OUT = posixtime (OBJ)
@@ -2935,7 +2915,7 @@ File: tablicious.info,  Node: localdate.posixtime,  Next: localdate.datenum,  Pr
 
 File: tablicious.info,  Node: localdate.datenum,  Next: localdate.isnat,  Prev: localdate.posixtime,  Up: localdate
 
-8.2.26.9 localdate.datenum
+8.2.25.9 localdate.datenum
 ..........................
 
  -- Method: OUT = datenum (OBJ)
@@ -2947,7 +2927,7 @@ File: tablicious.info,  Node: localdate.datenum,  Next: localdate.isnat,  Prev: 
 
 File: tablicious.info,  Node: localdate.isnat,  Next: localdate.isnan,  Prev: localdate.datenum,  Up: localdate
 
-8.2.26.10 localdate.isnat
+8.2.25.10 localdate.isnat
 .........................
 
  -- Method: OUT = isnat (OBJ)
@@ -2959,7 +2939,7 @@ File: tablicious.info,  Node: localdate.isnat,  Next: localdate.isnan,  Prev: lo
 
 File: tablicious.info,  Node: localdate.isnan,  Prev: localdate.isnat,  Up: localdate
 
-8.2.26.11 localdate.isnan
+8.2.25.11 localdate.isnan
 .........................
 
  -- Method: OUT = isnan (OBJ)
@@ -2972,7 +2952,7 @@ File: tablicious.info,  Node: localdate.isnan,  Prev: localdate.isnat,  Up: loca
 
 File: tablicious.info,  Node: milliseconds,  Next: minutes,  Prev: localdate,  Up: API Alphabetically
 
-8.2.27 milliseconds
+8.2.26 milliseconds
 -------------------
 
  -- Function File: OUT = milliseconds (X)
@@ -2990,7 +2970,7 @@ File: tablicious.info,  Node: milliseconds,  Next: minutes,  Prev: localdate,  U
 
 File: tablicious.info,  Node: minutes,  Next: missing,  Prev: milliseconds,  Up: API Alphabetically
 
-8.2.28 minutes
+8.2.27 minutes
 --------------
 
  -- Function File: OUT = hours (X)
@@ -3000,7 +2980,7 @@ File: tablicious.info,  Node: minutes,  Next: missing,  Prev: milliseconds,  Up:
 
 File: tablicious.info,  Node: missing,  Next: mustBeA,  Prev: minutes,  Up: API Alphabetically
 
-8.2.29 missing
+8.2.28 missing
 --------------
 
  -- Class: missing
@@ -3038,7 +3018,7 @@ File: tablicious.info,  Node: missing,  Next: mustBeA,  Prev: minutes,  Up: API 
 
 File: tablicious.info,  Node: missing.missing,  Next: missing.dispstrs,  Up: missing
 
-8.2.29.1 missing.missing
+8.2.28.1 missing.missing
 ........................
 
  -- Constructor: OBJ = missing ()
@@ -3051,7 +3031,7 @@ File: tablicious.info,  Node: missing.missing,  Next: missing.dispstrs,  Up: mis
 
 File: tablicious.info,  Node: missing.dispstrs,  Next: missing.ismissing,  Prev: missing.missing,  Up: missing
 
-8.2.29.2 missing.dispstrs
+8.2.28.2 missing.dispstrs
 .........................
 
  -- Method: OUT = dispstrs (OBJ)
@@ -3067,7 +3047,7 @@ File: tablicious.info,  Node: missing.dispstrs,  Next: missing.ismissing,  Prev:
 
 File: tablicious.info,  Node: missing.ismissing,  Next: missing.isnan,  Prev: missing.dispstrs,  Up: missing
 
-8.2.29.3 missing.ismissing
+8.2.28.3 missing.ismissing
 ..........................
 
  -- Method: OUT = ismissing (OBJ)
@@ -3081,7 +3061,7 @@ File: tablicious.info,  Node: missing.ismissing,  Next: missing.isnan,  Prev: mi
 
 File: tablicious.info,  Node: missing.isnan,  Next: missing.isnanny,  Prev: missing.ismissing,  Up: missing
 
-8.2.29.4 missing.isnan
+8.2.28.4 missing.isnan
 ......................
 
  -- Method: OUT = isnan (OBJ)
@@ -3095,7 +3075,7 @@ File: tablicious.info,  Node: missing.isnan,  Next: missing.isnanny,  Prev: miss
 
 File: tablicious.info,  Node: missing.isnanny,  Prev: missing.isnan,  Up: missing
 
-8.2.29.5 missing.isnanny
+8.2.28.5 missing.isnanny
 ........................
 
  -- Method: OUT = isnanny (OBJ)
@@ -3109,7 +3089,7 @@ File: tablicious.info,  Node: missing.isnanny,  Prev: missing.isnan,  Up: missin
 
 File: tablicious.info,  Node: mustBeA,  Next: mustBeCellstr,  Prev: missing,  Up: API Alphabetically
 
-8.2.30 mustBeA
+8.2.29 mustBeA
 --------------
 
  -- Function File: X = mustBeA (X, TYPE)
@@ -3127,7 +3107,7 @@ File: tablicious.info,  Node: mustBeA,  Next: mustBeCellstr,  Prev: missing,  Up
 
 File: tablicious.info,  Node: mustBeCellstr,  Next: mustBeCharvec,  Prev: mustBeA,  Up: API Alphabetically
 
-8.2.31 mustBeCellstr
+8.2.30 mustBeCellstr
 --------------------
 
  -- Function File: x = mustBeCellstr (X, LABEL)
@@ -3147,7 +3127,7 @@ File: tablicious.info,  Node: mustBeCellstr,  Next: mustBeCharvec,  Prev: mustBe
 
 File: tablicious.info,  Node: mustBeCharvec,  Next: mustBeFinite,  Prev: mustBeCellstr,  Up: API Alphabetically
 
-8.2.32 mustBeCharvec
+8.2.31 mustBeCharvec
 --------------------
 
  -- Function File: X = mustBeCharvec (X, LABEL)
@@ -3170,7 +3150,7 @@ File: tablicious.info,  Node: mustBeCharvec,  Next: mustBeFinite,  Prev: mustBeC
 
 File: tablicious.info,  Node: mustBeFinite,  Next: mustBeInteger,  Prev: mustBeCharvec,  Up: API Alphabetically
 
-8.2.33 mustBeFinite
+8.2.32 mustBeFinite
 -------------------
 
 _Not documented_
@@ -3178,7 +3158,7 @@ _Not documented_
 
 File: tablicious.info,  Node: mustBeInteger,  Next: mustBeMember,  Prev: mustBeFinite,  Up: API Alphabetically
 
-8.2.34 mustBeInteger
+8.2.33 mustBeInteger
 --------------------
 
 _Not documented_
@@ -3186,7 +3166,7 @@ _Not documented_
 
 File: tablicious.info,  Node: mustBeMember,  Next: mustBeNonempty,  Prev: mustBeInteger,  Up: API Alphabetically
 
-8.2.35 mustBeMember
+8.2.34 mustBeMember
 -------------------
 
 _Not documented_
@@ -3194,7 +3174,7 @@ _Not documented_
 
 File: tablicious.info,  Node: mustBeNonempty,  Next: mustBeNumeric,  Prev: mustBeMember,  Up: API Alphabetically
 
-8.2.36 mustBeNonempty
+8.2.35 mustBeNonempty
 ---------------------
 
 _Not documented_
@@ -3202,7 +3182,7 @@ _Not documented_
 
 File: tablicious.info,  Node: mustBeNumeric,  Next: mustBeReal,  Prev: mustBeNonempty,  Up: API Alphabetically
 
-8.2.37 mustBeNumeric
+8.2.36 mustBeNumeric
 --------------------
 
 _Not documented_
@@ -3210,7 +3190,7 @@ _Not documented_
 
 File: tablicious.info,  Node: mustBeReal,  Next: mustBeSameSize,  Prev: mustBeNumeric,  Up: API Alphabetically
 
-8.2.38 mustBeReal
+8.2.37 mustBeReal
 -----------------
 
 _Not documented_
@@ -3218,7 +3198,7 @@ _Not documented_
 
 File: tablicious.info,  Node: mustBeSameSize,  Next: mustBeScalar,  Prev: mustBeReal,  Up: API Alphabetically
 
-8.2.39 mustBeSameSize
+8.2.38 mustBeSameSize
 ---------------------
 
  -- Function File: [A, B] = mustBeSameSize (A, B, LABELA, LABELB)
@@ -3236,7 +3216,7 @@ File: tablicious.info,  Node: mustBeSameSize,  Next: mustBeScalar,  Prev: mustBe
 
 File: tablicious.info,  Node: mustBeScalar,  Next: mustBeScalarLogical,  Prev: mustBeSameSize,  Up: API Alphabetically
 
-8.2.40 mustBeScalar
+8.2.39 mustBeScalar
 -------------------
 
  -- Function File: X = mustBeScalar (X, LABEL)
@@ -3253,7 +3233,7 @@ File: tablicious.info,  Node: mustBeScalar,  Next: mustBeScalarLogical,  Prev: m
 
 File: tablicious.info,  Node: mustBeScalarLogical,  Next: mustBeVector,  Prev: mustBeScalar,  Up: API Alphabetically
 
-8.2.41 mustBeScalarLogical
+8.2.40 mustBeScalarLogical
 --------------------------
 
  -- Function File: X = mustBeScalarLogical (X, LABEL)
@@ -3270,7 +3250,7 @@ File: tablicious.info,  Node: mustBeScalarLogical,  Next: mustBeVector,  Prev: m
 
 File: tablicious.info,  Node: mustBeVector,  Next: NaT,  Prev: mustBeScalarLogical,  Up: API Alphabetically
 
-8.2.42 mustBeVector
+8.2.41 mustBeVector
 -------------------
 
  -- Function File: X = mustBeVector (X, LABEL)
@@ -3287,7 +3267,7 @@ File: tablicious.info,  Node: mustBeVector,  Next: NaT,  Prev: mustBeScalarLogic
 
 File: tablicious.info,  Node: NaT,  Next: octave.dataset,  Prev: mustBeVector,  Up: API Alphabetically
 
-8.2.43 NaT
+8.2.42 NaT
 ----------
 
  -- Function: OUT = NaT ()
@@ -3310,7 +3290,7 @@ File: tablicious.info,  Node: NaT,  Next: octave.dataset,  Prev: mustBeVector,  
 
 File: tablicious.info,  Node: octave.dataset,  Next: octave.datasets,  Prev: NaT,  Up: API Alphabetically
 
-8.2.44 octave.dataset
+8.2.43 octave.dataset
 ---------------------
 
 _Not documented_
@@ -3318,7 +3298,7 @@ _Not documented_
 
 File: tablicious.info,  Node: octave.datasets,  Next: octave.examples.plot_pairs,  Prev: octave.dataset,  Up: API Alphabetically
 
-8.2.45 octave.datasets
+8.2.44 octave.datasets
 ----------------------
 
 _Not documented_
@@ -3326,15 +3306,15 @@ _Not documented_
 
 File: tablicious.info,  Node: octave.examples.plot_pairs,  Next: pp,  Prev: octave.datasets,  Up: API Alphabetically
 
-8.2.46 octave.examples.plot_pairs
+8.2.45 octave.examples.plot_pairs
 ---------------------------------
 
 _Not documented_
 
 
-File: tablicious.info,  Node: pp,  Next: rmmissing,  Prev: octave.examples.plot_pairs,  Up: API Alphabetically
+File: tablicious.info,  Node: pp,  Next: scalarexpand,  Prev: octave.examples.plot_pairs,  Up: API Alphabetically
 
-8.2.47 pp
+8.2.46 pp
 ---------
 
  -- Function: pp (X)
@@ -3353,17 +3333,9 @@ File: tablicious.info,  Node: pp,  Next: rmmissing,  Prev: octave.examples.plot_
      the command line.
 
 
-File: tablicious.info,  Node: rmmissing,  Next: scalarexpand,  Prev: pp,  Up: API Alphabetically
+File: tablicious.info,  Node: scalarexpand,  Next: seconds,  Prev: pp,  Up: API Alphabetically
 
-8.2.48 rmmissing
-----------------
-
-_Not documented_
-
-
-File: tablicious.info,  Node: scalarexpand,  Next: seconds,  Prev: rmmissing,  Up: API Alphabetically
-
-8.2.49 scalarexpand
+8.2.47 scalarexpand
 -------------------
 
  -- Function: [OUT1, OUT2, ..., OUTN] = scalarexpand (X1, X2, ..., XN)
@@ -3393,7 +3365,7 @@ File: tablicious.info,  Node: scalarexpand,  Next: seconds,  Prev: rmmissing,  U
 
 File: tablicious.info,  Node: seconds,  Next: size2str,  Prev: scalarexpand,  Up: API Alphabetically
 
-8.2.50 seconds
+8.2.48 seconds
 --------------
 
  -- Function File: OUT = seconds (X)
@@ -3411,7 +3383,7 @@ File: tablicious.info,  Node: seconds,  Next: size2str,  Prev: scalarexpand,  Up
 
 File: tablicious.info,  Node: size2str,  Next: splitapply,  Prev: seconds,  Up: API Alphabetically
 
-8.2.51 size2str
+8.2.49 size2str
 ---------------
 
  -- Function: OUT = size2str (SZ)
@@ -3432,9 +3404,9 @@ File: tablicious.info,  Node: size2str,  Next: splitapply,  Prev: seconds,  Up: 
               ⇒ str = 4-by-4
 
 
-File: tablicious.info,  Node: splitapply,  Next: standardizeMissing,  Prev: size2str,  Up: API Alphabetically
+File: tablicious.info,  Node: splitapply,  Next: startsWith,  Prev: size2str,  Up: API Alphabetically
 
-8.2.52 splitapply
+8.2.50 splitapply
 -----------------
 
  -- Function: OUT = splitapply (FUNC, X, G)
@@ -3462,17 +3434,9 @@ File: tablicious.info,  Node: splitapply,  Next: standardizeMissing,  Prev: size
      See also: *note table.groupby::, *note table.splitapply::
 
 
-File: tablicious.info,  Node: standardizeMissing,  Next: startsWith,  Prev: splitapply,  Up: API Alphabetically
+File: tablicious.info,  Node: startsWith,  Next: string,  Prev: splitapply,  Up: API Alphabetically
 
-8.2.53 standardizeMissing
--------------------------
-
-_Not documented_
-
-
-File: tablicious.info,  Node: startsWith,  Next: string,  Prev: standardizeMissing,  Up: API Alphabetically
-
-8.2.54 startsWith
+8.2.51 startsWith
 -----------------
 
 _Not documented_
@@ -3480,7 +3444,7 @@ _Not documented_
 
 File: tablicious.info,  Node: string,  Next: struct2table,  Prev: startsWith,  Up: API Alphabetically
 
-8.2.55 string
+8.2.52 string
 -------------
 
  -- Class: string
@@ -3568,7 +3532,7 @@ File: tablicious.info,  Node: string,  Next: struct2table,  Prev: startsWith,  U
 
 File: tablicious.info,  Node: string.empty,  Next: string.string,  Up: string
 
-8.2.55.1 string.empty
+8.2.52.1 string.empty
 .....................
 
  -- Function: OUT = empty (SZ)
@@ -3587,7 +3551,7 @@ File: tablicious.info,  Node: string.empty,  Next: string.string,  Up: string
 
 File: tablicious.info,  Node: string.string,  Next: string.isstring,  Prev: string.empty,  Up: string
 
-8.2.55.2 string.string
+8.2.52.2 string.string
 ......................
 
  -- Constructor: OBJ = string ()
@@ -3606,7 +3570,7 @@ File: tablicious.info,  Node: string.string,  Next: string.isstring,  Prev: stri
 
 File: tablicious.info,  Node: string.isstring,  Next: string.dispstrs,  Prev: string.string,  Up: string
 
-8.2.55.3 string.isstring
+8.2.52.3 string.isstring
 ........................
 
  -- Method: OUT = isstring (OBJ)
@@ -3620,7 +3584,7 @@ File: tablicious.info,  Node: string.isstring,  Next: string.dispstrs,  Prev: st
 
 File: tablicious.info,  Node: string.dispstrs,  Next: string.sizeof,  Prev: string.isstring,  Up: string
 
-8.2.55.4 string.dispstrs
+8.2.52.4 string.dispstrs
 ........................
 
  -- Method: OUT = dispstrs (OBJ)
@@ -3637,7 +3601,7 @@ File: tablicious.info,  Node: string.dispstrs,  Next: string.sizeof,  Prev: stri
 
 File: tablicious.info,  Node: string.sizeof,  Next: string.ismissing,  Prev: string.dispstrs,  Up: string
 
-8.2.55.5 string.sizeof
+8.2.52.5 string.sizeof
 ......................
 
  -- Method: OUT = sizeof (OBJ)
@@ -3647,7 +3611,7 @@ File: tablicious.info,  Node: string.sizeof,  Next: string.ismissing,  Prev: str
 
 File: tablicious.info,  Node: string.ismissing,  Next: string.isnanny,  Prev: string.sizeof,  Up: string
 
-8.2.55.6 string.ismissing
+8.2.52.6 string.ismissing
 .........................
 
  -- Method: OUT = ismissing (OBJ)
@@ -3663,7 +3627,7 @@ File: tablicious.info,  Node: string.ismissing,  Next: string.isnanny,  Prev: st
 
 File: tablicious.info,  Node: string.isnanny,  Next: string.cellstr,  Prev: string.ismissing,  Up: string
 
-8.2.55.7 string.isnanny
+8.2.52.7 string.isnanny
 .......................
 
  -- Method: OUT = isnanny (OBJ)
@@ -3678,7 +3642,7 @@ File: tablicious.info,  Node: string.isnanny,  Next: string.cellstr,  Prev: stri
 
 File: tablicious.info,  Node: string.cellstr,  Next: string.cell,  Prev: string.isnanny,  Up: string
 
-8.2.55.8 string.cellstr
+8.2.52.8 string.cellstr
 .......................
 
  -- Method: OUT = cellstr (OBJ)
@@ -3692,7 +3656,7 @@ File: tablicious.info,  Node: string.cellstr,  Next: string.cell,  Prev: string.
 
 File: tablicious.info,  Node: string.cell,  Next: string.char,  Prev: string.cellstr,  Up: string
 
-8.2.55.9 string.cell
+8.2.52.9 string.cell
 ....................
 
  -- Method: OUT = cell (OBJ)
@@ -3710,7 +3674,7 @@ File: tablicious.info,  Node: string.cell,  Next: string.char,  Prev: string.cel
 
 File: tablicious.info,  Node: string.char,  Next: string.encode,  Prev: string.cell,  Up: string
 
-8.2.55.10 string.char
+8.2.52.10 string.char
 .....................
 
  -- Method: OUT = char (OBJ)
@@ -3729,7 +3693,7 @@ File: tablicious.info,  Node: string.char,  Next: string.encode,  Prev: string.c
 
 File: tablicious.info,  Node: string.encode,  Next: string.strlength_bytes,  Prev: string.char,  Up: string
 
-8.2.55.11 string.encode
+8.2.52.11 string.encode
 .......................
 
  -- Method: OUT = encode (OBJ, CHARSETNAME)
@@ -3748,7 +3712,7 @@ File: tablicious.info,  Node: string.encode,  Next: string.strlength_bytes,  Pre
 
 File: tablicious.info,  Node: string.strlength_bytes,  Next: string.strlength,  Prev: string.encode,  Up: string
 
-8.2.55.12 string.strlength_bytes
+8.2.52.12 string.strlength_bytes
 ................................
 
  -- Method: OUT = strlength_bytes (OBJ)
@@ -3768,7 +3732,7 @@ File: tablicious.info,  Node: string.strlength_bytes,  Next: string.strlength,  
 
 File: tablicious.info,  Node: string.strlength,  Next: string.reverse_bytes,  Prev: string.strlength_bytes,  Up: string
 
-8.2.55.13 string.strlength
+8.2.52.13 string.strlength
 ..........................
 
  -- Method: OUT = strlength (OBJ)
@@ -3795,7 +3759,7 @@ File: tablicious.info,  Node: string.strlength,  Next: string.reverse_bytes,  Pr
 
 File: tablicious.info,  Node: string.reverse_bytes,  Next: string.reverse,  Prev: string.strlength,  Up: string
 
-8.2.55.14 string.reverse_bytes
+8.2.52.14 string.reverse_bytes
 ..............................
 
  -- Method: OUT = reverse_bytes (OBJ)
@@ -3819,7 +3783,7 @@ File: tablicious.info,  Node: string.reverse_bytes,  Next: string.reverse,  Prev
 
 File: tablicious.info,  Node: string.reverse,  Next: string.strcat,  Prev: string.reverse_bytes,  Up: string
 
-8.2.55.15 string.reverse
+8.2.52.15 string.reverse
 ........................
 
  -- Method: OUT = reverse (OBJ)
@@ -3835,7 +3799,7 @@ File: tablicious.info,  Node: string.reverse,  Next: string.strcat,  Prev: strin
 
 File: tablicious.info,  Node: string.strcat,  Next: string.lower,  Prev: string.reverse,  Up: string
 
-8.2.55.16 string.strcat
+8.2.52.16 string.strcat
 .......................
 
  -- Method: OUT = strcat (VARARGIN)
@@ -3855,7 +3819,7 @@ File: tablicious.info,  Node: string.strcat,  Next: string.lower,  Prev: string.
 
 File: tablicious.info,  Node: string.lower,  Next: string.upper,  Prev: string.strcat,  Up: string
 
-8.2.55.17 string.lower
+8.2.52.17 string.lower
 ......................
 
  -- Method: OUT = lower (OBJ)
@@ -3874,7 +3838,7 @@ File: tablicious.info,  Node: string.lower,  Next: string.upper,  Prev: string.s
 
 File: tablicious.info,  Node: string.upper,  Next: string.erase,  Prev: string.lower,  Up: string
 
-8.2.55.18 string.upper
+8.2.52.18 string.upper
 ......................
 
  -- Method: OUT = upper (OBJ)
@@ -3893,7 +3857,7 @@ File: tablicious.info,  Node: string.upper,  Next: string.erase,  Prev: string.l
 
 File: tablicious.info,  Node: string.erase,  Next: string.strrep,  Prev: string.upper,  Up: string
 
-8.2.55.19 string.erase
+8.2.52.19 string.erase
 ......................
 
  -- Method: OUT = erase (OBJ, MATCH)
@@ -3907,7 +3871,7 @@ File: tablicious.info,  Node: string.erase,  Next: string.strrep,  Prev: string.
 
 File: tablicious.info,  Node: string.strrep,  Next: string.strfind,  Prev: string.erase,  Up: string
 
-8.2.55.20 string.strrep
+8.2.52.20 string.strrep
 .......................
 
  -- Method: OUT = strrep (OBJ, MATCH, REPLACEMENT)
@@ -3927,7 +3891,7 @@ File: tablicious.info,  Node: string.strrep,  Next: string.strfind,  Prev: strin
 
 File: tablicious.info,  Node: string.strfind,  Next: string.regexprep,  Prev: string.strrep,  Up: string
 
-8.2.55.21 string.strfind
+8.2.52.21 string.strfind
 ........................
 
  -- Method: OUT = strfind (OBJ, PATTERN)
@@ -3945,7 +3909,7 @@ File: tablicious.info,  Node: string.strfind,  Next: string.regexprep,  Prev: st
 
 File: tablicious.info,  Node: string.regexprep,  Next: string.strcmp,  Prev: string.strfind,  Up: string
 
-8.2.55.22 string.regexprep
+8.2.52.22 string.regexprep
 ..........................
 
  -- Method: OUT = regexprep (OBJ, PAT, REPSTR)
@@ -3961,7 +3925,7 @@ File: tablicious.info,  Node: string.regexprep,  Next: string.strcmp,  Prev: str
 
 File: tablicious.info,  Node: string.strcmp,  Next: string.cmp,  Prev: string.regexprep,  Up: string
 
-8.2.55.23 string.strcmp
+8.2.52.23 string.strcmp
 .......................
 
  -- Method: OUT = strcmp (A, B)
@@ -3982,7 +3946,7 @@ File: tablicious.info,  Node: string.strcmp,  Next: string.cmp,  Prev: string.re
 
 File: tablicious.info,  Node: string.cmp,  Next: string.missing,  Prev: string.strcmp,  Up: string
 
-8.2.55.24 string.cmp
+8.2.52.24 string.cmp
 ....................
 
  -- Method: [OUT, OUTA, OUTB] = cmp (A, B)
@@ -4008,7 +3972,7 @@ File: tablicious.info,  Node: string.cmp,  Next: string.missing,  Prev: string.s
 
 File: tablicious.info,  Node: string.missing,  Next: string.decode,  Prev: string.cmp,  Up: string
 
-8.2.55.25 string.missing
+8.2.52.25 string.missing
 ........................
 
  -- Static Method: OUT = string.missing (SZ)
@@ -4023,7 +3987,7 @@ File: tablicious.info,  Node: string.missing,  Next: string.decode,  Prev: strin
 
 File: tablicious.info,  Node: string.decode,  Prev: string.missing,  Up: string
 
-8.2.55.26 string.decode
+8.2.52.26 string.decode
 .......................
 
  -- Static Method: OUT = string.decode (BYTES, CHARSETNAME)
@@ -4040,7 +4004,7 @@ File: tablicious.info,  Node: string.decode,  Prev: string.missing,  Up: string
 
 File: tablicious.info,  Node: struct2table,  Next: table,  Prev: string,  Up: API Alphabetically
 
-8.2.56 struct2table
+8.2.53 struct2table
 -------------------
 
  -- Function: OUT = struct2table (S)
@@ -4059,7 +4023,7 @@ File: tablicious.info,  Node: struct2table,  Next: table,  Prev: string,  Up: AP
 
 File: tablicious.info,  Node: table,  Next: tableOuterFillValue,  Prev: struct2table,  Up: API Alphabetically
 
-8.2.57 table
+8.2.54 table
 ------------
 
  -- Class: table
@@ -4179,7 +4143,7 @@ File: tablicious.info,  Node: table,  Next: tableOuterFillValue,  Prev: struct2t
 
 File: tablicious.info,  Node: table.table,  Next: table.summary,  Up: table
 
-8.2.57.1 table.table
+8.2.54.1 table.table
 ....................
 
  -- Constructor: OBJ = table ()
@@ -4209,7 +4173,7 @@ File: tablicious.info,  Node: table.table,  Next: table.summary,  Up: table
 
 File: tablicious.info,  Node: table.summary,  Next: table.prettyprint,  Prev: table.table,  Up: table
 
-8.2.57.2 table.summary
+8.2.54.2 table.summary
 ......................
 
  -- Method: summary (OBJ)
@@ -4222,7 +4186,7 @@ File: tablicious.info,  Node: table.summary,  Next: table.prettyprint,  Prev: ta
 
 File: tablicious.info,  Node: table.prettyprint,  Next: table.table2cell,  Prev: table.summary,  Up: table
 
-8.2.57.3 table.prettyprint
+8.2.54.3 table.prettyprint
 ..........................
 
  -- Method: prettyprint (OBJ)
@@ -4236,7 +4200,7 @@ File: tablicious.info,  Node: table.prettyprint,  Next: table.table2cell,  Prev:
 
 File: tablicious.info,  Node: table.table2cell,  Next: table.table2struct,  Prev: table.prettyprint,  Up: table
 
-8.2.57.4 table.table2cell
+8.2.54.4 table.table2cell
 .........................
 
  -- Method: C = table2cell (OBJ)
@@ -4251,7 +4215,7 @@ File: tablicious.info,  Node: table.table2cell,  Next: table.table2struct,  Prev
 
 File: tablicious.info,  Node: table.table2struct,  Next: table.table2array,  Prev: table.table2cell,  Up: table
 
-8.2.57.5 table.table2struct
+8.2.54.5 table.table2struct
 ...........................
 
  -- Method: S = table2struct (OBJ)
@@ -4269,7 +4233,7 @@ File: tablicious.info,  Node: table.table2struct,  Next: table.table2array,  Pre
 
 File: tablicious.info,  Node: table.table2array,  Next: table.varnames,  Prev: table.table2struct,  Up: table
 
-8.2.57.6 table.table2array
+8.2.54.6 table.table2array
 ..........................
 
  -- Method: S = table2struct (OBJ)
@@ -4279,7 +4243,7 @@ File: tablicious.info,  Node: table.table2array,  Next: table.varnames,  Prev: t
 
 File: tablicious.info,  Node: table.varnames,  Next: table.istable,  Prev: table.table2array,  Up: table
 
-8.2.57.7 table.varnames
+8.2.54.7 table.varnames
 .......................
 
  -- Method: OUT = varnames (OBJ)
@@ -4293,7 +4257,7 @@ File: tablicious.info,  Node: table.varnames,  Next: table.istable,  Prev: table
 
 File: tablicious.info,  Node: table.istable,  Next: table.size,  Prev: table.varnames,  Up: table
 
-8.2.57.8 table.istable
+8.2.54.8 table.istable
 ......................
 
  -- Method: TF = istable (OBJ)
@@ -4303,7 +4267,7 @@ File: tablicious.info,  Node: table.istable,  Next: table.size,  Prev: table.var
 
 File: tablicious.info,  Node: table.size,  Next: table.end,  Prev: table.istable,  Up: table
 
-8.2.57.9 table.size
+8.2.54.9 table.size
 ...................
 
  -- Method: SZ = size (OBJ)
@@ -4318,7 +4282,7 @@ File: tablicious.info,  Node: table.size,  Next: table.end,  Prev: table.istable
 
 File: tablicious.info,  Node: table.end,  Next: table.length,  Prev: table.size,  Up: table
 
-8.2.57.10 table.end
+8.2.54.10 table.end
 ...................
 
  -- Method: OUT = end (OBJ, K, N)
@@ -4328,7 +4292,7 @@ File: tablicious.info,  Node: table.end,  Next: table.length,  Prev: table.size,
 
 File: tablicious.info,  Node: table.length,  Next: table.ndims,  Prev: table.end,  Up: table
 
-8.2.57.11 table.length
+8.2.54.11 table.length
 ......................
 
  -- Method: OUT = length (OBJ)
@@ -4340,7 +4304,7 @@ File: tablicious.info,  Node: table.length,  Next: table.ndims,  Prev: table.end
 
 File: tablicious.info,  Node: table.ndims,  Next: table.squeeze,  Prev: table.length,  Up: table
 
-8.2.57.12 table.ndims
+8.2.54.12 table.ndims
 .....................
 
  -- Method: OUT = ndims (OBJ)
@@ -4352,7 +4316,7 @@ File: tablicious.info,  Node: table.ndims,  Next: table.squeeze,  Prev: table.le
 
 File: tablicious.info,  Node: table.squeeze,  Next: table.size_equal,  Prev: table.ndims,  Up: table
 
-8.2.57.13 table.squeeze
+8.2.54.13 table.squeeze
 .......................
 
  -- Method: OBJ = squeeze (OBJ)
@@ -4365,7 +4329,7 @@ File: tablicious.info,  Node: table.squeeze,  Next: table.size_equal,  Prev: tab
 
 File: tablicious.info,  Node: table.size_equal,  Next: table.sizeof,  Prev: table.squeeze,  Up: table
 
-8.2.57.14 table.size_equal
+8.2.54.14 table.size_equal
 ..........................
 
  -- Method: OUT = size_equal (VARARGIN)
@@ -4375,7 +4339,7 @@ File: tablicious.info,  Node: table.size_equal,  Next: table.sizeof,  Prev: tabl
 
 File: tablicious.info,  Node: table.sizeof,  Next: table.height,  Prev: table.size_equal,  Up: table
 
-8.2.57.15 table.sizeof
+8.2.54.15 table.sizeof
 ......................
 
  -- Method: OUT = sizeof (OBJ)
@@ -4389,7 +4353,7 @@ File: tablicious.info,  Node: table.sizeof,  Next: table.height,  Prev: table.si
 
 File: tablicious.info,  Node: table.height,  Next: table.rows,  Prev: table.sizeof,  Up: table
 
-8.2.57.16 table.height
+8.2.54.16 table.height
 ......................
 
  -- Method: OUT = height (OBJ)
@@ -4399,7 +4363,7 @@ File: tablicious.info,  Node: table.height,  Next: table.rows,  Prev: table.size
 
 File: tablicious.info,  Node: table.rows,  Next: table.width,  Prev: table.height,  Up: table
 
-8.2.57.17 table.rows
+8.2.54.17 table.rows
 ....................
 
  -- Method: OUT = rows (OBJ)
@@ -4409,7 +4373,7 @@ File: tablicious.info,  Node: table.rows,  Next: table.width,  Prev: table.heigh
 
 File: tablicious.info,  Node: table.width,  Next: table.columns,  Prev: table.rows,  Up: table
 
-8.2.57.18 table.width
+8.2.54.18 table.width
 .....................
 
  -- Method: OUT = width (OBJ)
@@ -4422,7 +4386,7 @@ File: tablicious.info,  Node: table.width,  Next: table.columns,  Prev: table.ro
 
 File: tablicious.info,  Node: table.columns,  Next: table.numel,  Prev: table.width,  Up: table
 
-8.2.57.19 table.columns
+8.2.54.19 table.columns
 .......................
 
  -- Method: OUT = columns (OBJ)
@@ -4435,7 +4399,7 @@ File: tablicious.info,  Node: table.columns,  Next: table.numel,  Prev: table.wi
 
 File: tablicious.info,  Node: table.numel,  Next: table.isempty,  Prev: table.columns,  Up: table
 
-8.2.57.20 table.numel
+8.2.54.20 table.numel
 .....................
 
  -- Method: OUT = numel (OBJ)
@@ -4450,7 +4414,7 @@ File: tablicious.info,  Node: table.numel,  Next: table.isempty,  Prev: table.co
 
 File: tablicious.info,  Node: table.isempty,  Next: table.ismatrix,  Prev: table.numel,  Up: table
 
-8.2.57.21 table.isempty
+8.2.54.21 table.isempty
 .......................
 
  -- Method: OUT = isempty (OBJ)
@@ -4463,7 +4427,7 @@ File: tablicious.info,  Node: table.isempty,  Next: table.ismatrix,  Prev: table
 
 File: tablicious.info,  Node: table.ismatrix,  Next: table.isrow,  Prev: table.isempty,  Up: table
 
-8.2.57.22 table.ismatrix
+8.2.54.22 table.ismatrix
 ........................
 
  -- Method: OUT = ismatrix (OBJ)
@@ -4475,7 +4439,7 @@ File: tablicious.info,  Node: table.ismatrix,  Next: table.isrow,  Prev: table.i
 
 File: tablicious.info,  Node: table.isrow,  Next: table.iscol,  Prev: table.ismatrix,  Up: table
 
-8.2.57.23 table.isrow
+8.2.54.23 table.isrow
 .....................
 
  -- Method: OUT = isrow (OBJ)
@@ -4485,7 +4449,7 @@ File: tablicious.info,  Node: table.isrow,  Next: table.iscol,  Prev: table.isma
 
 File: tablicious.info,  Node: table.iscol,  Next: table.isvector,  Prev: table.isrow,  Up: table
 
-8.2.57.24 table.iscol
+8.2.54.24 table.iscol
 .....................
 
  -- Method: OUT = iscol (OBJ)
@@ -4498,7 +4462,7 @@ File: tablicious.info,  Node: table.iscol,  Next: table.isvector,  Prev: table.i
 
 File: tablicious.info,  Node: table.isvector,  Next: table.isscalar,  Prev: table.iscol,  Up: table
 
-8.2.57.25 table.isvector
+8.2.54.25 table.isvector
 ........................
 
  -- Method: OUT = isvector (OBJ)
@@ -4508,7 +4472,7 @@ File: tablicious.info,  Node: table.isvector,  Next: table.isscalar,  Prev: tabl
 
 File: tablicious.info,  Node: table.isscalar,  Next: table.hasrownames,  Prev: table.isvector,  Up: table
 
-8.2.57.26 table.isscalar
+8.2.54.26 table.isscalar
 ........................
 
  -- Method: OUT = isscalar (OBJ)
@@ -4518,7 +4482,7 @@ File: tablicious.info,  Node: table.isscalar,  Next: table.hasrownames,  Prev: t
 
 File: tablicious.info,  Node: table.hasrownames,  Next: table.vertcat,  Prev: table.isscalar,  Up: table
 
-8.2.57.27 table.hasrownames
+8.2.54.27 table.hasrownames
 ...........................
 
  -- Method: OUT = hasrownames (OBJ)
@@ -4528,7 +4492,7 @@ File: tablicious.info,  Node: table.hasrownames,  Next: table.vertcat,  Prev: ta
 
 File: tablicious.info,  Node: table.vertcat,  Next: table.horzcat,  Prev: table.hasrownames,  Up: table
 
-8.2.57.28 table.vertcat
+8.2.54.28 table.vertcat
 .......................
 
  -- Method: OUT = vertcat (VARARGIN)
@@ -4546,7 +4510,7 @@ File: tablicious.info,  Node: table.vertcat,  Next: table.horzcat,  Prev: table.
 
 File: tablicious.info,  Node: table.horzcat,  Next: table.repmat,  Prev: table.vertcat,  Up: table
 
-8.2.57.29 table.horzcat
+8.2.54.29 table.horzcat
 .......................
 
  -- Method: OUT = horzcat (VARARGIN)
@@ -4564,7 +4528,7 @@ File: tablicious.info,  Node: table.horzcat,  Next: table.repmat,  Prev: table.v
 
 File: tablicious.info,  Node: table.repmat,  Next: table.repelem,  Prev: table.horzcat,  Up: table
 
-8.2.57.30 table.repmat
+8.2.54.30 table.repmat
 ......................
 
  -- Method: OUT = repmat (OBJ, SZ)
@@ -4582,7 +4546,7 @@ File: tablicious.info,  Node: table.repmat,  Next: table.repelem,  Prev: table.h
 
 File: tablicious.info,  Node: table.repelem,  Next: table.setVariableNames,  Prev: table.repmat,  Up: table
 
-8.2.57.31 table.repelem
+8.2.54.31 table.repelem
 .......................
 
  -- Method: OUT = repelem (OBJ, R)
@@ -4598,7 +4562,7 @@ File: tablicious.info,  Node: table.repelem,  Next: table.setVariableNames,  Pre
 
 File: tablicious.info,  Node: table.setVariableNames,  Next: table.setDimensionNames,  Prev: table.repelem,  Up: table
 
-8.2.57.32 table.setVariableNames
+8.2.54.32 table.setVariableNames
 ................................
 
  -- Method: OUT = setVariableNames (OBJ, NAMES)
@@ -4620,7 +4584,7 @@ File: tablicious.info,  Node: table.setVariableNames,  Next: table.setDimensionN
 
 File: tablicious.info,  Node: table.setDimensionNames,  Next: table.setRowNames,  Prev: table.setVariableNames,  Up: table
 
-8.2.57.33 table.setDimensionNames
+8.2.54.33 table.setDimensionNames
 .................................
 
  -- Method: OUT = setDimensionNames (OBJ, NAMES)
@@ -4643,7 +4607,7 @@ File: tablicious.info,  Node: table.setDimensionNames,  Next: table.setRowNames,
 
 File: tablicious.info,  Node: table.setRowNames,  Next: table.removevars,  Prev: table.setDimensionNames,  Up: table
 
-8.2.57.34 table.setRowNames
+8.2.54.34 table.setRowNames
 ...........................
 
  -- Method: OUT = setRowNames (OBJ, NAMES)
@@ -4658,7 +4622,7 @@ File: tablicious.info,  Node: table.setRowNames,  Next: table.removevars,  Prev:
 
 File: tablicious.info,  Node: table.removevars,  Next: table.movevars,  Prev: table.setRowNames,  Up: table
 
-8.2.57.35 table.removevars
+8.2.54.35 table.removevars
 ..........................
 
  -- Method: OUT = removevars (OBJ, VARS)
@@ -4673,7 +4637,7 @@ File: tablicious.info,  Node: table.removevars,  Next: table.movevars,  Prev: ta
 
 File: tablicious.info,  Node: table.movevars,  Next: table.getvar,  Prev: table.removevars,  Up: table
 
-8.2.57.36 table.movevars
+8.2.54.36 table.movevars
 ........................
 
  -- Method: OUT = movevars (OBJ, VARS, RELLOCATION, LOCATION)
@@ -4695,7 +4659,7 @@ File: tablicious.info,  Node: table.movevars,  Next: table.getvar,  Prev: table.
 
 File: tablicious.info,  Node: table.getvar,  Next: table.getvars,  Prev: table.movevars,  Up: table
 
-8.2.57.37 table.getvar
+8.2.54.37 table.getvar
 ......................
 
  -- Method: [OUT, NAME] = getvar (OBJ, VARREF)
@@ -4711,7 +4675,7 @@ File: tablicious.info,  Node: table.getvar,  Next: table.getvars,  Prev: table.m
 
 File: tablicious.info,  Node: table.getvars,  Next: table.setvar,  Prev: table.getvar,  Up: table
 
-8.2.57.38 table.getvars
+8.2.54.38 table.getvars
 .......................
 
  -- Method: [OUT1, ...] = getvars (OBJ, VARREF)
@@ -4727,7 +4691,7 @@ File: tablicious.info,  Node: table.getvars,  Next: table.setvar,  Prev: table.g
 
 File: tablicious.info,  Node: table.setvar,  Next: table.addvars,  Prev: table.getvars,  Up: table
 
-8.2.57.39 table.setvar
+8.2.54.39 table.setvar
 ......................
 
  -- Method: OUT = setvar (OBJ, VARREF, VALUE)
@@ -4752,7 +4716,7 @@ File: tablicious.info,  Node: table.setvar,  Next: table.addvars,  Prev: table.g
 
 File: tablicious.info,  Node: table.addvars,  Next: table.convertvars,  Prev: table.setvar,  Up: table
 
-8.2.57.40 table.addvars
+8.2.54.40 table.addvars
 .......................
 
  -- Method: OUT = addvars (OBJ, VAR1, ..., VARN)
@@ -4767,7 +4731,7 @@ File: tablicious.info,  Node: table.addvars,  Next: table.convertvars,  Prev: ta
 
 File: tablicious.info,  Node: table.convertvars,  Next: table.mergevars,  Prev: table.addvars,  Up: table
 
-8.2.57.41 table.convertvars
+8.2.54.41 table.convertvars
 ...........................
 
  -- Method: OUT = convertvars (OBJ, VARS, DATATYPE)
@@ -4794,7 +4758,7 @@ File: tablicious.info,  Node: table.convertvars,  Next: table.mergevars,  Prev: 
 
 File: tablicious.info,  Node: table.mergevars,  Next: table.splitvars,  Prev: table.convertvars,  Up: table
 
-8.2.57.42 table.mergevars
+8.2.54.42 table.mergevars
 .........................
 
  -- Method: OUT = mergevars (OBJ, VARS)
@@ -4806,7 +4770,7 @@ File: tablicious.info,  Node: table.mergevars,  Next: table.splitvars,  Prev: ta
 
 File: tablicious.info,  Node: table.splitvars,  Next: table.stack,  Prev: table.mergevars,  Up: table
 
-8.2.57.43 table.splitvars
+8.2.54.43 table.splitvars
 .........................
 
  -- Method: OUT = splitvars (OBJ)
@@ -4822,7 +4786,7 @@ File: tablicious.info,  Node: table.splitvars,  Next: table.stack,  Prev: table.
 
 File: tablicious.info,  Node: table.stack,  Next: table.head,  Prev: table.splitvars,  Up: table
 
-8.2.57.44 table.stack
+8.2.54.44 table.stack
 .....................
 
  -- Method: OUT = stack (OBJ, VARS)
@@ -4835,7 +4799,7 @@ File: tablicious.info,  Node: table.stack,  Next: table.head,  Prev: table.split
 
 File: tablicious.info,  Node: table.head,  Next: table.tail,  Prev: table.stack,  Up: table
 
-8.2.57.45 table.head
+8.2.54.45 table.head
 ....................
 
  -- Method: OUT = head (OBJ)
@@ -4852,7 +4816,7 @@ File: tablicious.info,  Node: table.head,  Next: table.tail,  Prev: table.stack,
 
 File: tablicious.info,  Node: table.tail,  Next: table.join,  Prev: table.head,  Up: table
 
-8.2.57.46 table.tail
+8.2.54.46 table.tail
 ....................
 
  -- Method: OUT = tail (OBJ)
@@ -4869,7 +4833,7 @@ File: tablicious.info,  Node: table.tail,  Next: table.join,  Prev: table.head, 
 
 File: tablicious.info,  Node: table.join,  Next: table.innerjoin,  Prev: table.tail,  Up: table
 
-8.2.57.47 table.join
+8.2.54.47 table.join
 ....................
 
  -- Method: [C, IB] = join (A, B)
@@ -4891,7 +4855,7 @@ File: tablicious.info,  Node: table.join,  Next: table.innerjoin,  Prev: table.t
 
 File: tablicious.info,  Node: table.innerjoin,  Next: table.outerjoin,  Prev: table.join,  Up: table
 
-8.2.57.48 table.innerjoin
+8.2.54.48 table.innerjoin
 .........................
 
  -- Method: [OUT, IXA, IXB] = innerjoin (A, B)
@@ -4912,7 +4876,7 @@ File: tablicious.info,  Node: table.innerjoin,  Next: table.outerjoin,  Prev: ta
 
 File: tablicious.info,  Node: table.outerjoin,  Next: table.outerfillvals,  Prev: table.innerjoin,  Up: table
 
-8.2.57.49 table.outerjoin
+8.2.54.49 table.outerjoin
 .........................
 
  -- Method: [OUT, IXA, IXB] = outerjoin (A, B)
@@ -4935,7 +4899,7 @@ File: tablicious.info,  Node: table.outerjoin,  Next: table.outerfillvals,  Prev
 
 File: tablicious.info,  Node: table.outerfillvals,  Next: table.semijoin,  Prev: table.outerjoin,  Up: table
 
-8.2.57.50 table.outerfillvals
+8.2.54.50 table.outerfillvals
 .............................
 
  -- Method: OUT = outerfillvals (OBJ)
@@ -4949,7 +4913,7 @@ File: tablicious.info,  Node: table.outerfillvals,  Next: table.semijoin,  Prev:
 
 File: tablicious.info,  Node: table.semijoin,  Next: table.antijoin,  Prev: table.outerfillvals,  Up: table
 
-8.2.57.51 table.semijoin
+8.2.54.51 table.semijoin
 ........................
 
  -- Method: [OUTA, IXA, OUTB, IXB] = semijoin (A, B)
@@ -4971,7 +4935,7 @@ File: tablicious.info,  Node: table.semijoin,  Next: table.antijoin,  Prev: tabl
 
 File: tablicious.info,  Node: table.antijoin,  Next: table.cartesian,  Prev: table.semijoin,  Up: table
 
-8.2.57.52 table.antijoin
+8.2.54.52 table.antijoin
 ........................
 
  -- Method: [OUTA, IXA, OUTB, IXB] = antijoin (A, B)
@@ -4990,7 +4954,7 @@ File: tablicious.info,  Node: table.antijoin,  Next: table.cartesian,  Prev: tab
 
 File: tablicious.info,  Node: table.cartesian,  Next: table.groupby,  Prev: table.antijoin,  Up: table
 
-8.2.57.53 table.cartesian
+8.2.54.53 table.cartesian
 .........................
 
  -- Method: [OUT, IXS] = cartesian (A, B)
@@ -5022,7 +4986,7 @@ File: tablicious.info,  Node: table.cartesian,  Next: table.groupby,  Prev: tabl
 
 File: tablicious.info,  Node: table.groupby,  Next: table.grpstats,  Prev: table.cartesian,  Up: table
 
-8.2.57.54 table.groupby
+8.2.54.54 table.groupby
 .......................
 
  -- Method: [OUT] = groupby (OBJ, GROUPVARS, AGGCALCS)
@@ -5046,7 +5010,7 @@ File: tablicious.info,  Node: table.groupby,  Next: table.grpstats,  Prev: table
 
 File: tablicious.info,  Node: table.grpstats,  Next: table.splitapply,  Prev: table.groupby,  Up: table
 
-8.2.57.55 table.grpstats
+8.2.54.55 table.grpstats
 ........................
 
  -- Method: [OUT] = grpstats (OBJ, GROUPVAR)
@@ -5059,7 +5023,7 @@ File: tablicious.info,  Node: table.grpstats,  Next: table.splitapply,  Prev: ta
 
 File: tablicious.info,  Node: table.splitapply,  Next: table.rows2vars,  Prev: table.grpstats,  Up: table
 
-8.2.57.56 table.splitapply
+8.2.54.56 table.splitapply
 ..........................
 
  -- Method: OUT = splitapply (FUNC, OBJ, G)
@@ -5075,7 +5039,7 @@ File: tablicious.info,  Node: table.splitapply,  Next: table.rows2vars,  Prev: t
 
 File: tablicious.info,  Node: table.rows2vars,  Next: table.congruentize,  Prev: table.splitapply,  Up: table
 
-8.2.57.57 table.rows2vars
+8.2.54.57 table.rows2vars
 .........................
 
  -- Method: OUT = rows2vars (OBJ)
@@ -5104,7 +5068,7 @@ File: tablicious.info,  Node: table.rows2vars,  Next: table.congruentize,  Prev:
 
 File: tablicious.info,  Node: table.congruentize,  Next: table.union,  Prev: table.rows2vars,  Up: table
 
-8.2.57.58 table.congruentize
+8.2.54.58 table.congruentize
 ............................
 
  -- Method: [OUTA, OUTB] = congruentize (A, B)
@@ -5126,7 +5090,7 @@ File: tablicious.info,  Node: table.congruentize,  Next: table.union,  Prev: tab
 
 File: tablicious.info,  Node: table.union,  Next: table.intersect,  Prev: table.congruentize,  Up: table
 
-8.2.57.59 table.union
+8.2.54.59 table.union
 .....................
 
  -- Method: [C, IA, IB] = union (A, B)
@@ -5144,7 +5108,7 @@ File: tablicious.info,  Node: table.union,  Next: table.intersect,  Prev: table.
 
 File: tablicious.info,  Node: table.intersect,  Next: table.setxor,  Prev: table.union,  Up: table
 
-8.2.57.60 table.intersect
+8.2.54.60 table.intersect
 .........................
 
  -- Method: [C, IA, IB] = intersect (A, B)
@@ -5163,7 +5127,7 @@ File: tablicious.info,  Node: table.intersect,  Next: table.setxor,  Prev: table
 
 File: tablicious.info,  Node: table.setxor,  Next: table.setdiff,  Prev: table.intersect,  Up: table
 
-8.2.57.61 table.setxor
+8.2.54.61 table.setxor
 ......................
 
  -- Method: [C, IA, IB] = setxor (A, B)
@@ -5182,7 +5146,7 @@ File: tablicious.info,  Node: table.setxor,  Next: table.setdiff,  Prev: table.i
 
 File: tablicious.info,  Node: table.setdiff,  Next: table.ismember,  Prev: table.setxor,  Up: table
 
-8.2.57.62 table.setdiff
+8.2.54.62 table.setdiff
 .......................
 
  -- Method: [C, IA] = setdiff (A, B)
@@ -5200,7 +5164,7 @@ File: tablicious.info,  Node: table.setdiff,  Next: table.ismember,  Prev: table
 
 File: tablicious.info,  Node: table.ismember,  Next: table.ismissing,  Prev: table.setdiff,  Up: table
 
-8.2.57.63 table.ismember
+8.2.54.63 table.ismember
 ........................
 
  -- Method: [TF, LOC] = ismember (A, B)
@@ -5215,7 +5179,7 @@ File: tablicious.info,  Node: table.ismember,  Next: table.ismissing,  Prev: tab
 
 File: tablicious.info,  Node: table.ismissing,  Next: table.varfun,  Prev: table.ismember,  Up: table
 
-8.2.57.64 table.ismissing
+8.2.54.64 table.ismissing
 .........................
 
  -- Method: OUT = ismissing (OBJ)
@@ -5237,7 +5201,7 @@ File: tablicious.info,  Node: table.ismissing,  Next: table.varfun,  Prev: table
 
 File: tablicious.info,  Node: table.varfun,  Next: table.rowfun,  Prev: table.ismissing,  Up: table
 
-8.2.57.65 table.varfun
+8.2.54.65 table.varfun
 ......................
 
  -- Method: OUT = varfun (FCN, OBJ)
@@ -5253,7 +5217,7 @@ File: tablicious.info,  Node: table.varfun,  Next: table.rowfun,  Prev: table.is
 
 File: tablicious.info,  Node: table.rowfun,  Next: table.findgroups,  Prev: table.varfun,  Up: table
 
-8.2.57.66 table.rowfun
+8.2.54.66 table.rowfun
 ......................
 
  -- Method: OUT = varfun (FUNC, OBJ)
@@ -5318,7 +5282,7 @@ File: tablicious.info,  Node: table.rowfun,  Next: table.findgroups,  Prev: tabl
 
 File: tablicious.info,  Node: table.findgroups,  Next: table.evalWithVars,  Prev: table.rowfun,  Up: table
 
-8.2.57.67 table.findgroups
+8.2.54.67 table.findgroups
 ..........................
 
  -- Method: [G, TID] = findgroups (OBJ)
@@ -5336,7 +5300,7 @@ File: tablicious.info,  Node: table.findgroups,  Next: table.evalWithVars,  Prev
 
 File: tablicious.info,  Node: table.evalWithVars,  Next: table.restrict,  Prev: table.findgroups,  Up: table
 
-8.2.57.68 table.evalWithVars
+8.2.54.68 table.evalWithVars
 ............................
 
  -- Method: OUT = evalWithVars (OBJ, EXPR)
@@ -5363,7 +5327,7 @@ File: tablicious.info,  Node: table.evalWithVars,  Next: table.restrict,  Prev: 
 
 File: tablicious.info,  Node: table.restrict,  Next: table.renamevars,  Prev: table.evalWithVars,  Up: table
 
-8.2.57.69 table.restrict
+8.2.54.69 table.restrict
 ........................
 
  -- Method: OUT = restrict (OBJ, EXPR)
@@ -5394,7 +5358,7 @@ File: tablicious.info,  Node: table.restrict,  Next: table.renamevars,  Prev: ta
 
 File: tablicious.info,  Node: table.renamevars,  Next: table.resolveVarRef,  Prev: table.restrict,  Up: table
 
-8.2.57.70 table.renamevars
+8.2.54.70 table.renamevars
 ..........................
 
  -- Method: OUT = renamevars (OBJ, RENAMEMAP)
@@ -5418,7 +5382,7 @@ File: tablicious.info,  Node: table.renamevars,  Next: table.resolveVarRef,  Pre
 
 File: tablicious.info,  Node: table.resolveVarRef,  Next: table.subsetrows,  Prev: table.renamevars,  Up: table
 
-8.2.57.71 table.resolveVarRef
+8.2.54.71 table.resolveVarRef
 .............................
 
  -- Method: [IXVAR, VARNAMES] = resolveVarRef (OBJ, VARREF)
@@ -5444,7 +5408,7 @@ File: tablicious.info,  Node: table.resolveVarRef,  Next: table.subsetrows,  Pre
 
 File: tablicious.info,  Node: table.subsetrows,  Next: table.subsetvars,  Prev: table.resolveVarRef,  Up: table
 
-8.2.57.72 table.subsetrows
+8.2.54.72 table.subsetrows
 ..........................
 
  -- Method: OUT = subsetrows (OBJ, IXROWS)
@@ -5458,7 +5422,7 @@ File: tablicious.info,  Node: table.subsetrows,  Next: table.subsetvars,  Prev: 
 
 File: tablicious.info,  Node: table.subsetvars,  Prev: table.subsetrows,  Up: table
 
-8.2.57.73 table.subsetvars
+8.2.54.73 table.subsetvars
 ..........................
 
  -- Method: OUT = subsetvars (OBJ, IXVARS)
@@ -5476,7 +5440,7 @@ File: tablicious.info,  Node: table.subsetvars,  Prev: table.subsetrows,  Up: ta
 
 File: tablicious.info,  Node: tableOuterFillValue,  Next: tblish.chrono.dummy_function,  Prev: table,  Up: API Alphabetically
 
-8.2.58 tableOuterFillValue
+8.2.55 tableOuterFillValue
 --------------------------
 
  -- Function: OUT = tableOuterFillValue (X)
@@ -5505,7 +5469,7 @@ File: tablicious.info,  Node: tableOuterFillValue,  Next: tblish.chrono.dummy_fu
 
 File: tablicious.info,  Node: tblish.chrono.dummy_function,  Next: tblish.chrono.DummyClass,  Prev: tableOuterFillValue,  Up: API Alphabetically
 
-8.2.59 tblish.chrono.dummy_function
+8.2.56 tblish.chrono.dummy_function
 -----------------------------------
 
  -- Function: OUT = dummy_function (X)
@@ -5520,7 +5484,7 @@ File: tablicious.info,  Node: tblish.chrono.dummy_function,  Next: tblish.chrono
 
 File: tablicious.info,  Node: tblish.chrono.DummyClass,  Next: tblish.dataset,  Prev: tblish.chrono.dummy_function,  Up: API Alphabetically
 
-8.2.60 tblish.chrono.DummyClass
+8.2.57 tblish.chrono.DummyClass
 -------------------------------
 
  -- Class: DummyClass
@@ -5549,7 +5513,7 @@ File: tablicious.info,  Node: tblish.chrono.DummyClass,  Next: tblish.dataset,  
 
 File: tablicious.info,  Node: tblish.chrono.DummyClass.DummyClass,  Next: tblish.chrono.DummyClass.foo,  Up: tblish.chrono.DummyClass
 
-8.2.60.1 tblish.chrono.DummyClass.DummyClass
+8.2.57.1 tblish.chrono.DummyClass.DummyClass
 ............................................
 
  -- Constructor: OBJ = tblish.chrono.DummyClass ()
@@ -5563,7 +5527,7 @@ File: tablicious.info,  Node: tblish.chrono.DummyClass.DummyClass,  Next: tblish
 
 File: tablicious.info,  Node: tblish.chrono.DummyClass.foo,  Next: tblish.chrono.DummyClass.bar,  Prev: tblish.chrono.DummyClass.DummyClass,  Up: tblish.chrono.DummyClass
 
-8.2.60.2 tblish.chrono.DummyClass.foo
+8.2.57.2 tblish.chrono.DummyClass.foo
 .....................................
 
  -- Method: OUT = foo (OBJ)
@@ -5578,7 +5542,7 @@ File: tablicious.info,  Node: tblish.chrono.DummyClass.foo,  Next: tblish.chrono
 
 File: tablicious.info,  Node: tblish.chrono.DummyClass.bar,  Prev: tblish.chrono.DummyClass.foo,  Up: tblish.chrono.DummyClass
 
-8.2.60.3 tblish.chrono.DummyClass.bar
+8.2.57.3 tblish.chrono.DummyClass.bar
 .....................................
 
  -- Method: OUT = bar (OBJ)
@@ -5593,7 +5557,7 @@ File: tablicious.info,  Node: tblish.chrono.DummyClass.bar,  Prev: tblish.chrono
 
 File: tablicious.info,  Node: tblish.dataset,  Next: tblish.datasets,  Prev: tblish.chrono.DummyClass,  Up: API Alphabetically
 
-8.2.61 tblish.dataset
+8.2.58 tblish.dataset
 ---------------------
 
  -- Class: dataset
@@ -5697,7 +5661,7 @@ File: tablicious.info,  Node: tblish.dataset,  Next: tblish.datasets,  Prev: tbl
 
 File: tablicious.info,  Node: tblish.dataset.airmiles,  Next: tblish.dataset.AirPassengers,  Up: tblish.dataset
 
-8.2.61.1 tblish.dataset.airmiles
+8.2.58.1 tblish.dataset.airmiles
 ................................
 
  -- Static Method: OUT = airmiles ()
@@ -5727,7 +5691,7 @@ File: tablicious.info,  Node: tblish.dataset.airmiles,  Next: tblish.dataset.Air
 
 File: tablicious.info,  Node: tblish.dataset.AirPassengers,  Next: tblish.dataset.airquality,  Prev: tblish.dataset.airmiles,  Up: tblish.dataset
 
-8.2.61.2 tblish.dataset.AirPassengers
+8.2.58.2 tblish.dataset.AirPassengers
 .....................................
 
  -- Static Method: OUT = AirPassengers ()
@@ -5755,7 +5719,7 @@ File: tablicious.info,  Node: tblish.dataset.AirPassengers,  Next: tblish.datase
 
 File: tablicious.info,  Node: tblish.dataset.airquality,  Next: tblish.dataset.anscombe,  Prev: tblish.dataset.AirPassengers,  Up: tblish.dataset
 
-8.2.61.3 tblish.dataset.airquality
+8.2.58.3 tblish.dataset.airquality
 ..................................
 
  -- Static Method: OUT = airquality ()
@@ -5831,7 +5795,7 @@ File: tablicious.info,  Node: tblish.dataset.airquality,  Next: tblish.dataset.a
 
 File: tablicious.info,  Node: tblish.dataset.anscombe,  Next: tblish.dataset.attenu,  Prev: tblish.dataset.airquality,  Up: tblish.dataset
 
-8.2.61.4 tblish.dataset.anscombe
+8.2.58.4 tblish.dataset.anscombe
 ................................
 
  -- Static Method: OUT = anscombe ()
@@ -5901,7 +5865,7 @@ File: tablicious.info,  Node: tblish.dataset.anscombe,  Next: tblish.dataset.att
 
 File: tablicious.info,  Node: tblish.dataset.attenu,  Next: tblish.dataset.attitude,  Prev: tblish.dataset.anscombe,  Up: tblish.dataset
 
-8.2.61.5 tblish.dataset.attenu
+8.2.58.5 tblish.dataset.attenu
 ..............................
 
  -- Static Method: OUT = attenu ()
@@ -5954,7 +5918,7 @@ File: tablicious.info,  Node: tblish.dataset.attenu,  Next: tblish.dataset.attit
 
 File: tablicious.info,  Node: tblish.dataset.attitude,  Next: tblish.dataset.austres,  Prev: tblish.dataset.attenu,  Up: tblish.dataset
 
-8.2.61.6 tblish.dataset.attitude
+8.2.58.6 tblish.dataset.attitude
 ................................
 
  -- Static Method: OUT = attitude ()
@@ -6008,7 +5972,7 @@ File: tablicious.info,  Node: tblish.dataset.attitude,  Next: tblish.dataset.aus
 
 File: tablicious.info,  Node: tblish.dataset.austres,  Next: tblish.dataset.beavers,  Prev: tblish.dataset.attitude,  Up: tblish.dataset
 
-8.2.61.7 tblish.dataset.austres
+8.2.58.7 tblish.dataset.austres
 ...............................
 
  -- Static Method: OUT = austres ()
@@ -6047,7 +6011,7 @@ File: tablicious.info,  Node: tblish.dataset.austres,  Next: tblish.dataset.beav
 
 File: tablicious.info,  Node: tblish.dataset.beavers,  Next: tblish.dataset.BJsales,  Prev: tblish.dataset.austres,  Up: tblish.dataset
 
-8.2.61.8 tblish.dataset.beavers
+8.2.58.8 tblish.dataset.beavers
 ...............................
 
  -- Static Method: OUT = beavers ()
@@ -6088,7 +6052,7 @@ File: tablicious.info,  Node: tblish.dataset.beavers,  Next: tblish.dataset.BJsa
 
 File: tablicious.info,  Node: tblish.dataset.BJsales,  Next: tblish.dataset.BOD,  Prev: tblish.dataset.beavers,  Up: tblish.dataset
 
-8.2.61.9 tblish.dataset.BJsales
+8.2.58.9 tblish.dataset.BJsales
 ...............................
 
  -- Static Method: OUT = BJsales ()
@@ -6134,7 +6098,7 @@ File: tablicious.info,  Node: tblish.dataset.BJsales,  Next: tblish.dataset.BOD,
 
 File: tablicious.info,  Node: tblish.dataset.BOD,  Next: tblish.dataset.cars,  Prev: tblish.dataset.BJsales,  Up: tblish.dataset
 
-8.2.61.10 tblish.dataset.BOD
+8.2.58.10 tblish.dataset.BOD
 ............................
 
  -- Static Method: OUT = BOD ()
@@ -6174,7 +6138,7 @@ File: tablicious.info,  Node: tblish.dataset.BOD,  Next: tblish.dataset.cars,  P
 
 File: tablicious.info,  Node: tblish.dataset.cars,  Next: tblish.dataset.ChickWeight,  Prev: tblish.dataset.BOD,  Up: tblish.dataset
 
-8.2.61.11 tblish.dataset.cars
+8.2.58.11 tblish.dataset.cars
 .............................
 
  -- Static Method: OUT = cars ()
@@ -6247,7 +6211,7 @@ File: tablicious.info,  Node: tblish.dataset.cars,  Next: tblish.dataset.ChickWe
 
 File: tablicious.info,  Node: tblish.dataset.ChickWeight,  Next: tblish.dataset.chickwts,  Prev: tblish.dataset.cars,  Up: tblish.dataset
 
-8.2.61.12 tblish.dataset.ChickWeight
+8.2.58.12 tblish.dataset.ChickWeight
 ....................................
 
  -- Static Method: OUT = ChickWeight ()
@@ -6294,7 +6258,7 @@ File: tablicious.info,  Node: tblish.dataset.ChickWeight,  Next: tblish.dataset.
 
 File: tablicious.info,  Node: tblish.dataset.chickwts,  Next: tblish.dataset.co2,  Prev: tblish.dataset.ChickWeight,  Up: tblish.dataset
 
-8.2.61.13 tblish.dataset.chickwts
+8.2.58.13 tblish.dataset.chickwts
 .................................
 
  -- Static Method: OUT = chickwts ()
@@ -6354,7 +6318,7 @@ File: tablicious.info,  Node: tblish.dataset.chickwts,  Next: tblish.dataset.co2
 
 File: tablicious.info,  Node: tblish.dataset.co2,  Next: tblish.dataset.crimtab,  Prev: tblish.dataset.chickwts,  Up: tblish.dataset
 
-8.2.61.14 tblish.dataset.co2
+8.2.58.14 tblish.dataset.co2
 ............................
 
  -- Static Method: OUT = co2 ()
@@ -6413,7 +6377,7 @@ File: tablicious.info,  Node: tblish.dataset.co2,  Next: tblish.dataset.crimtab,
 
 File: tablicious.info,  Node: tblish.dataset.crimtab,  Next: tblish.dataset.cupcake,  Prev: tblish.dataset.co2,  Up: tblish.dataset
 
-8.2.61.15 tblish.dataset.crimtab
+8.2.58.15 tblish.dataset.crimtab
 ................................
 
  -- Static Method: OUT = crimtab ()
@@ -6504,7 +6468,7 @@ File: tablicious.info,  Node: tblish.dataset.crimtab,  Next: tblish.dataset.cupc
 
 File: tablicious.info,  Node: tblish.dataset.cupcake,  Next: tblish.dataset.discoveries,  Prev: tblish.dataset.crimtab,  Up: tblish.dataset
 
-8.2.61.16 tblish.dataset.cupcake
+8.2.58.16 tblish.dataset.cupcake
 ................................
 
  -- Static Method: OUT = cupcake ()
@@ -6543,7 +6507,7 @@ File: tablicious.info,  Node: tblish.dataset.cupcake,  Next: tblish.dataset.disc
 
 File: tablicious.info,  Node: tblish.dataset.discoveries,  Next: tblish.dataset.DNase,  Prev: tblish.dataset.cupcake,  Up: tblish.dataset
 
-8.2.61.17 tblish.dataset.discoveries
+8.2.58.17 tblish.dataset.discoveries
 ....................................
 
  -- Static Method: OUT = discoveries ()
@@ -6588,7 +6552,7 @@ File: tablicious.info,  Node: tblish.dataset.discoveries,  Next: tblish.dataset.
 
 File: tablicious.info,  Node: tblish.dataset.DNase,  Next: tblish.dataset.esoph,  Prev: tblish.dataset.discoveries,  Up: tblish.dataset
 
-8.2.61.18 tblish.dataset.DNase
+8.2.58.18 tblish.dataset.DNase
 ..............................
 
  -- Static Method: OUT = DNase ()
@@ -6636,7 +6600,7 @@ File: tablicious.info,  Node: tblish.dataset.DNase,  Next: tblish.dataset.esoph,
 
 File: tablicious.info,  Node: tblish.dataset.esoph,  Next: tblish.dataset.euro,  Prev: tblish.dataset.DNase,  Up: tblish.dataset
 
-8.2.61.19 tblish.dataset.esoph
+8.2.58.19 tblish.dataset.esoph
 ..............................
 
  -- Static Method: OUT = esoph ()
@@ -6685,7 +6649,7 @@ File: tablicious.info,  Node: tblish.dataset.esoph,  Next: tblish.dataset.euro, 
 
 File: tablicious.info,  Node: tblish.dataset.euro,  Next: tblish.dataset.eurodist,  Prev: tblish.dataset.esoph,  Up: tblish.dataset
 
-8.2.61.20 tblish.dataset.euro
+8.2.58.20 tblish.dataset.euro
 .............................
 
  -- Static Method: OUT = euro ()
@@ -6744,7 +6708,7 @@ File: tablicious.info,  Node: tblish.dataset.euro,  Next: tblish.dataset.eurodis
 
 File: tablicious.info,  Node: tblish.dataset.eurodist,  Next: tblish.dataset.EuStockMarkets,  Prev: tblish.dataset.euro,  Up: tblish.dataset
 
-8.2.61.21 tblish.dataset.eurodist
+8.2.58.21 tblish.dataset.eurodist
 .................................
 
  -- Static Method: OUT = eurodist ()
@@ -6783,7 +6747,7 @@ File: tablicious.info,  Node: tblish.dataset.eurodist,  Next: tblish.dataset.EuS
 
 File: tablicious.info,  Node: tblish.dataset.EuStockMarkets,  Next: tblish.dataset.faithful,  Prev: tblish.dataset.eurodist,  Up: tblish.dataset
 
-8.2.61.22 tblish.dataset.EuStockMarkets
+8.2.58.22 tblish.dataset.EuStockMarkets
 .......................................
 
  -- Static Method: OUT = EuStockMarkets ()
@@ -6841,7 +6805,7 @@ File: tablicious.info,  Node: tblish.dataset.EuStockMarkets,  Next: tblish.datas
 
 File: tablicious.info,  Node: tblish.dataset.faithful,  Next: tblish.dataset.Formaldehyde,  Prev: tblish.dataset.EuStockMarkets,  Up: tblish.dataset
 
-8.2.61.23 tblish.dataset.faithful
+8.2.58.23 tblish.dataset.faithful
 .................................
 
  -- Static Method: OUT = faithful ()
@@ -6906,7 +6870,7 @@ File: tablicious.info,  Node: tblish.dataset.faithful,  Next: tblish.dataset.For
 
 File: tablicious.info,  Node: tblish.dataset.Formaldehyde,  Next: tblish.dataset.freeny,  Prev: tblish.dataset.faithful,  Up: tblish.dataset
 
-8.2.61.24 tblish.dataset.Formaldehyde
+8.2.58.24 tblish.dataset.Formaldehyde
 .....................................
 
  -- Static Method: OUT = Formaldehyde ()
@@ -6961,7 +6925,7 @@ File: tablicious.info,  Node: tblish.dataset.Formaldehyde,  Next: tblish.dataset
 
 File: tablicious.info,  Node: tblish.dataset.freeny,  Next: tblish.dataset.HairEyeColor,  Prev: tblish.dataset.Formaldehyde,  Up: tblish.dataset
 
-8.2.61.25 tblish.dataset.freeny
+8.2.58.25 tblish.dataset.freeny
 ...............................
 
  -- Static Method: OUT = freeny ()
@@ -7023,7 +6987,7 @@ File: tablicious.info,  Node: tblish.dataset.freeny,  Next: tblish.dataset.HairE
 
 File: tablicious.info,  Node: tblish.dataset.HairEyeColor,  Next: tblish.dataset.Harman23cor,  Prev: tblish.dataset.freeny,  Up: tblish.dataset
 
-8.2.61.26 tblish.dataset.HairEyeColor
+8.2.58.26 tblish.dataset.HairEyeColor
 .....................................
 
  -- Static Method: OUT = HairEyeColor ()
@@ -7103,7 +7067,7 @@ File: tablicious.info,  Node: tblish.dataset.HairEyeColor,  Next: tblish.dataset
 
 File: tablicious.info,  Node: tblish.dataset.Harman23cor,  Next: tblish.dataset.Harman74cor,  Prev: tblish.dataset.HairEyeColor,  Up: tblish.dataset
 
-8.2.61.27 tblish.dataset.Harman23cor
+8.2.58.27 tblish.dataset.Harman23cor
 ....................................
 
  -- Static Method: OUT = Harman23cor ()
@@ -7142,7 +7106,7 @@ File: tablicious.info,  Node: tblish.dataset.Harman23cor,  Next: tblish.dataset.
 
 File: tablicious.info,  Node: tblish.dataset.Harman74cor,  Next: tblish.dataset.Indometh,  Prev: tblish.dataset.Harman23cor,  Up: tblish.dataset
 
-8.2.61.28 tblish.dataset.Harman74cor
+8.2.58.28 tblish.dataset.Harman74cor
 ....................................
 
  -- Static Method: OUT = Harman74cor ()
@@ -7182,7 +7146,7 @@ File: tablicious.info,  Node: tblish.dataset.Harman74cor,  Next: tblish.dataset.
 
 File: tablicious.info,  Node: tblish.dataset.Indometh,  Next: tblish.dataset.infert,  Prev: tblish.dataset.Harman74cor,  Up: tblish.dataset
 
-8.2.61.29 tblish.dataset.Indometh
+8.2.58.29 tblish.dataset.Indometh
 .................................
 
  -- Static Method: OUT = Indometh ()
@@ -7230,7 +7194,7 @@ File: tablicious.info,  Node: tblish.dataset.Indometh,  Next: tblish.dataset.inf
 
 File: tablicious.info,  Node: tblish.dataset.infert,  Next: tblish.dataset.InsectSprays,  Prev: tblish.dataset.Indometh,  Up: tblish.dataset
 
-8.2.61.30 tblish.dataset.infert
+8.2.58.30 tblish.dataset.infert
 ...............................
 
  -- Static Method: OUT = infert ()
@@ -7288,7 +7252,7 @@ File: tablicious.info,  Node: tblish.dataset.infert,  Next: tblish.dataset.Insec
 
 File: tablicious.info,  Node: tblish.dataset.InsectSprays,  Next: tblish.dataset.iris,  Prev: tblish.dataset.infert,  Up: tblish.dataset
 
-8.2.61.31 tblish.dataset.InsectSprays
+8.2.58.31 tblish.dataset.InsectSprays
 .....................................
 
  -- Static Method: OUT = InsectSprays ()
@@ -7333,7 +7297,7 @@ File: tablicious.info,  Node: tblish.dataset.InsectSprays,  Next: tblish.dataset
 
 File: tablicious.info,  Node: tblish.dataset.iris,  Next: tblish.dataset.islands,  Prev: tblish.dataset.InsectSprays,  Up: tblish.dataset
 
-8.2.61.32 tblish.dataset.iris
+8.2.58.32 tblish.dataset.iris
 .............................
 
  -- Static Method: OUT = iris ()
@@ -7390,7 +7354,7 @@ File: tablicious.info,  Node: tblish.dataset.iris,  Next: tblish.dataset.islands
 
 File: tablicious.info,  Node: tblish.dataset.islands,  Next: tblish.dataset.JohnsonJohnson,  Prev: tblish.dataset.iris,  Up: tblish.dataset
 
-8.2.61.33 tblish.dataset.islands
+8.2.58.33 tblish.dataset.islands
 ................................
 
  -- Static Method: OUT = islands ()
@@ -7433,7 +7397,7 @@ File: tablicious.info,  Node: tblish.dataset.islands,  Next: tblish.dataset.John
 
 File: tablicious.info,  Node: tblish.dataset.JohnsonJohnson,  Next: tblish.dataset.LakeHuron,  Prev: tblish.dataset.islands,  Up: tblish.dataset
 
-8.2.61.34 tblish.dataset.JohnsonJohnson
+8.2.58.34 tblish.dataset.JohnsonJohnson
 .......................................
 
  -- Static Method: OUT = JohnsonJohnson ()
@@ -7471,7 +7435,7 @@ File: tablicious.info,  Node: tblish.dataset.JohnsonJohnson,  Next: tblish.datas
 
 File: tablicious.info,  Node: tblish.dataset.LakeHuron,  Next: tblish.dataset.lh,  Prev: tblish.dataset.JohnsonJohnson,  Up: tblish.dataset
 
-8.2.61.35 tblish.dataset.LakeHuron
+8.2.58.35 tblish.dataset.LakeHuron
 ..................................
 
  -- Static Method: OUT = LakeHuron ()
@@ -7516,7 +7480,7 @@ File: tablicious.info,  Node: tblish.dataset.LakeHuron,  Next: tblish.dataset.lh
 
 File: tablicious.info,  Node: tblish.dataset.lh,  Next: tblish.dataset.LifeCycleSavings,  Prev: tblish.dataset.LakeHuron,  Up: tblish.dataset
 
-8.2.61.36 tblish.dataset.lh
+8.2.58.36 tblish.dataset.lh
 ...........................
 
  -- Static Method: OUT = lh ()
@@ -7555,7 +7519,7 @@ File: tablicious.info,  Node: tblish.dataset.lh,  Next: tblish.dataset.LifeCycle
 
 File: tablicious.info,  Node: tblish.dataset.LifeCycleSavings,  Next: tblish.dataset.Loblolly,  Prev: tblish.dataset.lh,  Up: tblish.dataset
 
-8.2.61.37 tblish.dataset.LifeCycleSavings
+8.2.58.37 tblish.dataset.LifeCycleSavings
 .........................................
 
  -- Static Method: OUT = LifeCycleSavings ()
@@ -7623,7 +7587,7 @@ File: tablicious.info,  Node: tblish.dataset.LifeCycleSavings,  Next: tblish.dat
 
 File: tablicious.info,  Node: tblish.dataset.Loblolly,  Next: tblish.dataset.longley,  Prev: tblish.dataset.LifeCycleSavings,  Up: tblish.dataset
 
-8.2.61.38 tblish.dataset.Loblolly
+8.2.58.38 tblish.dataset.Loblolly
 .................................
 
  -- Static Method: OUT = Loblolly ()
@@ -7673,7 +7637,7 @@ File: tablicious.info,  Node: tblish.dataset.Loblolly,  Next: tblish.dataset.lon
 
 File: tablicious.info,  Node: tblish.dataset.longley,  Next: tblish.dataset.lynx,  Prev: tblish.dataset.Loblolly,  Up: tblish.dataset
 
-8.2.61.39 tblish.dataset.longley
+8.2.58.39 tblish.dataset.longley
 ................................
 
  -- Static Method: OUT = longley ()
@@ -7729,7 +7693,7 @@ File: tablicious.info,  Node: tblish.dataset.longley,  Next: tblish.dataset.lynx
 
 File: tablicious.info,  Node: tblish.dataset.lynx,  Next: tblish.dataset.morley,  Prev: tblish.dataset.longley,  Up: tblish.dataset
 
-8.2.61.40 tblish.dataset.lynx
+8.2.58.40 tblish.dataset.lynx
 .............................
 
  -- Static Method: OUT = lynx ()
@@ -7782,7 +7746,7 @@ File: tablicious.info,  Node: tblish.dataset.lynx,  Next: tblish.dataset.morley,
 
 File: tablicious.info,  Node: tblish.dataset.morley,  Next: tblish.dataset.mtcars,  Prev: tblish.dataset.lynx,  Up: tblish.dataset
 
-8.2.61.41 tblish.dataset.morley
+8.2.58.41 tblish.dataset.morley
 ...............................
 
  -- Static Method: OUT = morley ()
@@ -7841,7 +7805,7 @@ File: tablicious.info,  Node: tblish.dataset.morley,  Next: tblish.dataset.mtcar
 
 File: tablicious.info,  Node: tblish.dataset.mtcars,  Next: tblish.dataset.nhtemp,  Prev: tblish.dataset.morley,  Up: tblish.dataset
 
-8.2.61.42 tblish.dataset.mtcars
+8.2.58.42 tblish.dataset.mtcars
 ...............................
 
  -- Static Method: OUT = mtcars ()
@@ -7905,7 +7869,7 @@ File: tablicious.info,  Node: tblish.dataset.mtcars,  Next: tblish.dataset.nhtem
 
 File: tablicious.info,  Node: tblish.dataset.nhtemp,  Next: tblish.dataset.Nile,  Prev: tblish.dataset.mtcars,  Up: tblish.dataset
 
-8.2.61.43 tblish.dataset.nhtemp
+8.2.58.43 tblish.dataset.nhtemp
 ...............................
 
  -- Static Method: OUT = nhtemp ()
@@ -7950,7 +7914,7 @@ File: tablicious.info,  Node: tblish.dataset.nhtemp,  Next: tblish.dataset.Nile,
 
 File: tablicious.info,  Node: tblish.dataset.Nile,  Next: tblish.dataset.nottem,  Prev: tblish.dataset.nhtemp,  Up: tblish.dataset
 
-8.2.61.44 tblish.dataset.Nile
+8.2.58.44 tblish.dataset.Nile
 .............................
 
  -- Static Method: OUT = Nile ()
@@ -8001,7 +7965,7 @@ File: tablicious.info,  Node: tblish.dataset.Nile,  Next: tblish.dataset.nottem,
 
 File: tablicious.info,  Node: tblish.dataset.nottem,  Next: tblish.dataset.npk,  Prev: tblish.dataset.Nile,  Up: tblish.dataset
 
-8.2.61.45 tblish.dataset.nottem
+8.2.58.45 tblish.dataset.nottem
 ...............................
 
  -- Static Method: OUT = nottem ()
@@ -8038,7 +8002,7 @@ File: tablicious.info,  Node: tblish.dataset.nottem,  Next: tblish.dataset.npk, 
 
 File: tablicious.info,  Node: tblish.dataset.npk,  Next: tblish.dataset.occupationalStatus,  Prev: tblish.dataset.nottem,  Up: tblish.dataset
 
-8.2.61.46 tblish.dataset.npk
+8.2.58.46 tblish.dataset.npk
 ............................
 
  -- Static Method: OUT = npk ()
@@ -8089,7 +8053,7 @@ File: tablicious.info,  Node: tblish.dataset.npk,  Next: tblish.dataset.occupati
 
 File: tablicious.info,  Node: tblish.dataset.occupationalStatus,  Next: tblish.dataset.Orange,  Prev: tblish.dataset.npk,  Up: tblish.dataset
 
-8.2.61.47 tblish.dataset.occupationalStatus
+8.2.58.47 tblish.dataset.occupationalStatus
 ...........................................
 
  -- Static Method: OUT = occupationalStatus ()
@@ -8124,7 +8088,7 @@ File: tablicious.info,  Node: tblish.dataset.occupationalStatus,  Next: tblish.d
 
 File: tablicious.info,  Node: tblish.dataset.Orange,  Next: tblish.dataset.OrchardSprays,  Prev: tblish.dataset.occupationalStatus,  Up: tblish.dataset
 
-8.2.61.48 tblish.dataset.Orange
+8.2.58.48 tblish.dataset.Orange
 ...............................
 
  -- Static Method: OUT = Orange ()
@@ -8177,7 +8141,7 @@ File: tablicious.info,  Node: tblish.dataset.Orange,  Next: tblish.dataset.Orcha
 
 File: tablicious.info,  Node: tblish.dataset.OrchardSprays,  Next: tblish.dataset.PlantGrowth,  Prev: tblish.dataset.Orange,  Up: tblish.dataset
 
-8.2.61.49 tblish.dataset.OrchardSprays
+8.2.58.49 tblish.dataset.OrchardSprays
 ......................................
 
  -- Static Method: OUT = OrchardSprays ()
@@ -8245,7 +8209,7 @@ File: tablicious.info,  Node: tblish.dataset.OrchardSprays,  Next: tblish.datase
 
 File: tablicious.info,  Node: tblish.dataset.PlantGrowth,  Next: tblish.dataset.precip,  Prev: tblish.dataset.OrchardSprays,  Up: tblish.dataset
 
-8.2.61.50 tblish.dataset.PlantGrowth
+8.2.58.50 tblish.dataset.PlantGrowth
 ....................................
 
  -- Static Method: OUT = PlantGrowth ()
@@ -8284,7 +8248,7 @@ File: tablicious.info,  Node: tblish.dataset.PlantGrowth,  Next: tblish.dataset.
 
 File: tablicious.info,  Node: tblish.dataset.precip,  Next: tblish.dataset.presidents,  Prev: tblish.dataset.PlantGrowth,  Up: tblish.dataset
 
-8.2.61.51 tblish.dataset.precip
+8.2.58.51 tblish.dataset.precip
 ...............................
 
  -- Static Method: OUT = precip ()
@@ -8327,7 +8291,7 @@ File: tablicious.info,  Node: tblish.dataset.precip,  Next: tblish.dataset.presi
 
 File: tablicious.info,  Node: tblish.dataset.presidents,  Next: tblish.dataset.pressure,  Prev: tblish.dataset.precip,  Up: tblish.dataset
 
-8.2.61.52 tblish.dataset.presidents
+8.2.58.52 tblish.dataset.presidents
 ...................................
 
  -- Static Method: OUT = presidents ()
@@ -8382,7 +8346,7 @@ File: tablicious.info,  Node: tblish.dataset.presidents,  Next: tblish.dataset.p
 
 File: tablicious.info,  Node: tblish.dataset.pressure,  Next: tblish.dataset.Puromycin,  Prev: tblish.dataset.presidents,  Up: tblish.dataset
 
-8.2.61.53 tblish.dataset.pressure
+8.2.58.53 tblish.dataset.pressure
 .................................
 
  -- Static Method: OUT = pressure ()
@@ -8437,7 +8401,7 @@ File: tablicious.info,  Node: tblish.dataset.pressure,  Next: tblish.dataset.Pur
 
 File: tablicious.info,  Node: tblish.dataset.Puromycin,  Next: tblish.dataset.quakes,  Prev: tblish.dataset.pressure,  Up: tblish.dataset
 
-8.2.61.54 tblish.dataset.Puromycin
+8.2.58.54 tblish.dataset.Puromycin
 ..................................
 
  -- Static Method: OUT = Puromycin ()
@@ -8499,7 +8463,7 @@ File: tablicious.info,  Node: tblish.dataset.Puromycin,  Next: tblish.dataset.qu
 
 File: tablicious.info,  Node: tblish.dataset.quakes,  Next: tblish.dataset.randu,  Prev: tblish.dataset.Puromycin,  Up: tblish.dataset
 
-8.2.61.55 tblish.dataset.quakes
+8.2.58.55 tblish.dataset.quakes
 ...............................
 
  -- Static Method: OUT = quakes ()
@@ -8558,7 +8522,7 @@ File: tablicious.info,  Node: tblish.dataset.quakes,  Next: tblish.dataset.randu
 
 File: tablicious.info,  Node: tblish.dataset.randu,  Next: tblish.dataset.rivers,  Prev: tblish.dataset.quakes,  Up: tblish.dataset
 
-8.2.61.56 tblish.dataset.randu
+8.2.58.56 tblish.dataset.randu
 ..............................
 
  -- Static Method: OUT = randu ()
@@ -8611,7 +8575,7 @@ File: tablicious.info,  Node: tblish.dataset.randu,  Next: tblish.dataset.rivers
 
 File: tablicious.info,  Node: tblish.dataset.rivers,  Next: tblish.dataset.rock,  Prev: tblish.dataset.randu,  Up: tblish.dataset
 
-8.2.61.57 tblish.dataset.rivers
+8.2.58.57 tblish.dataset.rivers
 ...............................
 
  -- Static Method: OUT = rivers ()
@@ -8653,7 +8617,7 @@ File: tablicious.info,  Node: tblish.dataset.rivers,  Next: tblish.dataset.rock,
 
 File: tablicious.info,  Node: tblish.dataset.rock,  Next: tblish.dataset.sleep,  Prev: tblish.dataset.rivers,  Up: tblish.dataset
 
-8.2.61.58 tblish.dataset.rock
+8.2.58.58 tblish.dataset.rock
 .............................
 
  -- Static Method: OUT = rock ()
@@ -8704,7 +8668,7 @@ File: tablicious.info,  Node: tblish.dataset.rock,  Next: tblish.dataset.sleep, 
 
 File: tablicious.info,  Node: tblish.dataset.sleep,  Next: tblish.dataset.stackloss,  Prev: tblish.dataset.rock,  Up: tblish.dataset
 
-8.2.61.59 tblish.dataset.sleep
+8.2.58.59 tblish.dataset.sleep
 ..............................
 
  -- Static Method: OUT = sleep ()
@@ -8759,7 +8723,7 @@ File: tablicious.info,  Node: tblish.dataset.sleep,  Next: tblish.dataset.stackl
 
 File: tablicious.info,  Node: tblish.dataset.stackloss,  Next: tblish.dataset.state,  Prev: tblish.dataset.sleep,  Up: tblish.dataset
 
-8.2.61.60 tblish.dataset.stackloss
+8.2.58.60 tblish.dataset.stackloss
 ..................................
 
  -- Static Method: OUT = stackloss ()
@@ -8830,7 +8794,7 @@ File: tablicious.info,  Node: tblish.dataset.stackloss,  Next: tblish.dataset.st
 
 File: tablicious.info,  Node: tblish.dataset.state,  Next: tblish.dataset.sunspot_month,  Prev: tblish.dataset.stackloss,  Up: tblish.dataset
 
-8.2.61.61 tblish.dataset.state
+8.2.58.61 tblish.dataset.state
 ..............................
 
  -- Static Method: OUT = state ()
@@ -8899,7 +8863,7 @@ File: tablicious.info,  Node: tblish.dataset.state,  Next: tblish.dataset.sunspo
 
 File: tablicious.info,  Node: tblish.dataset.sunspot_month,  Next: tblish.dataset.sunspot_year,  Prev: tblish.dataset.state,  Up: tblish.dataset
 
-8.2.61.62 tblish.dataset.sunspot_month
+8.2.58.62 tblish.dataset.sunspot_month
 ......................................
 
  -- Static Method: OUT = sunspot_month ()
@@ -8938,7 +8902,7 @@ File: tablicious.info,  Node: tblish.dataset.sunspot_month,  Next: tblish.datase
 
 File: tablicious.info,  Node: tblish.dataset.sunspot_year,  Next: tblish.dataset.sunspots,  Prev: tblish.dataset.sunspot_month,  Up: tblish.dataset
 
-8.2.61.63 tblish.dataset.sunspot_year
+8.2.58.63 tblish.dataset.sunspot_year
 .....................................
 
  -- Static Method: OUT = sunspot_year ()
@@ -8978,7 +8942,7 @@ File: tablicious.info,  Node: tblish.dataset.sunspot_year,  Next: tblish.dataset
 
 File: tablicious.info,  Node: tblish.dataset.sunspots,  Next: tblish.dataset.swiss,  Prev: tblish.dataset.sunspot_year,  Up: tblish.dataset
 
-8.2.61.64 tblish.dataset.sunspots
+8.2.58.64 tblish.dataset.sunspots
 .................................
 
  -- Static Method: OUT = sunspots ()
@@ -9024,7 +8988,7 @@ File: tablicious.info,  Node: tblish.dataset.sunspots,  Next: tblish.dataset.swi
 
 File: tablicious.info,  Node: tblish.dataset.swiss,  Next: tblish.dataset.Theoph,  Prev: tblish.dataset.sunspots,  Up: tblish.dataset
 
-8.2.61.65 tblish.dataset.swiss
+8.2.58.65 tblish.dataset.swiss
 ..............................
 
  -- Static Method: OUT = swiss ()
@@ -9096,7 +9060,7 @@ File: tablicious.info,  Node: tblish.dataset.swiss,  Next: tblish.dataset.Theoph
 
 File: tablicious.info,  Node: tblish.dataset.Theoph,  Next: tblish.dataset.Titanic,  Prev: tblish.dataset.swiss,  Up: tblish.dataset
 
-8.2.61.66 tblish.dataset.Theoph
+8.2.58.66 tblish.dataset.Theoph
 ...............................
 
  -- Static Method: OUT = Theoph ()
@@ -9172,7 +9136,7 @@ File: tablicious.info,  Node: tblish.dataset.Theoph,  Next: tblish.dataset.Titan
 
 File: tablicious.info,  Node: tblish.dataset.Titanic,  Next: tblish.dataset.ToothGrowth,  Prev: tblish.dataset.Theoph,  Up: tblish.dataset
 
-8.2.61.67 tblish.dataset.Titanic
+8.2.58.67 tblish.dataset.Titanic
 ................................
 
  -- Static Method: OUT = Titanic ()
@@ -9251,7 +9215,7 @@ File: tablicious.info,  Node: tblish.dataset.Titanic,  Next: tblish.dataset.Toot
 
 File: tablicious.info,  Node: tblish.dataset.ToothGrowth,  Next: tblish.dataset.treering,  Prev: tblish.dataset.Titanic,  Up: tblish.dataset
 
-8.2.61.68 tblish.dataset.ToothGrowth
+8.2.58.68 tblish.dataset.ToothGrowth
 ....................................
 
  -- Static Method: OUT = ToothGrowth ()
@@ -9305,7 +9269,7 @@ File: tablicious.info,  Node: tblish.dataset.ToothGrowth,  Next: tblish.dataset.
 
 File: tablicious.info,  Node: tblish.dataset.treering,  Next: tblish.dataset.trees,  Prev: tblish.dataset.ToothGrowth,  Up: tblish.dataset
 
-8.2.61.69 tblish.dataset.treering
+8.2.58.69 tblish.dataset.treering
 .................................
 
  -- Static Method: OUT = treering ()
@@ -9352,7 +9316,7 @@ File: tablicious.info,  Node: tblish.dataset.treering,  Next: tblish.dataset.tre
 
 File: tablicious.info,  Node: tblish.dataset.trees,  Next: tblish.dataset.UCBAdmissions,  Prev: tblish.dataset.treering,  Up: tblish.dataset
 
-8.2.61.70 tblish.dataset.trees
+8.2.58.70 tblish.dataset.trees
 ..............................
 
  -- Static Method: OUT = trees ()
@@ -9410,7 +9374,7 @@ File: tablicious.info,  Node: tblish.dataset.trees,  Next: tblish.dataset.UCBAdm
 
 File: tablicious.info,  Node: tblish.dataset.UCBAdmissions,  Next: tblish.dataset.UKDriverDeaths,  Prev: tblish.dataset.trees,  Up: tblish.dataset
 
-8.2.61.71 tblish.dataset.UCBAdmissions
+8.2.58.71 tblish.dataset.UCBAdmissions
 ......................................
 
  -- Static Method: OUT = UCBAdmissions ()
@@ -9478,7 +9442,7 @@ File: tablicious.info,  Node: tblish.dataset.UCBAdmissions,  Next: tblish.datase
 
 File: tablicious.info,  Node: tblish.dataset.UKDriverDeaths,  Next: tblish.dataset.UKgas,  Prev: tblish.dataset.UCBAdmissions,  Up: tblish.dataset
 
-8.2.61.72 tblish.dataset.UKDriverDeaths
+8.2.58.72 tblish.dataset.UKDriverDeaths
 .......................................
 
  -- Static Method: OUT = UKDriverDeaths ()
@@ -9558,7 +9522,7 @@ File: tablicious.info,  Node: tblish.dataset.UKDriverDeaths,  Next: tblish.datas
 
 File: tablicious.info,  Node: tblish.dataset.UKgas,  Next: tblish.dataset.UKLungDeaths,  Prev: tblish.dataset.UKDriverDeaths,  Up: tblish.dataset
 
-8.2.61.73 tblish.dataset.UKgas
+8.2.58.73 tblish.dataset.UKgas
 ..............................
 
  -- Static Method: OUT = UKgas ()
@@ -9600,7 +9564,7 @@ File: tablicious.info,  Node: tblish.dataset.UKgas,  Next: tblish.dataset.UKLung
 
 File: tablicious.info,  Node: tblish.dataset.UKLungDeaths,  Next: tblish.dataset.USAccDeaths,  Prev: tblish.dataset.UKgas,  Up: tblish.dataset
 
-8.2.61.74 tblish.dataset.UKLungDeaths
+8.2.58.74 tblish.dataset.UKLungDeaths
 .....................................
 
  -- Static Method: OUT = UKLungDeaths ()
@@ -9653,7 +9617,7 @@ File: tablicious.info,  Node: tblish.dataset.UKLungDeaths,  Next: tblish.dataset
 
 File: tablicious.info,  Node: tblish.dataset.USAccDeaths,  Next: tblish.dataset.USArrests,  Prev: tblish.dataset.UKLungDeaths,  Up: tblish.dataset
 
-8.2.61.75 tblish.dataset.USAccDeaths
+8.2.58.75 tblish.dataset.USAccDeaths
 ....................................
 
  -- Static Method: OUT = USAccDeaths ()
@@ -9688,7 +9652,7 @@ File: tablicious.info,  Node: tblish.dataset.USAccDeaths,  Next: tblish.dataset.
 
 File: tablicious.info,  Node: tblish.dataset.USArrests,  Next: tblish.dataset.USJudgeRatings,  Prev: tblish.dataset.USAccDeaths,  Up: tblish.dataset
 
-8.2.61.76 tblish.dataset.USArrests
+8.2.58.76 tblish.dataset.USArrests
 ..................................
 
  -- Static Method: OUT = USArrests ()
@@ -9760,7 +9724,7 @@ File: tablicious.info,  Node: tblish.dataset.USArrests,  Next: tblish.dataset.US
 
 File: tablicious.info,  Node: tblish.dataset.USJudgeRatings,  Next: tblish.dataset.USPersonalExpenditure,  Prev: tblish.dataset.USArrests,  Up: tblish.dataset
 
-8.2.61.77 tblish.dataset.USJudgeRatings
+8.2.58.77 tblish.dataset.USJudgeRatings
 .......................................
 
  -- Static Method: OUT = USJudgeRatings ()
@@ -9817,7 +9781,7 @@ File: tablicious.info,  Node: tblish.dataset.USJudgeRatings,  Next: tblish.datas
 
 File: tablicious.info,  Node: tblish.dataset.USPersonalExpenditure,  Next: tblish.dataset.uspop,  Prev: tblish.dataset.USJudgeRatings,  Up: tblish.dataset
 
-8.2.61.78 tblish.dataset.USPersonalExpenditure
+8.2.58.78 tblish.dataset.USPersonalExpenditure
 ..............................................
 
  -- Static Method: OUT = USPersonalExpenditure ()
@@ -9863,7 +9827,7 @@ File: tablicious.info,  Node: tblish.dataset.USPersonalExpenditure,  Next: tblis
 
 File: tablicious.info,  Node: tblish.dataset.uspop,  Next: tblish.dataset.VADeaths,  Prev: tblish.dataset.USPersonalExpenditure,  Up: tblish.dataset
 
-8.2.61.79 tblish.dataset.uspop
+8.2.58.79 tblish.dataset.uspop
 ..............................
 
  -- Static Method: OUT = uspop ()
@@ -9905,7 +9869,7 @@ File: tablicious.info,  Node: tblish.dataset.uspop,  Next: tblish.dataset.VADeat
 
 File: tablicious.info,  Node: tblish.dataset.VADeaths,  Next: tblish.dataset.volcano,  Prev: tblish.dataset.uspop,  Up: tblish.dataset
 
-8.2.61.80 tblish.dataset.VADeaths
+8.2.58.80 tblish.dataset.VADeaths
 .................................
 
  -- Static Method: OUT = VADeaths ()
@@ -9958,7 +9922,7 @@ File: tablicious.info,  Node: tblish.dataset.VADeaths,  Next: tblish.dataset.vol
 
 File: tablicious.info,  Node: tblish.dataset.volcano,  Next: tblish.dataset.warpbreaks,  Prev: tblish.dataset.VADeaths,  Up: tblish.dataset
 
-8.2.61.81 tblish.dataset.volcano
+8.2.58.81 tblish.dataset.volcano
 ................................
 
  -- Static Method: OUT = volcano ()
@@ -10006,7 +9970,7 @@ File: tablicious.info,  Node: tblish.dataset.volcano,  Next: tblish.dataset.warp
 
 File: tablicious.info,  Node: tblish.dataset.warpbreaks,  Next: tblish.dataset.women,  Prev: tblish.dataset.volcano,  Up: tblish.dataset
 
-8.2.61.82 tblish.dataset.warpbreaks
+8.2.58.82 tblish.dataset.warpbreaks
 ...................................
 
  -- Static Method: OUT = warpbreaks ()
@@ -10060,7 +10024,7 @@ File: tablicious.info,  Node: tblish.dataset.warpbreaks,  Next: tblish.dataset.w
 
 File: tablicious.info,  Node: tblish.dataset.women,  Next: tblish.dataset.WorldPhones,  Prev: tblish.dataset.warpbreaks,  Up: tblish.dataset
 
-8.2.61.83 tblish.dataset.women
+8.2.58.83 tblish.dataset.women
 ..............................
 
  -- Static Method: OUT = women ()
@@ -10117,7 +10081,7 @@ File: tablicious.info,  Node: tblish.dataset.women,  Next: tblish.dataset.WorldP
 
 File: tablicious.info,  Node: tblish.dataset.WorldPhones,  Next: tblish.dataset.WWWusage,  Prev: tblish.dataset.women,  Up: tblish.dataset
 
-8.2.61.84 tblish.dataset.WorldPhones
+8.2.58.84 tblish.dataset.WorldPhones
 ....................................
 
  -- Static Method: OUT = WorldPhones ()
@@ -10164,7 +10128,7 @@ File: tablicious.info,  Node: tblish.dataset.WorldPhones,  Next: tblish.dataset.
 
 File: tablicious.info,  Node: tblish.dataset.WWWusage,  Next: tblish.dataset.zCO2,  Prev: tblish.dataset.WorldPhones,  Up: tblish.dataset
 
-8.2.61.85 tblish.dataset.WWWusage
+8.2.58.85 tblish.dataset.WWWusage
 .................................
 
  -- Static Method: OUT = WWWusage ()
@@ -10203,7 +10167,7 @@ File: tablicious.info,  Node: tblish.dataset.WWWusage,  Next: tblish.dataset.zCO
 
 File: tablicious.info,  Node: tblish.dataset.zCO2,  Prev: tblish.dataset.WWWusage,  Up: tblish.dataset
 
-8.2.61.86 tblish.dataset.zCO2
+8.2.58.86 tblish.dataset.zCO2
 .............................
 
  -- Static Method: OUT = zCO2 ()
@@ -10251,7 +10215,7 @@ File: tablicious.info,  Node: tblish.dataset.zCO2,  Prev: tblish.dataset.WWWusag
 
 File: tablicious.info,  Node: tblish.datasets,  Next: tblish.examples.coplot,  Prev: tblish.dataset,  Up: API Alphabetically
 
-8.2.62 tblish.datasets
+8.2.59 tblish.datasets
 ----------------------
 
  -- Class: datasets
@@ -10273,7 +10237,7 @@ File: tablicious.info,  Node: tblish.datasets,  Next: tblish.examples.coplot,  P
 
 File: tablicious.info,  Node: tblish.datasets.list,  Next: tblish.datasets.load,  Up: tblish.datasets
 
-8.2.62.1 tblish.datasets.list
+8.2.59.1 tblish.datasets.list
 .............................
 
  -- Static Method: list ()
@@ -10291,7 +10255,7 @@ File: tablicious.info,  Node: tblish.datasets.list,  Next: tblish.datasets.load,
 
 File: tablicious.info,  Node: tblish.datasets.load,  Next: tblish.datasets.description,  Prev: tblish.datasets.list,  Up: tblish.datasets
 
-8.2.62.2 tblish.datasets.load
+8.2.59.2 tblish.datasets.load
 .............................
 
  -- Static Method: load (DATASETNAME)
@@ -10305,7 +10269,7 @@ File: tablicious.info,  Node: tblish.datasets.load,  Next: tblish.datasets.descr
 
 File: tablicious.info,  Node: tblish.datasets.description,  Prev: tblish.datasets.load,  Up: tblish.datasets
 
-8.2.62.3 tblish.datasets.description
+8.2.59.3 tblish.datasets.description
 ....................................
 
  -- Static Method: description (DATASETNAME)
@@ -10321,7 +10285,7 @@ File: tablicious.info,  Node: tblish.datasets.description,  Prev: tblish.dataset
 
 File: tablicious.info,  Node: tblish.examples.coplot,  Next: tblish.examples.plot_pairs,  Prev: tblish.datasets,  Up: API Alphabetically
 
-8.2.63 tblish.examples.coplot
+8.2.60 tblish.examples.coplot
 -----------------------------
 
  -- Function: [FIG, HAX] = coplot (TBL, XVAR, YVAR, GVAR)
@@ -10369,7 +10333,7 @@ File: tablicious.info,  Node: tblish.examples.coplot,  Next: tblish.examples.plo
 
 File: tablicious.info,  Node: tblish.examples.plot_pairs,  Next: timezones,  Prev: tblish.examples.coplot,  Up: API Alphabetically
 
-8.2.64 tblish.examples.plot_pairs
+8.2.61 tblish.examples.plot_pairs
 ---------------------------------
 
  -- Function: OUT = plot_pairs (DATA)
@@ -10400,7 +10364,7 @@ File: tablicious.info,  Node: tblish.examples.plot_pairs,  Next: timezones,  Pre
 
 File: tablicious.info,  Node: timezones,  Next: vartype,  Prev: tblish.examples.plot_pairs,  Up: API Alphabetically
 
-8.2.65 timezones
+8.2.62 timezones
 ----------------
 
  -- Function: OUT = timezones ()
@@ -10429,7 +10393,7 @@ File: tablicious.info,  Node: timezones,  Next: vartype,  Prev: tblish.examples.
 
 File: tablicious.info,  Node: vartype,  Next: vecfun,  Prev: timezones,  Up: API Alphabetically
 
-8.2.66 vartype
+8.2.63 vartype
 --------------
 
  -- Function: OUT = vartype (TYPE)
@@ -10450,7 +10414,7 @@ File: tablicious.info,  Node: vartype,  Next: vecfun,  Prev: timezones,  Up: API
 
 File: tablicious.info,  Node: vecfun,  Next: years,  Prev: vartype,  Up: API Alphabetically
 
-8.2.67 vecfun
+8.2.64 vecfun
 -------------
 
  -- Function: OUT = vecfun (FCN, X, DIM)
@@ -10475,7 +10439,7 @@ File: tablicious.info,  Node: vecfun,  Next: years,  Prev: vartype,  Up: API Alp
 
 File: tablicious.info,  Node: years,  Prev: vecfun,  Up: API Alphabetically
 
-8.2.68 years
+8.2.65 years
 ------------
 
  -- Function File: OUT = years (X)
@@ -10552,357 +10516,354 @@ Node: Data Sets from R20626
 Node: Missing Functionality21535
 Node: API Reference23006
 Node: API by Category23195
-Node: API Alphabetically29305
-Node: array2table33190
-Node: calendarDuration34112
-Node: calendarDuration.calendarDuration35996
-Node: calendarDuration.sizeof36507
-Node: calendarDuration.isnat36787
-Node: calendarDuration.uminus37112
-Node: calendarDuration.plus37395
-Node: calendarDuration.times38004
-Node: calendarDuration.minus38365
-Node: calendarDuration.dispstrs38714
-Node: calendarDuration.isnan39058
-Node: calmonths39462
-Node: calyears40051
-Node: categorical40395
-Node: categorical.undefined42669
-Node: categorical.categorical43176
-Node: categorical.sizeof44447
-Node: categorical.categories44697
-Node: categorical.iscategory45095
-Node: categorical.isordinal45541
-Node: categorical.string45910
-Node: categorical.cellstr46357
-Node: categorical.dispstrs46796
-Node: categorical.summary47252
-Node: categorical.addcats47705
-Node: categorical.removecats48133
-Node: categorical.mergecats48775
-Node: categorical.renamecats49430
-Node: categorical.reordercats49847
-Node: categorical.setcats50382
-Node: categorical.isundefined50828
-Node: categorical.ismissing51346
-Node: categorical.isnanny51754
-Node: categorical.squeezecats52224
-Node: cell2table52592
-Node: colvecfun53320
-Node: contains54044
-Node: datetime54825
-Node: datetime.datetime57197
-Node: datetime.ofDatenum57983
-Node: datetime.ofDatestruct58343
-Node: datetime.NaT58850
-Node: datetime.posix2datenum59615
-Node: datetime.datenum2posix60092
-Node: datetime.sizeof60494
-Node: datetime.proxyKeys60727
-Node: datetime.ymd61366
-Node: datetime.hms61756
-Node: datetime.ymdhms62151
-Node: datetime.timeofday62594
-Node: datetime.week63014
-Node: datetime.dispstrs63274
-Node: datetime.datestr63573
-Node: datetime.datestrs63963
-Node: datetime.datestruct64382
-Node: datetime.posixtime65185
-Node: datetime.datenum65719
-Node: datetime.gmtime66036
-Node: datetime.localtime66477
-Node: datetime.isnat67199
-Node: datetime.isnan67480
-Node: datetime.lt67851
-Node: datetime.le68282
-Node: datetime.ne68722
-Node: datetime.eq69154
-Node: datetime.ge69582
-Node: datetime.gt70026
-Node: datetime.plus70459
-Node: datetime.minus70955
-Node: datetime.diff71600
-Node: datetime.isbetween71980
-Node: datetime.linspace72468
-Node: datetime.convertDatenumTimeZone73081
-Node: days73735
-Node: discretize74201
-Node: dispstrs75086
-Node: duration75870
-Node: duration.ofDays77061
-Node: duration.sizeof77521
-Node: duration.years77745
-Node: duration.hours78117
-Node: duration.minutes78487
-Node: duration.seconds78869
-Node: duration.milliseconds79230
-Node: duration.dispstrs79622
-Node: duration.char79926
-Node: duration.linspace80355
-Node: endsWith80929
-Node: eqn81076
-Node: fillmissing82158
-Node: hours82311
-Node: iscategorical82798
-Node: isdatetime83084
-Node: isduration83363
-Node: isfile83635
-Node: isfolder83783
-Node: ismissing83934
-Node: isnanny84088
-Node: istable85126
-Node: localdate85826
-Node: localdate.localdate87135
-Node: localdate.NaT87665
-Node: localdate.ymd88553
-Node: localdate.dispstrs88857
-Node: localdate.datestr89161
-Node: localdate.datestrs89557
-Node: localdate.datestruct89982
-Node: localdate.posixtime90915
-Node: localdate.datenum91486
-Node: localdate.isnat91814
-Node: localdate.isnan92101
-Node: milliseconds92459
-Node: minutes92994
-Node: missing93252
-Node: missing.missing94290
-Node: missing.dispstrs94604
-Node: missing.ismissing95001
-Node: missing.isnan95366
-Node: missing.isnanny95703
-Node: mustBeA96027
-Node: mustBeCellstr96604
-Node: mustBeCharvec97233
-Node: mustBeFinite98131
-Node: mustBeInteger98305
-Node: mustBeMember98480
-Node: mustBeNonempty98655
-Node: mustBeNumeric98834
-Node: mustBeReal99009
-Node: mustBeSameSize99178
-Node: mustBeScalar99816
-Node: mustBeScalarLogical100363
-Node: mustBeVector100956
-Node: NaT101496
-Node: octave.dataset102327
-Node: octave.datasets102499
-Node: octave.examples.plot_pairs102696
-Node: pp102903
-Node: rmmissing103529
-Node: scalarexpand103682
-Node: seconds104606
-Node: size2str105105
-Node: splitapply105708
-Node: standardizeMissing106831
-Node: startsWith107017
-Node: string107183
-Node: string.empty110251
-Node: string.string110761
-Node: string.isstring111367
-Node: string.dispstrs111692
-Node: string.sizeof112271
-Node: string.ismissing112489
-Node: string.isnanny112966
-Node: string.cellstr113341
-Node: string.cell113684
-Node: string.char114171
-Node: string.encode114698
-Node: string.strlength_bytes115214
-Node: string.strlength115887
-Node: string.reverse_bytes116862
-Node: string.reverse117600
-Node: string.strcat118072
-Node: string.lower118650
-Node: string.upper119152
-Node: string.erase119653
-Node: string.strrep119990
-Node: string.strfind120595
-Node: string.regexprep121118
-Node: string.strcmp121594
-Node: string.cmp122287
-Node: string.missing123266
-Node: string.decode123668
-Node: struct2table124078
-Node: table124539
-Node: table.table127671
-Node: table.summary128699
-Node: table.prettyprint129041
-Node: table.table2cell129498
-Node: table.table2struct129986
-Node: table.table2array130611
-Node: table.varnames130858
-Node: table.istable131233
-Node: table.size131445
-Node: table.end131844
-Node: table.length132064
-Node: table.ndims132362
-Node: table.squeeze132613
-Node: table.size_equal132964
-Node: table.sizeof133218
-Node: table.height133652
-Node: table.rows133860
-Node: table.width134061
-Node: table.columns134392
-Node: table.numel134730
-Node: table.isempty135216
-Node: table.ismatrix135540
-Node: table.isrow135829
-Node: table.iscol136047
-Node: table.isvector136407
-Node: table.isscalar136633
-Node: table.hasrownames136863
-Node: table.vertcat137113
-Node: table.horzcat137634
-Node: table.repmat138254
-Node: table.repelem138780
-Node: table.setVariableNames139221
-Node: table.setDimensionNames140014
-Node: table.setRowNames140899
-Node: table.removevars141269
-Node: table.movevars141655
-Node: table.getvar142383
-Node: table.getvars142875
-Node: table.setvar143348
-Node: table.addvars144223
-Node: table.convertvars144672
-Node: table.mergevars145656
-Node: table.splitvars146047
-Node: table.stack146589
-Node: table.head146986
-Node: table.tail147355
-Node: table.join147721
-Node: table.innerjoin148467
-Node: table.outerjoin149128
-Node: table.outerfillvals149935
-Node: table.semijoin150368
-Node: table.antijoin151137
-Node: table.cartesian151789
-Node: table.groupby153057
-Node: table.grpstats153908
-Node: table.splitapply154235
-Node: table.rows2vars154736
-Node: table.congruentize155849
-Node: table.union156716
-Node: table.intersect157288
-Node: table.setxor157896
-Node: table.setdiff158531
-Node: table.ismember159068
-Node: table.ismissing159470
-Node: table.varfun160151
-Node: table.rowfun160691
-Node: table.findgroups163771
-Node: table.evalWithVars164356
-Node: table.restrict165207
-Node: table.renamevars166358
-Node: table.resolveVarRef167063
-Node: table.subsetrows168050
-Node: table.subsetvars168395
-Node: tableOuterFillValue168877
-Node: tblish.chrono.dummy_function170133
-Node: tblish.chrono.DummyClass170681
-Node: tblish.chrono.DummyClass.DummyClass171472
-Node: tblish.chrono.DummyClass.foo171943
-Node: tblish.chrono.DummyClass.bar172482
-Node: tblish.dataset172977
-Node: tblish.dataset.airmiles175901
-Node: tblish.dataset.AirPassengers176655
-Node: tblish.dataset.airquality177423
-Node: tblish.dataset.anscombe179520
-Node: tblish.dataset.attenu181494
-Node: tblish.dataset.attitude182933
-Node: tblish.dataset.austres184163
-Node: tblish.dataset.beavers185076
-Node: tblish.dataset.BJsales186221
-Node: tblish.dataset.BOD187328
-Node: tblish.dataset.cars188299
-Node: tblish.dataset.ChickWeight190028
-Node: tblish.dataset.chickwts191520
-Node: tblish.dataset.co2193010
-Node: tblish.dataset.crimtab194498
-Node: tblish.dataset.cupcake197972
-Node: tblish.dataset.discoveries198942
-Node: tblish.dataset.DNase199974
-Node: tblish.dataset.esoph201253
-Node: tblish.dataset.euro202419
-Node: tblish.dataset.eurodist204091
-Node: tblish.dataset.EuStockMarkets205001
-Node: tblish.dataset.faithful206537
-Node: tblish.dataset.Formaldehyde208372
-Node: tblish.dataset.freeny209808
-Node: tblish.dataset.HairEyeColor211417
-Node: tblish.dataset.Harman23cor213946
-Node: tblish.dataset.Harman74cor214871
-Node: tblish.dataset.Indometh215838
-Node: tblish.dataset.infert217165
-Node: tblish.dataset.InsectSprays218573
-Node: tblish.dataset.iris219517
-Node: tblish.dataset.islands221055
-Node: tblish.dataset.JohnsonJohnson221946
-Node: tblish.dataset.LakeHuron222847
-Node: tblish.dataset.lh223915
-Node: tblish.dataset.LifeCycleSavings224804
-Node: tblish.dataset.Loblolly226706
-Node: tblish.dataset.longley228001
-Node: tblish.dataset.lynx229388
-Node: tblish.dataset.morley230795
-Node: tblish.dataset.mtcars232529
-Node: tblish.dataset.nhtemp234266
-Node: tblish.dataset.Nile235255
-Node: tblish.dataset.nottem236543
-Node: tblish.dataset.npk237400
-Node: tblish.dataset.occupationalStatus238691
-Node: tblish.dataset.Orange239717
-Node: tblish.dataset.OrchardSprays241102
-Node: tblish.dataset.PlantGrowth242939
-Node: tblish.dataset.precip243825
-Node: tblish.dataset.presidents244707
-Node: tblish.dataset.pressure245921
-Node: tblish.dataset.Puromycin247255
-Node: tblish.dataset.quakes249078
-Node: tblish.dataset.randu250634
-Node: tblish.dataset.rivers251885
-Node: tblish.dataset.rock252778
-Node: tblish.dataset.sleep253998
-Node: tblish.dataset.stackloss255220
-Node: tblish.dataset.state257483
-Node: tblish.dataset.sunspot_month259267
-Node: tblish.dataset.sunspot_year260233
-Node: tblish.dataset.sunspots261081
-Node: tblish.dataset.swiss262182
-Node: tblish.dataset.Theoph264272
-Node: tblish.dataset.Titanic266605
-Node: tblish.dataset.ToothGrowth269279
-Node: tblish.dataset.treering270702
-Node: tblish.dataset.trees271796
-Node: tblish.dataset.UCBAdmissions273214
-Node: tblish.dataset.UKDriverDeaths275380
-Node: tblish.dataset.UKgas277706
-Node: tblish.dataset.UKLungDeaths278652
-Node: tblish.dataset.USAccDeaths279928
-Node: tblish.dataset.USArrests280694
-Node: tblish.dataset.USJudgeRatings282667
-Node: tblish.dataset.USPersonalExpenditure283981
-Node: tblish.dataset.uspop285196
-Node: tblish.dataset.VADeaths286115
-Node: tblish.dataset.volcano287491
-Node: tblish.dataset.warpbreaks288890
-Node: tblish.dataset.women290146
-Node: tblish.dataset.WorldPhones291453
-Node: tblish.dataset.WWWusage292514
-Node: tblish.dataset.zCO2293424
-Node: tblish.datasets294667
-Node: tblish.datasets.list295185
-Node: tblish.datasets.load295693
-Node: tblish.datasets.description296124
-Node: tblish.examples.coplot296704
-Node: tblish.examples.plot_pairs298670
-Node: timezones299801
-Node: vartype300857
-Node: vecfun301570
-Node: years302297
-Node: Copying302974
+Node: API Alphabetically29178
+Node: array2table33010
+Node: calendarDuration33932
+Node: calendarDuration.calendarDuration35816
+Node: calendarDuration.sizeof36327
+Node: calendarDuration.isnat36607
+Node: calendarDuration.uminus36932
+Node: calendarDuration.plus37215
+Node: calendarDuration.times37824
+Node: calendarDuration.minus38185
+Node: calendarDuration.dispstrs38534
+Node: calendarDuration.isnan38878
+Node: calmonths39282
+Node: calyears39871
+Node: categorical40215
+Node: categorical.undefined42489
+Node: categorical.categorical42996
+Node: categorical.sizeof44267
+Node: categorical.categories44517
+Node: categorical.iscategory44915
+Node: categorical.isordinal45361
+Node: categorical.string45730
+Node: categorical.cellstr46177
+Node: categorical.dispstrs46616
+Node: categorical.summary47072
+Node: categorical.addcats47525
+Node: categorical.removecats47953
+Node: categorical.mergecats48595
+Node: categorical.renamecats49250
+Node: categorical.reordercats49667
+Node: categorical.setcats50202
+Node: categorical.isundefined50648
+Node: categorical.ismissing51166
+Node: categorical.isnanny51574
+Node: categorical.squeezecats52044
+Node: cell2table52412
+Node: colvecfun53140
+Node: contains53864
+Node: datetime54645
+Node: datetime.datetime57017
+Node: datetime.ofDatenum57803
+Node: datetime.ofDatestruct58163
+Node: datetime.NaT58670
+Node: datetime.posix2datenum59435
+Node: datetime.datenum2posix59912
+Node: datetime.sizeof60314
+Node: datetime.proxyKeys60547
+Node: datetime.ymd61186
+Node: datetime.hms61576
+Node: datetime.ymdhms61971
+Node: datetime.timeofday62414
+Node: datetime.week62834
+Node: datetime.dispstrs63094
+Node: datetime.datestr63393
+Node: datetime.datestrs63783
+Node: datetime.datestruct64202
+Node: datetime.posixtime65005
+Node: datetime.datenum65539
+Node: datetime.gmtime65856
+Node: datetime.localtime66297
+Node: datetime.isnat67019
+Node: datetime.isnan67300
+Node: datetime.lt67671
+Node: datetime.le68102
+Node: datetime.ne68542
+Node: datetime.eq68974
+Node: datetime.ge69402
+Node: datetime.gt69846
+Node: datetime.plus70279
+Node: datetime.minus70775
+Node: datetime.diff71420
+Node: datetime.isbetween71800
+Node: datetime.linspace72288
+Node: datetime.convertDatenumTimeZone72901
+Node: days73555
+Node: discretize74021
+Node: dispstrs74906
+Node: duration75690
+Node: duration.ofDays76881
+Node: duration.sizeof77341
+Node: duration.years77565
+Node: duration.hours77937
+Node: duration.minutes78307
+Node: duration.seconds78689
+Node: duration.milliseconds79050
+Node: duration.dispstrs79442
+Node: duration.char79746
+Node: duration.linspace80175
+Node: endsWith80749
+Node: eqn80896
+Node: hours81972
+Node: iscategorical82451
+Node: isdatetime82737
+Node: isduration83016
+Node: isfile83288
+Node: isfolder83436
+Node: ismissing83587
+Node: isnanny83741
+Node: istable84779
+Node: localdate85479
+Node: localdate.localdate86788
+Node: localdate.NaT87318
+Node: localdate.ymd88206
+Node: localdate.dispstrs88510
+Node: localdate.datestr88814
+Node: localdate.datestrs89210
+Node: localdate.datestruct89635
+Node: localdate.posixtime90568
+Node: localdate.datenum91139
+Node: localdate.isnat91467
+Node: localdate.isnan91754
+Node: milliseconds92112
+Node: minutes92647
+Node: missing92905
+Node: missing.missing93943
+Node: missing.dispstrs94257
+Node: missing.ismissing94654
+Node: missing.isnan95019
+Node: missing.isnanny95356
+Node: mustBeA95680
+Node: mustBeCellstr96257
+Node: mustBeCharvec96886
+Node: mustBeFinite97784
+Node: mustBeInteger97958
+Node: mustBeMember98133
+Node: mustBeNonempty98308
+Node: mustBeNumeric98487
+Node: mustBeReal98662
+Node: mustBeSameSize98831
+Node: mustBeScalar99469
+Node: mustBeScalarLogical100016
+Node: mustBeVector100609
+Node: NaT101149
+Node: octave.dataset101980
+Node: octave.datasets102152
+Node: octave.examples.plot_pairs102349
+Node: pp102556
+Node: scalarexpand103185
+Node: seconds104102
+Node: size2str104601
+Node: splitapply105204
+Node: startsWith106319
+Node: string106477
+Node: string.empty109545
+Node: string.string110055
+Node: string.isstring110661
+Node: string.dispstrs110986
+Node: string.sizeof111565
+Node: string.ismissing111783
+Node: string.isnanny112260
+Node: string.cellstr112635
+Node: string.cell112978
+Node: string.char113465
+Node: string.encode113992
+Node: string.strlength_bytes114508
+Node: string.strlength115181
+Node: string.reverse_bytes116156
+Node: string.reverse116894
+Node: string.strcat117366
+Node: string.lower117944
+Node: string.upper118446
+Node: string.erase118947
+Node: string.strrep119284
+Node: string.strfind119889
+Node: string.regexprep120412
+Node: string.strcmp120888
+Node: string.cmp121581
+Node: string.missing122560
+Node: string.decode122962
+Node: struct2table123372
+Node: table123833
+Node: table.table126965
+Node: table.summary127993
+Node: table.prettyprint128335
+Node: table.table2cell128792
+Node: table.table2struct129280
+Node: table.table2array129905
+Node: table.varnames130152
+Node: table.istable130527
+Node: table.size130739
+Node: table.end131138
+Node: table.length131358
+Node: table.ndims131656
+Node: table.squeeze131907
+Node: table.size_equal132258
+Node: table.sizeof132512
+Node: table.height132946
+Node: table.rows133154
+Node: table.width133355
+Node: table.columns133686
+Node: table.numel134024
+Node: table.isempty134510
+Node: table.ismatrix134834
+Node: table.isrow135123
+Node: table.iscol135341
+Node: table.isvector135701
+Node: table.isscalar135927
+Node: table.hasrownames136157
+Node: table.vertcat136407
+Node: table.horzcat136928
+Node: table.repmat137548
+Node: table.repelem138074
+Node: table.setVariableNames138515
+Node: table.setDimensionNames139308
+Node: table.setRowNames140193
+Node: table.removevars140563
+Node: table.movevars140949
+Node: table.getvar141677
+Node: table.getvars142169
+Node: table.setvar142642
+Node: table.addvars143517
+Node: table.convertvars143966
+Node: table.mergevars144950
+Node: table.splitvars145341
+Node: table.stack145883
+Node: table.head146280
+Node: table.tail146649
+Node: table.join147015
+Node: table.innerjoin147761
+Node: table.outerjoin148422
+Node: table.outerfillvals149229
+Node: table.semijoin149662
+Node: table.antijoin150431
+Node: table.cartesian151083
+Node: table.groupby152351
+Node: table.grpstats153202
+Node: table.splitapply153529
+Node: table.rows2vars154030
+Node: table.congruentize155143
+Node: table.union156010
+Node: table.intersect156582
+Node: table.setxor157190
+Node: table.setdiff157825
+Node: table.ismember158362
+Node: table.ismissing158764
+Node: table.varfun159445
+Node: table.rowfun159985
+Node: table.findgroups163065
+Node: table.evalWithVars163650
+Node: table.restrict164501
+Node: table.renamevars165652
+Node: table.resolveVarRef166357
+Node: table.subsetrows167344
+Node: table.subsetvars167689
+Node: tableOuterFillValue168171
+Node: tblish.chrono.dummy_function169427
+Node: tblish.chrono.DummyClass169975
+Node: tblish.chrono.DummyClass.DummyClass170766
+Node: tblish.chrono.DummyClass.foo171237
+Node: tblish.chrono.DummyClass.bar171776
+Node: tblish.dataset172271
+Node: tblish.dataset.airmiles175195
+Node: tblish.dataset.AirPassengers175949
+Node: tblish.dataset.airquality176717
+Node: tblish.dataset.anscombe178814
+Node: tblish.dataset.attenu180788
+Node: tblish.dataset.attitude182227
+Node: tblish.dataset.austres183457
+Node: tblish.dataset.beavers184370
+Node: tblish.dataset.BJsales185515
+Node: tblish.dataset.BOD186622
+Node: tblish.dataset.cars187593
+Node: tblish.dataset.ChickWeight189322
+Node: tblish.dataset.chickwts190814
+Node: tblish.dataset.co2192304
+Node: tblish.dataset.crimtab193792
+Node: tblish.dataset.cupcake197266
+Node: tblish.dataset.discoveries198236
+Node: tblish.dataset.DNase199268
+Node: tblish.dataset.esoph200547
+Node: tblish.dataset.euro201713
+Node: tblish.dataset.eurodist203385
+Node: tblish.dataset.EuStockMarkets204295
+Node: tblish.dataset.faithful205831
+Node: tblish.dataset.Formaldehyde207666
+Node: tblish.dataset.freeny209102
+Node: tblish.dataset.HairEyeColor210711
+Node: tblish.dataset.Harman23cor213240
+Node: tblish.dataset.Harman74cor214165
+Node: tblish.dataset.Indometh215132
+Node: tblish.dataset.infert216459
+Node: tblish.dataset.InsectSprays217867
+Node: tblish.dataset.iris218811
+Node: tblish.dataset.islands220349
+Node: tblish.dataset.JohnsonJohnson221240
+Node: tblish.dataset.LakeHuron222141
+Node: tblish.dataset.lh223209
+Node: tblish.dataset.LifeCycleSavings224098
+Node: tblish.dataset.Loblolly226000
+Node: tblish.dataset.longley227295
+Node: tblish.dataset.lynx228682
+Node: tblish.dataset.morley230089
+Node: tblish.dataset.mtcars231823
+Node: tblish.dataset.nhtemp233560
+Node: tblish.dataset.Nile234549
+Node: tblish.dataset.nottem235837
+Node: tblish.dataset.npk236694
+Node: tblish.dataset.occupationalStatus237985
+Node: tblish.dataset.Orange239011
+Node: tblish.dataset.OrchardSprays240396
+Node: tblish.dataset.PlantGrowth242233
+Node: tblish.dataset.precip243119
+Node: tblish.dataset.presidents244001
+Node: tblish.dataset.pressure245215
+Node: tblish.dataset.Puromycin246549
+Node: tblish.dataset.quakes248372
+Node: tblish.dataset.randu249928
+Node: tblish.dataset.rivers251179
+Node: tblish.dataset.rock252072
+Node: tblish.dataset.sleep253292
+Node: tblish.dataset.stackloss254514
+Node: tblish.dataset.state256777
+Node: tblish.dataset.sunspot_month258561
+Node: tblish.dataset.sunspot_year259527
+Node: tblish.dataset.sunspots260375
+Node: tblish.dataset.swiss261476
+Node: tblish.dataset.Theoph263566
+Node: tblish.dataset.Titanic265899
+Node: tblish.dataset.ToothGrowth268573
+Node: tblish.dataset.treering269996
+Node: tblish.dataset.trees271090
+Node: tblish.dataset.UCBAdmissions272508
+Node: tblish.dataset.UKDriverDeaths274674
+Node: tblish.dataset.UKgas277000
+Node: tblish.dataset.UKLungDeaths277946
+Node: tblish.dataset.USAccDeaths279222
+Node: tblish.dataset.USArrests279988
+Node: tblish.dataset.USJudgeRatings281961
+Node: tblish.dataset.USPersonalExpenditure283275
+Node: tblish.dataset.uspop284490
+Node: tblish.dataset.VADeaths285409
+Node: tblish.dataset.volcano286785
+Node: tblish.dataset.warpbreaks288184
+Node: tblish.dataset.women289440
+Node: tblish.dataset.WorldPhones290747
+Node: tblish.dataset.WWWusage291808
+Node: tblish.dataset.zCO2292718
+Node: tblish.datasets293961
+Node: tblish.datasets.list294479
+Node: tblish.datasets.load294987
+Node: tblish.datasets.description295418
+Node: tblish.examples.coplot295998
+Node: tblish.examples.plot_pairs297964
+Node: timezones299095
+Node: vartype300151
+Node: vecfun300864
+Node: years301591
+Node: Copying302268
 
 End Tag Table
 

@@ -221,8 +221,6 @@
                         </section>
                         <section title="eqn" ref="html/eqn.html">
                         </section>
-                        <section title="fillmissing" ref="html/fillmissing.html">
-                        </section>
                         <section title="hours" ref="html/hours.html">
                         </section>
                         <section title="iscategorical" ref="html/iscategorical.html">
@@ -317,8 +315,6 @@
                         </section>
                         <section title="pp" ref="html/pp.html">
                         </section>
-                        <section title="rmmissing" ref="html/rmmissing.html">
-                        </section>
                         <section title="scalarexpand" ref="html/scalarexpand.html">
                         </section>
                         <section title="seconds" ref="html/seconds.html">
@@ -326,8 +322,6 @@
                         <section title="size2str" ref="html/size2str.html">
                         </section>
                         <section title="splitapply" ref="html/splitapply.html">
-                        </section>
-                        <section title="standardizeMissing" ref="html/standardizeMissing.html">
                         </section>
                         <section title="startsWith" ref="html/startsWith.html">
                         </section>
@@ -1291,12 +1285,10 @@
             <file>html/string_002eempty.html</file>
             <file>html/string.html</file>
             <file>html/startsWith.html</file>
-            <file>html/standardizeMissing.html</file>
             <file>html/splitapply.html</file>
             <file>html/size2str.html</file>
             <file>html/seconds.html</file>
             <file>html/scalarexpand.html</file>
-            <file>html/rmmissing.html</file>
             <file>html/pp.html</file>
             <file>html/octave_002eexamples_002eplot_005fpairs.html</file>
             <file>html/octave_002edatasets.html</file>
@@ -1344,7 +1336,6 @@
             <file>html/isdatetime.html</file>
             <file>html/iscategorical.html</file>
             <file>html/hours.html</file>
-            <file>html/fillmissing.html</file>
             <file>html/eqn.html</file>
             <file>html/endsWith.html</file>
             <file>html/duration_002elinspace.html</file>
