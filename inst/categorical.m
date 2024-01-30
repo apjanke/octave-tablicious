@@ -41,10 +41,18 @@
 ## analagous to a @code{NaN} value.
 ##
 ## This class is not fully implemented yet. Missing stuff:
-##   - gt, ge, lt, le
-##   - Ordinal support in general
-##   - countcats
-##   - summary
+##
+## @itemize @bullet
+## @item
+## gt, ge, lt, le
+## @item
+## Ordinal support in general
+## @item
+## countcats
+## @item
+## summary
+##
+## @end itemize
 ##
 ## @end deftp
 ##

@@ -22,10 +22,22 @@
 ## string.
 ##
 ## The string class represents strings, where:
-##   - Each element of a string array is a single string
-##   - A single string is a 1-dimensional row vector of Unicode characters
-##   - Those characters are encoded in UTF-8
-##     - This last bit depends on the fact that Octave chars are UTF-8 now
+## @itemize @bullet
+## @item
+## Each element of a string array is a single string
+##
+## @item
+## A single string is a 1-dimensional row vector of Unicode characters
+##
+## @item
+## Those characters are encoded in UTF-8
+##
+## @itemize @bullet
+## @item
+## This last bit depends on the fact that Octave chars are UTF-8 now
+## @end itemize
+##
+## @end itemize
 ##
 ## This should correspond pretty well to what people think of as strings, and
 ## is pretty compatible with people’s typical notion of strings in Octave.
@@ -40,10 +52,20 @@
 ## Be aware that while string arrays interconvert with Octave chars and cellstrs,
 ## Octave char elements represent 8-bit UTF-8 code units, not Unicode code points.
 ##
-## This class really serves three roles.
-##   - It is a type-safe object wrapper around Octave’s base primitive character types. 
-##   - It adds ismissing() semantics.
-##   - And it introduces Unicode support. 
+## This class really serves three roles:
+##
+## @enumerate
+## @item
+## It is a type-safe object wrapper around Octave’s base primitive character types. 
+##
+## @item
+## It adds ismissing() semantics.
+##
+## @item
+## And it introduces Unicode support. 
+##
+## @end enumerate
+##
 ## Not clear whether it’s a good fit to have the Unicode support wrapped
 ## up in this. Maybe it should just be a simple object wrapper
 ## wrapper, and defer Unicode semantics to when core Octave adopts them for
@@ -119,9 +141,15 @@ classdef string
     ##
     ## The other constructors construct a new string array by converting
     ## various types of inputs.
-    ##   - chars and cellstrs are converted via cellstr()
-    ##   - numerics are converted via num2str()
-    ##   - datetimes are converted via datestr()
+    ##
+    ## @itemize
+    ## @item
+    ## chars and cellstrs are converted via cellstr()
+    ## @item
+    ## numerics are converted via num2str()
+    ## @item
+    ## datetimes are converted via datestr()
+    ## @end itemize
     ##
     ## @end deftypefn
     function this = string(in, varargin)
