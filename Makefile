@@ -215,11 +215,9 @@ doc:
 	cd doc && make clean && make all
 
 gh-pages:
-	rm -rf docs/user-guide
-	mkdir docs/user-guide
-	cp -R doc/html docs/user-guide
-	cp doc/tablicious.pdf docs/user-guide
-	cp doc/tablicious.html docs/user-guide
+	rm -rf docs/devel/user-guide
+	mkdir -p docs/devel/user-guide
+	cp -R doc/tablicious.pdf doc/tablicious.html doc/html docs/devel/user-guide
 
 ##
 ## CLEAN

@@ -1,3 +1,5 @@
+# Tablicious Join Behavior
+
 This page describes the semantics and implementation of join-related stuff in Tablicious's `table` class, including its special "proxy keys" trick.
 
 ## Supported variable data types

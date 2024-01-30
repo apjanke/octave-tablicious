@@ -8,9 +8,26 @@ The repo for this project is at <https://github.com/apjanke/octave-tablicious>, 
 
 ## User Documentation
 
-See the online [User Guide](user-guide/html/index.html) for info and API Reference. There's also a [single-page version of the User Guide](user-guide/tablicious.html).
+See the online [User Guide](release/v0.3.7/user-guide/html/index.html) for info and API Reference. There's also a [single-page version of the User Guide](release/v0.3.7/user-guide/tablicious.html), and a downloadable [PDF version](release/v0.3.7/user-guide/tablicious.pdf).
 
-You can also download a [PDF version of the User Guide](user-guide/tablicious.pdf).
+Those are for the latest release (currently 0.3.7). You can also see the docs for older specific releases, and the current in-progress development version (for the `main` branch of the Git repo).
+
+### Releases
+
+* Development branch (unreleased)
+  * [User Guide, multiple pages](devel/user-guide/html/index.html)
+  * [User Guide, single page](devel/user-guide/tablicious.html)
+  * [User Guide, PDF](devel/user-guide/tablicious.pdf)
+* v0.3.7 (2023-01-05)
+  * [User Guide, multiple pages](release/v0.3.7/user-guide/html/index.html)
+  * [User Guide, single page](release/v0.3.7/user-guide/tablicious.html)
+  * [User Guide, PDF](release/v0.3.7/user-guide/tablicious.pdf)
+* v0.3.6 (2021-07-05)
+  * [User Guide, multiple pages](release/v0.3.6/user-guide/html/index.html)
+  * [User Guide, single page](release/v0.3.6/user-guide/tablicious.html)
+  * [User Guide, PDF](release/v0.3.6/user-guide/tablicious.pdf)
+
+There are older releases, too. Let me know if you actually want to see the doco for those online.
 
 ## Developer Documentation
 
