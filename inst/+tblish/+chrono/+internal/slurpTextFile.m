@@ -1,6 +1,6 @@
 ## Copyright (C) 2019, 2023, 2024 Andrew Janke <floss@apjanke.net>
 ##
-## This file is part of Octave.
+## This file is part of Tablicious.
 ##
 ## Octave is free software: you can redistribute it and/or modify it
 ## under the terms of the GNU General Public License as published by
