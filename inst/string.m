@@ -358,8 +358,7 @@ classdef string
     ##
     ## @end deftypefn
     function out = cell (this)
-      out = this.strs;
-      out(tfMissing) = {[]};
+      out = cellstr (this);
     end
     
     ## -*- texinfo -*-
