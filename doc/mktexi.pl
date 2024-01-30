@@ -1,7 +1,7 @@
 #!/usr/bin/env perl
 #
 # David Bateman Feb 02 2003
-# Andrew Janke 2019
+# Andrew Janke 2019, 2024
 # 
 # Extracts the help in texinfo format from Octave source code for use
 # in documentation and generates <pkg>.texi and <pkg>.qhp files from it.

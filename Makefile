@@ -6,7 +6,7 @@
 # Octave. To make this work, set PATH=...:$PATH before your 'make' invocation
 # to pick up the right commands. Example:
 #
-#     PATH="/Applications/Octave-4.4.1.app/Contents/Resources/usr/bin:$PATH"
+#     PATH="/Applications/Octave-8.4.0.app/Contents/Resources/usr/bin:$PATH"
 #     make
 #
 # Note: the 'make dist' command generates the dist tarball from the last

@@ -9,6 +9,7 @@ Version 0.4.0 (in progress)
 * Add `istable` function.
 * Rename `+tablicious` package to `+tblish`; merge `+octave` package into `+tblish`.
 * Move `+table_examples` package to `+tblish/+examples`.
+* Revamp doc-generation tools.
 
 Version 0.3.7 (2023-01-05)
 -----------------------------

@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2019 Andrew Janke <floss@apjanke.net>
+Copyright (C) 2019, 2024 Andrew Janke <floss@apjanke.net>
 
 This file is part of Octave.
 

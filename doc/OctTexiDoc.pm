@@ -20,6 +20,9 @@
 # LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
 # OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
 # SUCH DAMAGE.
+#
+# David Bateman Feb 02 2003
+# Andrew Janke 2019, 2024
 
 # OctTexiDoc module: common code for mk*.pl in Tablicious Octave package
 

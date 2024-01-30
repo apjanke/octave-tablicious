@@ -1,5 +1,5 @@
 ## Copyright (C) 1995-2018 R Core Team
-## Copyright (C) 2019 Andrew Janke
+## Copyright (C) 2019, 2023, 2024 Andrew Janke
 ##
 ## This program is free software; you can redistribute it and/or modify
 ## it under the terms of the GNU General Public License as published by

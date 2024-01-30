@@ -5,7 +5,8 @@ Title: Tablicious - Tabular/Relational data for Octave
 Author: Andrew Janke <floss@apjanke.net>
 Maintainer: Andrew Janke <floss@apjanke.net>
 Description: Matlab-compatible Octave table class for storing tabular/relational
-  data. Also similar to R and Python Pandas DataFrames.
+  data, with supporting string, datetime, and categorical classes. Also similar
+  to R and Python Pandas DataFrames.
 License: GPLv3+
 Problems: Implementation is not complete.
 Url: https://github.com/apjanke/octave-tablicious
