@@ -2257,6 +2257,11 @@ like months and days that vary in length over time.
 This is an attempt to reproduce the functionality of Matlab's @code{duration}. It
 also contains some Octave-specific extensions.
 
+Duration values are stored as double numbers of days, so they are an
+approximate type. In display functions, by default, they are displayed with
+millisecond precision, but their actual precision is closer to nanoseconds
+for typical times.
+
 @end deftp
 
 @deftypeivar duration @code{double} days
