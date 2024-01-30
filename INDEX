@@ -31,10 +31,7 @@ Dates and Times
  timezones
  years
 Missing Data
- fillmissing
  ismissing
- rmmissing
- standardizeMissing
  missing
  isnanny
  eqn
