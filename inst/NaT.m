@@ -41,6 +41,6 @@ function out = NaT (sz)
   if nargin == 0
     out = datetime.NaT;
   else
-    out = repmat( datetime.NaT, sz);
+    out = repmat (datetime.NaT, sz);
   end
 end

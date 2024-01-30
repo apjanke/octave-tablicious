@@ -38,7 +38,7 @@
 ## Under normal operation, @code{isnanny()} should not throw an error for any type or
 ## value of input.
 ##
-## See also: @code{isnan}, @code{isnat}, @ref{ismissing}, @ref{eqn}, @code{isequaln}
+## See also: ismissing, @code{isnan}, @code{isnat}, @ref{eqn}, @code{isequaln}
 ##
 ## @end deftypefn
 function out = isnanny (x)  

@@ -8,11 +8,11 @@ Tables
  vartype
 Strings and Categoricals
  string
- startsWith
- endsWith
+ NaS
  contains
  categorical
  discretize
+ dispstrs
 Dates and Times
  datetime
  localdate
@@ -31,7 +31,6 @@ Dates and Times
  timezones
  years
 Missing Data
- ismissing
  missing
  isnanny
  eqn
@@ -60,7 +59,9 @@ Miscellaneous
  splitapply
  vecfun
 Example Datasets
- octave.datasets
- octave.dataset
+ tblish.datasets
+ tblish.dataset
 Example Code
- octave.examples.plot_pairs
+ tblish.examples.coplot
+ tblish.examples.plot_pairs
+ tblish.examples.SpDb

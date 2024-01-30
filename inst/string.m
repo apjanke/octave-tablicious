@@ -135,14 +135,17 @@ classdef string
     ## Creates a string array of all-missing values of the specified size @var{sz}.
     ## If @var{sz} is omitted, creates a scalar missing string.
     ##
-    ## Returns a string array of size @var{sz}.
+    ## Returns a string array of size @var{sz} or [1 1].
+    ##
+    ## @seealso{NaS}
     ##
     ## @end deftypefn
     function out = missing (sz)
       if nargin < 2
-        sz = [1 1];
+        out = string;
+      else
+        out = repmat (string, sz);
       endif
-      out = repmat (string, sz);
     endfunction
     
   endmethods

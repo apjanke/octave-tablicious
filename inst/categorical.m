@@ -365,7 +365,7 @@ classdef categorical
       out = cell (size (this));
       out(!this.tfMissing) = this.cats(this.code(!this.tfMissing));
       out = string (out);
-      out(this.tfMissing) = string.missing;
+      out(this.tfMissing) = NaS;
     endfunction
     
     ## -*- texinfo -*-

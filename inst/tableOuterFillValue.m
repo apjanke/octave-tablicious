@@ -60,7 +60,7 @@ function out = tableOuterFillValue (x)
   elseif isa (x, 'duration') || isa (x, 'calendarDuration')
     out = NaN (1, nCols);
   elseif isa (x, 'string')
-    out = repmat (string (missing), [1 nCols]);
+    out = NaS ([1 nCols]);
   elseif isa (x, 'table')
     if hasrownames (x)
       error (['table: cannot construct outer fill values for table-valued ' ...
