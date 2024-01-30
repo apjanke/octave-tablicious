@@ -103,25 +103,30 @@ Next: <a href="API-Alphabetically.html" accesskey="n" rel="next">API Alphabetica
 </p>
 <p>See <a class="xref" href="string.html">string</a>.
 </p></dd>
-<dt>startsWith</dt>
-<dd>
-
-<p>See <a class="xref" href="startsWith.html">startsWith</a>.
-</p></dd>
-<dt>endsWith</dt>
-<dd>
-
-<p>See <a class="xref" href="endsWith.html">endsWith</a>.
+<dt>NaS</dt>
+<dd><p>“Not-a-String&quot;.
+</p>
+<p>See <a class="xref" href="NaS.html">NaS</a>.
 </p></dd>
 <dt>contains</dt>
 <dd><p>Test if strings contain a pattern.
 </p>
 <p>See <a class="xref" href="contains.html">contains</a>.
 </p></dd>
+<dt>dispstrs</dt>
+<dd><p>Display strings for array.
+</p>
+<p>See <a class="xref" href="dispstrs.html">dispstrs</a>.
+</p></dd>
 <dt>categorical</dt>
 <dd><p>Categorical variable array.
 </p>
 <p>See <a class="xref" href="categorical.html">categorical</a>.
+</p></dd>
+<dt>NaC</dt>
+<dd><p>“Not-a-Categorical&quot;.
+</p>
+<p>See <a class="xref" href="NaC.html">NaC</a>.
 </p></dd>
 <dt>discretize</dt>
 <dd><p>Group data into discrete bins or categories.
@@ -138,6 +143,11 @@ Next: <a href="API-Alphabetically.html" accesskey="n" rel="next">API Alphabetica
 </p>
 <p>See <a class="xref" href="datetime.html">datetime</a>.
 </p></dd>
+<dt>NaT</dt>
+<dd><p>“Not-a-Time”.
+</p>
+<p>See <a class="xref" href="NaT.html">NaT</a>.
+</p></dd>
 <dt>localdate</dt>
 <dd><p>Represents a complete day using the Gregorian calendar.
 </p>
@@ -147,11 +157,6 @@ Next: <a href="API-Alphabetically.html" accesskey="n" rel="next">API Alphabetica
 <dd><p>True if input is a ‘datetime’ array, false otherwise.
 </p>
 <p>See <a class="xref" href="isdatetime.html">isdatetime</a>.
-</p></dd>
-<dt>NaT</dt>
-<dd><p>“Not-a-Time”.
-</p>
-<p>See <a class="xref" href="NaT.html">NaT</a>.
 </p></dd>
 <dt>calendarDuration</dt>
 <dd><p>Durations of time using variable-length calendar periods, such as days, months, and years, which may vary in length over time.
@@ -218,11 +223,6 @@ Next: <a href="API-Alphabetically.html" accesskey="n" rel="next">API Alphabetica
 <div class="subsection-level-extent" id="Missing-Data">
 <h4 class="subsection"><span>8.1.4 Missing Data<a class="copiable-link" href="#Missing-Data"> &para;</a></span></h4>
 <dl class="table">
-<dt>ismissing</dt>
-<dd>
-
-<p>See <a class="xref" href="ismissing.html">ismissing</a>.
-</p></dd>
 <dt>missing</dt>
 <dd><p>Generic auto-converting missing value.
 </p>
@@ -363,31 +363,46 @@ Next: <a href="API-Alphabetically.html" accesskey="n" rel="next">API Alphabetica
 <div class="subsection-level-extent" id="Example-Datasets">
 <h4 class="subsection"><span>8.1.7 Example Datasets<a class="copiable-link" href="#Example-Datasets"> &para;</a></span></h4>
 <dl class="table">
-<dt>octave.datasets</dt>
-<dd>
-
-<p>See <a class="xref" href="octave_002edatasets.html">octave.datasets</a>.
+<dt>tblish.datasets</dt>
+<dd><p>Example dataset collection.
+</p>
+<p>See <a class="xref" href="tblish_002edatasets.html">tblish.datasets</a>.
 </p></dd>
-<dt>octave.dataset</dt>
-<dd>
-
-<p>See <a class="xref" href="octave_002edataset.html">octave.dataset</a>.
+<dt>tblish.dataset</dt>
+<dd><p>The ‘dataset’ class provides convenient access to the various datasets included with Tablicious.
+</p>
+<p>See <a class="xref" href="tblish_002edataset.html">tblish.dataset</a>.
 </p></dd>
 </dl>
 </div>
 <div class="subsection-level-extent" id="Example-Code">
 <h4 class="subsection"><span>8.1.8 Example Code<a class="copiable-link" href="#Example-Code"> &para;</a></span></h4>
 <dl class="table">
-<dt>octave.examples.plot_pairs</dt>
+<dt>tblish.examples.coplot</dt>
+<dd><p>Conditioning plot.
+</p>
+<p>See <a class="xref" href="tblish_002eexamples_002ecoplot.html">tblish.examples.coplot</a>.
+</p></dd>
+<dt>tblish.examples.plot_pairs</dt>
+<dd><p>Plot pairs of variables against each other.
+</p>
+<p>See <a class="xref" href="tblish_002eexamples_002eplot_005fpairs.html">tblish.examples.plot_pairs</a>.
+</p></dd>
+<dt>tblish.examples.SpDb</dt>
 <dd>
 
-<p>See <a class="xref" href="octave_002eexamples_002eplot_005fpairs.html">octave.examples.plot_pairs</a>.
+<p>See <a class="xref" href="tblish_002eexamples_002eSpDb.html">tblish.examples.SpDb</a>.
 </p></dd>
 </dl>
 </div>
 <div class="subsection-level-extent" id="Uncategorized">
 <h4 class="subsection"><span>8.1.9 Uncategorized<a class="copiable-link" href="#Uncategorized"> &para;</a></span></h4>
 <dl class="table">
+<dt>iscalendarduration</dt>
+<dd><p>True if input is a ‘calendarDuration’ array, false otherwise.
+</p>
+<p>See <a class="xref" href="iscalendarduration.html">iscalendarduration</a>.
+</p></dd>
 <dt>iscategorical</dt>
 <dd><p>True if input is a ‘categorical’ array, false otherwise.
 </p>
@@ -407,26 +422,6 @@ Next: <a href="API-Alphabetically.html" accesskey="n" rel="next">API Alphabetica
 <dd><p>A do-nothing class just for testing the doco tools.
 </p>
 <p>See <a class="xref" href="tblish_002echrono_002eDummyClass.html">tblish.chrono.DummyClass</a>.
-</p></dd>
-<dt>tblish.dataset</dt>
-<dd><p>The ‘dataset’ class provides convenient access to the various datasets included with Tablicious.
-</p>
-<p>See <a class="xref" href="tblish_002edataset.html">tblish.dataset</a>.
-</p></dd>
-<dt>tblish.datasets</dt>
-<dd><p>Example dataset collection.
-</p>
-<p>See <a class="xref" href="tblish_002edatasets.html">tblish.datasets</a>.
-</p></dd>
-<dt>tblish.examples.coplot</dt>
-<dd><p>Conditioning plot.
-</p>
-<p>See <a class="xref" href="tblish_002eexamples_002ecoplot.html">tblish.examples.coplot</a>.
-</p></dd>
-<dt>tblish.examples.plot_pairs</dt>
-<dd><p>Plot pairs of variables against each other.
-</p>
-<p>See <a class="xref" href="tblish_002eexamples_002eplot_005fpairs.html">tblish.examples.plot_pairs</a>.
 </p></dd>
 </dl>
 

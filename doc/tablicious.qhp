@@ -72,6 +72,8 @@
                         <section title="categorical" ref="html/categorical.html">
                             <section title="categorical.undefined" ref="html/categorical_002eundefined.html">
                             </section>
+                            <section title="categorical.missing" ref="html/categorical_002emissing.html">
+                            </section>
                             <section title="categorical.categorical" ref="html/categorical_002ecategorical.html">
                             </section>
                             <section title="categorical.sizeof" ref="html/categorical_002esizeof.html">
@@ -217,11 +219,11 @@
                             <section title="duration.linspace" ref="html/duration_002elinspace.html">
                             </section>
                         </section>
-                        <section title="endsWith" ref="html/endsWith.html">
-                        </section>
                         <section title="eqn" ref="html/eqn.html">
                         </section>
                         <section title="hours" ref="html/hours.html">
+                        </section>
+                        <section title="iscalendarduration" ref="html/iscalendarduration.html">
                         </section>
                         <section title="iscategorical" ref="html/iscategorical.html">
                         </section>
@@ -232,8 +234,6 @@
                         <section title="isfile" ref="html/isfile.html">
                         </section>
                         <section title="isfolder" ref="html/isfolder.html">
-                        </section>
-                        <section title="ismissing" ref="html/ismissing.html">
                         </section>
                         <section title="isnanny" ref="html/isnanny.html">
                         </section>
@@ -305,13 +305,11 @@
                         </section>
                         <section title="mustBeVector" ref="html/mustBeVector.html">
                         </section>
+                        <section title="NaC" ref="html/NaC.html">
+                        </section>
+                        <section title="NaS" ref="html/NaS.html">
+                        </section>
                         <section title="NaT" ref="html/NaT.html">
-                        </section>
-                        <section title="octave.dataset" ref="html/octave_002edataset.html">
-                        </section>
-                        <section title="octave.datasets" ref="html/octave_002edatasets.html">
-                        </section>
-                        <section title="octave.examples.plot_pairs" ref="html/octave_002eexamples_002eplot_005fpairs.html">
                         </section>
                         <section title="pp" ref="html/pp.html">
                         </section>
@@ -323,10 +321,10 @@
                         </section>
                         <section title="splitapply" ref="html/splitapply.html">
                         </section>
-                        <section title="startsWith" ref="html/startsWith.html">
-                        </section>
                         <section title="string" ref="html/string.html">
                             <section title="string.empty" ref="html/string_002eempty.html">
+                            </section>
+                            <section title="string.missing" ref="html/string_002emissing.html">
                             </section>
                             <section title="string.string" ref="html/string_002estring.html">
                             </section>
@@ -373,8 +371,6 @@
                             <section title="string.strcmp" ref="html/string_002estrcmp.html">
                             </section>
                             <section title="string.cmp" ref="html/string_002ecmp.html">
-                            </section>
-                            <section title="string.missing" ref="html/string_002emissing.html">
                             </section>
                             <section title="string.decode" ref="html/string_002edecode.html">
                             </section>
@@ -727,6 +723,8 @@
                         </section>
                         <section title="tblish.examples.plot_pairs" ref="html/tblish_002eexamples_002eplot_005fpairs.html">
                         </section>
+                        <section title="tblish.examples.SpDb" ref="html/tblish_002eexamples_002eSpDb.html">
+                        </section>
                         <section title="timezones" ref="html/timezones.html">
                         </section>
                         <section title="vartype" ref="html/vartype.html">
@@ -743,6 +741,8 @@
         </section>
         </toc>
         <keywords>
+            <keyword name="NaC" id="NaC" ref="html/NaC.html"/>
+            <keyword name="NaS" id="NaS" ref="html/NaS.html"/>
             <keyword name="NaT" id="NaT" ref="html/NaT.html"/>
             <keyword name="array2table" id="array2table" ref="html/array2table.html"/>
             <keyword name="calendarDuration" id="calendarDuration" ref="html/calendarDuration.html"/>
@@ -769,6 +769,7 @@
             <keyword name="categorical.isordinal" id="categorical.isordinal" ref="html/categorical_002eisordinal.html"/>
             <keyword name="categorical.isundefined" id="categorical.isundefined" ref="html/categorical_002eisundefined.html"/>
             <keyword name="categorical.mergecats" id="categorical.mergecats" ref="html/categorical_002emergecats.html"/>
+            <keyword name="categorical.missing" id="categorical.missing" ref="html/categorical_002emissing.html"/>
             <keyword name="categorical.removecats" id="categorical.removecats" ref="html/categorical_002eremovecats.html"/>
             <keyword name="categorical.renamecats" id="categorical.renamecats" ref="html/categorical_002erenamecats.html"/>
             <keyword name="categorical.reordercats" id="categorical.reordercats" ref="html/categorical_002ereordercats.html"/>
@@ -833,6 +834,7 @@
             <keyword name="duration.years" id="duration.years" ref="html/duration_002eyears.html"/>
             <keyword name="eqn" id="eqn" ref="html/eqn.html"/>
             <keyword name="hours" id="hours" ref="html/hours.html"/>
+            <keyword name="iscalendarduration" id="iscalendarduration" ref="html/iscalendarduration.html"/>
             <keyword name="iscategorical" id="iscategorical" ref="html/iscategorical.html"/>
             <keyword name="isdatetime" id="isdatetime" ref="html/isdatetime.html"/>
             <keyword name="isduration" id="isduration" ref="html/isduration.html"/>
@@ -1083,6 +1085,7 @@
             <file>html/vecfun.html</file>
             <file>html/vartype.html</file>
             <file>html/timezones.html</file>
+            <file>html/tblish_002eexamples_002eSpDb.html</file>
             <file>html/tblish_002eexamples_002eplot_005fpairs.html</file>
             <file>html/tblish_002eexamples_002ecoplot.html</file>
             <file>html/tblish_002edatasets_002edescription.html</file>
@@ -1258,7 +1261,6 @@
             <file>html/table.html</file>
             <file>html/struct2table.html</file>
             <file>html/string_002edecode.html</file>
-            <file>html/string_002emissing.html</file>
             <file>html/string_002ecmp.html</file>
             <file>html/string_002estrcmp.html</file>
             <file>html/string_002eregexprep.html</file>
@@ -1282,18 +1284,17 @@
             <file>html/string_002edispstrs.html</file>
             <file>html/string_002eisstring.html</file>
             <file>html/string_002estring.html</file>
+            <file>html/string_002emissing.html</file>
             <file>html/string_002eempty.html</file>
             <file>html/string.html</file>
-            <file>html/startsWith.html</file>
             <file>html/splitapply.html</file>
             <file>html/size2str.html</file>
             <file>html/seconds.html</file>
             <file>html/scalarexpand.html</file>
             <file>html/pp.html</file>
-            <file>html/octave_002eexamples_002eplot_005fpairs.html</file>
-            <file>html/octave_002edatasets.html</file>
-            <file>html/octave_002edataset.html</file>
             <file>html/NaT.html</file>
+            <file>html/NaS.html</file>
+            <file>html/NaC.html</file>
             <file>html/mustBeVector.html</file>
             <file>html/mustBeScalarLogical.html</file>
             <file>html/mustBeScalar.html</file>
@@ -1329,15 +1330,14 @@
             <file>html/localdate.html</file>
             <file>html/istable.html</file>
             <file>html/isnanny.html</file>
-            <file>html/ismissing.html</file>
             <file>html/isfolder.html</file>
             <file>html/isfile.html</file>
             <file>html/isduration.html</file>
             <file>html/isdatetime.html</file>
             <file>html/iscategorical.html</file>
+            <file>html/iscalendarduration.html</file>
             <file>html/hours.html</file>
             <file>html/eqn.html</file>
-            <file>html/endsWith.html</file>
             <file>html/duration_002elinspace.html</file>
             <file>html/duration_002echar.html</file>
             <file>html/duration_002edispstrs.html</file>
@@ -1410,6 +1410,7 @@
             <file>html/categorical_002ecategories.html</file>
             <file>html/categorical_002esizeof.html</file>
             <file>html/categorical_002ecategorical.html</file>
+            <file>html/categorical_002emissing.html</file>
             <file>html/categorical_002eundefined.html</file>
             <file>html/categorical.html</file>
             <file>html/calyears.html</file>

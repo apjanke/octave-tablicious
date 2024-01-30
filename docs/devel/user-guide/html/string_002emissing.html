@@ -30,8 +30,8 @@ into another language, under the same conditions as for modified versions. -->
 <link href="index.html" rel="start" title="Top">
 <link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
 <link href="string.html" rel="up" title="string">
-<link href="string_002edecode.html" rel="next" title="string.decode">
-<link href="string_002ecmp.html" rel="prev" title="string.cmp">
+<link href="string_002estring.html" rel="next" title="string.string">
+<link href="string_002eempty.html" rel="prev" title="string.empty">
 <style type="text/css">
 <!--
 a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
@@ -47,10 +47,10 @@ strong.def-name {font-family: monospace; font-weight: bold; font-size: larger}
 <div class="subsubsection-level-extent" id="string_002emissing">
 <div class="nav-panel">
 <p>
-Next: <a href="string_002edecode.html" accesskey="n" rel="next">string.decode</a>, Previous: <a href="string_002ecmp.html" accesskey="p" rel="prev">string.cmp</a>, Up: <a href="string.html" accesskey="u" rel="up">string</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+Next: <a href="string_002estring.html" accesskey="n" rel="next">string.string</a>, Previous: <a href="string_002eempty.html" accesskey="p" rel="prev">string.empty</a>, Up: <a href="string.html" accesskey="u" rel="up">string</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
 </div>
 <hr>
-<h4 class="subsubsection" id="string_002emissing-1"><span>8.2.52.25 string.missing<a class="copiable-link" href="#string_002emissing-1"> &para;</a></span></h4>
+<h4 class="subsubsection" id="string_002emissing-1"><span>8.2.49.2 string.missing<a class="copiable-link" href="#string_002emissing-1"> &para;</a></span></h4>
 
 <dl class="first-deftypefn">
 <dt class="deftypefn" id="index-string_002emissing"><span class="category-def">Static Method: </span><span><code class="def-type"><var class="var">out</var> =</code> <strong class="def-name">string.missing</strong> <code class="def-code-arguments">(<var class="var">sz</var>)</code><a class="copiable-link" href="#index-string_002emissing"> &para;</a></span></dt>
@@ -60,7 +60,9 @@ Next: <a href="string_002edecode.html" accesskey="n" rel="next">string.decode</a
 <p>Creates a string array of all-missing values of the specified size <var class="var">sz</var>.
 If <var class="var">sz</var> is omitted, creates a scalar missing string.
 </p>
-<p>Returns a string array of size <var class="var">sz</var>.
+<p>Returns a string array of size <var class="var">sz</var> or [1 1].
+</p>
+<p>See also: NaS
 </p>
 </dd></dl>
 

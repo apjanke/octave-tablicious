@@ -586,22 +586,26 @@ Filter by variable type for use in suscripting.
 A string array of Unicode strings.
 
 @xref{string}.
-@item startsWith
+@item NaS
+“Not-a-String".
 
-
-@xref{startsWith}.
-@item endsWith
-
-
-@xref{endsWith}.
+@xref{NaS}.
 @item contains
 Test if strings contain a pattern.
 
 @xref{contains}.
+@item dispstrs
+Display strings for array.
+
+@xref{dispstrs}.
 @item categorical
 Categorical variable array.
 
 @xref{categorical}.
+@item NaC
+“Not-a-Categorical".
+
+@xref{NaC}.
 @item discretize
 Group data into discrete bins or categories.
 
@@ -613,6 +617,10 @@ Group data into discrete bins or categories.
 Represents points in time using the Gregorian calendar.
 
 @xref{datetime}.
+@item NaT
+“Not-a-Time”.
+
+@xref{NaT}.
 @item localdate
 Represents a complete day using the Gregorian calendar.
 
@@ -621,10 +629,6 @@ Represents a complete day using the Gregorian calendar.
 True if input is a ‘datetime’ array, false otherwise.
 
 @xref{isdatetime}.
-@item NaT
-“Not-a-Time”.
-
-@xref{NaT}.
 @item calendarDuration
 Durations of time using variable-length calendar periods, such as days, months, and years, which may vary in length over time.
 
@@ -676,10 +680,6 @@ Create a ‘duration’ X years long, or get the years in a ‘duration’ X.
 @end table
 @subsection Missing Data
 @table @asis
-@item ismissing
-
-
-@xref{ismissing}.
 @item missing
 Generic auto-converting missing value.
 
@@ -789,24 +789,36 @@ Apply function to vectors in array along arbitrary dimension.
 @end table
 @subsection Example Datasets
 @table @asis
-@item octave.datasets
+@item tblish.datasets
+Example dataset collection.
 
+@xref{tblish.datasets}.
+@item tblish.dataset
+The ‘dataset’ class provides convenient access to the various datasets included with Tablicious.
 
-@xref{octave.datasets}.
-@item octave.dataset
-
-
-@xref{octave.dataset}.
+@xref{tblish.dataset}.
 @end table
 @subsection Example Code
 @table @asis
-@item octave.examples.plot_pairs
+@item tblish.examples.coplot
+Conditioning plot.
+
+@xref{tblish.examples.coplot}.
+@item tblish.examples.plot_pairs
+Plot pairs of variables against each other.
+
+@xref{tblish.examples.plot_pairs}.
+@item tblish.examples.SpDb
 
 
-@xref{octave.examples.plot_pairs}.
+@xref{tblish.examples.SpDb}.
 @end table
 @subsection Uncategorized
 @table @asis
+@item iscalendarduration
+True if input is a ‘calendarDuration’ array, false otherwise.
+
+@xref{iscalendarduration}.
 @item iscategorical
 True if input is a ‘categorical’ array, false otherwise.
 
@@ -823,22 +835,6 @@ A dummy function just for testing the doco tools.
 A do-nothing class just for testing the doco tools.
 
 @xref{tblish.chrono.DummyClass}.
-@item tblish.dataset
-The ‘dataset’ class provides convenient access to the various datasets included with Tablicious.
-
-@xref{tblish.dataset}.
-@item tblish.datasets
-Example dataset collection.
-
-@xref{tblish.datasets}.
-@item tblish.examples.coplot
-Conditioning plot.
-
-@xref{tblish.examples.coplot}.
-@item tblish.examples.plot_pairs
-Plot pairs of variables against each other.
-
-@xref{tblish.examples.plot_pairs}.
 @end table
 
 @node API Alphabetically
@@ -862,17 +858,17 @@ Plot pairs of variables against each other.
 * dispstrs::	Display strings for array.
 * duration::	Represents durations or periods of time as an amount of
 		fixed-length time (i.e.
-* endsWith::	
 * eqn:: Determine element-wise equality, treating NaNs as equal
 * hours::	Create a ‘duration’ X hours long, or get the hours in a
 		‘duration’ X.
+* iscalendarduration::	True if input is a ‘calendarDuration’ array,
+		false otherwise.
 * iscategorical::	True if input is a ‘categorical’ array, false
 		otherwise.
 * isdatetime::	True if input is a ‘datetime’ array, false otherwise.
 * isduration::	True if input is a ‘duration’ array, false otherwise.
 * isfile::	
 * isfolder::	
-* ismissing::	
 * isnanny::	Test if elements are NaN or NaN-like
 * istable::	True if input is a ‘table’ array or other table-like
 		type, false otherwise.
@@ -895,10 +891,9 @@ Plot pairs of variables against each other.
 * mustBeScalar::	Requires that input is scalar.
 * mustBeScalarLogical:: Requires that input is a scalar logical.
 * mustBeVector::	Requires that input is a vector or empty.
+* NaC:: “Not-a-Categorical".
+* NaS:: “Not-a-String".
 * NaT:: “Not-a-Time”.
-* octave.dataset::	
-* octave.datasets::	
-* octave.examples.plot_pairs::	
 * pp::	Alias for prettyprint, for interactive use.
 * scalarexpand::	Expand scalar inputs to match size of non-scalar
 		inputs.
@@ -906,7 +901,6 @@ Plot pairs of variables against each other.
 		in a ‘duration’ X.
 * size2str::	Format an array size for display.
 * splitapply::	Split data into groups and apply function.
-* startsWith::	
 * string::	A string array of Unicode strings.
 * struct2table::	Convert struct to a table.
 * table::	Tabular data array containing multiple columnar variables.
@@ -920,6 +914,7 @@ Plot pairs of variables against each other.
 * tblish.datasets::	Example dataset collection.
 * tblish.examples.coplot::	Conditioning plot.
 * tblish.examples.plot_pairs::	Plot pairs of variables against each other.
+* tblish.examples.SpDb::	
 * timezones::	List all the time zones defined on this system.
 * vartype::	Filter by variable type for use in suscripting.
 * vecfun::	Apply function to vectors in array along arbitrary
@@ -1233,7 +1228,29 @@ Creates a categorical array whose elements are all <undefined>.
 @var{sz} is the size of the array to create. If omitted or empty, creates
 a scalar.
 
-Returns a categorical.
+Returns a categorical array.
+
+See also: categorical.missing
+
+@end deftypefn
+
+@node categorical.missing
+@subsubsection categorical.missing
+
+@deftypefn {Static Method} {@var{out} =} categorical.missing ()
+@deftypefnx {Static Method} {@var{out} =} categorical.missing (sz)
+
+Create an array of missing (undefined) categoricals.
+
+Creates a categorical array whose elements are all missing (<undefined>).
+
+This is a convenience alias for @ref{categorical.undefined}, so you can call
+it generically. It returns strictly the same results as calling
+@ref{categorical.undefined} with the same arguments.
+
+Returns a categorical array.
+
+See also: categorical.undefined
 
 @end deftypefn
 
@@ -2395,9 +2412,6 @@ Returns an @var{n}-long @code{datetime} vector.
 
 @end deftypefn
 
-@node endsWith
-@subsection endsWith
-@emph{Not documented}
 @node eqn
 @subsection eqn
 @deftypefn {Function} {@var{out} =} eqn (@var{A}, @var{B})
@@ -2441,11 +2455,30 @@ Returns an array the same size as @var{x}.
 @end deftypefn
 
 
+@node iscalendarduration
+@subsection iscalendarduration
+@deftypefn {Function} {@var{out} =} iscalendarduration (@var{x})
+
+True if input is a @code{calendarDuration} array, false otherwise.
+
+Respects @code{iscalendarduration} override methods on user-defined classes, even if
+they do not inherit from @code{calendarDuration} or were known to Tablicious at
+authoring time.
+
+Returns a scalar logical.
+
+@end deftypefn
+
+
 @node iscategorical
 @subsection iscategorical
 @deftypefn {Function} {@var{out} =} iscategorical (@var{x})
 
 True if input is a @code{categorical} array, false otherwise.
+
+Respects @code{iscategorical} override methods on user-defined classes, even if
+they do not inherit from @code{categorical} or were known to Tablicious at
+authoring time.
 
 Returns a scalar logical.
 
@@ -2458,6 +2491,10 @@ Returns a scalar logical.
 
 True if input is a @code{datetime} array, false otherwise.
 
+Respects @code{isdatetime} override methods on user-defined classes, even if
+they do not inherit from @code{datetime} or were known to Tablicious at
+authoring time.
+
 Returns a scalar logical.
 
 @end deftypefn
@@ -2469,6 +2506,10 @@ Returns a scalar logical.
 
 True if input is a @code{duration} array, false otherwise.
 
+Respects @code{isduration} override methods on user-defined classes, even if
+they do not inherit from @code{duration} or were known to Tablicious at
+authoring time.
+
 Returns a scalar logical.
 
 @end deftypefn
@@ -2479,9 +2520,6 @@ Returns a scalar logical.
 @emph{Not documented}
 @node isfolder
 @subsection isfolder
-@emph{Not documented}
-@node ismissing
-@subsection ismissing
 @emph{Not documented}
 @node isnanny
 @subsection isnanny
@@ -2509,7 +2547,7 @@ any input type.
 Under normal operation, @code{isnanny()} should not throw an error for any type or
 value of input.
 
-See also: @code{isnan}, @code{isnat}, @ref{ismissing}, @ref{eqn}, @code{isequaln}
+See also: ismissing, @code{isnan}, @code{isnat}, @ref{eqn}, @code{isequaln}
 
 @end deftypefn
 
@@ -2980,12 +3018,60 @@ empty, it falls back to "input".
 @end deftypefn
 
 
+@node NaC
+@subsection NaC
+@deftypefn {Function} {@var{out} =} NaC ()
+@deftypefnx {Function} {@var{out} =} NaC (@var{sz})
+
+“Not-a-Categorical". Creates missing-valued categorical arrays.
+
+Returns a new @code{categorical} array of all missing values of
+the given size. If no input @var{sz} is given, the result is a scalar missing
+categorical.
+
+@code{NaC} is the @code{categorical} equivalent of @code{NaN} or @code{NaT}. It
+represents a missing, invalid, or null value. @code{NaC} values never compare
+equal to any value, including other @code{NaC}s.
+
+@code{NaC} is a convenience function which is strictly a wrapper around
+@code{categorical.undefined} and returns the same results, but may be more convenient
+to type and/or more readable, especially in array expressions with several values.
+
+See also: categorical.undefined
+
+@end deftypefn
+
+
+@node NaS
+@subsection NaS
+@deftypefn {Function} {@var{out} =} NaS ()
+@deftypefnx {Function} {@var{out} =} NaS (@var{sz})
+
+“Not-a-String". Creates missing-valued string arrays.
+
+Returns a new @code{string} array of all missing values of
+the given size. If no input @var{sz} is given, the result is a scalar missing
+string.
+
+@code{NaS} is the @code{string} equivalent of @code{NaN} or @code{NaT}. It
+represents a missing, invalid, or null value. @code{NaS} values never compare
+equal to any value, including other @code{NaS}s.
+
+@code{NaS} is a convenience function which is strictly a wrapper around
+@code{string.missing} and returns the same results, but may be more convenient
+to type and/or more readable, especially in array expressions with several values.
+
+See also: string.missing
+
+@end deftypefn
+
+
 @node NaT
 @subsection NaT
 @deftypefn {Function} {@var{out} =} NaT ()
 @deftypefnx {Function} {@var{out} =} NaT (@var{sz})
 
-“Not-a-Time”. Creates NaT-valued arrays.
+“Not-a-Time”. Creates missing-valued datetime arrays.
 
 Constructs a new @code{datetime} array of all @code{NaT} values of
 the given size. If no input @var{sz} is given, the result is a scalar @code{NaT}.
@@ -3001,15 +3087,6 @@ use @ref{localdate.NaT} instead.
 @end deftypefn
 
 
-@node octave.dataset
-@subsection octave.dataset
-@emph{Not documented}
-@node octave.datasets
-@subsection octave.datasets
-@emph{Not documented}
-@node octave.examples.plot_pairs
-@subsection octave.examples.plot_pairs
-@emph{Not documented}
 @node pp
 @subsection pp
 @deftypefn {Function} {} pp (@var{X})
@@ -3127,9 +3204,6 @@ See also: @ref{table.groupby}, @ref{table.splitapply}
 @end deftypefn
 
 
-@node startsWith
-@subsection startsWith
-@emph{Not documented}
 @node string
 @subsection string
 @deftp {Class} string
@@ -3219,6 +3293,22 @@ The size may also be supplied as multiple arguments containing
 scalar numerics.
 
 Returns an empty string array of the requested size.
+
+@end deftypefn
+
+@node string.missing
+@subsubsection string.missing
+
+@deftypefn {Static Method} {@var{out} = } string.missing (@var{sz})
+
+Missing string value.
+
+Creates a string array of all-missing values of the specified size @var{sz}.
+If @var{sz} is omitted, creates a scalar missing string.
+
+Returns a string array of size @var{sz} or [1 1].
+
+See also: NaS
 
 @end deftypefn
 
@@ -3618,20 +3708,6 @@ of @var{A} and @var{B}. Each value in it will be -1, 0, or 1.
 
 Also returns scalar-expanded copies of @var{A} and @var{B} as @var{outA} and
 @var{outB}, as a programming convenience.
-
-@end deftypefn
-
-@node string.missing
-@subsubsection string.missing
-
-@deftypefn {Static Method} {@var{out} = } string.missing (@var{sz})
-
-Missing string value.
-
-Creates a string array of all-missing values of the specified size @var{sz}.
-If @var{sz} is omitted, creates a scalar missing string.
-
-Returns a string array of size @var{sz}.
 
 @end deftypefn
 
@@ -9518,6 +9594,9 @@ Returns the created figure, if the output is captured.
 @end deftypefn
 
 
+@node tblish.examples.SpDb
+@subsection tblish.examples.SpDb
+@emph{Not documented}
 @node timezones
 @subsection timezones
 @deftypefn {Function} {@var{out} =} timezones ()
