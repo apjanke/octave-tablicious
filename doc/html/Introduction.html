@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.1, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- This manual is for Tablicious, version 0.4.0-SNAPSHOT.
+
+Copyright © 2019 Andrew Janke
+
+Permission is granted to make and distribute verbatim copies of
+this manual provided the copyright notice and this permission notice
+are preserved on all copies.
+
+Permission is granted to copy and distribute modified versions of this
+manual under the conditions for verbatim copying, provided that the entire
+resulting derived work is distributed under the terms of a permission
+notice identical to this one.
+
+Permission is granted to copy and distribute translations of this manual
+into another language, under the same conditions as for modified versions. -->
+<title>Introduction (Octave Tablicious v0.4.0-SNAPSHOT)</title>
+
+<meta name="description" content="User manual for Tablicious for Octave.">
+<meta name="keywords" content="Introduction (Octave Tablicious v0.4.0-SNAPSHOT)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="index.html" rel="up" title="Top">
+<link href="Getting-Started.html" rel="next" title="Getting Started">
+<style type="text/css">
+<!--
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.center {text-align:center}
+span:hover a.copiable-link {visibility: visible}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<div class="chapter-level-extent" id="Introduction">
+<div class="nav-panel">
+<p>
+Next: <a href="Getting-Started.html" accesskey="n" rel="next">Getting Started</a>, Up: <a href="index.html" accesskey="u" rel="up">Tablicious for GNU Octave</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<hr>
+<h2 class="chapter" id="Introduction-1"><span>1 Introduction<a class="copiable-link" href="#Introduction-1"> &para;</a></span></h2>
+
+<blockquote class="quotation">
+<p>Time is an illusion. Lunchtime doubly so.
+</p>
+</blockquote>
+<div class="center">&mdash; <em class="emph">Douglas Adams</em>
+</div>
+
+<p>This is the manual for the Tablicious package version 0.4.0-SNAPSHOT for GNU Octave.
+</p>
+<p>Tablicious provides Matlab-compatible tabular data and date/time support for GNU Octave.
+This includes a <code class="code">table</code> class with support for filtering and join operations;
+<code class="code">datetime</code>, <code class="code">duration</code>, and related classes;
+Missing Data support; <code class="code">string</code> and <code class="code">categorical</code> data types; 
+and other miscellaneous things.
+</p>
+<p>This document is a work in progress. You are invited to help improve it and
+submit patches.
+</p>
+<p>Tablicious’s classes are designed to be convenient to use while still being efficient.
+The data representations used by Tablicious are designed to be efficient and suitable
+for working with large-ish data sets. A “large-ish” data set is one that can have
+millions of elements or rows, but still fits in main computer memory. Tablicious’s main
+relational and arithmetic operations are all implemented using vectorized
+operations on primitive Octave data types.
+</p>
+<p>Tablicious was written by Andrew Janke &lt;<a class="email" href="mailto:floss@apjanke.net">floss@apjanke.net</a>&gt;. Support can be
+found on the <a class="url" href="https://github.com/apjanke/octave-tablicious">Tablicious project
+GitHub page</a>.
+</p>
+
+</div>
+
+
+
+</body>
+</html>

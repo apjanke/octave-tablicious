@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.1, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- This manual is for Tablicious, version 0.4.0-SNAPSHOT.
+
+Copyright © 2019 Andrew Janke
+
+Permission is granted to make and distribute verbatim copies of
+this manual provided the copyright notice and this permission notice
+are preserved on all copies.
+
+Permission is granted to copy and distribute modified versions of this
+manual under the conditions for verbatim copying, provided that the entire
+resulting derived work is distributed under the terms of a permission
+notice identical to this one.
+
+Permission is granted to copy and distribute translations of this manual
+into another language, under the same conditions as for modified versions. -->
+<title>datetime Class (Octave Tablicious v0.4.0-SNAPSHOT)</title>
+
+<meta name="description" content="User manual for Tablicious for Octave.">
+<meta name="keywords" content="datetime Class (Octave Tablicious v0.4.0-SNAPSHOT)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Date-and-Time-Representation.html" rel="up" title="Date and Time Representation">
+<link href="Time-Zones.html" rel="next" title="Time Zones">
+<style type="text/css">
+<!--
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+span:hover a.copiable-link {visibility: visible}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<div class="section-level-extent" id="datetime-Class">
+<div class="nav-panel">
+<p>
+Next: <a href="Time-Zones.html" accesskey="n" rel="next">Time Zones</a>, Up: <a href="Date-and-Time-Representation.html" accesskey="u" rel="up">Date and Time Representation</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<hr>
+<h3 class="section" id="datetime-Class-1"><span>4.1 <code class="code">datetime</code> Class<a class="copiable-link" href="#datetime-Class-1"> &para;</a></span></h3>
+
+<p>A <code class="code">datetime</code> is an array object that represents points in time in the familiar
+Gregorian calendar.
+</p>
+<p>This is an attempt to reproduce the functionality of Matlab&rsquo;s <code class="code">datetime</code>. It
+also contains some Octave-specific extensions.
+</p>
+<p>The underlying representation is that of a datenum (a <code class="code">double</code>
+containing the number of days since the Matlab epoch), but encapsulating it in an
+object provides several benefits: friendly human-readable display, type safety,
+automatic type conversion, and time zone support. In addition to the underlying
+datenum array, a <code class="code">datetime</code> inclues an optional <code class="code">TimeZone</code> property 
+indicating what time zone the datetimes are in.
+</p>
+<p>So, basically, a <code class="code">datetime</code> is an object wrapper around a datenum array,
+plus time zone support.
+</p>
+
+<ul class="mini-toc">
+<li><a href="Datenum-Compatibility.html" accesskey="1">Datenum Compatibility</a></li>
+</ul>
+</div>
+
+
+
+</body>
+</html>

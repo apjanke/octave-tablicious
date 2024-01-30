@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.1, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- This manual is for Tablicious, version 0.3.6.
+
+Copyright © 2019 Andrew Janke
+
+Permission is granted to make and distribute verbatim copies of
+this manual provided the copyright notice and this permission notice
+are preserved on all copies.
+
+Permission is granted to copy and distribute modified versions of this
+manual under the conditions for verbatim copying, provided that the entire
+resulting derived work is distributed under the terms of a permission
+notice identical to this one.
+
+Permission is granted to copy and distribute translations of this manual
+into another language, under the same conditions as for modified versions. -->
+<title>duration (Octave Tablicious v0.3.6)</title>
+
+<meta name="description" content="User manual for Tablicious for Octave.">
+<meta name="keywords" content="duration (Octave Tablicious v0.3.6)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="API-Alphabetically.html" rel="up" title="API Alphabetically">
+<link href="endsWith.html" rel="next" title="endsWith">
+<link href="dispstrs.html" rel="prev" title="dispstrs">
+<style type="text/css">
+<!--
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+span:hover a.copiable-link {visibility: visible}
+strong.def-name {font-family: monospace; font-weight: bold; font-size: larger}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<div class="subsection-level-extent" id="duration">
+<div class="nav-panel">
+<p>
+Next: <a href="endsWith.html" accesskey="n" rel="next">endsWith</a>, Previous: <a href="dispstrs.html" accesskey="p" rel="prev">dispstrs</a>, Up: <a href="API-Alphabetically.html" accesskey="u" rel="up">API Alphabetically</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<hr>
+<h4 class="subsection" id="duration-1"><span>8.2.13 duration<a class="copiable-link" href="#duration-1"> &para;</a></span></h4>
+<dl class="first-deftp">
+<dt class="deftp" id="index-duration-1"><span class="category-def">Class: </span><span><strong class="def-name">duration</strong><a class="copiable-link" href="#index-duration-1"> &para;</a></span></dt>
+<dd>
+<p>Represents durations or periods of time as an amount of fixed-length
+time (i.e. fixed-length seconds). It does not care about calendar things
+like months and days that vary in length over time.
+</p>
+<p>This is an attempt to reproduce the functionality of Matlab&rsquo;s <code class="code">duration</code>. It
+also contains some Octave-specific extensions.
+</p>
+</dd></dl>
+
+<dl class="first-deftypecv first-deftypeivar-alias-first-deftypecv">
+<dt class="deftypecv deftypeivar-alias-deftypecv" id="index-days-of-duration"><span class="category-def">Instance Variable of <code class="code">duration</code>: </span><span><code class="def-type"><code class="code">double</code></code> <strong class="def-name">days</strong><a class="copiable-link" href="#index-days-of-duration"> &para;</a></span></dt>
+<dd>
+<p>The underlying datenums that represent the durations, as number of (whole and
+fractional) days. These are uniform 24-hour days, not calendar days.
+</p>
+<p>This is a planar property: the size of <code class="code">days</code> is the same size as the
+containing <code class="code">duration</code> array object.
+</p>
+</dd></dl>
+
+<dl class="first-deftypecv first-deftypeivar-alias-first-deftypecv">
+<dt class="deftypecv deftypeivar-alias-deftypecv" id="index-Format-of-duration"><span class="category-def">Instance Variable of <code class="code">duration</code>: </span><span><code class="def-type"><code class="code">char</code></code> <strong class="def-name">Format</strong><a class="copiable-link" href="#index-Format-of-duration"> &para;</a></span></dt>
+<dd>
+<p>The format to display this <code class="code">duration</code> in. Currently unsupported.
+</p>
+</dd></dl>
+
+
+<ul class="mini-toc">
+<li><a href="duration_002eofDays.html" accesskey="1">duration.ofDays</a></li>
+<li><a href="duration_002eofDays.html#duration_002eofDays-2" accesskey="2">duration.ofDays</a></li>
+<li><a href="duration_002esizeof.html" accesskey="3">duration.sizeof</a></li>
+<li><a href="duration_002eyears.html" accesskey="4">duration.years</a></li>
+<li><a href="duration_002eyears.html#duration_002eyears-2" accesskey="5">duration.years</a></li>
+<li><a href="duration_002ehours.html" accesskey="6">duration.hours</a></li>
+<li><a href="duration_002ehours.html#duration_002ehours-2" accesskey="7">duration.hours</a></li>
+<li><a href="duration_002eminutes.html" accesskey="8">duration.minutes</a></li>
+<li><a href="duration_002eminutes.html#duration_002eminutes-2" accesskey="9">duration.minutes</a></li>
+<li><a href="duration_002eseconds.html">duration.seconds</a></li>
+<li><a href="duration_002eseconds.html#duration_002eseconds-2">duration.seconds</a></li>
+<li><a href="duration_002emilliseconds.html">duration.milliseconds</a></li>
+<li><a href="duration_002emilliseconds.html#duration_002emilliseconds-2">duration.milliseconds</a></li>
+<li><a href="duration_002edispstrs.html">duration.dispstrs</a></li>
+<li><a href="duration_002edispstrs.html#duration_002edispstrs-2">duration.dispstrs</a></li>
+<li><a href="duration_002echar.html">duration.char</a></li>
+<li><a href="duration_002echar.html#duration_002echar-2">duration.char</a></li>
+<li><a href="duration_002elinspace.html">duration.linspace</a></li>
+<li><a href="duration_002elinspace.html#duration_002elinspace-2">duration.linspace</a></li>
+</ul>
+</div>
+
+
+
+</body>
+</html>

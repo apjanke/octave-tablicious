@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.1, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- This manual is for Tablicious, version 0.4.0-SNAPSHOT.
+
+Copyright © 2019 Andrew Janke
+
+Permission is granted to make and distribute verbatim copies of
+this manual provided the copyright notice and this permission notice
+are preserved on all copies.
+
+Permission is granted to copy and distribute modified versions of this
+manual under the conditions for verbatim copying, provided that the entire
+resulting derived work is distributed under the terms of a permission
+notice identical to this one.
+
+Permission is granted to copy and distribute translations of this manual
+into another language, under the same conditions as for modified versions. -->
+<title>calendarDuration Class (Octave Tablicious v0.4.0-SNAPSHOT)</title>
+
+<meta name="description" content="User manual for Tablicious for Octave.">
+<meta name="keywords" content="calendarDuration Class (Octave Tablicious v0.4.0-SNAPSHOT)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Durations.html" rel="up" title="Durations">
+<link href="duration-Class.html" rel="prev" title="duration Class">
+<style type="text/css">
+<!--
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.example {margin-left: 3.2em}
+span:hover a.copiable-link {visibility: visible}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<div class="subsection-level-extent" id="calendarDuration-Class">
+<div class="nav-panel">
+<p>
+Previous: <a href="duration-Class.html" accesskey="p" rel="prev"><code class="code">duration</code> Class</a>, Up: <a href="Durations.html" accesskey="u" rel="up">Durations</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<hr>
+<h4 class="subsection" id="calendarDuration-Class-1"><span>4.3.2 <code class="code">calendarDuration</code> Class<a class="copiable-link" href="#calendarDuration-Class-1"> &para;</a></span></h4>
+
+<p>A <code class="code">calendarDuration</code> represents a period of time in variable-length calendar 
+components. For example, years and months can have varying numbers of days, and days
+in time zones with Daylight Saving Time have varying numbers of hours. A 
+<code class="code">calendarDuration</code> does arithmetic with &quot;whole&quot; calendar periods.
+</p>
+<p><code class="code">calendarDuration</code>s and <code class="code">duration</code>s cannot be directly combined, because
+they are not semantically equivalent. (This may be relaxed in the future to allow
+<code class="code">duration</code>s to be interpreted as numbers of days when combined with
+<code class="code">calendarDuration</code>s.)
+</p>
+<div class="example">
+<pre class="example-preformatted">d = datetime('2011-03-04 00:00:00')
+    &rArr; 04-Mar-2011
+cdur = calendarDuration(1, 3, 0)
+    &rArr; 1y 3mo
+d2 = d + cdur
+    &rArr; 04-Jun-2012
+</pre></div>
+
+
+</div>
+
+
+
+</body>
+</html>

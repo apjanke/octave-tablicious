@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.1, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- This manual is for Tablicious, version 0.4.0-SNAPSHOT.
+
+Copyright © 2019 Andrew Janke
+
+Permission is granted to make and distribute verbatim copies of
+this manual provided the copyright notice and this permission notice
+are preserved on all copies.
+
+Permission is granted to copy and distribute modified versions of this
+manual under the conditions for verbatim copying, provided that the entire
+resulting derived work is distributed under the terms of a permission
+notice identical to this one.
+
+Permission is granted to copy and distribute translations of this manual
+into another language, under the same conditions as for modified versions. -->
+<title>Table Construction (Octave Tablicious v0.4.0-SNAPSHOT)</title>
+
+<meta name="description" content="User manual for Tablicious for Octave.">
+<meta name="keywords" content="Table Construction (Octave Tablicious v0.4.0-SNAPSHOT)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Table-Representation.html" rel="up" title="Table Representation">
+<link href="Tables-vs-SQL.html" rel="next" title="Tables vs SQL">
+<style type="text/css">
+<!--
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+span:hover a.copiable-link {visibility: visible}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<div class="section-level-extent" id="Table-Construction">
+<div class="nav-panel">
+<p>
+Next: <a href="Tables-vs-SQL.html" accesskey="n" rel="next">Tables vs SQL</a>, Up: <a href="Table-Representation.html" accesskey="u" rel="up">Table Representation</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<hr>
+<h3 class="section" id="Table-Construction-1"><span>3.1 Table Construction<a class="copiable-link" href="#Table-Construction-1"> &para;</a></span></h3>
+
+<p>There are two main ways to construct a <code class="code">table</code> array: build one up by combining
+multiple variables together, or convert an existing tabular-organized array into a 
+<code class="code">table</code>.
+</p>
+<p>To build an array from multiple variables, use the <code class="code">table(&hellip;)</code> constructor, passing
+in all of your variables as separate inputs. It takes any number of inputs. Each input
+becomes a table variable in the new <code class="code">table</code> object. If you pass your constructor
+inputs directly from variables, it automatically picks up their names and uses them
+as the table variable names. Otherwise, if you’re using more complex expressions, you’ll
+need to supply the <code class="code">'VariableNames'</code> option.
+</p>
+<p>To convert a tabular-organized array of another type into a <code class="code">table</code>, use the 
+conversion functions like <code class="code">array2table</code>, <code class="code">struct2table</code> and <code class="code">cell2table</code>.
+<code class="code">array2table</code> and <code class="code">cell2table</code> take each column of the input array and turn
+it into a separate table variable in the resulting <code class="code">table</code>. <code class="code">struct2table</code> takes
+the fields of a struct and puts them into table variables.
+</p>
+</div>
+
+
+
+</body>
+</html>

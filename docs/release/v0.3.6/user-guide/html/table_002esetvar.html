@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.1, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- This manual is for Tablicious, version 0.3.6.
+
+Copyright © 2019 Andrew Janke
+
+Permission is granted to make and distribute verbatim copies of
+this manual provided the copyright notice and this permission notice
+are preserved on all copies.
+
+Permission is granted to copy and distribute modified versions of this
+manual under the conditions for verbatim copying, provided that the entire
+resulting derived work is distributed under the terms of a permission
+notice identical to this one.
+
+Permission is granted to copy and distribute translations of this manual
+into another language, under the same conditions as for modified versions. -->
+<title>table.setvar (Octave Tablicious v0.3.6)</title>
+
+<meta name="description" content="User manual for Tablicious for Octave.">
+<meta name="keywords" content="table.setvar (Octave Tablicious v0.3.6)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="table.html" rel="up" title="table">
+<link href="table_002eaddvars.html" rel="next" title="table.addvars">
+<link href="table_002egetvars.html" rel="prev" title="table.getvars">
+<style type="text/css">
+<!--
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+span:hover a.copiable-link {visibility: visible}
+strong.def-name {font-family: monospace; font-weight: bold; font-size: larger}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<div class="subsubsection-level-extent" id="table_002esetvar">
+<div class="nav-panel">
+<p>
+Next: <a href="table_002eaddvars.html" accesskey="n" rel="next">table.addvars</a>, Previous: <a href="table_002egetvars.html" accesskey="p" rel="prev">table.getvars</a>, Up: <a href="table.html" accesskey="u" rel="up">table</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<hr>
+<h4 class="subsubsection" id="table_002esetvar-1"><span>8.2.59.37 table.setvar<a class="copiable-link" href="#table_002esetvar-1"> &para;</a></span></h4>
+
+<dl class="first-deftypefn">
+<dt class="deftypefn" id="index-setvar"><span class="category-def">Method: </span><span><code class="def-type"><var class="var">out</var> =</code> <strong class="def-name">setvar</strong> <code class="def-code-arguments">(<var class="var">obj</var>, <var class="var">varRef</var>, <var class="var">value</var>)</code><a class="copiable-link" href="#index-setvar"> &para;</a></span></dt>
+<dd>
+<p>Set value for a variable in table.
+</p>
+<p>This sets (adds or replaces) the value for a variable in <var class="var">obj</var>. It
+may be used to change the value of an existing variable, or add a new
+variable.
+</p>
+<p>This method exists primarily because I cannot get <code class="code">obj.foo = value</code> to work,
+apparently due to an issue with Octave&rsquo;s subsasgn support.
+</p>
+<p><var class="var">varRef</var> is a variable reference, either the index or name of a variable.
+If you are adding a new variable, it must be a name, and not an index.
+</p>
+<p><var class="var">value</var> is the value to set the variable to. If it is scalar or
+a single string as charvec, it is scalar-expanded to match the number
+of rows in <var class="var">obj</var>.
+</p>
+</dd></dl>
+
+</div>
+
+
+
+</body>
+</html>

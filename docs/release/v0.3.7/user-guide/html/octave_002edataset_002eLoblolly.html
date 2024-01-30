@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.1, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- This manual is for Tablicious, version 0.3.7.
+
+Copyright © 2019 Andrew Janke
+
+Permission is granted to make and distribute verbatim copies of
+this manual provided the copyright notice and this permission notice
+are preserved on all copies.
+
+Permission is granted to copy and distribute modified versions of this
+manual under the conditions for verbatim copying, provided that the entire
+resulting derived work is distributed under the terms of a permission
+notice identical to this one.
+
+Permission is granted to copy and distribute translations of this manual
+into another language, under the same conditions as for modified versions. -->
+<title>octave.dataset.Loblolly (Octave Tablicious v0.3.7)</title>
+
+<meta name="description" content="User manual for Tablicious for Octave.">
+<meta name="keywords" content="octave.dataset.Loblolly (Octave Tablicious v0.3.7)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="octave_002edataset.html" rel="up" title="octave.dataset">
+<link href="octave_002edataset_002elongley.html" rel="next" title="octave.dataset.longley">
+<link href="octave_002edataset_002eLifeCycleSavings.html" rel="prev" title="octave.dataset.LifeCycleSavings">
+<style type="text/css">
+<!--
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.example {margin-left: 3.2em}
+span:hover a.copiable-link {visibility: visible}
+strong.def-name {font-family: monospace; font-weight: bold; font-size: larger}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<div class="subsubsection-level-extent" id="octave_002edataset_002eLoblolly">
+<div class="nav-panel">
+<p>
+Next: <a href="octave_002edataset_002elongley.html" accesskey="n" rel="next">octave.dataset.longley</a>, Previous: <a href="octave_002edataset_002eLifeCycleSavings.html" accesskey="p" rel="prev">octave.dataset.LifeCycleSavings</a>, Up: <a href="octave_002edataset.html" accesskey="u" rel="up">octave.dataset</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<hr>
+<h4 class="subsubsection" id="octave_002edataset_002eLoblolly-1"><span>8.2.45.38 octave.dataset.Loblolly<a class="copiable-link" href="#octave_002edataset_002eLoblolly-1"> &para;</a></span></h4>
+
+<dl class="first-deftypefn">
+<dt class="deftypefn" id="index-Loblolly"><span class="category-def">Static Method: </span><span><code class="def-type"><var class="var">out</var> =</code> <strong class="def-name">Loblolly</strong> <code class="def-code-arguments">()</code><a class="copiable-link" href="#index-Loblolly"> &para;</a></span></dt>
+<dd>
+<p>Growth of Loblolly pine trees
+</p>
+<h4 class="subsubheading" id="Description-36"><span>Description<a class="copiable-link" href="#Description-36"> &para;</a></span></h4>
+
+<p>Records of the growth of Loblolly pine trees.
+</p>
+<h4 class="subsubheading" id="Format-35"><span>Format<a class="copiable-link" href="#Format-35"> &para;</a></span></h4>
+
+<dl class="table">
+<dt><code class="code">height</code></dt>
+<dd><p>Tree height (ft).
+</p></dd>
+<dt><code class="code">age</code></dt>
+<dd><p>Tree age (years).
+</p></dd>
+<dt><code class="code">Seed</code></dt>
+<dd><p>Seed source for the tree. Ordering is according to increasing maximum height.
+</p></dd>
+</dl>
+
+<h4 class="subsubheading" id="Source-37"><span>Source<a class="copiable-link" href="#Source-37"> &para;</a></span></h4>
+
+<p>Kung, F. H. (1986). Fitting logistic growth curve with predetermined carrying
+capacity. <cite class="cite">Proceedings of the Statistical Computing Section</cite>, American
+Statistical Association, 340–343.
+</p>
+<p>Pinheiro, J. C. and Bates, D. M. (2000). <cite class="cite">Mixed-effects Models in S and
+S-PLUS</cite>. New York: Springer.
+</p>
+<h4 class="subsubheading" id="Examples-36"><span>Examples<a class="copiable-link" href="#Examples-36"> &para;</a></span></h4>
+
+<div class="example">
+<pre class="example-preformatted">t = octave.dataset.Loblolly;
+
+t2 = t(t.Seed == &quot;329&quot;,:);
+scatter (t2.age, t2.height)
+xlabel (&quot;Tree age (yr)&quot;);
+ylabel (&quot;Tree height (ft)&quot;);
+title (&quot;Loblolly data and fitted curve (Seed 329 only)&quot;)
+
+# TODO: Compute and plot fitted curve
+
+</pre></div>
+
+
+</dd></dl>
+
+</div>
+
+
+
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.1, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- This manual is for Tablicious, version 0.3.6.
+
+Copyright © 2019 Andrew Janke
+
+Permission is granted to make and distribute verbatim copies of
+this manual provided the copyright notice and this permission notice
+are preserved on all copies.
+
+Permission is granted to copy and distribute modified versions of this
+manual under the conditions for verbatim copying, provided that the entire
+resulting derived work is distributed under the terms of a permission
+notice identical to this one.
+
+Permission is granted to copy and distribute translations of this manual
+into another language, under the same conditions as for modified versions. -->
+<title>Tables vs SQL (Octave Tablicious v0.3.6)</title>
+
+<meta name="description" content="User manual for Tablicious for Octave.">
+<meta name="keywords" content="Tables vs SQL (Octave Tablicious v0.3.6)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Table-Representation.html" rel="up" title="Table Representation">
+<link href="Table-Construction.html" rel="prev" title="Table Construction">
+<style type="text/css">
+<!--
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+span:hover a.copiable-link {visibility: visible}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<div class="section-level-extent" id="Tables-vs-SQL">
+<div class="nav-panel">
+<p>
+Previous: <a href="Table-Construction.html" accesskey="p" rel="prev">Table Construction</a>, Up: <a href="Table-Representation.html" accesskey="u" rel="up">Table Representation</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<hr>
+<h3 class="section" id="Tables-vs-SQL-1"><span>3.2 Tables vs SQL<a class="copiable-link" href="#Tables-vs-SQL-1"> &para;</a></span></h3>
+
+<p>Here’s a table (ha!) of what SQL and relational algebar operations correspond to
+what Octave <code class="code">table</code> operations.
+</p>
+<p>In this table, <code class="code">t</code> is a variable holding a <code class="code">table</code> array, and <code class="code">ix</code> is 
+some indexing expression.
+</p>
+<table class="multitable">
+<thead><tr><th width="33%">SQL</th><th width="33%">Relational</th><th width="33%">Octave <code class="code">table</code></th></tr></thead>
+<tbody><tr><td width="33%">SELECT</td><td width="33%">PROJECT</td><td width="33%"><code class="code">subsetvars</code>, <code class="code">t(:,ix)</code></td></tr>
+<tr><td width="33%">WHERE</td><td width="33%">RESTRICT</td><td width="33%"><code class="code">subsetrows</code>, <code class="code">t(ix,:)</code></td></tr>
+<tr><td width="33%">INNER JOIN</td><td width="33%">JOIN</td><td width="33%"><code class="code">innerjoin</code></td></tr>
+<tr><td width="33%">OUTER JOIN</td><td width="33%">OUTER JOIN</td><td width="33%"><code class="code">outerjoin</code></td></tr>
+<tr><td width="33%">FROM <code class="code"><var class="var">table1</var>, <var class="var">table2</var>, &hellip;</code></td><td width="33%">Cartesian product</td><td width="33%"><code class="code">cartesian</code></td></tr>
+<tr><td width="33%">GROUP BY</td><td width="33%">SUMMARIZE</td><td width="33%"><code class="code">groupby</code></td></tr>
+<tr><td width="33%">DISTINCT</td><td width="33%">(automatic)</td><td width="33%"><code class="code">unique(t)</code></td></tr>
+</tbody>
+</table>
+
+<p>Note that there is one big difference between relational algebra and SQL &amp; Octave
+<code class="code">table</code>: Relations in relational algebra are sets, not lists.
+There are no duplicate rows in relational algebra, and there is no ordering.
+So every operation there does an implicit <code class="code">DISTINCT</code>/<code class="code">unique()</code> on its
+results, and there‘s no <code class="code">ORDER BY</code>/<code class="code">sort()</code>. This is not the case in SQL
+or Octave <code class="code">table</code>.
+</p>
+<p>Note for users coming from Matlab: Matlab does not provide a general <code class="code">groupby</code>
+function. Instead, you have to variously use <code class="code">rowfun</code>, <code class="code">grpstats</code>,
+<code class="code">groupsummary</code>, and manual code to accomplish “group by” operations.
+</p>
+<p>Note: I wrote this based on my understanding of relational algebra from reading
+C. J. Date books. Other people’s understanding and terminology may differ. - apjanke
+</p>
+
+
+</div>
+
+
+
+</body>
+</html>

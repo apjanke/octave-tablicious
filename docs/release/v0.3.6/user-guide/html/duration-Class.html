@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.1, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- This manual is for Tablicious, version 0.3.6.
+
+Copyright © 2019 Andrew Janke
+
+Permission is granted to make and distribute verbatim copies of
+this manual provided the copyright notice and this permission notice
+are preserved on all copies.
+
+Permission is granted to copy and distribute modified versions of this
+manual under the conditions for verbatim copying, provided that the entire
+resulting derived work is distributed under the terms of a permission
+notice identical to this one.
+
+Permission is granted to copy and distribute translations of this manual
+into another language, under the same conditions as for modified versions. -->
+<title>duration Class (Octave Tablicious v0.3.6)</title>
+
+<meta name="description" content="User manual for Tablicious for Octave.">
+<meta name="keywords" content="duration Class (Octave Tablicious v0.3.6)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Durations.html" rel="up" title="Durations">
+<link href="calendarDuration-Class.html" rel="next" title="calendarDuration Class">
+<style type="text/css">
+<!--
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+span:hover a.copiable-link {visibility: visible}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<div class="subsection-level-extent" id="duration-Class">
+<div class="nav-panel">
+<p>
+Next: <a href="calendarDuration-Class.html" accesskey="n" rel="next"><code class="code">calendarDuration</code> Class</a>, Up: <a href="Durations.html" accesskey="u" rel="up">Durations</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<hr>
+<h4 class="subsection" id="duration-Class-1"><span>4.3.1 <code class="code">duration</code> Class<a class="copiable-link" href="#duration-Class-1"> &para;</a></span></h4>
+
+<p>A <code class="code">duration</code> represents a period of time in fixed-length seconds (or minutes, hours,
+or whatever you want to measure it in.)
+</p>
+<p>A <code class="code">duration</code> has a resolution of about a nanosecond for typical dates. The underlying
+representation is a <code class="code">double</code> representing the number of days elapsed, similar to a 
+datenum, except it&rsquo;s interpreted as relative to some other reference point you provide,
+instead of being relative to the Matlab/Octave epoch.
+</p>
+<p>You can add or subtract a <code class="code">duration</code> to a <code class="code">datetime</code> to get another <code class="code">datetime</code>.
+You can also add or subtract <code class="code">durations</code> to each other.
+</p>
+</div>
+
+
+
+</body>
+</html>

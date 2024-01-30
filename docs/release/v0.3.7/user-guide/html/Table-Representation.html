@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.1, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- This manual is for Tablicious, version 0.3.7.
+
+Copyright © 2019 Andrew Janke
+
+Permission is granted to make and distribute verbatim copies of
+this manual provided the copyright notice and this permission notice
+are preserved on all copies.
+
+Permission is granted to copy and distribute modified versions of this
+manual under the conditions for verbatim copying, provided that the entire
+resulting derived work is distributed under the terms of a permission
+notice identical to this one.
+
+Permission is granted to copy and distribute translations of this manual
+into another language, under the same conditions as for modified versions. -->
+<title>Table Representation (Octave Tablicious v0.3.7)</title>
+
+<meta name="description" content="User manual for Tablicious for Octave.">
+<meta name="keywords" content="Table Representation (Octave Tablicious v0.3.7)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="index.html" rel="up" title="Top">
+<link href="Date-and-Time-Representation.html" rel="next" title="Date and Time Representation">
+<link href="Getting-Started.html" rel="prev" title="Getting Started">
+<style type="text/css">
+<!--
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+span:hover a.copiable-link {visibility: visible}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<div class="chapter-level-extent" id="Table-Representation">
+<div class="nav-panel">
+<p>
+Next: <a href="Date-and-Time-Representation.html" accesskey="n" rel="next">Date and Time Representation</a>, Previous: <a href="Getting-Started.html" accesskey="p" rel="prev">Getting Started</a>, Up: <a href="index.html" accesskey="u" rel="up">Tablicious for GNU Octave</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<hr>
+<h2 class="chapter" id="Table-Representation-1"><span>3 Table Representation<a class="copiable-link" href="#Table-Representation-1"> &para;</a></span></h2>
+
+<p>Tablicious provides the <code class="code">table</code> class for representing tabular data.
+</p>
+<p>A <code class="code">table</code> is an array object that represents a tabular data structure. It holds
+multiple named “variables”, each of which is a column vector, or a 2-D matrix whose
+rows are read as records.
+</p>
+<p>A <code class="code">table</code> is composed of multiple “variables”, each with a name, which all have
+the same number of rows. (A <code class="code">table</code> variable is like a “column” in SQL tables
+or in R or Python/pandas dataframes. Whenever you read “variable” here, think
+“column”.) Taken together, the <var class="var">i</var>-th element or row of each variable compose
+a single record or observation.
+</p>
+<p>Tables are good ways of arranging data if you have data that would otherwise be stored
+in a few separate variables which all need to be kept in the same shape and order,
+especially if you might want to do element-wise comparisons involving two or more of
+those variables. That’s basically all a <code class="code">table</code> is: it holds a collection of
+variables, and makes sure they are all kept aligned and ordered in the same way.
+</p>
+<p>Tables are a lot like SQL tables or result sets, and are based on the same relational
+algebra theory that SQL is. Many common, even powerful, SQL operations can be done
+in Octave using <code class="code">table</code> arrays. It’s like having your own in-memory SQL engine.
+</p>
+<ul class="mini-toc">
+<li><a href="Table-Construction.html" accesskey="1">Table Construction</a></li>
+<li><a href="Tables-vs-SQL.html" accesskey="2">Tables vs SQL</a></li>
+</ul>
+</div>
+
+
+
+</body>
+</html>

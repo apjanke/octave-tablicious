@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.1, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- This manual is for Tablicious, version 0.3.7.
+
+Copyright © 2019 Andrew Janke
+
+Permission is granted to make and distribute verbatim copies of
+this manual provided the copyright notice and this permission notice
+are preserved on all copies.
+
+Permission is granted to copy and distribute modified versions of this
+manual under the conditions for verbatim copying, provided that the entire
+resulting derived work is distributed under the terms of a permission
+notice identical to this one.
+
+Permission is granted to copy and distribute translations of this manual
+into another language, under the same conditions as for modified versions. -->
+<title>octave.dataset.UKDriverDeaths (Octave Tablicious v0.3.7)</title>
+
+<meta name="description" content="User manual for Tablicious for Octave.">
+<meta name="keywords" content="octave.dataset.UKDriverDeaths (Octave Tablicious v0.3.7)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="octave_002edataset.html" rel="up" title="octave.dataset">
+<link href="octave_002edataset_002eUKgas.html" rel="next" title="octave.dataset.UKgas">
+<link href="octave_002edataset_002eUCBAdmissions.html" rel="prev" title="octave.dataset.UCBAdmissions">
+<style type="text/css">
+<!--
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.example {margin-left: 3.2em}
+span:hover a.copiable-link {visibility: visible}
+strong.def-name {font-family: monospace; font-weight: bold; font-size: larger}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<div class="subsubsection-level-extent" id="octave_002edataset_002eUKDriverDeaths">
+<div class="nav-panel">
+<p>
+Next: <a href="octave_002edataset_002eUKgas.html" accesskey="n" rel="next">octave.dataset.UKgas</a>, Previous: <a href="octave_002edataset_002eUCBAdmissions.html" accesskey="p" rel="prev">octave.dataset.UCBAdmissions</a>, Up: <a href="octave_002edataset.html" accesskey="u" rel="up">octave.dataset</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<hr>
+<h4 class="subsubsection" id="octave_002edataset_002eUKDriverDeaths-1"><span>8.2.45.72 octave.dataset.UKDriverDeaths<a class="copiable-link" href="#octave_002edataset_002eUKDriverDeaths-1"> &para;</a></span></h4>
+
+<dl class="first-deftypefn">
+<dt class="deftypefn" id="index-UKDriverDeaths"><span class="category-def">Static Method: </span><span><code class="def-type"><var class="var">out</var> =</code> <strong class="def-name">UKDriverDeaths</strong> <code class="def-code-arguments">()</code><a class="copiable-link" href="#index-UKDriverDeaths"> &para;</a></span></dt>
+<dd>
+<p>Road Casualties in Great Britain 1969-84
+</p>
+<h4 class="subsubheading" id="Description-70"><span>Description<a class="copiable-link" href="#Description-70"> &para;</a></span></h4>
+
+<p><code class="code">UKDriverDeaths</code> is a time series giving the monthly totals of car drivers in Great Britain killed
+or seriously injured Jan 1969 to Dec 1984. Compulsory wearing of seat belts
+was introduced on 31 Jan 1983.
+</p>
+<p><code class="code">Seatbelts</code> is more information on the same problem.
+</p>
+<h4 class="subsubheading" id="Format-69"><span>Format<a class="copiable-link" href="#Format-69"> &para;</a></span></h4>
+
+<p><code class="code">UKDriverDeaths</code> is a table with the following variables:
+</p>
+<dl class="table">
+<dt><code class="code">month</code></dt>
+<dd><p>Month of the observation.
+</p></dd>
+<dt><code class="code">deaths</code></dt>
+<dd><p>Number of deaths.
+</p></dd>
+</dl>
+
+<p><code class="code">Seatbelts</code> is a table with the following variables:
+</p>
+<dl class="table">
+<dt><code class="code">month</code></dt>
+<dd><p>Month of the observation.
+</p></dd>
+<dt><code class="code">DriversKilled</code></dt>
+<dd><p>Car drivers killed.
+</p></dd>
+<dt><code class="code">drivers</code></dt>
+<dd><p>Same as <code class="code">UKDriverDeaths</code> <code class="code">deaths</code> count.
+</p></dd>
+<dt><code class="code">front</code></dt>
+<dd><p>Front-seat passengers killed or seriously injured.
+</p></dd>
+<dt><code class="code">rear</code></dt>
+<dd><p>Rear-seat passengers killed or seriously injured.
+</p></dd>
+<dt><code class="code">kms</code></dt>
+<dd><p>Distance driven.
+</p></dd>
+<dt><code class="code">PetrolPrice</code></dt>
+<dd><p>Petrol price.
+</p></dd>
+<dt><code class="code">VanKilled</code></dt>
+<dd><p>Number of van (“light goods vehicle”) drivers killed.
+</p></dd>
+<dt><code class="code">law</code></dt>
+<dd><p>0/1: was the seatbelt law in effect that month?
+</p></dd>
+</dl>
+
+<h4 class="subsubheading" id="Source-71"><span>Source<a class="copiable-link" href="#Source-71"> &para;</a></span></h4>
+
+<p>Harvey, A.C. (1989). <cite class="cite">Forecasting, Structural Time Series Models and
+the Kalman Filter</cite>. Cambridge: Cambridge University Press. pp. 519–523.
+</p>
+<p>Durbin, J. and Koopman, S. J. (2001). <cite class="cite">Time Series Analysis by State
+Space Methods</cite>. Oxford: Oxford University Press. <a class="url" href="http://www.ssfpack.com/dkbook/">http://www.ssfpack.com/dkbook/</a>
+</p>
+<h4 class="subsubheading" id="References-39"><span>References<a class="copiable-link" href="#References-39"> &para;</a></span></h4>
+
+<p>Harvey, A. C. and Durbin, J. (1986). The effects of seat belt legislation
+on British road casualties: A case study in structural time series
+modelling. <cite class="cite">Journal of the Royal Statistical Society</cite> series A, 149, 187–227.
+</p>
+<h4 class="subsubheading" id="Examples-70"><span>Examples<a class="copiable-link" href="#Examples-70"> &para;</a></span></h4>
+
+<div class="example">
+<pre class="example-preformatted">octave.dataset.UKDriverDeaths;
+d = UKDriverDeaths;
+s = Seatbelts;
+
+# TODO: Port the model and plots to Octave
+
+</pre></div>
+
+
+</dd></dl>
+
+</div>
+<hr>
+<div class="nav-panel">
+<p>
+Next: <a href="octave_002edataset_002eUKgas.html">octave.dataset.UKgas</a>, Previous: <a href="octave_002edataset_002eUCBAdmissions.html">octave.dataset.UCBAdmissions</a>, Up: <a href="octave_002edataset.html">octave.dataset</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+
+
+
+</body>
+</html>

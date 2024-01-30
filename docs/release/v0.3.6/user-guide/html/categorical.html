@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.1, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- This manual is for Tablicious, version 0.3.6.
+
+Copyright © 2019 Andrew Janke
+
+Permission is granted to make and distribute verbatim copies of
+this manual provided the copyright notice and this permission notice
+are preserved on all copies.
+
+Permission is granted to copy and distribute modified versions of this
+manual under the conditions for verbatim copying, provided that the entire
+resulting derived work is distributed under the terms of a permission
+notice identical to this one.
+
+Permission is granted to copy and distribute translations of this manual
+into another language, under the same conditions as for modified versions. -->
+<title>categorical (Octave Tablicious v0.3.6)</title>
+
+<meta name="description" content="User manual for Tablicious for Octave.">
+<meta name="keywords" content="categorical (Octave Tablicious v0.3.6)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="API-Alphabetically.html" rel="up" title="API Alphabetically">
+<link href="cell2table.html" rel="next" title="cell2table">
+<link href="calyears.html" rel="prev" title="calyears">
+<style type="text/css">
+<!--
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+span:hover a.copiable-link {visibility: visible}
+strong.def-name {font-family: monospace; font-weight: bold; font-size: larger}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<div class="subsection-level-extent" id="categorical">
+<div class="nav-panel">
+<p>
+Next: <a href="cell2table.html" accesskey="n" rel="next">cell2table</a>, Previous: <a href="calyears.html" accesskey="p" rel="prev">calyears</a>, Up: <a href="API-Alphabetically.html" accesskey="u" rel="up">API Alphabetically</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<hr>
+<h4 class="subsection" id="categorical-1"><span>8.2.5 categorical<a class="copiable-link" href="#categorical-1"> &para;</a></span></h4>
+<dl class="first-deftp">
+<dt class="deftp" id="index-categorical-6"><span class="category-def">Class: </span><span><strong class="def-name">categorical</strong><a class="copiable-link" href="#index-categorical-6"> &para;</a></span></dt>
+<dd>
+<p>Categorical variable array.
+</p>
+<p>A <code class="code">categorical</code> array represents an array of values of a categorical
+variable. Each <code class="code">categorical</code> array stores the element values along
+with a list of the categories, and indicators of whether the categories
+are ordinal (that is, they have a meaningful mathematical ordering), and
+whether the set of categories is protected (preventing new categories
+from being added to the array).
+</p>
+<p>In addition to the categories defined in the array, a categorical array
+may have elements of &quot;undefined&quot; value. This is not considered a
+category; rather, it is the absence of any known value. It is
+analagous to a <code class="code">NaN</code> value.
+</p>
+<p>This class is not fully implemented yet. Missing stuff:
+  - gt, ge, lt, le
+  - Ordinal support in general
+  - countcats
+  - summary
+</p>
+</dd></dl>
+
+<dl class="first-deftypecv first-deftypeivar-alias-first-deftypecv">
+<dt class="deftypecv deftypeivar-alias-deftypecv" id="index-code-of-categorical"><span class="category-def">Instance Variable of <code class="code">categorical</code>: </span><span><code class="def-type"><code class="code">uint16</code></code> <strong class="def-name">code</strong><a class="copiable-link" href="#index-code-of-categorical"> &para;</a></span></dt>
+<dd>
+<p>The numeric codes of the array element values. These are indexes into the
+<code class="code">cats</code> category list.
+</p>
+<p>This is a planar property.
+</p>
+</dd></dl>
+
+<dl class="first-deftypecv first-deftypeivar-alias-first-deftypecv">
+<dt class="deftypecv deftypeivar-alias-deftypecv" id="index-tfMissing-of-categorical"><span class="category-def">Instance Variable of <code class="code">categorical</code>: </span><span><code class="def-type"><code class="code">logical</code></code> <strong class="def-name">tfMissing</strong><a class="copiable-link" href="#index-tfMissing-of-categorical"> &para;</a></span></dt>
+<dd>
+<p>A logical mask indicating whether each element of the array is missing
+(that is, undefined).
+</p>
+<p>This is a planar property.
+</p>
+</dd></dl>
+
+<dl class="first-deftypecv first-deftypeivar-alias-first-deftypecv">
+<dt class="deftypecv deftypeivar-alias-deftypecv" id="index-cats-of-categorical"><span class="category-def">Instance Variable of <code class="code">categorical</code>: </span><span><code class="def-type"><code class="code">cellstr</code></code> <strong class="def-name">cats</strong><a class="copiable-link" href="#index-cats-of-categorical"> &para;</a></span></dt>
+<dd>
+<p>The names of the categories in this array. This is the list into which
+the <code class="code">code</code> values are indexes.
+</p>
+</dd></dl>
+
+<dl class="first-deftypecv first-deftypeivar-alias-first-deftypecv">
+<dt class="deftypecv deftypeivar-alias-deftypecv" id="index-isOrdinal-of-categorical"><span class="category-def">Instance Variable of <code class="code">categorical</code>: </span><span><code class="def-type"><code class="code">scalar_logical</code></code> <strong class="def-name">isOrdinal</strong><a class="copiable-link" href="#index-isOrdinal-of-categorical"> &para;</a></span></dt>
+<dd>
+<p>A scalar logical indicating whether the categories in this array have an
+ordinal relationship.
+</p>
+</dd></dl>
+
+
+<ul class="mini-toc">
+<li><a href="categorical_002eundefined.html" accesskey="1">categorical.undefined</a></li>
+<li><a href="categorical_002ecategorical.html" accesskey="2">categorical.categorical</a></li>
+<li><a href="categorical_002esizeof.html" accesskey="3">categorical.sizeof</a></li>
+<li><a href="categorical_002ecategories.html" accesskey="4">categorical.categories</a></li>
+<li><a href="categorical_002eiscategory.html" accesskey="5">categorical.iscategory</a></li>
+<li><a href="categorical_002eisordinal.html" accesskey="6">categorical.isordinal</a></li>
+<li><a href="categorical_002estring.html" accesskey="7">categorical.string</a></li>
+<li><a href="categorical_002ecellstr.html" accesskey="8">categorical.cellstr</a></li>
+<li><a href="categorical_002edispstrs.html" accesskey="9">categorical.dispstrs</a></li>
+<li><a href="categorical_002esummary.html">categorical.summary</a></li>
+<li><a href="categorical_002eaddcats.html">categorical.addcats</a></li>
+<li><a href="categorical_002eremovecats.html">categorical.removecats</a></li>
+<li><a href="categorical_002emergecats.html">categorical.mergecats</a></li>
+<li><a href="categorical_002erenamecats.html">categorical.renamecats</a></li>
+<li><a href="categorical_002ereordercats.html">categorical.reordercats</a></li>
+<li><a href="categorical_002esetcats.html">categorical.setcats</a></li>
+<li><a href="categorical_002eisundefined.html">categorical.isundefined</a></li>
+<li><a href="categorical_002eismissing.html">categorical.ismissing</a></li>
+<li><a href="categorical_002eisnanny.html">categorical.isnanny</a></li>
+<li><a href="categorical_002esqueezecats.html">categorical.squeezecats</a></li>
+</ul>
+</div>
+<hr>
+<div class="nav-panel">
+<p>
+Next: <a href="cell2table.html">cell2table</a>, Previous: <a href="calyears.html">calyears</a>, Up: <a href="API-Alphabetically.html">API Alphabetically</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+
+
+
+</body>
+</html>

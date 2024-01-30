@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.1, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- This manual is for Tablicious, version 0.4.0-SNAPSHOT.
+
+Copyright © 2019 Andrew Janke
+
+Permission is granted to make and distribute verbatim copies of
+this manual provided the copyright notice and this permission notice
+are preserved on all copies.
+
+Permission is granted to copy and distribute modified versions of this
+manual under the conditions for verbatim copying, provided that the entire
+resulting derived work is distributed under the terms of a permission
+notice identical to this one.
+
+Permission is granted to copy and distribute translations of this manual
+into another language, under the same conditions as for modified versions. -->
+<title>Datenum Compatibility (Octave Tablicious v0.4.0-SNAPSHOT)</title>
+
+<meta name="description" content="User manual for Tablicious for Octave.">
+<meta name="keywords" content="Datenum Compatibility (Octave Tablicious v0.4.0-SNAPSHOT)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="datetime-Class.html" rel="up" title="datetime Class">
+<style type="text/css">
+<!--
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.example {margin-left: 3.2em}
+span:hover a.copiable-link {visibility: visible}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<div class="subsection-level-extent" id="Datenum-Compatibility">
+<div class="nav-panel">
+<p>
+Up: <a href="datetime-Class.html" accesskey="u" rel="up"><code class="code">datetime</code> Class</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<hr>
+<h4 class="subsection" id="Datenum-Compatibility-1"><span>4.1.1 Datenum Compatibility<a class="copiable-link" href="#Datenum-Compatibility-1"> &para;</a></span></h4>
+
+<p>While the underlying data representation of <code class="code">datetime</code> is compatible with
+(in fact, identical to) that of datenums, you cannot directly combine them
+via assignment, concatenation, or most arithmetic operations.
+</p>
+<p>This is because of the signature of the <code class="code">datetime</code> constructor. When combining
+objects and primitive types like <code class="code">double</code>, the primitive type is promoted to an
+object by calling the other object&rsquo;s one-argument constructor on it. However, the
+one-argument numeric-input consstructor for <code class="code">datetime</code> does not accept datenums:
+it interprets its input as datevecs instead. This is due to a design decision on
+Matlab&rsquo;s part; for compatibility, Octave does not alter that interface.
+</p>
+<p>To combine <code class="code">datetime</code>s with datenums, you can convert the datenums to <code class="code">datetime</code>s
+by calling <code class="code">datetime.ofDatenum</code> or <code class="code">datetime(x, 'ConvertFrom', 'datenum')</code>, or you
+can convert the <code class="code">datetime</code>s to datenums by accessing its <code class="code">dnums</code> field with
+<code class="code">x.dnums</code>.
+</p>
+<p>Examples:
+</p>
+<div class="example">
+<pre class="example-preformatted">dt = datetime('2011-03-04')
+dn = datenum('2017-01-01')
+[dt dn]
+    &rArr; error: datenum: expected date vector containing [YEAR, MONTH, DAY, HOUR, MINUTE, SECOND]
+[dt datetime.ofDatenum(dn)]
+    &rArr; 04-Mar-2011   01-Jan-2017
+</pre></div>
+
+<p>Also, if you have a zoned <code class="code">datetime</code>, you can’t combine it with a datenum, because datenums
+do not carry time zone information.
+</p>
+
+</div>
+
+
+
+</body>
+</html>

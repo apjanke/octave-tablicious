@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.1, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- This manual is for Tablicious, version 0.3.6.
+
+Copyright © 2019 Andrew Janke
+
+Permission is granted to make and distribute verbatim copies of
+this manual provided the copyright notice and this permission notice
+are preserved on all copies.
+
+Permission is granted to copy and distribute modified versions of this
+manual under the conditions for verbatim copying, provided that the entire
+resulting derived work is distributed under the terms of a permission
+notice identical to this one.
+
+Permission is granted to copy and distribute translations of this manual
+into another language, under the same conditions as for modified versions. -->
+<title>octave.dataset.cupcake (Octave Tablicious v0.3.6)</title>
+
+<meta name="description" content="User manual for Tablicious for Octave.">
+<meta name="keywords" content="octave.dataset.cupcake (Octave Tablicious v0.3.6)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="octave_002edataset.html" rel="up" title="octave.dataset">
+<link href="octave_002edataset_002ediscoveries.html" rel="next" title="octave.dataset.discoveries">
+<link href="octave_002edataset_002ecrimtab.html" rel="prev" title="octave.dataset.crimtab">
+<style type="text/css">
+<!--
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.example {margin-left: 3.2em}
+span:hover a.copiable-link {visibility: visible}
+strong.def-name {font-family: monospace; font-weight: bold; font-size: larger}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<div class="subsubsection-level-extent" id="octave_002edataset_002ecupcake">
+<div class="nav-panel">
+<p>
+Next: <a href="octave_002edataset_002ediscoveries.html" accesskey="n" rel="next">octave.dataset.discoveries</a>, Previous: <a href="octave_002edataset_002ecrimtab.html" accesskey="p" rel="prev">octave.dataset.crimtab</a>, Up: <a href="octave_002edataset.html" accesskey="u" rel="up">octave.dataset</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<hr>
+<h4 class="subsubsection" id="octave_002edataset_002ecupcake-1"><span>8.2.45.16 octave.dataset.cupcake<a class="copiable-link" href="#octave_002edataset_002ecupcake-1"> &para;</a></span></h4>
+
+<dl class="first-deftypefn">
+<dt class="deftypefn" id="index-cupcake"><span class="category-def">Static Method: </span><span><code class="def-type"><var class="var">out</var> =</code> <strong class="def-name">cupcake</strong> <code class="def-code-arguments">()</code><a class="copiable-link" href="#index-cupcake"> &para;</a></span></dt>
+<dd>
+<p>Google Search popularity for &quot;cupcake&quot;, 2004-2019
+</p>
+<h4 class="subsubheading" id="Description-14"><span>Description<a class="copiable-link" href="#Description-14"> &para;</a></span></h4>
+
+<p>Monthly popularity of worldwide Google search results for &quot;cupcake&quot;, 2004-2019.
+</p>
+<h4 class="subsubheading" id="Format-13"><span>Format<a class="copiable-link" href="#Format-13"> &para;</a></span></h4>
+
+<dl class="table">
+<dt><code class="code">Month</code></dt>
+<dd><p>Month when searches took place
+</p></dd>
+<dt><code class="code">Cupcake</code></dt>
+<dd><p>An indicator of search volume, in unknown units
+</p></dd>
+</dl>
+
+<h4 class="subsubheading" id="Source-15"><span>Source<a class="copiable-link" href="#Source-15"> &para;</a></span></h4>
+
+<p>Google Trends, <a class="url" href="https://trends.google.com/trends/explore?q=%2Fm%2F03p1r4&amp;date=all">https://trends.google.com/trends/explore?q=%2Fm%2F03p1r4&amp;date=all</a>,
+retrieved 2019-05-04 by Andrew Janke.
+</p>
+<h4 class="subsubheading" id="Examples-15"><span>Examples<a class="copiable-link" href="#Examples-15"> &para;</a></span></h4>
+
+<div class="example">
+<pre class="example-preformatted">t = octave.dataset.cupcake
+plot(datenum(t.Month), t.Cupcake)
+title ('“Cupcake” Google Searches'); xlabel (&quot;Year&quot;); ylabel (&quot;Unknown popularity metric&quot;)
+
+</pre></div>
+
+
+</dd></dl>
+
+</div>
+
+
+
+</body>
+</html>

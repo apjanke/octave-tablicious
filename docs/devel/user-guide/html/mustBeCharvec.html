@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.1, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- This manual is for Tablicious, version 0.4.0-SNAPSHOT.
+
+Copyright © 2019 Andrew Janke
+
+Permission is granted to make and distribute verbatim copies of
+this manual provided the copyright notice and this permission notice
+are preserved on all copies.
+
+Permission is granted to copy and distribute modified versions of this
+manual under the conditions for verbatim copying, provided that the entire
+resulting derived work is distributed under the terms of a permission
+notice identical to this one.
+
+Permission is granted to copy and distribute translations of this manual
+into another language, under the same conditions as for modified versions. -->
+<title>mustBeCharvec (Octave Tablicious v0.4.0-SNAPSHOT)</title>
+
+<meta name="description" content="User manual for Tablicious for Octave.">
+<meta name="keywords" content="mustBeCharvec (Octave Tablicious v0.4.0-SNAPSHOT)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="API-Alphabetically.html" rel="up" title="API Alphabetically">
+<link href="mustBeFinite.html" rel="next" title="mustBeFinite">
+<link href="mustBeCellstr.html" rel="prev" title="mustBeCellstr">
+<style type="text/css">
+<!--
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+span:hover a.copiable-link {visibility: visible}
+strong.def-name {font-family: monospace; font-weight: bold; font-size: larger}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<div class="subsection-level-extent" id="mustBeCharvec">
+<div class="nav-panel">
+<p>
+Next: <a href="mustBeFinite.html" accesskey="n" rel="next">mustBeFinite</a>, Previous: <a href="mustBeCellstr.html" accesskey="p" rel="prev">mustBeCellstr</a>, Up: <a href="API-Alphabetically.html" accesskey="u" rel="up">API Alphabetically</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<hr>
+<h4 class="subsection" id="mustBeCharvec-1"><span>8.2.32 mustBeCharvec<a class="copiable-link" href="#mustBeCharvec-1"> &para;</a></span></h4>
+<dl class="first-deftypefn">
+<dt class="deftypefn" id="index-mustBeCharvec"><span class="category-def">Function File: </span><span><code class="def-type"><var class="var">x</var> =</code> <strong class="def-name">mustBeCharvec</strong> <code class="def-code-arguments">(<var class="var">x</var>, <var class="var">label</var>)</code><a class="copiable-link" href="#index-mustBeCharvec"> &para;</a></span></dt>
+<dd>
+<p>Requires that input is a char row vector.
+</p>
+<p>Raises an error if the input <var class="var">x</var> is not a row vector of <code class="code">char</code>s.
+<code class="code">char</code> row vectors are Octave&rsquo;s normal representation of single strings.
+(They are what are produced by <code class="code">'...'</code> string literals.) As a special
+case, 0-by-0 empty chars (what is produced by the string literal <code class="code">''</code>)
+are also considered charvecs.
+</p>
+<p>This does not differentiate between single-quoted and double-quoted strings.
+</p>
+<p><var class="var">label</var> is an optional input that determines how the input will be described in
+error messages. If not supplied, <code class="code">inputname (1)</code> is used, and if that is
+empty, it falls back to &quot;input&quot;.
+</p>
+</dd></dl>
+
+
+</div>
+
+
+
+</body>
+</html>

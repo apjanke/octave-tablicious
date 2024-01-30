@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.1, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- This manual is for Tablicious, version 0.3.7.
+
+Copyright © 2019 Andrew Janke
+
+Permission is granted to make and distribute verbatim copies of
+this manual provided the copyright notice and this permission notice
+are preserved on all copies.
+
+Permission is granted to copy and distribute modified versions of this
+manual under the conditions for verbatim copying, provided that the entire
+resulting derived work is distributed under the terms of a permission
+notice identical to this one.
+
+Permission is granted to copy and distribute translations of this manual
+into another language, under the same conditions as for modified versions. -->
+<title>octave.dataset.co2 (Octave Tablicious v0.3.7)</title>
+
+<meta name="description" content="User manual for Tablicious for Octave.">
+<meta name="keywords" content="octave.dataset.co2 (Octave Tablicious v0.3.7)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="octave_002edataset.html" rel="up" title="octave.dataset">
+<link href="octave_002edataset_002ecrimtab.html" rel="next" title="octave.dataset.crimtab">
+<link href="octave_002edataset_002echickwts.html" rel="prev" title="octave.dataset.chickwts">
+<style type="text/css">
+<!--
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.example {margin-left: 3.2em}
+span:hover a.copiable-link {visibility: visible}
+strong.def-name {font-family: monospace; font-weight: bold; font-size: larger}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<div class="subsubsection-level-extent" id="octave_002edataset_002eco2">
+<div class="nav-panel">
+<p>
+Next: <a href="octave_002edataset_002ecrimtab.html" accesskey="n" rel="next">octave.dataset.crimtab</a>, Previous: <a href="octave_002edataset_002echickwts.html" accesskey="p" rel="prev">octave.dataset.chickwts</a>, Up: <a href="octave_002edataset.html" accesskey="u" rel="up">octave.dataset</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<hr>
+<h4 class="subsubsection" id="octave_002edataset_002eco2-1"><span>8.2.45.14 octave.dataset.co2<a class="copiable-link" href="#octave_002edataset_002eco2-1"> &para;</a></span></h4>
+
+<dl class="first-deftypefn">
+<dt class="deftypefn" id="index-co2"><span class="category-def">Static Method: </span><span><code class="def-type"><var class="var">out</var> =</code> <strong class="def-name">co2</strong> <code class="def-code-arguments">()</code><a class="copiable-link" href="#index-co2"> &para;</a></span></dt>
+<dd>
+<p>Mauna Loa Atmospheric CO2 Concentration
+</p>
+<h4 class="subsubheading" id="Description-12"><span>Description<a class="copiable-link" href="#Description-12"> &para;</a></span></h4>
+
+<p>Atmospheric concentrations of CO2 are expressed in parts per million (ppm) and
+reported in the preliminary 1997 SIO manometric mole fraction scale. Contains
+monthly observations from 1959 to 1997.
+</p>
+<h4 class="subsubheading" id="Format-11"><span>Format<a class="copiable-link" href="#Format-11"> &para;</a></span></h4>
+
+<dl class="table">
+<dt><code class="code">date</code></dt>
+<dd><p>Date of the month of the observation, as datetime.
+</p></dd>
+<dt><code class="code">co2</code></dt>
+<dd><p>CO2 concentration (ppm).
+</p></dd>
+</dl>
+
+<h4 class="subsubheading" id="Details"><span>Details<a class="copiable-link" href="#Details"> &para;</a></span></h4>
+
+<p>The values for February, March and April of 1964 were missing and have
+been obtained by interpolating linearly between the values for January
+and May of 1964.
+</p>
+<h4 class="subsubheading" id="Source-13"><span>Source<a class="copiable-link" href="#Source-13"> &para;</a></span></h4>
+
+<p>Keeling, C. D. and Whorf, T. P., Scripps Institution of Oceanography
+(SIO), University of California, La Jolla, California USA 92093-0220.
+</p>
+<p><a class="url" href="ftp://cdiac.esd.ornl.gov/pub/maunaloa-co2/maunaloa.co2">ftp://cdiac.esd.ornl.gov/pub/maunaloa-co2/maunaloa.co2</a>.
+</p>
+<h4 class="subsubheading" id="References-6"><span>References<a class="copiable-link" href="#References-6"> &para;</a></span></h4>
+
+<p>Cleveland, W. S. (1993). <code class="code">Visualizing Data</code>. New Jersey: Summit Press.
+</p>
+<h4 class="subsubheading" id="Examples-13"><span>Examples<a class="copiable-link" href="#Examples-13"> &para;</a></span></h4>
+
+<div class="example">
+<pre class="example-preformatted">t = octave.dataset.co2;
+
+plot (datenum (t.date), t.co2);
+datetick (&quot;x&quot;);
+xlabel (&quot;Time&quot;); ylabel (&quot;Atmospheric concentration of CO2&quot;);
+title (&quot;co2 data set&quot;);
+
+</pre></div>
+
+
+</dd></dl>
+
+</div>
+
+
+
+</body>
+</html>

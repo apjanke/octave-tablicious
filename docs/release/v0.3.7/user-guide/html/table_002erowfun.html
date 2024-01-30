@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.1, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- This manual is for Tablicious, version 0.3.7.
+
+Copyright © 2019 Andrew Janke
+
+Permission is granted to make and distribute verbatim copies of
+this manual provided the copyright notice and this permission notice
+are preserved on all copies.
+
+Permission is granted to copy and distribute modified versions of this
+manual under the conditions for verbatim copying, provided that the entire
+resulting derived work is distributed under the terms of a permission
+notice identical to this one.
+
+Permission is granted to copy and distribute translations of this manual
+into another language, under the same conditions as for modified versions. -->
+<title>table.rowfun (Octave Tablicious v0.3.7)</title>
+
+<meta name="description" content="User manual for Tablicious for Octave.">
+<meta name="keywords" content="table.rowfun (Octave Tablicious v0.3.7)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="table.html" rel="up" title="table">
+<link href="table_002efindgroups.html" rel="next" title="table.findgroups">
+<link href="table_002evarfun.html" rel="prev" title="table.varfun">
+<style type="text/css">
+<!--
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+span:hover a.copiable-link {visibility: visible}
+strong.def-name {font-family: monospace; font-weight: bold; font-size: larger}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<div class="subsubsection-level-extent" id="table_002erowfun">
+<div class="nav-panel">
+<p>
+Next: <a href="table_002efindgroups.html" accesskey="n" rel="next">table.findgroups</a>, Previous: <a href="table_002evarfun.html" accesskey="p" rel="prev">table.varfun</a>, Up: <a href="table.html" accesskey="u" rel="up">table</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<hr>
+<h4 class="subsubsection" id="table_002erowfun-1"><span>8.2.59.67 table.rowfun<a class="copiable-link" href="#table_002erowfun-1"> &para;</a></span></h4>
+
+<dl class="first-deftypefn">
+<dt class="deftypefn" id="index-varfun-4"><span class="category-def">Method: </span><span><code class="def-type"><var class="var">out</var> =</code> <strong class="def-name">varfun</strong> <code class="def-code-arguments">(<var class="var">func</var>, <var class="var">obj</var>)</code><a class="copiable-link" href="#index-varfun-4"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn" id="index-varfun-5"><span class="category-def">Method: </span><span><code class="def-type"><var class="var">out</var> =</code> <strong class="def-name">varfun</strong> <code class="def-code-arguments">(&hellip;, <code class="code">'OptionName'</code>, <var class="var">OptionValue</var>, &hellip;)</code><a class="copiable-link" href="#index-varfun-5"> &para;</a></span></dt>
+<dd>
+<p>Apply function to rows in table and collect outputs.
+</p>
+<p>This applies the function <var class="var">func</var> to the elements of each row of
+<var class="var">obj</var>’s variables, and collects the concatenated output(s) into the
+variable(s) of a new table.
+</p>
+<p><var class="var">func</var> is a function handle. It should take as many inputs as there
+are variables in <var class="var">obj</var>. Or, it can take a single input, and you must
+specify <code class="code">'SeparateInputs', false</code> to have the input variables
+concatenated before being passed to <var class="var">func</var>. It may return multiple
+argouts, but to capture those past the first one, you must explicitly
+specify the <code class="code">'NumOutputs'</code> or <code class="code">'OutputVariableNames'</code> options.
+</p>
+<p>Supported name/value options:
+</p><dl class="table">
+<dt><code class="code">'OutputVariableNames'</code></dt>
+<dd><p>Names of table variables to store combined function output arguments in.
+</p></dd>
+<dt><code class="code">'NumOutputs'</code></dt>
+<dd><p>Number of output arguments to call function with. If omitted, defaults to
+number of items in <var class="var">OutputVariableNames</var> if it is supplied, otherwise
+defaults to 1.
+</p></dd>
+<dt><code class="code">'SeparateInputs'</code></dt>
+<dd><p>If true, input variables are passed as separate input arguments to <var class="var">func</var>.
+If false, they are concatenated together into a row vector and passed as
+a single argument. Defaults to true.
+</p></dd>
+<dt><code class="code">'ErrorHandler'</code></dt>
+<dd><p>A function to call as a fallback when calling <var class="var">func</var> results in an error.
+It is passed the caught exception, along with the original inputs passed
+to <var class="var">func</var>, and it has a “second chance” to compute replacement values
+for that row. This is useful for converting raised errors to missing-value
+fill values, or logging warnings.
+</p></dd>
+<dt><code class="code">'ExtractCellContents'</code></dt>
+<dd><p>Whether to “pop out” the contents of the elements of cell variables in
+<var class="var">obj</var>, or to leave them as cells. True/false; default is false. If
+you specify this option, then <var class="var">obj</var> may not have any multi-column
+cell-valued variables.
+</p></dd>
+<dt><code class="code">'InputVariables'</code></dt>
+<dd><p>If specified, only these variables from <var class="var">obj</var> are used as the function
+inputs, instead of using all variables.
+</p></dd>
+<dt><code class="code">'GroupingVariables'</code></dt>
+<dd><p>Not yet implemented.
+</p></dd>
+<dt><code class="code">'OutputFormat'</code></dt>
+<dd><p>The format of the output. May be <code class="code">'table'</code> (the default),
+<code class="code">'uniform'</code>, or <code class="code">'cell'</code>. If it is <code class="code">'uniform'</code> or <code class="code">'cell'</code>,
+the output variables are returned in multiple output arguments from
+<code class="code">'rowfun'</code>.
+</p></dd>
+</dl>
+
+<p>Returns a <code class="code">table</code> whose variables are the collected output arguments
+of <var class="var">func</var> if <var class="var">OutputFormat</var> is <code class="code">'table'</code>. Otherwise, returns
+multiple output arguments of whatever type <var class="var">func</var> returned (if
+<var class="var">OutputFormat</var> is <code class="code">'uniform'</code>) or cells (if <var class="var">OutputFormat</var>
+is <code class="code">'cell'</code>).
+</p>
+</dd></dl>
+
+</div>
+<hr>
+<div class="nav-panel">
+<p>
+Next: <a href="table_002efindgroups.html">table.findgroups</a>, Previous: <a href="table_002evarfun.html">table.varfun</a>, Up: <a href="table.html">table</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+
+
+
+</body>
+</html>

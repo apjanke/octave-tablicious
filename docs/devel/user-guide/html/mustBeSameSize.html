@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.1, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- This manual is for Tablicious, version 0.4.0-SNAPSHOT.
+
+Copyright © 2019 Andrew Janke
+
+Permission is granted to make and distribute verbatim copies of
+this manual provided the copyright notice and this permission notice
+are preserved on all copies.
+
+Permission is granted to copy and distribute modified versions of this
+manual under the conditions for verbatim copying, provided that the entire
+resulting derived work is distributed under the terms of a permission
+notice identical to this one.
+
+Permission is granted to copy and distribute translations of this manual
+into another language, under the same conditions as for modified versions. -->
+<title>mustBeSameSize (Octave Tablicious v0.4.0-SNAPSHOT)</title>
+
+<meta name="description" content="User manual for Tablicious for Octave.">
+<meta name="keywords" content="mustBeSameSize (Octave Tablicious v0.4.0-SNAPSHOT)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="API-Alphabetically.html" rel="up" title="API Alphabetically">
+<link href="mustBeScalar.html" rel="next" title="mustBeScalar">
+<link href="mustBeReal.html" rel="prev" title="mustBeReal">
+<style type="text/css">
+<!--
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+span:hover a.copiable-link {visibility: visible}
+strong.def-name {font-family: monospace; font-weight: bold; font-size: larger}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<div class="subsection-level-extent" id="mustBeSameSize">
+<div class="nav-panel">
+<p>
+Next: <a href="mustBeScalar.html" accesskey="n" rel="next">mustBeScalar</a>, Previous: <a href="mustBeReal.html" accesskey="p" rel="prev">mustBeReal</a>, Up: <a href="API-Alphabetically.html" accesskey="u" rel="up">API Alphabetically</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<hr>
+<h4 class="subsection" id="mustBeSameSize-1"><span>8.2.39 mustBeSameSize<a class="copiable-link" href="#mustBeSameSize-1"> &para;</a></span></h4>
+<dl class="first-deftypefn">
+<dt class="deftypefn" id="index-mustBeSameSize"><span class="category-def">Function File: </span><span><code class="def-type">[<var class="var">a</var>, <var class="var">b</var>] =</code> <strong class="def-name">mustBeSameSize</strong> <code class="def-code-arguments">(<var class="var">a</var>, <var class="var">b</var>, <var class="var">labelA</var>, <var class="var">labelB</var>)</code><a class="copiable-link" href="#index-mustBeSameSize"> &para;</a></span></dt>
+<dd>
+<p>Requires that the inputs are the same size.
+</p>
+<p>Raises an error if the inputs <var class="var">a</var> and <var class="var">b</var> are not the same size,
+as determined by <code class="code">isequal (size (a), size (b))</code>.
+</p>
+<p><var class="var">labelA</var> and <var class="var">labelB</var> are optional inputs that determine how
+the input will be described in error messages. If not supplied,
+<code class="code">inputname (...)</code> is used, and if that is empty, it falls back to
+&quot;input 1&quot; and &quot;input 2&quot;.
+</p>
+</dd></dl>
+
+
+</div>
+
+
+
+</body>
+</html>

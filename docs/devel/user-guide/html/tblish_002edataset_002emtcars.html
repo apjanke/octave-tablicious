@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.1, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- This manual is for Tablicious, version 0.4.0-SNAPSHOT.
+
+Copyright © 2019 Andrew Janke
+
+Permission is granted to make and distribute verbatim copies of
+this manual provided the copyright notice and this permission notice
+are preserved on all copies.
+
+Permission is granted to copy and distribute modified versions of this
+manual under the conditions for verbatim copying, provided that the entire
+resulting derived work is distributed under the terms of a permission
+notice identical to this one.
+
+Permission is granted to copy and distribute translations of this manual
+into another language, under the same conditions as for modified versions. -->
+<title>tblish.dataset.mtcars (Octave Tablicious v0.4.0-SNAPSHOT)</title>
+
+<meta name="description" content="User manual for Tablicious for Octave.">
+<meta name="keywords" content="tblish.dataset.mtcars (Octave Tablicious v0.4.0-SNAPSHOT)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="tblish_002edataset.html" rel="up" title="tblish.dataset">
+<link href="tblish_002edataset_002enhtemp.html" rel="next" title="tblish.dataset.nhtemp">
+<link href="tblish_002edataset_002emorley.html" rel="prev" title="tblish.dataset.morley">
+<style type="text/css">
+<!--
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.example {margin-left: 3.2em}
+span:hover a.copiable-link {visibility: visible}
+strong.def-name {font-family: monospace; font-weight: bold; font-size: larger}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<div class="subsubsection-level-extent" id="tblish_002edataset_002emtcars">
+<div class="nav-panel">
+<p>
+Next: <a href="tblish_002edataset_002enhtemp.html" accesskey="n" rel="next">tblish.dataset.nhtemp</a>, Previous: <a href="tblish_002edataset_002emorley.html" accesskey="p" rel="prev">tblish.dataset.morley</a>, Up: <a href="tblish_002edataset.html" accesskey="u" rel="up">tblish.dataset</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<hr>
+<h4 class="subsubsection" id="tblish_002edataset_002emtcars-1"><span>8.2.61.42 tblish.dataset.mtcars<a class="copiable-link" href="#tblish_002edataset_002emtcars-1"> &para;</a></span></h4>
+
+<dl class="first-deftypefn">
+<dt class="deftypefn" id="index-mtcars"><span class="category-def">Static Method: </span><span><code class="def-type"><var class="var">out</var> =</code> <strong class="def-name">mtcars</strong> <code class="def-code-arguments">()</code><a class="copiable-link" href="#index-mtcars"> &para;</a></span></dt>
+<dd>
+<p>Motor Trend 1974 Car Road Tests
+</p>
+<h4 class="subsubheading" id="Description-40"><span>Description<a class="copiable-link" href="#Description-40"> &para;</a></span></h4>
+
+<p>The data was extracted from the 1974 Motor Trend US magazine, and
+comprises fuel consumption and 10 aspects of automobile design and
+performance for 32 automobiles (1973–74 models).
+</p>
+<h4 class="subsubheading" id="Format-39"><span>Format<a class="copiable-link" href="#Format-39"> &para;</a></span></h4>
+
+<dl class="table">
+<dt><code class="code">mpg</code></dt>
+<dd><p>Fuel efficiency in miles/gallon
+</p></dd>
+<dt><code class="code">cyl</code></dt>
+<dd><p>Number of cylinders
+</p></dd>
+<dt><code class="code">disp</code></dt>
+<dd><p>Displacement (cu. in.)
+</p></dd>
+<dt><code class="code">hp</code></dt>
+<dd><p>Gross horsepower
+</p></dd>
+<dt><code class="code">drat</code></dt>
+<dd><p>Rear axle ratio
+</p></dd>
+<dt><code class="code">wt</code></dt>
+<dd><p>Weight (1,000 lbs)
+</p></dd>
+<dt><code class="code">qsec</code></dt>
+<dd><p>1/4 mile time
+</p></dd>
+<dt><code class="code">vs</code></dt>
+<dd><p>Engine type (0 = V-shaped, 1 = straight)
+</p></dd>
+<dt><code class="code">am</code></dt>
+<dd><p>Transmission type (0 = automatic, 1 = manual)
+</p></dd>
+<dt><code class="code">gear</code></dt>
+<dd><p>Number of forward gears
+</p></dd>
+<dt><code class="code">carb</code></dt>
+<dd><p>Number of carburetors
+</p></dd>
+</dl>
+
+<h4 class="subsubheading" id="Note-1"><span>Note<a class="copiable-link" href="#Note-1"> &para;</a></span></h4>
+
+<p>Henderson and Velleman (1981) comment in a footnote to Table 1: “Hocking
+[original transcriber]’s noncrucial coding of the Mazda’s rotary engine
+as a straight six-cylinder engine and the Porsche’s flat engine as a V
+engine, as well as the inclusion of the diesel Mercedes 240D, have been
+retained to enable direct comparisons to be made with previous analyses.”
+</p>
+<h4 class="subsubheading" id="Source-41"><span>Source<a class="copiable-link" href="#Source-41"> &para;</a></span></h4>
+
+<p>Henderson and Velleman (1981). Building multiple regression models
+interactively. <cite class="cite">Biometrics</cite>, 37, 391–411.
+</p>
+<h4 class="subsubheading" id="Examples-40"><span>Examples<a class="copiable-link" href="#Examples-40"> &para;</a></span></h4>
+
+<div class="example">
+<pre class="example-preformatted"># TODO: Port this example from R
+</pre></div>
+
+</dd></dl>
+
+</div>
+
+
+
+</body>
+</html>

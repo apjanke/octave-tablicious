@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.1, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- This manual is for Tablicious, version 0.4.0-SNAPSHOT.
+
+Copyright © 2019 Andrew Janke
+
+Permission is granted to make and distribute verbatim copies of
+this manual provided the copyright notice and this permission notice
+are preserved on all copies.
+
+Permission is granted to copy and distribute modified versions of this
+manual under the conditions for verbatim copying, provided that the entire
+resulting derived work is distributed under the terms of a permission
+notice identical to this one.
+
+Permission is granted to copy and distribute translations of this manual
+into another language, under the same conditions as for modified versions. -->
+<title>Validation Functions (Octave Tablicious v0.4.0-SNAPSHOT)</title>
+
+<meta name="description" content="User manual for Tablicious for Octave.">
+<meta name="keywords" content="Validation Functions (Octave Tablicious v0.4.0-SNAPSHOT)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="index.html" rel="up" title="Top">
+<link href="Example-Data-Sets.html" rel="next" title="Example Data Sets">
+<link href="Date-and-Time-Representation.html" rel="prev" title="Date and Time Representation">
+<style type="text/css">
+<!--
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.example {margin-left: 3.2em}
+span:hover a.copiable-link {visibility: visible}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<div class="chapter-level-extent" id="Validation-Functions">
+<div class="nav-panel">
+<p>
+Next: <a href="Example-Data-Sets.html" accesskey="n" rel="next">Example Data Sets</a>, Previous: <a href="Date-and-Time-Representation.html" accesskey="p" rel="prev">Date and Time Representation</a>, Up: <a href="index.html" accesskey="u" rel="up">Tablicious for GNU Octave</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<hr>
+<h2 class="chapter" id="Validation-Functions-1"><span>5 Validation Functions<a class="copiable-link" href="#Validation-Functions-1"> &para;</a></span></h2>
+
+<p>Tablicious provides several validation functions which can be used to check properties
+of function arguments, variables, object properties, and other expressions. These can
+be used to express invariants in your program and catch problems due to input errors,
+incorrect function usage, or other bugs.
+</p>
+<p>These validation functions are named following the pattern <code class="code">mustBeXxx</code>, where <code class="code">Xxx</code>
+is some property of the input it is testing. Validation functions may check the type,
+size, or other aspects of their inputs.
+</p>
+<p>The most common place for validation functions to be used will probably be at the
+beginning of functions, to check the input arguments and ensure that the contract of
+the function is not being violated. If in the future Octave gains the ability to
+declaratively express object property constraints, they will also be of use there.
+</p>
+<p>Be careful not to get too aggressive with the use of validation functions: while using
+them can make sure invariants are followed and your program is correct, they also reduce
+the code’s ability to make use of duck typing, reducing its flexibility. Whether you want
+to make this trade-off is a design decision you will have to consider.
+</p>
+<p>When a validation function’s condition is violated, it raises an error that includes a
+description of the violation in the error message. This message will include a label for
+the input that describes what is being tested. By default, this label is initialized
+with <code class="code">inputname()</code>, so when you are calling a validator on a function argument or
+variable, you will generally not need to supply a label. But if you’re calling it on
+an object property or an expression more complex than a simple variable reference, the
+validator cannot automatically detect the input name for use in the label. In this case,
+make use of the optional trailing argument(s) to the functions to manually supply a
+label for the value being tested.
+</p>
+<div class="example">
+<pre class="example-preformatted">% Validation of a simple variable does not need a label
+mustBeScalar (x);
+% Validation of a field or property reference does need a label
+mustBeScalar (this.foo, 'this.foo');
+</pre></div>
+
+
+</div>
+<hr>
+<div class="nav-panel">
+<p>
+Next: <a href="Example-Data-Sets.html">Example Data Sets</a>, Previous: <a href="Date-and-Time-Representation.html">Date and Time Representation</a>, Up: <a href="index.html">Tablicious for GNU Octave</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+
+
+
+</body>
+</html>

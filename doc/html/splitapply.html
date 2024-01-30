@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.1, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- This manual is for Tablicious, version 0.4.0-SNAPSHOT.
+
+Copyright © 2019 Andrew Janke
+
+Permission is granted to make and distribute verbatim copies of
+this manual provided the copyright notice and this permission notice
+are preserved on all copies.
+
+Permission is granted to copy and distribute modified versions of this
+manual under the conditions for verbatim copying, provided that the entire
+resulting derived work is distributed under the terms of a permission
+notice identical to this one.
+
+Permission is granted to copy and distribute translations of this manual
+into another language, under the same conditions as for modified versions. -->
+<title>splitapply (Octave Tablicious v0.4.0-SNAPSHOT)</title>
+
+<meta name="description" content="User manual for Tablicious for Octave.">
+<meta name="keywords" content="splitapply (Octave Tablicious v0.4.0-SNAPSHOT)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="API-Alphabetically.html" rel="up" title="API Alphabetically">
+<link href="standardizeMissing.html" rel="next" title="standardizeMissing">
+<link href="size2str.html" rel="prev" title="size2str">
+<style type="text/css">
+<!--
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+span:hover a.copiable-link {visibility: visible}
+strong.def-name {font-family: monospace; font-weight: bold; font-size: larger}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<div class="subsection-level-extent" id="splitapply">
+<div class="nav-panel">
+<p>
+Next: <a href="standardizeMissing.html" accesskey="n" rel="next">standardizeMissing</a>, Previous: <a href="size2str.html" accesskey="p" rel="prev">size2str</a>, Up: <a href="API-Alphabetically.html" accesskey="u" rel="up">API Alphabetically</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<hr>
+<h4 class="subsection" id="splitapply-1"><span>8.2.52 splitapply<a class="copiable-link" href="#splitapply-1"> &para;</a></span></h4>
+<dl class="first-deftypefn">
+<dt class="deftypefn" id="index-splitapply"><span class="category-def">Function: </span><span><code class="def-type"><var class="var">out</var> =</code> <strong class="def-name">splitapply</strong> <code class="def-code-arguments">(<var class="var">func</var>, <var class="var">X</var>, <var class="var">G</var>)</code><a class="copiable-link" href="#index-splitapply"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn" id="index-splitapply-1"><span class="category-def">Function: </span><span><code class="def-type"><var class="var">out</var> =</code> <strong class="def-name">splitapply</strong> <code class="def-code-arguments">(<var class="var">func</var>, <var class="var">X1</var>, &hellip;, <var class="var">XN</var>, <var class="var">G</var>)</code><a class="copiable-link" href="#index-splitapply-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn" id="index-splitapply-2"><span class="category-def">Function: </span><span><code class="def-type">[<var class="var">Y1</var>, &hellip;, <var class="var">YM</var>] =</code> <strong class="def-name">splitapply</strong> <code class="def-code-arguments">(&hellip;)</code><a class="copiable-link" href="#index-splitapply-2"> &para;</a></span></dt>
+<dd>
+<p>Split data into groups and apply function.
+</p>
+<p><var class="var">func</var> is a function handle to call on each group of inputs in turn.
+</p>
+<p><var class="var">X</var>, <var class="var">X1</var>, &hellip;, <var class="var">XN</var> are the input variables that are split into
+groups for the function calls. If <var class="var">X</var> is a <code class="code">table</code>, then its contained
+variables are “popped out” and considered to be the <var class="var">X1</var> &hellip; <var class="var">XN</var>
+input variables.
+</p>
+<p><var class="var">G</var> is the grouping variable vector. It contains a list of integers that
+identify which group each element of the <var class="var">X</var> input variables belongs to.
+NaNs in <var class="var">G</var> mean that element is ignored.
+</p>
+<p>Vertically concatenates the function outputs for each of the groups and returns them in
+as many variables as you capture.
+</p>
+<p>Returns the concatenated outputs of applying <var class="var">func</var> to each group.
+</p>
+<p>See also: <a class="ref" href="table_002egroupby.html">table.groupby</a>, <a class="ref" href="table_002esplitapply.html">table.splitapply</a>
+</p>
+</dd></dl>
+
+
+</div>
+
+
+
+</body>
+</html>

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.1, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- This manual is for Tablicious, version 0.3.6.
+
+Copyright © 2019 Andrew Janke
+
+Permission is granted to make and distribute verbatim copies of
+this manual provided the copyright notice and this permission notice
+are preserved on all copies.
+
+Permission is granted to copy and distribute modified versions of this
+manual under the conditions for verbatim copying, provided that the entire
+resulting derived work is distributed under the terms of a permission
+notice identical to this one.
+
+Permission is granted to copy and distribute translations of this manual
+into another language, under the same conditions as for modified versions. -->
+<title>octave.dataset.infert (Octave Tablicious v0.3.6)</title>
+
+<meta name="description" content="User manual for Tablicious for Octave.">
+<meta name="keywords" content="octave.dataset.infert (Octave Tablicious v0.3.6)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="octave_002edataset.html" rel="up" title="octave.dataset">
+<link href="octave_002edataset_002eInsectSprays.html" rel="next" title="octave.dataset.InsectSprays">
+<link href="octave_002edataset_002eIndometh.html" rel="prev" title="octave.dataset.Indometh">
+<style type="text/css">
+<!--
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.example {margin-left: 3.2em}
+span:hover a.copiable-link {visibility: visible}
+strong.def-name {font-family: monospace; font-weight: bold; font-size: larger}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<div class="subsubsection-level-extent" id="octave_002edataset_002einfert">
+<div class="nav-panel">
+<p>
+Next: <a href="octave_002edataset_002eInsectSprays.html" accesskey="n" rel="next">octave.dataset.InsectSprays</a>, Previous: <a href="octave_002edataset_002eIndometh.html" accesskey="p" rel="prev">octave.dataset.Indometh</a>, Up: <a href="octave_002edataset.html" accesskey="u" rel="up">octave.dataset</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<hr>
+<h4 class="subsubsection" id="octave_002edataset_002einfert-1"><span>8.2.45.30 octave.dataset.infert<a class="copiable-link" href="#octave_002edataset_002einfert-1"> &para;</a></span></h4>
+
+<dl class="first-deftypefn">
+<dt class="deftypefn" id="index-infert"><span class="category-def">Static Method: </span><span><code class="def-type"><var class="var">out</var> =</code> <strong class="def-name">infert</strong> <code class="def-code-arguments">()</code><a class="copiable-link" href="#index-infert"> &para;</a></span></dt>
+<dd>
+<p>Infertility after Spontaneous and Induced Abortion
+</p>
+<h4 class="subsubheading" id="Description-28"><span>Description<a class="copiable-link" href="#Description-28"> &para;</a></span></h4>
+
+<p>This is a matched case-control study dating from before the availability of
+conditional logistic regression.
+</p>
+<h4 class="subsubheading" id="Format-27"><span>Format<a class="copiable-link" href="#Format-27"> &para;</a></span></h4>
+
+<dl class="table">
+<dt><code class="code">education</code></dt>
+<dd><p>Index of the record.
+</p></dd>
+<dt><code class="code">age</code></dt>
+<dd><p>Age in years of case.
+</p></dd>
+<dt><code class="code">parity</code></dt>
+<dd><p>Count.
+</p></dd>
+<dt><code class="code">induced</code></dt>
+<dd><p>Number of prior induced abortions, grouped into “0”, “1”, or “2 or more”.
+</p></dd>
+<dt><code class="code">case_status</code></dt>
+<dd><p>0 = control, 1 = case.
+</p></dd>
+<dt><code class="code">spontaneous</code></dt>
+<dd><p>Number of prior spontaneous abortions, grouped into “0”, “1”, or “2 or more”.
+</p></dd>
+<dt><code class="code">stratum</code></dt>
+<dd><p>Matched set number.
+</p></dd>
+<dt><code class="code">pooled_stratum</code></dt>
+<dd><p>Stratum number.
+</p></dd>
+</dl>
+
+<h4 class="subsubheading" id="Note"><span>Note<a class="copiable-link" href="#Note"> &para;</a></span></h4>
+
+<p>One case with two prior spontaneous abortions and two prior induced abortions is omitted.
+</p>
+<h4 class="subsubheading" id="Source-29"><span>Source<a class="copiable-link" href="#Source-29"> &para;</a></span></h4>
+
+<p>Trichopoulos et al (1976). <cite class="cite">Br. J. of Obst. and Gynaec.</cite> 83, 645–650.
+</p>
+<h4 class="subsubheading" id="Examples-28"><span>Examples<a class="copiable-link" href="#Examples-28"> &para;</a></span></h4>
+
+<div class="example">
+<pre class="example-preformatted">t = octave.dataset.infert;
+
+# TODO: Port glm() (generalized linear model) stuff to Octave
+
+</pre></div>
+
+
+</dd></dl>
+
+</div>
+
+
+
+</body>
+</html>

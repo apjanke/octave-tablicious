@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.1, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- This manual is for Tablicious, version 0.3.7.
+
+Copyright © 2019 Andrew Janke
+
+Permission is granted to make and distribute verbatim copies of
+this manual provided the copyright notice and this permission notice
+are preserved on all copies.
+
+Permission is granted to copy and distribute modified versions of this
+manual under the conditions for verbatim copying, provided that the entire
+resulting derived work is distributed under the terms of a permission
+notice identical to this one.
+
+Permission is granted to copy and distribute translations of this manual
+into another language, under the same conditions as for modified versions. -->
+<title>API by Category (Octave Tablicious v0.3.7)</title>
+
+<meta name="description" content="User manual for Tablicious for Octave.">
+<meta name="keywords" content="API by Category (Octave Tablicious v0.3.7)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="API-Reference.html" rel="up" title="API Reference">
+<link href="API-Alphabetically.html" rel="next" title="API Alphabetically">
+<style type="text/css">
+<!--
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+span:hover a.copiable-link {visibility: visible}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<div class="section-level-extent" id="API-by-Category">
+<div class="nav-panel">
+<p>
+Next: <a href="API-Alphabetically.html" accesskey="n" rel="next">API Alphabetically</a>, Up: <a href="API-Reference.html" accesskey="u" rel="up">API Reference</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<hr>
+<h3 class="section" id="API-by-Category-1"><span>8.1 API by Category<a class="copiable-link" href="#API-by-Category-1"> &para;</a></span></h3>
+<ul class="mini-toc">
+<li><a href="#Tables" accesskey="1">Tables</a></li>
+<li><a href="#Strings-and-Categoricals" accesskey="2">Strings and Categoricals</a></li>
+<li><a href="#Dates-and-Times" accesskey="3">Dates and Times</a></li>
+<li><a href="#Missing-Data" accesskey="4">Missing Data</a></li>
+<li><a href="#Validation-Functions-2" accesskey="5">Validation Functions</a></li>
+<li><a href="#Miscellaneous" accesskey="6">Miscellaneous</a></li>
+<li><a href="#Example-Datasets" accesskey="7">Example Datasets</a></li>
+<li><a href="#Example-Code" accesskey="8">Example Code</a></li>
+<li><a href="#Uncategorized" accesskey="9">Uncategorized</a></li>
+</ul>
+<div class="subsection-level-extent" id="Tables">
+<h4 class="subsection"><span>8.1.1 Tables<a class="copiable-link" href="#Tables"> &para;</a></span></h4>
+<dl class="table">
+<dt><a class="ref" href="table.html">table</a></dt>
+<dd><p>Tabular data array containing multiple columnar variables.
+</p>
+</dd>
+<dt><a class="ref" href="array2table.html">array2table</a></dt>
+<dd><p>Convert an array to a table.
+</p>
+</dd>
+<dt><a class="ref" href="cell2table.html">cell2table</a></dt>
+<dd><p>Convert a cell array to a table.
+</p>
+</dd>
+<dt><a class="ref" href="struct2table.html">struct2table</a></dt>
+<dd><p>Convert struct to a table.
+</p>
+</dd>
+<dt><a class="ref" href="tableOuterFillValue.html">tableOuterFillValue</a></dt>
+<dd><p>Outer fill value for variable within a table.
+</p>
+</dd>
+<dt><a class="ref" href="vartype.html">vartype</a></dt>
+<dd><p>Filter by variable type for use in suscripting.
+</p>
+</dd>
+</dl>
+</div>
+<div class="subsection-level-extent" id="Strings-and-Categoricals">
+<h4 class="subsection"><span>8.1.2 Strings and Categoricals<a class="copiable-link" href="#Strings-and-Categoricals"> &para;</a></span></h4>
+<dl class="table">
+<dt><a class="ref" href="string.html">string</a></dt>
+<dd><p>A string array of Unicode strings.
+</p>
+</dd>
+<dt><a class="ref" href="startsWith.html">startsWith</a></dt>
+<dd><p>Test if strings start with a pattern.
+</p>
+</dd>
+<dt><a class="ref" href="endsWith.html">endsWith</a></dt>
+<dd><p>Test if strings end with a pattern.
+</p>
+</dd>
+<dt><a class="ref" href="contains.html">contains</a></dt>
+<dd><p>Test if strings contain a pattern.
+</p>
+</dd>
+<dt><a class="ref" href="categorical.html">categorical</a></dt>
+<dd><p>Categorical variable array.
+</p>
+</dd>
+<dt><a class="ref" href="discretize.html">discretize</a></dt>
+<dd><p>Group data into discrete bins or categories.
+</p>
+</dd>
+</dl>
+</div>
+<div class="subsection-level-extent" id="Dates-and-Times">
+<h4 class="subsection"><span>8.1.3 Dates and Times<a class="copiable-link" href="#Dates-and-Times"> &para;</a></span></h4>
+<dl class="table">
+<dt><a class="ref" href="datetime.html">datetime</a></dt>
+<dd><p>Represents points in time using the Gregorian calendar.
+</p>
+</dd>
+<dt><a class="ref" href="localdate.html">localdate</a></dt>
+<dd><p>Represents a complete day using the Gregorian calendar.
+</p>
+</dd>
+<dt><a class="ref" href="isdatetime.html">isdatetime</a></dt>
+<dd><p>True if input is a ‘datetime’ array, false otherwise.
+</p>
+</dd>
+<dt><a class="ref" href="NaT.html">NaT</a></dt>
+<dd><p>“Not-a-Time”.
+</p>
+</dd>
+<dt><a class="ref" href="calendarDuration.html">calendarDuration</a></dt>
+<dd><p>Durations of time using variable-length calendar periods, such as days, months, and years, which may vary in length over time.
+</p>
+</dd>
+<dt><a class="ref" href="calmonths.html">calmonths</a></dt>
+<dd><p>Create a ‘calendarDuration’ that is a given number of calendar months long.
+</p>
+</dd>
+<dt><a class="ref" href="calyears.html">calyears</a></dt>
+<dd><p>Construct a ‘calendarDuration’ a given number of years long.
+</p>
+</dd>
+<dt><a class="ref" href="days.html">days</a></dt>
+<dd><p>Duration in days.
+</p>
+</dd>
+<dt><a class="ref" href="duration.html">duration</a></dt>
+<dd><p>Represents durations or periods of time as an amount of fixed-length time (i.e.
+</p>
+</dd>
+<dt><a class="ref" href="hours.html">hours</a></dt>
+<dd><p>Create a ‘duration’ X hours long, or get the hours in a ‘duration’ X.
+</p>
+</dd>
+<dt><a class="ref" href="isduration.html">isduration</a></dt>
+<dd><p>True if input is a ‘duration’ array, false otherwise.
+</p>
+</dd>
+<dt><a class="ref" href="milliseconds.html">milliseconds</a></dt>
+<dd><p>Create a ‘duration’ X milliseconds long, or get the milliseconds in a ‘duration’ X.
+</p>
+</dd>
+<dt><a class="ref" href="minutes.html">minutes</a></dt>
+<dd><p>Create a ‘duration’ X hours long, or get the hours in a ‘duration’ X.
+</p>
+</dd>
+<dt><a class="ref" href="seconds.html">seconds</a></dt>
+<dd><p>Create a ‘duration’ X seconds long, or get the seconds in a ‘duration’ X.
+</p>
+</dd>
+<dt><a class="ref" href="timezones.html">timezones</a></dt>
+<dd><p>List all the time zones defined on this system.
+</p>
+</dd>
+<dt><a class="ref" href="years.html">years</a></dt>
+<dd><p>Create a ‘duration’ X years long, or get the years in a ‘duration’ X.
+</p>
+</dd>
+</dl>
+</div>
+<div class="subsection-level-extent" id="Missing-Data">
+<h4 class="subsection"><span>8.1.4 Missing Data<a class="copiable-link" href="#Missing-Data"> &para;</a></span></h4>
+<dl class="table">
+<dt><a class="ref" href="fillmissing.html">fillmissing</a></dt>
+<dd><p>Fill missing values.
+</p>
+</dd>
+<dt><a class="ref" href="ismissing.html">ismissing</a></dt>
+<dd><p>Find missing values.
+</p>
+</dd>
+<dt><a class="ref" href="rmmissing.html">rmmissing</a></dt>
+<dd><p>Remove missing values.
+</p>
+</dd>
+<dt><a class="ref" href="standardizeMissing.html">standardizeMissing</a></dt>
+<dd><p>Insert standard missing values.
+</p>
+</dd>
+<dt><a class="ref" href="missing.html">missing</a></dt>
+<dd><p>Generic auto-converting missing value.
+</p>
+</dd>
+<dt><a class="ref" href="isnanny.html">isnanny</a></dt>
+<dd><p>Test if elements are NaN or NaN-like
+</p>
+</dd>
+<dt><a class="ref" href="eqn.html">eqn</a></dt>
+<dd><p>Determine element-wise equality, treating NaNs as equal
+</p>
+</dd>
+</dl>
+</div>
+<div class="subsection-level-extent" id="Validation-Functions-2">
+<h4 class="subsection"><span>8.1.5 Validation Functions<a class="copiable-link" href="#Validation-Functions-2"> &para;</a></span></h4>
+<dl class="table">
+<dt><a class="ref" href="mustBeA.html">mustBeA</a></dt>
+<dd><p>Requires that input is of a given type.
+</p>
+</dd>
+<dt><a class="ref" href="mustBeCellstr.html">mustBeCellstr</a></dt>
+<dd><p>Requires that input is a cellstr.
+</p>
+</dd>
+<dt><a class="ref" href="mustBeCharvec.html">mustBeCharvec</a></dt>
+<dd><p>Requires that input is a char row vector.
+</p>
+</dd>
+<dt><a class="ref" href="mustBeFinite.html">mustBeFinite</a></dt>
+<dt><a class="ref" href="mustBeInteger.html">mustBeInteger</a></dt>
+<dt><a class="ref" href="mustBeMember.html">mustBeMember</a></dt>
+<dt><a class="ref" href="mustBeNonempty.html">mustBeNonempty</a></dt>
+<dt><a class="ref" href="mustBeNumeric.html">mustBeNumeric</a></dt>
+<dt><a class="ref" href="mustBeReal.html">mustBeReal</a></dt>
+<dt><a class="ref" href="mustBeSameSize.html">mustBeSameSize</a></dt>
+<dd><p>Requires that the inputs are the same size.
+</p>
+</dd>
+<dt><a class="ref" href="mustBeScalar.html">mustBeScalar</a></dt>
+<dd><p>Requires that input is scalar.
+</p>
+</dd>
+<dt><a class="ref" href="mustBeScalarLogical.html">mustBeScalarLogical</a></dt>
+<dd><p>Requires that input is a scalar logical.
+</p>
+</dd>
+<dt><a class="ref" href="mustBeVector.html">mustBeVector</a></dt>
+<dd><p>Requires that input is a vector or empty.
+</p>
+</dd>
+</dl>
+</div>
+<div class="subsection-level-extent" id="Miscellaneous">
+<h4 class="subsection"><span>8.1.6 Miscellaneous<a class="copiable-link" href="#Miscellaneous"> &para;</a></span></h4>
+<dl class="table">
+<dt><a class="ref" href="colvecfun.html">colvecfun</a></dt>
+<dd><p>Apply a function to column vectors in array.
+</p>
+</dd>
+<dt><a class="ref" href="dispstrs.html">dispstrs</a></dt>
+<dd><p>Display strings for array.
+</p>
+</dd>
+<dt><a class="ref" href="isfile.html">isfile</a></dt>
+<dt><a class="ref" href="isfolder.html">isfolder</a></dt>
+<dt><a class="ref" href="pp.html">pp</a></dt>
+<dd><p>Alias for prettyprint, for interactive use.
+</p>
+</dd>
+<dt><a class="ref" href="scalarexpand.html">scalarexpand</a></dt>
+<dd><p>Expand scalar inputs to match size of non-scalar inputs.
+</p>
+</dd>
+<dt><a class="ref" href="size2str.html">size2str</a></dt>
+<dd><p>Format an array size for display.
+</p>
+</dd>
+<dt><a class="ref" href="splitapply.html">splitapply</a></dt>
+<dd><p>Split data into groups and apply function.
+</p>
+</dd>
+<dt><a class="ref" href="vecfun.html">vecfun</a></dt>
+<dd><p>Apply function to vectors in array along arbitrary dimension.
+</p>
+</dd>
+</dl>
+</div>
+<div class="subsection-level-extent" id="Example-Datasets">
+<h4 class="subsection"><span>8.1.7 Example Datasets<a class="copiable-link" href="#Example-Datasets"> &para;</a></span></h4>
+<dl class="table">
+<dt><a class="ref" href="octave_002edatasets.html">octave.datasets</a></dt>
+<dd><p>Example dataset collection.
+</p>
+</dd>
+<dt><a class="ref" href="octave_002edataset.html">octave.dataset</a></dt>
+<dd><p>The ‘dataset’ class provides convenient access to the various datasets included with Tablicious.
+</p>
+</dd>
+</dl>
+</div>
+<div class="subsection-level-extent" id="Example-Code">
+<h4 class="subsection"><span>8.1.8 Example Code<a class="copiable-link" href="#Example-Code"> &para;</a></span></h4>
+<dl class="table">
+<dt><a class="ref" href="octave_002eexamples_002eplot_005fpairs.html">octave.examples.plot_pairs</a></dt>
+<dd><p>Plot pairs of variables against each other.
+</p>
+</dd>
+</dl>
+</div>
+<div class="subsection-level-extent" id="Uncategorized">
+<h4 class="subsection"><span>8.1.9 Uncategorized<a class="copiable-link" href="#Uncategorized"> &para;</a></span></h4>
+<dl class="table">
+<dt><a class="ref" href="iscategorical.html">iscategorical</a></dt>
+<dd><p>True if input is a ‘categorical’ array, false otherwise.
+</p>
+</dd>
+<dt><a class="ref" href="octave_002echrono_002edummy_005ffunction.html">octave.chrono.dummy_function</a></dt>
+<dd><p>A dummy function just for testing the doco tools.
+</p>
+</dd>
+<dt><a class="ref" href="octave_002echrono_002eDummyClass.html">octave.chrono.DummyClass</a></dt>
+<dd><p>A do-nothing class just for testing the doco tools.
+</p>
+</dd>
+<dt><a class="ref" href="octave_002eexamples_002ecoplot.html">octave.examples.coplot</a></dt>
+<dd><p>Conditioning plot.
+</p>
+</dd>
+</dl>
+
+</div>
+</div>
+<hr>
+<div class="nav-panel">
+<p>
+Next: <a href="API-Alphabetically.html">API Alphabetically</a>, Up: <a href="API-Reference.html">API Reference</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+
+
+
+</body>
+</html>

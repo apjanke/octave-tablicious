@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.1, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- This manual is for Tablicious, version 0.3.7.
+
+Copyright © 2019 Andrew Janke
+
+Permission is granted to make and distribute verbatim copies of
+this manual provided the copyright notice and this permission notice
+are preserved on all copies.
+
+Permission is granted to copy and distribute modified versions of this
+manual under the conditions for verbatim copying, provided that the entire
+resulting derived work is distributed under the terms of a permission
+notice identical to this one.
+
+Permission is granted to copy and distribute translations of this manual
+into another language, under the same conditions as for modified versions. -->
+<title>ismissing (Octave Tablicious v0.3.7)</title>
+
+<meta name="description" content="User manual for Tablicious for Octave.">
+<meta name="keywords" content="ismissing (Octave Tablicious v0.3.7)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="API-Alphabetically.html" rel="up" title="API Alphabetically">
+<link href="isnanny.html" rel="next" title="isnanny">
+<link href="isfolder.html" rel="prev" title="isfolder">
+<style type="text/css">
+<!--
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+span:hover a.copiable-link {visibility: visible}
+strong.def-name {font-family: monospace; font-weight: bold; font-size: larger}
+ul.mark-bullet {list-style-type: disc}
+ul.mark-minus {list-style-type: "\2212"}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<div class="subsection-level-extent" id="ismissing">
+<div class="nav-panel">
+<p>
+Next: <a href="isnanny.html" accesskey="n" rel="next">isnanny</a>, Previous: <a href="isfolder.html" accesskey="p" rel="prev">isfolder</a>, Up: <a href="API-Alphabetically.html" accesskey="u" rel="up">API Alphabetically</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<hr>
+<h4 class="subsection" id="ismissing-1"><span>8.2.23 ismissing<a class="copiable-link" href="#ismissing-1"> &para;</a></span></h4>
+<dl class="first-deftypefn">
+<dt class="deftypefn" id="index-ismissing-1"><span class="category-def">Function: </span><span><code class="def-type"><var class="var">out</var> =</code> <strong class="def-name">ismissing</strong> <code class="def-code-arguments">(<var class="var">X</var>)</code><a class="copiable-link" href="#index-ismissing-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn" id="index-ismissing-2"><span class="category-def">Function: </span><span><code class="def-type"><var class="var">out</var> =</code> <strong class="def-name">ismissing</strong> <code class="def-code-arguments">(<var class="var">X</var>, <var class="var">indicator</var>)</code><a class="copiable-link" href="#index-ismissing-2"> &para;</a></span></dt>
+<dd>
+<p>Find missing values.
+</p>
+<p>Determines which elements of <var class="var">X</var> contain missing values. If an indicator input is
+not provided, standard missing values depending on the input type of <var class="var">X</var> are
+used.
+</p>
+<p>Standard missing values depend on the data type:
+</p><ul class="itemize mark-bullet">
+<li>NaN for double, single, duration, and calendarDuration
+</li><li>NaT for datetime
+</li><li><code class="code">' '</code> for char
+</li><li><code class="code">{''}</code> for cellstrs
+</li><li>Integer numeric types have no standard missing value; they are never
+considered missing.
+</li><li>Structs are never considered missing.
+</li><li>Logicals are never considered missing.
+</li><li>Other types have no standard missing value; it is currently an error to
+call <code class="code">ismissing</code> on them without providing an indicator.
+<ul class="itemize mark-minus">
+<li>This includes cells which are not cellstrs; calling <code class="code">ismissing</code> on them
+results in an error.
+</li><li>TODO: Determine whether this should really be an error, or if it should
+default to never considering those types as missing.
+</li><li>TODO: Decide whether, for classdef objects, <code class="code">ismissing</code> should polymorphically
+detect isnan()/isnat()/isnanny() methods and use those, or whether we should
+require classes to override ismissing() itself.
+</li></ul>
+</li></ul>
+
+<p>If <var class="var">indicator</var> is supplied, it is an array containing multiple values, all of
+which are considered to be missing values. Only indicator values that are
+type-compatible with the input are considered; other indicator value types are
+silently ignored. This is by design, so you can pass an indicator that holds
+sentinel values for disparate types in to <code class="code">ismissing()</code> used for any type, or
+for compound types like table.
+</p>
+<p>Indicators are currently not supported for struct or logical inputs. This is
+probably a bug.
+</p>
+<p>Table defines its own <code class="code">ismissing()</code> method which respects individual variables’
+data types; see <a class="ref" href="table_002eismissing.html">table.ismissing</a>.
+</p>
+</dd></dl>
+
+
+</div>
+<hr>
+<div class="nav-panel">
+<p>
+Next: <a href="isnanny.html">isnanny</a>, Previous: <a href="isfolder.html">isfolder</a>, Up: <a href="API-Alphabetically.html">API Alphabetically</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+
+
+
+</body>
+</html>

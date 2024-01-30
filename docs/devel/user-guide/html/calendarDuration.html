@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.1, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- This manual is for Tablicious, version 0.4.0-SNAPSHOT.
+
+Copyright © 2019 Andrew Janke
+
+Permission is granted to make and distribute verbatim copies of
+this manual provided the copyright notice and this permission notice
+are preserved on all copies.
+
+Permission is granted to copy and distribute modified versions of this
+manual under the conditions for verbatim copying, provided that the entire
+resulting derived work is distributed under the terms of a permission
+notice identical to this one.
+
+Permission is granted to copy and distribute translations of this manual
+into another language, under the same conditions as for modified versions. -->
+<title>calendarDuration (Octave Tablicious v0.4.0-SNAPSHOT)</title>
+
+<meta name="description" content="User manual for Tablicious for Octave.">
+<meta name="keywords" content="calendarDuration (Octave Tablicious v0.4.0-SNAPSHOT)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="API-Alphabetically.html" rel="up" title="API Alphabetically">
+<link href="calmonths.html" rel="next" title="calmonths">
+<link href="array2table.html" rel="prev" title="array2table">
+<style type="text/css">
+<!--
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+span:hover a.copiable-link {visibility: visible}
+strong.def-name {font-family: monospace; font-weight: bold; font-size: larger}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<div class="subsection-level-extent" id="calendarDuration">
+<div class="nav-panel">
+<p>
+Next: <a href="calmonths.html" accesskey="n" rel="next">calmonths</a>, Previous: <a href="array2table.html" accesskey="p" rel="prev">array2table</a>, Up: <a href="API-Alphabetically.html" accesskey="u" rel="up">API Alphabetically</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<hr>
+<h4 class="subsection" id="calendarDuration-1"><span>8.2.2 calendarDuration<a class="copiable-link" href="#calendarDuration-1"> &para;</a></span></h4>
+<dl class="first-deftp">
+<dt class="deftp" id="index-calendarDuration-3"><span class="category-def">Class: </span><span><strong class="def-name">calendarDuration</strong><a class="copiable-link" href="#index-calendarDuration-3"> &para;</a></span></dt>
+<dd>
+<p>Durations of time using variable-length calendar periods, such as days,
+months, and years, which may vary in length over time. (For example, a
+calendar month may have 28, 30, or 31 days.)
+</p>
+</dd></dl>
+
+<dl class="first-deftypecv first-deftypeivar-alias-first-deftypecv">
+<dt class="deftypecv deftypeivar-alias-deftypecv" id="index-Sign-of-calendarDuration"><span class="category-def">Instance Variable of <code class="code">calendarDuration</code>: </span><span><code class="def-type"><code class="code">char</code></code> <strong class="def-name">Sign</strong><a class="copiable-link" href="#index-Sign-of-calendarDuration"> &para;</a></span></dt>
+<dd>
+<p>The sign (1 or -1) of this duration, which indicates whether it is a
+positive or negative span of time.
+</p>
+</dd></dl>
+
+<dl class="first-deftypecv first-deftypeivar-alias-first-deftypecv">
+<dt class="deftypecv deftypeivar-alias-deftypecv" id="index-Years-of-calendarDuration"><span class="category-def">Instance Variable of <code class="code">calendarDuration</code>: </span><span><code class="def-type"><code class="code">char</code></code> <strong class="def-name">Years</strong><a class="copiable-link" href="#index-Years-of-calendarDuration"> &para;</a></span></dt>
+<dd>
+<p>The number of whole calendar years in this duration. Must be integer-valued.
+</p>
+</dd></dl>
+
+<dl class="first-deftypecv first-deftypeivar-alias-first-deftypecv">
+<dt class="deftypecv deftypeivar-alias-deftypecv" id="index-Months-of-calendarDuration"><span class="category-def">Instance Variable of <code class="code">calendarDuration</code>: </span><span><code class="def-type"><code class="code">char</code></code> <strong class="def-name">Months</strong><a class="copiable-link" href="#index-Months-of-calendarDuration"> &para;</a></span></dt>
+<dd>
+<p>The number of whole calendar months in this duration. Must be integer-valued.
+</p>
+</dd></dl>
+
+<dl class="first-deftypecv first-deftypeivar-alias-first-deftypecv">
+<dt class="deftypecv deftypeivar-alias-deftypecv" id="index-Days-of-calendarDuration"><span class="category-def">Instance Variable of <code class="code">calendarDuration</code>: </span><span><code class="def-type"><code class="code">char</code></code> <strong class="def-name">Days</strong><a class="copiable-link" href="#index-Days-of-calendarDuration"> &para;</a></span></dt>
+<dd>
+<p>The number of whole calendar days in this duration. Must be integer-valued.
+</p>
+</dd></dl>
+
+<dl class="first-deftypecv first-deftypeivar-alias-first-deftypecv">
+<dt class="deftypecv deftypeivar-alias-deftypecv" id="index-Hours-of-calendarDuration"><span class="category-def">Instance Variable of <code class="code">calendarDuration</code>: </span><span><code class="def-type"><code class="code">char</code></code> <strong class="def-name">Hours</strong><a class="copiable-link" href="#index-Hours-of-calendarDuration"> &para;</a></span></dt>
+<dd>
+<p>The number of whole hours in this duration. Must be integer-valued.
+</p>
+</dd></dl>
+
+<dl class="first-deftypecv first-deftypeivar-alias-first-deftypecv">
+<dt class="deftypecv deftypeivar-alias-deftypecv" id="index-Minutes-of-calendarDuration"><span class="category-def">Instance Variable of <code class="code">calendarDuration</code>: </span><span><code class="def-type"><code class="code">char</code></code> <strong class="def-name">Minutes</strong><a class="copiable-link" href="#index-Minutes-of-calendarDuration"> &para;</a></span></dt>
+<dd>
+<p>The number of whole minutes in this duration. Must be integer-valued.
+</p>
+</dd></dl>
+
+<dl class="first-deftypecv first-deftypeivar-alias-first-deftypecv">
+<dt class="deftypecv deftypeivar-alias-deftypecv" id="index-Seconds-of-calendarDuration"><span class="category-def">Instance Variable of <code class="code">calendarDuration</code>: </span><span><code class="def-type"><code class="code">char</code></code> <strong class="def-name">Seconds</strong><a class="copiable-link" href="#index-Seconds-of-calendarDuration"> &para;</a></span></dt>
+<dd>
+<p>The number of seconds in this duration. May contain fractional values.
+</p>
+</dd></dl>
+
+<dl class="first-deftypecv first-deftypeivar-alias-first-deftypecv">
+<dt class="deftypecv deftypeivar-alias-deftypecv" id="index-Format-of-calendarDuration"><span class="category-def">Instance Variable of <code class="code">calendarDuration</code>: </span><span><code class="def-type"><code class="code">char</code></code> <strong class="def-name">Format</strong><a class="copiable-link" href="#index-Format-of-calendarDuration"> &para;</a></span></dt>
+<dd>
+<p>The format to display this <code class="code">calendarDuration</code> in. Currently unsupported.
+</p>
+<p>This is a single value that applies to the whole array.
+</p>
+</dd></dl>
+
+
+<ul class="mini-toc">
+<li><a href="calendarDuration_002ecalendarDuration.html" accesskey="1">calendarDuration.calendarDuration</a></li>
+<li><a href="calendarDuration_002esizeof.html" accesskey="2">calendarDuration.sizeof</a></li>
+<li><a href="calendarDuration_002eisnat.html" accesskey="3">calendarDuration.isnat</a></li>
+<li><a href="calendarDuration_002euminus.html" accesskey="4">calendarDuration.uminus</a></li>
+<li><a href="calendarDuration_002eplus.html" accesskey="5">calendarDuration.plus</a></li>
+<li><a href="calendarDuration_002etimes.html" accesskey="6">calendarDuration.times</a></li>
+<li><a href="calendarDuration_002eminus.html" accesskey="7">calendarDuration.minus</a></li>
+<li><a href="calendarDuration_002edispstrs.html" accesskey="8">calendarDuration.dispstrs</a></li>
+<li><a href="calendarDuration_002eisnan.html" accesskey="9">calendarDuration.isnan</a></li>
+</ul>
+</div>
+<hr>
+<div class="nav-panel">
+<p>
+Next: <a href="calmonths.html">calmonths</a>, Previous: <a href="array2table.html">array2table</a>, Up: <a href="API-Alphabetically.html">API Alphabetically</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+
+
+
+</body>
+</html>

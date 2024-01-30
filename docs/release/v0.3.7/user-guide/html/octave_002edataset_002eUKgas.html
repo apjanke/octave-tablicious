@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.1, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- This manual is for Tablicious, version 0.3.7.
+
+Copyright © 2019 Andrew Janke
+
+Permission is granted to make and distribute verbatim copies of
+this manual provided the copyright notice and this permission notice
+are preserved on all copies.
+
+Permission is granted to copy and distribute modified versions of this
+manual under the conditions for verbatim copying, provided that the entire
+resulting derived work is distributed under the terms of a permission
+notice identical to this one.
+
+Permission is granted to copy and distribute translations of this manual
+into another language, under the same conditions as for modified versions. -->
+<title>octave.dataset.UKgas (Octave Tablicious v0.3.7)</title>
+
+<meta name="description" content="User manual for Tablicious for Octave.">
+<meta name="keywords" content="octave.dataset.UKgas (Octave Tablicious v0.3.7)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="octave_002edataset.html" rel="up" title="octave.dataset">
+<link href="octave_002edataset_002eUKLungDeaths.html" rel="next" title="octave.dataset.UKLungDeaths">
+<link href="octave_002edataset_002eUKDriverDeaths.html" rel="prev" title="octave.dataset.UKDriverDeaths">
+<style type="text/css">
+<!--
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.example {margin-left: 3.2em}
+span:hover a.copiable-link {visibility: visible}
+strong.def-name {font-family: monospace; font-weight: bold; font-size: larger}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<div class="subsubsection-level-extent" id="octave_002edataset_002eUKgas">
+<div class="nav-panel">
+<p>
+Next: <a href="octave_002edataset_002eUKLungDeaths.html" accesskey="n" rel="next">octave.dataset.UKLungDeaths</a>, Previous: <a href="octave_002edataset_002eUKDriverDeaths.html" accesskey="p" rel="prev">octave.dataset.UKDriverDeaths</a>, Up: <a href="octave_002edataset.html" accesskey="u" rel="up">octave.dataset</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<hr>
+<h4 class="subsubsection" id="octave_002edataset_002eUKgas-1"><span>8.2.45.73 octave.dataset.UKgas<a class="copiable-link" href="#octave_002edataset_002eUKgas-1"> &para;</a></span></h4>
+
+<dl class="first-deftypefn">
+<dt class="deftypefn" id="index-UKgas"><span class="category-def">Static Method: </span><span><code class="def-type"><var class="var">out</var> =</code> <strong class="def-name">UKgas</strong> <code class="def-code-arguments">()</code><a class="copiable-link" href="#index-UKgas"> &para;</a></span></dt>
+<dd>
+<p>UK Quarterly Gas Consumption
+</p>
+<h4 class="subsubheading" id="Description-71"><span>Description<a class="copiable-link" href="#Description-71"> &para;</a></span></h4>
+
+<p>Quarterly UK gas consumption from 1960Q1 to 1986Q4, in millions of therms.
+</p>
+<h4 class="subsubheading" id="Format-70"><span>Format<a class="copiable-link" href="#Format-70"> &para;</a></span></h4>
+
+<dl class="table">
+<dt><code class="code">date</code></dt>
+<dd><p>Quarter of the observation
+</p></dd>
+<dt><code class="code">gas</code></dt>
+<dd><p>Gas consumption (MM therms).
+</p></dd>
+</dl>
+
+<h4 class="subsubheading" id="Source-72"><span>Source<a class="copiable-link" href="#Source-72"> &para;</a></span></h4>
+
+<p>Durbin, J. and Koopman, S. J. (2001). <cite class="cite">Time Series Analysis by State
+Space Methods</cite>. Oxford: Oxford University Press. <a class="url" href="http://www.ssfpack.com/dkbook/">http://www.ssfpack.com/dkbook/</a>.
+</p>
+<h4 class="subsubheading" id="Examples-71"><span>Examples<a class="copiable-link" href="#Examples-71"> &para;</a></span></h4>
+
+<div class="example">
+<pre class="example-preformatted">t = octave.dataset.UKgas;
+
+plot (datenum (t.date), t.gas);
+datetick (&quot;x&quot;)
+xlabel (&quot;Month&quot;)
+ylabel (&quot;Gas consumption (MM therms)&quot;)
+
+</pre></div>
+
+
+</dd></dl>
+
+</div>
+
+
+
+</body>
+</html>

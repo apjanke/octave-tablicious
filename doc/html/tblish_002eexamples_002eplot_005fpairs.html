@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.1, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- This manual is for Tablicious, version 0.4.0-SNAPSHOT.
+
+Copyright © 2019 Andrew Janke
+
+Permission is granted to make and distribute verbatim copies of
+this manual provided the copyright notice and this permission notice
+are preserved on all copies.
+
+Permission is granted to copy and distribute modified versions of this
+manual under the conditions for verbatim copying, provided that the entire
+resulting derived work is distributed under the terms of a permission
+notice identical to this one.
+
+Permission is granted to copy and distribute translations of this manual
+into another language, under the same conditions as for modified versions. -->
+<title>tblish.examples.plot_pairs (Octave Tablicious v0.4.0-SNAPSHOT)</title>
+
+<meta name="description" content="User manual for Tablicious for Octave.">
+<meta name="keywords" content="tblish.examples.plot_pairs (Octave Tablicious v0.4.0-SNAPSHOT)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="API-Alphabetically.html" rel="up" title="API Alphabetically">
+<link href="timezones.html" rel="next" title="timezones">
+<link href="tblish_002eexamples_002ecoplot.html" rel="prev" title="tblish.examples.coplot">
+<style type="text/css">
+<!--
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+span:hover a.copiable-link {visibility: visible}
+strong.def-name {font-family: monospace; font-weight: bold; font-size: larger}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<div class="subsection-level-extent" id="tblish_002eexamples_002eplot_005fpairs">
+<div class="nav-panel">
+<p>
+Next: <a href="timezones.html" accesskey="n" rel="next">timezones</a>, Previous: <a href="tblish_002eexamples_002ecoplot.html" accesskey="p" rel="prev">tblish.examples.coplot</a>, Up: <a href="API-Alphabetically.html" accesskey="u" rel="up">API Alphabetically</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<hr>
+<h4 class="subsection" id="tblish_002eexamples_002eplot_005fpairs-1"><span>8.2.64 tblish.examples.plot_pairs<a class="copiable-link" href="#tblish_002eexamples_002eplot_005fpairs-1"> &para;</a></span></h4>
+<dl class="first-deftypefn">
+<dt class="deftypefn" id="index-plot_005fpairs"><span class="category-def">Function: </span><span><code class="def-type"><var class="var">out</var> =</code> <strong class="def-name">plot_pairs</strong> <code class="def-code-arguments">(<var class="var">data</var>)</code><a class="copiable-link" href="#index-plot_005fpairs"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn" id="index-plot_005fpairs-1"><span class="category-def">Function: </span><span><code class="def-type"><var class="var">out</var> =</code> <strong class="def-name">plot_pairs</strong> <code class="def-code-arguments">(<var class="var">data</var>, <var class="var">plot_type</var>)</code><a class="copiable-link" href="#index-plot_005fpairs-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn" id="index-plot_005fpairs-2"><span class="category-def">Function: </span><span><code class="def-type"><var class="var">out</var> =</code> <strong class="def-name">plot_pairs</strong> <code class="def-code-arguments">(<var class="var">fig</var>, &hellip;)</code><a class="copiable-link" href="#index-plot_005fpairs-2"> &para;</a></span></dt>
+<dd>
+<p>Plot pairs of variables against each other.
+</p>
+<p><var class="var">data</var> is the data holding the variables to plot. It may be either a
+<code class="code">table</code> or a struct. Each variable or field in the <code class="code">table</code>
+or struct is considered to be one variable. Each must hold a vector, and
+all the vectors of all the variables must be the same size.
+</p>
+<p><var class="var">plot_type</var> is a charvec indicating what plot type to do in each subplot.
+(<code class="code">&quot;scatter&quot;</code> is the default.) Valid <var class="var">plot_type</var> values are:
+</p>
+<dl class="table">
+<dt><code class="code">&quot;scatter&quot;</code></dt>
+<dd><p>A plain scatter plot.
+</p></dd>
+<dt><code class="code">&quot;smooth&quot;</code></dt>
+<dd><p>A scatter plot + fitted line, like R&rsquo;s <code class="code">panel.smooth</code> does.
+</p></dd>
+</dl>
+
+<p><var class="var">fig</var> is an optional figure handle to plot into. If omitted, a new
+figure is created.
+</p>
+<p>Returns the created figure, if the output is captured.
+</p>
+</dd></dl>
+
+
+</div>
+
+
+
+</body>
+</html>

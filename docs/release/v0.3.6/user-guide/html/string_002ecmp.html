@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.1, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- This manual is for Tablicious, version 0.3.6.
+
+Copyright © 2019 Andrew Janke
+
+Permission is granted to make and distribute verbatim copies of
+this manual provided the copyright notice and this permission notice
+are preserved on all copies.
+
+Permission is granted to copy and distribute modified versions of this
+manual under the conditions for verbatim copying, provided that the entire
+resulting derived work is distributed under the terms of a permission
+notice identical to this one.
+
+Permission is granted to copy and distribute translations of this manual
+into another language, under the same conditions as for modified versions. -->
+<title>string.cmp (Octave Tablicious v0.3.6)</title>
+
+<meta name="description" content="User manual for Tablicious for Octave.">
+<meta name="keywords" content="string.cmp (Octave Tablicious v0.3.6)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="string.html" rel="up" title="string">
+<link href="string_002emissing.html" rel="next" title="string.missing">
+<link href="string_002estrcmp.html" rel="prev" title="string.strcmp">
+<style type="text/css">
+<!--
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+span:hover a.copiable-link {visibility: visible}
+strong.def-name {font-family: monospace; font-weight: bold; font-size: larger}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<div class="subsubsection-level-extent" id="string_002ecmp">
+<div class="nav-panel">
+<p>
+Next: <a href="string_002emissing.html" accesskey="n" rel="next">string.missing</a>, Previous: <a href="string_002estrcmp.html" accesskey="p" rel="prev">string.strcmp</a>, Up: <a href="string.html" accesskey="u" rel="up">string</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<hr>
+<h4 class="subsubsection" id="string_002ecmp-1"><span>8.2.57.23 string.cmp<a class="copiable-link" href="#string_002ecmp-1"> &para;</a></span></h4>
+
+<dl class="first-deftypefn">
+<dt class="deftypefn" id="index-cmp"><span class="category-def">Method: </span><span><code class="def-type">[<var class="var">out</var>, <var class="var">outA</var>, <var class="var">outB</var>] =</code> <strong class="def-name">cmp</strong> <code class="def-code-arguments">(<var class="var">A</var>, <var class="var">B</var>)</code><a class="copiable-link" href="#index-cmp"> &para;</a></span></dt>
+<dd>
+<p>Value ordering comparison, returning -1/0/+1.
+</p>
+<p>Compares each element of <var class="var">A</var> and <var class="var">B</var>, returning for
+each element <code class="code">i</code> whether <code class="code">A(i)</code> was less than (-1),
+equal to (0), or greater than (1) the corresponding <code class="code">B(i)</code>.
+</p>
+<p>TODO: What to do about missing values? Should missings sort to the end
+(preserving total ordering over the full domain), or should their comparisons
+result in a fourth &quot;null&quot;/&quot;undef&quot; return value, probably represented by NaN?
+FIXME: The current implementation does not handle missings.
+</p>
+<p>Returns a numeric array <var class="var">out</var> of the same size as the scalar expansion
+of <var class="var">A</var> and <var class="var">B</var>. Each value in it will be -1, 0, or 1.
+</p>
+<p>Also returns scalar-expanded copies of <var class="var">A</var> and <var class="var">B</var> as <var class="var">outA</var> and
+<var class="var">outB</var>, as a programming convenience.
+</p>
+</dd></dl>
+
+</div>
+
+
+
+</body>
+</html>

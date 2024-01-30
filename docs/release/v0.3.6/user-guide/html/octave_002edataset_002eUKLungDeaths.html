@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.1, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- This manual is for Tablicious, version 0.3.6.
+
+Copyright © 2019 Andrew Janke
+
+Permission is granted to make and distribute verbatim copies of
+this manual provided the copyright notice and this permission notice
+are preserved on all copies.
+
+Permission is granted to copy and distribute modified versions of this
+manual under the conditions for verbatim copying, provided that the entire
+resulting derived work is distributed under the terms of a permission
+notice identical to this one.
+
+Permission is granted to copy and distribute translations of this manual
+into another language, under the same conditions as for modified versions. -->
+<title>octave.dataset.UKLungDeaths (Octave Tablicious v0.3.6)</title>
+
+<meta name="description" content="User manual for Tablicious for Octave.">
+<meta name="keywords" content="octave.dataset.UKLungDeaths (Octave Tablicious v0.3.6)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="octave_002edataset.html" rel="up" title="octave.dataset">
+<link href="octave_002edataset_002eUSAccDeaths.html" rel="next" title="octave.dataset.USAccDeaths">
+<link href="octave_002edataset_002eUKgas.html" rel="prev" title="octave.dataset.UKgas">
+<style type="text/css">
+<!--
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.example {margin-left: 3.2em}
+span:hover a.copiable-link {visibility: visible}
+strong.def-name {font-family: monospace; font-weight: bold; font-size: larger}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<div class="subsubsection-level-extent" id="octave_002edataset_002eUKLungDeaths">
+<div class="nav-panel">
+<p>
+Next: <a href="octave_002edataset_002eUSAccDeaths.html" accesskey="n" rel="next">octave.dataset.USAccDeaths</a>, Previous: <a href="octave_002edataset_002eUKgas.html" accesskey="p" rel="prev">octave.dataset.UKgas</a>, Up: <a href="octave_002edataset.html" accesskey="u" rel="up">octave.dataset</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<hr>
+<h4 class="subsubsection" id="octave_002edataset_002eUKLungDeaths-1"><span>8.2.45.74 octave.dataset.UKLungDeaths<a class="copiable-link" href="#octave_002edataset_002eUKLungDeaths-1"> &para;</a></span></h4>
+
+<dl class="first-deftypefn">
+<dt class="deftypefn" id="index-UKLungDeaths"><span class="category-def">Static Method: </span><span><code class="def-type"><var class="var">out</var> =</code> <strong class="def-name">UKLungDeaths</strong> <code class="def-code-arguments">()</code><a class="copiable-link" href="#index-UKLungDeaths"> &para;</a></span></dt>
+<dd>
+<p>Monthly Deaths from Lung Diseases in the UK
+</p>
+<h4 class="subsubheading" id="Description-72"><span>Description<a class="copiable-link" href="#Description-72"> &para;</a></span></h4>
+
+<p>Three time series giving the monthly deaths from bronchitis, emphysema and
+asthma in the UK, 1974–1979.
+</p>
+<h4 class="subsubheading" id="Format-71"><span>Format<a class="copiable-link" href="#Format-71"> &para;</a></span></h4>
+
+<dl class="table">
+<dt><code class="code">date</code></dt>
+<dd><p>Month of the observation.
+</p></dd>
+<dt><code class="code">ldeaths</code></dt>
+<dd><p>Total lung deaths.
+</p></dd>
+<dt><code class="code">fdeaths</code></dt>
+<dd><p>Lung deaths among females.
+</p></dd>
+<dt><code class="code">mdeaths</code></dt>
+<dd><p>Lung deaths among males.
+</p></dd>
+</dl>
+
+<h4 class="subsubheading" id="Source-73"><span>Source<a class="copiable-link" href="#Source-73"> &para;</a></span></h4>
+
+<p>P. J. Diggle (1990). <cite class="cite">Time Series: A Biostatistical Introduction</cite>. Oxford. table A.3
+</p>
+<h4 class="subsubheading" id="Examples-72"><span>Examples<a class="copiable-link" href="#Examples-72"> &para;</a></span></h4>
+
+<div class="example">
+<pre class="example-preformatted">t = octave.dataset.UKLungDeaths;
+
+figure
+plot (datenum (t.date), t.ldeaths);
+title (&quot;Total UK Lung Deaths&quot;)
+xlabel (&quot;Month&quot;)
+ylabel (&quot;Deaths&quot;)
+
+figure
+plot (datenum (t.date), [t.fdeaths t.mdeaths]);
+title (&quot;UK Lung Deaths buy sex&quot;)
+legend ({&quot;Female&quot;, &quot;Male&quot;})
+xlabel (&quot;Month&quot;)
+ylabel (&quot;Deaths&quot;)
+
+</pre></div>
+
+
+</dd></dl>
+
+</div>
+
+
+
+</body>
+</html>

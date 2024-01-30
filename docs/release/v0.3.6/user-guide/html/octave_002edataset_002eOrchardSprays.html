@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.1, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- This manual is for Tablicious, version 0.3.6.
+
+Copyright © 2019 Andrew Janke
+
+Permission is granted to make and distribute verbatim copies of
+this manual provided the copyright notice and this permission notice
+are preserved on all copies.
+
+Permission is granted to copy and distribute modified versions of this
+manual under the conditions for verbatim copying, provided that the entire
+resulting derived work is distributed under the terms of a permission
+notice identical to this one.
+
+Permission is granted to copy and distribute translations of this manual
+into another language, under the same conditions as for modified versions. -->
+<title>octave.dataset.OrchardSprays (Octave Tablicious v0.3.6)</title>
+
+<meta name="description" content="User manual for Tablicious for Octave.">
+<meta name="keywords" content="octave.dataset.OrchardSprays (Octave Tablicious v0.3.6)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="octave_002edataset.html" rel="up" title="octave.dataset">
+<link href="octave_002edataset_002ePlantGrowth.html" rel="next" title="octave.dataset.PlantGrowth">
+<link href="octave_002edataset_002eOrange.html" rel="prev" title="octave.dataset.Orange">
+<style type="text/css">
+<!--
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.example {margin-left: 3.2em}
+span:hover a.copiable-link {visibility: visible}
+strong.def-name {font-family: monospace; font-weight: bold; font-size: larger}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<div class="subsubsection-level-extent" id="octave_002edataset_002eOrchardSprays">
+<div class="nav-panel">
+<p>
+Next: <a href="octave_002edataset_002ePlantGrowth.html" accesskey="n" rel="next">octave.dataset.PlantGrowth</a>, Previous: <a href="octave_002edataset_002eOrange.html" accesskey="p" rel="prev">octave.dataset.Orange</a>, Up: <a href="octave_002edataset.html" accesskey="u" rel="up">octave.dataset</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<hr>
+<h4 class="subsubsection" id="octave_002edataset_002eOrchardSprays-1"><span>8.2.45.49 octave.dataset.OrchardSprays<a class="copiable-link" href="#octave_002edataset_002eOrchardSprays-1"> &para;</a></span></h4>
+
+<dl class="first-deftypefn">
+<dt class="deftypefn" id="index-OrchardSprays"><span class="category-def">Static Method: </span><span><code class="def-type"><var class="var">out</var> =</code> <strong class="def-name">OrchardSprays</strong> <code class="def-code-arguments">()</code><a class="copiable-link" href="#index-OrchardSprays"> &para;</a></span></dt>
+<dd>
+<p>Potency of Orchard Sprays
+</p>
+<h4 class="subsubheading" id="Description-47"><span>Description<a class="copiable-link" href="#Description-47"> &para;</a></span></h4>
+
+<p>An experiment was conducted to assess the potency of various constituents
+of orchard sprays in repelling honeybees, using a Latin square design.
+</p>
+<h4 class="subsubheading" id="Format-46"><span>Format<a class="copiable-link" href="#Format-46"> &para;</a></span></h4>
+
+<dl class="table">
+<dt><code class="code">rowpos</code></dt>
+<dd><p>Row of the design.
+</p></dd>
+<dt><code class="code">colpos</code></dt>
+<dd><p>Column of the design
+</p></dd>
+<dt><code class="code">treatment</code></dt>
+<dd><p>Treatment level.
+</p></dd>
+<dt><code class="code">decrease</code></dt>
+<dd><p>Response.
+</p></dd>
+</dl>
+
+<h4 class="subsubheading" id="Details-7"><span>Details<a class="copiable-link" href="#Details-7"> &para;</a></span></h4>
+
+<p>Individual cells of dry comb were filled with measured amounts of lime
+sulphur emulsion in sucrose solution. Seven different concentrations of lime
+sulphur ranging from a concentration of 1/100 to 1/1,562,500 in successive
+factors of 1/5 were used as well as a solution containing no lime sulphur.
+</p>
+<p>The responses for the different solutions were obtained by releasing 100
+bees into the chamber for two hours, and then measuring the decrease in volume
+of the solutions in the various cells.
+</p>
+<p>An 8 x 8 Latin square design was used and the treatments were coded as follows:
+</p>
+<p>A – highest level of lime sulphur
+B – next highest level of lime sulphur
+&hellip;
+G – lowest level of lime sulphur
+H – no lime sulphur
+</p>
+<h4 class="subsubheading" id="Source-48"><span>Source<a class="copiable-link" href="#Source-48"> &para;</a></span></h4>
+
+<p>Finney, D. J. (1947). <cite class="cite">Probit Analysis</cite>. Cambridge.
+</p>
+<h4 class="subsubheading" id="References-23"><span>References<a class="copiable-link" href="#References-23"> &para;</a></span></h4>
+
+<p>McNeil, D. R. (1977). <cite class="cite">Interactive Data Analysis</cite>. New York: Wiley.
+</p>
+<h4 class="subsubheading" id="Examples-47"><span>Examples<a class="copiable-link" href="#Examples-47"> &para;</a></span></h4>
+
+<div class="example">
+<pre class="example-preformatted">t = octave.dataset.OrchardSprays;
+
+octave.examples.plot_pairs (t);
+
+</pre></div>
+
+
+</dd></dl>
+
+</div>
+
+
+
+</body>
+</html>

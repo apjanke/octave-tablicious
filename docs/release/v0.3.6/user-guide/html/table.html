@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.1, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- This manual is for Tablicious, version 0.3.6.
+
+Copyright © 2019 Andrew Janke
+
+Permission is granted to make and distribute verbatim copies of
+this manual provided the copyright notice and this permission notice
+are preserved on all copies.
+
+Permission is granted to copy and distribute modified versions of this
+manual under the conditions for verbatim copying, provided that the entire
+resulting derived work is distributed under the terms of a permission
+notice identical to this one.
+
+Permission is granted to copy and distribute translations of this manual
+into another language, under the same conditions as for modified versions. -->
+<title>table (Octave Tablicious v0.3.6)</title>
+
+<meta name="description" content="User manual for Tablicious for Octave.">
+<meta name="keywords" content="table (Octave Tablicious v0.3.6)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="API-Alphabetically.html" rel="up" title="API Alphabetically">
+<link href="tableOuterFillValue.html" rel="next" title="tableOuterFillValue">
+<link href="struct2table.html" rel="prev" title="struct2table">
+<style type="text/css">
+<!--
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+span:hover a.copiable-link {visibility: visible}
+strong.def-name {font-family: monospace; font-weight: bold; font-size: larger}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<div class="subsection-level-extent" id="table">
+<div class="nav-panel">
+<p>
+Next: <a href="tableOuterFillValue.html" accesskey="n" rel="next">tableOuterFillValue</a>, Previous: <a href="struct2table.html" accesskey="p" rel="prev">struct2table</a>, Up: <a href="API-Alphabetically.html" accesskey="u" rel="up">API Alphabetically</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<hr>
+<h4 class="subsection" id="table-1"><span>8.2.59 table<a class="copiable-link" href="#table-1"> &para;</a></span></h4>
+<dl class="first-deftp">
+<dt class="deftp" id="index-table-5"><span class="category-def">Class: </span><span><strong class="def-name">table</strong><a class="copiable-link" href="#index-table-5"> &para;</a></span></dt>
+<dd>
+<p>Tabular data array containing multiple columnar variables.
+</p>
+<p>A <code class="code">table</code> is a tabular data structure that collects multiple parallel
+named variables.
+Each variable is treated like a column. (Possibly a multi-columned column, if
+that makes sense.)
+The types of variables may be heterogeneous.
+</p>
+<p>A table object is like an SQL table or resultset, or a relation, or a
+DataFrame in R or Pandas.
+</p>
+<p>A table is an array in itself: its size is <var class="var">nrows</var>-by-<var class="var">nvariables</var>,
+and you can index along the rows and variables by indexing into the table
+along dimensions 1 and 2.
+</p>
+<p>A note on accessing properties of a <code class="code">table</code> array: Because .-indexing is
+used to access the variables inside the array, it can’t also be directly used
+to access properties as well. Instead, do <code class="code">t.Properties.&lt;property&gt;</code> for
+a table <code class="code">t</code>. That will give you a property instead of a variable.
+(And due to this mechanism, it will cause problems if you have a <code class="code">table</code>
+with a variable named <code class="code">Properties</code>. Try to avoid that.)
+</p>
+</dd></dl>
+
+<dl class="first-deftypecv first-deftypeivar-alias-first-deftypecv">
+<dt class="deftypecv deftypeivar-alias-deftypecv" id="index-VariableNames-of-table"><span class="category-def">Instance Variable of <code class="code">table</code>: </span><span><code class="def-type"><code class="code">cellstr</code></code> <strong class="def-name">VariableNames</strong><a class="copiable-link" href="#index-VariableNames-of-table"> &para;</a></span></dt>
+<dd>
+<p>The names of the variables in the table, as a cellstr row vector.
+</p>
+</dd></dl>
+
+<dl class="first-deftypecv first-deftypeivar-alias-first-deftypecv">
+<dt class="deftypecv deftypeivar-alias-deftypecv" id="index-VariableValues-of-table"><span class="category-def">Instance Variable of <code class="code">table</code>: </span><span><code class="def-type"><code class="code">cell</code></code> <strong class="def-name">VariableValues</strong><a class="copiable-link" href="#index-VariableValues-of-table"> &para;</a></span></dt>
+<dd>
+<p>A cell vector containing the values for each of the variables.
+<code class="code">VariableValues(i)</code> corresponds to <code class="code">VariableNames(i)</code>.
+</p>
+</dd></dl>
+
+<dl class="first-deftypecv first-deftypeivar-alias-first-deftypecv">
+<dt class="deftypecv deftypeivar-alias-deftypecv" id="index-RowNames-of-table"><span class="category-def">Instance Variable of <code class="code">table</code>: </span><span><code class="def-type"><code class="code">cellstr</code></code> <strong class="def-name">RowNames</strong><a class="copiable-link" href="#index-RowNames-of-table"> &para;</a></span></dt>
+<dd>
+<p>An optional list of row names that identify each row in the table. This
+is a cellstr column vector, if present.
+</p>
+</dd></dl>
+
+
+<ul class="mini-toc">
+<li><a href="table_002etable.html" accesskey="1">table.table</a></li>
+<li><a href="table_002esummary.html" accesskey="2">table.summary</a></li>
+<li><a href="table_002eprettyprint.html" accesskey="3">table.prettyprint</a></li>
+<li><a href="table_002etable2cell.html" accesskey="4">table.table2cell</a></li>
+<li><a href="table_002etable2struct.html" accesskey="5">table.table2struct</a></li>
+<li><a href="table_002etable2array.html" accesskey="6">table.table2array</a></li>
+<li><a href="table_002evarnames.html" accesskey="7">table.varnames</a></li>
+<li><a href="table_002eistable.html" accesskey="8">table.istable</a></li>
+<li><a href="table_002esize.html" accesskey="9">table.size</a></li>
+<li><a href="table_002elength.html">table.length</a></li>
+<li><a href="table_002endims.html">table.ndims</a></li>
+<li><a href="table_002esqueeze.html">table.squeeze</a></li>
+<li><a href="table_002esizeof.html">table.sizeof</a></li>
+<li><a href="table_002eheight.html">table.height</a></li>
+<li><a href="table_002erows.html">table.rows</a></li>
+<li><a href="table_002ewidth.html">table.width</a></li>
+<li><a href="table_002ecolumns.html">table.columns</a></li>
+<li><a href="table_002enumel.html">table.numel</a></li>
+<li><a href="table_002eisempty.html">table.isempty</a></li>
+<li><a href="table_002eismatrix.html">table.ismatrix</a></li>
+<li><a href="table_002eisrow.html">table.isrow</a></li>
+<li><a href="table_002eiscol.html">table.iscol</a></li>
+<li><a href="table_002eisvector.html">table.isvector</a></li>
+<li><a href="table_002eisscalar.html">table.isscalar</a></li>
+<li><a href="table_002ehasrownames.html">table.hasrownames</a></li>
+<li><a href="table_002evertcat.html">table.vertcat</a></li>
+<li><a href="table_002ehorzcat.html">table.horzcat</a></li>
+<li><a href="table_002erepmat.html">table.repmat</a></li>
+<li><a href="table_002erepelem.html">table.repelem</a></li>
+<li><a href="table_002esetVariableNames.html">table.setVariableNames</a></li>
+<li><a href="table_002esetDimensionNames.html">table.setDimensionNames</a></li>
+<li><a href="table_002esetRowNames.html">table.setRowNames</a></li>
+<li><a href="table_002eremovevars.html">table.removevars</a></li>
+<li><a href="table_002emovevars.html">table.movevars</a></li>
+<li><a href="table_002egetvar.html">table.getvar</a></li>
+<li><a href="table_002egetvars.html">table.getvars</a></li>
+<li><a href="table_002esetvar.html">table.setvar</a></li>
+<li><a href="table_002eaddvars.html">table.addvars</a></li>
+<li><a href="table_002econvertvars.html">table.convertvars</a></li>
+<li><a href="table_002emergevars.html">table.mergevars</a></li>
+<li><a href="table_002esplitvars.html">table.splitvars</a></li>
+<li><a href="table_002estack.html">table.stack</a></li>
+<li><a href="table_002ehead.html">table.head</a></li>
+<li><a href="table_002etail.html">table.tail</a></li>
+<li><a href="table_002ejoin.html">table.join</a></li>
+<li><a href="table_002einnerjoin.html">table.innerjoin</a></li>
+<li><a href="table_002eouterjoin.html">table.outerjoin</a></li>
+<li><a href="table_002eouterfillvals.html">table.outerfillvals</a></li>
+<li><a href="table_002esemijoin.html">table.semijoin</a></li>
+<li><a href="table_002eantijoin.html">table.antijoin</a></li>
+<li><a href="table_002ecartesian.html">table.cartesian</a></li>
+<li><a href="table_002egroupby.html">table.groupby</a></li>
+<li><a href="table_002egrpstats.html">table.grpstats</a></li>
+<li><a href="table_002esplitapply.html">table.splitapply</a></li>
+<li><a href="table_002erows2vars.html">table.rows2vars</a></li>
+<li><a href="table_002econgruentize.html">table.congruentize</a></li>
+<li><a href="table_002eunion.html">table.union</a></li>
+<li><a href="table_002eintersect.html">table.intersect</a></li>
+<li><a href="table_002esetxor.html">table.setxor</a></li>
+<li><a href="table_002esetdiff.html">table.setdiff</a></li>
+<li><a href="table_002eismember.html">table.ismember</a></li>
+<li><a href="table_002eismissing.html">table.ismissing</a></li>
+<li><a href="table_002ermmissing.html">table.rmmissing</a></li>
+<li><a href="table_002estandardizeMissing.html">table.standardizeMissing</a></li>
+<li><a href="table_002evarfun.html">table.varfun</a></li>
+<li><a href="table_002erowfun.html">table.rowfun</a></li>
+<li><a href="table_002efindgroups.html">table.findgroups</a></li>
+<li><a href="table_002eevalWithVars.html">table.evalWithVars</a></li>
+<li><a href="table_002erestrict.html">table.restrict</a></li>
+<li><a href="table_002erenamevars.html">table.renamevars</a></li>
+<li><a href="table_002eresolveVarRef.html">table.resolveVarRef</a></li>
+<li><a href="table_002esubsetrows.html">table.subsetrows</a></li>
+<li><a href="table_002esubsetvars.html">table.subsetvars</a></li>
+</ul>
+</div>
+<hr>
+<div class="nav-panel">
+<p>
+Next: <a href="tableOuterFillValue.html">tableOuterFillValue</a>, Previous: <a href="struct2table.html">struct2table</a>, Up: <a href="API-Alphabetically.html">API Alphabetically</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+
+
+
+</body>
+</html>

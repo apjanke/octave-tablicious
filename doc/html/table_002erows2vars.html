@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.1, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- This manual is for Tablicious, version 0.4.0-SNAPSHOT.
+
+Copyright © 2019 Andrew Janke
+
+Permission is granted to make and distribute verbatim copies of
+this manual provided the copyright notice and this permission notice
+are preserved on all copies.
+
+Permission is granted to copy and distribute modified versions of this
+manual under the conditions for verbatim copying, provided that the entire
+resulting derived work is distributed under the terms of a permission
+notice identical to this one.
+
+Permission is granted to copy and distribute translations of this manual
+into another language, under the same conditions as for modified versions. -->
+<title>table.rows2vars (Octave Tablicious v0.4.0-SNAPSHOT)</title>
+
+<meta name="description" content="User manual for Tablicious for Octave.">
+<meta name="keywords" content="table.rows2vars (Octave Tablicious v0.4.0-SNAPSHOT)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="table.html" rel="up" title="table">
+<link href="table_002econgruentize.html" rel="next" title="table.congruentize">
+<link href="table_002esplitapply.html" rel="prev" title="table.splitapply">
+<style type="text/css">
+<!--
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+span:hover a.copiable-link {visibility: visible}
+strong.def-name {font-family: monospace; font-weight: bold; font-size: larger}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<div class="subsubsection-level-extent" id="table_002erows2vars">
+<div class="nav-panel">
+<p>
+Next: <a href="table_002econgruentize.html" accesskey="n" rel="next">table.congruentize</a>, Previous: <a href="table_002esplitapply.html" accesskey="p" rel="prev">table.splitapply</a>, Up: <a href="table.html" accesskey="u" rel="up">table</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<hr>
+<h4 class="subsubsection" id="table_002erows2vars-1"><span>8.2.57.57 table.rows2vars<a class="copiable-link" href="#table_002erows2vars-1"> &para;</a></span></h4>
+
+<dl class="first-deftypefn">
+<dt class="deftypefn" id="index-rows2vars"><span class="category-def">Method: </span><span><code class="def-type"><var class="var">out</var> =</code> <strong class="def-name">rows2vars</strong> <code class="def-code-arguments">(<var class="var">obj</var>)</code><a class="copiable-link" href="#index-rows2vars"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn" id="index-rows2vars-1"><span class="category-def">Method: </span><span><code class="def-type"><var class="var">out</var> =</code> <strong class="def-name">rows2vars</strong> <code class="def-code-arguments">(<var class="var">obj</var>,   <code class="code">'VariableNamesSource'</code>, <var class="var">VariableNamesSource</var>)</code><a class="copiable-link" href="#index-rows2vars-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn" id="index-rows2vars-2"><span class="category-def">Method: </span><span><code class="def-type"><var class="var">out</var> =</code> <strong class="def-name">rows2vars</strong> <code class="def-code-arguments">(&hellip;,   <code class="code">'DataVariables'</code>, <var class="var">DataVariables</var>)</code><a class="copiable-link" href="#index-rows2vars-2"> &para;</a></span></dt>
+<dd>
+<p>Reorient table, swapping rows and variables dimensions.
+</p>
+<p>This flips the dimensions of the given table <var class="var">obj</var>, swapping the
+orientation of the contained data, and swapping the row names/labels
+and variable names.
+</p>
+<p>The variable names become a new variable named “OriginalVariableNames”.
+</p>
+<p>The row names are drawn from the column <var class="var">VariableNamesSource</var> if it
+is specified. Otherwise, if <var class="var">obj</var> has row names, they are used.
+Otherwise, new variable names in the form “VarN” are generated.
+</p>
+<p>If all the variables in <var class="var">obj</var> are of the same type, they are concatenated
+and then sliced to create the new variable values. Otherwise, they are
+converted to cells, and the new table has cell variable values.
+</p>
+</dd></dl>
+
+</div>
+
+
+
+</body>
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.1, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- This manual is for Tablicious, version 0.3.6.
+
+Copyright © 2019 Andrew Janke
+
+Permission is granted to make and distribute verbatim copies of
+this manual provided the copyright notice and this permission notice
+are preserved on all copies.
+
+Permission is granted to copy and distribute modified versions of this
+manual under the conditions for verbatim copying, provided that the entire
+resulting derived work is distributed under the terms of a permission
+notice identical to this one.
+
+Permission is granted to copy and distribute translations of this manual
+into another language, under the same conditions as for modified versions. -->
+<title>octave.dataset.DNase (Octave Tablicious v0.3.6)</title>
+
+<meta name="description" content="User manual for Tablicious for Octave.">
+<meta name="keywords" content="octave.dataset.DNase (Octave Tablicious v0.3.6)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="octave_002edataset.html" rel="up" title="octave.dataset">
+<link href="octave_002edataset_002eesoph.html" rel="next" title="octave.dataset.esoph">
+<link href="octave_002edataset_002ediscoveries.html" rel="prev" title="octave.dataset.discoveries">
+<style type="text/css">
+<!--
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.example {margin-left: 3.2em}
+span:hover a.copiable-link {visibility: visible}
+strong.def-name {font-family: monospace; font-weight: bold; font-size: larger}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<div class="subsubsection-level-extent" id="octave_002edataset_002eDNase">
+<div class="nav-panel">
+<p>
+Next: <a href="octave_002edataset_002eesoph.html" accesskey="n" rel="next">octave.dataset.esoph</a>, Previous: <a href="octave_002edataset_002ediscoveries.html" accesskey="p" rel="prev">octave.dataset.discoveries</a>, Up: <a href="octave_002edataset.html" accesskey="u" rel="up">octave.dataset</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<hr>
+<h4 class="subsubsection" id="octave_002edataset_002eDNase-1"><span>8.2.45.18 octave.dataset.DNase<a class="copiable-link" href="#octave_002edataset_002eDNase-1"> &para;</a></span></h4>
+
+<dl class="first-deftypefn">
+<dt class="deftypefn" id="index-DNase"><span class="category-def">Static Method: </span><span><code class="def-type"><var class="var">out</var> =</code> <strong class="def-name">DNase</strong> <code class="def-code-arguments">()</code><a class="copiable-link" href="#index-DNase"> &para;</a></span></dt>
+<dd>
+<p>Elisa assay of DNase
+</p>
+<h4 class="subsubheading" id="Description-16"><span>Description<a class="copiable-link" href="#Description-16"> &para;</a></span></h4>
+
+<p>Data obtained during development of an ELISA assay for the recombinant protein DNase in rat serum.
+</p>
+<h4 class="subsubheading" id="Format-15"><span>Format<a class="copiable-link" href="#Format-15"> &para;</a></span></h4>
+
+<dl class="table">
+<dt><code class="code">Run</code></dt>
+<dd><p>Ordered <code class="code">categorical</code> indicating the assay run.
+</p></dd>
+<dt><code class="code">conc</code></dt>
+<dd><p>Known concentration of the protein (ng/ml).
+</p></dd>
+<dt><code class="code">density</code></dt>
+<dd><p>Measured optical density in the assay (dimensionless).
+</p></dd>
+</dl>
+
+<h4 class="subsubheading" id="Source-17"><span>Source<a class="copiable-link" href="#Source-17"> &para;</a></span></h4>
+
+<p>Davidian, M. and Giltinan, D. M. (1995). <cite class="cite">Nonlinear Models for Repeated
+Measurement Data</cite>. London: Chapman &amp; Hall. (section 5.2.4, p. 134)
+</p>
+<p>Pinheiro, J. C. and Bates, D. M. (2000). <cite class="cite">Mixed-effects Models in S and
+S-PLUS</cite>. New York: Springer.
+</p>
+<h4 class="subsubheading" id="Examples-17"><span>Examples<a class="copiable-link" href="#Examples-17"> &para;</a></span></h4>
+
+<div class="example">
+<pre class="example-preformatted">t = octave.dataset.DNase;
+
+# TODO: Port this from R
+
+octave.examples.coplot (t, &quot;conc&quot;, &quot;density&quot;, &quot;Run&quot;, &quot;PlotFcn&quot;, @scatter);
+octave.examples.coplot (t, &quot;conc&quot;, &quot;density&quot;, &quot;Run&quot;, &quot;PlotFcn&quot;, @loglog, ...
+  &quot;PlotArgs&quot;, {&quot;o&quot;});
+
+</pre></div>
+
+
+</dd></dl>
+
+</div>
+
+
+
+</body>
+</html>

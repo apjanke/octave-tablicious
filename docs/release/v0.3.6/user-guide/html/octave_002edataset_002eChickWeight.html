@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.1, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- This manual is for Tablicious, version 0.3.6.
+
+Copyright © 2019 Andrew Janke
+
+Permission is granted to make and distribute verbatim copies of
+this manual provided the copyright notice and this permission notice
+are preserved on all copies.
+
+Permission is granted to copy and distribute modified versions of this
+manual under the conditions for verbatim copying, provided that the entire
+resulting derived work is distributed under the terms of a permission
+notice identical to this one.
+
+Permission is granted to copy and distribute translations of this manual
+into another language, under the same conditions as for modified versions. -->
+<title>octave.dataset.ChickWeight (Octave Tablicious v0.3.6)</title>
+
+<meta name="description" content="User manual for Tablicious for Octave.">
+<meta name="keywords" content="octave.dataset.ChickWeight (Octave Tablicious v0.3.6)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="octave_002edataset.html" rel="up" title="octave.dataset">
+<link href="octave_002edataset_002echickwts.html" rel="next" title="octave.dataset.chickwts">
+<link href="octave_002edataset_002ecars.html" rel="prev" title="octave.dataset.cars">
+<style type="text/css">
+<!--
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.example {margin-left: 3.2em}
+span:hover a.copiable-link {visibility: visible}
+strong.def-name {font-family: monospace; font-weight: bold; font-size: larger}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<div class="subsubsection-level-extent" id="octave_002edataset_002eChickWeight">
+<div class="nav-panel">
+<p>
+Next: <a href="octave_002edataset_002echickwts.html" accesskey="n" rel="next">octave.dataset.chickwts</a>, Previous: <a href="octave_002edataset_002ecars.html" accesskey="p" rel="prev">octave.dataset.cars</a>, Up: <a href="octave_002edataset.html" accesskey="u" rel="up">octave.dataset</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<hr>
+<h4 class="subsubsection" id="octave_002edataset_002eChickWeight-1"><span>8.2.45.12 octave.dataset.ChickWeight<a class="copiable-link" href="#octave_002edataset_002eChickWeight-1"> &para;</a></span></h4>
+
+<dl class="first-deftypefn">
+<dt class="deftypefn" id="index-ChickWeight"><span class="category-def">Static Method: </span><span><code class="def-type"><var class="var">out</var> =</code> <strong class="def-name">ChickWeight</strong> <code class="def-code-arguments">()</code><a class="copiable-link" href="#index-ChickWeight"> &para;</a></span></dt>
+<dd>
+<p>Weight versus age of chicks on different diets
+</p>
+<h4 class="subsubheading" id="Format-9"><span>Format<a class="copiable-link" href="#Format-9"> &para;</a></span></h4>
+
+<dl class="table">
+<dt><code class="code">weight</code></dt>
+<dd><p>a numeric vector giving the body weight of the chick (gm).
+</p></dd>
+<dt><code class="code">Time</code></dt>
+<dd><p>a numeric vector giving the number of days since birth when the
+measurement was made.
+</p></dd>
+<dt><code class="code">Chick</code></dt>
+<dd><p>an ordered factor with levels 18 &lt; ... &lt; 48 giving a unique
+identifier for the chick. The ordering of the levels groups chicks on the same
+diet together and orders them according to their final weight (lightest to
+heaviest) within diet.
+</p></dd>
+<dt><code class="code">Diet</code></dt>
+<dd><p>a factor with levels 1, ..., 4 indicating which experimental diet
+the chick received.
+</p></dd>
+</dl>
+
+<h4 class="subsubheading" id="Source-11"><span>Source<a class="copiable-link" href="#Source-11"> &para;</a></span></h4>
+
+<p>Crowder, M. and Hand, D. (1990). <cite class="cite">Analysis of Repeated Measures</cite>. London: Chapman and
+Hall. (example 5.3)
+</p>
+<p>Hand, D. and Crowder, M. (1996), <cite class="cite">Practical Longitudinal Data Analysis</cite>. London: Chapman
+and Hall. (table A.2)
+</p>
+<p>Pinheiro, J. C. and Bates, D. M. (2000) <cite class="cite">Mixed-effects Models in S and S-PLUS</cite>.
+New York: Springer.
+</p>
+<h4 class="subsubheading" id="Examples-11"><span>Examples<a class="copiable-link" href="#Examples-11"> &para;</a></span></h4>
+
+<div class="example">
+<pre class="example-preformatted">t = octave.dataset.ChickWeight
+
+octave.examples.coplot (t, &quot;Time&quot;, &quot;weight&quot;, &quot;Chick&quot;);
+
+</pre></div>
+
+
+</dd></dl>
+
+</div>
+
+
+
+</body>
+</html>

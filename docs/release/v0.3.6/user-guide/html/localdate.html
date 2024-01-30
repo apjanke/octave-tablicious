@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.1, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- This manual is for Tablicious, version 0.3.6.
+
+Copyright © 2019 Andrew Janke
+
+Permission is granted to make and distribute verbatim copies of
+this manual provided the copyright notice and this permission notice
+are preserved on all copies.
+
+Permission is granted to copy and distribute modified versions of this
+manual under the conditions for verbatim copying, provided that the entire
+resulting derived work is distributed under the terms of a permission
+notice identical to this one.
+
+Permission is granted to copy and distribute translations of this manual
+into another language, under the same conditions as for modified versions. -->
+<title>localdate (Octave Tablicious v0.3.6)</title>
+
+<meta name="description" content="User manual for Tablicious for Octave.">
+<meta name="keywords" content="localdate (Octave Tablicious v0.3.6)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="API-Alphabetically.html" rel="up" title="API Alphabetically">
+<link href="milliseconds.html" rel="next" title="milliseconds">
+<link href="isnanny.html" rel="prev" title="isnanny">
+<style type="text/css">
+<!--
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+span:hover a.copiable-link {visibility: visible}
+strong.def-name {font-family: monospace; font-weight: bold; font-size: larger}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<div class="subsection-level-extent" id="localdate">
+<div class="nav-panel">
+<p>
+Next: <a href="milliseconds.html" accesskey="n" rel="next">milliseconds</a>, Previous: <a href="isnanny.html" accesskey="p" rel="prev">isnanny</a>, Up: <a href="API-Alphabetically.html" accesskey="u" rel="up">API Alphabetically</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<hr>
+<h4 class="subsection" id="localdate-1"><span>8.2.25 localdate<a class="copiable-link" href="#localdate-1"> &para;</a></span></h4>
+<dl class="first-deftp">
+<dt class="deftp" id="index-localdate-5"><span class="category-def">Class: </span><span><strong class="def-name">localdate</strong><a class="copiable-link" href="#index-localdate-5"> &para;</a></span></dt>
+<dd>
+<p>Represents a complete day using the Gregorian calendar.
+</p>
+<p>This class is useful for indexing daily-granularity data or representing
+time periods that cover an entire day in local time somewhere. The major
+purpose of this class is &quot;type safety&quot;, to prevent time-of-day values
+from sneaking in to data sets that should be daily only. As a secondary
+benefit, this uses less memory than datetimes.
+</p>
+</dd></dl>
+
+<dl class="first-deftypecv first-deftypeivar-alias-first-deftypecv">
+<dt class="deftypecv deftypeivar-alias-deftypecv" id="index-dnums-of-localdate"><span class="category-def">Instance Variable of <code class="code">localdate</code>: </span><span><code class="def-type"><code class="code">double</code></code> <strong class="def-name">dnums</strong><a class="copiable-link" href="#index-dnums-of-localdate"> &para;</a></span></dt>
+<dd>
+<p>The underlying datenum values that represent the days. The datenums are at
+the midnight that is at the start of the day it represents.
+</p>
+<p>These are doubles, but
+they are restricted to be integer-valued, so they represent complete days, with
+no time-of-day component.
+</p>
+</dd></dl>
+
+<dl class="first-deftypecv first-deftypeivar-alias-first-deftypecv">
+<dt class="deftypecv deftypeivar-alias-deftypecv" id="index-Format-of-localdate"><span class="category-def">Instance Variable of <code class="code">localdate</code>: </span><span><code class="def-type"><code class="code">char</code></code> <strong class="def-name">Format</strong><a class="copiable-link" href="#index-Format-of-localdate"> &para;</a></span></dt>
+<dd>
+<p>The format to display this <code class="code">localdate</code> in. Currently unsupported.
+</p>
+</dd></dl>
+
+
+<ul class="mini-toc">
+<li><a href="localdate_002elocaldate.html" accesskey="1">localdate.localdate</a></li>
+<li><a href="localdate_002eNaT.html" accesskey="2">localdate.NaT</a></li>
+<li><a href="localdate_002eymd.html" accesskey="3">localdate.ymd</a></li>
+<li><a href="localdate_002edispstrs.html" accesskey="4">localdate.dispstrs</a></li>
+<li><a href="localdate_002edatestr.html" accesskey="5">localdate.datestr</a></li>
+<li><a href="localdate_002edatestrs.html" accesskey="6">localdate.datestrs</a></li>
+<li><a href="localdate_002edatestruct.html" accesskey="7">localdate.datestruct</a></li>
+<li><a href="localdate_002eposixtime.html" accesskey="8">localdate.posixtime</a></li>
+<li><a href="localdate_002edatenum.html" accesskey="9">localdate.datenum</a></li>
+<li><a href="localdate_002eisnat.html">localdate.isnat</a></li>
+<li><a href="localdate_002eisnan.html">localdate.isnan</a></li>
+</ul>
+</div>
+
+
+
+</body>
+</html>

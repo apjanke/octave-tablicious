@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.1, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- This manual is for Tablicious, version 0.4.0-SNAPSHOT.
+
+Copyright © 2019 Andrew Janke
+
+Permission is granted to make and distribute verbatim copies of
+this manual provided the copyright notice and this permission notice
+are preserved on all copies.
+
+Permission is granted to copy and distribute modified versions of this
+manual under the conditions for verbatim copying, provided that the entire
+resulting derived work is distributed under the terms of a permission
+notice identical to this one.
+
+Permission is granted to copy and distribute translations of this manual
+into another language, under the same conditions as for modified versions. -->
+<title>tblish.dataset.cars (Octave Tablicious v0.4.0-SNAPSHOT)</title>
+
+<meta name="description" content="User manual for Tablicious for Octave.">
+<meta name="keywords" content="tblish.dataset.cars (Octave Tablicious v0.4.0-SNAPSHOT)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="tblish_002edataset.html" rel="up" title="tblish.dataset">
+<link href="tblish_002edataset_002eChickWeight.html" rel="next" title="tblish.dataset.ChickWeight">
+<link href="tblish_002edataset_002eBOD.html" rel="prev" title="tblish.dataset.BOD">
+<style type="text/css">
+<!--
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.example {margin-left: 3.2em}
+span:hover a.copiable-link {visibility: visible}
+strong.def-name {font-family: monospace; font-weight: bold; font-size: larger}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<div class="subsubsection-level-extent" id="tblish_002edataset_002ecars">
+<div class="nav-panel">
+<p>
+Next: <a href="tblish_002edataset_002eChickWeight.html" accesskey="n" rel="next">tblish.dataset.ChickWeight</a>, Previous: <a href="tblish_002edataset_002eBOD.html" accesskey="p" rel="prev">tblish.dataset.BOD</a>, Up: <a href="tblish_002edataset.html" accesskey="u" rel="up">tblish.dataset</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<hr>
+<h4 class="subsubsection" id="tblish_002edataset_002ecars-1"><span>8.2.61.11 tblish.dataset.cars<a class="copiable-link" href="#tblish_002edataset_002ecars-1"> &para;</a></span></h4>
+
+<dl class="first-deftypefn">
+<dt class="deftypefn" id="index-cars"><span class="category-def">Static Method: </span><span><code class="def-type"><var class="var">out</var> =</code> <strong class="def-name">cars</strong> <code class="def-code-arguments">()</code><a class="copiable-link" href="#index-cars"> &para;</a></span></dt>
+<dd>
+<p>Speed and Stopping Distances of Cars
+</p>
+<h4 class="subsubheading" id="Description-10"><span>Description<a class="copiable-link" href="#Description-10"> &para;</a></span></h4>
+
+<p>Speed of cars and distances taken to stop. Note that the data were recorded in the 1920s.
+</p>
+<h4 class="subsubheading" id="Format-8"><span>Format<a class="copiable-link" href="#Format-8"> &para;</a></span></h4>
+
+<dl class="table">
+<dt><code class="code">speed</code></dt>
+<dd><p>Speed (mph).
+</p></dd>
+<dt><code class="code">dist</code></dt>
+<dd><p>Stopping distance (ft).
+</p></dd>
+</dl>
+
+<h4 class="subsubheading" id="Source-10"><span>Source<a class="copiable-link" href="#Source-10"> &para;</a></span></h4>
+
+<p>Ezekiel, M. (1930). <cite class="cite">Methods of Correlation Analysis</cite>. New York: Wiley.
+</p>
+<h4 class="subsubheading" id="References-4"><span>References<a class="copiable-link" href="#References-4"> &para;</a></span></h4>
+
+<p>McNeil, D. R. (1977). <cite class="cite">Interactive Data Analysis</cite>. New York: Wiley.
+</p>
+<h4 class="subsubheading" id="Examples-10"><span>Examples<a class="copiable-link" href="#Examples-10"> &para;</a></span></h4>
+
+<div class="example">
+<pre class="example-preformatted">
+
+t = tblish.dataset.cars;
+
+
+# TODO: Add Lowess smoothed lines to the plots
+
+figure;
+plot (t.speed, t.dist, &quot;o&quot;);
+xlabel (&quot;Speed (mph)&quot;); ylabel(&quot;Stopping distance (ft)&quot;);
+title (&quot;cars data&quot;);
+
+figure;
+loglog (t.speed, t.dist, &quot;o&quot;);
+xlabel (&quot;Speed (mph)&quot;); ylabel(&quot;Stopping distance (ft)&quot;);
+title (&quot;cars data (logarithmic scales)&quot;);
+
+# TODO: Do the linear model plot
+
+# Polynomial regression
+figure;
+plot (t.speed, t.dist, &quot;o&quot;);
+xlabel (&quot;Speed (mph)&quot;); ylabel(&quot;Stopping distance (ft)&quot;);
+title (&quot;cars polynomial regressions&quot;);
+hold on
+xlim ([0 25]);
+x2 = linspace (0, 25, 200);
+for degree = 1:4
+  [P, S, mu] = polyfit (t.speed, t.dist, degree);
+  y2 = polyval(P, x2, [], mu);
+  plot (x2, y2);
+endfor
+
+
+</pre></div>
+
+
+</dd></dl>
+
+</div>
+
+
+
+</body>
+</html>

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.1, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- This manual is for Tablicious, version 0.4.0-SNAPSHOT.
+
+Copyright © 2019 Andrew Janke
+
+Permission is granted to make and distribute verbatim copies of
+this manual provided the copyright notice and this permission notice
+are preserved on all copies.
+
+Permission is granted to copy and distribute modified versions of this
+manual under the conditions for verbatim copying, provided that the entire
+resulting derived work is distributed under the terms of a permission
+notice identical to this one.
+
+Permission is granted to copy and distribute translations of this manual
+into another language, under the same conditions as for modified versions. -->
+<title>tblish.dataset.crimtab (Octave Tablicious v0.4.0-SNAPSHOT)</title>
+
+<meta name="description" content="User manual for Tablicious for Octave.">
+<meta name="keywords" content="tblish.dataset.crimtab (Octave Tablicious v0.4.0-SNAPSHOT)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="tblish_002edataset.html" rel="up" title="tblish.dataset">
+<link href="tblish_002edataset_002ecupcake.html" rel="next" title="tblish.dataset.cupcake">
+<link href="tblish_002edataset_002eco2.html" rel="prev" title="tblish.dataset.co2">
+<style type="text/css">
+<!--
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.example {margin-left: 3.2em}
+span:hover a.copiable-link {visibility: visible}
+strong.def-name {font-family: monospace; font-weight: bold; font-size: larger}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<div class="subsubsection-level-extent" id="tblish_002edataset_002ecrimtab">
+<div class="nav-panel">
+<p>
+Next: <a href="tblish_002edataset_002ecupcake.html" accesskey="n" rel="next">tblish.dataset.cupcake</a>, Previous: <a href="tblish_002edataset_002eco2.html" accesskey="p" rel="prev">tblish.dataset.co2</a>, Up: <a href="tblish_002edataset.html" accesskey="u" rel="up">tblish.dataset</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<hr>
+<h4 class="subsubsection" id="tblish_002edataset_002ecrimtab-1"><span>8.2.61.15 tblish.dataset.crimtab<a class="copiable-link" href="#tblish_002edataset_002ecrimtab-1"> &para;</a></span></h4>
+
+<dl class="first-deftypefn">
+<dt class="deftypefn" id="index-crimtab"><span class="category-def">Static Method: </span><span><code class="def-type"><var class="var">out</var> =</code> <strong class="def-name">crimtab</strong> <code class="def-code-arguments">()</code><a class="copiable-link" href="#index-crimtab"> &para;</a></span></dt>
+<dd>
+<p>Student’s 3000 Criminals Data
+</p>
+<h4 class="subsubheading" id="Description-13"><span>Description<a class="copiable-link" href="#Description-13"> &para;</a></span></h4>
+
+<p>Data of 3000 male criminals over 20 years old undergoing their sentences in the
+chief prisons of England and Wales.
+</p>
+<h4 class="subsubheading" id="Format-12"><span>Format<a class="copiable-link" href="#Format-12"> &para;</a></span></h4>
+
+<p>This dataset contains three separate variables. The <code class="code">finger_length</code> and
+<code class="code">body_height</code> variables correspond to the rows and columns of the
+<code class="code">count</code> matrix.
+</p>
+<dl class="table">
+<dt><code class="code">finger_length</code></dt>
+<dd><p>Midpoints of intervals of finger lengths (cm).
+</p></dd>
+<dt><code class="code">body_height</code></dt>
+<dd><p>Body heights (cm).
+</p></dd>
+<dt><code class="code">count</code></dt>
+<dd><p>Number of prisoners in this bin.
+</p></dd>
+</dl>
+
+<h4 class="subsubheading" id="Details-1"><span>Details<a class="copiable-link" href="#Details-1"> &para;</a></span></h4>
+
+<p>Student is the pseudonym of William Sealy Gosset. In his 1908 paper he wrote
+(on page 13) at the beginning of section VI entitled Practical Test of the
+forgoing Equations:
+</p>
+<p>“Before I had succeeded in solving my problem analytically, I had endeavoured
+to do so empirically. The material used was a correlation table containing
+the height and left middle finger measurements of 3000 criminals, from a
+paper by W. R. MacDonell (Biometrika, Vol. I., p. 219). The measurements
+were written out on 3000 pieces of cardboard, which were then very thoroughly
+shuffled and drawn at random. As each card was drawn its numbers were written
+down in a book, which thus contains the measurements of 3000 criminals in a
+random order. Finally, each consecutive set of 4 was taken as a sample—750
+in all—and the mean, standard deviation, and correlation of each sample
+etermined. The difference between the mean of each sample and the mean of
+the population was then divided by the standard deviation of the sample, giving
+us the z of Section III.”
+</p>
+<p>The table is in fact page 216 and not page 219 in MacDonell(1902). In the
+MacDonell table, the middle finger lengths were given in mm and the heights
+in feet/inches intervals, they are both converted into cm here. The midpoints
+of intervals were used, e.g., where MacDonell has “4&rsquo; 7&quot;9/16 &ndash; 8&quot;9/16”, we
+have 142.24 which is 2.54*56 = 2.54*(4&rsquo; 8&quot;).
+</p>
+<p>MacDonell credited the source of data (page 178) as follows: “The data on which
+the memoir is based were obtained, through the kindness of Dr Garson, from the
+Central Metric Office, New Scotland Yard... He pointed out on page 179 that:
+“The forms were drawn at random from the mass on the office shelves; we are
+therefore dealing with a random sampling.”
+</p>
+<h4 class="subsubheading" id="Source-14"><span>Source<a class="copiable-link" href="#Source-14"> &para;</a></span></h4>
+
+<p><a class="url" href="http://pbil.univ-lyon1.fr/R/donnees/criminals1902.txt">http://pbil.univ-lyon1.fr/R/donnees/criminals1902.txt</a> thanks to Jean R.
+Lobry and Anne-Béatrice Dufour.
+</p>
+<h4 class="subsubheading" id="References-7"><span>References<a class="copiable-link" href="#References-7"> &para;</a></span></h4>
+
+<p>Garson, J.G. (1900). The metric system of identification of criminals, as used
+in in Great Britain and Ireland. <cite class="cite">The Journal of the Anthropological
+Institute of Great Britain and Ireland</cite>, 30, 161–198.
+</p>
+<p>MacDonell, W.R. (1902). On criminal anthropometry and the identification of
+criminals. <cite class="cite">Biometrika</cite>, 1(2), 177–227.
+</p>
+<p>Student (1908). The probable error of a mean. <code class="code">Biometrika</code>, 6, 1–25.
+</p>
+<h4 class="subsubheading" id="Examples-14"><span>Examples<a class="copiable-link" href="#Examples-14"> &para;</a></span></h4>
+
+<div class="example">
+<pre class="example-preformatted"># TODO: Port this from R
+</pre></div>
+
+
+</dd></dl>
+
+</div>
+<hr>
+<div class="nav-panel">
+<p>
+Next: <a href="tblish_002edataset_002ecupcake.html">tblish.dataset.cupcake</a>, Previous: <a href="tblish_002edataset_002eco2.html">tblish.dataset.co2</a>, Up: <a href="tblish_002edataset.html">tblish.dataset</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+
+
+
+</body>
+</html>

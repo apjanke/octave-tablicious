@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.1, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- This manual is for Tablicious, version 0.4.0-SNAPSHOT.
+
+Copyright © 2019 Andrew Janke
+
+Permission is granted to make and distribute verbatim copies of
+this manual provided the copyright notice and this permission notice
+are preserved on all copies.
+
+Permission is granted to copy and distribute modified versions of this
+manual under the conditions for verbatim copying, provided that the entire
+resulting derived work is distributed under the terms of a permission
+notice identical to this one.
+
+Permission is granted to copy and distribute translations of this manual
+into another language, under the same conditions as for modified versions. -->
+<title>tblish.dataset.Orange (Octave Tablicious v0.4.0-SNAPSHOT)</title>
+
+<meta name="description" content="User manual for Tablicious for Octave.">
+<meta name="keywords" content="tblish.dataset.Orange (Octave Tablicious v0.4.0-SNAPSHOT)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="tblish_002edataset.html" rel="up" title="tblish.dataset">
+<link href="tblish_002edataset_002eOrchardSprays.html" rel="next" title="tblish.dataset.OrchardSprays">
+<link href="tblish_002edataset_002eoccupationalStatus.html" rel="prev" title="tblish.dataset.occupationalStatus">
+<style type="text/css">
+<!--
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.example {margin-left: 3.2em}
+span:hover a.copiable-link {visibility: visible}
+strong.def-name {font-family: monospace; font-weight: bold; font-size: larger}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<div class="subsubsection-level-extent" id="tblish_002edataset_002eOrange">
+<div class="nav-panel">
+<p>
+Next: <a href="tblish_002edataset_002eOrchardSprays.html" accesskey="n" rel="next">tblish.dataset.OrchardSprays</a>, Previous: <a href="tblish_002edataset_002eoccupationalStatus.html" accesskey="p" rel="prev">tblish.dataset.occupationalStatus</a>, Up: <a href="tblish_002edataset.html" accesskey="u" rel="up">tblish.dataset</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<hr>
+<h4 class="subsubsection" id="tblish_002edataset_002eOrange-1"><span>8.2.61.48 tblish.dataset.Orange<a class="copiable-link" href="#tblish_002edataset_002eOrange-1"> &para;</a></span></h4>
+
+<dl class="first-deftypefn">
+<dt class="deftypefn" id="index-Orange"><span class="category-def">Static Method: </span><span><code class="def-type"><var class="var">out</var> =</code> <strong class="def-name">Orange</strong> <code class="def-code-arguments">()</code><a class="copiable-link" href="#index-Orange"> &para;</a></span></dt>
+<dd>
+<p>Growth of Orange Trees
+</p>
+<h4 class="subsubheading" id="Description-46"><span>Description<a class="copiable-link" href="#Description-46"> &para;</a></span></h4>
+
+<p>Records of the growth of orange trees.
+</p>
+<h4 class="subsubheading" id="Format-45"><span>Format<a class="copiable-link" href="#Format-45"> &para;</a></span></h4>
+
+<dl class="table">
+<dt><code class="code">Tree</code></dt>
+<dd><p>A categorical indicating on which tree the measurement is made.
+Ordering is according to increasing maximum diameter.
+</p></dd>
+<dt><code class="code">age</code></dt>
+<dd><p>Age of the tree (days since 1968-12-31).
+</p></dd>
+<dt><code class="code">circumference</code></dt>
+<dd><p>Trunk circumference (mm).
+This is probably “circumference at breast height”, a standard measurement in forestry.
+</p></dd>
+</dl>
+
+<h4 class="subsubheading" id="Source-47"><span>Source<a class="copiable-link" href="#Source-47"> &para;</a></span></h4>
+
+<p>The data are given in Box &amp; Jenkins (1976). Obtained from the Time Series Data
+Library at <a class="url" href="http://www-personal.buseco.monash.edu.au/~hyndman/TSDL/">http://www-personal.buseco.monash.edu.au/~hyndman/TSDL/</a>.
+</p>
+<h4 class="subsubheading" id="References-22"><span>References<a class="copiable-link" href="#References-22"> &para;</a></span></h4>
+
+<p>Draper, N. R. and Smith, H. (1998). <cite class="cite">Applied Regression Analysis (3rd ed)</cite>.
+New York: Wiley. (exercise 24.N).
+</p>
+<p>Pinheiro, J. C. and Bates, D. M. (2000). <cite class="cite">Mixed-effects Models in S and
+S-PLUS</cite>. New York: Springer.
+</p>
+<h4 class="subsubheading" id="Examples-46"><span>Examples<a class="copiable-link" href="#Examples-46"> &para;</a></span></h4>
+
+<div class="example">
+<pre class="example-preformatted">t = tblish.dataset.Orange;
+
+# TODO: Port coplot to Octave
+
+# TODO: Linear model
+
+</pre></div>
+
+
+</dd></dl>
+
+</div>
+
+
+
+</body>
+</html>

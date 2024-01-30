@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.1, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- This manual is for Tablicious, version 0.3.7.
+
+Copyright © 2019 Andrew Janke
+
+Permission is granted to make and distribute verbatim copies of
+this manual provided the copyright notice and this permission notice
+are preserved on all copies.
+
+Permission is granted to copy and distribute modified versions of this
+manual under the conditions for verbatim copying, provided that the entire
+resulting derived work is distributed under the terms of a permission
+notice identical to this one.
+
+Permission is granted to copy and distribute translations of this manual
+into another language, under the same conditions as for modified versions. -->
+<title>octave.dataset.Puromycin (Octave Tablicious v0.3.7)</title>
+
+<meta name="description" content="User manual for Tablicious for Octave.">
+<meta name="keywords" content="octave.dataset.Puromycin (Octave Tablicious v0.3.7)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="octave_002edataset.html" rel="up" title="octave.dataset">
+<link href="octave_002edataset_002equakes.html" rel="next" title="octave.dataset.quakes">
+<link href="octave_002edataset_002epressure.html" rel="prev" title="octave.dataset.pressure">
+<style type="text/css">
+<!--
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.example {margin-left: 3.2em}
+span:hover a.copiable-link {visibility: visible}
+strong.def-name {font-family: monospace; font-weight: bold; font-size: larger}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<div class="subsubsection-level-extent" id="octave_002edataset_002ePuromycin">
+<div class="nav-panel">
+<p>
+Next: <a href="octave_002edataset_002equakes.html" accesskey="n" rel="next">octave.dataset.quakes</a>, Previous: <a href="octave_002edataset_002epressure.html" accesskey="p" rel="prev">octave.dataset.pressure</a>, Up: <a href="octave_002edataset.html" accesskey="u" rel="up">octave.dataset</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<hr>
+<h4 class="subsubsection" id="octave_002edataset_002ePuromycin-1"><span>8.2.45.54 octave.dataset.Puromycin<a class="copiable-link" href="#octave_002edataset_002ePuromycin-1"> &para;</a></span></h4>
+
+<dl class="first-deftypefn">
+<dt class="deftypefn" id="index-Puromycin"><span class="category-def">Static Method: </span><span><code class="def-type"><var class="var">out</var> =</code> <strong class="def-name">Puromycin</strong> <code class="def-code-arguments">()</code><a class="copiable-link" href="#index-Puromycin"> &para;</a></span></dt>
+<dd>
+<p>Reaction Velocity of an Enzymatic Reaction
+</p>
+<h4 class="subsubheading" id="Description-52"><span>Description<a class="copiable-link" href="#Description-52"> &para;</a></span></h4>
+
+<p>Reaction velocity versus substrate concentration in an enzymatic reaction
+involving untreated cells or cells treated with Puromycin.
+</p>
+<h4 class="subsubheading" id="Format-51"><span>Format<a class="copiable-link" href="#Format-51"> &para;</a></span></h4>
+
+<dl class="table">
+<dt><code class="code">state</code></dt>
+<dd><p>Whether the cell was treated.
+</p></dd>
+<dt><code class="code">conc</code></dt>
+<dd><p>Substrate concentrations (ppm).
+</p></dd>
+<dt><code class="code">rate</code></dt>
+<dd><p>Instantaneous reaction rates (counts/min/min).
+</p></dd>
+</dl>
+
+<h4 class="subsubheading" id="Details-9"><span>Details<a class="copiable-link" href="#Details-9"> &para;</a></span></h4>
+
+<p>Data on the velocity of an enzymatic reaction were obtained by Treloar
+(1974). The number of counts per minute of radioactive product from the
+reaction was measured as a function of substrate concentration in parts per
+million (ppm) and from these counts the initial rate (or velocity) of the
+reaction was calculated (counts/min/min). The experiment was conducted once
+with the enzyme treated with Puromycin, and once with the enzyme untreated.
+</p>
+<h4 class="subsubheading" id="Source-53"><span>Source<a class="copiable-link" href="#Source-53"> &para;</a></span></h4>
+
+<p>The data are given in Box &amp; Jenkins (1976). Obtained from the Time Series Data
+Library at <a class="url" href="http://www-personal.buseco.monash.edu.au/~hyndman/TSDL/">http://www-personal.buseco.monash.edu.au/~hyndman/TSDL/</a>.
+</p>
+<h4 class="subsubheading" id="References-27"><span>References<a class="copiable-link" href="#References-27"> &para;</a></span></h4>
+
+<p>Bates, D.M. and Watts, D.G. (1988). <cite class="cite">Nonlinear Regression Analysis and
+Its Applications</cite>. New York: Wiley. Appendix A1.3.
+</p>
+<p>Treloar, M. A. (1974). <cite class="cite">Effects of Puromycin on Galactosyltransferase
+in Golgi Membranes</cite>. M.Sc. Thesis, U. of Toronto.
+</p>
+<h4 class="subsubheading" id="Examples-52"><span>Examples<a class="copiable-link" href="#Examples-52"> &para;</a></span></h4>
+
+<div class="example">
+<pre class="example-preformatted">t = octave.dataset.Puromycin;
+
+# TODO: Port example to Octave
+
+</pre></div>
+
+
+</dd></dl>
+
+</div>
+
+
+
+</body>
+</html>

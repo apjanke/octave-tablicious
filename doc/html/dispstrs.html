@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.1, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- This manual is for Tablicious, version 0.4.0-SNAPSHOT.
+
+Copyright © 2019 Andrew Janke
+
+Permission is granted to make and distribute verbatim copies of
+this manual provided the copyright notice and this permission notice
+are preserved on all copies.
+
+Permission is granted to copy and distribute modified versions of this
+manual under the conditions for verbatim copying, provided that the entire
+resulting derived work is distributed under the terms of a permission
+notice identical to this one.
+
+Permission is granted to copy and distribute translations of this manual
+into another language, under the same conditions as for modified versions. -->
+<title>dispstrs (Octave Tablicious v0.4.0-SNAPSHOT)</title>
+
+<meta name="description" content="User manual for Tablicious for Octave.">
+<meta name="keywords" content="dispstrs (Octave Tablicious v0.4.0-SNAPSHOT)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="API-Alphabetically.html" rel="up" title="API Alphabetically">
+<link href="duration.html" rel="next" title="duration">
+<link href="discretize.html" rel="prev" title="discretize">
+<style type="text/css">
+<!--
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+span:hover a.copiable-link {visibility: visible}
+strong.def-name {font-family: monospace; font-weight: bold; font-size: larger}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<div class="subsection-level-extent" id="dispstrs">
+<div class="nav-panel">
+<p>
+Next: <a href="duration.html" accesskey="n" rel="next">duration</a>, Previous: <a href="discretize.html" accesskey="p" rel="prev">discretize</a>, Up: <a href="API-Alphabetically.html" accesskey="u" rel="up">API Alphabetically</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<hr>
+<h4 class="subsection" id="dispstrs-1"><span>8.2.12 dispstrs<a class="copiable-link" href="#dispstrs-1"> &para;</a></span></h4>
+<dl class="first-deftypefn">
+<dt class="deftypefn" id="index-dispstrs-3"><span class="category-def">Function: </span><span><code class="def-type"><var class="var">out</var> =</code> <strong class="def-name">dispstrs</strong> <code class="def-code-arguments">(<var class="var">x</var>)</code><a class="copiable-link" href="#index-dispstrs-3"> &para;</a></span></dt>
+<dd>
+<p>Display strings for array.
+</p>
+<p>Gets the display strings for each element of <var class="var">x</var>. The display strings
+should be short, one-line, human-presentable strings describing the
+value of that element.
+</p>
+<p>The default implementation of <code class="code">dispstrs</code> can accept input of any
+type, and has decent implementations for Octave’s standard built-in types,
+but will have opaque displays for most user-defined objects.
+</p>
+<p>This is a polymorphic method that user-defined classes may override
+with their own custom display that is more informative.
+</p>
+<p>Returns a cell array the same size as <var class="var">x</var>.
+</p>
+</dd></dl>
+
+
+</div>
+
+
+
+</body>
+</html>

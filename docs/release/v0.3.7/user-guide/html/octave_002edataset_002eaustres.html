@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.1, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- This manual is for Tablicious, version 0.3.7.
+
+Copyright © 2019 Andrew Janke
+
+Permission is granted to make and distribute verbatim copies of
+this manual provided the copyright notice and this permission notice
+are preserved on all copies.
+
+Permission is granted to copy and distribute modified versions of this
+manual under the conditions for verbatim copying, provided that the entire
+resulting derived work is distributed under the terms of a permission
+notice identical to this one.
+
+Permission is granted to copy and distribute translations of this manual
+into another language, under the same conditions as for modified versions. -->
+<title>octave.dataset.austres (Octave Tablicious v0.3.7)</title>
+
+<meta name="description" content="User manual for Tablicious for Octave.">
+<meta name="keywords" content="octave.dataset.austres (Octave Tablicious v0.3.7)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="octave_002edataset.html" rel="up" title="octave.dataset">
+<link href="octave_002edataset_002ebeavers.html" rel="next" title="octave.dataset.beavers">
+<link href="octave_002edataset_002eattitude.html" rel="prev" title="octave.dataset.attitude">
+<style type="text/css">
+<!--
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.example {margin-left: 3.2em}
+span:hover a.copiable-link {visibility: visible}
+strong.def-name {font-family: monospace; font-weight: bold; font-size: larger}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<div class="subsubsection-level-extent" id="octave_002edataset_002eaustres">
+<div class="nav-panel">
+<p>
+Next: <a href="octave_002edataset_002ebeavers.html" accesskey="n" rel="next">octave.dataset.beavers</a>, Previous: <a href="octave_002edataset_002eattitude.html" accesskey="p" rel="prev">octave.dataset.attitude</a>, Up: <a href="octave_002edataset.html" accesskey="u" rel="up">octave.dataset</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<hr>
+<h4 class="subsubsection" id="octave_002edataset_002eaustres-1"><span>8.2.45.7 octave.dataset.austres<a class="copiable-link" href="#octave_002edataset_002eaustres-1"> &para;</a></span></h4>
+
+<dl class="first-deftypefn">
+<dt class="deftypefn" id="index-austres"><span class="category-def">Static Method: </span><span><code class="def-type"><var class="var">out</var> =</code> <strong class="def-name">austres</strong> <code class="def-code-arguments">()</code><a class="copiable-link" href="#index-austres"> &para;</a></span></dt>
+<dd>
+<p>Australian Population
+</p>
+<h4 class="subsubheading" id="Description-6"><span>Description<a class="copiable-link" href="#Description-6"> &para;</a></span></h4>
+
+<p>Numbers of Australian residents measured quarterly from March 1971 to March 1994.
+</p>
+<h4 class="subsubheading" id="Format-4"><span>Format<a class="copiable-link" href="#Format-4"> &para;</a></span></h4>
+
+<dl class="table">
+<dt><code class="code">date</code></dt>
+<dd><p>The month of the observation.
+</p></dd>
+<dt><code class="code">residents</code></dt>
+<dd><p>The number of residents.
+</p></dd>
+</dl>
+
+<h4 class="subsubheading" id="Source-6"><span>Source<a class="copiable-link" href="#Source-6"> &para;</a></span></h4>
+
+<p>Brockwell, P. J. and Davis, R. A. (1996). <cite class="cite">Introduction to Time Series and
+Forecasting</cite>. New York: Springer-Verlag.
+</p>
+<h4 class="subsubheading" id="Examples-6"><span>Examples<a class="copiable-link" href="#Examples-6"> &para;</a></span></h4>
+
+<div class="example">
+<pre class="example-preformatted">t = octave.dataset.austres
+
+plot (datenum (t.date), t.residents);
+datetick x
+xlabel (&quot;Month&quot;); ylabel (&quot;Residents&quot;); title (&quot;Australian Residents&quot;);
+</pre></div>
+
+
+</dd></dl>
+
+</div>
+
+
+
+</body>
+</html>

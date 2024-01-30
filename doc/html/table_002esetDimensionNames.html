@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.1, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- This manual is for Tablicious, version 0.4.0-SNAPSHOT.
+
+Copyright © 2019 Andrew Janke
+
+Permission is granted to make and distribute verbatim copies of
+this manual provided the copyright notice and this permission notice
+are preserved on all copies.
+
+Permission is granted to copy and distribute modified versions of this
+manual under the conditions for verbatim copying, provided that the entire
+resulting derived work is distributed under the terms of a permission
+notice identical to this one.
+
+Permission is granted to copy and distribute translations of this manual
+into another language, under the same conditions as for modified versions. -->
+<title>table.setDimensionNames (Octave Tablicious v0.4.0-SNAPSHOT)</title>
+
+<meta name="description" content="User manual for Tablicious for Octave.">
+<meta name="keywords" content="table.setDimensionNames (Octave Tablicious v0.4.0-SNAPSHOT)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="table.html" rel="up" title="table">
+<link href="table_002esetRowNames.html" rel="next" title="table.setRowNames">
+<link href="table_002esetVariableNames.html" rel="prev" title="table.setVariableNames">
+<style type="text/css">
+<!--
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+span:hover a.copiable-link {visibility: visible}
+strong.def-name {font-family: monospace; font-weight: bold; font-size: larger}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<div class="subsubsection-level-extent" id="table_002esetDimensionNames">
+<div class="nav-panel">
+<p>
+Next: <a href="table_002esetRowNames.html" accesskey="n" rel="next">table.setRowNames</a>, Previous: <a href="table_002esetVariableNames.html" accesskey="p" rel="prev">table.setVariableNames</a>, Up: <a href="table.html" accesskey="u" rel="up">table</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<hr>
+<h4 class="subsubsection" id="table_002esetDimensionNames-1"><span>8.2.57.33 table.setDimensionNames<a class="copiable-link" href="#table_002esetDimensionNames-1"> &para;</a></span></h4>
+
+<dl class="first-deftypefn">
+<dt class="deftypefn" id="index-setDimensionNames"><span class="category-def">Method: </span><span><code class="def-type"><var class="var">out</var> =</code> <strong class="def-name">setDimensionNames</strong> <code class="def-code-arguments">(<var class="var">obj</var>, <var class="var">names</var>)</code><a class="copiable-link" href="#index-setDimensionNames"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn" id="index-setDimensionNames-1"><span class="category-def">Method: </span><span><code class="def-type"><var class="var">out</var> =</code> <strong class="def-name">setDimensionNames</strong> <code class="def-code-arguments">(<var class="var">obj</var>, <var class="var">ix</var>, <var class="var">names</var>)</code><a class="copiable-link" href="#index-setDimensionNames-1"> &para;</a></span></dt>
+<dd>
+<p>Set dimension names.
+</p>
+<p>Sets the <code class="code">DimensionNames</code> for this table to a new list of names.
+</p>
+<p><var class="var">names</var> is a char or cellstr vector. It must have the same number of elements
+as the number of dimension names being assigned.
+</p>
+<p><var class="var">ix</var> is an index vector indicating which dimension names to set. If
+omitted, it sets all two of them. Since there are always two dimension,
+the indexes in <var class="var">ix</var> may never be higher than 2.
+</p>
+<p>This method exists because the <code class="code">obj.Properties.DimensionNames = &hellip;</code>
+assignment form does not work, possibly due to an Octave bug.
+</p>
+</dd></dl>
+
+</div>
+
+
+
+</body>
+</html>

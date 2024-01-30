@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.1, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- This manual is for Tablicious, version 0.4.0-SNAPSHOT.
+
+Copyright © 2019 Andrew Janke
+
+Permission is granted to make and distribute verbatim copies of
+this manual provided the copyright notice and this permission notice
+are preserved on all copies.
+
+Permission is granted to copy and distribute modified versions of this
+manual under the conditions for verbatim copying, provided that the entire
+resulting derived work is distributed under the terms of a permission
+notice identical to this one.
+
+Permission is granted to copy and distribute translations of this manual
+into another language, under the same conditions as for modified versions. -->
+<title>tblish.dataset.women (Octave Tablicious v0.4.0-SNAPSHOT)</title>
+
+<meta name="description" content="User manual for Tablicious for Octave.">
+<meta name="keywords" content="tblish.dataset.women (Octave Tablicious v0.4.0-SNAPSHOT)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="tblish_002edataset.html" rel="up" title="tblish.dataset">
+<link href="tblish_002edataset_002eWorldPhones.html" rel="next" title="tblish.dataset.WorldPhones">
+<link href="tblish_002edataset_002ewarpbreaks.html" rel="prev" title="tblish.dataset.warpbreaks">
+<style type="text/css">
+<!--
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.example {margin-left: 3.2em}
+span:hover a.copiable-link {visibility: visible}
+strong.def-name {font-family: monospace; font-weight: bold; font-size: larger}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<div class="subsubsection-level-extent" id="tblish_002edataset_002ewomen">
+<div class="nav-panel">
+<p>
+Next: <a href="tblish_002edataset_002eWorldPhones.html" accesskey="n" rel="next">tblish.dataset.WorldPhones</a>, Previous: <a href="tblish_002edataset_002ewarpbreaks.html" accesskey="p" rel="prev">tblish.dataset.warpbreaks</a>, Up: <a href="tblish_002edataset.html" accesskey="u" rel="up">tblish.dataset</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<hr>
+<h4 class="subsubsection" id="tblish_002edataset_002ewomen-1"><span>8.2.61.83 tblish.dataset.women<a class="copiable-link" href="#tblish_002edataset_002ewomen-1"> &para;</a></span></h4>
+
+<dl class="first-deftypefn">
+<dt class="deftypefn" id="index-women"><span class="category-def">Static Method: </span><span><code class="def-type"><var class="var">out</var> =</code> <strong class="def-name">women</strong> <code class="def-code-arguments">()</code><a class="copiable-link" href="#index-women"> &para;</a></span></dt>
+<dd>
+<p>Average Heights and Weights for American Women
+</p>
+<h4 class="subsubheading" id="Description-81"><span>Description<a class="copiable-link" href="#Description-81"> &para;</a></span></h4>
+
+<p>This data set gives the average heights and weights for American women aged 30–39.
+</p>
+<h4 class="subsubheading" id="Format-80"><span>Format<a class="copiable-link" href="#Format-80"> &para;</a></span></h4>
+
+<dl class="table">
+<dt><code class="code">height</code></dt>
+<dd><p>Height (in).
+</p></dd>
+<dt><code class="code">weight</code></dt>
+<dd><p>Weight (lbs).
+</p></dd>
+</dl>
+
+<h4 class="subsubheading" id="Details-20"><span>Details<a class="copiable-link" href="#Details-20"> &para;</a></span></h4>
+
+<p>The data set appears to have been taken from the American Society of Actuaries
+Build and Blood Pressure Study for some (unknown to us) earlier year.
+</p>
+<p>The World Almanac notes: “The figures represent weights in ordinary indoor
+clothing and shoes, and heights with shoes”.
+</p>
+<h4 class="subsubheading" id="Source-82"><span>Source<a class="copiable-link" href="#Source-82"> &para;</a></span></h4>
+
+<p><cite class="cite">The World Almanac and Book of Facts</cite>, 1975.
+</p>
+<h4 class="subsubheading" id="References-45"><span>References<a class="copiable-link" href="#References-45"> &para;</a></span></h4>
+
+<p>McNeil, D. R. (1977). <cite class="cite">Interactive Data Analysis</cite>. New York: Wiley.
+</p>
+<h4 class="subsubheading" id="Examples-81"><span>Examples<a class="copiable-link" href="#Examples-81"> &para;</a></span></h4>
+
+<div class="example">
+<pre class="example-preformatted">t = tblish.dataset.women;
+
+figure
+scatter (t.height, t.weight)
+xlabel (&quot;Height (in)&quot;)
+ylabel (&quot;Weight (lb&quot;)
+title (&quot;women data: American women aged 30-39&quot;)
+
+</pre></div>
+
+
+</dd></dl>
+
+</div>
+
+
+
+</body>
+</html>

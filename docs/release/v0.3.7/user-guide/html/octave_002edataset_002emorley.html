@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.1, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- This manual is for Tablicious, version 0.3.7.
+
+Copyright © 2019 Andrew Janke
+
+Permission is granted to make and distribute verbatim copies of
+this manual provided the copyright notice and this permission notice
+are preserved on all copies.
+
+Permission is granted to copy and distribute modified versions of this
+manual under the conditions for verbatim copying, provided that the entire
+resulting derived work is distributed under the terms of a permission
+notice identical to this one.
+
+Permission is granted to copy and distribute translations of this manual
+into another language, under the same conditions as for modified versions. -->
+<title>octave.dataset.morley (Octave Tablicious v0.3.7)</title>
+
+<meta name="description" content="User manual for Tablicious for Octave.">
+<meta name="keywords" content="octave.dataset.morley (Octave Tablicious v0.3.7)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="octave_002edataset.html" rel="up" title="octave.dataset">
+<link href="octave_002edataset_002emtcars.html" rel="next" title="octave.dataset.mtcars">
+<link href="octave_002edataset_002elynx.html" rel="prev" title="octave.dataset.lynx">
+<style type="text/css">
+<!--
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.example {margin-left: 3.2em}
+span:hover a.copiable-link {visibility: visible}
+strong.def-name {font-family: monospace; font-weight: bold; font-size: larger}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<div class="subsubsection-level-extent" id="octave_002edataset_002emorley">
+<div class="nav-panel">
+<p>
+Next: <a href="octave_002edataset_002emtcars.html" accesskey="n" rel="next">octave.dataset.mtcars</a>, Previous: <a href="octave_002edataset_002elynx.html" accesskey="p" rel="prev">octave.dataset.lynx</a>, Up: <a href="octave_002edataset.html" accesskey="u" rel="up">octave.dataset</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<hr>
+<h4 class="subsubsection" id="octave_002edataset_002emorley-1"><span>8.2.45.41 octave.dataset.morley<a class="copiable-link" href="#octave_002edataset_002emorley-1"> &para;</a></span></h4>
+
+<dl class="first-deftypefn">
+<dt class="deftypefn" id="index-morley"><span class="category-def">Static Method: </span><span><code class="def-type"><var class="var">out</var> =</code> <strong class="def-name">morley</strong> <code class="def-code-arguments">()</code><a class="copiable-link" href="#index-morley"> &para;</a></span></dt>
+<dd>
+<p>Michelson Speed of Light Data
+</p>
+<h4 class="subsubheading" id="Description-39"><span>Description<a class="copiable-link" href="#Description-39"> &para;</a></span></h4>
+
+<p>A classical data of Michelson (but not this one with Morley) on measurements
+done in 1879 on the speed of light. The data consists of five experiments,
+each consisting of 20 consecutive ‘runs’. The response is the speed of
+light measurement, suitably coded (km/sec, with 299000 subtracted).
+</p>
+<h4 class="subsubheading" id="Format-38"><span>Format<a class="copiable-link" href="#Format-38"> &para;</a></span></h4>
+
+<dl class="table">
+<dt><code class="code">Expt</code></dt>
+<dd><p>The experiment number, from 1 to 5.
+</p></dd>
+<dt><code class="code">Run</code></dt>
+<dd><p>The run number within each experiment.
+</p></dd>
+<dt><code class="code">Speed</code></dt>
+<dd><p>Speed-of-light measurement.
+</p></dd>
+</dl>
+
+<h4 class="subsubheading" id="Details-6"><span>Details<a class="copiable-link" href="#Details-6"> &para;</a></span></h4>
+
+<p>The data is here viewed as a randomized block experiment with <code class="code">experiment</code>
+and <code class="code">run</code> as the factors. <code class="code">run</code> may also be considered a quantitative
+variate to account for linear (or polynomial) changes in the measurement over
+the course of a single experiment.
+</p>
+<h4 class="subsubheading" id="Source-40"><span>Source<a class="copiable-link" href="#Source-40"> &para;</a></span></h4>
+
+<p>A. J. Weekes (1986). <cite class="cite">A Genstat Primer</cite>. London: Edward Arnold.
+</p>
+<p>S. M. Stigler (1977). Do robust estimators work with real data? <cite class="cite">Annals
+of Statistics</cite> 5, 1055–1098. (See Table 6.)
+</p>
+<p>A. A. Michelson (1882). Experimental determination of the velocity of
+light made at the United States Naval Academy, Annapolis. <cite class="cite">Astronomic
+Papers</cite>, 1, 135–8. U.S. Nautical Almanac Office. (See Table 24.).
+</p>
+<h4 class="subsubheading" id="Examples-39"><span>Examples<a class="copiable-link" href="#Examples-39"> &para;</a></span></h4>
+
+<div class="example">
+<pre class="example-preformatted">t = octave.dataset.morley;
+
+# TODO: Port to Octave
+
+</pre></div>
+
+
+</dd></dl>
+
+</div>
+
+
+
+</body>
+</html>

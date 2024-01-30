@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.1, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- This manual is for Tablicious, version 0.3.7.
+
+Copyright © 2019 Andrew Janke
+
+Permission is granted to make and distribute verbatim copies of
+this manual provided the copyright notice and this permission notice
+are preserved on all copies.
+
+Permission is granted to copy and distribute modified versions of this
+manual under the conditions for verbatim copying, provided that the entire
+resulting derived work is distributed under the terms of a permission
+notice identical to this one.
+
+Permission is granted to copy and distribute translations of this manual
+into another language, under the same conditions as for modified versions. -->
+<title>Example Data Sets (Octave Tablicious v0.3.7)</title>
+
+<meta name="description" content="User manual for Tablicious for Octave.">
+<meta name="keywords" content="Example Data Sets (Octave Tablicious v0.3.7)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="index.html" rel="up" title="Top">
+<link href="Missing-Functionality.html" rel="next" title="Missing Functionality">
+<link href="Validation-Functions.html" rel="prev" title="Validation Functions">
+<style type="text/css">
+<!--
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.example {margin-left: 3.2em}
+span:hover a.copiable-link {visibility: visible}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<div class="chapter-level-extent" id="Example-Data-Sets">
+<div class="nav-panel">
+<p>
+Next: <a href="Missing-Functionality.html" accesskey="n" rel="next">Missing Functionality</a>, Previous: <a href="Validation-Functions.html" accesskey="p" rel="prev">Validation Functions</a>, Up: <a href="index.html" accesskey="u" rel="up">Tablicious for GNU Octave</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<hr>
+<h2 class="chapter" id="Example-Data-Sets-1"><span>6 Example Data Sets<a class="copiable-link" href="#Example-Data-Sets-1"> &para;</a></span></h2>
+
+<p>Tablicious comes with several example data sets that you can use to explore how
+its functions and objects work. These are accessed through the
+<code class="code">octave.datasets</code> and <code class="code">octave.dataset</code> classes.
+</p>
+<p>To see a list of the available data sets, run <code class="code">octave.datasets.list()</code>.
+Then to load one of the example data sets, run
+<code class="code">octave.datasets.load('examplename')</code>. For example:
+</p>
+<div class="example">
+<pre class="example-preformatted">octave.datasets.list
+t = octave.datasets.load('cupcake')
+</pre></div>
+
+<p>You can also load it by calling <code class="code">octave.dataset.&lt;name&gt;</code>. This does
+the same thing. For example:
+</p>
+<div class="example">
+<pre class="example-preformatted">t = octave.dataset.cupcake
+</pre></div>
+
+<p>When you load a data set, it either returns all its data in a single variable
+(if you capture it), or loads its data into one or more variables in your
+workspace (if you call it with no outputs).
+</p>
+<p>Each example data set comes with help text that describes the data set and
+provides examples of how to work with it. This help is found using the <code class="code">doc</code>
+command on <code class="code">octave.dataset.&lt;name&gt;</code>, where <var class="var">&lt;name&gt;</var> is the name of
+the data set.
+</p>
+<p>For example:
+</p>
+<div class="example">
+<pre class="example-preformatted">doc octave.dataset.cupcake
+</pre></div>
+
+<p>(The command <code class="code">help octave.dataset.&lt;name&gt;</code> ought to work too, but it
+currently doesn’t. This may be due to an issue with Octave’s <code class="code">help</code>
+command.)
+</p>
+<ul class="mini-toc">
+<li><a href="Data-Sets-from-R.html" accesskey="1">Data Sets from R</a></li>
+</ul>
+</div>
+
+
+
+</body>
+</html>

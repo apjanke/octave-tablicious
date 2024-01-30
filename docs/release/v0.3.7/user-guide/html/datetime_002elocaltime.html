@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.1, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- This manual is for Tablicious, version 0.3.7.
+
+Copyright © 2019 Andrew Janke
+
+Permission is granted to make and distribute verbatim copies of
+this manual provided the copyright notice and this permission notice
+are preserved on all copies.
+
+Permission is granted to copy and distribute modified versions of this
+manual under the conditions for verbatim copying, provided that the entire
+resulting derived work is distributed under the terms of a permission
+notice identical to this one.
+
+Permission is granted to copy and distribute translations of this manual
+into another language, under the same conditions as for modified versions. -->
+<title>datetime.localtime (Octave Tablicious v0.3.7)</title>
+
+<meta name="description" content="User manual for Tablicious for Octave.">
+<meta name="keywords" content="datetime.localtime (Octave Tablicious v0.3.7)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="datetime.html" rel="up" title="datetime">
+<link href="datetime_002eisnat.html" rel="next" title="datetime.isnat">
+<link href="datetime_002egmtime.html" rel="prev" title="datetime.gmtime">
+<style type="text/css">
+<!--
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.example {margin-left: 3.2em}
+span:hover a.copiable-link {visibility: visible}
+strong.def-name {font-family: monospace; font-weight: bold; font-size: larger}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<div class="subsubsection-level-extent" id="datetime_002elocaltime">
+<div class="nav-panel">
+<p>
+Next: <a href="datetime_002eisnat.html" accesskey="n" rel="next">datetime.isnat</a>, Previous: <a href="datetime_002egmtime.html" accesskey="p" rel="prev">datetime.gmtime</a>, Up: <a href="datetime.html" accesskey="u" rel="up">datetime</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<hr>
+<h4 class="subsubsection" id="datetime_002elocaltime-1"><span>8.2.9.21 datetime.localtime<a class="copiable-link" href="#datetime_002elocaltime-1"> &para;</a></span></h4>
+
+<dl class="first-deftypefn">
+<dt class="deftypefn" id="index-localtime"><span class="category-def">Method: </span><span><code class="def-type"><var class="var">out</var> =</code> <strong class="def-name">localtime</strong> <code class="def-code-arguments">(<var class="var">obj</var>)</code><a class="copiable-link" href="#index-localtime"> &para;</a></span></dt>
+<dd>
+<p>Convert to TM_STRUCT structure in UTC time.
+</p>
+<p>Converts <var class="var">obj</var> to a TM_STRUCT style structure array. The result is a
+local time in the system default time zone. Note that the system default
+time zone is always used, regardless of what TimeZone is set on <var class="var">obj</var>.
+</p>
+<p>If <var class="var">obj</var> is unzoned, it is assumed to be in UTC time.
+</p>
+<p>Returns a struct array in TM_STRUCT style.
+</p>
+<p>Example:
+</p><div class="example">
+<pre class="example-preformatted">dt = datetime;
+dt.TimeZone = datetime.SystemTimeZone;
+tm_struct = localtime (dt);
+</pre></div>
+
+</dd></dl>
+
+</div>
+
+
+
+</body>
+</html>

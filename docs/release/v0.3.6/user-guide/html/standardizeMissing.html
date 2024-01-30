@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.1, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- This manual is for Tablicious, version 0.3.6.
+
+Copyright © 2019 Andrew Janke
+
+Permission is granted to make and distribute verbatim copies of
+this manual provided the copyright notice and this permission notice
+are preserved on all copies.
+
+Permission is granted to copy and distribute modified versions of this
+manual under the conditions for verbatim copying, provided that the entire
+resulting derived work is distributed under the terms of a permission
+notice identical to this one.
+
+Permission is granted to copy and distribute translations of this manual
+into another language, under the same conditions as for modified versions. -->
+<title>standardizeMissing (Octave Tablicious v0.3.6)</title>
+
+<meta name="description" content="User manual for Tablicious for Octave.">
+<meta name="keywords" content="standardizeMissing (Octave Tablicious v0.3.6)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="API-Alphabetically.html" rel="up" title="API Alphabetically">
+<link href="startsWith.html" rel="next" title="startsWith">
+<link href="splitapply.html" rel="prev" title="splitapply">
+<style type="text/css">
+<!--
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+span:hover a.copiable-link {visibility: visible}
+strong.def-name {font-family: monospace; font-weight: bold; font-size: larger}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<div class="subsection-level-extent" id="standardizeMissing">
+<div class="nav-panel">
+<p>
+Next: <a href="startsWith.html" accesskey="n" rel="next">startsWith</a>, Previous: <a href="splitapply.html" accesskey="p" rel="prev">splitapply</a>, Up: <a href="API-Alphabetically.html" accesskey="u" rel="up">API Alphabetically</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<hr>
+<h4 class="subsection" id="standardizeMissing-1"><span>8.2.55 standardizeMissing<a class="copiable-link" href="#standardizeMissing-1"> &para;</a></span></h4>
+<dl class="first-deftypefn">
+<dt class="deftypefn" id="index-standardizeMissing"><span class="category-def">Function: </span><span><code class="def-type"><var class="var">out</var> =</code> <strong class="def-name">standardizeMissing</strong> <code class="def-code-arguments">(<var class="var">X</var>, <var class="var">indicator</var>)</code><a class="copiable-link" href="#index-standardizeMissing"> &para;</a></span></dt>
+<dd>
+<p>Insert standard missing values.
+</p>
+<p>Standardizes missing values in <var class="var">X</var> by replacing the values listed in
+<var class="var">indicator</var> with the standard missing values for the type of <var class="var">X</var>.
+</p>
+<p>Standard missing values depend on the data type:
+  * NaN for double, single, duration, and calendarDuration
+  * NaT for datetime
+  * <code class="code">' '</code> for char
+  * <code class="code">{''}</code> for cellstrs
+  * Integer numeric types have no standard missing value; they are never
+    considered missing.
+  * Structs are never considered missing.
+  * Logicals are never considered missing.
+</p>
+<p>See also: <a class="ref" href="table_002estandardizeMissing.html">table.standardizeMissing</a>
+</p>
+</dd></dl>
+
+
+</div>
+
+
+
+</body>
+</html>

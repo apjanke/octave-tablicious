@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.1, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- This manual is for Tablicious, version 0.4.0-SNAPSHOT.
+
+Copyright © 2019 Andrew Janke
+
+Permission is granted to make and distribute verbatim copies of
+this manual provided the copyright notice and this permission notice
+are preserved on all copies.
+
+Permission is granted to copy and distribute modified versions of this
+manual under the conditions for verbatim copying, provided that the entire
+resulting derived work is distributed under the terms of a permission
+notice identical to this one.
+
+Permission is granted to copy and distribute translations of this manual
+into another language, under the same conditions as for modified versions. -->
+<title>tblish.dataset.chickwts (Octave Tablicious v0.4.0-SNAPSHOT)</title>
+
+<meta name="description" content="User manual for Tablicious for Octave.">
+<meta name="keywords" content="tblish.dataset.chickwts (Octave Tablicious v0.4.0-SNAPSHOT)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="tblish_002edataset.html" rel="up" title="tblish.dataset">
+<link href="tblish_002edataset_002eco2.html" rel="next" title="tblish.dataset.co2">
+<link href="tblish_002edataset_002eChickWeight.html" rel="prev" title="tblish.dataset.ChickWeight">
+<style type="text/css">
+<!--
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.example {margin-left: 3.2em}
+span:hover a.copiable-link {visibility: visible}
+strong.def-name {font-family: monospace; font-weight: bold; font-size: larger}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<div class="subsubsection-level-extent" id="tblish_002edataset_002echickwts">
+<div class="nav-panel">
+<p>
+Next: <a href="tblish_002edataset_002eco2.html" accesskey="n" rel="next">tblish.dataset.co2</a>, Previous: <a href="tblish_002edataset_002eChickWeight.html" accesskey="p" rel="prev">tblish.dataset.ChickWeight</a>, Up: <a href="tblish_002edataset.html" accesskey="u" rel="up">tblish.dataset</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<hr>
+<h4 class="subsubsection" id="tblish_002edataset_002echickwts-1"><span>8.2.61.13 tblish.dataset.chickwts<a class="copiable-link" href="#tblish_002edataset_002echickwts-1"> &para;</a></span></h4>
+
+<dl class="first-deftypefn">
+<dt class="deftypefn" id="index-chickwts"><span class="category-def">Static Method: </span><span><code class="def-type"><var class="var">out</var> =</code> <strong class="def-name">chickwts</strong> <code class="def-code-arguments">()</code><a class="copiable-link" href="#index-chickwts"> &para;</a></span></dt>
+<dd>
+<p>Chicken Weights by Feed Type
+</p>
+<h4 class="subsubheading" id="Description-11"><span>Description<a class="copiable-link" href="#Description-11"> &para;</a></span></h4>
+
+<p>An experiment was conducted to measure and compare the effectiveness of various
+feed supplements on the growth rate of chickens.
+</p>
+<p>Newly hatched chicks were randomly allocated into six groups, and each group
+was given a different feed supplement. Their weights in grams after six weeks
+are given along with feed types.
+</p>
+<h4 class="subsubheading" id="Format-10"><span>Format<a class="copiable-link" href="#Format-10"> &para;</a></span></h4>
+
+<dl class="table">
+<dt><code class="code">weight</code></dt>
+<dd><p>Chick weight at six weeks (gm).
+</p></dd>
+<dt><code class="code">feed</code></dt>
+<dd><p>Feed type.
+</p></dd>
+</dl>
+
+<h4 class="subsubheading" id="Source-12"><span>Source<a class="copiable-link" href="#Source-12"> &para;</a></span></h4>
+
+<p>Anonymous (1948) <cite class="cite">Biometrika</cite>, 35, 214.
+</p>
+<h4 class="subsubheading" id="References-5"><span>References<a class="copiable-link" href="#References-5"> &para;</a></span></h4>
+
+<p>McNeil, D. R. (1977). <code class="code">Interactive Data Analysis</code>. New York: Wiley.
+</p>
+<h4 class="subsubheading" id="Examples-12"><span>Examples<a class="copiable-link" href="#Examples-12"> &para;</a></span></h4>
+
+<div class="example">
+<pre class="example-preformatted"># This example requires the statistics package from Octave Forge
+
+t = tblish.dataset.chickwts
+
+# Boxplot by group
+figure
+g = groupby (t, &quot;feed&quot;, {
+  &quot;weight&quot;, @(x) {x}, &quot;weight&quot;
+});
+boxplot (g.weight, 1);
+xlabel (&quot;feed&quot;); ylabel (&quot;Weight at six weeks (gm)&quot;);
+xticklabels ([{&quot;&quot;} cellstr(g.feed')]);
+
+# Linear model
+# TODO: This linear model thing and anova
+
+</pre></div>
+
+
+</dd></dl>
+
+</div>
+
+
+
+</body>
+</html>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.1, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- This manual is for Tablicious, version 0.3.6.
+
+Copyright © 2019 Andrew Janke
+
+Permission is granted to make and distribute verbatim copies of
+this manual provided the copyright notice and this permission notice
+are preserved on all copies.
+
+Permission is granted to copy and distribute modified versions of this
+manual under the conditions for verbatim copying, provided that the entire
+resulting derived work is distributed under the terms of a permission
+notice identical to this one.
+
+Permission is granted to copy and distribute translations of this manual
+into another language, under the same conditions as for modified versions. -->
+<title>octave.dataset.rock (Octave Tablicious v0.3.6)</title>
+
+<meta name="description" content="User manual for Tablicious for Octave.">
+<meta name="keywords" content="octave.dataset.rock (Octave Tablicious v0.3.6)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="octave_002edataset.html" rel="up" title="octave.dataset">
+<link href="octave_002edataset_002esleep.html" rel="next" title="octave.dataset.sleep">
+<link href="octave_002edataset_002erivers.html" rel="prev" title="octave.dataset.rivers">
+<style type="text/css">
+<!--
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.example {margin-left: 3.2em}
+span:hover a.copiable-link {visibility: visible}
+strong.def-name {font-family: monospace; font-weight: bold; font-size: larger}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<div class="subsubsection-level-extent" id="octave_002edataset_002erock">
+<div class="nav-panel">
+<p>
+Next: <a href="octave_002edataset_002esleep.html" accesskey="n" rel="next">octave.dataset.sleep</a>, Previous: <a href="octave_002edataset_002erivers.html" accesskey="p" rel="prev">octave.dataset.rivers</a>, Up: <a href="octave_002edataset.html" accesskey="u" rel="up">octave.dataset</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<hr>
+<h4 class="subsubsection" id="octave_002edataset_002erock-1"><span>8.2.45.58 octave.dataset.rock<a class="copiable-link" href="#octave_002edataset_002erock-1"> &para;</a></span></h4>
+
+<dl class="first-deftypefn">
+<dt class="deftypefn" id="index-rock"><span class="category-def">Static Method: </span><span><code class="def-type"><var class="var">out</var> =</code> <strong class="def-name">rock</strong> <code class="def-code-arguments">()</code><a class="copiable-link" href="#index-rock"> &para;</a></span></dt>
+<dd>
+<p>Measurements on Petroleum Rock Samples
+</p>
+<h4 class="subsubheading" id="Description-56"><span>Description<a class="copiable-link" href="#Description-56"> &para;</a></span></h4>
+
+<p>Measurements on 48 rock samples from a petroleum reservoir.
+</p>
+<h4 class="subsubheading" id="Format-55"><span>Format<a class="copiable-link" href="#Format-55"> &para;</a></span></h4>
+
+<dl class="table">
+<dt><code class="code">area</code></dt>
+<dd><p>Area of pores space, in pixels out of 256 by 256.
+</p></dd>
+<dt><code class="code">peri</code></dt>
+<dd><p>Perimeter in pixels.
+</p></dd>
+<dt><code class="code">shape</code></dt>
+<dd><p>Perimeter/sqrt(area).
+</p></dd>
+<dt><code class="code">perm</code></dt>
+<dd><p>Permeability in milli-Darcies.
+</p></dd>
+</dl>
+
+<h4 class="subsubheading" id="Details-12"><span>Details<a class="copiable-link" href="#Details-12"> &para;</a></span></h4>
+
+<p>Twelve core samples from petroleum reservoirs were sampled by 4
+cross-sections. Each core sample was measured for permeability, and each
+cross-section has total area of pores, total perimeter of pores, and shape.
+</p>
+<h4 class="subsubheading" id="Source-57"><span>Source<a class="copiable-link" href="#Source-57"> &para;</a></span></h4>
+
+<p>Data from BP Research, image analysis by Ronit Katz, U. Oxford.
+</p>
+<h4 class="subsubheading" id="Examples-56"><span>Examples<a class="copiable-link" href="#Examples-56"> &para;</a></span></h4>
+
+<div class="example">
+<pre class="example-preformatted">t = octave.dataset.rock;
+
+figure
+scatter (t.area, t.perm)
+xlabel (&quot;Area of pores space (pixels out of 256x256)&quot;)
+ylabel (&quot;Permeability (milli-Darcies)&quot;)
+
+</pre></div>
+
+
+</dd></dl>
+
+</div>
+
+
+
+</body>
+</html>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.1, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- This manual is for Tablicious, version 0.4.0-SNAPSHOT.
+
+Copyright © 2019 Andrew Janke
+
+Permission is granted to make and distribute verbatim copies of
+this manual provided the copyright notice and this permission notice
+are preserved on all copies.
+
+Permission is granted to copy and distribute modified versions of this
+manual under the conditions for verbatim copying, provided that the entire
+resulting derived work is distributed under the terms of a permission
+notice identical to this one.
+
+Permission is granted to copy and distribute translations of this manual
+into another language, under the same conditions as for modified versions. -->
+<title>tblish.examples.coplot (Octave Tablicious v0.4.0-SNAPSHOT)</title>
+
+<meta name="description" content="User manual for Tablicious for Octave.">
+<meta name="keywords" content="tblish.examples.coplot (Octave Tablicious v0.4.0-SNAPSHOT)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="API-Alphabetically.html" rel="up" title="API Alphabetically">
+<link href="tblish_002eexamples_002eplot_005fpairs.html" rel="next" title="tblish.examples.plot_pairs">
+<link href="tblish_002edatasets.html" rel="prev" title="tblish.datasets">
+<style type="text/css">
+<!--
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+span:hover a.copiable-link {visibility: visible}
+strong.def-name {font-family: monospace; font-weight: bold; font-size: larger}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<div class="subsection-level-extent" id="tblish_002eexamples_002ecoplot">
+<div class="nav-panel">
+<p>
+Next: <a href="tblish_002eexamples_002eplot_005fpairs.html" accesskey="n" rel="next">tblish.examples.plot_pairs</a>, Previous: <a href="tblish_002edatasets.html" accesskey="p" rel="prev">tblish.datasets</a>, Up: <a href="API-Alphabetically.html" accesskey="u" rel="up">API Alphabetically</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<hr>
+<h4 class="subsection" id="tblish_002eexamples_002ecoplot-1"><span>8.2.63 tblish.examples.coplot<a class="copiable-link" href="#tblish_002eexamples_002ecoplot-1"> &para;</a></span></h4>
+<dl class="first-deftypefn">
+<dt class="deftypefn" id="index-coplot"><span class="category-def">Function: </span><span><code class="def-type">[<var class="var">fig</var>, <var class="var">hax</var>] =</code> <strong class="def-name">coplot</strong> <code class="def-code-arguments">(<var class="var">tbl</var>, <var class="var">xvar</var>, <var class="var">yvar</var>, <var class="var">gvar</var>)</code><a class="copiable-link" href="#index-coplot"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn" id="index-coplot-1"><span class="category-def">Function: </span><span><code class="def-type">[<var class="var">fig</var>, <var class="var">hax</var>] =</code> <strong class="def-name">coplot</strong> <code class="def-code-arguments">(<var class="var">fig</var>, <var class="var">tbl</var>, <var class="var">xvar</var>, <var class="var">yvar</var>, <var class="var">gvar</var>)</code><a class="copiable-link" href="#index-coplot-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn" id="index-coplot-2"><span class="category-def">Function: </span><span><code class="def-type">[<var class="var">fig</var>, <var class="var">hax</var>] =</code> <strong class="def-name">coplot</strong> <code class="def-code-arguments">(&hellip;, <var class="var">OptionName</var>, <var class="var">OptionValue</var>, &hellip;)</code><a class="copiable-link" href="#index-coplot-2"> &para;</a></span></dt>
+<dd>
+<p>Conditioning plot.
+</p>
+<p><code class="code">coplot</code> produces conditioning plots. This is a kind of plot that breaks up the
+data into groups based on one or two grouping variables, and plots each group of data
+in a separate subplot.
+</p>
+<p><var class="var">tbl</var> is a <code class="code">table</code> containing the data to plot.
+</p>
+<p><var class="var">xvar</var> is the name of the table variable within <var class="var">tbl</var> to use as the X values.
+May be a variable name or index.
+</p>
+<p><var class="var">yvar</var> is the name of the table variable within <var class="var">tbl</var> to use as the Y values.
+May be a variable name or index.
+</p>
+<p><var class="var">gvar</var> is the name of the table variable or variables within <var class="var">tbl</var> to use as
+the grouping variable(s). The grouping variables split the data into groups based on
+the distinct values in those variables. <var class="var">gvar</var> may specify either one or two
+grouping variables (but not more). It can be provided as a charvec, cellstr, or index
+array. Records with a missing value for their grouping variable(s) are ignored.
+</p>
+<p><var class="var">fig</var> is the figure handle to plot into. If <var class="var">fig</var> is not provided, a new figure
+is created.
+</p>
+<p>Name/Value options:
+</p>
+<dl class="table">
+<dt><code class="code">PlotFcn</code></dt>
+<dd><p>The plotting function to use, supplied as a function handle. Defaults to <code class="code">@plot</code>.
+It must be a function that provides the signature <code class="code">fcn(hax, X, Y, &hellip;)</code>.
+</p></dd>
+<dt><code class="code">PlotArgs</code></dt>
+<dd><p>A cell array of arguments to pass in to the plotting function, following the <var class="var">hax</var>,
+<var class="var">x</var>, and <var class="var">y</var> arguments.
+</p></dd>
+</dl>
+
+<p>Returns:
+  <var class="var">fig</var> – the figure handle it plotted into
+  <var class="var">hax</var> – array of axes handles to all the axes for the subplots
+</p>
+</dd></dl>
+
+
+</div>
+<hr>
+<div class="nav-panel">
+<p>
+Next: <a href="tblish_002eexamples_002eplot_005fpairs.html">tblish.examples.plot_pairs</a>, Previous: <a href="tblish_002edatasets.html">tblish.datasets</a>, Up: <a href="API-Alphabetically.html">API Alphabetically</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+
+
+
+</body>
+</html>

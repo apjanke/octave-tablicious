@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.1, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- This manual is for Tablicious, version 0.4.0-SNAPSHOT.
+
+Copyright © 2019 Andrew Janke
+
+Permission is granted to make and distribute verbatim copies of
+this manual provided the copyright notice and this permission notice
+are preserved on all copies.
+
+Permission is granted to copy and distribute modified versions of this
+manual under the conditions for verbatim copying, provided that the entire
+resulting derived work is distributed under the terms of a permission
+notice identical to this one.
+
+Permission is granted to copy and distribute translations of this manual
+into another language, under the same conditions as for modified versions. -->
+<title>tblish.dataset.UCBAdmissions (Octave Tablicious v0.4.0-SNAPSHOT)</title>
+
+<meta name="description" content="User manual for Tablicious for Octave.">
+<meta name="keywords" content="tblish.dataset.UCBAdmissions (Octave Tablicious v0.4.0-SNAPSHOT)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="tblish_002edataset.html" rel="up" title="tblish.dataset">
+<link href="tblish_002edataset_002eUKDriverDeaths.html" rel="next" title="tblish.dataset.UKDriverDeaths">
+<link href="tblish_002edataset_002etrees.html" rel="prev" title="tblish.dataset.trees">
+<style type="text/css">
+<!--
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.example {margin-left: 3.2em}
+span:hover a.copiable-link {visibility: visible}
+strong.def-name {font-family: monospace; font-weight: bold; font-size: larger}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<div class="subsubsection-level-extent" id="tblish_002edataset_002eUCBAdmissions">
+<div class="nav-panel">
+<p>
+Next: <a href="tblish_002edataset_002eUKDriverDeaths.html" accesskey="n" rel="next">tblish.dataset.UKDriverDeaths</a>, Previous: <a href="tblish_002edataset_002etrees.html" accesskey="p" rel="prev">tblish.dataset.trees</a>, Up: <a href="tblish_002edataset.html" accesskey="u" rel="up">tblish.dataset</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<hr>
+<h4 class="subsubsection" id="tblish_002edataset_002eUCBAdmissions-1"><span>8.2.61.71 tblish.dataset.UCBAdmissions<a class="copiable-link" href="#tblish_002edataset_002eUCBAdmissions-1"> &para;</a></span></h4>
+
+<dl class="first-deftypefn">
+<dt class="deftypefn" id="index-UCBAdmissions"><span class="category-def">Static Method: </span><span><code class="def-type"><var class="var">out</var> =</code> <strong class="def-name">UCBAdmissions</strong> <code class="def-code-arguments">()</code><a class="copiable-link" href="#index-UCBAdmissions"> &para;</a></span></dt>
+<dd>
+<p>Student Admissions at UC Berkeley
+</p>
+<h4 class="subsubheading" id="Description-69"><span>Description<a class="copiable-link" href="#Description-69"> &para;</a></span></h4>
+
+<p>Aggregate data on applicants to graduate school at Berkeley for the six
+largest departments in 1973 classified by admission and sex.
+</p>
+<h4 class="subsubheading" id="Format-68"><span>Format<a class="copiable-link" href="#Format-68"> &para;</a></span></h4>
+
+<p>A 3-dimensional array resulting from cross-tabulating 4526 observations on
+3 variables. The variables and their levels are as follows:
+</p>
+<dl class="table">
+<dt><code class="code">Admit</code></dt>
+<dd><p>Admitted, Rejected.
+</p></dd>
+<dt><code class="code">Gender</code></dt>
+<dd><p>Male, Female.
+</p></dd>
+<dt><code class="code">Dept</code></dt>
+<dd><p>A, B, C, D, E, F.
+</p></dd>
+</dl>
+
+<h4 class="subsubheading" id="Details-18"><span>Details<a class="copiable-link" href="#Details-18"> &para;</a></span></h4>
+
+<p>This data set is frequently used for illustrating Simpson&rsquo;s paradox, see
+Bickel et al (1975). At issue is whether the data show evidence of sex bias
+in admission practices. There were 2691 male applicants, of whom 1198 (44.5%)
+were admitted, compared with 1835 female applicants of whom 557 (30.4%) were
+admitted. This gives a sample odds ratio of 1.83, indicating that males were
+almost twice as likely to be admitted. In fact, graphical methods (as in the
+example below) or log-linear modelling show that the apparent association
+between admission and sex stems from differences in the tendency of males
+and females to apply to the individual departments (females used to apply
+more to departments with higher rejection rates).
+</p>
+<h4 class="subsubheading" id="Source-70"><span>Source<a class="copiable-link" href="#Source-70"> &para;</a></span></h4>
+
+<p>The data are given in Box &amp; Jenkins (1976). Obtained from the Time Series Data
+Library at <a class="url" href="http://www-personal.buseco.monash.edu.au/~hyndman/TSDL/">http://www-personal.buseco.monash.edu.au/~hyndman/TSDL/</a>.
+</p>
+<h4 class="subsubheading" id="References-38"><span>References<a class="copiable-link" href="#References-38"> &para;</a></span></h4>
+
+<p>Bickel, P. J., Hammel, E. A., and O&rsquo;Connell, J. W. (1975). Sex bias in
+graduate admissions: Data from Berkeley. <cite class="cite">Science</cite>, 187, 398–403.
+<a class="url" href="http://www.jstor.org/stable/1739581">http://www.jstor.org/stable/1739581</a>.
+</p>
+<h4 class="subsubheading" id="Examples-69"><span>Examples<a class="copiable-link" href="#Examples-69"> &para;</a></span></h4>
+
+<div class="example">
+<pre class="example-preformatted">tblish.dataset.UCBAdmissions;
+
+# TODO: Port mosaic plot to Octave
+
+</pre></div>
+
+
+</dd></dl>
+
+</div>
+<hr>
+<div class="nav-panel">
+<p>
+Next: <a href="tblish_002edataset_002eUKDriverDeaths.html">tblish.dataset.UKDriverDeaths</a>, Previous: <a href="tblish_002edataset_002etrees.html">tblish.dataset.trees</a>, Up: <a href="tblish_002edataset.html">tblish.dataset</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+
+
+
+</body>
+</html>
