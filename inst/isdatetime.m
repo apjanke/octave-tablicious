@@ -21,11 +21,28 @@
 ##
 ## True if input is a @code{datetime} array, false otherwise.
 ##
+## Respects @code{isdatetime} override methods on user-defined classes, even if
+## they do not inherit from @code{datetime} or were known to Tablicious at
+## authoring time.
+##
 ## Returns a scalar logical.
 ##
 ## @end deftypefn
 
 function out = isdatetime (x)
   %ISDATETIME True if input is a datetime array.
-  out = isa (x, 'datetime');
+
+  % Developer note: see istable for an explanation of this logic.
+  if isa (x, 'datetime')
+    out = true;
+  elseif isobject (x)
+    % Respect isdatetime methods on classes.
+    if ismember ('isdatetime', methods (x))
+      out = isdatetime (x);
+    else
+      out = false;
+    end
+  else
+    out = false;
+  end
 end

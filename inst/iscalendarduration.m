@@ -17,28 +17,28 @@
 ## <https://www.gnu.org/licenses/>.
 
 ## -*- texinfo -*-
-## @deftypefn {Function} {@var{out} =} isduration (@var{x})
+## @deftypefn {Function} {@var{out} =} iscalendarduration (@var{x})
 ##
-## True if input is a @code{duration} array, false otherwise.
+## True if input is a @code{calendarDuration} array, false otherwise.
 ##
-## Respects @code{isduration} override methods on user-defined classes, even if
-## they do not inherit from @code{duration} or were known to Tablicious at
+## Respects @code{iscalendarduration} override methods on user-defined classes, even if
+## they do not inherit from @code{calendarDuration} or were known to Tablicious at
 ## authoring time.
 ##
 ## Returns a scalar logical.
 ##
 ## @end deftypefn
 
-function out = isduration (x)
-  %ISDURATION True if input is a duration array
+function out = iscalendarduration (x)
+  %ISCALENDARDURATION True if input is a calendar duration array
 
   % Developer note: see istable for an explanation of this logic.
-  if isa (x, 'duration')
+  if isa (x, 'calendarDuration')
     out = true;
   elseif isobject (x)
-    % Respect isduration methods on classes.
-    if ismember ('isduration', methods (x))
-      out = isduration (x);
+    % Respect iscalendarduration methods on classes.
+    if ismember ('iscalendarduration', methods (x))
+      out = iscalendarduration (x);
     else
       out = false;
     end

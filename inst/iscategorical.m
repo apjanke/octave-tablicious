@@ -21,10 +21,26 @@
 ##
 ## True if input is a @code{categorical} array, false otherwise.
 ##
+## Respects @code{iscategorical} override methods on user-defined classes, even if
+## they do not inherit from @code{categorical} or were known to Tablicious at
+## authoring time.
+##
 ## Returns a scalar logical.
 ##
 ## @end deftypefn
 
 function out = iscategorical (x)
-  out = isa (x, 'categorical');
+  % Developer note: see istable for an explanation of this logic.
+  if isa (x, 'categorical')
+    out = true;
+  elseif isobject (x)
+    % Respect iscategorical methods on classes.
+    if ismember ('iscategorical', methods (x))
+      out = iscategorical (x);
+    else
+      out = false;
+    end
+  else
+    out = false;
+  end
 end
