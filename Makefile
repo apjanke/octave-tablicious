@@ -208,8 +208,11 @@ check: $(install_stamp)
 local: src/__tblish_time_binsearch__.cc octave_tablicious_make_local.m
 	$(OCTAVE) --eval="octave_tablicious_make_local"
 
+# Always make docs from clean, bc oure modification tracking isn't quite adequate,
+# maybe due to transitive dependencies on original source files that aren't captured
+# in doc/Makefile?
 doc:
-	cd doc && make all
+	cd doc && make clean && make all
 
 gh-pages:
 	rm -rf docs/user-guide

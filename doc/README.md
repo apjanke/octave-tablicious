@@ -1,20 +1,16 @@
-# These package documentation tools
+# README - Tablicious documentation tools
 
-This is the README for the doco toolchain of this Octave package.
-It goes with the files `mktexi.pl`, `OctTexiDoc.pm`, and `Makefile`, all of which should be found in the `doc/` subdirectory of an Octave package.
+This is the README for the doco toolchain of this Octave package. It goes with the files `mktexi.pl`, `OctTexiDoc.pm`, and `Makefile`, all of which should be found in the `doc/` subdirectory of an Octave package. It is not documentation for the Tablicious Octave package itself.
 
 This is Andrew Janke’s summary of how the doco generation tools in this `doc/` directory work.
 
-This is not the standard Octave Forge doco toolchain.
-This is Andrew Janke’s enhancement of it to support classes and namespaces.
-It first appeared in Andrew’s Tablicious package in April 2019.
+The stuff in here is not the standard Octave Forge ("OF") doco toolchain. This is Andrew Janke’s enhancement of it to support classes and namespaces. It first appeared in Andrew’s Tablicious package in April 2019. Andrew took a copy of it from some other OF package and modified it.
 
 ## Requirements
 
-This toolchain requires Texinfo version 6.0 or newer.
-Versions 5.x and older will result in a lot of errors complaining about node relationships and whatnot.
+This toolchain requires Texinfo version 6.0 or newer. Might even need 7.x as of 2023. Texinfo versions 5.x and older will result in a lot of errors complaining about node relationships and whatnot.
 
-Perl modules:
+Perl modules, which must be installed in your perl environment:
 
 * `Moose`
 * `Data::Dumper`
@@ -30,39 +26,42 @@ Sorry for the dependencies.
 
 Here’s a list of the files involved in the doco toolchain. In this document, `<pkg>` means the package name. E.g. `chrono` or `tablicious`.
 
-User-maintained input files:
+Human-maintained input files:
 
 * `../DESCRIPTION`
 * `../INDEX`
-* `src/<pkg>.texi`
-* `<pkg>.qhcp`
+* `src/` - human-maintained doco contents
+  * `src/<pkg>.texi` - texinfo manual parts that aren't generated from the code's inline helptext
+* `<pkg>.qhcp` - control file for producing the QHelp files
+* `../inst/**/*.m` - source files with embedded documentation
 
 Doco toolchain script files:
 
-* `mktexi.pl`
-  * `OctTexiDoc.pm`
 * `Makefile`
+* `mktexi.pl`
+* `OctTexiDoc.pm` - module with `mktexi.pl`'s implementation
 
 Generated intermediate files:
 
-* `<pkg>.texi`
-* `TIMESTAMP`
-* `*.dvi`
+* `<pkg>.texi` - combined Texinfo source
 * `<pkg>.log`
 * `<pkg>.qhp`
+* `<pkg>.dvi`
+* `TIMESTAMP`
 
-Generated output target files:
+Generated final output (user-consumable) target files:
 
-* `html/*`
 * `<pkg>.html`
+* `html/*`
 * `<pkg>.info`
 * `<pkg>.pdf`
-* `<pkg>.qch`
-* `<pkg>.qhc`
+* `<pkg>.(qch,qhc)` - QHelp files for Octave GUI's doc browser
 
-`html/*` is a final output file because it's used both for packaging up into `<pkg>.qch` (the QHelp collection file) and for optional use in package websites and other locations.
+`html/*` is a final output file because it's used both for packaging up into `<pkg>.qch` (the QHelp collection file), for optional use in package websites and other locations, and for local reading.
 
-The `<pkg>.{html|info|pdf|qch|qhc}` files are checked in to source control so they are included in the package distribution. Technically, since they are entirely generated from the source and human-maintained index files, they could be re-generated as part of the `pkg install` step for this package. But that would require that users install heavyweight tools like Qt and TeX which are required for their generation, which is undesirable. So we just have the package maintainer generate them at package authoring time and include them in source control and the package distribution file.
+Maybe `<pkg>.texi` should be considered a final output file, so end users can render it to other non-provided formats if they want?
+
+The `<pkg>.{html|info|pdf|qch|qhc}` files are checked in to source control so they are included in the package distribution. Technically, since they are entirely generated from the source and human-maintained index files, they could be re-generated as part of the `pkg install` step for this package. But that would require that users install heavyweight tools like Qt and TeX which are required for their generation, which is undesirable, and also run the doco build to make them usable. I'd rather you be able to run Tablicious and see all the doco directly from just a cloned repo, and not require a build/install step. So we just have the package maintainer generate them at package authoring time and include them in source control and the package distribution file.
 
 #### Developer note
 

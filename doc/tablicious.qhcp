@@ -3,7 +3,7 @@
     <docFiles>
         <generate>
             <file>
-                <input>Tablicious.qhp</input>
+                <input>tablicious.qhp</input>
                 <output>Tablicious.qch</output>
             </file>
         </generate>

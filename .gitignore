@@ -1,16 +1,28 @@
-*.o
-*.oct
-/target
-/doc/*.dvi
-/doc/*.qhc
-/doc/html
-/doc/topics.tmp
-cmake-build-debug
-!.idea
-.idea/workspace.xml
+# .gitignore for Tablicious
+
+# I don't remember why these iris data files are excluded?
 datasets/iris/iris.csv
 datasets/iris/iris.mat
 
-# GitHub Pages stuff
+# Binary artifacts and intermediate build stuff
+*.o
+*.oct
+/target
+cmake-build-debug
+
+# Intermediate doc-generation files
+/doc/*.dvi
+/doc/*.qhp
+/doc/topics.tmp
+/doc/TIMESTAMP
+
+# Data and log droppings
+*.log
+
+# Editor and IDE config and droppings
+!.idea
+.idea/workspace.xml
+
+# GitHub Pages deployment stuff
 /docs/Gemfile.lock
 /docs/_site

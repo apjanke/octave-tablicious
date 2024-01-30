@@ -1,13 +1,20 @@
-# Makefile for Octave package documentation
+# Makefile for Tablicious Octave package documentation
+#
+# (Custom Tablicious modification of the standard OF docgen tools.)
+#
+# See README.md for more info.
 #
 # This setup uses the convention that "*-in.texi" files are the human-editable
 # input files, and corresponding "*.texi" files are processed intermediate
-# files.
+# files, where feasible.
 #
 # This Makefile is generic enough that it could be dropped without modification
-# in the doc/ directory of any package that follows Octave Forge conventions.
-# Just include its dependencies: mkdoc.pl, mkqhp.pl, mktexi.pl
-# And make sure that your texinfo doc strings follow this' conventions:
+# in the doc/ directory of any package that follows the Octave Forge conventions,
+# as modified by Tablicious. You need to include its dependencies: mktexi.pl,
+# OctTexiDoc.pm, and README.md. And then create a src/<pkg>.qhcp modified for your
+# package.
+#
+# And make sure that your texinfo doc strings follow these conventions:
 #   - each @node must be followed immediately by a @chapter/@section/@subsection/@subsubsection
 #
 # Notes:
@@ -24,6 +31,11 @@
 # This Makefile originates from the Tablicious package (https://github.com/apjanke/octave-tablicious)
 # and is based on the one from the Octave Forge communications package
 # (https://octave.sourceforge.io/communications/index.html).
+
+# TODO:
+#   * I'd like to put the generated output files in a subdir, to keep them separated
+#     from the toolchain files in this dir, but I don't know if that works with OF
+#     conventions.
 
 ## Some basic tools (can be overriden using environment variables)
 SED ?= sed
@@ -165,7 +177,11 @@ $(HTMLDOC): $(IMAGES_PNG)
 # the DVI and PDF builds are forced to run serially through a Makefile rule.
 $(PDFDOC): $(DVIDOC)
 
-maintainer-clean: 
-	rm -rf *.dvi *.eps html *.html *.info *.pdf *.ps *.png *.texi *.qhp *.qch *.qhc *.tmp images.mk
 
-.PHONY: default all maintainer-clean dvi html info pdf ps qhelp check-texinfo-version
+maintainer-clean: 
+	rm -rf html *.dvi *.eps *.html *.info *.pdf *.ps *.png *.texi *.qhp *.qch *.qhc *.tmp images.mk TIMESTAMP
+
+# I like a plain "clean" target, bc I keep forgetting that maintainer-clean exists -apj
+clean: maintainer-clean
+
+.PHONY: default all clean maintainer-clean dvi html info pdf ps qhelp check-texinfo-version
