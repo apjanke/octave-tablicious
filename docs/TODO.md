@@ -19,8 +19,8 @@
 
 * Document my new class/namespace-supporting stuff
   * Stick a README in the doc/ directory describing how my new stuff works, and detailing the texinfo conventions needed to work with it.
-* Add support for namespaces
-  * Recursively find files
+* Add support for namespaces/packages
+  * Recursively find files in `+blah` dirs under main source path dirs
   * Establish node naming convention for things in namespaces
 
 ## Areas

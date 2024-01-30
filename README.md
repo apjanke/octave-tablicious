@@ -31,14 +31,14 @@ The `string` and `categorical` support are incomplete, and less mature than the 
 
 Tablicious 0.4.x requires Octave 7.0 or newer. It may well work on earlier versions, but is not tested against them.
 
-Tablicious does not require the Octave Forge [Statistics package](https://gnu-octave.github.io/packages/statistics/), but you will probably want it, because it supplies functions that are frequently useful for data analysis in a tabular context. In particular, `ismissing()` is very useful, and the Statistics package supplies the general implementation of it.
+Tablicious does not require the Octave Forge [Statistics package](https://gnu-octave.github.io/packages/statistics/), but you will probably want it, because Statistics supplies functions that are frequently useful for data analysis in a tabular context. In particular, `ismissing()` is very useful, and the Statistics package supplies the general implementation of it.
 
 ### Quick start
 
 To get started using or testing this project, install it using Octave's `pkg` function:
 
 ```octave
-pkg install https://github.com/apjanke/octave-tablicious/releases/download/v0.4.0/tablicious-0.4.0.tar.gz
+pkg install https://github.com/apjanke/octave-tablicious/releases/download/v0.3.7/tablicious-0.3.7.tar.gz
 pkg load tablicious
 ```
 
@@ -57,9 +57,11 @@ That should get everything working except for time zone conversions inside `date
 Once you have Tablicious installed, the user manual will show up in the Octave GUI’s documentation browser.
 You can also run `help <foo>` or `doc <foo>` for any of the classes or functions in Tablicious.
 
-The documentation for the latest development version can be viewed online at <https://apjanke.github.io/octave-tablicious>. That site has the [Tablicious User Guide](https://apjanke.github.io/octave-tablicious/user-guide/html/index.html) containing the API reference (also available in [single-page form](https://apjanke.github.io/octave-tablicious/user-guide/tablicious.html)), plus some additional developer-oriented documentation.
+The documentation for Tablicious can be viewed online at <https://apjanke.github.io/octave-tablicious>. That site has the [Tablicious User Guide](https://apjanke.github.io/octave-tablicious/release/v0.3.7/user-guide/html/index.html) containing the API reference, plus some additional general and developer-oriented documentation, and alternate formats of the User Guide. See the [main doco page there](https://apjanke.github.io/octave-tablicious) for details.
 
-See the `docs/` directory for notes on this project, especially for [Developer Notes](docs/Developer-Notes.md) and [Design and Justification](docs/Design-and-Justification.md), which discusses how and why this library is written. Also see [CONTRIBUTING](CONTRIBUTING.md) if you would like to contribute to this project.
+Developers, especially see the [Developer Notes](https://apjanke.github.io/octave-tablicious/Developer-Notes.html) and [Design and Justification](https://apjanke.github.io/octave-tablicious/Design-and-Justification.html) pages there, which discuss how and why this library is written. There's a [TODO page](https://apjanke.github.io/octave-tablicious/TODO.html) that lists what might be coming. Also see [CONTRIBUTING](CONTRIBUTING.md) if you would like to contribute to this project.
+
+Within this repo, you can see all that in the `docs/` directory for notes on this project. It's a local copy of the GitHub Pages site.
 
 ## Contributing
 
