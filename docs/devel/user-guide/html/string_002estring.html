@@ -37,6 +37,7 @@ into another language, under the same conditions as for modified versions. -->
 a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
 span:hover a.copiable-link {visibility: visible}
 strong.def-name {font-family: monospace; font-weight: bold; font-size: larger}
+ul.mark-bullet {list-style-type: disc}
 -->
 </style>
 
@@ -63,10 +64,13 @@ whose value is the empty string.
 </p>
 <p>The other constructors construct a new string array by converting
 various types of inputs.
-  - chars and cellstrs are converted via cellstr()
-  - numerics are converted via num2str()
-  - datetimes are converted via datestr()
 </p>
+<ul class="itemize mark-bullet">
+<li>chars and cellstrs are converted via cellstr()
+</li><li>numerics are converted via num2str()
+</li><li>datetimes are converted via datestr()
+</li></ul>
+
 </dd></dl>
 
 </div>

@@ -37,6 +37,7 @@ into another language, under the same conditions as for modified versions. -->
 a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
 span:hover a.copiable-link {visibility: visible}
 strong.def-name {font-family: monospace; font-weight: bold; font-size: larger}
+ul.mark-bullet {list-style-type: disc}
 -->
 </style>
 
@@ -60,11 +61,19 @@ Next: <a href="struct2table.html" accesskey="n" rel="next">struct2table</a>, Pre
 string.
 </p>
 <p>The string class represents strings, where:
-  - Each element of a string array is a single string
-  - A single string is a 1-dimensional row vector of Unicode characters
-  - Those characters are encoded in UTF-8
-    - This last bit depends on the fact that Octave chars are UTF-8 now
-</p>
+</p><ul class="itemize mark-bullet">
+<li>Each element of a string array is a single string
+
+</li><li>A single string is a 1-dimensional row vector of Unicode characters
+
+</li><li>Those characters are encoded in UTF-8
+
+<ul class="itemize mark-bullet">
+<li>This last bit depends on the fact that Octave chars are UTF-8 now
+</li></ul>
+
+</li></ul>
+
 <p>This should correspond pretty well to what people think of as strings, and
 is pretty compatible with people’s typical notion of strings in Octave.
 </p>
@@ -78,11 +87,18 @@ specific type, and allows assignment of non-string data into it.)
 <p>Be aware that while string arrays interconvert with Octave chars and cellstrs,
 Octave char elements represent 8-bit UTF-8 code units, not Unicode code points.
 </p>
-<p>This class really serves three roles.
-  - It is a type-safe object wrapper around Octave’s base primitive character types.
-  - It adds ismissing() semantics.
-  - And it introduces Unicode support.
-Not clear whether it’s a good fit to have the Unicode support wrapped
+<p>This class really serves three roles:
+</p>
+<ol class="enumerate">
+<li> It is a type-safe object wrapper around Octave’s base primitive character types.
+
+</li><li> It adds ismissing() semantics.
+
+</li><li> And it introduces Unicode support.
+
+</li></ol>
+
+<p>Not clear whether it’s a good fit to have the Unicode support wrapped
 up in this. Maybe it should just be a simple object wrapper
 wrapper, and defer Unicode semantics to when core Octave adopts them for
 char and cellstr. On the other hand, because Octave chars are UTF-8, not UCS-2,
