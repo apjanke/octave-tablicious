@@ -16,41 +16,39 @@
 ## along with Octave; see the file COPYING.  If not, see
 ## <https://www.gnu.org/licenses/>.
 
-## -*- texinfo -*-
-## @deftp {Class} duration
-##
-## Represents durations or periods of time as an amount of fixed-length
-## time (i.e. fixed-length seconds). It does not care about calendar things
-## like months and days that vary in length over time.
-##
-## This is an attempt to reproduce the functionality of Matlab's @code{duration}. It
-## also contains some Octave-specific extensions.
-##
-## @end deftp
-##
-## @deftypeivar duration @code{double} days
-##
-## The underlying datenums that represent the durations, as number of (whole and
-## fractional) days. These are uniform 24-hour days, not calendar days.
-##
-## This is a planar property: the size of @code{days} is the same size as the 
-## containing @code{duration} array object.
-##
-## @end deftypeivar
-##
-## @deftypeivar duration @code{char} Format
-##
-## The format to display this @code{duration} in. Currently unsupported.
-##
-## @end deftypeivar
-
 classdef duration
-  %DURATION Lengths of time in fixed-length units
-  %
-  % Duration values are stored as double numbers of days, so they are an
-  % approximate type. In display functions, by default, they are displayed with
-  % millisecond precision, but their actual precision is closer to nanoseconds
-  % for typical times.
+  ## -*- texinfo -*-
+  ## @deftp {Class} duration
+  ##
+  ## Represents durations or periods of time as an amount of fixed-length
+  ## time (i.e. fixed-length seconds). It does not care about calendar things
+  ## like months and days that vary in length over time.
+  ##
+  ## This is an attempt to reproduce the functionality of Matlab's @code{duration}. It
+  ## also contains some Octave-specific extensions.
+  ##
+  ## Duration values are stored as double numbers of days, so they are an
+  ## approximate type. In display functions, by default, they are displayed with
+  ## millisecond precision, but their actual precision is closer to nanoseconds
+  ## for typical times.
+  ##
+  ## @end deftp
+  ##
+  ## @deftypeivar duration @code{double} days
+  ##
+  ## The underlying datenums that represent the durations, as number of (whole and
+  ## fractional) days. These are uniform 24-hour days, not calendar days.
+  ##
+  ## This is a planar property: the size of @code{days} is the same size as the 
+  ## containing @code{duration} array object.
+  ##
+  ## @end deftypeivar
+  ##
+  ## @deftypeivar duration @code{char} Format
+  ##
+  ## The format to display this @code{duration} in. Currently unsupported.
+  ##
+  ## @end deftypeivar
   
   properties
     % Duration length in whole and fractional days (double)

@@ -13,38 +13,39 @@
 ## You should have received a copy of the GNU General Public License
 ## along with this program; If not, see <http://www.gnu.org/licenses/>.
 
-## -*- texinfo -*-
-## @deftp {Class} missing
-##
-## Generic auto-converting missing value.
-##
-## @code{missing} is a generic missing value that auto-converts to other 
-## types.
-##
-## A @code{missing} array indicates a missing value, of no particular type. It auto-
-## converts to other types when it is combined with them via concatenation or
-## other array combination operations.
-##
-## This class is currently EXPERIMENTAL. Use at your own risk.
-##
-## Note: This class does not actually work for assignment. If you do this:
-##
-## @example
-##   x = 1:5
-##   x(3) = missing
-## @end example
-##
-## It’s supposed to work, but I can’t figure out how to do this in a normal
-## classdef object, because there doesn’t seem to be any function that’s implicitly
-## called for type conversion in that assignment. Darn it.
-##
-## @end deftp
 
 # TODO: Because there is only one missing value, this could probably be 
 # optimized to just store a size variable, and not store the .data property.
 # I'm just using that now because it was easy to implement, due to my existing
 # planar-gen boilerplate code.
+
 classdef missing
+  ## -*- texinfo -*-
+  ## @deftp {Class} missing
+  ##
+  ## Generic auto-converting missing value.
+  ##
+  ## @code{missing} is a generic missing value that auto-converts to other 
+  ## types.
+  ##
+  ## A @code{missing} array indicates a missing value, of no particular type. It auto-
+  ## converts to other types when it is combined with them via concatenation or
+  ## other array combination operations.
+  ##
+  ## This class is currently EXPERIMENTAL. Use at your own risk.
+  ##
+  ## Note: This class does not actually work for assignment. If you do this:
+  ##
+  ## @example
+  ##   x = 1:5
+  ##   x(3) = missing
+  ## @end example
+  ##
+  ## It’s supposed to work, but I can’t figure out how to do this in a normal
+  ## classdef object, because there doesn’t seem to be any function that’s implicitly
+  ## called for type conversion in that assignment. Darn it.
+  ##
+  ## @end deftp
 
   properties
     data = NaN

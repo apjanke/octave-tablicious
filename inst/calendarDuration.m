@@ -16,68 +16,67 @@
 ## along with Octave; see the file COPYING.  If not, see
 ## <https://www.gnu.org/licenses/>.
 
-## -*- texinfo -*-
-## @deftp {Class} calendarDuration
-##
-## Durations of time using variable-length calendar periods, such as days,
-## months, and years, which may vary in length over time. (For example, a
-## calendar month may have 28, 30, or 31 days.)
-##
-## @end deftp
-##
-## @deftypeivar calendarDuration @code{char} Sign
-##
-## The sign (1 or -1) of this duration, which indicates whether it is a
-## positive or negative span of time.
-##
-## @end deftypeivar
-##
-## @deftypeivar calendarDuration @code{char} Years
-##
-## The number of whole calendar years in this duration. Must be integer-valued.
-##
-## @end deftypeivar
-##
-## @deftypeivar calendarDuration @code{char} Months
-##
-## The number of whole calendar months in this duration. Must be integer-valued.
-##
-## @end deftypeivar
-##
-## @deftypeivar calendarDuration @code{char} Days
-##
-## The number of whole calendar days in this duration. Must be integer-valued.
-##
-## @end deftypeivar
-##
-## @deftypeivar calendarDuration @code{char} Hours
-##
-## The number of whole hours in this duration. Must be integer-valued.
-##
-## @end deftypeivar
-##
-## @deftypeivar calendarDuration @code{char} Minutes
-##
-## The number of whole minutes in this duration. Must be integer-valued.
-##
-## @end deftypeivar
-##
-## @deftypeivar calendarDuration @code{char} Seconds
-##
-## The number of seconds in this duration. May contain fractional values.
-##
-## @end deftypeivar
-##
-## @deftypeivar calendarDuration @code{char} Format
-##
-## The format to display this @code{calendarDuration} in. Currently unsupported.
-##
-## This is a single value that applies to the whole array.
-##
-## @end deftypeivar
-
 classdef calendarDuration
-  
+  ## -*- texinfo -*-
+  ## @deftp {Class} calendarDuration
+  ##
+  ## Durations of time using variable-length calendar periods, such as days,
+  ## months, and years, which may vary in length over time. (For example, a
+  ## calendar month may have 28, 30, or 31 days.)
+  ##
+  ## @end deftp
+  ##
+  ## @deftypeivar calendarDuration @code{char} Sign
+  ##
+  ## The sign (1 or -1) of this duration, which indicates whether it is a
+  ## positive or negative span of time.
+  ##
+  ## @end deftypeivar
+  ##
+  ## @deftypeivar calendarDuration @code{char} Years
+  ##
+  ## The number of whole calendar years in this duration. Must be integer-valued.
+  ##
+  ## @end deftypeivar
+  ##
+  ## @deftypeivar calendarDuration @code{char} Months
+  ##
+  ## The number of whole calendar months in this duration. Must be integer-valued.
+  ##
+  ## @end deftypeivar
+  ##
+  ## @deftypeivar calendarDuration @code{char} Days
+  ##
+  ## The number of whole calendar days in this duration. Must be integer-valued.
+  ##
+  ## @end deftypeivar
+  ##
+  ## @deftypeivar calendarDuration @code{char} Hours
+  ##
+  ## The number of whole hours in this duration. Must be integer-valued.
+  ##
+  ## @end deftypeivar
+  ##
+  ## @deftypeivar calendarDuration @code{char} Minutes
+  ##
+  ## The number of whole minutes in this duration. Must be integer-valued.
+  ##
+  ## @end deftypeivar
+  ##
+  ## @deftypeivar calendarDuration @code{char} Seconds
+  ##
+  ## The number of seconds in this duration. May contain fractional values.
+  ##
+  ## @end deftypeivar
+  ##
+  ## @deftypeivar calendarDuration @code{char} Format
+  ##
+  ## The format to display this @code{calendarDuration} in. Currently unsupported.
+  ##
+  ## This is a single value that applies to the whole array.
+  ##
+  ## @end deftypeivar
+
   % planar precedence: (IsNaN,Sign,Years,Months,Days,Time)
   
   properties (SetAccess = private)

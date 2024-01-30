@@ -13,80 +13,80 @@
 ## You should have received a copy of the GNU General Public License
 ## along with this program; If not, see <http://www.gnu.org/licenses/>.
 
-## -*- texinfo -*-
-## @deftp {Class} string
-##
-## A string array of Unicode strings.
-##
-## A string array is an array of strings, where each array element is a single
-## string.
-##
-## The string class represents strings, where:
-## @itemize @bullet
-## @item
-## Each element of a string array is a single string
-##
-## @item
-## A single string is a 1-dimensional row vector of Unicode characters
-##
-## @item
-## Those characters are encoded in UTF-8
-##
-## @itemize @bullet
-## @item
-## This last bit depends on the fact that Octave chars are UTF-8 now
-## @end itemize
-##
-## @end itemize
-##
-## This should correspond pretty well to what people think of as strings, and
-## is pretty compatible with people’s typical notion of strings in Octave.
-##
-## String arrays also have a special “missing” value, that is like the string
-## equivalent of NaN for doubles or “undefined” for categoricals, or SQL NULL.
-##
-## This is a slightly higher-level and more strongly-typed way of representing
-## strings than cellstrs are. (A cellstr array is of type cell, not a text-
-## specific type, and allows assignment of non-string data into it.)
-##
-## Be aware that while string arrays interconvert with Octave chars and cellstrs,
-## Octave char elements represent 8-bit UTF-8 code units, not Unicode code points.
-##
-## This class really serves three roles:
-##
-## @enumerate
-## @item
-## It is a type-safe object wrapper around Octave’s base primitive character types. 
-##
-## @item
-## It adds ismissing() semantics.
-##
-## @item
-## And it introduces Unicode support. 
-##
-## @end enumerate
-##
-## Not clear whether it’s a good fit to have the Unicode support wrapped
-## up in this. Maybe it should just be a simple object wrapper
-## wrapper, and defer Unicode semantics to when core Octave adopts them for
-## char and cellstr. On the other hand, because Octave chars are UTF-8, not UCS-2,
-## some methods like strlength() and reverse() are just going to be wrong if
-## they delegate straight to chars.
-##
-## “Missing” string values work like NaNs. They are never considered equal,
-## less than, or greater to any other string, including other missing strings.
-## This applies to set membership and other equivalence tests.
-##
-## TODO: Need to decide how far to go with Unicode semantics, and how much to
-## just make this an object wrapper over cellstr and defer to Octave's existing
-## char/string-handling functions.
-##
-## TODO: demote_strings should probably be static or global, so that other
-## functions can use it to hack themselves into being string-aware.
-##
-## @end deftp
 classdef string
-    
+  ## -*- texinfo -*-
+  ## @deftp {Class} string
+  ##
+  ## A string array of Unicode strings.
+  ##
+  ## A string array is an array of strings, where each array element is a single
+  ## string.
+  ##
+  ## The string class represents strings, where:
+  ## @itemize @bullet
+  ## @item
+  ## Each element of a string array is a single string
+  ##
+  ## @item
+  ## A single string is a 1-dimensional row vector of Unicode characters
+  ##
+  ## @item
+  ## Those characters are encoded in UTF-8
+  ##
+  ## @itemize @bullet
+  ## @item
+  ## This last bit depends on the fact that Octave chars are UTF-8 now
+  ## @end itemize
+  ##
+  ## @end itemize
+  ##
+  ## This should correspond pretty well to what people think of as strings, and
+  ## is pretty compatible with people’s typical notion of strings in Octave.
+  ##
+  ## String arrays also have a special “missing” value, that is like the string
+  ## equivalent of NaN for doubles or “undefined” for categoricals, or SQL NULL.
+  ##
+  ## This is a slightly higher-level and more strongly-typed way of representing
+  ## strings than cellstrs are. (A cellstr array is of type cell, not a text-
+  ## specific type, and allows assignment of non-string data into it.)
+  ##
+  ## Be aware that while string arrays interconvert with Octave chars and cellstrs,
+  ## Octave char elements represent 8-bit UTF-8 code units, not Unicode code points.
+  ##
+  ## This class really serves three roles:
+  ##
+  ## @enumerate
+  ## @item
+  ## It is a type-safe object wrapper around Octave’s base primitive character types. 
+  ##
+  ## @item
+  ## It adds ismissing() semantics.
+  ##
+  ## @item
+  ## And it introduces Unicode support. 
+  ##
+  ## @end enumerate
+  ##
+  ## Not clear whether it’s a good fit to have the Unicode support wrapped
+  ## up in this. Maybe it should just be a simple object wrapper
+  ## wrapper, and defer Unicode semantics to when core Octave adopts them for
+  ## char and cellstr. On the other hand, because Octave chars are UTF-8, not UCS-2,
+  ## some methods like strlength() and reverse() are just going to be wrong if
+  ## they delegate straight to chars.
+  ##
+  ## “Missing” string values work like NaNs. They are never considered equal,
+  ## less than, or greater to any other string, including other missing strings.
+  ## This applies to set membership and other equivalence tests.
+  ##
+  ## TODO: Need to decide how far to go with Unicode semantics, and how much to
+  ## just make this an object wrapper over cellstr and defer to Octave's existing
+  ## char/string-handling functions.
+  ##
+  ## TODO: demote_strings should probably be static or global, so that other
+  ## functions can use it to hack themselves into being string-aware.
+  ##
+  ## @end deftp
+
   properties
     % The underlying char data, as cellstr
     strs = {''};  % planar

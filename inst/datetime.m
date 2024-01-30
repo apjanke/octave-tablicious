@@ -16,53 +16,52 @@
 ## along with Octave; see the file COPYING.  If not, see
 ## <https://www.gnu.org/licenses/>.
 
-## -*- texinfo -*-
-## @deftp {Class} datetime
-##
-## Represents points in time using the Gregorian calendar.
-##
-## The underlying values are doubles representing the number of days since the
-## Matlab epoch of "January 0, year 0". This has a precision of around nanoseconds
-## for typical times.
-##
-## A @code{datetime} array is an array of date/time values, with each element
-## holding a complete date/time. The overall array may also have a TimeZone and a
-## Format associated with it, which apply to all elements in the array.
-##
-##
-## This is an attempt to reproduce the functionality of Matlab's @code{datetime}. It
-## also contains some Octave-specific extensions.
-##
-## @end deftp
-##
-## @deftypeivar datetime @code{double} dnums
-##
-## The underlying datenums that represent the points in time. These are always in UTC.
-##
-## This is a planar property: the size of @code{dnums} is the same size as the 
-## containing @code{datetime} array object.
-##
-## @end deftypeivar
-##
-## @deftypeivar datetime @code{char} TimeZone
-##
-## The time zone this @code{datetime} array is in. Empty if this does not have a
-## time zone associated with it (“unzoned”). The name of an IANA time zone if
-## this does.
-##
-## Setting the @code{TimeZone} of a @code{datetime} array changes the time zone it
-## is presented in for strings and broken-down times, but does not change the
-## underlying UTC times that its elements represent.
-##
-## @end deftypeivar 
-##
-## @deftypeivar datetime @code{char} Format
-##
-## The format to display this @code{datetime} in. Currently unsupported.
-##
-## @end deftypeivar
-
 classdef datetime
+  ## -*- texinfo -*-
+  ## @deftp {Class} datetime
+  ##
+  ## Represents points in time using the Gregorian calendar.
+  ##
+  ## The underlying values are doubles representing the number of days since the
+  ## Matlab epoch of "January 0, year 0". This has a precision of around nanoseconds
+  ## for typical times.
+  ##
+  ## A @code{datetime} array is an array of date/time values, with each element
+  ## holding a complete date/time. The overall array may also have a TimeZone and a
+  ## Format associated with it, which apply to all elements in the array.
+  ##
+  ##
+  ## This is an attempt to reproduce the functionality of Matlab's @code{datetime}. It
+  ## also contains some Octave-specific extensions.
+  ##
+  ## @end deftp
+  ##
+  ## @deftypeivar datetime @code{double} dnums
+  ##
+  ## The underlying datenums that represent the points in time. These are always in UTC.
+  ##
+  ## This is a planar property: the size of @code{dnums} is the same size as the 
+  ## containing @code{datetime} array object.
+  ##
+  ## @end deftypeivar
+  ##
+  ## @deftypeivar datetime @code{char} TimeZone
+  ##
+  ## The time zone this @code{datetime} array is in. Empty if this does not have a
+  ## time zone associated with it (“unzoned”). The name of an IANA time zone if
+  ## this does.
+  ##
+  ## Setting the @code{TimeZone} of a @code{datetime} array changes the time zone it
+  ## is presented in for strings and broken-down times, but does not change the
+  ## underlying UTC times that its elements represent.
+  ##
+  ## @end deftypeivar 
+  ##
+  ## @deftypeivar datetime @code{char} Format
+  ##
+  ## The format to display this @code{datetime} in. Currently unsupported.
+  ##
+  ## @end deftypeivar
   
   properties (Constant)
     PosixEpochDatenum = datenum (1970, 1, 1);

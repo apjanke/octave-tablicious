@@ -16,37 +16,36 @@
 ## along with Octave; see the file COPYING.  If not, see
 ## <https://www.gnu.org/licenses/>.
 
-## -*- texinfo -*-
-## @deftp {Class} localdate
-##
-## Represents a complete day using the Gregorian calendar.
-##
-## This class is useful for indexing daily-granularity data or representing
-## time periods that cover an entire day in local time somewhere. The major
-## purpose of this class is "type safety", to prevent time-of-day values
-## from sneaking in to data sets that should be daily only. As a secondary
-## benefit, this uses less memory than datetimes.
-##
-## @end deftp
-##
-## @deftypeivar localdate @code{double} dnums
-##
-## The underlying datenum values that represent the days. The datenums are at
-## the midnight that is at the start of the day it represents.
-##
-## These are doubles, but
-## they are restricted to be integer-valued, so they represent complete days, with
-## no time-of-day component.
-##
-## @end deftypeivar
-##
-## @deftypeivar localdate @code{char} Format
-##
-## The format to display this @code{localdate} in. Currently unsupported.
-##
-## @end deftypeivar
-
 classdef localdate
+  ## -*- texinfo -*-
+  ## @deftp {Class} localdate
+  ##
+  ## Represents a complete day using the Gregorian calendar.
+  ##
+  ## This class is useful for indexing daily-granularity data or representing
+  ## time periods that cover an entire day in local time somewhere. The major
+  ## purpose of this class is "type safety", to prevent time-of-day values
+  ## from sneaking in to data sets that should be daily only. As a secondary
+  ## benefit, this uses less memory than datetimes.
+  ##
+  ## @end deftp
+  ##
+  ## @deftypeivar localdate @code{double} dnums
+  ##
+  ## The underlying datenum values that represent the days. The datenums are at
+  ## the midnight that is at the start of the day it represents.
+  ##
+  ## These are doubles, but
+  ## they are restricted to be integer-valued, so they represent complete days, with
+  ## no time-of-day component.
+  ##
+  ## @end deftypeivar
+  ##
+  ## @deftypeivar localdate @code{char} Format
+  ##
+  ## The format to display this @code{localdate} in. Currently unsupported.
+  ##
+  ## @end deftypeivar
 
   properties (Access = private)
     % The underlying datenums, zoneless, always int-valued (midnights)

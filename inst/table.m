@@ -13,58 +13,58 @@
 ## You should have received a copy of the GNU General Public License
 ## along with this program; If not, see <http://www.gnu.org/licenses/>.
 
-## -*- texinfo -*-
-## @deftp {Class} table
-##
-## Tabular data array containing multiple columnar variables.
-##
-## A @code{table} is a tabular data structure that collects multiple parallel 
-## named variables.
-## Each variable is treated like a column. (Possibly a multi-columned column, if
-## that makes sense.)
-## The types of variables may be heterogeneous.
-##
-## A table object is like an SQL table or resultset, or a relation, or a 
-## DataFrame in R or Pandas.
-##
-## A table is an array in itself: its size is @var{nrows}-by-@var{nvariables},
-## and you can index along the rows and variables by indexing into the table
-## along dimensions 1 and 2.
-##
-## A note on accessing properties of a @code{table} array: Because .-indexing is
-## used to access the variables inside the array, it can’t also be directly used
-## to access properties as well. Instead, do @code{t.Properties.<property>} for
-## a table @code{t}. That will give you a property instead of a variable.
-## (And due to this mechanism, it will cause problems if you have a @code{table}
-## with a variable named @code{Properties}. Try to avoid that.)
-##
-## @end deftp
-##
-## @deftypeivar table @code{cellstr} VariableNames
-##
-## The names of the variables in the table, as a cellstr row vector.
-##
-## @end deftypeivar
-##
-## @deftypeivar table @code{cell} VariableValues
-##
-## A cell vector containing the values for each of the variables.
-## @code{VariableValues(i)} corresponds to @code{VariableNames(i)}.
-##
-## @end deftypeivar
-##
-## @deftypeivar table @code{cellstr} RowNames
-##
-## An optional list of row names that identify each row in the table. This
-## is a cellstr column vector, if present.
-##
-## @end deftypeivar
 
 % Developer's notes:
 % - Wherever you see the abbreviation "pk" here, that means "proxy keys", not
 %   "primary keys".
 
 classdef table
+  ## -*- texinfo -*-
+  ## @deftp {Class} table
+  ##
+  ## Tabular data array containing multiple columnar variables.
+  ##
+  ## A @code{table} is a tabular data structure that collects multiple parallel 
+  ## named variables.
+  ## Each variable is treated like a column. (Possibly a multi-columned column, if
+  ## that makes sense.)
+  ## The types of variables may be heterogeneous.
+  ##
+  ## A table object is like an SQL table or resultset, or a relation, or a 
+  ## DataFrame in R or Pandas.
+  ##
+  ## A table is an array in itself: its size is @var{nrows}-by-@var{nvariables},
+  ## and you can index along the rows and variables by indexing into the table
+  ## along dimensions 1 and 2.
+  ##
+  ## A note on accessing properties of a @code{table} array: Because .-indexing is
+  ## used to access the variables inside the array, it can’t also be directly used
+  ## to access properties as well. Instead, do @code{t.Properties.<property>} for
+  ## a table @code{t}. That will give you a property instead of a variable.
+  ## (And due to this mechanism, it will cause problems if you have a @code{table}
+  ## with a variable named @code{Properties}. Try to avoid that.)
+  ##
+  ## @end deftp
+  ##
+  ## @deftypeivar table @code{cellstr} VariableNames
+  ##
+  ## The names of the variables in the table, as a cellstr row vector.
+  ##
+  ## @end deftypeivar
+  ##
+  ## @deftypeivar table @code{cell} VariableValues
+  ##
+  ## A cell vector containing the values for each of the variables.
+  ## @code{VariableValues(i)} corresponds to @code{VariableNames(i)}.
+  ##
+  ## @end deftypeivar
+  ##
+  ## @deftypeivar table @code{cellstr} RowNames
+  ##
+  ## An optional list of row names that identify each row in the table. This
+  ## is a cellstr column vector, if present.
+  ##
+  ## @end deftypeivar
 
   properties
     % The names of the variables (columns), as cellstr
