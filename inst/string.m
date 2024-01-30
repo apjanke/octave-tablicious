@@ -96,22 +96,22 @@ classdef string
   
   methods (Static = true)
     
+    ## -*- texinfo -*-
+    ## @node string.empty
+    ## @deftypefn {Function} {@var{out} =} empty (@var{sz})
+    ##
+    ## Get an empty string array of a specified size.
+    ##
+    ## The argument sz is optional. If supplied, it is a numeric size
+    ## array whose product must be zero. If omitted, it defaults to [0 0].
+    ##
+    ## The size may also be supplied as multiple arguments containing
+    ## scalar numerics.
+    ##
+    ## Returns an empty string array of the requested size.
+    ##
+    ## @end deftypefn
     function out = empty(varargin)
-      ## -*- texinfo -*-
-      ## @node string.empty
-      ## @deftypefn {Function} {@var{out} =} empty (@var{sz})
-      ##
-      ## Get an empty string array of a specified size.
-      ##
-      ## The argument sz is optional. If supplied, it is a numeric size
-      ## array whose product must be zero. If omitted, it defaults to [0 0].
-      ##
-      ## The size may also be supplied as multiple arguments containing
-      ## scalar numerics.
-      ##
-      ## Returns an empty string array of the requested size.
-      ##
-      ## @end deftypefn
       if nargin == 0
         out = string([]);
       elseif nargin == 1
@@ -178,13 +178,40 @@ classdef string
         this.strs = in;
         this.tfMissing = false (size (this.strs));
       elseif isnumeric (in)
-        this.strs = arrayfun (@(x) {num2str(x)}, in);
-        this.tfMissing = false (size (this.strs));
+        tfNan = isnan (in);
+        this.tfMissing = tfNan;
+        if any(tfNan(:))
+          strs = repmat ({''}, size (in));
+          strs(~tfNan) = arrayfun (@(x) {num2str(x)}, in(~tfNan));
+          this.strs = strs;
+        else
+          this.strs = arrayfun (@(x) {num2str(x)}, in);
+        end
+      elseif islogical (in)
+        strs = repmat ({'false'}, size (in));
+        strs(in) = {'true'};
+        this.strs = strs;
+        this.tfMissing = false (size (in));
       elseif isa (in, 'datetime')
-        this.strs = arrayfun (@(x) {datestr(x)}, in);
-        this.tfMissing = false (size (this.strs));
+        tfNat = isnat (in);
+        this.tfMissing = tfNat;
+        if any(tfNat(:))
+          strs = repmat ({''}, size (in));
+          strs(~tfNat) = arrayfun (@(x) {datestr(x)}, in(~tfNat));
+          this.strs = strs;
+        else
+          this.strs = arrayfun (@(x) {datestr(x)}, in);
+        end
       elseif isa (in, 'duration') || isa (in, 'calendarDuration')
-        error ('string: duration and calendarDuration conversion are not implemented yet. Sorry.');
+        tfNat = isnat (in);
+        this.tfMissing = tfNat;
+        if any(tfNat(:))
+          strs = repmat ({''}, size (in));
+          strs(~tfNat) = dispstrs (in(~tfNat));
+          this.strs = strs;
+        else
+          this.strs = dispstrs (in);
+        end
       elseif isa (in, 'missing')
         this.strs = repmat ({''}, size (in));
         this.tfMissing = true (size (in));
@@ -1304,3 +1331,31 @@ function out = promotec (args)
     endif
   endfor
 endfunction
+
+## Test string constructor
+%!test
+%! str = string (["a";"b";"c"]);
+%! assert (cellstr (str), {"a";"b";"c"})
+%!test
+%! str = string ({"a";"b";"c"});
+%! assert (cellstr (str), {"a";"b";"c"})
+%!test
+%! str = string ({"a";"";"c"});
+%! tfM = ismissing (str);
+%! assert (cell (str), {"a";"";"c"})
+%! assert (tfM, logical ([0; 0; 0]))
+%!test
+%! str = string ([1 2 3 NaN 5]);
+%! tfM = ismissing (str);
+%! assert (cellstr (str), {"1", "2", "3", "", "5"})
+%! assert (tfM, logical ([0 0 0 0 0]))
+%!test
+%! str = string (duration ([3,4,5; NaN,NaN,NaN]));
+%! tfM = ismissing (str);
+%! assert (cellstr (str), {"03:04:05"; ""})
+%! assert (tfM, logical ([0; 1]))
+%!test
+%! str = string (calendarDuration ([3,4,5; NaN,NaN,NaN]));
+%! tfM = ismissing (str);
+%! assert (cellstr (str), {"3y 4mo 5d"; ""})
+%! assert (tfM, logical ([0; 1]))
