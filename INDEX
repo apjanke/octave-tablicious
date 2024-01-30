@@ -10,14 +10,15 @@ Strings and Categoricals
  string
  NaS
  contains
- categorical
- discretize
  dispstrs
+ categorical
+ NaC
+ discretize
 Dates and Times
  datetime
+ NaT
  localdate
  isdatetime
- NaT
  calendarDuration
  calmonths
  calyears

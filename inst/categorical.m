@@ -147,15 +147,45 @@ classdef categorical
     ## @var{sz} is the size of the array to create. If omitted or empty, creates
     ## a scalar.
     ##
-    ## Returns a categorical.
+    ## Returns a categorical array.
+    ##
+    ## @seealso{categorical.missing}
     ##
     ## @end deftypefn
     function out = undefined (sz)
-      if nargin < 1 || isempty (sz);  sz = [1 1]; end
+      if nargin < 1 || isempty (sz)
+        sz = [1 1];
+      endif
       out = categorical;
-      out.code = repmat (uint16(0), sz);
+      out.code = repmat (uint16 (0), sz);
       out.tfMissing = true (sz);
       out.cats = {};
+    endfunction
+
+    ## -*- texinfo -*-
+    ## @node categorical.missing
+    ## @deftypefn {Static Method} {@var{out} =} categorical.missing ()
+    ## @deftypefnx {Static Method} {@var{out} =} categorical.missing (sz)
+    ##
+    ## Create an array of missing (undefined) categoricals.
+    ##
+    ## Creates a categorical array whose elements are all missing (<undefined>).
+    ##
+    ## This is a convenience alias for @ref{categorical.undefined}, so you can call
+    ## it generically. It returns strictly the same results as calling
+    ## @ref{categorical.undefined} with the same arguments.
+    ##
+    ## Returns a categorical array.
+    ##
+    ## @seealso{categorical.undefined}
+    ##
+    ## @end deftypefn
+    function out = missing (sz)
+      if nargin == 0
+        out = categorical.undefined;
+      else
+        out = categorical.undefined (sz);
+      endif
     endfunction
     
   endmethods

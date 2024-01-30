@@ -17,33 +17,33 @@
 ## <https://www.gnu.org/licenses/>.
 
 ## -*- texinfo -*-
-## @deftypefn {Function} {@var{out} =} NaS ()
-## @deftypefnx {Function} {@var{out} =} NaS (@var{sz})
+## @deftypefn {Function} {@var{out} =} NaC ()
+## @deftypefnx {Function} {@var{out} =} NaC (@var{sz})
 ##
-## “Not-a-String". Creates missing-valued string arrays.
+## “Not-a-Categorical". Creates missing-valued categorical arrays.
 ## 
-## Returns a new @code{string} array of all missing values of
+## Returns a new @code{categorical} array of all missing values of
 ## the given size. If no input @var{sz} is given, the result is a scalar missing
-## string.
+## categorical.
 ##
-## @code{NaS} is the @code{string} equivalent of @code{NaN} or @code{NaT}. It
-## represents a missing, invalid, or null value. @code{NaS} values never compare
-## equal to any value, including other @code{NaS}s.
+## @code{NaC} is the @code{categorical} equivalent of @code{NaN} or @code{NaT}. It
+## represents a missing, invalid, or null value. @code{NaC} values never compare
+## equal to any value, including other @code{NaC}s.
 ##
-## @code{NaS} is a convenience function which is strictly a wrapper around
-## @code{string.missing} and returns the same results, but may be more convenient
+## @code{NaC} is a convenience function which is strictly a wrapper around
+## @code{categorical.undefined} and returns the same results, but may be more convenient
 ## to type and/or more readable, especially in array expressions with several values.
 ##
-## @seealso{string.missing}
+## @seealso{categorical.undefined}
 ##
 ## @end deftypefn
-function out = NaS (sz)
-  %NaS Not-a-String (missing-valued string array)
+function out = NaC (sz)
+  %NaS Not-a-Categorical (missing-valued categorical array)
   %
-  % Creates a string array with all-missing values.
+  % Creates a categorical array with all-missing values.
   if nargin == 0
-    out = string.missing;
+    out = categorical.undefined;
   else
-    out = string.missing (sz);
+    out = categorical.undefined (sz);
   end
 end

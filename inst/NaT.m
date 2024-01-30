@@ -20,7 +20,7 @@
 ## @deftypefn {Function} {@var{out} =} NaT ()
 ## @deftypefnx {Function} {@var{out} =} NaT (@var{sz})
 ##
-## “Not-a-Time”. Creates NaT-valued arrays.
+## “Not-a-Time”. Creates missing-valued datetime arrays.
 ## 
 ## Constructs a new @code{datetime} array of all @code{NaT} values of
 ## the given size. If no input @var{sz} is given, the result is a scalar @code{NaT}.
