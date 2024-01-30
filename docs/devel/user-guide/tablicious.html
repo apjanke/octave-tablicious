@@ -18,10 +18,10 @@ notice identical to this one.
 
 Permission is granted to copy and distribute translations of this manual
 into another language, under the same conditions as for modified versions. -->
-<title>Octave Tablicious v0.4.0-SNAPSHOT</title>
+<title>Tablicious v0.4.0-SNAPSHOT</title>
 
 <meta name="description" content="User manual for Tablicious for Octave.">
-<meta name="keywords" content="Octave Tablicious v0.4.0-SNAPSHOT">
+<meta name="keywords" content="Tablicious v0.4.0-SNAPSHOT">
 <meta name="resource-type" content="document">
 <meta name="distribution" content="global">
 <meta name="Generator" content="makeinfo">
@@ -526,7 +526,8 @@ Next: <a href="#Getting-Started" accesskey="n" rel="next">Getting Started</a>, U
 
 <p>This is the manual for the Tablicious package version 0.4.0-SNAPSHOT for GNU Octave.
 </p>
-<p>Tablicious provides Matlab-compatible tabular data and date/time support for GNU Octave.
+<p>Tablicious provides somewhat-Matlab-compatible tabular data and date/time support for
+GNU Octave.
 This includes a <code class="code">table</code> class with support for filtering and join operations;
 <code class="code">datetime</code>, <code class="code">duration</code>, and related classes;
 Missing Data support; <code class="code">string</code> and <code class="code">categorical</code> data types; 
@@ -981,22 +982,22 @@ Next: <a href="#Missing-Functionality" accesskey="n" rel="next">Missing Function
 
 <p>Tablicious comes with several example data sets that you can use to explore how
 its functions and objects work. These are accessed through the
-<code class="code">octave.datasets</code> and <code class="code">octave.dataset</code> classes.
+<code class="code">tblish.datasets</code> and <code class="code">tblish.dataset</code> classes.
 </p>
-<p>To see a list of the available data sets, run <code class="code">octave.datasets.list()</code>.
+<p>To see a list of the available data sets, run <code class="code">tblish.datasets.list()</code>.
 Then to load one of the example data sets, run
-<code class="code">octave.datasets.load('examplename')</code>. For example:
+<code class="code">tblish.datasets.load('examplename')</code>. For example:
 </p>
 <div class="example">
-<pre class="example-preformatted">octave.datasets.list
-t = octave.datasets.load('cupcake')
+<pre class="example-preformatted">tblish.datasets.list
+t = tblish.datasets.load('cupcake')
 </pre></div>
 
-<p>You can also load it by calling <code class="code">octave.dataset.&lt;name&gt;</code>. This does
+<p>You can also load it by calling <code class="code">tblish.dataset.&lt;name&gt;</code>. This does
 the same thing. For example:
 </p>
 <div class="example">
-<pre class="example-preformatted">t = octave.dataset.cupcake
+<pre class="example-preformatted">t = tblish.dataset.cupcake
 </pre></div>
 
 <p>When you load a data set, it either returns all its data in a single variable
@@ -1005,16 +1006,16 @@ workspace (if you call it with no outputs).
 </p>
 <p>Each example data set comes with help text that describes the data set and
 provides examples of how to work with it. This help is found using the <code class="code">doc</code>
-command on <code class="code">octave.dataset.&lt;name&gt;</code>, where <var class="var">&lt;name&gt;</var> is the name of
+command on <code class="code">tblish.dataset.&lt;name&gt;</code>, where <var class="var">&lt;name&gt;</var> is the name of
 the data set.
 </p>
 <p>For example:
 </p>
 <div class="example">
-<pre class="example-preformatted">doc octave.dataset.cupcake
+<pre class="example-preformatted">doc tblish.dataset.cupcake
 </pre></div>
 
-<p>(The command <code class="code">help octave.dataset.&lt;name&gt;</code> ought to work too, but it
+<p>(The command <code class="code">help tblish.dataset.&lt;name&gt;</code> ought to work too, but it
 currently doesn’t. This may be due to an issue with Octave’s <code class="code">help</code>
 command.)
 </p>
@@ -1053,7 +1054,7 @@ Next: <a href="#API-Reference" accesskey="n" rel="next">API Reference</a>, Previ
 </div>
 <h2 class="chapter" id="Missing-Functionality-1"><span>7 Missing Functionality<a class="copiable-link" href="#Missing-Functionality-1"> &para;</a></span></h2>
 
-<p>Tablicious is based on Matlab’s table and date/time APIs and supports most of
+<p>Tablicious is based on Matlab’s table and date/time APIs and supports some of
 their major functionality.
 But not all of it is implemented yet. The missing parts are currently:
 </p>
@@ -1064,7 +1065,7 @@ But not all of it is implemented yet. The missing parts are currently:
 </li><li><code class="code">timetable</code>
 </li><li>POSIX time zone support for years outside the IANA time zone database coverage
 </li><li>Week-of-year (ISO calendar) calculations
-</li><li>Various <code class="code">'ConvertFrom'</code> forms for <code class="code">datetime</code> and <code class="code">duration</code>
+</li><li>Various <code class="code">'ConvertFrom'</code> forms for <code class="code">datetime</code> and <code class="code">duration</code> constructors
 </li><li>Support for LDML formatting for <code class="code">datetime</code>
 </li><li>Various functions:
 <ul class="itemize mark-bullet">
@@ -1081,11 +1082,11 @@ But not all of it is implemented yet. The missing parts are currently:
 </li><li>Plotting support
 </li></ul>
 
-<p>It is the author’s hope that all these will be implemented some day.
+<p>It is the author’s hope that many these will be implemented some day.
 </p>
-<p>These areas of missing functionality are all tracked on the Tablicious issue
+<p>These areas of missing functionality are tracked on the Tablicious issue
 tracker at <a class="url" href="https://github.com/apjanke/octave-tablicious/issues">https://github.com/apjanke/octave-tablicious/issues</a> and
-<a class="url" href="https://github.com/users/apjanke/projects/1">https://github.com/users/apjanke/projects/1</a>.
+<a class="url" href="https://github.com/users/apjanke/projects/3">https://github.com/users/apjanke/projects/3</a>.
 </p>
 
 <hr>
@@ -13269,7 +13270,7 @@ Previous: <a href="#API-Reference" accesskey="p" rel="prev">API Reference</a>, U
 <div class="section-level-extent" id="Package-Copyright">
 <h3 class="section"><span>9.1 Package Copyright<a class="copiable-link" href="#Package-Copyright"> &para;</a></span></h3>
 
-<p>Tablicious for Octave is covered by the GNU GPLv3.
+<p>Tablicious for GNU Octave is covered by the GNU GPLv3.
 </p>
 <p>All the code in the package is GNU GPLv3.
 </p>

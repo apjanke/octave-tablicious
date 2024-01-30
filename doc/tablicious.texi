@@ -5,7 +5,7 @@
 @set VERSION 0.4.0-SNAPSHOT
 
 @setfilename tablicious.info
-@settitle Octave Tablicious v@value{VERSION}
+@settitle Tablicious v@value{VERSION}
 @documentencoding UTF-8
 
 @c %**end of header
@@ -35,7 +35,7 @@ User manual for Tablicious for Octave.
 @end documentdescription
 
 @titlepage
-@title  Tablicious for Octave
+@title  Tablicious for GNU Octave
 @subtitle version @value{VERSION}, January 2024
 @author Andrew Janke
 @page
@@ -79,7 +79,8 @@ Time is an illusion. Lunchtime doubly so.
 
 This is the manual for the Tablicious package version @value{VERSION} for GNU Octave.
 
-Tablicious provides Matlab-compatible tabular data and date/time support for GNU Octave.
+Tablicious provides somewhat-Matlab-compatible tabular data and date/time support for
+GNU Octave.
 This includes a @code{table} class with support for filtering and join operations;
 @code{datetime}, @code{duration}, and related classes;
 Missing Data support; @code{string} and @code{categorical} data types; 
@@ -455,22 +456,22 @@ mustBeScalar (this.foo, 'this.foo');
 
 Tablicious comes with several example data sets that you can use to explore how
 its functions and objects work. These are accessed through the
-@code{octave.datasets} and @code{octave.dataset} classes.
+@code{tblish.datasets} and @code{tblish.dataset} classes.
 
-To see a list of the available data sets, run @code{octave.datasets.list()}.
+To see a list of the available data sets, run @code{tblish.datasets.list()}.
 Then to load one of the example data sets, run
-@code{octave.datasets.load('examplename')}. For example:
+@code{tblish.datasets.load('examplename')}. For example:
 
 @example
-octave.datasets.list
-t = octave.datasets.load('cupcake')
+tblish.datasets.list
+t = tblish.datasets.load('cupcake')
 @end example
 
-You can also load it by calling @code{octave.dataset.<name>}. This does
+You can also load it by calling @code{tblish.dataset.<name>}. This does
 the same thing. For example:
 
 @example
-t = octave.dataset.cupcake
+t = tblish.dataset.cupcake
 @end example
 
 When you load a data set, it either returns all its data in a single variable
@@ -479,16 +480,16 @@ workspace (if you call it with no outputs).
 
 Each example data set comes with help text that describes the data set and
 provides examples of how to work with it. This help is found using the @code{doc}
-command on @code{octave.dataset.<name>}, where @var{<name>} is the name of
+command on @code{tblish.dataset.<name>}, where @var{<name>} is the name of
 the data set.
 
 For example:
 
 @example
-doc octave.dataset.cupcake
+doc tblish.dataset.cupcake
 @end example
 
-(The command @code{help octave.dataset.<name>} ought to work too, but it
+(The command @code{help tblish.dataset.<name>} ought to work too, but it
 currently doesn’t. This may be due to an issue with Octave’s @code{help}
 command.)
 
@@ -512,7 +513,7 @@ you will just find “TODO” placeholders for these in Tablicious’ example co
 @node Missing Functionality
 @chapter Missing Functionality
 
-Tablicious is based on Matlab’s table and date/time APIs and supports most of
+Tablicious is based on Matlab’s table and date/time APIs and supports some of
 their major functionality.
 But not all of it is implemented yet. The missing parts are currently:
 
@@ -523,7 +524,7 @@ But not all of it is implemented yet. The missing parts are currently:
 @item @code{timetable}
 @item POSIX time zone support for years outside the IANA time zone database coverage
 @item Week-of-year (ISO calendar) calculations
-@item Various @code{'ConvertFrom'} forms for @code{datetime} and @code{duration}
+@item Various @code{'ConvertFrom'} forms for @code{datetime} and @code{duration} constructors
 @item Support for LDML formatting for @code{datetime}
 @item Various functions:
 @itemize
@@ -540,11 +541,11 @@ But not all of it is implemented yet. The missing parts are currently:
 @item Plotting support
 @end itemize
 
-It is the author’s hope that all these will be implemented some day.
+It is the author’s hope that many these will be implemented some day.
 
-These areas of missing functionality are all tracked on the Tablicious issue
+These areas of missing functionality are tracked on the Tablicious issue
 tracker at @url{https://github.com/apjanke/octave-tablicious/issues} and
-@url{https://github.com/users/apjanke/projects/1}.
+@url{https://github.com/users/apjanke/projects/3}.
 
 
 @node API Reference
@@ -9619,7 +9620,7 @@ use @code{calyears}.
 
 @section Package Copyright
 
-Tablicious for Octave is covered by the GNU GPLv3.
+Tablicious for GNU Octave is covered by the GNU GPLv3.
 
 All the code in the package is GNU GPLv3.
 
