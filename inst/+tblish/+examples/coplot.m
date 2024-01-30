@@ -102,7 +102,7 @@ function hax = coplot_one (fig, tbl, X, x_name, Y, y_name, g_ix, g_names, opts)
   plot_args = opts.PlotArgs;
 
   G = getvar (tbl, g_ix);
-  u_g = unique (G (!ismissing (G)));
+  u_g = unique (G (!isnanny (G)));
   n_groups = numel (u_g);
   hax = NaN (1, n_groups);
   g_strs = dispstrs (u_g);

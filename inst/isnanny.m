@@ -33,7 +33,7 @@
 ## @end enumerate
 ##
 ## @code{isnanny()} smooths over those differences so you can call it polymorphically on
-## any input type.
+## any input type. Hopefully.
 ##
 ## Under normal operation, @code{isnanny()} should not throw an error for any type or
 ## value of input.
@@ -49,24 +49,14 @@ function out = isnanny (x)
   elseif isa (x, 'duration') || isa (x, 'calendarDuration')
     out = isnan (x);
   elseif isobject (x)
-    % A check using ismember ('isnan', methods (x)) is currently broken because 
-    % methods() doesn't work right on classdef objects. So use an ugly try/catch
-    % instead.
-    % TODO: Maybe we could use meta.class.fromName() and check its methods list
-    % instead?
-    try
+    # Static method invocation (instead of string-based/feval) for speed
+    if ismethod (x, 'ismissing')
+      out = ismissing (x);
+    elseif ismethod (x, 'isnan')
       out = isnan (x);
-      return
-    catch
-      % quash
-    end_try_catch
-    try
-      out = isnat (x);
-      return
-    catch
-      % quash
-    end_try_catch
-    out = false (size (x));
+    else
+      out = false (size (x));
+    end
   else
     out = false (size (x));
   endif

@@ -13,6 +13,10 @@
 ## You should have received a copy of the GNU General Public License
 ## along with this program; If not, see <http://www.gnu.org/licenses/>.
 
+# TODO: This is probably vestigial, left over from when Tablicious defined
+# an ismissing function (instead of just methods) before 0.4.0 in 2024-01,
+# and can probably be removed.
+
 function out = parse_ismissing_indicator (indicator)
 %PARSE_ISMISSING_INDICATOR Parse indicator argument for ismissing() and friends
 %
