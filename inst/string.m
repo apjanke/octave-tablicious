@@ -111,19 +111,38 @@ classdef string
     ## Returns an empty string array of the requested size.
     ##
     ## @end deftypefn
-    function out = empty(varargin)
+    function out = empty (varargin)
       if nargin == 0
-        out = string([]);
+        out = string ([]);
       elseif nargin == 1
         sz = varargin{1};
-        if isscalar(sz)
+        if isscalar (sz)
           sz(2) = 0;
         endif
-        out = reshape(string([]), sz);
+        out = reshape (string ([]), sz);
       else
         sz = [varargin{:}];
-        out = reshape(string([]), sz);
+        out = reshape (string ([]), sz);
       endif
+    endfunction
+
+    ## -*- texinfo -*-
+    ## @node string.missing
+    ## @deftypefn {Static Method} {@var{out} = } string.missing (@var{sz})
+    ##
+    ## Missing string value.
+    ##
+    ## Creates a string array of all-missing values of the specified size @var{sz}.
+    ## If @var{sz} is omitted, creates a scalar missing string.
+    ##
+    ## Returns a string array of size @var{sz}.
+    ##
+    ## @end deftypefn
+    function out = missing (sz)
+      if nargin < 2
+        sz = [1 1];
+      endif
+      out = repmat (string, sz);
     endfunction
     
   endmethods
@@ -1259,25 +1278,6 @@ classdef string
   endmethods
   
   methods (Static)
-    ## -*- texinfo -*-
-    ## @node string.missing
-    ## @deftypefn {Static Method} {@var{out} = } string.missing (@var{sz})
-    ##
-    ## Missing string value.
-    ##
-    ## Creates a string array of all-missing values of the specified size @var{sz}.
-    ## If @var{sz} is omitted, creates a scalar missing string.
-    ##
-    ## Returns a string array of size @var{sz}.
-    ##
-    ## @end deftypefn
-    function out = missing (sz)
-      if nargin < 2
-        sz = [1 1];
-      endif
-      out = repmat (string, sz);
-    endfunction
-    
     ## -*- texinfo -*-
     ## @node string.decode
     ## @deftypefn {Static Method} {@var{out} =} string.decode (@var{bytes}, @var{charsetName})
