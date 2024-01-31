@@ -14,7 +14,7 @@
 ## along with this program; If not, see <http://www.gnu.org/licenses/>.
 
 function generate_datasets_list ()
-  % Generates the dataset.m file based on existing datasets
+  # Generates the dataset.m file based on existing datasets
 
   my_dir = fileparts (mfilename ("fullpath"));
   octave_namespace_dir = fileparts (my_dir);
@@ -31,7 +31,7 @@ function generate_datasets_list ()
   for i_dataset = 1:numel(names)
     name = names{i_dataset};
     dset = tblish.internal.dataset.lookup (name);
-    
+
     descr_texi = dset.description_texi;
     texi_lines = regexp (descr_texi, '\r?\n', "split");
     descr_comment_lines = strcat ({"    ## "}, texi_lines);

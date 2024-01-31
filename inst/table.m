@@ -14,9 +14,9 @@
 ## along with this program; If not, see <http://www.gnu.org/licenses/>.
 
 
-% Developer's notes:
-% - Wherever you see the abbreviation "pk" here, that means "proxy keys", not
-%   "primary keys".
+# Developer's notes:
+# - Wherever you see the abbreviation "pk" here, that means "proxy keys", not
+#   "primary keys".
 
 classdef table
   ## -*- texinfo -*-
@@ -24,13 +24,13 @@ classdef table
   ##
   ## Tabular data array containing multiple columnar variables.
   ##
-  ## A @code{table} is a tabular data structure that collects multiple parallel 
+  ## A @code{table} is a tabular data structure that collects multiple parallel
   ## named variables.
   ## Each variable is treated like a column. (Possibly a multi-columned column, if
   ## that makes sense.)
   ## The types of variables may be heterogeneous.
   ##
-  ## A table object is like an SQL table or resultset, or a relation, or a 
+  ## A table object is like an SQL table or resultset, or a relation, or a
   ## DataFrame in R or Pandas.
   ##
   ## A table is an array in itself: its size is @var{nrows}-by-@var{nvariables},
@@ -67,16 +67,16 @@ classdef table
   ## @end deftypeivar
 
   properties
-    % The names of the variables (columns), as cellstr
+    # The names of the variables (columns), as cellstr
     VariableNames = {}
-    % The values of the variables, as a cell vector of arbitrary types
+    # The values of the variables, as a cell vector of arbitrary types
     VariableValues = {}
-    % Optional row names, as cellstr
+    # Optional row names, as cellstr
     RowNames = []
-    % Dimension names
+    # Dimension names
     DimensionNames = { "Row" "Variables" }
-  end
-  
+  endproperties
+
   methods
     ## -*- texinfo -*-
     ## @node table.table
@@ -110,14 +110,14 @@ classdef table
     ##
     ## @end deftypefn
     function this = table (varargin)
-      
-      % Peel off trailing options
+
+      # Peel off trailing options
       [opts, args] = peelOffNameValueOptions (varargin, {'VariableNames', 'RowNames'});
-      
-      % Calling form handling
+
+      # Calling form handling
       nargs = numel (args);
       if nargs == 3 && isequal (args{1}, 'Backdoor')
-        % Undocumented form for internal use
+        # Undocumented form for internal use
         [varNames, varVals] = args{2:3};
       elseif nargs == 4 && isequal (args{1}, 'Size') && isequal (args{3}, 'VariableTypes')
         error('table: This constructor form is unimplemented');
@@ -131,25 +131,25 @@ classdef table
             varNames{i} = inputname (i);
             if isempty (varNames{i})
               varNames{i} = sprintf('Var%d', i);
-            end
-          end
-        end
-      end
-      
-      % Input validation
-      if ~iscell (varVals) || (~isvector (varVals) && ~isempty (varVals))
+            endif
+          endfor
+        endif
+      endif
+
+      # Input validation
+      if !iscell (varVals) || (!isvector (varVals) && !isempty (varVals))
         error('table: VariableValues must be a cell vector');
-      end
-      if ~iscellstr (varNames) || (~isvector (varNames) && ~isempty (varNames))
+      endif
+      if !iscellstr (varNames) || (!isvector (varNames) && !isempty (varNames))
         error('table: VariableNames must be a cellstr vector');
-      end
+      endif
       varNames = varNames(:)';
       varVals = varVals(:)';
       if numel (varNames) ~= numel (varVals)
         error ('table: Inconsistent number of VariableNames (%d) and VariableValues (%d)', ...
          numel (varNames), numel (varVals));
-      end
-      if ~isempty (varVals)
+      endif
+      if !isempty (varVals)
         nrows = size (varVals{1}, 1);
         for i = 2:numel (varVals)
           if ndims (varVals{i}) > 2
@@ -160,37 +160,37 @@ classdef table
           if nrows ~= nrows2
             error ('table: Inconsistent sizes: var 1 (%s) is %d rows; var %d (%s) is %d rows', ...
               varNames{1}, nrows, i, varNames{i}, nrows2);
-          end
-        end
-      end
+          endif
+        endfor
+      endif
       [uqNames, ix] = unique (varNames);
       if numel (uqNames) < numel (varNames)
         ixBad = 1:numel (varNames);
         ixBad(ix) = [];
         error ('table: Duplicate VariableNames: %s', strjoin (varNames(ixBad), ', '));
-      end
+      endif
 
-      % Construction
+      # Construction
       this.VariableNames = varNames;
       this.VariableValues = varVals;
       if isfield (opts, 'RowNames')
         this.RowNames = opts.RowNames;
-      end
-    end
-    
-    % Display
-    
+      endif
+    endfunction
+
+    # Display
+
     function display (this)
-      %DISPLAY Custom display.
+      #DISPLAY Custom display.
       in_name = inputname (1);
-      if ~isempty (in_name)
+      if !isempty (in_name)
         fprintf ('%s =\n', in_name);
-      end
+      endif
       disp (this);
-    end
+    endfunction
 
     function disp (this)
-      %DISP Custom display.
+      #DISP Custom display.
       if isempty (this)
         fprintf ('Empty %s %s\n', size2str (size (this)), class (this));
       else
@@ -199,8 +199,8 @@ classdef table
         if hasrownames (this)
           fprintf ('  Has RowNames\n');
         endif
-      end
-    end
+      endif
+    endfunction
 
     ## -*- texinfo -*-
     ## @node table.summary
@@ -215,7 +215,7 @@ classdef table
     function out = summary (this)
       summary_impl (this);
     endfunction
-    
+
     ## -*- texinfo -*-
     ## @node table.prettyprint
     ## @deftypefn {Method} {} prettyprint (@var{obj})
@@ -228,18 +228,18 @@ classdef table
     ##
     ## @end deftypefn
     function prettyprint (this)
-      %PRETTYPRINT Display table values, formatted as a table
+      #PRETTYPRINT Display table values, formatted as a table
       if isempty (this)
         fprintf ('Empty %s %s\n', size2str (size (this)), class (this));
-        return;
-      end
+        return
+      endif
       nVars = width (this);
       varNames = this.VariableNames;
-      % Here, "cols" means output columns, not data columns. Each data variable
-      % will be displayed in a single output column.
-      %FIXME: This display logic might be broken for multi-column variables.
+      # Here, "cols" means output columns, not data columns. Each data variable
+      # will be displayed in a single output column.
+      #FIXME: This display logic might be broken for multi-column variables.
       colNames = varNames;
-      
+
       nCols = nVars;
       colNames = varNames;
       colStrs = cell (1, nVars);
@@ -266,23 +266,23 @@ classdef table
       colWidths = max ([nameWidths; colWidths]);
       totalWidth = sum (colWidths) + 4 + (3 * (nCols - 1));
       elementStrs = cat (2, colStrs{:});
-      
+
       rowFmts = cell (1, nCols);
       for i = 1:nCols
         rowFmts{i} = ['%-' num2str(colWidths(i)) 's'];
-      end
+      endfor
       rowFmt = ['| ' strjoin(rowFmts, ' | ')  ' |' sprintf('\n')];
       fprintf ('%s\n', repmat ('-', [1 totalWidth]));
       fprintf (rowFmt, colNames{:});
       fprintf ('%s\n', repmat ('-', [1 totalWidth]));
       for i = 1:height (this)
         fprintf (rowFmt, elementStrs{i,:});
-      end
+      endfor
       fprintf ('%s\n', repmat ('-', [1 totalWidth]));
-    end
-    
-    % Type conversion
-    
+    endfunction
+
+    # Type conversion
+
     ## -*- texinfo -*-
     ## @node table.table2cell
     ## @deftypefn {Method} {@var{c} =} table2cell (@var{obj})
@@ -310,7 +310,7 @@ classdef table
         endif
       endfor
     endfunction
-    
+
     ## -*- texinfo -*-
     ## @node table.table2struct
     ## @deftypefn {Method} {@var{s} =} table2struct (@var{obj})
@@ -335,14 +335,14 @@ classdef table
         mustBeScalar (opts.ToScalar);
         toScalar = opts.ToScalar;
       endif
-      
+
       if toScalar
         out = struct;
         for i = 1:width (this)
           out.(this.VariableNames{i}) = this.VariableValues{i};
         endfor
       else
-        %TODO: Figure out how to implement this efficiently using cell2struct
+        #TODO: Figure out how to implement this efficiently using cell2struct
         s0 = struct;
         for i = 1:width (this)
           s0.(this.VariableNames{i}) = [];
@@ -361,7 +361,7 @@ classdef table
         endfor
       endif
     endfunction
-    
+
     ## -*- texinfo -*-
     ## @node table.table2array
     ## @deftypefn {Method} {@var{s} =} table2struct (@var{obj})
@@ -370,20 +370,20 @@ classdef table
     ##
     ## @end deftypefn
     function out = table2array (this)
-      %TABLE2ARRAY Convert table to homogeneous array
+      #TABLE2ARRAY Convert table to homogeneous array
       if isempty (this)
         out = [];
         return
       endif
-      % Wow, this is an easy implementation
-      % TODO: Doesn't work for mixed cell and non-cell variable values, because of the
-      % implicit conversion of numerics to single cells. Dunno if we want to add
-      % more graceful support for that or not.
+      # Wow, this is an easy implementation
+      # TODO: Doesn't work for mixed cell and non-cell variable values, because of the
+      # implicit conversion of numerics to single cells. Dunno if we want to add
+      # more graceful support for that or not.
       out = cat (2, this.VariableValues{:});
     endfunction
 
-    % Structural stuff
-    
+    # Structural stuff
+
     ## -*- texinfo -*-
     ## @node table.varnames
     ## @deftypefn {Method} {@var{out} =} varnames (@var{obj})
@@ -401,7 +401,7 @@ classdef table
       else
         out = this;
         out.VariableNames = newVarNames;
-      endif  
+      endif
     endfunction
 
     ## -*- texinfo -*-
@@ -412,7 +412,7 @@ classdef table
     ##
     ## @end deftypefn
     function out = istable (this)
-      %ISTABLE True if input is a table
+      #ISTABLE True if input is a table
       out = true;
     endfunction
 
@@ -437,15 +437,15 @@ classdef table
           varargout{1} = width(this);
         else
           varargout{1} = 1;
-        end
+        endif
       elseif nargout == 0 || nargout == 1
         varargout{1} = [height(this), width(this)];
       else
         varargout{1} = height(this);
         varargout{2} = width(this);
         [varargout{3:end}] = deal(1);
-      end
-    end
+      endif
+    endfunction
 
     ## -*- texinfo -*-
     ## @node table.end
@@ -456,7 +456,7 @@ classdef table
     ## @end deftypefn
     function out = end (this, k, n)
       out = size (this, k);
-    end
+    endfunction
 
     ## -*- texinfo -*-
     ## @node table.length
@@ -470,7 +470,7 @@ classdef table
     ## @end deftypefn
     function out = length (this, varargin)
       out = max (size (this));
-    end
+    endfunction
 
     ## -*- texinfo -*-
     ## @node table.ndims
@@ -482,30 +482,30 @@ classdef table
     ##
     ## @end deftypefn
     function out = ndims (this)
-      %NDIMS Number of dimensions
-      %
-      % For tables, ndims is always 2.
+      #NDIMS Number of dimensions
+      #
+      # For tables, ndims is always 2.
       out = 2;
-    end
-    
+    endfunction
+
     ## -*- texinfo -*-
     ## @node table.squeeze
     ## @deftypefn {Method} {@var{obj} =} squeeze (@var{obj})
     ##
     ## Remove singleton dimensions.
     ##
-    ## For tables, this is always a no-op that returns the input 
+    ## For tables, this is always a no-op that returns the input
     ## unmodified, because tables always have exactly 2 dimensions.
     ##
     ## @end deftypefn
     function out = squeeze (this)
-      %SQUEEZE Remove singleton dimensions from this.
-      %
-      % This is always a no-op that returns the input unmodified, because tables
-      % always have exactly 2 dimensions.
+      #SQUEEZE Remove singleton dimensions from this.
+      #
+      # This is always a no-op that returns the input unmodified, because tables
+      # always have exactly 2 dimensions.
       out = this;
     endfunction
-    
+
     ## -*- texinfo -*-
     ## @node table.size_equal
     ## @deftypefn {Method} {@var{out} =} size_equal (@var{varargin})
@@ -514,7 +514,7 @@ classdef table
     ##
     ## @end deftypefn
     function out = size_equal (varargin)
-      %SIZE_EQUAL True if the dimensions of all arguments agree.
+      #SIZE_EQUAL True if the dimensions of all arguments agree.
       [nrows, nvars] = size (varargin{1});
       out = true;
       for i = 2:numel (varargin)
@@ -522,16 +522,16 @@ classdef table
         if nrowsi ~= nrows || nvarsi ~= nvars;
             out = false;
             return;
-        end
+        endif
       endfor
     endfunction
-  
+
     ## -*- texinfo -*-
     ## @node table.sizeof
     ## @deftypefn {Method} {@var{out} =} sizeof (@var{obj})
     ##
     ## Approximate size of array in bytes. For tables, this returns the sume
-    ## of @code{sizeof} for all of its variables’ arrays, plus the size of the 
+    ## of @code{sizeof} for all of its variables’ arrays, plus the size of the
     ## VariableNames and any other metadata stored in @var{obj}.
     ##
     ## This is currently unimplemented.
@@ -555,14 +555,14 @@ classdef table
     ##
     ## @end deftypefn
     function out = height (this)
-      %HEIGHT Number of rows in table
+      #HEIGHT Number of rows in table
       if isempty (this.VariableValues)
         out = 0;
       else
         out = size (this.VariableValues{1}, 1);
-      end
-    end
-    
+      endif
+    endfunction
+
     ## -*- texinfo -*-
     ## @node table.rows
     ## @deftypefn {Method} {@var{out} =} rows (@var{obj})
@@ -571,10 +571,10 @@ classdef table
     ##
     ## @end deftypefn
     function out = rows (this)
-      %ROWS Number of rows in table
+      #ROWS Number of rows in table
       out = height (this);
     endfunction
-    
+
     ## -*- texinfo -*-
     ## @node table.width
     ## @deftypefn {Method} {@var{out} =} width (@var{obj})
@@ -586,13 +586,13 @@ classdef table
     ##
     ## @end deftypefn
     function out = width (this)
-      %WIDTH Number of variables in table
-      %
-      % Note that this is not the sum of the number of columns in each variable.
-      % It is just the number of variables.
+      #WIDTH Number of variables in table
+      #
+      # Note that this is not the sum of the number of columns in each variable.
+      # It is just the number of variables.
       out = numel (this.VariableNames);
-    end
-    
+    endfunction
+
     ## -*- texinfo -*-
     ## @node table.columns
     ## @deftypefn {Method} {@var{out} =} columns (@var{obj})
@@ -604,13 +604,13 @@ classdef table
     ##
     ## @end deftypefn
     function out = columns (this)
-      %COLUMNS Number of columns (variables) in table
-      %
-      % Note that this is not the sum of the number of columns in each variable.
-      % It is just the number of variables.      
+      #COLUMNS Number of columns (variables) in table
+      #
+      # Note that this is not the sum of the number of columns in each variable.
+      # It is just the number of variables.
       out = width (this);
     endfunction
-    
+
     ## -*- texinfo -*-
     ## @node table.numel
     ## @deftypefn {Method} {@var{out} =} numel (@var{obj})
@@ -625,10 +625,10 @@ classdef table
     ## @end deftypefn
     function out = numel (this)
       out = 1;
-      % This bit breaks subsasgn
-      %out = heignt (this) * width (this);
-    end
-    
+      # This bit breaks subsasgn
+      #out = heignt (this) * width (this);
+    endfunction
+
     ## -*- texinfo -*-
     ## @node table.isempty
     ## @deftypefn {Method} {@var{out} =} isempty (@var{obj})
@@ -641,8 +641,8 @@ classdef table
     ## @end deftypefn
     function out = isempty (this)
       out = prod (size (this)) == 0;
-    end
-    
+    endfunction
+
     ## -*- texinfo -*-
     ## @node table.ismatrix
     ## @deftypefn {Method} {@var{out} =} ismatrix (@var{obj})
@@ -653,12 +653,12 @@ classdef table
     ##
     ## @end deftypefn
     function out = ismatrix (this)
-      %ISMATRIX True if input is a matrix
-      %
-      % For tables, ismatrix() is always true, by definition.
+      #ISMATRIX True if input is a matrix
+      #
+      # For tables, ismatrix() is always true, by definition.
       out = true;
-    end
-    
+    endfunction
+
     ## -*- texinfo -*-
     ## @node table.isrow
     ## @deftypefn {Method} {@var{out} =} isrow (@var{obj})
@@ -667,10 +667,10 @@ classdef table
     ##
     ## @end deftypefn
     function out = isrow (this)
-      %ISROW True if input is a row vector
+      #ISROW True if input is a row vector
       out = height (this) == 1;
-    end
-    
+    endfunction
+
     ## -*- texinfo -*-
     ## @node table.iscol
     ## @deftypefn {Method} {@var{out} =} iscol (@var{obj})
@@ -683,8 +683,8 @@ classdef table
     ## @end deftypefn
     function out = iscol (this)
       out = width (this) == 1;
-    end
-    
+    endfunction
+
     ## -*- texinfo -*-
     ## @node table.isvector
     ## @deftypefn {Method} {@var{out} =} isvector (@var{obj})
@@ -693,10 +693,10 @@ classdef table
     ##
     ## @end deftypefn
     function out = isvector (this)
-      %ISVECTOR True if input is a vector
+      #ISVECTOR True if input is a vector
       out = isrow (this) || iscol (this);
-    end
-    
+    endfunction
+
     ## -*- texinfo -*-
     ## @node table.isscalar
     ## @deftypefn {Method} {@var{out} =} isscalar (@var{obj})
@@ -705,10 +705,10 @@ classdef table
     ##
     ## @end deftypefn
     function out = isscalar (this)
-      %ISSCALAR True if input is a scalar
+      #ISSCALAR True if input is a scalar
       out = height (this) == 1 && width (this) == 1;
-    end
-    
+    endfunction
+
     ## -*- texinfo -*-
     ## @node table.hasrownames
     ## @deftypefn {Method} {@var{out} =} hasrownames (@var{obj})
@@ -717,10 +717,10 @@ classdef table
     ##
     ## @end deftypefn
     function out = hasrownames (this)
-      %HASROWNAMES True if this table has row names defined
-      out = ~isempty (this.RowNames);
+      #HASROWNAMES True if this table has row names defined
+      out = !isempty (this.RowNames);
     endfunction
-    
+
     ## -*- texinfo -*-
     ## @node table.vertcat
     ## @deftypefn {Method} {@var{out} =} vertcat (@var{varargin})
@@ -739,32 +739,32 @@ classdef table
     function out = vertcat (varargin)
       args = varargin;
       for i = 1:numel (args)
-        if ~istable (args{i})
+        if !istable (args{i})
           args{i} = table (args{i});
-        end
-      end
+        endif
+      endfor
       mustBeAllSameVars (args{:});
       out = args{1};
       for i = 2:numel (args)
         if isempty (out.RowNames)
-          if ~isempty (args{i}.RowNames)
+          if !isempty (args{i}.RowNames)
             error ('table.vertcat: Cannot cat tables with mixed empty and non-empty RowNames');
-          end
+          endif
         else
           out.RowNames = [out.RowNames; args{i}.RowNames];
-        end
+        endif
         for iVar = 1:width (out)
           out.VariableValues{iVar} = [out.VariableValues{iVar}; args{i}.VariableValues{iVar}];
-        end
-      end
-    end
-    
+        endfor
+      endfor
+    endfunction
+
     ## -*- texinfo -*-
     ## @node table.horzcat
     ## @deftypefn {Method} {@var{out} =} horzcat (@var{varargin})
     ##
     ## Horizontal concatenation.
-    ## 
+    ##
     ## Combines tables by horizontally concatenating them.
     ## Inputs that are not tables are automatically converted to tables by calling
     ## table() on them.
@@ -780,12 +780,12 @@ classdef table
       seen_names = args{1}.VariableNames;
       for i = 2:numel (args)
         dup_names = intersect (seen_names, args{i}.VariableNames);
-        if ~isempty (dup_names)
+        if !isempty (dup_names)
           error ('table.horzcat: Inputs have duplicate VariableNames: %s', strjoin (dup_names, ', '));
-        end
+        endif
         seen_names = [seen_names args{i}.VariableNames];
-      end
-      % Okay, all var names are distinct. We can just concatenate.
+      endfor
+      # Okay, all var names are distinct. We can just concatenate.
       varNameses = cell (size (args));
       varValses = cell (size (args));
       for i = 1:numel (args)
@@ -795,8 +795,8 @@ classdef table
       out = varargin{1};
       out.VariableNames = cat (2, varNameses{:});
       out.VariableValues = cat (2, varValses{:});
-    end
-    
+    endfunction
+
     ## -*- texinfo -*-
     ## @node table.repmat
     ## @deftypefn {Method} {@var{out} =} repmat (@var{obj}, @var{sz})
@@ -826,7 +826,7 @@ classdef table
         out.RowNames = repmat (this.RowNames, sz);
       endif
     endfunction
-    
+
     ## -*- texinfo -*-
     ## @node table.repelem
     ## @deftypefn {Method} {@var{out} =} repelem (@var{obj}, @var{R})
@@ -850,26 +850,26 @@ classdef table
         out.VariableValues{i} = repelem (this.VariableValues{i}, args{:});
       endfor
     endfunction
-  
+
     function out = subsref (this, s)
-      %SUBSREF Subscripted reference
-      %
-      % tbl.VarName
-      % tbl.VarName(ix)
-      % tbl.(VarName)
-      % tbl(ixRows, ixVars)
-      % tbl{ixRow, ixVar}
-      % tbl{ixRow, ixVar}(ix)
-      %
-      % Table supports various forms of indexing that allow you to subset the
-      % table or get at the variable values within the table.
+      #SUBSREF Subscripted reference
+      #
+      # tbl.VarName
+      # tbl.VarName(ix)
+      # tbl.(VarName)
+      # tbl(ixRows, ixVars)
+      # tbl{ixRow, ixVar}
+      # tbl{ixRow, ixVar}(ix)
+      #
+      # Table supports various forms of indexing that allow you to subset the
+      # table or get at the variable values within the table.
       chain_s = s(2:end);
       s = s(1);
       switch s(1).type
         case '()'
           if numel (s.subs) ~= 2
             error ('table.subsref: ()-indexing of table requires exactly two arguments');
-          end
+          endif
           [ixRow, ixVar] = resolveRowVarRefs (this, s.subs{1}, s.subs{2});
           out = this;
           out = subsetrows (out, ixRow);
@@ -877,27 +877,27 @@ classdef table
         case '{}'
           if numel (s.subs) ~= 2
             error ('table.subsref: {}-indexing of table requires exactly two arguments');
-          end
+          endif
           [ixRow, ixVar] = resolveRowVarRefs (this, s.subs{1}, s.subs{2});
           if numel (ixRow) ~= 1 && numel (ixVar) ~= 1
             error('table.subsref: {}-indexing of table requires one of the inputs to be scalar');
-          end
-          %FIXME: I'm not sure how to handle the signature here yet
+          endif
+          #FIXME: I'm not sure how to handle the signature here yet
           if numel (ixVar) > 1
             error ('table.subsref: {}-indexing across multiple variables is currently unimplemented');
-          end
+          endif
           if numel (ixRow) > 1
             error ('table.subsref: {}-indexing across multiple rows is currently unimplemented');
-          end
+          endif
           varData = this.VariableValues{ixVar};
           out = varData(ixRow);
         case '.'
           name = s.subs;
-          if ~ischar (name)
+          if !ischar (name)
             error ('table.subsref: .-reference arguments must be char');
-          end
-          % Special cases for special properties and other attribute access
-          % TODO: should variable names or dimension names take precedence?
+          endif
+          # Special cases for special properties and other attribute access
+          # TODO: should variable names or dimension names take precedence?
           if isequal (name, 'Properties')
             out = getProperties (this);
           elseif isequal (name, this.DimensionNames{1})
@@ -907,25 +907,25 @@ classdef table
           else
             out = getvar (this, name);
           endif
-      end
-      % Chained references
-      if ~isempty (chain_s)
+      endswitch
+      # Chained references
+      if !isempty (chain_s)
         out = subsref (out, chain_s);
-      end
-    end
-    
-    function out = subsasgn (this, s, val)
-      %SUBSASGN Subscripted assignment
+      endif
+    endfunction
 
-      % Chained subscripts
+    function out = subsasgn (this, s, val)
+      #SUBSASGN Subscripted assignment
+
+      # Chained subscripts
       chain_s = s(2:end);
       s = s(1);
-      if ~isempty (chain_s)
+      if !isempty (chain_s)
           rhs_in = subsref (this, s);
           rhs = subsasgn (rhs_in, chain_s, val);
       else
           rhs = val;
-      end
+      endif
 
       out = this;
       switch s(1).type
@@ -934,29 +934,29 @@ classdef table
         case '{}'
           if numel (s.subs) ~= 2
             error ('table.subsasgn: {}-indexing of table requires exactly two arguments');
-          end
+          endif
           [ixRow, ixVar] = resolveRowVarRefs (this, s.subs{1}, s.subs{2});
-          if ~isscalar (ixVar)
+          if !isscalar (ixVar)
             error ('table.subsasgn: {}-indexing must reference a single variable; got %d', ...
               numel (ixVar));
-          end
+          endif
           varData = this.VariableValues{ixVar};
           varData(ixRow) = rhs;
           out.VariableValues{ixVar} = varData;
         case '.'
-          if ~ischar (s.subs)
+          if !ischar (s.subs)
             error ('table.subsasgn: .-index argument must be char; got a %s', ...
               class (s.subs));
           endif
           if isequal (s.subs, 'Properties')
-            % Special case for this.Properties access
+            # Special case for this.Properties access
             error ('table.subsasgn: .Properties access is not implemented yet');
           else
-            out = setvar (this, s.subs, rhs);            
+            out = setvar (this, s.subs, rhs);
           endif
-      end
-    end
-    
+      endswitch
+    endfunction
+
     ## -*- texinfo -*-
     ## @node table.setVariableNames
     ## @deftypefn {Method} {@var{out} =} setVariableNames (@var{obj}, @var{names})
@@ -969,7 +969,7 @@ classdef table
     ## @var{names} is a char or cellstr vector. It must have the same number of elements
     ## as the number of variable names being assigned.
     ##
-    ## @var{ix} is an index vector indicating which variable names to set. If 
+    ## @var{ix} is an index vector indicating which variable names to set. If
     ## omitted, it sets all of them present in @var{obj}.
     ##
     ## This method exists because the @code{obj.Properties.VariableNames = @dots{}}
@@ -977,7 +977,7 @@ classdef table
     ##
     ## @end deftypefn
     function this = setVariableNames (this, varargin)
-      %SETVARIABLENAMES Set VariableNames
+      #SETVARIABLENAMES Set VariableNames
       narginchk (2, 3);
       if nargin == 2
         ix = [];
@@ -1008,7 +1008,7 @@ classdef table
         this.VariableNames(ix) = names;
       endif
     endfunction
-    
+
     ## -*- texinfo -*-
     ## @node table.setDimensionNames
     ## @deftypefn {Method} {@var{out} =} setDimensionNames (@var{obj}, @var{names})
@@ -1021,7 +1021,7 @@ classdef table
     ## @var{names} is a char or cellstr vector. It must have the same number of elements
     ## as the number of dimension names being assigned.
     ##
-    ## @var{ix} is an index vector indicating which dimension names to set. If 
+    ## @var{ix} is an index vector indicating which dimension names to set. If
     ## omitted, it sets all two of them. Since there are always two dimension,
     ## the indexes in @var{ix} may never be higher than 2.
     ##
@@ -1041,7 +1041,7 @@ classdef table
         names = cellstr (names);
       endif
       mustBeCellstr (names);
-      if ~all (cellfun (@isvarname, names))
+      if !all (cellfun (@isvarname, names))
         error ('table.setDimensionNames: DimensionNames must be valid variable names');
       endif
       if isempty (ix)
@@ -1078,21 +1078,21 @@ classdef table
     ##
     ## @end deftypefn
     function this = setRowNames (this, names)
-      %SETROWNAMES Set RowNames
+      #SETROWNAMES Set RowNames
       if isempty (names)
         this.RowNames = [];
         return;
       endif
-      if ~iscellstr (names)
+      if !iscellstr (names)
         error ('table: RowNames must be cellstr; got a %s', class (names));
       endif
-      if ~isequal (size (names), [height(this), 1])
+      if !isequal (size (names), [height(this), 1])
         error ('table: Dimension mismatch: table has %d rows but new RowNames is %s', ...
           height (this), size2str (size (names)));
       endif
       this.RowNames = names;
     endfunction
-    
+
     ## -*- texinfo -*-
     ## @node table.removevars
     ## @deftypefn {Method} {@var{out} =} removevars (@var{obj}, @var{vars})
@@ -1111,7 +1111,7 @@ classdef table
       out.VariableNames(ixVar) = [];
       out.VariableValues(ixVar) = [];
     endfunction
-    
+
     ## -*- texinfo -*-
     ## @node table.movevars
     ## @deftypefn {Method} {@var{out} =} movevars (@var{obj}, @var{vars}, @var{relLocation}, @var{location})
@@ -1122,7 +1122,7 @@ classdef table
     ##
     ## @var{relLocation} is @code{'Before'} or @code{'After'}.
     ##
-    ## @var{location} indicates a single variable to use as the target location, 
+    ## @var{location} indicates a single variable to use as the target location,
     ## specified by name or index. If it is specified by index, it is the index
     ## into the list of *unmoved* variables from @var{obj}, not the original full
     ## list of variables in @var{obj}.
@@ -1131,10 +1131,10 @@ classdef table
     ##
     ## @end deftypefn
     function out = movevars (this, vars, relLocation, location)
-      if ~ischar (relLocation)
+      if !ischar (relLocation)
         error ('table.movevars: relLocation must be char; got %s', class (relLocation));
       endif
-      if ~ismember (relLocation, {'Before', 'After'})
+      if !ismember (relLocation, {'Before', 'After'})
         error ('table.movevars: relLocation must be ''Before'' or ''After''; got ''%s''', ...
           relLocation);
       endif
@@ -1144,7 +1144,7 @@ classdef table
       tmp = subsetvars (this, ixOtherVars);
       moved = subsetvars (this, ixVar);
       ixLoc = resolveVarRef (tmp, location);
-      if ~isscalar (ixLoc)
+      if !isscalar (ixLoc)
         error ('table.movevars: location must specify a single existing variable');
       endif
       if isequal(relLocation, 'Before')
@@ -1156,7 +1156,7 @@ classdef table
       right = subsetvars (tmp, insertionIx:width (tmp));
       out = [left moved right];
     endfunction
-    
+
     ## -*- texinfo -*-
     ## @node table.getvar
     ## @deftypefn {Method} {[@var{out}, @var{name}]} = getvar (@var{obj}, @var{varRef})
@@ -1180,14 +1180,14 @@ classdef table
       out = this.VariableValues{ix_var};
       name = var_names{1};
     endfunction
-    
+
     ## -*- texinfo -*-
     ## @node table.getvars
     ## @deftypefn {Method} {[@var{out1}, @dots{}]} = getvars (@var{obj}, @var{varRef})
     ##
     ## Get values for one ore more table variables.
     ##
-    ## @var{varRef} is a variable reference in the form of variable names or 
+    ## @var{varRef} is a variable reference in the form of variable names or
     ## indexes.
     ##
     ## Returns as many outputs as @var{varRef} referenced variables. Each output
@@ -1228,7 +1228,7 @@ classdef table
           numel (ixVar));
       endif
       out = this;
-      % Scalar expansion
+      # Scalar expansion
       value_in = value;
       n_rows = height (this);
       val_is_scalar = isscalar(value) || (ischar(value) && ...
@@ -1242,9 +1242,9 @@ classdef table
       if size (value, 1) ~= height (this)
         error ('table.setvar: Inconsistent dimensions: table is height %d, input is height %d', ...
           height (this), size (value, 1));
-      end
+      endif
       if ixVar == 0
-        % Adding a variable
+        # Adding a variable
         if ! ischar (varRef)
           error (['table.setvar: When adding a variable, you must supply the ' ...
             'variable name instead of an index']);
@@ -1253,11 +1253,11 @@ classdef table
         out.VariableNames{ix_new_var} = varRef;
         out.VariableValues{ix_new_var} = value;
       else
-        % Changing a variable
+        # Changing a variable
         out.VariableValues{ixVar} = value;
       endif
-    end
-    
+    endfunction
+
     ## -*- texinfo -*-
     ## @node table.addvars
     ## @deftypefn {Method} {@var{out} =} addvars (@var{obj}, @var{var1}, @dots{}, @var{varN})
@@ -1281,7 +1281,7 @@ classdef table
       if isfield (opts, 'After')
         ix_insertion = resolveVarRef (this, opts.After);
       endif
-      
+
       new_var_vals = args;
       if isfield (opts, 'NewVariableNames')
         new_var_names = opts.NewVariableNames;
@@ -1298,7 +1298,7 @@ classdef table
           endif
         endfor
       endif
-      
+
       new_tbl = table (new_var_vals{:}, 'VariableNames', new_var_names);
       if ix_insertion == width (this)
         out = [this new_tbl];
@@ -1310,7 +1310,7 @@ classdef table
         out = [left new_tbl right];
       endif
     endfunction
-    
+
     ## -*- texinfo -*-
     ## @node table.convertvars
     ## @deftypefn {Method} {@var{out} =} convertvars (@var{obj}, @var{vars}, @var{dataType})
@@ -1333,7 +1333,7 @@ classdef table
     ##
     ## @end deftypefn
     function out = convertvars (this, vars, dataType)
-      if ~ischar (dataType) && isa (dataType, 'function_handle')
+      if !ischar (dataType) && isa (dataType, 'function_handle')
         error ('table.convertvars: dataType must be char or function_handle; got a %s', ...
           class (dataType));
       endif
@@ -1344,7 +1344,7 @@ classdef table
         out.VariableValues{ixVar} = feval (dataType, this.VariableValues{ixVar});
       endfor
     endfunction
-    
+
     ## -*- texinfo -*-
     ## @node table.mergevars
     ## @deftypefn {Method} {@var{out} =} mergevars (@var{obj}, @var{vars})
@@ -1371,12 +1371,12 @@ classdef table
         new_var_name = opts.NewVariableName;
       else
         new_var_name = var_names{1};
-      endif      
-      
+      endif
+
       ix_all_vars = 1:width (this);
       ix_vars_left = ix_all_vars;
       ix_vars_left(ix_vars) = [];
-      
+
       merged_as_tbl = subsetvars (this, ix_vars);
       leftover = subsetvars (this, ix_vars_left);
       if merge_as_table
@@ -1387,7 +1387,7 @@ classdef table
       out = addvars (leftover, new_var_value, 'After', ix_vars(1)-1, ...
         'NewVariableNames', {new_var_name});
     endfunction
-    
+
 
     ## -*- texinfo -*-
     ## @node table.splitvars
@@ -1416,7 +1416,7 @@ classdef table
         do_all_vars = false;
         vars_to_split = args{1};
       endif
-      
+
       if do_all_vars
         vars_to_split = [];
         for i=1:width (this)
@@ -1431,7 +1431,7 @@ classdef table
       if numel (ix_vars) > 1 && ! isempty (new_var_names)
         error ('NewVariableNames may only be specified when splitting a single variable');
       endif
-      
+
       out = this;
       for i_var = numel(ix_vars):-1:1
         ix_var = ix_vars(i_var);
@@ -1454,7 +1454,7 @@ classdef table
         else
           my_new_var_names = new_var_names;
         endif
-        
+
         out = removevars (out, ix_var);
         out = addvars (out, new_var_vals{:}, 'NewVariableNames', my_new_var_names, ...
           'Before', ix_var);
@@ -1483,21 +1483,21 @@ classdef table
       if isfield (opts, 'NewDataVariableName')
         new_data_var_name = opts.NewDataVariableName;
       endif
-      
+
       [ix_vars, var_names] = resolveVarRef (this, varRef);
       if isfield (opts, 'ConstantVariables')
         [ix_const_vars, const_var_names] = resolveVarRef (this, opts.ConstantVariables);
       else
         ix_const_vars = setdiff (1:width (this), ix_vars);
       endif
-      
+
       tbl = subsetvars (this, ix_const_vars);
       n_rows_orig = height (this);
       n_ctgs = numel (ix_vars);
       ctg_run = categorical (var_names)';
       tbl = repelem (tbl, n_ctgs, 1);
-      
-      % Do some fancy indexing to arrange the stacked values
+
+      # Do some fancy indexing to arrange the stacked values
       stk_vals = this.VariableValues(ix_vars);
       stk_mat = cat(2, stk_vals{:});
       stk_mat = stk_mat';
@@ -1511,10 +1511,10 @@ classdef table
       endif
       stk_tbl = table(index_var_vals, stk_var_vals, ...
         'VariableNames', {index_var_name, new_data_var_name});
-      
+
       out = [tbl stk_tbl];
     endfunction
-    
+
     ## -*- texinfo -*-
     ## @node table.head
     ## @deftypefn {Method} {@var{out} =} head (@var{obj})
@@ -1540,7 +1540,7 @@ classdef table
       endif
       out = subsetrows (this, 1:k);
     endfunction
-    
+
     ## -*- texinfo -*-
     ## @node table.tail
     ## @deftypefn {Method} {@var{out} =} tail (@var{obj})
@@ -1556,13 +1556,13 @@ classdef table
     ##
     ## @end deftypefn
     function out = tail (this, k)
-      %TAIL Get last K rows of table
-      %
-      % out = tail (this, k)
-      %
-      % Returns the last k rows of this. K defaults to 8.
-      %
-      % If there are less than k rows in this, returns all rows.
+      #TAIL Get last K rows of table
+      #
+      # out = tail (this, k)
+      #
+      # Returns the last k rows of this. K defaults to 8.
+      #
+      # If there are less than k rows in this, returns all rows.
       if nargin < 2 || isempty (k)
         k = 8;
       endif
@@ -1573,42 +1573,42 @@ classdef table
       endif
       out = subsetrows (this, [(nRows - (k - 1)):nRows]);
     endfunction
-    
+
     function out = transpose (this)
       out = transpose_table (this);
-    end
+    endfunction
 
     function out = ctranspose (this)
       out = transpose_table (this);
-    end
+    endfunction
 
-    % Relational operations
-    
+    # Relational operations
+
     function [out, index] = sortrows (this, varargin)
-      %SORTROWS Sort rows of table
-      %
-      % [out, index] = sortrows (this, varargin)
-      %
-      % Sorts the rows of this based on the values in their variables.
-      
-      % Parse input signature
-      % This is tricky because the sortrows() signature is complicated and ambiguous
+      #SORTROWS Sort rows of table
+      #
+      # [out, index] = sortrows (this, varargin)
+      #
+      # Sorts the rows of this based on the values in their variables.
+
+      # Parse input signature
+      # This is tricky because the sortrows() signature is complicated and ambiguous
       args = varargin;
       doRowNames = false;
       direction = 'ascend';
       varRef = ':';
       knownOptions = {'MissingPlacement', 'ComparisonMethod'};
       [opts, ~, optArgs] = peelOffNameValueOptions (args, knownOptions);
-      if ~isempty (args) && (ischar (args{end}) || iscellstr (args{end})) ...
+      if !isempty (args) && (ischar (args{end}) || iscellstr (args{end})) ...
         && all (ismember (args{end}, {'ascend','descend'}))
         direction = args{end};
         args(end) = [];
-      end
+      endif
       if numel (args) > 1
         error ('table.sortrows: Unrecognized options or arguments');
       endif
       if !isempty (args)
-        %FIXME: Determine how to identify the "rowDimName" argument
+        #FIXME: Determine how to identify the "rowDimName" argument
         if ischar (args{1}) && isequal (args{1}, 'RowNames')
           doRowNames = true;
         else
@@ -1616,19 +1616,19 @@ classdef table
         endif
         args(end) = [];
       endif
-      
-      % Interpret inputs
-      
-      % Do sorting
+
+      # Interpret inputs
+
+      # Do sorting
       if doRowNames
-        % Special case: sort by row names
+        # Special case: sort by row names
         if isempty (this.rowNames)
           error ('table.sortrows: this table does not have row names');
         endif
         [sortedRowNames, index] = sortrows (this.RowNames, direction, optArgs{:});
         out = subsetrows (this, index);
       else
-        % General case
+        # General case
         ixVars = resolveVarRef (this, varRef);
         if ischar (direction)
           direction = cellstr (direction);
@@ -1638,20 +1638,20 @@ classdef table
         else
           directions = direction;
         endif
-        if ~isequal (size (directions), size (ixVars))
+        if !isequal (size (directions), size (ixVars))
           error ('table.sortrows: inconsistent size between direction and vars specifier');
         endif
-        % Perform a radix sort on the referenced variables
+        # Perform a radix sort on the referenced variables
         index = 1:height (this);
         tmp = this;
         for iStep = 1:numel(ixVars)
           iVar = numel(ixVars) - iStep + 1;
           ixVar = ixVars(iVar);
           varVal = tmp.VariableValues{ixVar};
-          %Convert Matlab-style 'descend' arg to Octave-style negative column index
-          %TODO: Add support for Octave-style negative column indexes in table.sortrows input.
-          %TODO: Wrap this arg munging logic in a sortrows_matlabby() function
-          %TODO: Better error message when optArgs are is present.
+          #Convert Matlab-style 'descend' arg to Octave-style negative column index
+          #TODO: Add support for Octave-style negative column indexes in table.sortrows input.
+          #TODO: Wrap this arg munging logic in a sortrows_matlabby() function
+          #TODO: Better error message when optArgs are is present.
           if isequal (directions{iVar}, 'descend')
             [~, ix] = sortrows (varVal, -1 * (1:size (varVal, 2)), optArgs{:});
           else
@@ -1663,23 +1663,23 @@ classdef table
         out = subsetrows (this, index);
       endif
     endfunction
-    
+
     function out = issortedrows (this, varargin)
-      %ISSORTEDROWS Determine if table rows are sorted
-      %
-      % out = issortedrows (this, varargin)
-      %
-      % TODO: Document my signature.
+      #ISSORTEDROWS Determine if table rows are sorted
+      #
+      # out = issortedrows (this, varargin)
+      #
+      # TODO: Document my signature.
       [~, ix] = sortrows (this, varargin{:});
       out = isequal (ix, 1:height (this));
     endfunction
-    
+
     function [out, ia] = topkrows (this, k, varargin)
-      %TOPKROWS Top rows in sorted order
-      %
-      % [out, ia] = topkrows (this, k, varargin)
-      %
-      % TODO: Document my signature.
+      #TOPKROWS Top rows in sorted order
+      #
+      # [out, ia] = topkrows (this, k, varargin)
+      #
+      # TODO: Document my signature.
       [sorted, ix] = sortrows (this, varargin);
       if k > height (sorted)
         out = sorted;
@@ -1687,31 +1687,31 @@ classdef table
       else
         out = sorted(1:k,:);
         ia = ix(1:k);
-      end
+      endif
     endfunction
 
     function [out, ia, ic] = unique (this, varargin)
-      %UNIQUE Unique row values
-      %
-      % [out, ia, ic] = unique (this)
-      % [out, ia, ic] = unique (..., 'first'/'last')
-      % [out, ia, ic] = unique (..., 'legacy')
-      % [out, ia, ic] = unique (..., 'stable'/'sorted')
-      %
-      % The 'legacy', 'stable', and 'sorted' flags are currently unsupported 
-      % because Octave's core unique() function does not support them. If you use
-      % them, you will get an error with a possibly-obsure error message.
-      %
-      % You can also pass a 'rows' flag, but it is effectively ignored, because
-      % row-wise operation is the only mode supported for unique() on tables. 
+      #UNIQUE Unique row values
+      #
+      # [out, ia, ic] = unique (this)
+      # [out, ia, ic] = unique (..., 'first'/'last')
+      # [out, ia, ic] = unique (..., 'legacy')
+      # [out, ia, ic] = unique (..., 'stable'/'sorted')
+      #
+      # The 'legacy', 'stable', and 'sorted' flags are currently unsupported
+      # because Octave's core unique() function does not support them. If you use
+      # them, you will get an error with a possibly-obsure error message.
+      #
+      # You can also pass a 'rows' flag, but it is effectively ignored, because
+      # row-wise operation is the only mode supported for unique() on tables.
       validFlags = {'rows', 'legacy', 'stable', 'sorted', 'first', 'last'};
       redundantFlags = {'rows'};
-      if ~iscellstr (varargin)
+      if !iscellstr (varargin)
         error ('table.unique: Invalid inputs: args 2 and later must be char flags');
       endif
       flags = varargin;
       invalidFlags = setdiff (varargin, validFlags);
-      if ~isempty (invalidFlags)
+      if !isempty (invalidFlags)
         error ('table.unique: Invalid flags: %s', strjoin(invalidFlags, ', '));
       endif
       tfRedundant = ismember (flags, redundantFlags);
@@ -1721,7 +1721,7 @@ classdef table
       [uPk, ia, ic] = unique (pk, 'rows', flags{:});
       out = subsetrows (this, ia);
     endfunction
-    
+
     ## -*- texinfo -*-
     ## @node table.join
     ## @deftypefn {Method} {[@var{C}, @var{ib}] =} join (@var{A}, @var{B})
@@ -1731,7 +1731,7 @@ classdef table
     ##
     ## This is not a "real" relational join operation. It has the restrictions
     ## that:
-    ##  1) The key values in B must be unique. 
+    ##  1) The key values in B must be unique.
     ##  2) Every key value in A must map to a key value in B.
     ## These are restrictions inherited from the Matlab definition of table.join.
     ##
@@ -1742,9 +1742,9 @@ classdef table
     ##
     ## @end deftypefn
     function [C, ib] = join (A, B, varargin)
-      % TODO: Implement options
-      
-      % Input munging
+      # TODO: Implement options
+
+      # Input munging
       optNames = {'Keys', 'KeepOneCopy', 'LeftKeys', 'RightKeys', ...
         'LeftVariables', 'RightVariables'};
       opts = peelOffNameValueOptions (varargin, optNames);
@@ -1761,8 +1761,8 @@ classdef table
       if !istable (B)
         B = table (B);
       endif
-      
-      % Join logic
+
+      # Join logic
       keyVarNames = intersect_stable (A.VariableNames, B.VariableNames);
       nonKeyVarsB = setdiff_stable (B.VariableNames, keyVarNames);
       if isempty (keyVarNames)
@@ -1776,11 +1776,11 @@ classdef table
       endif
       [pkA, pkB] = proxykeysForMatrixes (keysA, keysB);
       [tf, ib] = ismember (pkA, pkB, 'rows');
-      if ~all (tf)
+      if !all (tf)
         error ('table.join: Some rows in A had no corresponding key values in B');
       endif
-      % TODO: Once we've applied the key restrictions, can we just call
-      % realjoin() here?
+      # TODO: Once we've applied the key restrictions, can we just call
+      # realjoin() here?
       outA = A;
       nonKeysB = subsetvars (B, nonKeyVarsB);
       outB = subsetrows (nonKeysB, ib);
@@ -1788,7 +1788,7 @@ classdef table
     endfunction
 
     function out = resolveJoinKeysAndVars(A, B, opts)
-      %RESOLVEJOINKEYSANDVARS Internal implementation method
+      #RESOLVEJOINKEYSANDVARS Internal implementation method
       if isfield (opts, 'Keys')
         if isnumeric (opts.Keys) || islogical (opts.Keys)
           if islogical (opts.Keys)
@@ -1847,7 +1847,7 @@ classdef table
       elseif isfield (opts, 'RightKeys')
           error ('If option RightKeys is supplied, then LeftKeys must be, too.');
       else
-        % Default keys are a natural join
+        # Default keys are a natural join
         commonCols = intersect (A.VariableNames, B.VariableNames);
         keyNamesA = commonCols;
         keyNamesB = commonCols;
@@ -1927,8 +1927,8 @@ classdef table
     ##   @var{ixb} - Indexes into B for each row in out
     ##
     ## @end deftypefn
-    function [out, ixa, ixb] = innerjoin(A, B, varargin)      
-      % Input munging
+    function [out, ixa, ixb] = innerjoin(A, B, varargin)
+      # Input munging
       optNames = {'Keys', 'LeftKeys', 'RightKeys', ...
         'LeftVariables', 'RightVariables'};
       opts = peelOffNameValueOptions (varargin, optNames);
@@ -1938,35 +1938,35 @@ classdef table
       if ! istable (B)
         B = table (B);
       endif
-      
+
       [out, ix] = realjoin(A, B, varargin{:});
       ixa = ix(:,1);
       ixb = ix(:,2);
     endfunction
-    
+
     function [out, ixs] = realjoin(A, B, varargin)
-      %REALJOIN "Real" relational inner join, without key restrictions
-      %
-      % [out, ixs] = realjoin(A, B, varargin)
-      %
-      % Performs a "real" relational natural inner join between two tables, 
-      % without the key restrictions that JOIN imposes.
-      %
-      % Currently does not support tables which have RowNames. This may be
-      % added in the future.
-      %
-      % This is an Octave extension.
-      %
-      % TODO: Document options.
-      %
-      % Returns:
-      %   out - a table containing the result of joining A and B, with RowNames
-      %         removed.
-      %   ixs - an n-by-2 double matrix where ixs(i,:) is [ixA ixB], which are
-      %         the indexes from A and B containing the input rows that resulted
-      %         in this output row.
-      
-      % Input handling
+      #REALJOIN "Real" relational inner join, without key restrictions
+      #
+      # [out, ixs] = realjoin(A, B, varargin)
+      #
+      # Performs a "real" relational natural inner join between two tables,
+      # without the key restrictions that JOIN imposes.
+      #
+      # Currently does not support tables which have RowNames. This may be
+      # added in the future.
+      #
+      # This is an Octave extension.
+      #
+      # TODO: Document options.
+      #
+      # Returns:
+      #   out - a table containing the result of joining A and B, with RowNames
+      #         removed.
+      #   ixs - an n-by-2 double matrix where ixs(i,:) is [ixA ixB], which are
+      #         the indexes from A and B containing the input rows that resulted
+      #         in this output row.
+
+      # Input handling
       optNames = {'Keys', 'LeftKeys', 'RightKeys', ...
         'LeftVariables', 'RightVariables'};
       opts = peelOffNameValueOptions (varargin, optNames);
@@ -1983,10 +1983,10 @@ classdef table
       if hasrownames (B)
         error ('table.realjoin: Input B may not have row names');
       endif
-      
-      % Join logic
+
+      # Join logic
       if isempty (opts2.keyIxA)
-        % This degenerates to a cartesian product
+        # This degenerates to a cartesian product
         [out, ixs] = cartesian (A, B);
         return
       endif
@@ -2002,7 +2002,7 @@ classdef table
       out = [outA outB];
 
     endfunction
-  
+
     ## -*- texinfo -*-
     ## @node table.outerjoin
     ## @deftypefn {Method} {[@var{out}, @var{ixa}, @var{ixb}] =} outerjoin (@var{A}, @var{B})
@@ -2025,7 +2025,7 @@ classdef table
     ## @end deftypefn
     function [out, ixa, ixb] = outerjoin (A, B, varargin)
 
-      % Input handling
+      # Input handling
       if !istable (A)
         A = table (A);
       endif
@@ -2063,10 +2063,10 @@ classdef table
       if hasrownames (B)
         error ('table.outerjoin: Input B may not have row names');
       endif
-      
-      % Join logic
+
+      # Join logic
       if isempty (opts2.keyIxA)
-        % This degenerates to a cartesian product
+        # This degenerates to a cartesian product
         [out, ixs] = cartesian (A, B);
         return
       endif
@@ -2099,7 +2099,7 @@ classdef table
         ixb = [ixb; ixUnmatchedB];
       endif
       out = [outA outB];
-      % We have to do a loop because Octave doesn't like a plain cat() here
+      # We have to do a loop because Octave doesn't like a plain cat() here
       for i = 1:numel (fillTables)
         out = [out; fillTables{i}];
       endfor
@@ -2125,7 +2125,7 @@ classdef table
       endfor
       out = table (fillVals{:}, 'VariableNames', this.VariableNames);
     endfunction
-    
+
     ## -*- texinfo -*-
     ## @node table.semijoin
     ## @deftypefn {Method} {[@var{outA}, @var{ixA}, @var{outB}, @var{ixB}] =} semijoin @
@@ -2147,24 +2147,24 @@ classdef table
     ##
     ## @end deftypefn
     function [outA, ixA, outB, ixB] = semijoin (A, B)
-      
-      % Developer note: This is almost exactly the same as antijoin, just with
-      % inverted ismember() tests. See if the implementations can be refactored
-      % together.
-      
-      % Input handling
+
+      # Developer note: This is almost exactly the same as antijoin, just with
+      # inverted ismember() tests. See if the implementations can be refactored
+      # together.
+
+      # Input handling
       if !istable (A)
         A = table (A);
       endif
       if !istable (B)
         B = table (B);
       endif
-      
-      % Join logic
+
+      # Join logic
       keyVarNames = intersect_stable (A.VariableNames, B.VariableNames);
       nonKeyVarsB = setdiff_stable (B.VariableNames, keyVarNames);
       if isempty (keyVarNames)
-        % The degenerate case of no common variable names is to keep all the rows.
+        # The degenerate case of no common variable names is to keep all the rows.
         outA = A;
         ixA = 1:height (A);
         outB = B;
@@ -2181,7 +2181,7 @@ classdef table
         outB = subsetrows (B, ixB);
       endif
     endfunction
-    
+
     ## -*- texinfo -*-
     ## @node table.antijoin
     ## @deftypefn {Method} {[@var{outA}, @var{ixA}, @var{outB}, @var{ixB}] =} antijoin @
@@ -2200,20 +2200,20 @@ classdef table
     ##
     ## @end deftypefn
     function [outA, ixA, outB, ixB] = antijoin (A, B)
-      
-      % Input handling
+
+      # Input handling
       if !istable (A)
         A = table (A);
       endif
       if !istable (B)
         B = table (B);
       endif
-      
-      % Join logic
+
+      # Join logic
       keyVarNames = intersect_stable (A.VariableNames, B.VariableNames);
       nonKeyVarsB = setdiff_stable (B.VariableNames, keyVarNames);
       if isempty (keyVarNames)
-        % The degenerate case when there are no common variable names is the empty set
+        # The degenerate case when there are no common variable names is the empty set
         outA = subsetrows (A, []);
         ixA = [];
         outB = subsetrows (B, []);
@@ -2230,7 +2230,7 @@ classdef table
         outB = subsetrows (B, ixB);
       endif
     endfunction
-    
+
     ## -*- texinfo -*-
     ## @node table.cartesian
     ## @deftypefn {Method} {[@var{out}, @var{ixs}] =} cartesian (@var{A}, @var{B})
@@ -2255,22 +2255,22 @@ classdef table
     ## The ordering of the rows in the output is not specified, and may be implementation-
     ## dependent. TODO: Determine if we can lock this behavior down to a fixed,
     ## defined ordering, without killing performance.
-    ## 
+    ##
     ## @end deftypefn
     function [out, ixs] = cartesian (A, B)
-      
-      % Developer's note: The second argout, ixs, is for table's internal use,
-      % and is thus undocumented.
-      
+
+      # Developer's note: The second argout, ixs, is for table's internal use,
+      # and is thus undocumented.
+
       mustBeA (A, 'table');
       mustBeA (B, 'table');
-      
+
       commonVars = intersect (A.VariableNames, B.VariableNames);
-      if ~isempty (commonVars)
+      if !isempty (commonVars)
         error ('table.cartesian: Inputs have variable names in common: %s', ...
           strjoin (commonVars, ', '));
       endif
-      
+
       nRowsA = height (A);
       nRowsB = height (B);
       ixA = (1:nRowsA)';
@@ -2282,7 +2282,7 @@ classdef table
       outB = subsetrows (B, ixBOut);
       out = [outA outB];
     endfunction
-    
+
     ## -*- texinfo -*-
     ## @node table.groupby
     ## @deftypefn {Method} {[@var{out}] =} groupby (@var{obj}, @var{groupvars}, @var{aggcalcs})
@@ -2291,7 +2291,7 @@ classdef table
     ##
     ## This works like an SQL @code{"SELECT ... GROUP BY ..."} statement.
     ##
-    ## @var{groupvars} (cellstr, numeric) is a list of the grouping variables, 
+    ## @var{groupvars} (cellstr, numeric) is a list of the grouping variables,
     ## identified by name or index.
     ##
     ## @var{aggcalcs} is a specification of the aggregate calculations to perform
@@ -2300,24 +2300,24 @@ classdef table
     ##   @var{fcn} (function handle) is the function to apply to produce it
     ##   @var{in_vars} (cellstr) is a list of the input variables to pass to fcn
     ##
-    ## Returns a table.      
+    ## Returns a table.
     ##
-    ## @end deftypefn    
+    ## @end deftypefn
     function out = groupby (this, groupvars, aggcalcs)
       narginchk (2, 3);
-      if nargin < 3 || isempty (aggcalcs);  aggcalcs = cell(0, 3); end
+      if nargin < 3 || isempty (aggcalcs);  aggcalcs = cell(0, 3); endif
       mustBeA (aggcalcs, 'cell');
       if size (aggcalcs, 2) != 3
         error ('table.groupby: aggcalcs must be an 3-wide cell; got %d-wide', ...
           size (aggcalcs, 2));
       endif
-      
-      % Resolve input vars once up front for speed
+
+      # Resolve input vars once up front for speed
       n_aggs = size (aggcalcs, 1);
       for i = 1:n_aggs
         aggcalcs{i,4} = resolveVarRef (this, aggcalcs{i,3});
       endfor
-      
+
       agg_outs = cell (1, n_aggs);
       [group_id, groups_tbl] = findgroups (subsetvars (this, groupvars));
       n_groups = size (groups_tbl, 1);
@@ -2337,11 +2337,11 @@ classdef table
           endif
         endfor
       endfor
-      
+
       agg_out_tbl = table(agg_outs{:}, 'VariableNames', aggcalcs(:,1));
       out = [groups_tbl agg_out_tbl];
     endfunction
-    
+
     ## -*- texinfo -*-
     ## @node table.grpstats
     ## @deftypefn {Method} {[@var{out}] =} grpstats (@var{obj}, @var{groupvar})
@@ -2372,8 +2372,8 @@ classdef table
         data_vars = setdiff (this.VariableNames, groupvar_names);
       endif
       aggs = cell(0, 3);
-      
-      % TODO: Implement sem, gname, meanci, predci
+
+      # TODO: Implement sem, gname, meanci, predci
       stat_map = {
         'mean'    @mean
         'numel'   @numel
@@ -2383,7 +2383,7 @@ classdef table
         'max'     @max
         'range'   @range
         };
-        
+
       for i_var = 1:numel (data_vars)
         for i_stat = 1:numel (whichstats)
           if ischar (whichstats{i_stat})
@@ -2401,10 +2401,10 @@ classdef table
           aggs = [aggs; { out_var, stat_fcn, data_vars{i_var} }];
         endfor
       endfor
-      
+
       out = groupby (this, groupvar, aggs);
     endfunction
-    
+
     ## -*- texinfo -*-
     ## @node table.splitapply
     ## @deftypefn {Method} {@var{out} =} splitapply (@var{func}, @var{obj}, @var{G})
@@ -2442,7 +2442,7 @@ classdef table
     ## The variable names become a new variable named “OriginalVariableNames”.
     ##
     ## The row names are drawn from the column @var{VariableNamesSource} if it
-    ## is specified. Otherwise, if @var{obj} has row names, they are used. 
+    ## is specified. Otherwise, if @var{obj} has row names, they are used.
     ## Otherwise, new variable names in the form “VarN” are generated.
     ##
     ## If all the variables in @var{obj} are of the same type, they are concatenated
@@ -2453,7 +2453,7 @@ classdef table
     function out = rows2vars (this, varargin)
       [opts, args] = peelOffNameValueOptions (varargin, {'VariableNamesSource', ...
         'DataVariables'});
-        
+
       for i = 1:width (this)
         if size (this.VariableValues{i}, 2) > 1
           error ('table.rows2vars: Table variables may not have more than 1 column');
@@ -2461,7 +2461,7 @@ classdef table
           error ('table.rows2vars: Nested tables are not supported');
         endif
       endfor
-      
+
       if isfield (opts, 'VariableNamesSource')
         new_var_names = getvar (this, opts.VariableNamesSource);
         tbl = removevars (this, opts.VariableNamesSource);
@@ -2480,7 +2480,7 @@ classdef table
       endif
       OriginalVariableNames = tbl.VariableNames(:);
       tbl_original_var_names = table (OriginalVariableNames);
-      
+
       col_types = cellfun (@(x) class(x), tbl.VariableValues);
       u_col_types = unique (col_types);
       if isscalar (u_col_types)
@@ -2503,7 +2503,7 @@ classdef table
         'VariableNames', new_var_names);
       out = [tbl_original_var_names out];
     endfunction
-    
+
     ## -*- texinfo -*-
     ## @node table.congruentize
     ## @deftypefn {Method} {[@var{outA}, @var{outB}] =} congruentize (@var{A}, @var{B})
@@ -2523,7 +2523,7 @@ classdef table
     ##
     ## @end deftypefn
     function [outA, outB] = congruentize (A, B)
-      
+
       if !istable (A)
         A = table (A);
       endif
@@ -2551,7 +2551,7 @@ classdef table
       outB = B;
       [~,loc] = ismember (A.VariableNames, outB.VariableNames);
       outB = subsetvars (outB, loc);
-      
+
     endfunction
 
     ## -*- texinfo -*-
@@ -2569,16 +2569,16 @@ classdef table
     ##   @var{ib} - Row indexes into B of the rows from B included in C.
     ##
     ## @end deftypefn
-    function [C, ia, ib] = union (A, B)      
-      % Input handling
+    function [C, ia, ib] = union (A, B)
+      # Input handling
       [A, B] = congruentize (A, B);
-            
-      % Set logic
+
+      # Set logic
       [pkA, pkB] = proxykeysForMatrixes (A, B);
       [~, ia, ib] = union (pkA, pkB, 'rows');
-      C = [subsetrows(A, ia); subsetrows(B, ib)];      
+      C = [subsetrows(A, ia); subsetrows(B, ib)];
     endfunction
-    
+
     ## -*- texinfo -*-
     ## @node table.intersect
     ## @deftypefn {Method} {[@var{C}, @var{ia}, @var{ib}] =} intersect (@var{A}, @var{B})
@@ -2595,22 +2595,22 @@ classdef table
     ##
     ## @end deftypefn
     function [C, ia, ib] = intersect (A, B)
-      % Input handling
+      # Input handling
       [A, B] = congruentize (A, B);
-            
-      % Set logic
+
+      # Set logic
       [pkA, pkB] = proxykeysForMatrixes (A, B);
       [~, ia, ib] = intersect (pkA, pkB, 'rows');
-      C = [subsetrows(A, ia); subsetrows(B, ib)];      
+      C = [subsetrows(A, ia); subsetrows(B, ib)];
     endfunction
-    
+
     ## -*- texinfo -*-
     ## @node table.setxor
     ## @deftypefn {Method} {[@var{C}, @var{ia}, @var{ib}] =} setxor (@var{A}, @var{B})
     ##
     ## Set exclusive OR.
     ##
-    ## Computes the setwise exclusive OR of two tables. The set XOR is defined to be 
+    ## Computes the setwise exclusive OR of two tables. The set XOR is defined to be
     ## the unique row values which are present in one or the other of the two input
     ## tables, but not in both.
     ##
@@ -2621,22 +2621,22 @@ classdef table
     ##
     ## @end deftypefn
     function [C, ia, ib] = setxor (A, B)
-      % Input handling
+      # Input handling
       [A, B] = congruentize (A, B);
-            
-      % Set logic
+
+      # Set logic
       [pkA, pkB] = proxykeysForMatrixes (A, B);
       [~, ia, ib] = setxor (pkA, pkB, 'rows');
-      C = [subsetrows(A, ia); subsetrows(B, ib)];      
+      C = [subsetrows(A, ia); subsetrows(B, ib)];
     endfunction
-    
+
     ## -*- texinfo -*-
     ## @node table.setdiff
     ## @deftypefn {Method} {[@var{C}, @var{ia}] =} setdiff (@var{A}, @var{B})
     ##
     ## Set difference.
     ##
-    ## Computes the set difference of two tables. The set difference is defined to be 
+    ## Computes the set difference of two tables. The set difference is defined to be
     ## the unique row values which are present in table A that are not in table B.
     ##
     ## Returns:
@@ -2645,15 +2645,15 @@ classdef table
     ##
     ## @end deftypefn
     function [C, ia] = setdiff (A, B)
-      % Input handling
+      # Input handling
       [A, B] = congruentize (A, B);
-            
-      % Set logic
+
+      # Set logic
       [pkA, pkB] = proxykeysForMatrixes (A, B);
       [~, ia] = setdiff (pkA, pkB, 'rows');
       C = subsetrows (A, ia);
     endfunction
-    
+
     ## -*- texinfo -*-
     ## @node table.ismember
     ## @deftypefn {Method} {[@var{tf}, @var{loc}] =} ismember (@var{A}, @var{B})
@@ -2667,17 +2667,17 @@ classdef table
     ##   @var{loc} - Indexes into B of rows that were found.
     ##
     ## @end deftypefn
-    function [tf, loc] = ismember (A, B)      
-      % Input handling
+    function [tf, loc] = ismember (A, B)
+      # Input handling
       [A, B] = congruentize (A, B);
-            
-      % Set logic
+
+      # Set logic
       [pkA, pkB] = proxykeysForMatrixes (A, B);
       [tf, loc] = ismember (pkA, pkB, 'rows');
     endfunction
-    
-    % Missing values
-    
+
+    # Missing values
+
     ## -*- texinfo -*-
     ## @node table.ismissing
     ## @deftypefn {Method} {@var{out} =} ismissing (@var{obj})
@@ -2714,8 +2714,8 @@ classdef table
       endfor
     endfunction
 
-    % Function application
-    
+    # Function application
+
     ## -*- texinfo -*-
     ## @node table.varfun
     ## @deftypefn {Method} {@var{out} =} varfun (@var{fcn}, @var{obj})
@@ -2739,7 +2739,7 @@ classdef table
           error ('table.varfun: Option %s is not yet implemented.', unimplementedOptions{i});
         endif
       endfor
-      if ~isa (func, 'function_handle')
+      if !isa (func, 'function_handle')
         error ('table.varfun: func must be a function handle; got a %s', class (func));
       endif
       outputFormat = 'table';
@@ -2747,26 +2747,26 @@ classdef table
         outputFormat = opts.OutputFormat;
       endif
       validOutputFormats = {'table','uniform','cell'};
-      if ~ismember (outputFormat, validOutputFormats);
+      if !ismember (outputFormat, validOutputFormats);
         error ('table.varfun: Invalid OutputFormat: %s. Must be one of: %s', ...
           outputFormat, strjoin (validOutputFormats, ', '));
       endif
       errorHandler = [];
       if isfield (opts, 'ErrorHandler')
-        if ~isa (opts.ErrorHandler, 'function_handle')
+        if !isa (opts.ErrorHandler, 'function_handle')
           error ('table.varfun: ErrorHandler must be a function handle; got a %s', ...
             class (opts.ErrorHandler));
         endif
         errorHandler = opts.ErrorHandler;
       endif
-      
+
       tbl = A;
       if isfield (opts, 'InputVariables')
         ixInVars = resolveVarRef (tbl, opts.InputVariables);
       else
         ixInVars = 1:width (tbl);
       endif
-      
+
       outVals = cell (1, numel (ixInVars));
       for i = 1:numel (ixInVars)
         ixInVar = ixInVars(i);
@@ -2790,8 +2790,8 @@ classdef table
           out = table (outVals{:}, 'VariableNames', tbl.VariableNames);
         case 'uniform'
           tfScalar = cellfun('isscalar', outVals);
-          if ~all (tfScalar)
-            ixFirstBad = find(~tfScalar, 1);
+          if !all (tfScalar)
+            ixFirstBad = find(!tfScalar, 1);
             error (['table.varfun: For OutputFormat ''uniform'', all function ' ...
               'outputs must be scalar; output %d was %d long'], ...
               ixFirstBad, numel (outVals{ixFirstBad}));
@@ -2806,7 +2806,7 @@ classdef table
           out = cat (2, outVals{:});
       endswitch
     endfunction
-    
+
     ## -*- texinfo -*-
     ## @node table.rowfun
     ## @deftypefn {Method} {@var{out} =} varfun (@var{func}, @var{obj})
@@ -2844,7 +2844,7 @@ classdef table
     ## for that row. This is useful for converting raised errors to missing-value
     ## fill values, or logging warnings.
     ## @item 'ExtractCellContents'
-    ## Whether to “pop out” the contents of the elements of cell variables in 
+    ## Whether to “pop out” the contents of the elements of cell variables in
     ## @var{obj}, or to leave them as cells. True/false; default is false. If
     ## you specify this option, then @var{obj} may not have any multi-column
     ## cell-valued variables.
@@ -2854,7 +2854,7 @@ classdef table
     ## @item 'GroupingVariables'
     ## Not yet implemented.
     ## @item 'OutputFormat'
-    ## The format of the output. May be @code{'table'} (the default), 
+    ## The format of the output. May be @code{'table'} (the default),
     ## @code{'uniform'}, or @code{'cell'}. If it is @code{'uniform'} or @code{'cell'},
     ## the output variables are returned in multiple output arguments from
     ## @code{'rowfun'}.
@@ -2862,16 +2862,16 @@ classdef table
     ##
     ## Returns a @code{table} whose variables are the collected output arguments
     ## of @var{func} if @var{OutputFormat} is @code{'table'}. Otherwise, returns
-    ## multiple output arguments of whatever type @var{func} returned (if 
+    ## multiple output arguments of whatever type @var{func} returned (if
     ## @var{OutputFormat} is @code{'uniform'}) or cells (if @var{OutputFormat}
     ## is @code{'cell'}).
     ##
     ## @end deftypefn
     function varargout = rowfun (func, A, varargin)
-      % TODO: Document all the Name/Value options; there's a bunch of them.
-      % TODO: Implement the remaining options.
-      
-      % Input handling
+      # TODO: Document all the Name/Value options; there's a bunch of them.
+      # TODO: Implement the remaining options.
+
+      # Input handling
       mustBeA (func, 'function_handle');
       mustBeA (A, 'table');
       validOptions = {'InputVariables', 'GroupingVariables', 'OutputFormat', ...
@@ -2884,7 +2884,7 @@ classdef table
           error ('table.rowfun: Option %s is not yet implemented.', unimplementedOptions{i});
         endif
       endfor
-      if ~isa (func, 'function_handle')
+      if !isa (func, 'function_handle')
         error ('table.rowfun: func must be a function handle; got a %s', class (func));
       endif
       output_format = 'table';
@@ -2892,13 +2892,13 @@ classdef table
         output_format = opts.OutputFormat;
       endif
       validOutputFormats = {'table','uniform','cell'};
-      if ~ismember (outputFormat, validOutputFormats);
+      if !ismember (outputFormat, validOutputFormats);
         error ('table.rowfun: Invalid OutputFormat: %s. Must be one of: %s', ...
           outputFormat, strjoin (validOutputFormats, ', '));
       endif
       errorHandler = [];
       if isfield (opts, 'ErrorHandler')
-        if ~isa (opts.ErrorHandler, 'function_handle')
+        if !isa (opts.ErrorHandler, 'function_handle')
           error ('table.rowfun: ErrorHandler must be a function handle; got a %s', ...
             class (opts.ErrorHandler));
         endif
@@ -2945,8 +2945,8 @@ classdef table
       if isfield (opts, 'InputVariables')
         this = subsetvars (this, opts.InputVariables);
       endif
-      
-      % Function application
+
+      # Function application
       vars = this.VariableValues;
       n_vars = numel (vars);
       out_bufs = repmat ({cell(height(this), 1)}, [1 n_out_args]);
@@ -2986,8 +2986,8 @@ classdef table
           out_bufs{i_out_arg}{i_row} = argouts{i_out_arg};
         endfor
       endfor
-      
-      % Output packaging
+
+      # Output packaging
       switch output_format
         case 'table'
           out_vars = cellfun(@(c) cat(1, c{:}), out_bufs);
@@ -3003,7 +3003,7 @@ classdef table
           error ('table.rowfun: Invalid OutputFormat: ''%s''', output_format);
       endswitch
     endfunction
-    
+
     ## -*- texinfo -*-
     ## @node table.findgroups
     ## @deftypefn {Method} {[@var{G}, @var{TID}] =} findgroups (@var{obj})
@@ -3019,16 +3019,16 @@ classdef table
     ##
     ## @end deftypefn
     function [G, TID] = findgroups (this)
-      %FINDGROUPS Find groups within a table's row values and get group numbers
-      %
-      % [G, TID] = findgroups (this)
-      %
-      % Returns:
-      % G - A double column vector of group numbers created from this.
-      % TID - A table containing the row values corresponding to the group numbers.
+      #FINDGROUPS Find groups within a table's row values and get group numbers
+      #
+      # [G, TID] = findgroups (this)
+      #
+      # Returns:
+      # G - A double column vector of group numbers created from this.
+      # TID - A table containing the row values corresponding to the group numbers.
       [TID, ~, G] = unique (this);
     endfunction
-    
+
     ## -*- texinfo -*-
     ## @node table.evalWithVars
     ## @deftypefn {Method} {@var{out} =} evalWithVars (@var{obj}, @var{expr})
@@ -3056,12 +3056,12 @@ classdef table
     ##
     ## @end deftypefn
     function out = evalWithVars (this, expr)
-      if ~ischar (expr)
+      if !ischar (expr)
         error ('table.evalWithVars: expr must be char; got a %s', class (expr));
       endif
       out = __eval_expr_with_table_vars_in_workspace__ (this, expr);
     endfunction
-    
+
     ## -*- texinfo -*-
     ## @node table.restrict
     ## @deftypefn {Method} {@var{out} =} restrict (@var{obj}, @var{expr})
@@ -3078,7 +3078,7 @@ classdef table
     ## If the argument is a char, then it is evaulated as an M-code expression,
     ## with all of this’ variables available as workspace variables, as with
     ## @code{evalWithVars}. The output of expr must be a numeric or logical index
-    ## vector (This form is a shorthand for 
+    ## vector (This form is a shorthand for
     ## @code{out = subsetrows (this, evalWithVars (this, expr))}.)
     ##
     ## TODO: Decide whether to name this to "where" to be more like SQL instead
@@ -3118,7 +3118,7 @@ classdef table
     ## It is an error if any variables named in the first column of @var{renameMap}
     ## are not present in @var{obj}.
     ##
-    ## Renames 
+    ## Renames
     ## @end deftypefn
     function out = renamevars (this, renameMap)
       if ! iscellstr (renameMap) || size (renameMap, 2) ~= 2
@@ -3127,37 +3127,38 @@ classdef table
       endif
       [tf,loc] = ismember (renameMap(:,1), this.VariableNames);
       if ! all (tf)
-        error ('No such variables in this: %s', strjoin (renameMap(~tf,1), ', '));
+        error ('No such variables in this: %s', strjoin (renameMap(!tf,1), ', '));
       endif
       out = this;
       out.VariableNames(loc) = renameMap(:,2);
     endfunction
 
-    % Prohibited operations
-    
+    # Prohibited operations
+
     function out = shiftdims (this, varargin)
-      %SHIFTDIMS Not supported
+      #SHIFTDIMS Not supported
       error ('Function shiftdims is not supported for tables');
-    end
+    endfunction
 
     function out = reshape (this, varargin)
-      %RESHAPE Not supported
+      #RESHAPE Not supported
       error ('Function reshape is not supported for tables');
-    end
+    endfunction
 
     function out = resize (this, varargin)
-      %RESIZE Not supported
+      #RESIZE Not supported
       error ('Function resize is not supported for tables');
-    end
+    endfunction
 
     function out = vec (this, varargin)
-      %VEC Not supported
+      #VEC Not supported
       error ('Function vec is not supported for tables');
-    end
-  end
-  
+    endfunction
+
+  endmethods
+
   methods (Access = private)
-    
+
     ## -*- texinfo -*-
     ## @node table.resolveVarRef
     ## @deftypefn {Method} {[@var{ixVar}, @var{varNames}] =} resolveVarRef (@var{obj}, @var{varRef})
@@ -3181,11 +3182,11 @@ classdef table
     ##
     ## @end deftypefn
     function [ixVar, varNames] = resolveVarRef (this, varRef, strictness)
-      %RESOLVEVARREF Resolve a reference to variables
-      %
-      % A varRef is a numeric or char/cellstr indicator of which variables within
-      % this table are being referenced.
-      if nargin < 3 || isempty (strictness); strictness = 'strict'; end
+      #RESOLVEVARREF Resolve a reference to variables
+      #
+      # A varRef is a numeric or char/cellstr indicator of which variables within
+      # this table are being referenced.
+      if nargin < 3 || isempty (strictness); strictness = 'strict'; endif
       mustBeMember (strictness, {'strict','lenient'});
       if isnumeric (varRef) || islogical (varRef)
         ixVar = varRef;
@@ -3200,11 +3201,11 @@ classdef table
         varRef = cellstr (varRef);
         [tf, ixVar] = ismember (varRef, this.VariableNames);
         if isequal (strictness, 'strict')
-          if ~all (tf)
-            error ('table: No such variable in table: %s', strjoin (varRef(~tf), ', '));
+          if !all (tf)
+            error ('table: No such variable in table: %s', strjoin (varRef(!tf), ', '));
           endif
         else
-          ixVar(~tf) = 0;
+          ixVar(!tf) = 0;
         endif
       elseif isa (varRef, 'tblish.table.internal.vartype_filter')
         ixVar = [];
@@ -3215,34 +3216,34 @@ classdef table
         endfor
       else
         error ('table: Unsupported variable indexing operand type: %s', class (varRef));
-      end
+      endif
       varNames = repmat ({''}, size (ixVar));
       varNames(ixVar != 0) = this.VariableNames(ixVar(ixVar != 0));
-    end
+    endfunction
 
     function [ixRow, ixVar] = resolveRowVarRefs (this, rowRef, varRef)
-      %RESOLVEROWVARREFS Internal implementation method
-      %
-      % This resolves both row and variable refs to indexes.
+      #RESOLVEROWVARREFS Internal implementation method
+      #
+      # This resolves both row and variable refs to indexes.
       if isnumeric (rowRef) || islogical (rowRef)
         ixRow = rowRef;
       elseif iscellstr (rowRef)
         if isempty (this.RowNames)
           error ('table: this table has no RowNames');
-        end
+        endif
         [tf, ixRow] = ismember (rowRef, this.RowNames);
-        if ~all (tf)
-          error ('table: No such named row in table: %s', strjoin (rowRef(~tf), ', '));
-        end
+        if !all (tf)
+          error ('table: No such named row in table: %s', strjoin (rowRef(!tf), ', '));
+        endif
       elseif isequal (rowRef, ':')
         ixRow = 1:height (this);
       else
         error ('table: Unsupported row indexing operand type: %s', class (rowRef));
-      end
-      
+      endif
+
       ixVar = resolveVarRef (this, varRef);
-    end
-    
+    endfunction
+
     ## -*- texinfo -*-
     ## @node table.subsetrows
     ## @deftypefn {Method} {@var{out} =} subsetrows (@var{obj}, @var{ixRows})
@@ -3256,23 +3257,23 @@ classdef table
     ## @end deftypefn
     function out = subsetrows (this, ixRows)
       out = this;
-      if ~isnumeric (ixRows) && ~islogical (ixRows)
-        % TODO: Hmm. Maybe we ought not to do this check, but just defer to the
-        % individual variable values' indexing logic, so SUBSREF/SUBSINDX overrides
-        % are respected. Would produce worse error messages, but be more "right"
-        % type-wise.
+      if !isnumeric (ixRows) && !islogical (ixRows)
+        # TODO: Hmm. Maybe we ought not to do this check, but just defer to the
+        # individual variable values' indexing logic, so SUBSREF/SUBSINDX overrides
+        # are respected. Would produce worse error messages, but be more "right"
+        # type-wise.
         error ('table.subsetrows: ixRows must be numeric or logical; got a %s', ...
           class (ixRows));
       endif
       s = struct ('type', '()', 'subs', {{ixRows,':'}});
       for i = 1:width (this)
         out.VariableValues{i} = subsref (out.VariableValues{i}, s);
-      end
-      if ~isempty (this.RowNames)
+      endfor
+      if !isempty (this.RowNames)
         out.RowNames = out.RowNames(ixRows);
-      end
-    end
-    
+      endif
+    endfunction
+
     ## -*- texinfo -*-
     ## @node table.subsetvars
     ## @deftypefn {Method} {@var{out} =} subsetvars (@var{obj}, @var{ixVars})
@@ -3290,27 +3291,27 @@ classdef table
     ## The resulting table will have its variables reordered to match ixVars.
     ##
     ## @end deftypefn
-    function out = subsetvars (this, ixVars)      
+    function out = subsetvars (this, ixVars)
       if ischar (ixVars)
-        if ~isequal (ixVars, ':')
+        if !isequal (ixVars, ':')
           ixVars = cellstr (ixVars);
         endif
       endif
       if iscellstr (ixVars)
         [tf,ix] = ismember (ixVars, this.VariableNames);
-        if ~all (tf)
+        if !all (tf)
           error ('table.subsetvars: no such variables in this table: %s', ...
-            strjoin (ixVars(~tf), ', '));
+            strjoin (ixVars(!tf), ', '));
         endif
         ixVars = ix;
       endif
       out = this;
       out.VariableNames = this.VariableNames(ixVars);
       out.VariableValues = this.VariableValues(ixVars);
-    end
-    
+    endfunction
+
     function [outA, outB] = makeVarNamesUnique (A, B)
-      %MAKEVARNAMESUNIQUE Internal implementation method
+      #MAKEVARNAMESUNIQUE Internal implementation method
       seenNames = struct;
       namesA = A.VariableNames;
       for i = 1:numel (namesA)
@@ -3346,10 +3347,10 @@ classdef table
       outB = B;
       outB.VariableNames = newNamesB;
     endfunction
-  
+
     function out = transpose_table (this)
-      %TRANSPOSE_TABLE This is for table's internal use
-      if ~hasrownames (this)
+      #TRANSPOSE_TABLE This is for table's internal use
+      if !hasrownames (this)
         error ('table.transpose: this must have RowNames, but it does not');
       endif
       c = table2cell (this);
@@ -3357,22 +3358,22 @@ classdef table
     endfunction
 
     function mustBeAllSameVars (varargin)
-      %MUSTBEALLSAMEVARS Require that all inputs have the same-named columns
+      #MUSTBEALLSAMEVARS Require that all inputs have the same-named columns
       args = varargin;
       if isempty (args)
         return
       endif
       varNames = args{1}.VariableNames;
       for i = 2:numel (args)
-        if ~isequal (varNames, args{i}.VariableNames)
+        if !isequal (varNames, args{i}.VariableNames)
           error ('Inconsistent VariableNames.\n  Input 1: %s\n  Input %d: %s', ...
             strjoin (varNames, ', '), i, strjoin (args{i}.VariableNames, ', '));
         endif
       endfor
     endfunction
-    
+
     function mustBeAllColVectorVars (this)
-      %MUSTBEALLCOLVECTORVARS Require that all vars in this are vectors, not matrixes
+      #MUSTBEALLCOLVECTORVARS Require that all vars in this are vectors, not matrixes
       for i = 1:width (this)
         val = this.VariableValues{i};
         if size (val, 2) ~= 1
@@ -3381,12 +3382,12 @@ classdef table
         endif
       endfor
     endfunction
-    
+
     function out = getProperties (this)
-      %GETPROPERTIES Get object's properties as a struct
-      %
-      % This is just for the internal use of subsref/subsasgn for .Properties
-      % access support.
+      #GETPROPERTIES Get object's properties as a struct
+      #
+      # This is just for the internal use of subsref/subsasgn for .Properties
+      # access support.
       out = struct;
       out.VariableNames = this.VariableNames;
       out.VariableValues = this.VariableValues;
@@ -3394,20 +3395,20 @@ classdef table
       out.DimensionNames = this.DimensionNames;
     endfunction
   endmethods
-  
+
   methods
     function [pkA, pkB] = proxykeysForMatrixes (A, B)
-      %PROXYKEYSFORMATRIXES Compute row proxy keys for tables
-      %
-      % [pkA, pkB] = proxykeysForMatrixes (A, B)
-      %
-      % Note: This is called "proxykeysForMatrixes", not "proxyKeysForTables", because
-      % it overrides the generic proxykeysForMatrixes, and tables *are* matrixes.
-      
+      #PROXYKEYSFORMATRIXES Compute row proxy keys for tables
+      #
+      # [pkA, pkB] = proxykeysForMatrixes (A, B)
+      #
+      # Note: This is called "proxykeysForMatrixes", not "proxyKeysForTables", because
+      # it overrides the generic proxykeysForMatrixes, and tables *are* matrixes.
+
       if nargin == 1
         mustBeA (A, 'table');
         pkA = proxykeysForOneTable (A);
-      else  
+      else
         mustBeA (A, 'table');
         mustBeA (B, 'table');
         if width (A) != width (B)
@@ -3420,7 +3421,7 @@ classdef table
   endmethods
 
   methods (Access = private)
-    
+
     function out = proxykeysForOneTable (this)
       varProxyKeys = cell (size (this.VariableNames));
       for iVar = 1:numel (this.VariableNames);
@@ -3428,7 +3429,7 @@ classdef table
       endfor
       out = cat (2, varProxyKeys{:});
     endfunction
-    
+
     function [pkA, pkB] = proxykeysForTwoTables (A, B)
       varProxyKeysA = cell (size (A.VariableNames));
       varProxyKeysB = cell (size (B.VariableNames));
@@ -3439,9 +3440,9 @@ classdef table
       pkA = cat (2, varProxyKeysA{:});
       pkB = cat (2, varProxyKeysB{:});
     endfunction
-    
-    % Summary stuff
-    
+
+    # Summary stuff
+
     function summary_impl (this, format)
       if nargin < 2 || isempty (format); format = 'compact'; endif
       infos = {};
@@ -3493,7 +3494,7 @@ classdef table
           error ('table.summary: invalid format: ''%s''', format);
       endswitch
     endfunction
-    
+
     function out = summary_for_variable (this, ix)
       out.name = this.VariableNames{ix};
       x = this.VariableValues{ix};

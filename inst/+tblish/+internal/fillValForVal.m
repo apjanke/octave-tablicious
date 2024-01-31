@@ -32,12 +32,12 @@
 ## It also has default logic that will determine the fill value for an arbitrary
 ## type by detecting the value used to fill elements during array expansion
 ## operations. This will be appropriate for most data types.
-## 
+##
 ## Returns a 1-by-ncols value of the same type as x, which may be any type, where
 ## ncols is the number of columns in the input.
 ##
 ## @end deftypefn
-function out = fillValForVal (x)  
+function out = fillValForVal (x)
   nCols = size (x, 2);
   if isnumeric (x)
     if isa (x, 'double') || isa (x, 'single')
@@ -50,7 +50,7 @@ function out = fillValForVal (x)
     endif
   elseif iscell (x)
     if iscellstr (x)
-      % This is an exception to the "check the type, not its values" rule.
+      # This is an exception to the "check the type, not its values" rule.
       out = repmat ({''}, 1, nCols);
     else
       error ('table: outer fill values for non-cellstr cells are not supported');
@@ -73,14 +73,14 @@ function out = fillValForVal (x)
     varNames = x.Properties.VariableNames;
     out = table (varVals{:}, 'VariableNames', x.Properties.VariableNames);
   elseif isa (x, 'categorical')
-    % We may need to construct an <undefined> value of the particular categories
-    % in a categorical variable. Currently a moot point since categorical is not
-    % defined in Octave yet.
+    # We may need to construct an <undefined> value of the particular categories
+    # in a categorical variable. Currently a moot point since categorical is not
+    # defined in Octave yet.
     error ('table: outer fill values for categorical variables are not yet implemented');
   else
-    % Fall back to using array-expansion fill value
+    # Fall back to using array-expansion fill value
     if isempty (x)
-      % Assume the 0-arg constructor works
+      # Assume the 0-arg constructor works
       x0 = feval (class (x));
     else
       x0 = x(1,:);

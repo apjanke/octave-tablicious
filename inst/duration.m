@@ -39,7 +39,7 @@ classdef duration
   ## The underlying datenums that represent the durations, as number of (whole and
   ## fractional) days. These are uniform 24-hour days, not calendar days.
   ##
-  ## This is a planar property: the size of @code{days} is the same size as the 
+  ## This is a planar property: the size of @code{days} is the same size as the
   ## containing @code{duration} array object.
   ##
   ## @end deftypeivar
@@ -49,14 +49,14 @@ classdef duration
   ## The format to display this @code{duration} in. Currently unsupported.
   ##
   ## @end deftypeivar
-  
+
   properties
-    % Duration length in whole and fractional days (double)
+    # Duration length in whole and fractional days (double)
     days = 0 % planar
-    % Display format (currently unsupported)
+    # Display format (currently unsupported)
     Format = ''
   endproperties
-  
+
   methods (Static)
     ## -*- texinfo -*-
     ## @node duration.ofDays
@@ -70,7 +70,7 @@ classdef duration
     ##
     ## @end deftypefn
     function out = ofDays (dnums)
-      %OFDAYS Convert days/datenums to durations
+      #OFDAYS Convert days/datenums to durations
       out = duration (double (dnums), 'Backdoor');
     endfunction
   endmethods
@@ -93,9 +93,9 @@ classdef duration
     ##
     ## @end deftypefn
     function this = duration (varargin)
-      %DURATION Construct a new duration array
+      #DURATION Construct a new duration array
       args = varargin;
-      % Peel off options
+      # Peel off options
       knownOptions = {'InputFormat','Format'};
       opts = struct;
       while numel (args) >= 3 && isa (args{end-1}, 'char') ...
@@ -103,7 +103,7 @@ classdef duration
         opts.(args{end-1}) = args{end};
         args(end-1:end) = [];
       endwhile
-      % Handle inputs
+      # Handle inputs
       switch numel (args)
         case 0
           return
@@ -129,11 +129,11 @@ classdef duration
             endif
           endif
         case 2
-          % Undocumented calling form for internal use
-          if ~isequal (args{2}, 'Backdoor')
+          # Undocumented calling form for internal use
+          if !isequal (args{2}, 'Backdoor')
             error ('Invalid number if inputs: %d', numel (args));
           endif
-          if ~isnumeric (args{1})
+          if !isnumeric (args{1})
             error ('Input must be numeric; got a %s', class (args{1}));
           endif
           this.days = double (args{1});
@@ -147,11 +147,11 @@ classdef duration
           error ('Invalid number if inputs: %d', numel (args));
       endswitch
     endfunction
-    
+
     function this = set.Format (this, x)
       error ('Changing the Format of duration is currently unimplemented.');
     endfunction
-    
+
     ## -*- texinfo -*-
     ## @node duration.sizeof
     ## @deftypefn {Method} {@var{out} =} sizeof (@var{obj})
@@ -178,15 +178,15 @@ classdef duration
     ##
     ## @end deftypefn
     function out = years (this)
-      %YEARS Number of fixed-length years equivalent to this.
-      out = this.days / 365.2425;      
+      #YEARS Number of fixed-length years equivalent to this.
+      out = this.days / 365.2425;
     endfunction
 
     # Can't have a days() function as well as a days property or it will cause Octave to crash
     # At least, sometimes it does. And it's happened often enough that I don't want
     # to leave it in. If you can find out what conditions reproduce this, please
     # bug report. -apj
-    
+
 ##    function out = days (this)
 ##      %DAYS Number of fixed-length days equivalent to this.
 ##      out = this.days;
@@ -205,10 +205,10 @@ classdef duration
     ##
     ## @end deftypefn
     function out = hours (this)
-      %HOURS Number of hours equivalent to this.
+      #HOURS Number of hours equivalent to this.
       out = this.days * 24;
     endfunction
-    
+
     ## -*- texinfo -*-
     ## @node duration.minutes
     ## @deftypefn {Method} {@var{out} =} minutes (@var{obj})
@@ -222,10 +222,10 @@ classdef duration
     ##
     ## @end deftypefn
     function out = minutes (this)
-      %MINUTES Number of minutes equivalent to this.
+      #MINUTES Number of minutes equivalent to this.
       out = this.days * (24 * 60);
     endfunction
-    
+
     ## -*- texinfo -*-
     ## @node duration.seconds
     ## @deftypefn {Method} {@var{out} =} seconds (@var{obj})
@@ -239,10 +239,10 @@ classdef duration
     ##
     ## @end deftypefn
     function out = seconds (this)
-      %SECPMDS Number of seconds equivalent to this.
+      #SECPMDS Number of seconds equivalent to this.
       out = this.days * (24 * 60 * 60);
     endfunction
-    
+
     ## -*- texinfo -*-
     ## @node duration.milliseconds
     ## @deftypefn {Method} {@var{out} =} milliseconds (@var{obj})
@@ -256,27 +256,27 @@ classdef duration
     ##
     ## @end deftypefn
     function out = milliseconds (this)
-      %MILLISECONDS Number of milliseconds equivalent to this.
+      #MILLISECONDS Number of milliseconds equivalent to this.
       out = this.days * (24 * 60 * 60 * 1000);
     endfunction
 
     function [keysA, keysB] = proxyKeys (a, b)
-      %PROXYKEYS Proxy key values for sorting and set operations
+      #PROXYKEYS Proxy key values for sorting and set operations
       keysA = a.days(:);
       keysB = b.days(:);
     endfunction
 
     function display (this)
-      %DISPLAY Custom display.
+      #DISPLAY Custom display.
       in_name = inputname (1);
-      if ~isempty (in_name)
+      if !isempty (in_name)
         fprintf ('%s =\n', in_name);
       endif
       disp (this);
     endfunction
 
     function disp (this)
-      %DISP Custom display.
+      #DISP Custom display.
       if isempty (this)
         fprintf ('Empty %s %s\n', size2str (size (this)), class (this));
         return;
@@ -284,7 +284,7 @@ classdef duration
       out = tblish.chrono.internal.format_dispstr_array (dispstrs (this));
       fprintf ('%s\n', out);
     endfunction
-    
+
     ## -*- texinfo -*-
     ## @node duration.dispstrs
     ## @deftypefn {Method} {@var{out} =} duration (@var{obj})
@@ -295,8 +295,8 @@ classdef duration
     ##
     ## @end deftypefn
     function out = dispstrs (this)
-      %DISPSTRS Custom display strings.
-      % This is an Octave extension.
+      #DISPSTRS Custom display strings.
+      # This is an Octave extension.
       out = cell (size (this));
       for i = 1:numel (this)
         d = this.days(i);
@@ -344,7 +344,7 @@ classdef duration
       endfor
       out = sprintf (fmt, args{:});
     endfunction
-    
+
     function out = fprintf(varargin)
       args = varargin;
       if isnumeric (args{1})
@@ -366,7 +366,7 @@ classdef duration
         fprintf (fid, fmt, args{:});
       endif
     endfunction
-    
+
     ## -*- texinfo -*-
     ## @node duration.char
     ## @deftypefn {Method} {@var{out} =} char (@var{obj})
@@ -380,54 +380,54 @@ classdef duration
     ##
     ## @end deftypefn
     function out = char (this)
-      %CHAR Convert to char.
-      %
-      % This is an Octave extension.
+      #CHAR Convert to char.
+      #
+      # This is an Octave extension.
       out = char (dispstrs (subset (this, ':')));
     endfunction
-    
-    % Relational operations
+
+    # Relational operations
 
     function out = lt (A, B)
-      %LT Less than.
+      #LT Less than.
       [A, B] = duration.promote (A, B);
       out = A.days < B.days;
     endfunction
 
     function out = le (A, B)
-      %LE Less than or equal.
+      #LE Less than or equal.
       [A, B] = duration.promote (A, B);
       out = A.days <= B.days;
     endfunction
 
     function out = ne (A, B)
-      %NE Not equal.
+      #NE Not equal.
       [A, B] = duration.promote (A, B);
       out = A.days ~= B.days;
     endfunction
 
     function out = eq (A, B)
-      %EQ Equals.
+      #EQ Equals.
       [A, B] = duration.promote (A, B);
       out = A.days == B.days;
     endfunction
 
     function out = ge (A, B)
-      %GE Greater than or equal.
+      #GE Greater than or equal.
       [A, B] = duration.promote (A, B);
       out = A.days >= B.days;
     endfunction
 
     function out = gt (A, B)
-      %GT Greater than.
+      #GT Greater than.
       [A, B] = duration.promote (A, B);
       out = A.days > B.days;
     endfunction
 
-    % Arithmetic
-    
+    # Arithmetic
+
     function out = times (A, B)
-      %TIMES Multiplication
+      #TIMES Multiplication
       if isnumeric (A)
         out = B;
         out.days = out.days .* A;
@@ -440,7 +440,7 @@ classdef duration
     endfunction
 
     function out = mtimes (A, B)
-      %MTIMES Multiplication
+      #MTIMES Multiplication
       if isnumeric (A)
         out = B;
         out.days = out.days * A;
@@ -451,10 +451,10 @@ classdef duration
         error ('Invalid inputs to mtimes: %s * %s', class (A), class (B));
       endif
     endfunction
-  
+
     function out = rdivide (A, B)
-      %RDIVIDE Element-wise right division
-      if ~isa (A, 'duration')
+      #RDIVIDE Element-wise right division
+      if !isa (A, 'duration')
         error ('When dividing using duration, the left-hand side must be a duration; got a %s', ...
           class (A));
       endif
@@ -467,10 +467,10 @@ classdef duration
         error ('Invalid input: RHS must be duration or double; got a %s', class (B));
       endif
     endfunction
-    
+
     function out = mrdivide (A, B)
-      %MRDIVIDE Matrix right division
-      if ~isa (A, 'duration')
+      #MRDIVIDE Matrix right division
+      if !isa (A, 'duration')
         error ('When dividing using duration, the left-hand side must be a duration; got a %s', ...
           class (A));
       endif
@@ -478,12 +478,12 @@ classdef duration
         out = A;
         out.days = A.days / B;
       else
-        error ('Invalid input: RHS must be double; got a %s', class (B));      
+        error ('Invalid input: RHS must be double; got a %s', class (B));
       endif
     endfunction
-  
+
     function out = plus (A, B)
-      %PLUS Addition
+      #PLUS Addition
       if isa (A, 'datetime') && isa (B, 'duration')
         out = A;
         out.dnums = out.dnums + B.days;
@@ -499,25 +499,25 @@ classdef duration
         out = B + A;
       endif
     endfunction
-    
+
     function out = minus (A, B)
-      %MINUS Subtraction
+      #MINUS Subtraction
       out = A + (-1 * B);
     endfunction
-    
+
     function out = uminus (A)
-      %UMINUS Unary minus
+      #UMINUS Unary minus
       out = A;
       out.days = -1 * A.days;
     endfunction
-    
+
     function out = uplus (A)
-      %UPLUS Unary plus
+      #UPLUS Unary plus
       out = A;
     endfunction
-    
+
     function out = colon (varargin)
-      %COLON Generate range for colon expression
+      #COLON Generate range for colon expression
       narginchk (2, 3);
       if nargin == 2;
         [from, to] = varargin{:};
@@ -529,7 +529,7 @@ classdef duration
       out = from;
       out.days = from.days:increment.days:to.days;
     endfunction
-    
+
     ## -*- texinfo -*-
     ## @node duration.linspace
     ## @deftypefn {Method} {@var{out} =} linspace (@var{from}, @var{to}, @var{n})
@@ -548,7 +548,7 @@ classdef duration
     ##
     ## @end deftypefn
     function out = linspace (A, B, n)
-      %LINSPACE Linearly spaced elements between two values
+      #LINSPACE Linearly spaced elements between two values
       narginchk (2, 3);
       if nargin < 3; n = 100; end
       [A, B] = duration.promote (A, B);
@@ -556,7 +556,7 @@ classdef duration
       out.days = linspace (A.days, B.days, n);
     endfunction
   endmethods
-  
+
   methods (Static, Access = private)
     function out = hms2datenum (H, MI, S, MS)
       if nargin < 4; MS = 0; endif
@@ -564,7 +564,7 @@ classdef duration
       out = (H / 24) + (MI / (24 * 60)) + (S / (24 * 60 * 60)) ...
         + (MS / (24 * 60 * 60 * 1000));
     endfunction
-    
+
     function out = parseTimeStringsToDatenum (strs)
       strs = cellstr (strs);
       out = NaN (size (strs));
@@ -574,12 +574,12 @@ classdef duration
         ixDot = find (str == '.');
         if numel (ixDot) > 1
           error ('Invalid TimeString: ''%s''', strIn);
-        elseif ~isempty (ixDot)
+        elseif !isempty (ixDot)
           fractionalSecStr = str(ixDot+1:end);
           str(ixDot:end) = [];
           nFracs = str2double (fractionalSecStr);
           fractionalSec = nFracs / (10^numel (fractionalSecStr));
-          MS = fractionalSec * 1000;          
+          MS = fractionalSec * 1000;
         else
           MS = 0;
         endif
@@ -597,125 +597,125 @@ classdef duration
         out(i) = duration.hms2datenum (D * 24 + H, MI, S, MS);
       endfor
     endfunction
-    
+
     function out = parseTimeStringsToDatenumWithFormat (strs)
       error ('InputFormat support for time strings is unimplemented');
     endfunction
 
-  end
- 
-  % Planar boilerplate stuff
-  
+  endmethods
+
+  # Planar boilerplate stuff
+
   methods
-  
+
     function out = numel (this)
-      %NUMEL Number of elements in array.
+      #NUMEL Number of elements in array.
       out = numel (this.days);
     endfunction
-    
+
     function out = ndims (this)
-      %NDIMS Number of dimensions.
+      #NDIMS Number of dimensions.
       out = ndims (this.days);
     endfunction
-    
+
     function out = size (this, dim)
-      %SIZE Size of array.
+      #SIZE Size of array.
       if nargin == 1
         out = size (this.days);
       else
         out = size (this.days, dim);
       endif
     endfunction
-    
+
     function out = isempty (this)
-      %ISEMPTY True for empty array.
+      #ISEMPTY True for empty array.
       out = isempty (this.days);
     endfunction
-    
+
     function out = isscalar (this)
-      %ISSCALAR True if input is scalar.
+      #ISSCALAR True if input is scalar.
       out = isscalar (this.days);
     endfunction
-    
+
     function out = isvector (this)
-      %ISVECTOR True if input is a vector.
+      #ISVECTOR True if input is a vector.
       out = isvector (this.days);
     endfunction
-    
+
     function out = iscolumn (this)
-      %ISCOLUMN True if input is a column vector.
+      #ISCOLUMN True if input is a column vector.
       out = iscolumn (this.days);
     endfunction
-    
+
     function out = isrow (this)
-      %ISROW True if input is a row vector.
+      #ISROW True if input is a row vector.
       out = isrow (this.days);
     endfunction
-    
+
     function out = ismatrix (this)
-      %ISMATRIX True if input is a matrix.
+      #ISMATRIX True if input is a matrix.
       out = ismatrix (this.days);
     endfunction
-    
+
     function out = isnan (this)
-      %ISNAN True for Not-a-Number.
+      #ISNAN True for Not-a-Number.
       out = isnan (this.days);
     endfunction
-    
+
     function this = reshape (this, varargin)
-      %RESHAPE Reshape array.
+      #RESHAPE Reshape array.
       this.days = reshape (this.days, varargin{:});
     endfunction
-    
+
     function this = squeeze (this, varargin)
-      %SQUEEZE Remove singleton dimensions.
+      #SQUEEZE Remove singleton dimensions.
       this.days = squeeze (this.days, varargin{:});
     endfunction
-    
+
     function this = circshift (this, varargin)
-      %CIRCSHIFT Shift positions of elements circularly.
+      #CIRCSHIFT Shift positions of elements circularly.
       this.days = circshift (this.days, varargin{:});
     endfunction
-    
+
     function this = permute (this, varargin)
-      %PERMUTE Permute array dimensions.
+      #PERMUTE Permute array dimensions.
       this.days = permute (this.days, varargin{:});
     endfunction
-    
+
     function this = ipermute (this, varargin)
-      %IPERMUTE Inverse permute array dimensions.
+      #IPERMUTE Inverse permute array dimensions.
       this.days = ipermute (this.days, varargin{:});
     endfunction
-    
+
     function this = repmat (this, varargin)
-      %REPMAT Replicate and tile array.
+      #REPMAT Replicate and tile array.
       this.days = repmat (this.days, varargin{:});
     endfunction
-    
+
     function this = ctranspose (this, varargin)
-      %CTRANSPOSE Complex conjugate transpose.
+      #CTRANSPOSE Complex conjugate transpose.
       this.days = ctranspose (this.days, varargin{:});
     endfunction
-    
+
     function this = transpose (this, varargin)
-      %TRANSPOSE Transpose vector or matrix.
+      #TRANSPOSE Transpose vector or matrix.
       this.days = transpose (this.days, varargin{:});
     endfunction
-    
+
     function [this, nshifts] = shiftdim (this, n)
-      %SHIFTDIM Shift dimensions.
+      #SHIFTDIM Shift dimensions.
       if nargin > 1
           this.days = shiftdim (this.days, n);
       else
           [this.days, nshifts] = shiftdim (this.days);
       endif
     endfunction
-    
+
     function out = cat (dim, varargin)
-      %CAT Concatenate arrays.
+      #CAT Concatenate arrays.
       args = varargin;
       for i = 1:numel (args)
-          if ~isa (args{i}, 'duration')
+          if !isa (args{i}, 'duration')
               args{i} = duration (args{i});
           endif
       endfor
@@ -723,29 +723,29 @@ classdef duration
       fieldArgs = cellfun (@(obj) obj.days, args, 'UniformOutput', false);
       out.days = cat (dim, fieldArgs{:});
     endfunction
-    
+
     function out = horzcat (varargin)
-      %HORZCAT Horizontal concatenation.
+      #HORZCAT Horizontal concatenation.
       out = cat (2, varargin{:});
     endfunction
-    
+
     function out = vertcat (varargin)
-      %VERTCAT Vertical concatenation.
+      #VERTCAT Vertical concatenation.
       out = cat (1, varargin{:});
     endfunction
-    
+
     function this = subsasgn (this, s, b)
-      %SUBSASGN Subscripted assignment.
-      
-      % Chained subscripts
+      #SUBSASGN Subscripted assignment.
+
+      # Chained subscripts
       if numel (s) > 1
         rhs_in = subsref (this, s(1));
         rhs = subsasgn (rhs_in, s(2:end), b);
       else
         rhs = b;
       endif
-      
-      % Base case
+
+      # Base case
       switch s(1).type
         case '()'
           this = subsasgnParensPlanar (this, s(1), rhs);
@@ -755,11 +755,11 @@ classdef duration
           this.(s(1).subs) = rhs;
       endswitch
     endfunction
-    
+
     function out = subsref (this, s)
-      %SUBSREF Subscripted reference.
-      
-      % Base case
+      #SUBSREF Subscripted reference.
+
+      # Base case
       switch s(1).type
         case '()'
           out = subsrefParensPlanar (this, s(1));
@@ -768,23 +768,23 @@ classdef duration
         case '.'
           out = this.(s(1).subs);
       endswitch
-      
-      % Chained reference
+
+      # Chained reference
       if numel(s) > 1
         out = subsref (out, s(2:end));
       endif
     endfunction
-        
+
     function [out,Indx] = sort (this)
-      %SORT Sort array elements.
+      #SORT Sort array elements.
       if isvector (this)
         isRow = isrow (this);
         this = subset (this, ':');
-        % NaNs sort stably to end, so handle them separately
+        # NaNs sort stably to end, so handle them separately
         tfNan = isnan (this);
         nans = subset (this, tfNan);
-        nonnans = subset (this, ~tfNan);
-        ixNonNan = find (~tfNan);
+        nonnans = subset (this, !tfNan);
+        ixNonNan = find (!tfNan);
         proxy = proxyKeys (nonnans);
         [~, ix] = sortrows (proxy);
         out = [subset(nonnans, ix); nans];
@@ -800,8 +800,8 @@ classdef duration
           out = asgn (out, {':', iCol}, sortedCol);
         endfor
       else
-        % I believe this multi-dimensional implementation is correct,
-        % but have not tested it yet. Use with caution.
+        # I believe this multi-dimensional implementation is correct,
+        # but have not tested it yet. Use with caution.
         out = this;
         Indx = NaN (size (out));
         sz = size (this);
@@ -825,9 +825,9 @@ classdef duration
         endwhile
       endif
     endfunction
-    
+
     function [out,Indx] = unique (this, varargin)
-      %UNIQUE Set unique.
+      #UNIQUE Set unique.
       flags = setdiff (varargin, {'rows'});
       if ismember ('rows', varargin)
         [~, proxyIx] = unique (this);
@@ -839,8 +839,8 @@ classdef duration
         this = subset (this, ':');
         tfNaN = isnan (this);
         nans = subset (this, tfNaN);
-        nonnans = subset (this, ~tfNaN);
-        ixNonnan = find (~tfNaN);
+        nonnans = subset (this, !tfNaN);
+        ixNonnan = find (!tfNaN);
         keys = proxyKeys (nonnans);
         if isa (keys, 'table')
           [~,ix] = unique (keys, flags{:});
@@ -854,16 +854,16 @@ classdef duration
         endif
       endif
     endfunction
-    
+
     function [out, Indx] = ismember (a, b, varargin)
-      %ISMEMBER True for set member.
+      #ISMEMBER True for set member.
       if ismember ('rows', varargin)
         error ('ismember(..., ''rows'') is unsupported');
       endif
-      if ~isa (a, 'duration')
+      if !isa (a, 'duration')
         a = duration (a);
       endif
-      if ~isa (b, 'duration')
+      if !isa (b, 'duration')
         b = duration (b);
       endif
       [proxyA, proxyB] = proxyKeys (a, b);
@@ -871,21 +871,21 @@ classdef duration
       out = reshape (out, size(a));
       Indx = reshape (Indx, size(a));
     endfunction
-    
+
     function [out,Indx] = setdiff (a, b, varargin)
-      %SETDIFF Set difference.
+      #SETDIFF Set difference.
       if ismember ('rows', varargin)
         error ('setdiff(..., ''rows'') is unsupported');
       endif
       [tf,~] = ismember (a, b);
-      out = parensRef (a, ~tf);
-      Indx = find (~tf);
+      out = parensRef (a, !tf);
+      Indx = find (!tf);
       [out,ix] = unique (out);
       Indx = Indx(ix);
     endfunction
-    
+
     function [out, ia, ib] = intersect (a, b, varargin)
-      %INTERSECT Set intersection.
+      #INTERSECT Set intersection.
       if ismember ('rows', varargin)
         error ('intersect(..., ''rows'') is unsupported');
       endif
@@ -893,9 +893,9 @@ classdef duration
       [~,ia,ib] = intersect (proxyA, proxyB, 'rows');
       out = parensRef (a, ia);
     endfunction
-    
+
     function [out, ia, ib] = union (a, b, varargin)
-      %UNION Set union.
+      #UNION Set union.
       if ismember ('rows', varargin)
         error ('union(..., ''rows'') is unsupported');
       endif
@@ -905,63 +905,63 @@ classdef duration
       bOut = parensRef (b, ib);
       out = [parensRef(aOut, ':'); parensRef(bOut, ':')];
     endfunction
-      
+
   endmethods
-  
+
   methods (Access=private)
-  
+
     function out = subsasgnParensPlanar (this, s, rhs)
-      %SUBSASGNPARENSPLANAR ()-assignment for planar object
-      if ~isa (rhs, 'duration')
+      #SUBSASGNPARENSPLANAR ()-assignment for planar object
+      if !isa (rhs, 'duration')
         rhs = duration (rhs);
       endif
       out = this;
       out.days = tblish.chrono.internal.prefillNewSizeForSubsasgn(this.days, s.subs, NaN);
       out.days(s.subs{:}) = rhs.days;
     endfunction
-    
+
     function out = subsrefParensPlanar (this, s)
-      %SUBSREFPARENSPLANAR ()-indexing for planar object
+      #SUBSREFPARENSPLANAR ()-indexing for planar object
       out = this;
       out.days = this.days(s.subs{:});
     endfunction
-    
+
     function out = parensRef (this, varargin)
-      %PARENSREF ()-indexing, for this class's internal use
+      #PARENSREF ()-indexing, for this class's internal use
       out = subsrefParensPlanar (this, struct ('subs', {varargin}));
     endfunction
-    
+
     function out = subset (this, varargin)
-      %SUBSET Subset array by indexes.
-      % This is what you call internally inside the class instead of doing 
-      % ()-indexing references on the RHS, which don't work properly inside the class
-      % because they don't respect the subsref() override.
+      #SUBSET Subset array by indexes.
+      # This is what you call internally inside the class instead of doing
+      # ()-indexing references on the RHS, which don't work properly inside the class
+      # because they don't respect the subsref() override.
       out = parensRef (this, varargin{:});
     endfunction
-    
+
     function out = asgn (this, ix, value)
-      %ASGN Assign array elements by indexes.
-      % This is what you call internally inside the class instead of doing 
-      % ()-indexing references on the LHS, which don't work properly inside
-      % the class because they don't respect the subsasgn() override.
-      if ~iscell (ix)
+      #ASGN Assign array elements by indexes.
+      # This is what you call internally inside the class instead of doing
+      # ()-indexing references on the LHS, which don't work properly inside
+      # the class because they don't respect the subsasgn() override.
+      if !iscell (ix)
         ix = { ix };
       endif
       s.type = '()';
       s.subs = ix;
       out = subsasgnParensPlanar (this, s, value);
     endfunction
-  
+
   endmethods
-  
+
   methods (Static)
     function varargout = promote (varargin)
-      %PROMOTE Promote inputs to be compatible
+      #PROMOTE Promote inputs to be compatible
       args = varargin;
       for i = 1:numel(args)
-        if ~isa (args{i}, 'duration')
-          % Sigh. We can't use a simple constructor call because of its weird
-          % signature.
+        if !isa (args{i}, 'duration')
+          # Sigh. We can't use a simple constructor call because of its weird
+          # signature.
           if isnumeric (args{i})
             args{i} = duration.ofDays (args{i});
           else
@@ -975,7 +975,7 @@ classdef duration
 endclassdef
 
 
-%!test duration;
-%!test duration (1, 2, 3);
-%!test assert (duration (1, 2, 3) < duration (1, 2, 4))
+#!test duration;
+#!test duration (1, 2, 3);
+#!test assert (duration (1, 2, 3) < duration (1, 2, 4))
 

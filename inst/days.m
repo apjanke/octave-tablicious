@@ -21,7 +21,7 @@
 ##
 ## Duration in days.
 ##
-## If @var{x} is numeric, then @var{out} is a @code{duration} array in units 
+## If @var{x} is numeric, then @var{out} is a @code{duration} array in units
 ## of fixed-length 24-hour days, with the same size as @var{x}.
 ##
 ## If @var{x} is a @code{duration}, then returns a @code{double} array the same
@@ -31,20 +31,20 @@
 ## @end deftypefn
 
 function out = days (x)
-  %DAYS duration in days
-  %
-  % out = days (x)
-  %
-  % If x is numeric, then out is a duration array in units of fixed-length 24-hour
-  % days.
-  %
-  % If x is a duration, then returns a double array indicating the number of
-  % days that duration is.
+  #DAYS duration in days
+  #
+  # out = days (x)
+  #
+  # If x is numeric, then out is a duration array in units of fixed-length 24-hour
+  # days.
+  #
+  # If x is a duration, then returns a double array indicating the number of
+  # days that duration is.
   if isnumeric (x)
     out = duration.ofDays (double (x));
   elseif isa (x, 'duration')
     out = x.days;
   else
-    error ('Invalid input: expected numeric or duration; got %s', class (x));    
-  end
-end
+    error ('Invalid input: expected numeric or duration; got %s', class (x));
+  endif
+endfunction

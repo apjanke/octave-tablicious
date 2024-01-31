@@ -44,22 +44,22 @@
 ## @end deftypefn
 
 function out = timezones (area)
-  %TIMEZONES List time zones
-  %
-  % timezones
-  % timezones (area)
-  % out = (...)
-  %
-  % Lists all the time zones available on this system.
-  %
-  % If the return is captured, the list is returned as a table if your Octave
-  % has table support, or a struct if it does not. It will have fields/variables:
-  %   Name
-  %   Area
-  %
-  % Compatibility note: Matlab also includes UTCOffset and DSTOffset fields in
-  % the output; these are currently unimplemented here.
-  
+  #TIMEZONES List time zones
+  #
+  # timezones
+  # timezones (area)
+  # out = (...)
+  #
+  # Lists all the time zones available on this system.
+  #
+  # If the return is captured, the list is returned as a table if your Octave
+  # has table support, or a struct if it does not. It will have fields/variables:
+  #   Name
+  #   Area
+  #
+  # Compatibility note: Matlab also includes UTCOffset and DSTOffset fields in
+  # the output; these are currently unimplemented here.
+
   tzdb = tblish.chrono.internal.tzinfo.TzDb;
   ids = tzdb.definedZones;
   ids = ids(:);
@@ -72,7 +72,7 @@ function out = timezones (area)
     endif
     areas{i} = area;
   endfor
-  
+
   if nargin > 0
     tf = strcmp (out.Area, area);
     ids = ids(tf);
@@ -86,10 +86,10 @@ function out = timezones (area)
     out.Name = ids;
     out.Area = areas;
   endif
-  
+
   if nargout == 0
     if octave_has_table
-      % This assumes you're using Tablicious's table implementation
+      # This assumes you're using Tablicious's table implementation
       prettyprint (out);
     else
       fmt = '  %-32s  %-20s\n';
@@ -101,7 +101,7 @@ function out = timezones (area)
     endif
     clear out
   endif
-  
+
 endfunction
 
 function out = octave_has_table

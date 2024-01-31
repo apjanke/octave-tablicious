@@ -17,7 +17,7 @@
 # This is based on the beavers dataset from R’s datasets package
 
 classdef beavers < tblish.internal.dataset
-  % Body temperature of two beavers
+  # Body temperature of two beavers
 
   methods
 
@@ -105,7 +105,7 @@ classdef beavers < tblish.internal.dataset
         1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, ...
         1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]';
 
-      % Munge
+      # Munge
       beaver1.activ = logical (beaver1.activ);
       beaver2.activ = logical (beaver2.activ);
       beaver1.time = convert_stupid_numeric_time_to_time_of_day (beaver1.time);
@@ -119,7 +119,7 @@ classdef beavers < tblish.internal.dataset
 
       out.beavers = tbl;
     endfunction
-  
+
   endmethods
 
 endclassdef

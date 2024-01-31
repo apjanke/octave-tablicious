@@ -28,7 +28,7 @@
 ## @end deftypefn
 
 function mustBeNumeric (x)
-  if ~isnumeric (x)
+  if !isnumeric (x)
     name = inputname (1);
     if isempty (name)
       name = 'Input';

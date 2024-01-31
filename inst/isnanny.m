@@ -41,7 +41,7 @@
 ## See also: ismissing, @code{isnan}, @code{isnat}, @ref{eqn}, @code{isequaln}
 ##
 ## @end deftypefn
-function out = isnanny (x)  
+function out = isnanny (x)
   if isnumeric (x)
     out = isnan (x);
   elseif isa (x, 'datetime')
@@ -56,7 +56,7 @@ function out = isnanny (x)
       out = isnan (x);
     else
       out = false (size (x));
-    end
+    endif
   else
     out = false (size (x));
   endif

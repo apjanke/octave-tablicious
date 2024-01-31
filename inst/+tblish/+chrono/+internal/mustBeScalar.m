@@ -17,7 +17,7 @@
 ## <https://www.gnu.org/licenses/>.
 
 function mustBeScalar(x)
-  if ~isscalar(x)
+  if !isscalar(x)
     error('Input %s must be scalar', inputname(1));
-  end
-end
+  endif
+endfunction

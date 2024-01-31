@@ -1,0 +1,20 @@
+# EditorConfig for Tablicious
+#
+# This is set up to conform to standard GNU Octave code style, to the extent that
+# EditorConfig supports that.
+#
+# See: https://wiki.octave.org/Octave_style_guide
+
+root = true
+
+[*]
+insert_final_newline = true
+charset = utf-8
+indent_style = space
+trim_trailing_whitespace = true
+
+[*.m]
+indent_size = 2
+
+[*.cc]
+indent_size = 2

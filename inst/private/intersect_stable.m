@@ -14,8 +14,8 @@
 ## along with this program; If not, see <http://www.gnu.org/licenses/>.
 
 function [out, indx, jndx] = intersect_stable (A, B)
-  %INTERSECT_STABLE Set intersection with stable value ordering
-  
+  #INTERSECT_STABLE Set intersection with stable value ordering
+
   [tf, indx] = ismember (A, B);
   out = A(tf);
   [uOut, ix2] = unique (out);

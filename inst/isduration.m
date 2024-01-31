@@ -30,19 +30,19 @@
 ## @end deftypefn
 
 function out = isduration (x)
-  %ISDURATION True if input is a duration array
+  #ISDURATION True if input is a duration array
 
-  % Developer note: see istable for an explanation of this logic.
+  # Developer note: see istable for an explanation of this logic.
   if isa (x, 'duration')
     out = true;
   elseif isobject (x)
-    % Respect isduration methods on classes.
+    # Respect isduration methods on classes.
     if ismember ('isduration', methods (x))
       out = isduration (x);
     else
       out = false;
-    end
+    endif
   else
     out = false;
-  end
-end
+  endif
+endfunction

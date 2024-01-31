@@ -43,7 +43,7 @@ classdef attitude < tblish.internal.dataset
       out = table(rating, complaints, privileges, learning, raises, ...
         critical, advance);
     endfunction
-  
+
   endmethods
 
 endclassdef

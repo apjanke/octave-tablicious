@@ -1,9 +1,9 @@
 function run_all_example_scripts
-  % Runs all example scripts in the inst/examples directory
-  %
-  % This function is meant for use in BIST tests. It just ensures that all
-  % the examples run without error.
-  
+  # Runs all example scripts in the inst/examples directory
+  #
+  # This function is meant for use in BIST tests. It just ensures that all
+  # the examples run without error.
+
   this_dir = fileparts (mfilename ('fullpath'));
   inst_dir = fileparts (this_dir);
   examples_dir = fullfile (inst_dir, 'examples');

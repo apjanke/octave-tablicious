@@ -41,7 +41,7 @@ function x = mustBeInteger (x, label)
     but = "it was complex";
   elseif ! all (floor (x) == x)
     but = "it had fractional values in some elements";
-  end
+  endif
   if ! isempty (but)
     if isempty (label)
       label = inputname (1);

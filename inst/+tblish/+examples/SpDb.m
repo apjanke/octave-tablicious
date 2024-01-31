@@ -14,16 +14,16 @@
 ## along with this program; If not, see <http://www.gnu.org/licenses/>.
 
 function varargout = SpDb
-  %SPDB The classic suppliers-parts example database
-  %
-  % s = tblish.examples.SpDb
-  % [s, p, sp] = tblish.examples.SpDb
-  %
-  % Constructs the classic C. J. Date Suppliers-Parts ("SP") example database
-  % as tables.
-  %
-  % If one argout is captured, the tables are returned in the fields of a struct.
-  % If multiple argouts are captured, the tables are returned as three argouts.
+  #SPDB The classic suppliers-parts example database
+  #
+  # s = tblish.examples.SpDb
+  # [s, p, sp] = tblish.examples.SpDb
+  #
+  # Constructs the classic C. J. Date Suppliers-Parts ("SP") example database
+  # as tables.
+  #
+  # If one argout is captured, the tables are returned in the fields of a struct.
+  # If multiple argouts are captured, the tables are returned as three argouts.
   S = cell2table ({
     'S1'  'Smith' 20  'London'
     'S2'  'Jones' 10  'Paris'
@@ -37,7 +37,7 @@ function varargout = SpDb
     'P3'  'Screw'  'Blue'   17.0    'Oslo'
     'P4'  'Screw'  'Red'    14.0    'London'
     'P5'  'Cam'    'Blue'   12.0    'Paris'
-    'P6'  'Cog'    'Red'    19.0    'London'      
+    'P6'  'Cog'    'Red'    19.0    'London'
   }, 'VariableNames', {'PNum', 'PName', 'Color', 'Weight', 'City'});
   SP = cell2table ({
     'S1'  'P1'  300
@@ -51,7 +51,7 @@ function varargout = SpDb
     'S3'  'P2'  200
     'S4'  'P2'  200
     'S4'  'P4'  300
-    'S4'  'P5'  400      
+    'S4'  'P5'  400
   }, 'VariableNames', {'SNum', 'PNum', 'Qty'});
   if nargout == 1
     varargout = { struct('S', S, 'P', P, 'SP', SP) };

@@ -17,8 +17,8 @@
 ## <https://www.gnu.org/licenses/>.
 
 classdef WindowsIanaZoneConverter
-  %WINDOWSIANAZONECONVERTER Converts between Windows and IANA zone ids
-  
+  #WINDOWSIANAZONECONVERTER Converts between Windows and IANA zone ids
+
   methods
     function out = windows2iana (this, winZoneId)
       map = getZoneMap (this);
@@ -32,7 +32,7 @@ classdef WindowsIanaZoneConverter
         out = ianas{1};
       else
         [tf,loc] = ismember ('001', territories);
-        if ~tf
+        if !tf
           out = ianas{1};
           warning (['No "001" territory found for Windows time zone ''%s'' in map file. ' ...
             'Guessing IANA zone randomly as ''%s''.'], ...
@@ -42,11 +42,11 @@ classdef WindowsIanaZoneConverter
         endif
       endif
     endfunction
-    
+
     function out = iana2windows (this, ianaZoneId)
       map = getZoneMap (this);
       [tf,loc] = ismember (ianaZoneId, map.Iana);
-      if ~tf
+      if !tf
         error ('Unrecognized IANA time zone ID: ''%s''', ianaZoneId);
       endif
       out = map.Windows{loc};
@@ -59,12 +59,12 @@ classdef WindowsIanaZoneConverter
       endif
       out = cache;
     endfunction
-    
+
     function out = readWindowsZonesFile (this)
       this_dir = fileparts (mfilename ('fullpath'));
       zones_file = fullfile (this_dir, 'resources', 'windowsZones', 'windowsZones.xml');
       txt = tblish.chrono.internal.slurpTextFile (zones_file);
-      % Base Octave doesn't have XML reading, so we'll kludge it with regexps
+      # Base Octave doesn't have XML reading, so we'll kludge it with regexps
       pattern = '<mapZone +other="([^"]*)" +territory="([^"]*)" type="([^"]*)" */>';
       [starts,tok] = regexp (txt, pattern, 'start', 'tokens');
       tok = cat (1, tok{:});

@@ -13,8 +13,8 @@
 ## You should have received a copy of the GNU General Public License
 ## along with this program; If not, see <http://www.gnu.org/licenses/>.
 
-# TODO: Consider combining .code and .tfMissing into one @single .code array, 
-# where NaNs are used to indicate undefineds, instead of a separate tfMissing 
+# TODO: Consider combining .code and .tfMissing into one @single .code array,
+# where NaNs are used to indicate undefineds, instead of a separate tfMissing
 # mask. Or even keep .code as uint16, and just use 0 to indicate undefined.
 # Would require creating more temporaries, but some of the code would be simpler.
 # Would be about the same storage at rest (uint16 + logical = 3 bytes;
@@ -90,19 +90,19 @@ classdef categorical
   ## @end deftypeivar
 
   properties (SetAccess = private)
-    % Code for each element. Codes are an index into cats.
+    # Code for each element. Codes are an index into cats.
     code = uint16 (0)     % planar
-    % Whether each element is missing/undefined
+    # Whether each element is missing/undefined
     tfMissing = true      % planar
-    % The list of category names for this array, indexed by code
+    # The list of category names for this array, indexed by code
     cats = {}             % not planar
-    % Whether this array is ordinal
+    # Whether this array is ordinal
     isOrdinal = false     % not planar
-    % Whether this array's categories are "protected", which disallows implicit
-    % expansion of the category list
+    # Whether this array's categories are "protected", which disallows implicit
+    # expansion of the category list
     isProtected = false   % not planar
   endproperties
-  
+
   methods (Static = true, Hidden = true)
     function out = from_codes (codes, cats, varargin)
       [opts, args] = peelOffNameValueOptions (varargin, {'Ordinal', 'Protected'});
@@ -118,12 +118,12 @@ classdef categorical
       endif
       cats = cellstr(cats);
       cats = cats(:)';
-      
+
       code = uint16 (codes);
       if ! isa (codes, 'uint16')
-        % TODO: Check for clean conversion
+        # TODO: Check for clean conversion
       endif
-      
+
       out = categorical;
       out.code = code;
       out.tfMissing = isnan (codes);
@@ -132,9 +132,9 @@ classdef categorical
       out.isProtected = isProtected;
     endfunction
   endmethods
-  
+
   methods (Static)
-    
+
     ## -*- texinfo -*-
     ## @node categorical.undefined
     ## @deftypefn {Static Method} {@var{out} =} categorical.undefined ()
@@ -187,11 +187,11 @@ classdef categorical
         out = categorical.undefined (sz);
       endif
     endfunction
-    
+
   endmethods
-  
+
   methods
-    
+
     ## -*- texinfo -*-
     ## @node categorical.categorical
     ## @deftypefn {Constructor} {@var{obj} =} categorical ()
@@ -226,19 +226,19 @@ classdef categorical
     ##
     ## @end deftypefn
     function this = categorical (x, varargin)
-      % TODO: Empty strings and cellstrs should convert to <undefined>
-      % TODO: Handle datetime and duration inputs
-      % TODO: Handle logical inputs
-      % TODO: Handle @missing inputs
-      % TODO: Numeric conversion is probably wrong. It's trying to convert 
-      % numeric inputs directly to codes. It should probably convert them to the
-      % num2str representation of numbers instead, and make those all categories.
-      % TODO: Support objects.
-      
+      # TODO: Empty strings and cellstrs should convert to <undefined>
+      # TODO: Handle datetime and duration inputs
+      # TODO: Handle logical inputs
+      # TODO: Handle @missing inputs
+      # TODO: Numeric conversion is probably wrong. It's trying to convert
+      # numeric inputs directly to codes. It should probably convert them to the
+      # num2str representation of numbers instead, and make those all categories.
+      # TODO: Support objects.
+
       if nargin == 0
         return
       endif
-      
+
       validOptions = {'Ordinal', 'Protected'};
       [opts, args] = peelOffNameValueOptions (varargin, validOptions);
       if ischar (x)
@@ -281,7 +281,7 @@ classdef categorical
       if doOrdinal
         doProtected = true;
       endif
-      
+
       [tf, loc] = ismember (x, valueset);
       if any(loc > intmax ('uint16'))
         error (['Category count out of range: categorical supports a max of %d ' ...
@@ -290,7 +290,7 @@ classdef categorical
       code = uint16 (loc);
       code(!tf) = 0;
       tfMissing = !tf;
-      
+
       this.code = code;
       this.tfMissing = tfMissing;
       this.cats = category_names;
@@ -313,7 +313,7 @@ classdef categorical
       out += sizeof (this.isOrdinal);
       out += sizeof (this.isProtected);
     endfunction
-    
+
     function this = set.code (this, x)
       if ! isnumeric (x)
         error ('categorical.code: values must be numeric');
@@ -326,14 +326,14 @@ classdef categorical
       endif
       this.code = code;
     endfunction
-    
+
     ## -*- texinfo -*-
     ## @node categorical.categories
     ## @deftypefn {Method} {@var{out} =} categories (@var{obj})
     ##
     ## Get a list of the categories in @var{obj}.
     ##
-    ## Gets a list of the categories in @var{obj}, identified by their 
+    ## Gets a list of the categories in @var{obj}, identified by their
     ## category names.
     ##
     ## Returns a cellstr column vector.
@@ -342,7 +342,7 @@ classdef categorical
     function out = categories (this)
       out = this.cats(:);
     endfunction
-    
+
     ## -*- texinfo -*-
     ## @node categorical.iscategory
     ## @deftypefn {Method} {@var{out} =} iscategory (@var{obj}, @var{catnames})
@@ -356,14 +356,14 @@ classdef categorical
     ##
     ## @end deftypefn
     function out = iscategory (this, catnames)
-      %ISCATEGORY Test for category name existence
-      %
-      % out = iscategory (this, catnames)
+      #ISCATEGORY Test for category name existence
+      #
+      # out = iscategory (this, catnames)
       mustBeA (this, 'categorical');
       catnames = cellstr (catnames);
       out = ismember (catnames, this.cats);
     endfunction
-    
+
     ## -*- texinfo -*-
     ## @node categorical.isordinal
     ## @deftypefn {Method} {@var{out} =} isordinal (@var{obj})
@@ -377,7 +377,7 @@ classdef categorical
     function out = isordinal (this)
       out = this.isOrdinal;
     endfunction
-    
+
     ## -*- texinfo -*-
     ## @node categorical.string
     ## @deftypefn {Method} {@var{out} =} string (@var{obj})
@@ -397,7 +397,7 @@ classdef categorical
       out = string (out);
       out(this.tfMissing) = NaS;
     endfunction
-    
+
     ## -*- texinfo -*-
     ## @node categorical.cellstr
     ## @deftypefn {Method} {@var{out} =} cellstr (@var{obj})
@@ -414,29 +414,29 @@ classdef categorical
     function out = cellstr (this)
       out = cell (size (this));
       out(!this.tfMissing) = this.cats(this.code(!this.tfMissing));
-      out(this.tfMissing) = {""};      
+      out(this.tfMissing) = {""};
     endfunction
-    
+
     function display (this)
-      %DISPLAY Custom display
+      #DISPLAY Custom display
       in_name = inputname(1);
-      if ~isempty(in_name)
+      if !isempty(in_name)
         fprintf('%s =\n', in_name);
-      end
+      endif
       disp(this);
-    end
+    endfunction
 
     function disp (this)
-      %DISP Custom display
+      #DISP Custom display
       if isempty (this)
         fprintf ('Empty %s categorical\n', size2str (size (this)));
-        return;
-      end
+        return
+      endif
       my_dispstrs = this.dispstrs;
       out = format_dispstr_array (my_dispstrs);
       fprintf("%s", out);
-    end
-    
+    endfunction
+
     ## -*- texinfo -*-
     ## @node categorical.dispstrs
     ## @deftypefn {Method} {@var{out} =} dispstrs (@var{obj})
@@ -455,7 +455,7 @@ classdef categorical
       out(!this.tfMissing) = this.cats(ix);
       out(this.tfMissing) = {'<undefined>'};
     endfunction
-    
+
     function out = dispstr (this)
       if isscalar (this)
         d = dispstrs (this);
@@ -474,7 +474,7 @@ classdef categorical
       endfor
       out = sprintf (fmt, args{:});
     endfunction
-    
+
     function out = fprintf(varargin)
       args = varargin;
       if isnumeric (args{1})
@@ -496,7 +496,7 @@ classdef categorical
         fprintf (fid, fmt, args{:});
       endif
     endfunction
-    
+
     ## -*- texinfo -*-
     ## @node categorical.summary
     ## @deftypefn {Method} {} summary (@var{obj})
@@ -509,20 +509,20 @@ classdef categorical
     ##
     ## @end deftypefn
     function summary (this)
-      %SUMMARY Print a summary of the values in this categorical array
-      
+      #SUMMARY Print a summary of the values in this categorical array
+
       Code = [1:numel(this.cats)]';
       Category = this.cats';
       category_table = table (Code, Category);
-      
+
       fprintf ('Categorical array\n');
       fprintf ('  %d categories, %d elements\n', numel (Category), numel (this));
       fprintf ('  %d undefined values\n', numel (find (this.tfMissing(:))));
       prettyprint (category_table);
-      % TODO: Frequencies of each code value. Probably just roll that up into the
-      % above table as an additional column.
+      # TODO: Frequencies of each code value. Probably just roll that up into the
+      # above table as an additional column.
     endfunction
-    
+
     ## -*- texinfo -*-
     ## @node categorical.addcats
     ## @deftypefn {Method} {@var{out} =} addcats (@var{obj}, @var{newcats})
@@ -552,7 +552,7 @@ classdef categorical
       out = this;
       out.cats = [out.cats newcats];
     endfunction
-    
+
     ## -*- texinfo -*-
     ## @node categorical.removecats
     ## @deftypefn {Method} {@var{out} =} removecats (@var{obj})
@@ -577,8 +577,8 @@ classdef categorical
       if nargin == 1
         out = squeezecats (this);
         return
-      end
-      
+      endif
+
       oldcats = cellstr (oldcats);
       [tf, codes_to_remove] = ismember (oldcats, this.cats);
       [tf_undef] = ismember (this.code, codes_to_remove)
@@ -587,7 +587,7 @@ classdef categorical
       out.tfMissing = out.tfMissing | tf_undef;
       out = remove_unused_cats (out, oldcats);
     endfunction
-    
+
     ## -*- texinfo -*-
     ## @node categorical.mergecats
     ## @deftypefn {Method} {@var{out} =} mergecats (@var{obj}, @var{oldcats})
@@ -611,28 +611,28 @@ classdef categorical
         newcat = oldcats{1};
       endif
       oldcats = cellstr (oldcats);
-      
+
       if this.isOrdinal
         error ('categorical: Merging of ordinal categories is not yet implemented. Sorry.');
       endif
-      
+
       [tf, old_cat_codes] = ismember (oldcats, this.cats);
       if ! all (tf)
-        % TODO: I don't know if this should be an error, or just silently ignored -apj
+        # TODO: I don't know if this should be an error, or just silently ignored -apj
         error ('categorical.mergecats: Specified categories not present in input: %s', ...
           strjoin(oldcats(!tf), ', '));
       endif
       [is_current_cat, new_cat_code] = ismember (newcat, this.cats)
-      
+
       out = this;
       if is_current_cat
-        % Merge into existing category
+        # Merge into existing category
         cats_to_delete = setdiff (oldcats, newcat);
         [tf, loc] = ismember (this.code, old_cat_codes);
         out.code(tf) = new_cat_code;
         out = remove_unused_cats (out, cats_to_delete);
       else
-        % Merge into new category
+        # Merge into new category
         cats_to_delete = oldcats;
         [tf, loc] = ismember (this.code, old_cat_codes);
         out = addcats (out, newcat);
@@ -641,7 +641,7 @@ classdef categorical
         out = remove_unused_cats (out, cats_to_delete);
       endif
     endfunction
-    
+
     ## -*- texinfo -*-
     ## @node categorical.renamecats
     ## @deftypefn {Method} {@var{out} =} renamecats (@var{obj}, @var{newcats})
@@ -670,7 +670,7 @@ classdef categorical
         error (['categorical.renamecats: Inconsistent dimensions for oldnames ' ...
           'and newnames: %s vs %s'], size2str (size (oldnames)), size2str (size (newnames)));
       endif
-      
+
       out = this;
       [tf, loc] = ismember (oldnames, this.cats);
       if ! all (tf)
@@ -703,7 +703,7 @@ classdef categorical
       if ! isequal (sort (newcats), sort (this.cats))
         error ('categorical.reordercats: newcats and oldcats must be the same sets, just reordered');
       endif
-      
+
       [tf, loc] = ismember (this.cats, newcats);
       new_codes = NaN (size (this.code));
       new_codes(!this.tfMissing) = loc(this.code(!this.tfMissing));
@@ -711,7 +711,7 @@ classdef categorical
       out.code = new_codes;
       out.cats = newcats;
     endfunction
-    
+
     ## -*- texinfo -*-
     ## @node categorical.setcats
     ## @deftypefn {Method} {@var{out} =} setcats (@var{obj}, @var{newcats})
@@ -726,13 +726,13 @@ classdef categorical
     function out = setcats (this, newcats)
       newcats = cellstr (newcats);
       newcats = newcats(:)';
-      
+
       if this.isOrdinal
         error ('categorical.setcats: Cannot set categories on Ordinal categorical arrays');
       endif
-      
+
       [tf, loc] = ismember (this.cats, newcats);
-      loc(~tf) = 0;
+      loc(!tf) = 0;
       codes = codes_with_nans (this);
       new_codes = NaN(size(codes));
       new_codes(!isnan(codes)) = loc(codes(!isnan(codes)));
@@ -740,7 +740,7 @@ classdef categorical
       out.code = uint16 (new_codes);
       out.tfMissing = out.tfMissing | isnan (new_codes) | new_codes == 0;
     endfunction
-    
+
     ## -*- texinfo -*-
     ## @node categorical.isundefined
     ## @deftypefn {Method} {@var{out} =} isundefined (@var{obj})
@@ -757,7 +757,7 @@ classdef categorical
     function out = isundefined (this)
       out = this.tfMissing;
     endfunction
-    
+
     ## -*- texinfo -*-
     ## @node categorical.ismissing
     ## @deftypefn {Method} {@var{out} =} ismissing (@var{obj})
@@ -773,7 +773,7 @@ classdef categorical
     function out = ismissing (this)
       out = this.tfMissing;
     endfunction
-    
+
     ## -*- texinfo -*-
     ## @node categorical.isnanny
     ## @deftypefn {Method} {@var{out} =} isnanny (@var{obj})
@@ -781,7 +781,7 @@ classdef categorical
     ## Test whethere elements are NaN-ish.
     ##
     ## Checks where each element in @var{obj} is NaN-ish. For categorical
-    ## arrays, undefined values are considered NaN-ish; any other 
+    ## arrays, undefined values are considered NaN-ish; any other
     ## value is not.
     ##
     ## Returns a logical array the same size as @var{obj}.
@@ -790,7 +790,7 @@ classdef categorical
     function out = isnanny (this)
       out = ismissing (this);
     endfunction
-    
+
     ## -*- texinfo -*-
     ## @node categorical.squeezecats
     ## @deftypefn {Method} {@var{out} =} squeezecats (@var{obj})
@@ -806,30 +806,30 @@ classdef categorical
     function out = squeezecats (this)
       error('categorical.squeezecategories: This is unimplemented. Sorry.');
     endfunction
-    
+
     function [A, B] = promote2 (A, B)
-      %PROMOTE2 Promote exactly 2 inputs to be comparable categoricals.
-      %
-      % This is an internal implementation method that will become private before
-      % release 1.0.
-      %
-      % TODO: Promotion of plain values should pick up the Ordinality of its
-      % categorical counterpart, to support stuff like `x < 'foo'`.
-      
+      #PROMOTE2 Promote exactly 2 inputs to be comparable categoricals.
+      #
+      # This is an internal implementation method that will become private before
+      # release 1.0.
+      #
+      # TODO: Promotion of plain values should pick up the Ordinality of its
+      # categorical counterpart, to support stuff like `x < 'foo'`.
+
       inA = A;
       inB = B;
-      
-      % Make them both categoricals
-      % TODO: This implementation is wrong. It requires inputs to map to existing
-      % categories on the categorical input. Whether that is required should be
-      % determined by the Protected property; non-Protected categoricals may expand
-      % their set of categories automatically.
+
+      # Make them both categoricals
+      # TODO: This implementation is wrong. It requires inputs to map to existing
+      # categories on the categorical input. Whether that is required should be
+      # determined by the Protected property; non-Protected categoricals may expand
+      # their set of categories automatically.
       if ! isa (A, 'categorical')
         if isordinal (B)
           B = promote_to_existing_categories (A, B);
         else
           A = categorical (A);
-        end
+        endif
       endif
       if ! isa (B, 'categorical')
         if isordinal (A)
@@ -838,8 +838,8 @@ classdef categorical
           B = categorical (B);
         endif
       endif
-      
-      % Unify their category definitions
+
+      # Unify their category definitions
       if isequal (A.cats, B.cats)
         return
       endif
@@ -848,12 +848,12 @@ classdef categorical
       endif
       [A, B] = unify_nonordinal_categories (A, B);
     endfunction
-    
+
     function [outA, outB] = unify_nonordinal_categories (A, B)
       mustBeA (A, 'categorical');
       mustBeA (B, 'categorical');
-      % TODO: In the protected case, eliminate categories that have no values on
-      % the non-protected side, to avoid possibly-spurious errors.
+      # TODO: In the protected case, eliminate categories that have no values on
+      # the non-protected side, to avoid possibly-spurious errors.
       if A.isProtected
         cats_only_in_B = setdiff (B.cats, A.cats);
         if ! isempty (cats_only_in_B)
@@ -866,10 +866,10 @@ classdef categorical
         if ! isempty (cats_only_in_A)
           error ('categorical: input B is Protected, but input A has categories not in B: %s', ...
             strjoin (cats_only_in_A, ', '));
-        endif        
+        endif
       endif
-      % Okay, at this point, it's safe to expand categories on both sides, either
-      % because they're not protected, or they will gain no new categories
+      # Okay, at this point, it's safe to expand categories on both sides, either
+      # because they're not protected, or they will gain no new categories
       unified_categories = unique ([A.cats B.cats]);
       [tf, code_map_a] = ismember (A.cats, unified_categories);
       new_code_a = A.code;
@@ -884,249 +884,249 @@ classdef categorical
       outB.code = new_code_b;
       outB.cats = unified_categories;
     endfunction
-    
-    % Relational operations
-    
+
+    # Relational operations
+
     function out = eq (A, B)
-      %EQ Equals
+      #EQ Equals
       [A, B] = promote2 (A, B);
       out = A.code == B.code;
       out(A.tfMissing | B.tfMissing) = false;
     endfunction
-    
+
     function out = ne (A, B)
-      %NE Not equal
+      #NE Not equal
       [A, B] = promote2 (A, B);
       out = A.code != B.code;
-      out(A.tfMissing | B.tfMissing) = false;      
+      out(A.tfMissing | B.tfMissing) = false;
     endfunction
-    
-    % TODO: lt, le, gt, ge - depends on more refined conversion semantics
-    
+
+    # TODO: lt, le, gt, ge - depends on more refined conversion semantics
+
     function [out, idx] = ismember (A, B, varargin)
-      %ISMEMBER Set membership
-      %
-      % [out, idx] = ismember (A, B)
-      % [out, idx] = ismember (A, B, "rows")
-      %
-      % Returns a logical array the same size as A. Also returns idx, an index
-      % into B of a matching item for each matched element or row in A.
+      #ISMEMBER Set membership
+      #
+      # [out, idx] = ismember (A, B)
+      # [out, idx] = ismember (A, B, "rows")
+      #
+      # Returns a logical array the same size as A. Also returns idx, an index
+      # into B of a matching item for each matched element or row in A.
       [A, B] = promote2 (A, B);
-      % Hack: use NaN indexes to handle missings
+      # Hack: use NaN indexes to handle missings
       code_A = codes_with_nans (A);
       code_B = codes_with_nans (B);
       [out, idx] = ismember (code_A, code_B, varargin{:});
     endfunction
-    
+
     function [out, indx, jndx] = unique (X, varargin)
-      %UNIQUE Unique values
-      %
-      % [out, indx, jndx] = unique (X)
-      % [out, indx, jndx] = unique (X, "rows")
-      % [out, indx, jndx] = unique (..., "first")
-      % [out, indx, jndx] = unique (..., "last")
-      %
-      % Returns a categorical array with the unique values from X, but the 
-      % same category list and ordinality.
-      
-      % Hack: use NaN indexes to handle missings
+      #UNIQUE Unique values
+      #
+      # [out, indx, jndx] = unique (X)
+      # [out, indx, jndx] = unique (X, "rows")
+      # [out, indx, jndx] = unique (..., "first")
+      # [out, indx, jndx] = unique (..., "last")
+      #
+      # Returns a categorical array with the unique values from X, but the
+      # same category list and ordinality.
+
+      # Hack: use NaN indexes to handle missings
       code = codes_with_nans (X);
       [u_code, indx, jndx] = unique (code, varargin{:});
       out = X;
       out.code = uint16 (u_code);
       out.tfMissing = isnan (u_code);
     endfunction
-    
+
     function [out, indx] = sort (this, varargin)
-      %SORT Sort values
-      %
-      % [out, indx] = sort (X)
-      % [out, indx] = sort (X, dim)
-      % [out, indx] = sort (X, mode)
-      % [out, indx] = sort (X, dim, mode)
+      #SORT Sort values
+      #
+      # [out, indx] = sort (X)
+      # [out, indx] = sort (X, dim)
+      # [out, indx] = sort (X, mode)
+      # [out, indx] = sort (X, dim, mode)
       code = codes_with_nans (this);
       [out_code, indx] = sort (code, varargin{:});
       out = this;
       out.code = uint16(out_code);
       out.tfMissing = isnan (out_code);
     endfunction
-    
+
     function [out, ixa, ixb] = union (A, B, varargin)
-      %UNION Set union
-      %
-      % [out, ixa, ixb] = union (A, B)
-      % [out, ixa, ixb] = union (A, B, "rows")
-      
+      #UNION Set union
+      #
+      # [out, ixa, ixb] = union (A, B)
+      # [out, ixa, ixb] = union (A, B, "rows")
+
       [A, B] = promote2 (A, B);
-      % Hack: use NaN indexes to handle missings
+      # Hack: use NaN indexes to handle missings
       code_A = codes_with_nans (A);
       code_B = codes_with_nans (B);
 
       code_out = union (code_A, code_B, varargin{:});
-      
+
       out = A;
       out.code = uint16 (code_out);
       out.tfMissing = isnan (code_out);
     endfunction
-    
+
     function [out, ixa, ixb] = intersect (A, B, varargin)
-      %INTERSECT Set intersection
-      %
-      % [out, ixa, ixb] = intersect (A, B)
-      % [out, ixa, ixb] = intersect (A, B, "rows")
-      
+      #INTERSECT Set intersection
+      #
+      # [out, ixa, ixb] = intersect (A, B)
+      # [out, ixa, ixb] = intersect (A, B, "rows")
+
       [A, B] = promote2 (A, B);
-      % Hack: use NaN indexes to handle missings
+      # Hack: use NaN indexes to handle missings
       code_A = codes_with_nans (A);
       code_B = codes_with_nans (B);
 
       code_out = intersect (code_A, code_B, varargin{:});
-      
+
       out = A;
       out.code = uint16 (code_out);
       out.tfMissing = isnan (code_out);
     endfunction
-    
+
     function [out, ixa, ixb] = setdiff (A, B, varargin)
-      %SETDIFF Set difference
-      %
-      % [out, ixa, ixb] = setdiff (A, B)
-      % [out, ixa, ixb] = setdiff (A, B, "rows")
-      
+      #SETDIFF Set difference
+      #
+      # [out, ixa, ixb] = setdiff (A, B)
+      # [out, ixa, ixb] = setdiff (A, B, "rows")
+
       [A, B] = promote2 (A, B);
-      % Hack: use NaN indexes to handle missings
+      # Hack: use NaN indexes to handle missings
       code_A = codes_with_nans (A);
       code_B = codes_with_nans (B);
 
       code_out = setdiff (code_A, code_B, varargin{:});
-      
+
       out = A;
       out.code = uint16 (code_out);
       out.tfMissing = isnan (code_out);
     endfunction
-    
+
     function [out, ixa, ixb] = setxor (A, B, varargin)
-      %SETXOR Set exclusive or
-      %
-      % [out, ixa, ixb] = setxor (A, B)
-      % [out, ixa, ixb] = setxor (A, B, "rows")
-      
+      #SETXOR Set exclusive or
+      #
+      # [out, ixa, ixb] = setxor (A, B)
+      # [out, ixa, ixb] = setxor (A, B, "rows")
+
       [A, B] = promote2 (A, B);
-      % Hack: use NaN indexes to handle missings
+      # Hack: use NaN indexes to handle missings
       code_A = codes_with_nans (A);
       code_B = codes_with_nans (B);
-      
+
       code_out = setxor (code_A, code_B, varargin{:});
-      
+
       out = A;
       out.code = uint16 (code_out);
       out.tfMissing = isnan (code_out);
     endfunction
-    
+
   endmethods
-  
-  % Planar structural stuff
+
+  # Planar structural stuff
   methods
-    
+
     function out = size (this, dim)
-      %SIZE Size of array.
+      #SIZE Size of array.
       if nargin == 1
         out = size (this.code);
       else
         out = size (this.code, dim);
       endif
     endfunction
-    
+
     function out = numel (this)
-      %NUMEL Number of elements in array.
+      #NUMEL Number of elements in array.
       out = numel (this.code);
     endfunction
-    
+
     function out = ndims (this)
-      %NDIMS Number of dimensions.
+      #NDIMS Number of dimensions.
       out = ndims(this.code);
     endfunction
-    
+
     function out = isempty(this)
-      %ISEMPTY True for empty array.
+      #ISEMPTY True for empty array.
       out = isempty (this.code);
     endfunction
-    
+
     function out = isscalar (this)
-      %ISSCALAR True if input is scalar.
+      #ISSCALAR True if input is scalar.
       out = isscalar (this.code);
     endfunction
-    
+
     function out = isvector (this)
-      %ISVECTOR True if input is a vector.
+      #ISVECTOR True if input is a vector.
       out = isvector (this.code);
     endfunction
-      
+
     function out = iscolumn (this)
-      %ISCOLUMN True if input is a column vector.
+      #ISCOLUMN True if input is a column vector.
       out = iscolumn (this.code);
     endfunction
-    
+
     function out = isrow (this)
-      %ISROW True if input is a row vector.
+      #ISROW True if input is a row vector.
       out = isrow (this.code);
     endfunction
-    
+
     function out = ismatrix (this)
-      %ISMATRIX True if input is a matrix.
+      #ISMATRIX True if input is a matrix.
       out = ismatrix (this.code);
     endfunction
-    
+
     function this = reshape (this, varargin)
-      %RESHAPE Reshape array.
+      #RESHAPE Reshape array.
       this.code = reshape (this.code, varargin{:});
       this.tfMissing = reshape (this.tfMissing, varargin{:});
     endfunction
-    
+
     function this = squeeze (this, varargin)
-      %SQUEEZE Remove singleton dimensions.
+      #SQUEEZE Remove singleton dimensions.
       this.code = squeeze (this.code, varargin{:});
       this.tfMissing = squeeze (this.tfMissing, varargin{:});
     endfunction
-      
+
     function this = circshift (this, varargin)
-      %CIRCSHIFT Shift positions of elements circularly.
+      #CIRCSHIFT Shift positions of elements circularly.
       this.code = circshift (this.code, varargin{:});
       this.tfMissing = circshift (this.tfMissing, varargin{:});
     endfunction
-    
+
     function this = permute (this, varargin)
-      %PERMUTE Permute array dimensions.
+      #PERMUTE Permute array dimensions.
       this.code = permute (this.code, varargin{:});
       this.tfMissing = permute (this.tfMissing, varargin{:});
     endfunction
-    
+
     function this = ipermute (this, varargin)
-      %IPERMUTE Inverse permute array dimensions.
+      #IPERMUTE Inverse permute array dimensions.
       this.code = ipermute (this.code, varargin{:});
       this.tfMissing = ipermute (this.tfMissing, varargin{:});
     endfunction
-    
+
     function this = repmat (this, varargin)
-      %REPMAT Replicate and tile array.
+      #REPMAT Replicate and tile array.
       this.code = repmat (this.code, varargin{:});
       this.tfMissing = repmat (this.tfMissing, varargin{:});
     endfunction
-    
+
     function this = ctranspose (this, varargin)
-      %CTRANSPOSE Complex conjugate transpose.
+      #CTRANSPOSE Complex conjugate transpose.
       this.code = ctranspose (this.code, varargin{:});
       this.tfMissing = ctranspose (this.tfMissing, varargin{:});
     endfunction
-      
+
     function this = transpose (this, varargin)
-      %TRANSPOSE Transpose vector or matrix.
+      #TRANSPOSE Transpose vector or matrix.
       this.code = transpose (this.code, varargin{:});
       this.tfMissing = transpose (this.tfMissing, varargin{:});
     endfunction
-    
+
     function [this, nshifts] = shiftdim( this, n)
-      %SHIFTDIM Shift dimensions.
+      #SHIFTDIM Shift dimensions.
       if nargin > 1
         this.code = shiftdim (this.code, n);
         this.tfMissing = shiftdim (this.code, n);
@@ -1135,15 +1135,15 @@ classdef categorical
         [this.tfMissing, nshifts] = shiftdim (this.tfMissing);
       endif
     endfunction
-    
+
     function out = cat (dim, varargin)
-      %CAT Concatenate arrays.
+      #CAT Concatenate arrays.
       args = varargin;
       for i = 1:numel(args)
-        if ~isa(args{i}, 'categorical')
+        if !isa(args{i}, 'categorical')
           args{i} = categorical(args{i});
-        end
-      end
+        endif
+      endfor
       out = varargin{1};
       for i = 2:numel (varargin)
         a = out;
@@ -1154,50 +1154,50 @@ classdef categorical
         out.tfMissing = cat(dim, a.tfMissing, b.tfMissing);
       endfor
     endfunction
-      
+
     function out = horzcat (varargin)
-      %HORZCAT Horizontal concatenation.
+      #HORZCAT Horizontal concatenation.
       out = cat (2, varargin{:});
     endfunction
-    
+
     function out = vertcat (varargin)
-      %VERTCAT Vertical concatenation.
+      #VERTCAT Vertical concatenation.
       out = cat (1, varargin{:});
     endfunction
-    
+
     function this = subsasgn(this, s, b)
-      %SUBSASGN Subscripted assignment.
-      
-      % Chained subscripts
+      #SUBSASGN Subscripted assignment.
+
+      # Chained subscripts
       if numel(s) > 1
         rhs_in = subsref(this, s(1));
         rhs = subsasgn(rhs_in, s(2:end), b);
       else
         rhs = b;
       endif
-      
-      % Base case
+
+      # Base case
       switch s(1).type
         case '()'
           this = subsasgnParensPlanar(this, s(1), rhs);
         case '{}'
-          % This works just like ()-assignment, and is only defined for
-          % compatibility with cellcode
+          # This works just like ()-assignment, and is only defined for
+          # compatibility with cellcode
           this = subsasgnParensPlanar(this, s(1), rhs);
         case '.'
           error ('categorical:BadOperation', '.-assignment is not defined for categorical arrays');
       endswitch
     endfunction
-      
+
     function varargout = subsref(this, s)
-    %SUBSREF Subscripted reference.
-    
-      % Base case
+    #SUBSREF Subscripted reference.
+
+      # Base case
       switch s(1).type
         case '()'
           varargout = { subsrefParensPlanar(this, s(1)) };
         case '{}'
-          % This pops out char arrays
+          # This pops out char arrays
           varargout = subsrefParensPlanar (this, s(1));
         case '.'
           switch s(1).subs
@@ -1213,24 +1213,24 @@ classdef categorical
               error ('Invalid property for .-referencing: %s', s(1).subs);
           endswitch
       endswitch
-      
-      % Chained reference
+
+      # Chained reference
       if numel (s) > 1
         out = subsref (out, s(2:end));
       endif
     endfunction
-  
+
   endmethods
-    
+
   methods
     function varargout = promote_to_existing_categories(this, varargin)
-      % Convert strings or numerics to categorical, using an existing categorical
-      %
-      % varargout = promote_to_existing_categories(this, varargin)
-      %
-      % Converts input string or numeric arrays to categorical, using the 
-      % existing categories mapping in this. Strings or numeric codes which do
-      % not correspond to a defined category in this are an error.
+      # Convert strings or numerics to categorical, using an existing categorical
+      #
+      # varargout = promote_to_existing_categories(this, varargin)
+      #
+      # Converts input string or numeric arrays to categorical, using the
+      # existing categories mapping in this. Strings or numeric codes which do
+      # not correspond to a defined category in this are an error.
       varargout = cell (size (varargin));
       for i_arg = 1:numel(varargin)
         arg = varargin{i_arg};
@@ -1255,63 +1255,63 @@ classdef categorical
       endfor
     endfunction
   endmethods
-  
+
   methods (Access=private)
-  
+
     function this = subsasgnParensPlanar (this, s, rhs)
-      %SUBSASGNPARENSPLANAR ()-assignment for planar object
-      if ~isa (rhs, 'categorical')
-        % TODO: This conversion is probably wrong. It probably needs to be done
-        % with respect to this's existing cats list
+      #SUBSASGNPARENSPLANAR ()-assignment for planar object
+      if !isa (rhs, 'categorical')
+        # TODO: This conversion is probably wrong. It probably needs to be done
+        # with respect to this's existing cats list
         [this, rhs] = promote2 (this, rhs);
       endif
       this.code(s.subs{:}) = rhs.code;
       this.tfMissing(s.subs{:}) = rhs.tfMissing;
     endfunction
-    
+
     function out = subsrefParensPlanar(this, s)
-      %SUBSREFPARENSPLANAR ()-indexing for planar object
+      #SUBSREFPARENSPLANAR ()-indexing for planar object
       out = this;
       out.code = this.code(s.subs{:});
       out.tfMissing = this.tfMissing(s.subs{:});
     endfunction
-    
+
     function out = parensRef(this, varargin)
-      %PARENSREF ()-indexing, for this class's internal use
+      #PARENSREF ()-indexing, for this class's internal use
       out = subsrefParensPlanar (this, struct ('subs', {varargin}));
     endfunction
-    
+
     function out = subset(this, varargin)
-      %SUBSET Subset array by indexes.
-      % This is what you call internally inside the class instead of doing 
-      % ()-indexing references on the RHS, which don't work properly inside the class
-      % because they don't respect the subsref() override.
+      #SUBSET Subset array by indexes.
+      # This is what you call internally inside the class instead of doing
+      # ()-indexing references on the RHS, which don't work properly inside the class
+      # because they don't respect the subsref() override.
       out = parensRef (this, varargin{:});
     endfunction
-        
+
     function out = asgn(this, ix, value)
-      %ASGN Assign array elements by indexes.
-      % This is what you call internally inside the class instead of doing 
-      % ()-indexing references on the LHS, which don't work properly inside
-      % the class because they don't respect the subsasgn() override.
-      if ~iscell(ix)
+      #ASGN Assign array elements by indexes.
+      # This is what you call internally inside the class instead of doing
+      # ()-indexing references on the LHS, which don't work properly inside
+      # the class because they don't respect the subsasgn() override.
+      if !iscell(ix)
         ix = { ix };
       endif
       s.type = '()';
       s.subs = ix;
       out = subsasgnParensPlanar(this, s, value);
     endfunction
-    
+
   endmethods
-  
+
   methods (Access = private)
     function out = codes_with_nans (this)
       out = single (this.code);
       out(this.tfMissing) = NaN;
     endfunction
-    
+
     function out = remove_unused_cats (this, cats_to_delete)
-      %REMOVE_UNUSED_CATS Removes specified categories, as long as they have no values
+      #REMOVE_UNUSED_CATS Removes specified categories, as long as they have no values
       [tf, cat_codes_to_rm] = ismember (cats_to_delete, this.cats);
       cat_codes_to_rm = cat_codes_to_rm(tf);
       cats_to_delete2 = cats_to_delete(tf);
@@ -1333,5 +1333,7 @@ classdef categorical
       out.code = uint16 (new_codes);
       out.cats = new_cats;
     endfunction
+
   endmethods
+
 endclassdef

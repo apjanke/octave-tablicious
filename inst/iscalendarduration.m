@@ -30,19 +30,19 @@
 ## @end deftypefn
 
 function out = iscalendarduration (x)
-  %ISCALENDARDURATION True if input is a calendar duration array
+  #ISCALENDARDURATION True if input is a calendar duration array
 
-  % Developer note: see istable for an explanation of this logic.
+  # Developer note: see istable for an explanation of this logic.
   if isa (x, 'calendarDuration')
     out = true;
   elseif isobject (x)
-    % Respect iscalendarduration methods on classes.
+    # Respect iscalendarduration methods on classes.
     if ismember ('iscalendarduration', methods (x))
       out = iscalendarduration (x);
     else
       out = false;
-    end
+    endif
   else
     out = false;
-  end
-end
+  endif
+endfunction

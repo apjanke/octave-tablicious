@@ -38,8 +38,8 @@
 ##
 ## @end deftypefn
 function [Y, E] = discretize (X, arg1, varargin)
-  
-  % Input handling
+
+  # Input handling
   do_categorical = false;
   display_format = [];
   category_names = [];
@@ -65,7 +65,7 @@ function [Y, E] = discretize (X, arg1, varargin)
   if ! isempty (args)
     value_map = args{i};
   endif
-    
+
   if isa (arg1, 'duration')
     error ('discretize: duration-valued bin size is not yet implemented. Sorry.');
   elseif isscalar (arg1)
@@ -85,21 +85,21 @@ function [Y, E] = discretize (X, arg1, varargin)
     n_bins = numel (edges) - 1;
   endif
 
-  cat_names = cell (1, n_bins);  
+  cat_names = cell (1, n_bins);
   Y = NaN (size (X));
   for i_bin = 1:(n_bins-1)
     tf = edges(i_bin) <= X & X < edges(i_bin+1);
     Y(tf) = i_bin;
     cat_names{i_bin} = gen_category_name (edges(i_bin), edges(i_bin+1), 0);
   endfor
-  % The last bin is closed on the upper edge
+  # The last bin is closed on the upper edge
   tf = edges(end-1) <= X & X <= edges(end);
   Y(tf) = n_bins;
   cat_names{n_bins} = gen_category_name (edges(i_bin), edges(i_bin+1), 1);
   if isempty (category_names)
     category_names = cat_names;
   endif
-  
+
   if do_categorical
     codes = Y;
     Y = categorical.from_codes (codes, category_names, 'Ordinal', true);
@@ -115,6 +115,6 @@ function out = gen_category_name (lo, hi, is_closed_on_right)
   if is_closed_on_right
     out = sprintf ('[%s, %s)', edge_strs{1}, edge_strs{2});
   else
-    out = sprintf ('[%s, %s]', edge_strs{1}, edge_strs{2});    
+    out = sprintf ('[%s, %s]', edge_strs{1}, edge_strs{2});
   endif
 endfunction

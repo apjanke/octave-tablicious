@@ -14,18 +14,18 @@
 ## along with this program; If not, see <http://www.gnu.org/licenses/>.
 
 classdef vartype_filter
-  %VARTYPE_FILTER A thing that indicates filtering by variable type
-  
+  #VARTYPE_FILTER A thing that indicates filtering by variable type
+
   properties
     type
   endproperties
-  
+
   methods
     function this = vartype_filter(type)
       mustBeCharvec(type);
       this.type = type;
     endfunction
-    
+
     function out = matches (this, variable_value)
       if isequal (this.type, 'cellstr')
         out = iscellstr (variable_value);
@@ -34,5 +34,5 @@ classdef vartype_filter
       endif
     endfunction
   endmethods
-  
+
 endclassdef

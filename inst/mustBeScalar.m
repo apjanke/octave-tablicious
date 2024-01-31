@@ -28,7 +28,7 @@
 ## @end deftypefn
 
 function mustBeScalar (x)
-  if ~isscalar (x)
+  if !isscalar (x)
     name = inputname (1);
     if isempty (name)
       name = 'input';

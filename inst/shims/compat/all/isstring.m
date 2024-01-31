@@ -27,4 +27,4 @@
 
 function out = isstring (x)
   out = isa (x, 'string');
-end
+endfunction

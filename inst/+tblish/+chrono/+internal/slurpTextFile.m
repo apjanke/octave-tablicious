@@ -17,11 +17,11 @@
 ## <https://www.gnu.org/licenses/>.
 
 function out = slurpTextFile (file)
-  %SLURPTEXTFILE Read a file's contents as text.
+  #SLURPTEXTFILE Read a file's contents as text.
   [fid, msg] = fopen (file, 'r');
   if fid == -1
     error ('Could not open file %s: %s', file, msg);
-  end
+  endif
   cleanup.fid = onCleanup (@() fclose (fid));
   txt = fread (fid, Inf, 'char=>char');
   txt = txt';

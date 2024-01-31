@@ -18,9 +18,9 @@
 # https://rdrr.io/r/datasets/airmiles.html
 
 classdef airmiles < tblish.internal.dataset
-  % Passenger Miles on Commercial US Airlines, 1937-1960
-  %
-  % Source: R example datasets
+  # Passenger Miles on Commercial US Airlines, 1937-1960
+  #
+  # Source: R example datasets
 
   methods
 

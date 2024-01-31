@@ -17,6 +17,6 @@
 ## <https://www.gnu.org/licenses/>.
 
 function out = num2cellstr (x)
-%NUM2CELLSTR Like num2str, but return cellstr of individual number strings
+#NUM2CELLSTR Like num2str, but return cellstr of individual number strings
 out = strtrim (cellstr (num2str (x(:))));
 endfunction

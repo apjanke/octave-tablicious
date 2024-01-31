@@ -23,25 +23,25 @@
 ##
 ## This is an alias for prettyprint(), with additional name-conversion magic.
 ##
-## If you pass in a char, instead of pretty-printing that directly, it will 
+## If you pass in a char, instead of pretty-printing that directly, it will
 ## grab and pretty-print the variable of that name from the caller’s workspace.
 ## This is so you can conveniently run it from the command line.
 ##
 ## @end deftypefn
 function pp(varargin)
-  %PP Alias for prettyprint, for debugging
-  %
-  % pp (x)
-  % pp x
-  % pp (A, B, C)
-  % pp A B C
-  %
-  % This is an alias for prettyprint(), with additional name-conversion magic.
-  %
-  % If you pass in a string, instead of pretty-printing that directly, it will 
-  % grab and pretty-print the variable of that name from the caller's workspace.
-  % This is so you can conveniently run it from the command line.
-  
+  #PP Alias for prettyprint, for debugging
+  #
+  # pp (x)
+  # pp x
+  # pp (A, B, C)
+  # pp A B C
+  #
+  # This is an alias for prettyprint(), with additional name-conversion magic.
+  #
+  # If you pass in a string, instead of pretty-printing that directly, it will
+  # grab and pretty-print the variable of that name from the caller's workspace.
+  # This is so you can conveniently run it from the command line.
+
   show_label = nargin > 1;
   for i = 1:numel (varargin)
     arg = varargin{i};
@@ -55,7 +55,7 @@ function pp(varargin)
         label = sprintf ("Input %d", i);
       endif
     endif
-    
+
     if show_label
       fprintf ("%s:\n", label);
     endif

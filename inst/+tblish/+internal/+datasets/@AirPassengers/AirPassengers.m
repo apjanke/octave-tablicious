@@ -17,7 +17,7 @@
 # This is based on the AirPassengers dataset from R’s datasets package
 
 classdef AirPassengers < tblish.internal.dataset
-  % Monthly Airline Passenger Numbers 1949-1960
+  # Monthly Airline Passenger Numbers 1949-1960
 
   methods
 

@@ -26,7 +26,7 @@
 ##
 ## You may not want to use this on cell arrays, though, because you will
 ## end up with a table that has all its variables of type cell. If you use
-## @code{cell2table} instead, columns of the cell array which can be 
+## @code{cell2table} instead, columns of the cell array which can be
 ## condensed into primitive arrays will be. With @code{array2table}, they
 ## won't be.
 ##
@@ -34,15 +34,15 @@
 ##
 ## @end deftypefn
 function out = array2table(c, varargin)
-  %ARRAY2TABLE Convert an array to a table
+  #ARRAY2TABLE Convert an array to a table
 
   if ndims (c) > 2
     error ('array2table: Input must be 2-D; got %d-D', ndims (c));
   endif
-  
-  % Peel off trailing options
+
+  # Peel off trailing options
   [opts, args] = peelOffNameValueOptions (varargin, {'VariableNames', 'RowNames'});
-  if ~isempty (args)
+  if !isempty (args)
     error ('array2table: Unrecognized options');
   endif
 
@@ -51,7 +51,7 @@ function out = array2table(c, varargin)
   for iCol = 1:nCols
     colVals{iCol} = c(:,iCol);
   endfor
-  
+
   if isfield (opts, 'VariableNames')
     varNames = opts.VariableNames;
   else
@@ -60,10 +60,10 @@ function out = array2table(c, varargin)
       varNames{iCol} = sprintf('Var%d', iCol);
     endfor
   endif
-  
+
   optArgs = {'VariableNames', varNames};
   if isfield (opts, 'RowNames')
     optArgs = [optArgs {'RowNames', opts.RowNames}];
   endif
-  out = table (colVals{:}, optArgs{:});  
+  out = table (colVals{:}, optArgs{:});
 endfunction

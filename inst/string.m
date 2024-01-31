@@ -57,13 +57,13 @@ classdef string
   ##
   ## @enumerate
   ## @item
-  ## It is a type-safe object wrapper around Octave’s base primitive character types. 
+  ## It is a type-safe object wrapper around Octave’s base primitive character types.
   ##
   ## @item
   ## It adds ismissing() semantics.
   ##
   ## @item
-  ## And it introduces Unicode support. 
+  ## And it introduces Unicode support.
   ##
   ## @end enumerate
   ##
@@ -88,14 +88,14 @@ classdef string
   ## @end deftp
 
   properties
-    % The underlying char data, as cellstr
+    # The underlying char data, as cellstr
     strs = {''};  % planar
-    % A logical mask indicating whether each element is a missing value
+    # A logical mask indicating whether each element is a missing value
     tfMissing = false  % planar
   endproperties
-  
+
   methods (Static = true)
-    
+
     ## -*- texinfo -*-
     ## @node string.empty
     ## @deftypefn {Function} {@var{out} =} empty (@var{sz})
@@ -147,9 +147,9 @@ classdef string
         out = repmat (string, sz);
       endif
     endfunction
-    
+
   endmethods
-  
+
   methods
     ## -*- texinfo -*-
     ## @node string.string
@@ -159,7 +159,7 @@ classdef string
     ## Construct a new string array.
     ##
     ## The zero-argument constructor creates a new scalar string array
-    ## whose value is the empty string. 
+    ## whose value is the empty string.
     ##
     ## The other constructors construct a new string array by converting
     ## various types of inputs.
@@ -175,17 +175,17 @@ classdef string
     ##
     ## @end deftypefn
     function this = string(in, varargin)
-      % TODO: Support a 'MapMissing' option to map "standard missing values"
-      % (empty strings, NaN, NaT) to string missings.
-      %
-      % TODO: Maybe fall back to calling cellstr() on arbitrary input objects.
+      # TODO: Support a 'MapMissing' option to map "standard missing values"
+      # (empty strings, NaN, NaT) to string missings.
+      #
+      # TODO: Maybe fall back to calling cellstr() on arbitrary input objects.
       if nargin == 0
         return;
       endif
       if isa(in, "string")
-        % Copy properties, because I don't know if a full-array pass-through
-        % works in Octave. -apj
-        % this = in; % That is, don't do this.
+        # Copy properties, because I don't know if a full-array pass-through
+        # works in Octave. -apj
+        # this = in; % That is, don't do this.
         this.strs = in.strs;
         this.tfMissing = in.tfMissing;
         return
@@ -204,11 +204,11 @@ classdef string
         this.tfMissing = tfNan;
         if any(tfNan(:))
           strs = repmat ({''}, size (in));
-          strs(~tfNan) = arrayfun (@(x) {num2str(x)}, in(~tfNan));
+          strs(!tfNan) = arrayfun (@(x) {num2str(x)}, in(!tfNan));
           this.strs = strs;
         else
           this.strs = arrayfun (@(x) {num2str(x)}, in);
-        end
+        endif
       elseif islogical (in)
         strs = repmat ({'false'}, size (in));
         strs(in) = {'true'};
@@ -219,21 +219,21 @@ classdef string
         this.tfMissing = tfNat;
         if any(tfNat(:))
           strs = repmat ({''}, size (in));
-          strs(~tfNat) = arrayfun (@(x) {datestr(x)}, in(~tfNat));
+          strs(!tfNat) = arrayfun (@(x) {datestr(x)}, in(!tfNat));
           this.strs = strs;
         else
           this.strs = arrayfun (@(x) {datestr(x)}, in);
-        end
+        endif
       elseif isa (in, 'duration') || isa (in, 'calendarDuration')
         tfNat = isnat (in);
         this.tfMissing = tfNat;
         if any(tfNat(:))
           strs = repmat ({''}, size (in));
-          strs(~tfNat) = dispstrs (in(~tfNat));
+          strs(!tfNat) = dispstrs (in(!tfNat));
           this.strs = strs;
         else
           this.strs = dispstrs (in);
-        end
+        endif
       elseif isa (in, 'missing')
         this.strs = repmat ({''}, size (in));
         this.tfMissing = true (size (in));
@@ -241,7 +241,7 @@ classdef string
         error ('string: unsupported input type: %s', class (in));
       endif
     endfunction
-    
+
     ## -*- texinfo -*-
     ## @node string.isstring
     ## @deftypefn {Method} {@var{out} =} isstring (@var{obj})
@@ -255,28 +255,28 @@ classdef string
     ## @end deftypefn
     function out = isstring (this)
       out = true;
-    end
+    endfunction
 
     function display (this)
-      %DISPLAY Custom display
+      #DISPLAY Custom display
       in_name = inputname(1);
-      if ~isempty(in_name)
+      if !isempty(in_name)
         fprintf('%s =\n', in_name);
-      end
+      endif
       disp(this);
-    end
+    endfunction
 
     function disp (this)
-      %DISP Custom display
+      #DISP Custom display
       if isempty (this)
         fprintf ('Empty %s string\n', size2str (size (this)));
-        return;
-      end
+        return
+      endif
       my_dispstrs = this.dispstrs;
       out = format_dispstr_array (my_dispstrs);
       fprintf("%s", out);
-    end
-    
+    endfunction
+
     ## -*- texinfo -*-
     ## @node string.dispstrs
     ## @deftypefn {Method} {@var{out} =} dispstrs (@var{obj})
@@ -297,7 +297,7 @@ classdef string
       out = strrep (out, sprintf ("\n"), '\n');
       out(this.tfMissing) = "<missing>";
     endfunction
-    
+
     ## -*- texinfo -*-
     ## @node string.sizeof
     ## @deftypefn {Method} {@var{out} =} sizeof (@var{obj})
@@ -310,7 +310,7 @@ classdef string
       out += sizeof (this.strs);
       out += sizeof (this.tfMissing);
     endfunction
-    
+
     ## -*- texinfo -*-
     ## @node string.ismissing
     ## @deftypefn {Method} {@var{out} =} ismissing (@var{obj})
@@ -318,7 +318,7 @@ classdef string
     ## Test whether array elements are missing.
     ##
     ## For @code{string} arrays, only the special “missing” value is
-    ## considered missing. Empty strings are not considered missing, 
+    ## considered missing. Empty strings are not considered missing,
     ## the way they are with cellstrs.
     ##
     ## Returns a logical array the same size as @code{obj}.
@@ -327,7 +327,7 @@ classdef string
     function out = ismissing (this)
       out = this.tfMissing;
     endfunction
-    
+
     ## -*- texinfo -*-
     ## @node string.isnanny
     ## @deftypefn {Method} {@var{out} =} isnanny (@var{obj})
@@ -342,9 +342,9 @@ classdef string
     function out = isnanny (this)
       out = ismissing (this);
     endfunction
-    
-    % Type conversion methods
-    
+
+    # Type conversion methods
+
     ## -*- texinfo -*-
     ## @node string.cellstr
     ## @deftypefn {Method} {@var{out} =} cellstr (@var{obj})
@@ -358,12 +358,12 @@ classdef string
     ## @end deftypefn
     function out = cellstr (this)
       out = this.strs;
-      % TODO: I don't know what the best conversion is here. Maybe it should
-      % even error if any are missing? For now I'm using '', because that's the
-      % "standard" missing value for cellstrs.
+      # TODO: I don't know what the best conversion is here. Maybe it should
+      # even error if any are missing? For now I'm using '', because that's the
+      # "standard" missing value for cellstrs.
       out(this.tfMissing) = {''};
-    end
-    
+    endfunction
+
     ## -*- texinfo -*-
     ## @node string.cell
     ## @deftypefn {Method} {@var{out} =} cell (@var{obj})
@@ -381,8 +381,8 @@ classdef string
     ## @end deftypefn
     function out = cell (this)
       out = cellstr (this);
-    end
-    
+    endfunction
+
     ## -*- texinfo -*-
     ## @node string.char
     ## @deftypefn {Method} {@var{out} =} char (@var{obj})
@@ -400,22 +400,22 @@ classdef string
     ##
     ## @end deftypefn
     function out = char (this)
-      %CHAR Convert to char
+      #CHAR Convert to char
       if any (this.tfMissing)
         error ('string.char: Cannot convert missing string data to char');
       endif
       out = char(cellstr(this));
-    end
-      
+    endfunction
+
     function out = demote_strings(varargin)
-      %DEMOTE_STRINGS Turn all string arguments into chars
-      %
-      % This is for compatibility with functions that take chars or cellstrs,
-      % but are not aware of string arrays.
-      %
-      % Scalar strings are turned into char row vectors. Nonscalar strings are
-      % turned in to cellstrs. This might not actually be the right thing,
-      % depending on what function you are calling!
+      #DEMOTE_STRINGS Turn all string arguments into chars
+      #
+      # This is for compatibility with functions that take chars or cellstrs,
+      # but are not aware of string arrays.
+      #
+      # Scalar strings are turned into char row vectors. Nonscalar strings are
+      # turned in to cellstrs. This might not actually be the right thing,
+      # depending on what function you are calling!
       args = varargin;
       out = args;
       for i = 1:numel(args)
@@ -428,9 +428,9 @@ classdef string
         endif
       endfor
     endfunction
-    
-    % Encoding
-    
+
+    # Encoding
+
     ## -*- texinfo -*-
     ## @node string.encode
     ## @deftypefn {Method} {@var{out} =} encode (@var{obj}, @var{charsetName})
@@ -451,9 +451,9 @@ classdef string
       mustBeScalar (this);
       out = unicode2native (this.strs{1}, charsetName);
     endfunction
-      
-    % String manipulation methods
-    
+
+    # String manipulation methods
+
     ## -*- texinfo -*-
     ## @node string.strlength_bytes
     ## @deftypefn {Method} {@var{out} =} strlength_bytes (@var{obj})
@@ -462,7 +462,7 @@ classdef string
     ##
     ## Gets the length of each string in @var{obj}, counted in Unicode UTF-8
     ## code units (bytes). This is the same as @code{numel(str)} for the corresponding
-    ## Octave char vector for each string, but may not be what you 
+    ## Octave char vector for each string, but may not be what you
     ## actually want to use. You may want @code{strlength} instead.
     ##
     ## Returns double array of the same size as @var{obj}. Returns NaNs for missing
@@ -472,28 +472,28 @@ classdef string
     ##
     ## @end deftypefn
     function out = strlength_bytes (this)
-      %STRLENGTH_BYTES String length in UTF-8 code units (bytes)
-      %
-      % Gets the length of each string, counted in Unicode UTF-8
-      % code units (bytes). This is the same as numel(str) for the corresponding
-      % Octave char vector for each string, but is probably not what you 
-      % actually want to use. You probably want STRLENGTH instead.
-      %
-      % Returns double array of the same size as this. Returns NaNs for missing
-      % strings.
-      %
-      % See also: STRING.STRLENGTH
+      #STRLENGTH_BYTES String length in UTF-8 code units (bytes)
+      #
+      # Gets the length of each string, counted in Unicode UTF-8
+      # code units (bytes). This is the same as numel(str) for the corresponding
+      # Octave char vector for each string, but is probably not what you
+      # actually want to use. You probably want STRLENGTH instead.
+      #
+      # Returns double array of the same size as this. Returns NaNs for missing
+      # strings.
+      #
+      # See also: STRING.STRLENGTH
       out = cellfun (@numel, this.strs);
       out(this.tfMissing) = NaN;
     endfunction
-    
+
     ## -*- texinfo -*-
     ## @node string.strlength
     ## @deftypefn {Method} {@var{out} =} strlength (@var{obj})
     ##
     ## String length in characters (actually, UTF-16 code units).
     ##
-    ## Gets the length of each string, counted in UTF-16 code units. In most 
+    ## Gets the length of each string, counted in UTF-16 code units. In most
     ## cases, this is the same as the number of characters. The exception is for
     ## characters outside the Unicode Basic Multilingual Plane, which are
     ## represented with UTF-16 surrogate pairs, and thus will count as 2 characters
@@ -521,7 +521,7 @@ classdef string
         out(i) = numel (utf16) / 2;
       endfor
     endfunction
-    
+
     ## -*- texinfo -*-
     ## @node string.reverse_bytes
     ## @deftypefn {Method} {@var{out} =} reverse_bytes (@var{obj})
@@ -549,7 +549,7 @@ classdef string
         out.strs{i} = out.strs{i}(end:-1:1);
       endfor
     endfunction
-    
+
     ## -*- texinfo -*-
     ## @node string.reverse
     ## @deftypefn {Method} {@var{out} =} reverse (@var{obj})
@@ -575,7 +575,7 @@ classdef string
       out = string.ofCodepoints (rev_points);
       out.tfMissing = this.tfMissing;
     endfunction
-    
+
     ## -*- texinfo -*-
     ## @node string.strcat
     ## @deftypefn {Method} {@var{out} =} strcat (@var{varargin})
@@ -594,7 +594,7 @@ classdef string
     ##
     ## @end deftypefn
     function out = strcat (varargin)
-      % TODO: Fix missing handling
+      # TODO: Fix missing handling
       args = promotec (varargin);
       args_strs = cell (size (args));
       args_tfMissing = cell (size (args));
@@ -603,9 +603,9 @@ classdef string
         args_tfMissing{i} = args{i}.tfMissing;
       endfor
       out = string (strcat (args_strs{:}));
-      % TODO: I think this is wrong: it doesn't handle scalar expansion
-      % TODO: Actually, this is completely wrong. Then inputs should be ORed
-      % or something like that, not concatenated.
+      # TODO: I think this is wrong: it doesn't handle scalar expansion
+      # TODO: Actually, this is completely wrong. Then inputs should be ORed
+      # or something like that, not concatenated.
       out.tfMissing = cat (2, args_tfMissing{:});
     endfunction
 
@@ -626,11 +626,11 @@ classdef string
     ## @end deftypefn
     function out = lower (this)
       out = this;
-      % TODO: This lower() call is probably wrong: it relies on Octave's lower(),
-      % which I think only does ASCII case conversion, not Unicode case conversion. -apj
+      # TODO: This lower() call is probably wrong: it relies on Octave's lower(),
+      # which I think only does ASCII case conversion, not Unicode case conversion. -apj
       out.strs = lower (this.strs);
     endfunction
-    
+
     ## -*- texinfo -*-
     ## @node string.upper
     ## @deftypefn {Method} {@var{out} =} upper (@var{obj})
@@ -648,11 +648,11 @@ classdef string
     ## @end deftypefn
     function out = upper (this)
       out = this;
-      % TODO: This upper() call is probably wrong: it relies on Octave's upper(),
-      % which I think only does ASCII case conversion, not Unicode case conversion. -apj
+      # TODO: This upper() call is probably wrong: it relies on Octave's upper(),
+      # which I think only does ASCII case conversion, not Unicode case conversion. -apj
       out.strs = upper (this.strs);
     endfunction
-    
+
     ## -*- texinfo -*-
     ## @node string.erase
     ## @deftypefn {Method} {@var{out} =} erase (@var{obj}, @var{match})
@@ -669,7 +669,7 @@ classdef string
       out = this;
       out.strs = strrep (this.strs, char(match), '');
     endfunction
-    
+
     ## -*- texinfo -*-
     ## @node string.strrep
     ## @deftypefn {Method} {@var{out} =} strrep (@var{obj}, @var{match}, @var{replacement})
@@ -712,7 +712,7 @@ classdef string
       out = strfind(this.strs, char(pattern), varargin{:});
       out(this.tfMissing) = {[]};
     endfunction
-    
+
     ## -*- texinfo -*-
     ## @node string.regexprep
     ## @deftypefn {Method} {@var{out} =} regexprep (@var{obj}, @var{pat}, @var{repstr})
@@ -732,14 +732,14 @@ classdef string
       out = this;
       out.strs = regexprep(this.strs, char(pat), char(repstr), args{:});
     endfunction
-    
-    % Relational operations
-    
+
+    # Relational operations
+
     function out = eq (A, B)
-      %EQ Equals.
+      #EQ Equals.
       out = strcmp (A, B);
     endfunction
-    
+
     ## -*- texinfo -*-
     ## @node string.strcmp
     ## @deftypefn {Method} {@var{out} =} strcmp (@var{A}, @var{B})
@@ -763,7 +763,7 @@ classdef string
       out = strcmp (A.strs, B.strs);
       out(A.tfMissing | B.tfMissing) = false;
     endfunction
-    
+
     ## -*- texinfo -*-
     ## @node string.cmp
     ## @deftypefn {Method} {[@var{out}, @var{outA}, @var{outB}] =} cmp (@var{A}, @var{B})
@@ -788,10 +788,10 @@ classdef string
     ## @end deftypefn
     function [out, A, B] = cmp(A, B)
       [A, B] = promote (A, B);
-      % In production code, you wouldn't scalarexpand; you'd do a scalar test
-      % and smarter indexing.
-      % Though really, in production code, you'd probably want to implement this
-      % whole function as a built-in or oct-file.
+      # In production code, you wouldn't scalarexpand; you'd do a scalar test
+      # and smarter indexing.
+      # Though really, in production code, you'd probably want to implement this
+      # whole function as a built-in or oct-file.
       [A, B] = scalarexpand (A, B);
       out = NaN (size (A));
       for i = 1:numel (A)
@@ -800,8 +800,8 @@ classdef string
         if isequal (a, b)
           out(i) = 0;
         else
-          % This implementation is gross, but it's the best I can do with what
-          % the base language provides. - apj
+          # This implementation is gross, but it's the best I can do with what
+          # the base language provides. - apj
           tmp = [a b];
           [tmp2, ix] = sort (tmp);
           if ix(1) == 1
@@ -812,99 +812,99 @@ classdef string
         endif
       endfor
     endfunction
-    
+
     function out = lt (A, B)
-      %LT Less than.
+      #LT Less than.
       [cmpval, A, B] = cmp (A, B);
       out = cmpval < 0;
       out = propagate_missing (out, A, B);
     endfunction
 
     function out = le (A, B)
-      %LE Less than or equal.
+      #LE Less than or equal.
       [cmpval, A, B] = cmp (A, B);
       out = cmpval <= 0;
       out = propagate_missing (out, A, B);
     endfunction
 
     function out = gt(A, B)
-      %GT Greater than.
+      #GT Greater than.
       [cmpval, A, B] = cmp (A, B);
       out = cmpval > 0;
       out = propagate_missing (out, A, B);
     endfunction
 
     function out = ge (A, B)
-      %GE Greater than or equal.
+      #GE Greater than or equal.
       [cmpval, A, B] = cmp (A, B);
       out = cmpval >= 0;
       out = propagate_missing (out, A, B);
     endfunction
-    
-    % TODO: max, min
+
+    # TODO: max, min
 
     function [out, Indx] = ismember (a, b, varargin)
-      %ISMEMBER True for set member.
+      #ISMEMBER True for set member.
       [a, b] = promote (a, b);
       [out, Indx] = ismember (a.strs, b.strs, varargin{:});
       out(a.tfMissing) = false;
       Indx(a.tfMissing) = 0;
     endfunction
-    
+
     function [out, Indx] = setdiff (a, b, varargin)
-      %SETDIFF Set difference.
-      %
-      % TODO: Handle missings.
+      #SETDIFF Set difference.
+      #
+      # TODO: Handle missings.
       [a, b] = promote (a, b);
       [s_out, Indx] = setdiff (a.strs, b.strs, varargin{:});
       out = string (s_out);
     endfunction
 
     function [out, ia, ib] = intersect (a, b, varargin)
-      %INTERSECT Set intersection.
-      %
-      % TODO: Handle missings.
+      #INTERSECT Set intersection.
+      #
+      # TODO: Handle missings.
       [a, b] = promote (a, b);
       [s_out, ia, ib] = intersect (a.strs, b.strs, varargin{:});
       out = string (s_out);
     endfunction
-    
+
     function [out, ia, ib] = union (a, b, varargin)
-      %UNION Set union.
-      %
-      % TODO: Handle missings.
+      #UNION Set union.
+      #
+      # TODO: Handle missings.
       [a, b] = promote (a, b);
       [s_out, ia, ib] = union (a.strs, b.strs, varargin{:});
       out = string (s_out);
     endfunction
 
     function [out, Indx] = unique (this, varargin)
-      %UNIQUE Set unique.
-      %
-      % TODO: Handle missings.
+      #UNIQUE Set unique.
+      #
+      # TODO: Handle missings.
       this = promote (this);
       [s_out, Indx] = unique (this.strs, varargin{:});
       out = string (s_out);
     endfunction
 
   endmethods
-  
+
   methods (Hidden)
-    % Compatibility shims
-    
+    # Compatibility shims
+
     function out = sprintf (fmt, varargin)
-      %SPRINTF Like printf, but returns a string
-      %
-      % TODO: Handle missings.
+      #SPRINTF Like printf, but returns a string
+      #
+      # TODO: Handle missings.
       fmt = char (string (fmt));
       args = demote_strings (varargin);
       out = string (sprintf (fmt, args{:}));
     endfunction
-    
+
     function out = fprintf (varargin)
-      %FPRINTF Formatted output to stream or file handle
-      %
-      % TODO: Handle missings.
+      #FPRINTF Formatted output to stream or file handle
+      #
+      # TODO: Handle missings.
       args = demote_strings (varargin);
       out = fprintf (args{:});
       if nargout == 0
@@ -913,9 +913,9 @@ classdef string
     endfunction
 
     function out = printf (varargin)
-      %PRINTF Formatted output
-      %
-      % TODO: Handle missings.
+      #PRINTF Formatted output
+      #
+      # TODO: Handle missings.
       args = demote_strings( varargin);
       printf (args{:});
       if nargout == 0
@@ -923,194 +923,194 @@ classdef string
       endif
     endfunction
 
-    % TODO: fdisp, fputs
-    
-    % Note: fwrite is not supported, because that is a low-level byte-oriented
-    % I/O function, and string is character-oriented.
-    
-    % plot() and related functions. Yuck.
-    
+    # TODO: fdisp, fputs
+
+    # Note: fwrite is not supported, because that is a low-level byte-oriented
+    # I/O function, and string is character-oriented.
+
+    # plot() and related functions. Yuck.
+
     function out = plot (varargin)
       args = demote_strings (varargin);
       out = plot (args{:});
     endfunction
-    
+
     function out = plotyy (varargin)
       args = demote_strings (varargin);
       out = plotyy (args{:});
     endfunction
-    
+
     function out = loglog (varargin)
       args = demote_strings (varargin);
       out = loglog (args{:});
     endfunction
-    
+
     function out = semilogy (varargin)
       args = demote_strings (varargin);
       out = semilogy (args{:});
     endfunction
-    
+
     function out = bar (varargin)
       args = demote_strings (varargin);
       out = bar (args{:});
     endfunction
-    
+
     function out = barh (varargin)
       args = demote_strings (varargin);
       out = barh (args{:});
     endfunction
-    
+
     function varargout = hist (varargin)
       args = demote_strings (varargin);
       varargout = cell (1, nargout);
       [varargout{:}] = hist (args{:});
     endfunction
-    
+
     function out = stemleaf (varargin)
       args = demote_strings (varargin);
       out = stemleaf (args{:});
     endfunction
-    
+
     function out = stairs (varargin)
       args = demote_strings (varargin);
       out = stairs (args{:});
     endfunction
-    
+
     function out = stem3 (varargin)
       args = demote_strings (varargin);
       out = stem3 (args{:});
     endfunction
-    
+
     function out = scatter (varargin)
       args = demote_strings (varargin);
       out = scatter (args{:});
     endfunction
-    
+
     function out = stem (varargin)
       args = demote_strings (varargin);
       out = stem (args{:});
     endfunction
-    
+
     function out = surf (varargin)
       args = demote_strings (varargin);
       out = surf (args{:});
     endfunction
-    
+
     function out = title (varargin)
       args = demote_strings (varargin);
       out = title (args{:});
     endfunction
-    
+
     function out = legend (varargin)
       args = demote_strings (varargin);
       out = legend (args{:});
     endfunction
-    
-    % ... and so on, and so on, and so on ...
+
+    # ... and so on, and so on, and so on ...
   endmethods
-  
-  % Planar structural stuff
+
+  # Planar structural stuff
   methods
-    
+
     function out = size (this, dim)
-      %SIZE Size of array.
+      #SIZE Size of array.
       if nargin == 1
         out = size (this.strs);
       else
         out = size (this.strs, dim);
       endif
     endfunction
-    
+
     function out = numel (this)
-      %NUMEL Number of elements in array.
+      #NUMEL Number of elements in array.
       out = numel (this.strs);
     endfunction
-    
+
     function out = ndims (this)
-      %NDIMS Number of dimensions.
+      #NDIMS Number of dimensions.
       out = ndims(this.strs);
     endfunction
-    
+
     function out = isempty(this)
-      %ISEMPTY True for empty array.
+      #ISEMPTY True for empty array.
       out = isempty (this.strs);
     endfunction
-    
+
     function out = isscalar (this)
-      %ISSCALAR True if input is scalar.
+      #ISSCALAR True if input is scalar.
       out = isscalar (this.strs);
     endfunction
-    
+
     function out = isvector (this)
-      %ISVECTOR True if input is a vector.
+      #ISVECTOR True if input is a vector.
       out = isvector (this.strs);
     endfunction
-      
+
     function out = iscolumn (this)
-      %ISCOLUMN True if input is a column vector.
+      #ISCOLUMN True if input is a column vector.
       out = iscolumn (this.strs);
     endfunction
-    
+
     function out = isrow (this)
-      %ISROW True if input is a row vector.
+      #ISROW True if input is a row vector.
       out = isrow (this.strs);
     endfunction
-    
+
     function out = ismatrix (this)
-      %ISMATRIX True if input is a matrix.
+      #ISMATRIX True if input is a matrix.
       out = ismatrix (this.strs);
     endfunction
-    
+
     function this = reshape (this, varargin)
-      %RESHAPE Reshape array.
+      #RESHAPE Reshape array.
       this.strs = reshape (this.strs, varargin{:});
       this.tfMissing = reshape (this.tfMissing, varargin{:});
     endfunction
-    
+
     function this = squeeze (this, varargin)
-      %SQUEEZE Remove singleton dimensions.
+      #SQUEEZE Remove singleton dimensions.
       this.strs = squeeze (this.strs, varargin{:});
       this.tfMissing = squeeze (this.tfMissing, varargin{:});
     endfunction
-      
+
     function this = circshift (this, varargin)
-      %CIRCSHIFT Shift positions of elements circularly.
+      #CIRCSHIFT Shift positions of elements circularly.
       this.strs = circshift (this.strs, varargin{:});
       this.tfMissing = circshift (this.tfMissing, varargin{:});
     endfunction
-    
+
     function this = permute (this, varargin)
-      %PERMUTE Permute array dimensions.
+      #PERMUTE Permute array dimensions.
       this.strs = permute (this.strs, varargin{:});
       this.tfMissing = permute (this.tfMissing, varargin{:});
     endfunction
-    
+
     function this = ipermute (this, varargin)
-      %IPERMUTE Inverse permute array dimensions.
+      #IPERMUTE Inverse permute array dimensions.
       this.strs = ipermute (this.strs, varargin{:});
       this.tfMissing = ipermute (this.tfMissing, varargin{:});
     endfunction
-    
+
     function this = repmat (this, varargin)
-      %REPMAT Replicate and tile array.
+      #REPMAT Replicate and tile array.
       this.strs = repmat (this.strs, varargin{:});
       this.tfMissing = repmat (this.tfMissing, varargin{:});
     endfunction
-    
+
     function this = ctranspose (this, varargin)
-      %CTRANSPOSE Complex conjugate transpose.
+      #CTRANSPOSE Complex conjugate transpose.
       this.strs = ctranspose (this.strs, varargin{:});
       this.tfMissing = ctranspose (this.tfMissing, varargin{:});
     endfunction
-      
+
     function this = transpose (this, varargin)
-      %TRANSPOSE Transpose vector or matrix.
+      #TRANSPOSE Transpose vector or matrix.
       this.strs = transpose (this.strs, varargin{:});
       this.tfMissing = transpose (this.tfMissing, varargin{:});
     endfunction
-    
+
     function [this, nshifts] = shiftdim( this, n)
-      %SHIFTDIM Shift dimensions.
+      #SHIFTDIM Shift dimensions.
       if nargin > 1
         this.strs = shiftdim (this.strs, n);
         this.tfMissing = shiftdim (this.strs, n);
@@ -1119,167 +1119,167 @@ classdef string
         [this.tfMissing, nshifts] = shiftdim (this.tfMissing);
       endif
     endfunction
-    
+
     function out = cat (dim, varargin)
-      %CAT Concatenate arrays.
+      #CAT Concatenate arrays.
       args = varargin;
       for i = 1:numel(args)
-        if ~isa(args{i}, 'string')
+        if !isa(args{i}, 'string')
           args{i} = string(args{i});
-        end
-      end
+        endif
+      endfor
       out = args{1};
       fieldArgs1 = cellfun(@(obj) {obj.strs}, args);
       out.strs = cat(dim, fieldArgs1{:});
       fieldArgs2 = cellfun(@(obj) {obj.tfMissing}, args);
       out.tfMissing = cat(dim, fieldArgs2{:});
     endfunction
-      
+
     function out = horzcat (varargin)
-      %HORZCAT Horizontal concatenation.
+      #HORZCAT Horizontal concatenation.
       out = cat (2, varargin{:});
     endfunction
-    
+
     function out = vertcat (varargin)
-      %VERTCAT Vertical concatenation.
+      #VERTCAT Vertical concatenation.
       out = cat (1, varargin{:});
     endfunction
-    
+
     function this = subsasgn(this, s, b)
-      %SUBSASGN Subscripted assignment.
-      
-      % Chained subscripts
+      #SUBSASGN Subscripted assignment.
+
+      # Chained subscripts
       if numel(s) > 1
         rhs_in = subsref(this, s(1));
         rhs = subsasgn(rhs_in, s(2:end), b);
       else
         rhs = b;
       endif
-      
-      % Base case
+
+      # Base case
       switch s(1).type
         case '()'
           this = subsasgnParensPlanar(this, s(1), rhs);
         case '{}'
-          % This works just like ()-assignment, and is only defined for
-          % compatibility with cellstrs
+          # This works just like ()-assignment, and is only defined for
+          # compatibility with cellstrs
           this = subsasgnParensPlanar(this, s(1), rhs);
         case '.'
           error ('string:BadOperation', '.-assignment is not defined for string arrays');
       endswitch
     endfunction
-      
+
     function varargout = subsref(this, s)
-    %SUBSREF Subscripted reference.
-    
-      % Base case
+    #SUBSREF Subscripted reference.
+
+      # Base case
       switch s(1).type
         case '()'
           varargout = { subsrefParensPlanar(this, s(1)) };
         case '{}'
-          % This pops out char arrays
+          # This pops out char arrays
           varargout = subsrefParensPlanar (this, s(1));
         case '.'
           error('string:BadOperation',...
               '.-subscripting is not supported for string arrays');
       endswitch
-      
-      % Chained reference
+
+      # Chained reference
       if numel (s) > 1
         out = subsref (out, s(2:end));
       endif
     endfunction
-  
+
   endmethods
-    
+
   methods (Access=private)
-  
+
     function this = subsasgnParensPlanar (this, s, rhs)
-      %SUBSASGNPARENSPLANAR ()-assignment for planar object
-      if ~isa (rhs, 'string')
+      #SUBSASGNPARENSPLANAR ()-assignment for planar object
+      if !isa (rhs, 'string')
         rhs = string (rhs);
       endif
       this.strs(s.subs{:}) = rhs.strs;
       this.tfMissing(s.subs{:}) = rhs.tfMissing;
     endfunction
-    
+
     function out = subsrefParensPlanar(this, s)
-      %SUBSREFPARENSPLANAR ()-indexing for planar object
+      #SUBSREFPARENSPLANAR ()-indexing for planar object
       out = this;
       out.strs = this.strs(s.subs{:});
       out.tfMissing = this.tfMissing(s.subs{:});
     endfunction
-    
+
     function out = parensRef(this, varargin)
-      %PARENSREF ()-indexing, for this class's internal use
+      #PARENSREF ()-indexing, for this class's internal use
       out = subsrefParensPlanar (this, struct ('subs', {varargin}));
     endfunction
-    
+
     function out = subset(this, varargin)
-      %SUBSET Subset array by indexes.
-      % This is what you call internally inside the class instead of doing 
-      % ()-indexing references on the RHS, which don't work properly inside the class
-      % because they don't respect the subsref() override.
+      #SUBSET Subset array by indexes.
+      # This is what you call internally inside the class instead of doing
+      # ()-indexing references on the RHS, which don't work properly inside the class
+      # because they don't respect the subsref() override.
       out = parensRef (this, varargin{:});
     endfunction
-        
+
     function out = asgn(this, ix, value)
-      %ASGN Assign array elements by indexes.
-      % This is what you call internally inside the class instead of doing 
-      % ()-indexing references on the LHS, which don't work properly inside
-      % the class because they don't respect the subsasgn() override.
-      if ~iscell(ix)
+      #ASGN Assign array elements by indexes.
+      # This is what you call internally inside the class instead of doing
+      # ()-indexing references on the LHS, which don't work properly inside
+      # the class because they don't respect the subsasgn() override.
+      if !iscell(ix)
         ix = { ix };
       endif
       s.type = '()';
       s.subs = ix;
       out = subsasgnParensPlanar(this, s, value);
     endfunction
-    
+
   endmethods
-  
+
   methods (Access=private)
-    
+
     function out = codepoints(this)
-      % Convert to cell array of 32-bit Unicode code point vectors
-      %
-      % This is a little utility to support other Unicode-character-aware methods,
-      % like strlength() and reverse().
+      # Convert to cell array of 32-bit Unicode code point vectors
+      #
+      # This is a little utility to support other Unicode-character-aware methods,
+      # like strlength() and reverse().
       persistent native_utf32_encoding
       if isempty (native_utf32_encoding)
         [~,~,endian] = computer ();
         native_utf32_encoding = sprintf ('UTF-32%cE', endian);
       endif
-      
+
       out = cell (size (this));
       for i = 1:numel (out)
         out{i} = typecast (unicode2native (this.strs{i}, native_utf32_encoding), 'uint32');
       endfor
     endfunction
-    
+
   endmethods
-  
+
   methods (Static, Access=private)
-    
+
     function out = ofCodepoints(points)
-      %OFUTF32S Convert from a cell array of 32-bit Unicode code point vectors
-      %
-      % This is the inverse of codepoints().
+      #OFUTF32S Convert from a cell array of 32-bit Unicode code point vectors
+      #
+      # This is the inverse of codepoints().
       persistent native_utf32_encoding
       if isempty (native_utf32_encoding)
         [~,~,endian] = computer ();
         native_utf32_encoding = sprintf ('UTF-32%cE', endian);
       endif
-      
+
       cstr = cell (size (points));
       for i = 1:numel (points)
         cstr{i} = native2unicode (typecast (points{i}, 'uint8'), native_utf32_encoding);
       endfor
       out = string (cstr);
     endfunction
-    
+
   endmethods
-  
+
   methods (Static)
     ## -*- texinfo -*-
     ## @node string.decode
@@ -1297,16 +1297,16 @@ classdef string
     ## @end deftypefn
     function out = decode (bytes, charsetName)
       out = string (native2unicode (bytes, charsetName));
-    end
-  end
+    endfunction
+  endmethods
 
 endclassdef
 
 function out = propagate_missing (out, varargin)
-  %PROPAGATE_MISSING Propagate missing values to single output
-  %
-  % Assumes all inputs are strings, and have been scalar-expanded, and have
-  % congruent dimensions.
+  #PROPAGATE_MISSING Propagate missing values to single output
+  #
+  # Assumes all inputs are strings, and have been scalar-expanded, and have
+  # congruent dimensions.
   for i = 1:numel (varargin)
     arg = varargin{i};
     out.tfMissing = out.tfMissing | arg.tfMissing;
@@ -1314,10 +1314,10 @@ function out = propagate_missing (out, varargin)
 endfunction
 
 function varargout = promote (varargin)
-  %PROMOTEC Promote arguments to strings
+  #PROMOTEC Promote arguments to strings
   varargout = varargin;
   for i = 1:numel (varargin)
-    if ~ isa (varargin{i}, 'string')
+    if !isa (varargin{i}, 'string')
       varargout{i} = string (varargin{i});
     endif
   endfor
@@ -1325,39 +1325,39 @@ endfunction
 
 
 function out = promotec (args)
-  %PROMOTEC Promote arguments to strings, cell-wise
+  #PROMOTEC Promote arguments to strings, cell-wise
   out = args;
   for i = 1:numel (args)
-    if ~ isa (args{i}, 'string')
+    if !isa (args{i}, 'string')
       out{i} = string (args{i});
     endif
   endfor
 endfunction
 
 ## Test string constructor
-%!test
-%! str = string (["a";"b";"c"]);
-%! assert (cellstr (str), {"a";"b";"c"})
-%!test
-%! str = string ({"a";"b";"c"});
-%! assert (cellstr (str), {"a";"b";"c"})
-%!test
-%! str = string ({"a";"";"c"});
-%! tfM = ismissing (str);
-%! assert (cell (str), {"a";"";"c"})
-%! assert (tfM, logical ([0; 0; 0]))
-%!test
-%! str = string ([1 2 3 NaN 5]);
-%! tfM = ismissing (str);
-%! assert (cellstr (str), {"1", "2", "3", "", "5"})
-%! assert (tfM, logical ([0 0 0 0 0]))
-%!test
-%! str = string (duration ([3,4,5; NaN,NaN,NaN]));
-%! tfM = ismissing (str);
-%! assert (cellstr (str), {"03:04:05"; ""})
-%! assert (tfM, logical ([0; 1]))
-%!test
-%! str = string (calendarDuration ([3,4,5; NaN,NaN,NaN]));
-%! tfM = ismissing (str);
-%! assert (cellstr (str), {"3y 4mo 5d"; ""})
-%! assert (tfM, logical ([0; 1]))
+#!test
+#! str = string (["a";"b";"c"]);
+#! assert (cellstr (str), {"a";"b";"c"})
+#!test
+#! str = string ({"a";"b";"c"});
+#! assert (cellstr (str), {"a";"b";"c"})
+#!test
+#! str = string ({"a";"";"c"});
+#! tfM = ismissing (str);
+#! assert (cell (str), {"a";"";"c"})
+#! assert (tfM, logical ([0; 0; 0]))
+#!test
+#! str = string ([1 2 3 NaN 5]);
+#! tfM = ismissing (str);
+#! assert (cellstr (str), {"1", "2", "3", "", "5"})
+#! assert (tfM, logical ([0 0 0 0 0]))
+#!test
+#! str = string (duration ([3,4,5; NaN,NaN,NaN]));
+#! tfM = ismissing (str);
+#! assert (cellstr (str), {"03:04:05"; ""})
+#! assert (tfM, logical ([0; 1]))
+#!test
+#! str = string (calendarDuration ([3,4,5; NaN,NaN,NaN]));
+#! tfM = ismissing (str);
+#! assert (cellstr (str), {"3y 4mo 5d"; ""})
+#! assert (tfM, logical ([0; 1]))

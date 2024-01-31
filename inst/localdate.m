@@ -48,11 +48,11 @@ classdef localdate
   ## @end deftypeivar
 
   properties (Access = private)
-    % The underlying datenums, zoneless, always int-valued (midnights)
+    # The underlying datenums, zoneless, always int-valued (midnights)
     dnums = NaN % planar
   endproperties
   properties
-    % Format to display these dates in. Changing the format is currently unimplemented.
+    # Format to display these dates in. Changing the format is currently unimplemented.
     Format = 'default'
   endproperties
   properties (Dependent = true)
@@ -79,17 +79,17 @@ classdef localdate
     ##
     ## @end deftypefn
     function this = localdate (varargin)
-      %LOCALDATE Construct a new localdate array
-      %
-      % localdate ()
-      % localdate (datenums)
-      % localdate (datestrs)
-      % localdate (Y, M, D)
-      % localdate (..., 'Format', Format)
-      %
-      % localdate constructs a new localdate array.
+      #LOCALDATE Construct a new localdate array
+      #
+      # localdate ()
+      # localdate (datenums)
+      # localdate (datestrs)
+      # localdate (Y, M, D)
+      # localdate (..., 'Format', Format)
+      #
+      # localdate constructs a new localdate array.
 
-      % Peel off options
+      # Peel off options
       args = varargin;
       knownOptions = {'Format','InputFormat','Locale','PivotYear'};
       opts = struct;
@@ -98,22 +98,22 @@ classdef localdate
         opts.(args{end-1}) = args{end};
         args(end-1:end) = [];
       endwhile
-      
-      % Handle inputs
+
+      # Handle inputs
       switch numel (args)
         case 0
           dnums = floor (now);
         case 1
           x = args{1};
           if isnumeric (x)
-            % Convert datenums
+            # Convert datenums
             mustBeIntOrNanOrInf (x, 'input');
             dnums = double (x);
           elseif ischar (x) || iscellstr (x) || isa (x, 'string')
             x = cellstr (x);
             tfRelative = ismember (x, {'today','tomorrow','yesterday','now'});
             if all (tfRelative)
-              if ~isscalar (x)
+              if !isscalar (x)
                 error ('Multiple arguments not allowed for relativeDay format');
               endif
               switch x{1}
@@ -127,12 +127,12 @@ classdef localdate
                   dnums = floor (now);
               endswitch
             else
-              % They're datestrs
-              % TODO: Support Locale option
+              # They're datestrs
+              # TODO: Support Locale option
               if isfield (opts, 'Locale')
                 error ('Locale option is unimplemented');
               endif
-              % TODO: Support PivotYear option
+              # TODO: Support PivotYear option
               if isfield (opts, 'PivotYear')
                 error ('PivotYear option is unimplemented');
               endif
@@ -144,7 +144,7 @@ classdef localdate
               tf = isIntOrNanOrInf (dnums);
               if ! all (tf)
                 error ('localdate: input datestrs may not have nonzero time-of-day parts');
-              end
+              endif
               dnums = reshape (dnums, size (x));
             endif
           elseif isstruct (x)
@@ -158,8 +158,8 @@ classdef localdate
             error ('localdate: Invalid input type: %s', class (x));
           endif
         case 2
-          % Undocumented calling form for Tablicious's internal use
-          if ~isequal (args{2}, 'Backdoor')
+          # Undocumented calling form for Tablicious's internal use
+          if !isequal (args{2}, 'Backdoor')
             error ('Invalid number of inputs (excluding options): %d', numel (args));
           endif
           dnums = args{1};
@@ -174,7 +174,7 @@ classdef localdate
           error ('Invalid number of inputs: %d', nargin);
       endswitch
 
-      % Construct
+      # Construct
       this.dnums = dnums;
       if isfield (opts, 'Format')
         this.Format = opts.Format;
@@ -191,7 +191,7 @@ classdef localdate
     ## @deftypefnx {Static Method} {@var{out} =} localdate.NaT (@var{sz})
     ##
     ## “Not-a-Time”: Creates NaT-valued arrays.
-    ## 
+    ##
     ## Constructs a new @code{datetime} array of all @code{NaT} values of
     ## the given size. If no input @var{sz} is given, the result is a scalar @code{NaT}.
     ##
@@ -229,7 +229,7 @@ classdef localdate
       dvec(:,6) = 0;
       out = datenum (dvec);
     endfunction
-    
+
   endmethods
 
   methods
@@ -237,13 +237,13 @@ classdef localdate
     function validate (this)
       mustBeNumeric (this.dnums, 'datenum values');
     endfunction
-    
+
     function out = datetime (this)
       out = datetime (this.dnums, 'ConvertFrom','datenum');
     endfunction
 
     function [keysA,keysB] = proxyKeys (a, b)
-      %PROXYKEYS Proxy key values for sorting and set operations
+      #PROXYKEYS Proxy key values for sorting and set operations
       keysA = a.dnums(:);
       keysB = b.dnums(:);
     endfunction
@@ -251,56 +251,56 @@ classdef localdate
     function this = set.Format (this, x)
       error ('Changing localdate format is currently unimplemented');
     endfunction
-    
+
     function out = get.Year (this)
       s = datestruct (this);
       out = s.Year;
     endfunction
-    
+
     function this = set.Year (this, x)
       s = datestruct (this);
       s.Year(:) = x;
       this.dnums = localdate.datestruct2datenum (s);
     endfunction
-      
+
     function out = get.Month (this)
       s = datestruct (this);
       out = s.Month;
     endfunction
-    
+
     function this = set.Month (this, x)
       s = datestruct (this);
       s.Month(:) = x;
       this.dnums = localdate.datestruct2datenum (s);
     endfunction
-      
+
     function out = get.Day (this)
       s = datestruct (this);
       out = s.Day;
     endfunction
-    
+
     function this = set.Day (this, x)
       s = datestruct (this);
       s.Day(:) = x;
       this.dnums = localdate.datestruct2datenum (s);
     endfunction
-      
+
     function out = year (this)
       out = this.Year;
     endfunction
-      
+
     function out = month (this)
       out = this.Month;
     endfunction
-      
+
     function out = day (this)
       out = this.Day;
     endfunction
-      
+
     function out = quarter (this)
       out = ceil (this.Month / 3);
     endfunction
-    
+
     ## -*- texinfo -*-
     ## @node localdate.ymd
     ## @deftypefn {Method} {[@var{y}, @var{m}, @var{d}] =} ymd (@var{obj})
@@ -316,22 +316,22 @@ classdef localdate
       m = s.Month;
       d = s.Day;
     endfunction
-    
+
     function out = week (this)
       error('week() is unimplemented');
     endfunction
-      
+
     function display (this)
-      %DISPLAY Custom display.
+      #DISPLAY Custom display.
       in_name = inputname (1);
-      if ~isempty (in_name)
+      if !isempty (in_name)
         fprintf ('%s =\n', in_name);
       endif
       disp (this);
     endfunction
 
     function disp (this)
-      %DISP Custom display.
+      #DISP Custom display.
       if isempty (this)
         fprintf ('Empty %s %s\n', size2str (size (this)), class (this));
       elseif isscalar (this)
@@ -343,7 +343,7 @@ classdef localdate
         fprintf ('%s\n', txt);
       endif
     endfunction
-    
+
     ## -*- texinfo -*-
     ## @node localdate.dispstrs
     ## @deftypefn {Method} {@var{out} =} dispstrs (@var{obj})
@@ -354,17 +354,17 @@ classdef localdate
     ##
     ## @end deftypefn
     function out = dispstrs (this)
-      %DISPSTRS Custom display strings.
-      % This is an Octave extension.
+      #DISPSTRS Custom display strings.
+      # This is an Octave extension.
       out = cell (size (this));
       local_dnums = this.dnums;
       tfNaN = isnan (local_dnums);
       out(tfNaN) = {'NaT'};
-      if any(~tfNaN(:))
-        out(~tfNaN) = cellstr (datestr (local_dnums(~tfNaN)));
+      if any(!tfNaN(:))
+        out(!tfNaN) = cellstr (datestr (local_dnums(!tfNaN)));
       endif
     endfunction
-    
+
     function out = sprintf(fmt, varargin)
       args = varargin;
       for i = 1:numel (args)
@@ -374,7 +374,7 @@ classdef localdate
       endfor
       out = sprintf (fmt, args{:});
     endfunction
-    
+
     function out = fprintf(varargin)
       args = varargin;
       if isnumeric (args{1})
@@ -409,10 +409,10 @@ classdef localdate
     ##
     ## @end deftypefn
     function out = datestr (this, varargin)
-      %DATESTR Format as date string.
+      #DATESTR Format as date string.
       out = datestr (this.dnums, varargin{:});
     endfunction
-    
+
     ## -*- texinfo -*-
     ## @node localdate.datestrs
     ## @deftypefn {Method} {@var{out} =} datestrs (@var{obj})
@@ -425,16 +425,16 @@ classdef localdate
     ##
     ## @end deftypefn
     function out = datestrs (this, varargin)
-      %DATESTSRS Format as date strings.
-      %
-      % Returns cellstr.
-      %
-      % This is an Octave extension.
+      #DATESTSRS Format as date strings.
+      #
+      # Returns cellstr.
+      #
+      # This is an Octave extension.
       s = datestr (this);
       c = cellstr (s);
       out = reshape (c, size (this));
     endfunction
-    
+
     ## -*- texinfo -*-
     ## @node localdate.datestruct
     ## @deftypefn {Method} {@var{out} =} datestruct (@var{obj})
@@ -461,7 +461,7 @@ classdef localdate
       out.Month = reshape (dvec(:,2), sz);
       out.Day = reshape (dvec(:,3), sz);
     endfunction
-    
+
     ## -*- texinfo -*-
     ## @node localdate.posixtime
     ## @deftypefn {Method} {@var{out} =} posixtime (@var{obj})
@@ -476,17 +476,17 @@ classdef localdate
     ##
     ## @end deftypefn
     function out = posixtime (this)
-      %POSIXTIME Convert this to POSIX time values (seconds since the Unix epoch)
-      %
-      % Converts this to POSIX time values that represent the same time. The
-      % returned values will be doubles that may include fractional second values.
-      % POSIX times are, by definition, in UTC.
-      %
-      % Returns double array of same size as this.
-      %
-      % This is an Octave extension.
+      #POSIXTIME Convert this to POSIX time values (seconds since the Unix epoch)
+      #
+      # Converts this to POSIX time values that represent the same time. The
+      # returned values will be doubles that may include fractional second values.
+      # POSIX times are, by definition, in UTC.
+      #
+      # Returns double array of same size as this.
+      #
+      # This is an Octave extension.
 
-      % Yes, this call to datetime instead of localdate is intentional
+      # Yes, this call to datetime instead of localdate is intentional
       out = datetime.datenum2posix (this.dnums);
     endfunction
 
@@ -513,10 +513,10 @@ classdef localdate
     ##
     ## @end deftypefn
     function out = isnat (this)
-      %ISNAT True if input is NaT.
+      #ISNAT True if input is NaT.
       out = isnan (this.dnums);
     endfunction
-    
+
     ## -*- texinfo -*-
     ## @node localdate.isnan
     ## @deftypefn {Method} {@var{out} =} isnan (@var{obj})
@@ -528,52 +528,52 @@ classdef localdate
     ##
     ## @end deftypefn
     function out = isnan (this)
-      %ISNAN Alias for isnat.
-      %
-      % This is an Octave extension
+      #ISNAN Alias for isnat.
+      #
+      # This is an Octave extension
       out = isnat (this);
     endfunction
-    
-    % Relational operations
+
+    # Relational operations
 
     function out = lt (A, B)
-      %LT Less than.
+      #LT Less than.
       [A, B] = localdate.promote (A, B);
       out = A.dnums < B.dnums;
     endfunction
 
     function out = le (A, B)
-      %LE Less than or equal.
+      #LE Less than or equal.
       [A, B] = localdate.promote (A, B);
       out = A.dnums <= B.dnums;
     endfunction
 
     function out = ne (A, B)
-      %NE Not equal.
+      #NE Not equal.
       [A, B] = localdate.promote (A, B);
       out = A.dnums ~= B.dnums;
     endfunction
 
     function out = eq (A, B)
-      %EQ Equals.
+      #EQ Equals.
       [A, B] = localdate.promote (A, B);
       out = A.dnums == B.dnums;
     endfunction
 
     function out = ge (A, B)
-      %GE Greater than or equal.
+      #GE Greater than or equal.
       [A, B] = localdate.promote (A, B);
       out = A.dnums >= B.dnums;
     endfunction
 
     function out = gt (A, B)
-      %GT Greater than.
+      #GT Greater than.
       [A, B] = localdate.promote (A, B);
       out = A.dnums > B.dnums;
     endfunction
 
-    % Arithmetic
-    
+    # Arithmetic
+
     function out = plus (this, b)
       mustBeA (this, 'localdate');
       if isnumeric (b)
@@ -601,7 +601,7 @@ classdef localdate
       else
       endif
     endfunction
-    
+
     function out = minus (a, b)
       if ! isa (a, 'localdate')
         a = localdate (a);
@@ -612,152 +612,152 @@ classdef localdate
       delta = a.dnums - b.dnums;
       out = duration.ofDays (delta);
     endfunction
-    
-    % Planar boilerplate stuff
-  
+
+    # Planar boilerplate stuff
+
     function out = numel (this)
-      %NUMEL Number of elements in array.
+      #NUMEL Number of elements in array.
       out = numel (this.dnums);
     endfunction
-    
+
     function out = ndims (this)
-      %NDIMS Number of dimensions.
+      #NDIMS Number of dimensions.
       out = ndims (this.dnums);
     endfunction
-    
+
     function out = size (this, dim)
-      %SIZE Size of array.
+      #SIZE Size of array.
       if nargin == 1
         out = size (this.dnums);
       else
         out = size (this.dnums, dim);
       endif
     endfunction
-    
+
     function out = isempty (this)
-      %ISEMPTY True for empty array.
+      #ISEMPTY True for empty array.
       out = isempty (this.dnums);
     endfunction
-    
+
     function out = isscalar (this)
-      %ISSCALAR True if input is scalar.
+      #ISSCALAR True if input is scalar.
       out = isscalar (this.dnums);
     endfunction
-    
+
     function out = isvector (this)
-      %ISVECTOR True if input is a vector.
+      #ISVECTOR True if input is a vector.
       out = isvector (this.dnums);
     endfunction
-    
+
     function out = iscolumn (this)
-      %ISCOLUMN True if input is a column vector.
+      #ISCOLUMN True if input is a column vector.
       out = iscolumn (this.dnums);
     endfunction
-    
+
     function out = isrow (this)
-      %ISROW True if input is a row vector.
+      #ISROW True if input is a row vector.
       out = isrow (this.dnums);
     endfunction
-    
+
     function out = ismatrix (this)
-      %ISMATRIX True if input is a matrix.
+      #ISMATRIX True if input is a matrix.
       out = ismatrix (this.dnums);
     endfunction
-        
+
     function this = reshape (this, varargin)
-      %RESHAPE Reshape array.
+      #RESHAPE Reshape array.
       this.dnums = reshape (this.dnums, varargin{:});
     endfunction
-    
+
     function this = squeeze (this, varargin)
-      %SQUEEZE Remove singleton dimensions.
+      #SQUEEZE Remove singleton dimensions.
       this.dnums = squeeze (this.dnums, varargin{:});
     endfunction
-    
+
     function this = circshift (this, varargin)
-      %CIRCSHIFT Shift positions of elements circularly.
+      #CIRCSHIFT Shift positions of elements circularly.
       this.dnums = circshift (this.dnums, varargin{:});
     endfunction
-    
+
     function this = permute (this, varargin)
-      %PERMUTE Permute array dimensions.
+      #PERMUTE Permute array dimensions.
       this.dnums = permute (this.dnums, varargin{:});
     endfunction
-    
+
     function this = ipermute (this, varargin)
-      %IPERMUTE Inverse permute array dimensions.
+      #IPERMUTE Inverse permute array dimensions.
       this.dnums = ipermute (this.dnums, varargin{:});
     endfunction
-    
+
     function this = repmat (this, varargin)
-      %REPMAT Replicate and tile array.
+      #REPMAT Replicate and tile array.
       this.dnums = repmat (this.dnums, varargin{:});
     endfunction
-    
+
     function this = ctranspose (this, varargin)
-      %CTRANSPOSE Complex conjugate transpose.
+      #CTRANSPOSE Complex conjugate transpose.
       this.dnums = ctranspose (this.dnums, varargin{:});
     endfunction
-    
+
     function this = transpose (this, varargin)
-      %TRANSPOSE Transpose vector or matrix.
+      #TRANSPOSE Transpose vector or matrix.
       this.dnums = transpose (this.dnums, varargin{:});
     endfunction
-    
+
     function [this, nshifts] = shiftdim (this, n)
-      %SHIFTDIM Shift dimensions.
+      #SHIFTDIM Shift dimensions.
       if nargin > 1
         this.dnums = shiftdim (this.dnums, n);
       else
         [this.dnums, nshifts] = shiftdim (this.dnums);
       endif
     endfunction
-    
+
     function out = cat (dim, varargin)
-      %CAT Concatenate arrays.
+      #CAT Concatenate arrays.
       args = localdate.promotec (varargin);
       out = args{1};
       fieldArgs = cellfun (@(obj) obj.dnums, args, 'UniformOutput', false);
       out.dnums = cat (dim, fieldArgs{:});
     endfunction
-    
+
     function out = horzcat (varargin)
-      %HORZCAT Horizontal concatenation.
+      #HORZCAT Horizontal concatenation.
       out = cat (2, varargin{:});
     endfunction
-    
+
     function out = vertcat (varargin)
-      %VERTCAT Vertical concatenation.
+      #VERTCAT Vertical concatenation.
       out = cat (1, varargin{:});
     endfunction
-    
+
     function this = subsasgn (this, s, b)
-      %SUBSASGN Subscripted assignment.
-      
-      % Chained subscripts
+      #SUBSASGN Subscripted assignment.
+
+      # Chained subscripts
       if numel(s) > 1
         rhs_in = subsref (this, s(1));
         rhs = subsasgn (rhs_in, s(2:end), b);
       else
         rhs = b;
       endif
-      
-      % Base case
+
+      # Base case
       switch s(1).type
         case '()'
           this = subsasgnParensPlanar (this, s(1), rhs);
-          %TODO: Correct value of vivified indexes to NaN; right now it's zero.
+          #TODO: Correct value of vivified indexes to NaN; right now it's zero.
         case '{}'
           error ('{}-subscripting is not supported for class %s', class (this));
         case '.'
           this.(s(1).subs) = rhs;
       endswitch
     endfunction
-    
+
     function out = subsref (this, s)
-      %SUBSREF Subscripted reference.
-      
-      % Base case
+      #SUBSREF Subscripted reference.
+
+      # Base case
       switch s(1).type
         case '()'
           out = subsrefParensPlanar (this, s(1));
@@ -766,26 +766,26 @@ classdef localdate
         case '.'
           out = this.(s(1).subs);
       endswitch
-      
-      % Chained reference
+
+      # Chained reference
       if numel (s) > 1
         out = subsref (out, s(2:end));
       endif
     endfunction
-        
+
     function [out, Indx] = sort (this)
-      %SORT Sort array elements.
+      #SORT Sort array elements.
       if isvector (this)
         isRow = isrow (this);
         this = subset (this, ':');
-        % NaNs sort stably to end, so handle them separately
+        # NaNs sort stably to end, so handle them separately
         tfNan = isnan (this);
         nans = subset (this, tfNan);
-        nonnans = subset (this, ~tfNan);
-        ixNonNan = find (~tfNan);
+        nonnans = subset (this, !tfNan);
+        ixNonNan = find (!tfNan);
         proxy = proxyKeys (nonnans);
         [~, ix] = sortrows (proxy);
-        out = [subset(nonnans, ix); nans]; 
+        out = [subset(nonnans, ix); nans];
         Indx = [ixNonNan(ix); find (tfNan)];
         if isRow
             out = out';
@@ -803,10 +803,10 @@ classdef localdate
     endfunction
 
     function [out, Indx] = sortND (this)
-      %SORTND N-dimensional sort implementation
-      
-      % I believe this multi-dimensional implementation is correct,
-      % but have not tested it yet. Use with caution.
+      #SORTND N-dimensional sort implementation
+
+      # I believe this multi-dimensional implementation is correct,
+      # but have not tested it yet. Use with caution.
       out = this;
       Indx = NaN (size (out));
       sz = size (this);
@@ -827,11 +827,11 @@ classdef localdate
         if ixs{2} > sz(2)
           break;
         endif
-      endwhile      
+      endwhile
     endfunction
-    
+
     function [out, Indx] = unique (this, varargin)
-      %UNIQUE Set unique.
+      #UNIQUE Set unique.
       flags = setdiff (varargin, {'rows'});
       if ismember('rows', varargin)
         [~,proxyIx] = unique (this);
@@ -843,8 +843,8 @@ classdef localdate
         this = subset (this, ':');
         tfNaN = isnan (this);
         nans = subset (this, tfNaN);
-        nonnans = subset (this, ~tfNaN);
-        ixNonnan = find (~tfNaN);
+        nonnans = subset (this, !tfNaN);
+        ixNonnan = find (!tfNaN);
         keys = proxyKeys (nonnans);
         if isa (keys, 'table')
           [~,ix] = unique (keys, flags{:});
@@ -858,16 +858,16 @@ classdef localdate
         endif
       endif
     endfunction
-    
+
     function [out, Indx] = ismember (a, b, varargin)
-      %ISMEMBER True for set member.
+      #ISMEMBER True for set member.
       if ismember ('rows', varargin)
         error ('ismember(..., ''rows'') is unsupported');
       endif
-      if ~isa (a, 'localdate')
+      if !isa (a, 'localdate')
         a = localdate (a);
       endif
-      if ~isa (b, 'localdate')
+      if !isa (b, 'localdate')
         b = localdate (b);
       endif
       [proxyA, proxyB] = proxyKeys (a, b);
@@ -875,21 +875,21 @@ classdef localdate
       out = reshape (out, size(a));
       Indx = reshape (Indx, size(a));
     endfunction
-    
+
     function [out, Indx] = setdiff (a, b, varargin)
-      %SETDIFF Set difference.
+      #SETDIFF Set difference.
       if ismember ('rows', varargin)
         error ('setdiff(..., ''rows'') is unsupported');
       endif
       [tf,~] = ismember (a, b);
-      out = parensRef (a, ~tf);
-      Indx = find (~tf);
+      out = parensRef (a, !tf);
+      Indx = find (!tf);
       [out,ix] = unique (out);
       Indx = Indx(ix);
     endfunction
-    
+
     function [out, ia, ib] = intersect (a, b, varargin)
-      %INTERSECT Set intersection.
+      #INTERSECT Set intersection.
       if ismember ('rows', varargin)
         error ('intersect(..., ''rows'') is unsupported');
       endif
@@ -897,9 +897,9 @@ classdef localdate
       [~,ia,ib] = intersect (proxyA, proxyB, 'rows');
       out = parensRef (a, ia);
     endfunction
-    
+
     function [out, ia, ib] = union (a, b, varargin)
-      %UNION Set union.
+      #UNION Set union.
       if ismember ('rows', varargin)
         error ('union(..., ''rows'') is unsupported');
       endif
@@ -913,64 +913,64 @@ classdef localdate
   endmethods
 
   methods (Access=private)
-  
+
     function out = subsasgnParensPlanar (this, s, rhs)
-      %SUBSASGNPARENSPLANAR ()-assignment for planar object
-      if ~isa (rhs, 'localdate')
+      #SUBSASGNPARENSPLANAR ()-assignment for planar object
+      if !isa (rhs, 'localdate')
         rhs = localdate (rhs);
       endif
       out = this;
       out.dnums = tblish.chrono.internal.prefillNewSizeForSubsasgn(this.dnums, s.subs, NaN);
       out.dnums(s.subs{:}) = rhs.dnums;
     endfunction
-    
+
     function out = subsrefParensPlanar (this, s)
-      %SUBSREFPARENSPLANAR ()-indexing for planar object
+      #SUBSREFPARENSPLANAR ()-indexing for planar object
       out = this;
       out.dnums = this.dnums(s.subs{:});
     endfunction
-    
+
     function out = parensRef (this, varargin)
-      %PARENSREF ()-indexing, for this class's internal use
+      #PARENSREF ()-indexing, for this class's internal use
       out = subsrefParensPlanar(this, struct ('subs', {varargin}));
     endfunction
-    
+
     function out = subset (this, varargin)
-      %SUBSET Subset array by indexes.
-      % This is what you call internally inside the class instead of doing 
-      % ()-indexing references on the RHS, which don't work properly inside the class
-      % because they don't respect the subsref() override.
+      #SUBSET Subset array by indexes.
+      # This is what you call internally inside the class instead of doing
+      # ()-indexing references on the RHS, which don't work properly inside the class
+      # because they don't respect the subsref() override.
       out = parensRef (this, varargin{:});
     endfunction
-    
+
     function out = asgn (this, ix, value)
-      %ASGN Assign array elements by indexes.
-      % This is what you call internally inside the class instead of doing 
-      % ()-indexing references on the LHS, which don't work properly inside
-      % the class because they don't respect the subsasgn() override.
-      if ~iscell (ix)
+      #ASGN Assign array elements by indexes.
+      # This is what you call internally inside the class instead of doing
+      # ()-indexing references on the LHS, which don't work properly inside
+      # the class because they don't respect the subsasgn() override.
+      if !iscell (ix)
         ix = { ix };
       endif
       s.type = '()';
       s.subs = ix;
       out = subsasgnParensPlanar (this, s, value);
     endfunction
-  
+
   endmethods
-  
+
   methods (Static = true)
 
     function out = promotec (args)
-      %PROMOTEC Promote inputs to be compatible, cell version
+      #PROMOTEC Promote inputs to be compatible, cell version
       out = cell(size(args));
       [out{:}] = promote(args{:});
     endfunction
 
     function varargout = promote (varargin)
-      %PROMOTE Promote inputs to be compatible
+      #PROMOTE Promote inputs to be compatible
       args = varargin;
       for i = 1:numel (args)
-        if ~isa (args{i}, 'localdate')
+        if !isa (args{i}, 'localdate')
           args{i} = localdate (args{i});
         endif
       endfor
@@ -991,7 +991,7 @@ function mustBeNumeric (x, label)
   if nargin < 2; label = []; endif
   if isnumeric (x)
     return
-  end
+  endif
     if isempty (label)
       label = inputname (1);
     endif
@@ -1014,7 +1014,7 @@ function x = mustBeIntOrNanOrInf (x, label)
     but = "it was complex";
   elseif ! all (floor (x) == x)
     but = "it had fractional values in some elements";
-  end
+  endif
   if ! isempty (but)
     if isempty (label)
       label = inputname (1);

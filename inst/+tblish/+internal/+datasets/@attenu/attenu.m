@@ -110,7 +110,7 @@ classdef attenu < tblish.internal.dataset
 
         out = table(event, mag, station, dist, accel);
     endfunction
-  
+
   endmethods
 
 endclassdef

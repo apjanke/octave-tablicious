@@ -17,21 +17,21 @@
 # This is based on the iris dataset from R’s datasets package
 
 classdef iris < tblish.internal.dataset
-  % This is the classic Fisher Iris dataset.
-  %
-  % ## Source
-  %
-  %  http://archive.ics.uci.edu/ml/datasets/Iris
-  %
-  % ## References
-  %
-  % https://en.wikipedia.org/wiki/Iris_flower_data_set
-  %
-  % [1] Fisher,R.A. "The use of multiple measurements in taxonomic problems" 
-  %        Annual Eugenics, 7, Part II, 179-188 (1936); also in "Contributions 
-  %        to Mathematical Statistics" (John Wiley, NY, 1950).
-  % [2] Duda,R.O., & Hart,P.E. (1973) Pattern Classification and Scene Analysis. 
-  %        (Q327.D83) John Wiley & Sons. ISBN 0-471-22361-1. See page 218.
+  # This is the classic Fisher Iris dataset.
+  #
+  # ## Source
+  #
+  #  http://archive.ics.uci.edu/ml/datasets/Iris
+  #
+  # ## References
+  #
+  # https://en.wikipedia.org/wiki/Iris_flower_data_set
+  #
+  # [1] Fisher,R.A. "The use of multiple measurements in taxonomic problems"
+  #        Annual Eugenics, 7, Part II, 179-188 (1936); also in "Contributions
+  #        to Mathematical Statistics" (John Wiley, NY, 1950).
+  # [2] Duda,R.O., & Hart,P.E. (1973) Pattern Classification and Scene Analysis.
+  #        (Q327.D83) John Wiley & Sons. ISBN 0-471-22361-1. See page 218.
 
   methods
 
@@ -49,32 +49,32 @@ classdef iris < tblish.internal.dataset
     endfunction
 
     function regenerate_dataset
-      %REGENERATE_DATASET Regenerate this dataset
-      %
-      % Reconstructs the Fisher Iris dataset.
-      %
-      % Source: http://archive.ics.uci.edu/ml/datasets/Iris
-      %
-      % References:
-      %   https://en.wikipedia.org/wiki/Iris_flower_data_set
-      
+      #REGENERATE_DATASET Regenerate this dataset
+      #
+      # Reconstructs the Fisher Iris dataset.
+      #
+      # Source: http://archive.ics.uci.edu/ml/datasets/Iris
+      #
+      # References:
+      #   https://en.wikipedia.org/wiki/Iris_flower_data_set
+
       csv_url = "http://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data";
       urlwrite (csv_url, "iris.csv");
       fid = fopen ("iris.csv");
       RAII.fid = onCleanup (@() fclose (fid));
-      
+
       data = textscan (fid, "%f,%f,%f,%f,%s");
-      
+
       species = strrep (data{5}, 'Iris-', '');
-      
+
       s.Species = species;
       s.SepalLength = data{1};
       s.SepalWidth = data{2};
       s.PetalLength = data{3};
       s.PetalWidth = data{4};
-      
+
       iris = s;
-      
+
       my_dir = fileparts (mfilename ("fullpath"));
       mat_file = fullfile (my_dir, "iris.mat");
       if exist (mat_file, "file")

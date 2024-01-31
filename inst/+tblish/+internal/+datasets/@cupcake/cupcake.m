@@ -14,7 +14,7 @@
 ## along with this program; If not, see <http://www.gnu.org/licenses/>.
 
 classdef cupcake < tblish.internal.dataset
-  % Monthly Airline Passenger Numbers 1949-1960
+  # Monthly Airline Passenger Numbers 1949-1960
 
   methods
 

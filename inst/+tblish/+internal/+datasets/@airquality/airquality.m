@@ -38,7 +38,7 @@ classdef airquality < tblish.internal.dataset
       Day = data(:,6);
       out = table(Ozone, SolarR, Wind, Temp, Month, Day);
     endfunction
-  
+
   endmethods
 
 endclassdef

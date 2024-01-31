@@ -15,9 +15,9 @@
 
 
 function varargout = splitapply_impl (func, varargin)
-  % The non-polymorphic actual implementation of splitapply. This is broken out
-  % as a separate function of a different name to prevent nested tables from causing
-  % the table.splitapply method to be called recursively, which we don't want.
+  # The non-polymorphic actual implementation of splitapply. This is broken out
+  # as a separate function of a different name to prevent nested tables from causing
+  # the table.splitapply method to be called recursively, which we don't want.
   mustBeA (func, 'function_handle');
   narginchk (3, Inf);
   G = varargin{end};
@@ -31,9 +31,9 @@ function varargout = splitapply_impl (func, varargin)
   u_g(isnan (u_g)) = [];
   n_g = max (u_g);
   n_outs = nargout;
-  
+
   bufs = repmat ({cell (n_g, 1)}, [1 n_outs]);
-  
+
   for i_group = 1:n_g
     tf = G == i_group;
     x_args = cell (n_x_vars, 1);

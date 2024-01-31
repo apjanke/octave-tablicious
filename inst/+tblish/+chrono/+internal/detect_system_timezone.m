@@ -20,7 +20,7 @@ function out = detect_system_timezone
   try
     out = do_detection ();
     tzdb = tblish.chrono.internal.tzinfo.TzDb;
-    if ~ismember (out, tzdb.definedZones)
+    if !ismember (out, tzdb.definedZones)
       warning ('System time zone ''%s'' is not defined in the tzinfo database.', ...
         out);
     endif
@@ -33,45 +33,45 @@ function out = detect_system_timezone
 endfunction
 
 function out = do_detection ()
-  %DO_DETECTION Actual detection logic
-  
+  #DO_DETECTION Actual detection logic
+
   out = [];
 
-  % Let TZ env var take precedence
+  # Let TZ env var take precedence
   tz_env = getenv ('TZ');
-  if ~isempty (tz_env)
+  if !isempty (tz_env)
     out = tz_env;
   endif
 
-  % Get actual system default, using OS-specific mechanisms
+  # Get actual system default, using OS-specific mechanisms
   if isempty (out) && isfile ('/etc/localtime')
-    % This exists on macOS and RHEL/CentOS 7/some Fedora
-    % By convention, when it's a symlink, it points into a file whose path is the same
-    % as the IANA time zone identifier.
+    # This exists on macOS and RHEL/CentOS 7/some Fedora
+    # By convention, when it's a symlink, it points into a file whose path is the same
+    # as the IANA time zone identifier.
     [target,err,msg] = readlink ('/etc/localtime');
     if err
-      % It's not a symlink. And we can't pull the zone name out of the file contents
-      % because zone info files do not store their names internally. (LOL.)
-      % Ignore and fall back to another detection method
+      # It's not a symlink. And we can't pull the zone name out of the file contents
+      # because zone info files do not store their names internally. (LOL.)
+      # Ignore and fall back to another detection method
     else
       out = regexprep (target, '.*/zoneinfo/', '');
     endif
   endif
   if isempty (out) && exist ('/etc/timezone')
-    % This exists on Debian
+    # This exists on Debian
     out = strtrim (tblish.chrono.internal.slurpTextFile ('/etc/timezone'));
   endif
   if isempty (out) && ispc
-    % Newer Windows can do it with PowerShell
+    # Newer Windows can do it with PowerShell
     win_zone = detect_timezone_using_powershell;
-    if ~isempty (win_zone)
+    if !isempty (win_zone)
       converter = tblish.chrono.internal.tzinfo.WindowsIanaZoneConverter;
       out = converter.windows2iana (win_zone);
     endif
   endif
   if isempty (out)
-    % Fall back to Java if nothing else worked
-    if ~usejava ('jvm')
+    # Fall back to Java if nothing else worked
+    if !usejava ('jvm')
       warning ('tablicious:TimeZoneDetectionFailure', 'Detecting time zone on this OS requires Java, which is not available in this Octave build.');
     else
       zone = javaMethod ('getDefault', 'java.util.TimeZone');
@@ -84,8 +84,8 @@ function out = do_detection ()
 endfunction
 
 function out = detect_timezone_using_powershell ()
-  % This only works on Windows Vista or newer. Windows 7 and older lack the
-  % Get-TimeZone command.
+  # This only works on Windows Vista or newer. Windows 7 and older lack the
+  # Get-TimeZone command.
   [status, txt] = system ('powershell -Command Get-TimeZone');
   if status ~= 0
     out = [];
@@ -97,7 +97,7 @@ function out = detect_timezone_using_powershell ()
     return
   endif
   out = info.Id;
-end
+endfunction
 
 function out = parse_powershell_get_timezone_output (str)
   str = strrep (str, "\r\n", "\n");

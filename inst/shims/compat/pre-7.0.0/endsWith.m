@@ -21,7 +21,7 @@
 ##
 ## Tests whether the given strings end with the given pattern(s).
 ##
-## @var{str} (char, cellstr, or string) is a list of strings to compare against 
+## @var{str} (char, cellstr, or string) is a list of strings to compare against
 ## @var{pattern}.
 ##
 ## @var{pattern} (char, cellstr, or string) is a list of patterns to match. These are
@@ -32,14 +32,14 @@
 ## @var{str}.
 ##
 ## @end deftypefn
-function out = endsWith (str, pattern, varargin)  
+function out = endsWith (str, pattern, varargin)
   [opts, args] = peelOffNameValueOptions (varargin, {'IgnoreCase'});
   ignore_case = false;
   if isfield (opts, 'IgnoreCase')
     mustBeScalarLogical (opts.IgnoreCase, 'IgnoreCase option');
     ignore_case = opts.IgnoreCase;
   endif
-  
+
   str = cellstr (str);
   pattern = cellstr (pattern);
 
@@ -47,7 +47,7 @@ function out = endsWith (str, pattern, varargin)
     out = true (size (str));
     return;
   endif
-  
+
   if ignore_case
     str = lower (str);
     pattern = lower (pattern);

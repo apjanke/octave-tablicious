@@ -18,7 +18,7 @@
 ##
 ## Example dataset collection.
 ##
-## @code{datasets} is a collection of example datasets to go with the 
+## @code{datasets} is a collection of example datasets to go with the
 ## Tablicious package.
 ##
 ## The @code{datasets} class provides methods for listing and loading
@@ -103,8 +103,8 @@ classdef datasets
     ##
     ## @end deftypefn
     function out = description (name)
-      % TODO: Convert the texinfo input to plain text. Or maybe just remove
-      % this method and let it be replaced by "help tblish.dataset.<name>".
+      # TODO: Convert the texinfo input to plain text. Or maybe just remove
+      # this method and let it be replaced by "help tblish.dataset.<name>".
       dset = tblish.internal.dataset.lookup (name);
       out = dset.description_texi;
       if nargout == 0

@@ -21,7 +21,7 @@
 ## Create a @code{duration} @var{x} years long, or get the years in a @code{duration}
 ## @var{x}.
 ##
-## If input is numeric, returns a @code{duration} array in units of fixed-length 
+## If input is numeric, returns a @code{duration} array in units of fixed-length
 ## years of 365.2425 days each.
 ##
 ## If input is a @code{duration}, converts the @code{duration} to a number of fixed-length
@@ -35,20 +35,20 @@
 ## @end deftypefn
 
 function out = years (x)
-  %YEARS Duration in years
-  %
-  % If input is numeric, returns a @duration array in units of fixed-length 
-  % years of 365.2425 days each.
-  %
-  % If input is a duration, converts the duration to a number of fixed-length
-  % years as double.
-  %
-  % Note: years creates fixed-length years, which is probably not what you want.
-  % To create a duration of calendar years (which account for actual leap days),
-  % use calyears.
+  #YEARS Duration in years
+  #
+  # If input is numeric, returns a @duration array in units of fixed-length
+  # years of 365.2425 days each.
+  #
+  # If input is a duration, converts the duration to a number of fixed-length
+  # years as double.
+  #
+  # Note: years creates fixed-length years, which is probably not what you want.
+  # To create a duration of calendar years (which account for actual leap days),
+  # use calyears.
   if isnumeric (x)
     out = duration.ofDays (double (x) * 365.2425);
   else
     error ('Invalid input: expected numeric or duration; got %s', class (x));
-  end
-end
+  endif
+endfunction

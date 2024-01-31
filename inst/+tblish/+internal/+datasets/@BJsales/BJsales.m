@@ -54,7 +54,7 @@ classdef BJsales < tblish.internal.dataset
         257.8, 257.7, 257.2, 257.5, 256.8, 257.5, 257.0, 257.6, 257.3, 257.5, 259.6, 261.1, ...
         262.9, 263.3, 262.8, 261.8, 262.2, 262.7]';
       record = [1:numel(sales)]';
-      
+
       out = table (record, lead, sales);
     endfunction
 

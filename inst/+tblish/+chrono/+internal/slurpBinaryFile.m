@@ -20,8 +20,8 @@ function out = slurpBinaryFile (file)
   [fid,msg] = fopen (file, 'r');
   if fid == -1
     error ('Could not open file %s: %s', file, msg);
-  end
+  endif
   cleanup.fid = onCleanup (@() fclose (fid));
   out = fread (fid, Inf, 'uint8=>uint8');
-  out = out';  
+  out = out';
 endfunction

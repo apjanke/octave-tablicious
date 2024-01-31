@@ -21,7 +21,7 @@
 ##
 ## Tests whether the given strings start with the given pattern(s).
 ##
-## @var{str} (char, cellstr, or string) is a list of strings to compare against 
+## @var{str} (char, cellstr, or string) is a list of strings to compare against
 ## @var{pattern}.
 ##
 ## @var{pattern} (char, cellstr, or string) is a list of patterns to match. These are
@@ -39,15 +39,15 @@ function out = startsWith (str, pattern, varargin)
     mustBeScalarLogical (opts.IgnoreCase, 'IgnoreCase option');
     ignore_case = opts.IgnoreCase;
   endif
-  
+
   str = cellstr (str);
   pattern = cellstr (pattern);
-  
+
   if any (cellfun ('isempty', pattern(:)))
     out = true (size (str));
     return;
   endif
-  
+
   out = false (size (str));
   for i_str = 1:numel (str)
     for i_pattern = 1:numel (pattern)

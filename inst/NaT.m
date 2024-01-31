@@ -21,7 +21,7 @@
 ## @deftypefnx {Function} {@var{out} =} NaT (@var{sz})
 ##
 ## “Not-a-Time”. Creates missing-valued datetime arrays.
-## 
+##
 ## Constructs a new @code{datetime} array of all @code{NaT} values of
 ## the given size. If no input @var{sz} is given, the result is a scalar @code{NaT}.
 ##
@@ -35,12 +35,12 @@
 ##
 ## @end deftypefn
 function out = NaT (sz)
-  %NaT Not-a-Time
-  %
-  % Creates an array of datetimes with the value NaT.
+  #NaT Not-a-Time
+  #
+  # Creates an array of datetimes with the value NaT.
   if nargin == 0
     out = datetime.NaT;
   else
     out = repmat (datetime.NaT, sz);
-  end
-end
+  endif
+endfunction

@@ -30,17 +30,17 @@
 ## @end deftypefn
 
 function out = iscategorical (x)
-  % Developer note: see istable for an explanation of this logic.
+  # Developer note: see istable for an explanation of this logic.
   if isa (x, 'categorical')
     out = true;
   elseif isobject (x)
-    % Respect iscategorical methods on classes.
+    # Respect iscategorical methods on classes.
     if ismember ('iscategorical', methods (x))
       out = iscategorical (x);
     else
       out = false;
-    end
+    endif
   else
     out = false;
-  end
-end
+  endif
+endfunction

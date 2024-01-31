@@ -21,9 +21,9 @@
 ## Raises an error if the inputs @var{a} and @var{b} are not the same size,
 ## as determined by @code{isequal (size (a), size (b))}.
 ##
-## @var{labelA} and @var{labelB} are optional inputs that determine how 
-## the input will be described in error messages. If not supplied, 
-## @code{inputname (...)} is used, and if that is empty, it falls back to 
+## @var{labelA} and @var{labelB} are optional inputs that determine how
+## the input will be described in error messages. If not supplied,
+## @code{inputname (...)} is used, and if that is empty, it falls back to
 ## "input 1" and "input 2".
 ##
 ## @end deftypefn

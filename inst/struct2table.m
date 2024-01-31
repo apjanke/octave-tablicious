@@ -29,17 +29,17 @@
 ##
 ## @end deftypefn
 function out = struct2table (s, varargin)
-  
-  % Peel off trailing options
+
+  # Peel off trailing options
   [opts, args] = peelOffNameValueOptions (varargin, {'AsArray'});
   if isfield (opts, 'AsArray') && opts.AsArray
     error ('struct2table: AsArray option is currently unimplemented');
   endif
-  if ~isempty (args)
+  if !isempty (args)
     error ('struct2table: Unrecognized options');
   endif
 
-  % Conversion logic
+  # Conversion logic
   varNames = fieldnames (s);
   if isscalar (s)
     varValues = struct2cell (s);
@@ -49,6 +49,6 @@ function out = struct2table (s, varargin)
     c = struct2cell (s);
     c = c';
     out = cell2table (c, 'VariableNames', varNames);
-  end
-  
+  endif
+
 endfunction

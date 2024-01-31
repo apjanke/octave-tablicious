@@ -18,7 +18,7 @@
 ##
 ## Requires that input is a member of a set of given valid values.
 ##
-## Raises an error if any element of the input @var{x} is not a member 
+## Raises an error if any element of the input @var{x} is not a member
 ## of @var{valid}, as determined by @code{ismember (x)}.
 ##
 ## Note that char inputs may behave weirdly, because of the interaction between

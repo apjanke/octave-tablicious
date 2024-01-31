@@ -24,7 +24,7 @@
 ##
 ## Input @var{x} is a numeric array specifying the number of calendar months.
 ##
-## This is a shorthand alternative to calling the @code{calendarDuration} 
+## This is a shorthand alternative to calling the @code{calendarDuration}
 ## constructor with @code{calendarDuration(0, x, 0)}.
 ##
 ## Returns a new @code{calendarDuration} object of the same size as @var{x}.
@@ -34,9 +34,9 @@
 ## @end deftypefn
 
 function out = calmonths (x)
-  %CALMONTHS Calendar duration in months
-  if ~isnumeric (x)
+  #CALMONTHS Calendar duration in months
+  if !isnumeric (x)
     error ('Input must be numeric');
   endif
-  out = calendarDuration (0, x, 0);  
+  out = calendarDuration (0, x, 0);
 endfunction

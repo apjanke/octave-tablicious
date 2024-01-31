@@ -28,7 +28,7 @@
 ##
 ## User-defined classes should only override @code{istable} to return true if
 ## they conform to the @code{table} public interface. That interface is not
-## well-defined or documented yet, so maybe you don't want to do that yet. 
+## well-defined or documented yet, so maybe you don't want to do that yet.
 ##
 ## Returns a scalar logical.
 ##
@@ -42,23 +42,23 @@
 # whether or not Tablicious is installed and loaded.
 
 function out = istable (x)
-  %ISTABLE True for table arrays or table-like arrays.
+  #ISTABLE True for table arrays or table-like arrays.
   if isa (x, 'table')
-    % Main case: table arrays are tables.
-    % This is actually redundant with the generic isobject/method test below,
-    % but written separately for readability.
+    # Main case: table arrays are tables.
+    # This is actually redundant with the generic isobject/method test below,
+    # but written separately for readability.
     out = true;
   elseif isobject (x)
-    % Respect istable methods on classes. Normally, those methods would "grab"
-    % this call. We check for it here so that these method overrides are respected
-    % even if this istable function was called through a function handle or 
-    % similar mechanism, bypassing the regular method dispatch mechanism.
+    # Respect istable methods on classes. Normally, those methods would "grab"
+    # this call. We check for it here so that these method overrides are respected
+    # even if this istable function was called through a function handle or
+    # similar mechanism, bypassing the regular method dispatch mechanism.
     if ismember ('istable', methods (x))
       out = istable (x);
     else
       out = false;
-    end
+    endif
   else
     out = false;
-  end
-end
+  endif
+endfunction

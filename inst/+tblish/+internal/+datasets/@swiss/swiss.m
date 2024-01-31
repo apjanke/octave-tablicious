@@ -26,7 +26,7 @@ classdef swiss < tblish.internal.dataset
     endfunction
 
     function out = load (this)
-      # TODO: Implement this using heterogeneous dlm reading; probably using 
+      # TODO: Implement this using heterogeneous dlm reading; probably using
       # textscan()
       error("This function is not yet implemented. Sorry.");
     endfunction

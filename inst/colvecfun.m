@@ -30,12 +30,12 @@
 ## together in the same shape as x.
 ##
 ## @end deftypefn
-function out = colvecfun (fcn, x)  
+function out = colvecfun (fcn, x)
   narginchk (2, 2);
   if ! isa (fcn, 'function_handle')
     error ('colvecfun: input fcn must be a function handle; got a %s', class (fcn));
   endif
-  
+
   out = colvecfun_impl (fcn, x);
 endfunction
 

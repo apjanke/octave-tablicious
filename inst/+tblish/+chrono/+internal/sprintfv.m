@@ -17,17 +17,17 @@
 ## <https://www.gnu.org/licenses/>.
 
 function out = sprintfv (format, varargin)
-%SPRINTFV "Vectorized" sprintf
-%
-% out = sprintfv (format, varargin)
-%
-% SPRINTFV is an array-oriented form of sprintf that applies a format to array
-% inputs and produces a cellstr.
-%
-% This is not a high-performance method. It's a convenience wrapper around a
-% loop around sprintf ().
-%
-% Returns cellstr.
+#SPRINTFV "Vectorized" sprintf
+#
+# out = sprintfv (format, varargin)
+#
+# SPRINTFV is an array-oriented form of sprintf that applies a format to array
+# inputs and produces a cellstr.
+#
+# This is not a high-performance method. It's a convenience wrapper around a
+# loop around sprintf ().
+#
+# Returns cellstr.
 
   args = varargin;
   sz = [];
@@ -35,11 +35,11 @@ function out = sprintfv (format, varargin)
     if ischar (args{i})
       args{i} = { args{i} };  %#ok<CCAT1>
     endif
-    if ~isscalar (args{i})
+    if !isscalar (args{i})
       if isempty (sz)
         sz = size (args{i});
       else
-        if ~isequal (sz, size (args{i}))
+        if !isequal (sz, size (args{i}))
             error ('Inconsistent dimensions in inputs');
         endif
       endif

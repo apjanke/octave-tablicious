@@ -14,27 +14,27 @@
 ## along with this program; If not, see <http://www.gnu.org/licenses/>.
 
 classdef (Abstract) dataset
-  %DATASET An example dataset, managed by Tablicious’ datasets mechanism
-  %
-  % To use this, subclass it, and have your constructor populate
-  % the name and description fields, and implement load(), regenerate(),
-  % and possibly fetch().
-  % 
-  % There are three typical ways to define a dataset:
-  %   - All in code, in which case your subclass will just implement load()
-  %   - As a stored, checked-in mat-file, in which case your subclass will
-  %       implement regenerate_dataset() and load()
-  %   - As a cached post-installation mat-file, in which case your subclass
-  %       will implement cache_dataset() and load(), and make use of
-  %       cache_file_path() in both of them.
+  #DATASET An example dataset, managed by Tablicious’ datasets mechanism
+  #
+  # To use this, subclass it, and have your constructor populate
+  # the name and description fields, and implement load(), regenerate(),
+  # and possibly fetch().
+  #
+  # There are three typical ways to define a dataset:
+  #   - All in code, in which case your subclass will just implement load()
+  #   - As a stored, checked-in mat-file, in which case your subclass will
+  #       implement regenerate_dataset() and load()
+  #   - As a cached post-installation mat-file, in which case your subclass
+  #       will implement cache_dataset() and load(), and make use of
+  #       cache_file_path() in both of them.
 
   properties (Constant)
 
-    % The list of datasets included with Tablicious itself, in the
-    % tablicious.internal.datasets namespace. The names here must match
-    % The class base name.
-    %
-    % Keep this list in alphabetical order, for tidiness.
+    # The list of datasets included with Tablicious itself, in the
+    # tablicious.internal.datasets namespace. The names here must match
+    # The class base name.
+    #
+    # Keep this list in alphabetical order, for tidiness.
     included_datasets = {
       "airmiles"
       "AirPassengers"
@@ -152,32 +152,32 @@ classdef (Abstract) dataset
   endmethods
 
   methods
-    
+
     function out = load (this)
-      %LOAD Load the dataset from its local files
-      %
-      % This is what gets called when a user does tablicious.datasets.load("foo").
-      %
-      % This method must return a scalar struct whose fields are
-      % the variables defined in this dataset.
+      #LOAD Load the dataset from its local files
+      #
+      # This is what gets called when a user does tablicious.datasets.load("foo").
+      #
+      # This method must return a scalar struct whose fields are
+      # the variables defined in this dataset.
       error("dataset.load is abstract. Subclass %s must implement it, but it does not.", ...
         class (this));
     endfunction
 
     function out = description_texi (this)
-      %DESCRIPTION_TEXI Get the Texinfo description for this dataset
+      #DESCRIPTION_TEXI Get the Texinfo description for this dataset
       description_file = fullfile (this.class_dir, "description.texi");
       if ! isfile (description_file)
         out = "<no description available>";
         return
       endif
       texi_in = fileread (description_file);
-      % Process our special directives
+      # Process our special directives
       texi = texi_in;
       octave_namespace_dir = fileparts (fileparts (mfilename ("fullpath")));
       example_scripts_dir = fullfile (octave_namespace_dir, "+examples", ...
         "+internal", "+datasets");
-      % Include example scripts
+      # Include example scripts
       while true
         [ix_start, ix_end, tok] = regexp (texi, '@INCLUDE_DATASET_EXAMPLE_SCRIPT\{(.*?)\}', ...
           "start", "end", "tokens");
@@ -197,44 +197,44 @@ classdef (Abstract) dataset
     endfunction
 
     function regenerate_dataset (this)
-      % Regenerate the dataset from its original source
-      %
-      % This is what goes out to a website or some other source, downloads
-      % the original source data, parses and munges it, and saves it as a
-      % .mat file (or something else) in the Tablicious source tree. This is
-      % called at development time by the dataset’s maintainer. It should not
-      % be called by the user.
-      %
-      % Since the dataset is never expected to change, and the generated files
-      % are checked into the source tree, this method only needs to be called
-      % if the file format for Octave mat-files changes, or something similar.
-      % So, basically never, and it"s included just as a reference for where
-      % the data came from.
-      %
-      % This is a do-nothing in the base class. Leave it as a do-nothing if
-      % your dataset does not require regeneration.
+      # Regenerate the dataset from its original source
+      #
+      # This is what goes out to a website or some other source, downloads
+      # the original source data, parses and munges it, and saves it as a
+      # .mat file (or something else) in the Tablicious source tree. This is
+      # called at development time by the dataset’s maintainer. It should not
+      # be called by the user.
+      #
+      # Since the dataset is never expected to change, and the generated files
+      # are checked into the source tree, this method only needs to be called
+      # if the file format for Octave mat-files changes, or something similar.
+      # So, basically never, and it"s included just as a reference for where
+      # the data came from.
+      #
+      # This is a do-nothing in the base class. Leave it as a do-nothing if
+      # your dataset does not require regeneration.
     endfunction
 
     function cache_dataset (this)
-      % Cache the dataset by downloading it and storing in user cache files
-      %
-      % This is what gets called by cache_all_datasets. The user will call
-      % that after installing Octave. This caching mechanism is for datasets
-      % that cannot be directly redistributed with Octave or Tablicious itself,
-      % for size or licensing reasons.
-      %
-      % Most datasets should not require caching, so this should be left as
-      % a do-nothing method for most datasets.
+      # Cache the dataset by downloading it and storing in user cache files
+      #
+      # This is what gets called by cache_all_datasets. The user will call
+      # that after installing Octave. This caching mechanism is for datasets
+      # that cannot be directly redistributed with Octave or Tablicious itself,
+      # for size or licensing reasons.
+      #
+      # Most datasets should not require caching, so this should be left as
+      # a do-nothing method for most datasets.
     endfunction
 
     function out = cache_file_path (this)
-      %CACHE_FILE_PATH Path to the local cache file, for classes that use caching
+      #CACHE_FILE_PATH Path to the local cache file, for classes that use caching
 
       if ispc
         error (["tblish.internal.dataset.cache_file_path: this is not " ...
           "implemented for Windows yet. Sorry."]);
       else
-        % Use the XDG standard cache location on Linux and Mac
+        # Use the XDG standard cache location on Linux and Mac
         xdg_cache_dir = fullfile (getenv ("HOME"), ".cache");
         datasets_cache_dir = fullfile (xdg_cache_dir, "octave", "datasets");
       endif
@@ -245,12 +245,12 @@ classdef (Abstract) dataset
 
   methods (Protected)
     function out = class_dir (this)
-      %CLASS_DIR Directory of the class definition
-      %
-      % This only works for datasets implemented as part of Tablicious" example
-      % data sets, because it makes assumptions about where they live. We have
-      % to do this because Octave"s which() doesn"t work on classes in namespaces,
-      % as of Octave 4.4.
+      #CLASS_DIR Directory of the class definition
+      #
+      # This only works for datasets implemented as part of Tablicious" example
+      # data sets, because it makes assumptions about where they live. We have
+      # to do this because Octave"s which() doesn"t work on classes in namespaces,
+      # as of Octave 4.4.
       my_dir = fileparts (mfilename ("fullpath"));
       datasets_namespace_dir = fullfile (my_dir, "+datasets");
       klass = class (this);

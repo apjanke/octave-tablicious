@@ -1,6 +1,6 @@
 classdef PosixZoneRule
-  %POSIXZONERULE A POSIX-style time zone rule
-  
+  #POSIXZONERULE A POSIX-style time zone rule
+
   properties
     local_timezone
     std_name
@@ -9,11 +9,11 @@ classdef PosixZoneRule
     dst_start_rule
     dst_end_rule
   endproperties
-  
+
   methods (Static)
     function out = parseZoneRule (str)
       out = tblish.chrono.internal.algo.PosixZoneRule;
-      if ~isrow (in)
+      if !isrow (in)
         error ('in must be charvec; got non-row char');
       endif
       els = strsplit (in, ',');
@@ -43,11 +43,11 @@ classdef PosixZoneRule
         this = tblish.chrono.internal.tzinfo.PosixZoneRule.parseZoneRule(in);
       endif
     endfunction
-    
+
     function out = gmtToLocalDatenum (this, dnums)
       error ('Unimplemented');
     endfunction
-    
+
     function out = localToGmtDatenum (this, dnums, isDst)
       error ('Unimplemented');
     endfunction

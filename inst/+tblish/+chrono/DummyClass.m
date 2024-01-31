@@ -21,9 +21,9 @@
 ##
 ## A do-nothing class just for testing the doco tools.
 ##
-## Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur 
-## ullamcorper pulvinar ligula, sit amet accumsan turpis dapibus at. 
-## Ut sit amet quam orci. Donec vel mauris elementum massa pretium tincidunt. 
+## Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur
+## ullamcorper pulvinar ligula, sit amet accumsan turpis dapibus at.
+## Ut sit amet quam orci. Donec vel mauris elementum massa pretium tincidunt.
 ##
 ## @end deftp
 ##
@@ -69,23 +69,23 @@ classdef DummyClass
     ##
     ## Computes a foo value.
     ##
-    ## Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur 
-    ## ullamcorper pulvinar ligula, sit amet accumsan turpis dapibus at. 
+    ## Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur
+    ## ullamcorper pulvinar ligula, sit amet accumsan turpis dapibus at.
     ## Ut sit amet quam orci. Donec vel mauris elementum massa pretium tincidunt.
     ##
     ## @end deftypefn
     function out = foo (this)
       out = this.x;
     endfunction
-    
+
     ## -*- texinfo -*-
     ## @node DummyClass.bar
     ## @deftypefn {Method} {@var{out} =} bar (@var{obj})
     ##
     ## Computes a bar value.
     ##
-    ## Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur 
-    ## ullamcorper pulvinar ligula, sit amet accumsan turpis dapibus at. 
+    ## Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur
+    ## ullamcorper pulvinar ligula, sit amet accumsan turpis dapibus at.
     ## Ut sit amet quam orci. Donec vel mauris elementum massa pretium tincidunt.
     ##
     ## @end deftypefn

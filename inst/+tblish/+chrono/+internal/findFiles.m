@@ -17,7 +17,7 @@
 ## <https://www.gnu.org/licenses/>.
 
 function out = findFiles (dirPath)
-  %FINDFILES Recursively find files under a directory
+  #FINDFILES Recursively find files under a directory
   out = findFilesStep (dirPath, '');
 endfunction
 
@@ -27,7 +27,7 @@ function out = findFilesStep (dirPath, pathPrefix)
   for i = 1:numel (d)
     f = d(i);
     if f.isdir
-      % Can't use spaces here or syntax error happens
+      # Can't use spaces here or syntax error happens
       found = [found findFilesStep(fullfile (dirPath, f.name), ...
         fullfile(pathPrefix, f.name))];
     else

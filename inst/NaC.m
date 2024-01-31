@@ -21,7 +21,7 @@
 ## @deftypefnx {Function} {@var{out} =} NaC (@var{sz})
 ##
 ## “Not-a-Categorical". Creates missing-valued categorical arrays.
-## 
+##
 ## Returns a new @code{categorical} array of all missing values of
 ## the given size. If no input @var{sz} is given, the result is a scalar missing
 ## categorical.
@@ -38,12 +38,12 @@
 ##
 ## @end deftypefn
 function out = NaC (sz)
-  %NaS Not-a-Categorical (missing-valued categorical array)
-  %
-  % Creates a categorical array with all-missing values.
+  #NaS Not-a-Categorical (missing-valued categorical array)
+  #
+  # Creates a categorical array with all-missing values.
   if nargin == 0
     out = categorical.undefined;
   else
     out = categorical.undefined (sz);
-  end
-end
+  endif
+endfunction

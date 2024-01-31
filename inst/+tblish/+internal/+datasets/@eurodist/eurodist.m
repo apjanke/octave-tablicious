@@ -43,7 +43,7 @@ classdef eurodist < tblish.internal.dataset
         471, 1048, 2108, 1157, 1157, 1724, 2010, 1273, 2097, 3188, 2409, 618, 1109, ...
         792, 1011, 2428, 1363, 331, 856, 586, 2187, 898, 821, 946, 1754, 428, 1476, ...
         1827, 1249, 2707, 1209, 2105]';
-      
+
       # TODO: Figure out the right way to load the UScitiesD data set in here
       out = struct;
       out.eurodist = eurodist;

@@ -55,7 +55,7 @@ function out = plot_pairs (varargin)
   else
     plot_type = 'scatter';
   endif
-  
+
   if isstruct (data)
     data = struct2table (data);
   endif
@@ -63,7 +63,7 @@ function out = plot_pairs (varargin)
     error ('plot_pairs: input data must be a table or struct');
   endif
   t = data;
-  
+
   if isempty (fig)
     fig = figure;
   endif
@@ -72,7 +72,7 @@ function out = plot_pairs (varargin)
   for i = 1:n_vars
     for j = 1:n_vars
       if i == j
-        % TODO: Figure out how to put the variable name in big text in this axes
+        # TODO: Figure out how to put the variable name in big text in this axes
         continue
       endif
       ix_subplot = (n_vars*(j-1) + i);
@@ -80,7 +80,7 @@ function out = plot_pairs (varargin)
       var_x = vars{i};
       var_y = vars{j};
       x = t.(var_x);
-      y = t.(var_y); 
+      y = t.(var_y);
       switch plot_type
         case "scatter"
           scatter (hax, x, y, 10);

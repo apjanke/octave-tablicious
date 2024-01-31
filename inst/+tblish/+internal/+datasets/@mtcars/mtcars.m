@@ -65,7 +65,7 @@ classdef mtcars < tblish.internal.dataset
         "AMC Javelin", "Camaro Z28", "Pontiac Firebird", "Fiat X1-9", "Porsche 914-2", ...
         "Lotus Europa", "Ford Pantera L", "Ferrari Dino", "Maserati Bora", ...
         "Volvo 142E"})';
-      
+
       out = table(model, mpg, cyl, disp, hp, drat, wt, qsec, vs, am, gear, carb);
     endfunction
 

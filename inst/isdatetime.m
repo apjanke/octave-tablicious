@@ -30,19 +30,19 @@
 ## @end deftypefn
 
 function out = isdatetime (x)
-  %ISDATETIME True if input is a datetime array.
+  #ISDATETIME True if input is a datetime array.
 
-  % Developer note: see istable for an explanation of this logic.
+  # Developer note: see istable for an explanation of this logic.
   if isa (x, 'datetime')
     out = true;
   elseif isobject (x)
-    % Respect isdatetime methods on classes.
+    # Respect isdatetime methods on classes.
     if ismember ('isdatetime', methods (x))
       out = isdatetime (x);
     else
       out = false;
-    end
+    endif
   else
     out = false;
-  end
-end
+  endif
+endfunction

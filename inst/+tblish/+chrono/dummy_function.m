@@ -21,9 +21,9 @@
 ##
 ## A dummy function just for testing the doco tools.
 ##
-## Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur 
-## ullamcorper pulvinar ligula, sit amet accumsan turpis dapibus at. 
-## Ut sit amet quam orci. Donec vel mauris elementum massa pretium tincidunt. 
+## Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur
+## ullamcorper pulvinar ligula, sit amet accumsan turpis dapibus at.
+## Ut sit amet quam orci. Donec vel mauris elementum massa pretium tincidunt.
 ##
 ## @end deftypefn
 

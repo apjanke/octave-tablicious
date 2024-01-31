@@ -24,7 +24,7 @@ function out = prefillNewSizeForSubsasgn(x, ixRef, fillVal)
     ix = ixRef{1};
     out = x;
     if max(ix) > numel(x)
-      if ~isvector(x)
+      if !isvector(x)
         error('Invalid resizing operation using out-of-bounds linear indexing on a non-vector input');
       endif
       out(max(ix)) = fillVal;
@@ -45,6 +45,6 @@ function out = prefillNewSizeForSubsasgn(x, ixRef, fillVal)
         oldRange{i} = 1:size(x,i);
       endfor
       out(oldRange{:}) = x;
-    end
+    endif
   endif
 endfunction

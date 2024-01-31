@@ -16,7 +16,7 @@
 ## along with Octave; see the file COPYING.  If not, see
 ## <https://www.gnu.org/licenses/>.
 
-## This class exists for Octave 4.2 compatibility: something about having a 
+## This class exists for Octave 4.2 compatibility: something about having a
 ## method with nested closures (my old implementation approach) is causing it
 ## to break, with an undefined function input even though one was supplied
 ## by the caller.
@@ -27,7 +27,7 @@ classdef ZoneFileSectionParser < handle
     data
     ix = 1 % A "cursor" index into data
   endproperties
-  
+
   methods
     function out = take_byte (this, n)
       if nargin < 2; n = 1; end
@@ -70,17 +70,17 @@ classdef ZoneFileSectionParser < handle
       my_ix = 1;
       while my_bytes(my_ix) ~= 0
         my_ix = my_ix + 1;
-      end
+      endwhile
       out = char (my_bytes(1:my_ix - 1));
     endfunction
 
     function [out, nBytesRead] = parseZoneSection (this)
-      %PARSEZONESECTION Parse one section of a tzinfo file
-      
-      % "get" functions read/convert data; "take" functions read/convert and
-      % advance the cursor
+      #PARSEZONESECTION Parse one section of a tzinfo file
 
-      % Header
+      # "get" functions read/convert data; "take" functions read/convert and
+      # advance the cursor
+
+      # Header
       h.magic = this.take_byte (4);
       h.magic_char = char (h.magic);
       format_id_byte = this.take_byte;
@@ -95,8 +95,8 @@ classdef ZoneFileSectionParser < handle
       h.n_time = counts_vals(4);
       h.n_type = counts_vals(5);
       h.n_char = counts_vals(6);
-      
-      % Body
+
+      # Body
       transitions = this.take_timeval (h.n_time);
       time_types = this.take_byte (h.n_time);
       ttinfos = struct ('gmtoff', int32 ([]), 'isdst', uint8 ([]), 'abbrind', uint8 ([]));
@@ -108,12 +108,12 @@ classdef ZoneFileSectionParser < handle
       for i = 1:h.n_type
         take_ttinfo;
       endfor
-      % It's not clearly documented, but following the ttinfo section are a
-      % series of null-terminated strings which hold the abbreviations. There's 
-      % no length indicator for them, so we have to scan for the null after the 
-      % last string.
+      # It's not clearly documented, but following the ttinfo section are a
+      # series of null-terminated strings which hold the abbreviations. There's
+      # no length indicator for them, so we have to scan for the null after the
+      # last string.
       abbrs = {};
-      if ~isempty (ttinfos.abbrind)
+      if !isempty (ttinfos.abbrind)
         last_abbrind = max (ttinfos.abbrind);
         ix_end = this.ix + double (last_abbrind);
         while this.data(ix_end) ~= 0

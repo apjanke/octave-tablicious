@@ -21,7 +21,7 @@
 ##
 ## Tests whether the given strings contain the given pattern(s).
 ##
-## @var{str} (char, cellstr, or string) is a list of strings to compare against 
+## @var{str} (char, cellstr, or string) is a list of strings to compare against
 ## pattern.
 ##
 ## @var{pattern} (char, cellstr, or string) is a list of patterns to match. These are
@@ -33,26 +33,26 @@
 ##
 ## @end deftypefn
 function out = contains (str, pattern, varargin)
-  
+
   [opts, args] = peelOffNameValueOptions (varargin, {'IgnoreCase'});
   ignore_case = false;
   if isfield (opts, 'IgnoreCase')
     mustBeScalarLogical (opts.IgnoreCase, 'IgnoreCase option');
     ignore_case = opts.IgnoreCase;
   endif
-  
+
   str = cellstr (str);
   pattern = cellstr (pattern);
-  
+
   if any (cellfun ('isempty', pattern(:)))
     out = true (size (str));
     return;
   endif
-  
-  % TODO: This implementation is inefficient, because strfind() scans the
-  % full string for multiple matches. Could replace this whole function with
-  % an oct-file that does efficient scanning.
-  
+
+  # TODO: This implementation is inefficient, because strfind() scans the
+  # full string for multiple matches. Could replace this whole function with
+  # an oct-file that does efficient scanning.
+
   if ignore_case
     str = lower (str);
     pattern = lower (pattern);

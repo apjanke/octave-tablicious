@@ -14,7 +14,7 @@
 ## along with this program; If not, see <http://www.gnu.org/licenses/>.
 
 function [out, indx] = setdiff_stable (A, B)
-  %SETDIFF_STABLE Set difference with stable value ordering
+  #SETDIFF_STABLE Set difference with stable value ordering
   [tf, loc] = ismember (A, B);
   out = A;
   indx = 1:numel (A);

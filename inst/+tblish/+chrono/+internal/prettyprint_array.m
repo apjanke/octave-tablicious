@@ -17,11 +17,11 @@
 ## <https://www.gnu.org/licenses/>.
 
 function out = prettyprint_array (strs)
-%PRETTYPRINT_ARRAY Pretty-print an array from dispstrs
-%
-% out = prettyprint_array (strs)
-%
-% strs (cellstr) is an array of display strings of any size.
+#PRETTYPRINT_ARRAY Pretty-print an array from dispstrs
+#
+# out = prettyprint_array (strs)
+#
+# strs (cellstr) is an array of display strings of any size.
 
 if ismatrix (strs)
     out = prettyprint_matrix (strs);
@@ -51,7 +51,7 @@ endif
 endfunction
 
 function out = prettyprint_matrix (strs)
-if ~ismatrix (strs)
+if !ismatrix (strs)
     error ('Input must be matrix; got %d-D', ndims (strs));
 endif
 lens = cellfun ('prodofsize', strs);

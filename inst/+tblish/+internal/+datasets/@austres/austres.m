@@ -48,7 +48,7 @@ classdef austres < tblish.internal.dataset
 
       out = table (date, residents);
     endfunction
-  
+
   endmethods
 
 endclassdef

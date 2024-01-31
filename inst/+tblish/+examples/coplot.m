@@ -106,12 +106,12 @@ function hax = coplot_one (fig, tbl, X, x_name, Y, y_name, g_ix, g_names, opts)
   n_groups = numel (u_g);
   hax = NaN (1, n_groups);
   g_strs = dispstrs (u_g);
-  
-  % Arrange subplots in a square
+
+  # Arrange subplots in a square
   square_side = ceil (sqrt (n_groups));
   n_rows = square_side;
   n_cols = square_side;
-  
+
   for i = 1:n_groups
     ix_row = ceil (i / n_cols);
     ix_col = 1 + rem (i, n_rows);
@@ -129,7 +129,7 @@ function hax = coplot_one (fig, tbl, X, x_name, Y, y_name, g_ix, g_names, opts)
     y_g = Y(tf_g);
     plot_fcn (ax, x_g, y_g, "o");
   endfor
-  
+
   linkaxes (hax, "xy");
   xlim (hax(1), [0 max(X)]);
   ylim (hax(1), [min(0, min(Y)) max(Y)]);

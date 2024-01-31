@@ -17,12 +17,12 @@
 ## <https://www.gnu.org/licenses/>.
 
 function out = mycombvec (vecs)
-  %MYCOMBVEC All combinations of values from vectors
-  %
-  % This is similar to Matlab's combvec, but has a different signature.
-  if ~iscell (vecs)
+  #MYCOMBVEC All combinations of values from vectors
+  #
+  # This is similar to Matlab's combvec, but has a different signature.
+  if !iscell (vecs)
     error ('Input vecs must be cell');
-  end
+  endif
   switch numel (vecs)
     case 0
       error ('Must supply at least one input vector');

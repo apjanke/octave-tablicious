@@ -21,7 +21,7 @@
 ## @deftypefnx {Function} {@var{out} =} NaS (@var{sz})
 ##
 ## “Not-a-String". Creates missing-valued string arrays.
-## 
+##
 ## Returns a new @code{string} array of all missing values of
 ## the given size. If no input @var{sz} is given, the result is a scalar missing
 ## string.
@@ -38,12 +38,12 @@
 ##
 ## @end deftypefn
 function out = NaS (sz)
-  %NaS Not-a-String (missing-valued string array)
-  %
-  % Creates a string array with all-missing values.
+  #NaS Not-a-String (missing-valued string array)
+  #
+  # Creates a string array with all-missing values.
   if nargin == 0
     out = string.missing;
   else
     out = string.missing (sz);
-  end
-end
+  endif
+endfunction

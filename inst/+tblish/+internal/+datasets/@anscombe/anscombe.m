@@ -39,7 +39,7 @@ classdef anscombe < tblish.internal.dataset
       out(3) = struct("x", x3, "y", y3);
       out(4) = struct("x", x4, "y", y4);
     endfunction
-  
+
   endmethods
 
 endclassdef

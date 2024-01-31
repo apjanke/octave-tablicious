@@ -17,7 +17,7 @@
 ## <https://www.gnu.org/licenses/>.
 
 function out = format_dispstr_array (strs)
-  %FORMAT_DISPSTR_ARRAY Format an array of strings as a matrix display
+  #FORMAT_DISPSTR_ARRAY Format an array of strings as a matrix display
 
   if ismatrix (strs)
       out = prettyprint_matrix (strs);
@@ -47,7 +47,7 @@ function out = format_dispstr_array (strs)
 endfunction
 
 function out = prettyprint_matrix (strs)
-  if ~ismatrix (strs)
+  if !ismatrix (strs)
     error ('Input must be matrix; got %d-D', ndims (strs));
   endif
   lens = cellfun ('prodofsize', strs);
