@@ -14,7 +14,7 @@
 ## along with this program; If not, see <http://www.gnu.org/licenses/>.
 
 ## -*- texinfo -*-
-## @deftypefn {Function} {@var{out} =} tableOuterFillValue (@var{x})
+## @deftypefn {Function} {@var{out} =} fillValForVal (@var{x})
 ##
 ## Outer fill value for variable within a table.
 ##
@@ -22,7 +22,7 @@
 ## when that value is used as a variable in a table that is involved in
 ## an outer join.
 ##
-## The default implementation for @code{tableOuterFillValue} has support for
+## The default implementation for @code{fillValForVal} has support for
 ## all Octave primitive types, plus cellstrs, datetime & friends, strings,
 ## and @code{table}-valued variables.
 ##
@@ -37,7 +37,7 @@
 ## ncols is the number of columns in the input.
 ##
 ## @end deftypefn
-function out = tableOuterFillValue (x)  
+function out = fillValForVal (x)  
   nCols = size (x, 2);
   if isnumeric (x)
     if isa (x, 'double') || isa (x, 'single')

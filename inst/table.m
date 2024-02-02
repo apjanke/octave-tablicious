@@ -2121,7 +2121,7 @@ classdef table
       fillVals = cell (1, width (this));
       for iCol = 1:width (this)
         x = this.VariableValues{iCol};
-        fillVals{iCol} = tableOuterFillValue (x);
+        fillVals{iCol} = tblish.internal.fillValForVal (x);
       endfor
       out = table (fillVals{:}, 'VariableNames', this.VariableNames);
     endfunction
