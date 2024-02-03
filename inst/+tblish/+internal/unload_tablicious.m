@@ -6,6 +6,7 @@ function unload_tablicious
   this_dir = fileparts (fullfile (mfilename ("fullpath")));
   inst_dir = fileparts (fileparts (this_dir));
   shims_dir = fullfile (inst_dir, "shims", "compat");
+  more_code_subdirs = {"validators"};
 
   # Unregister doco
 
@@ -39,5 +40,12 @@ function unload_tablicious
       rmpath (fullfile (shims_dir, compat_dir));
     endif
   endfor
+
+  # Load additional code subdirs
+
+  for i = 1:numel (more_code_subdirs)
+    rmpath (fullfile (inst_dir, more_code_subdirs{i}));
+  end
+
 
 endfunction

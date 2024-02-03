@@ -5,9 +5,17 @@ function load_tablicious
 
   this_dir = fileparts (fullfile (mfilename ("fullpath")));
   inst_dir = fileparts (fileparts (this_dir));
+  more_code_subdirs = {"validators"};
   shims_dir = fullfile (inst_dir, "shims", "compat");
 
+  # Load additional code subdirs
+
+  for i = 1:numel (more_code_subdirs)
+    addpath (fullfile (inst_dir, more_code_subdirs{i}));
+  end
+
   # Load compatibility shims
+
   orig_warn = warning;
   warning off Octave:shadowed-function
   addpath (fullfile (shims_dir, 'all'));

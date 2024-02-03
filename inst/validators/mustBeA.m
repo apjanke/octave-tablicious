@@ -14,12 +14,13 @@
 ## along with this program; If not, see <http://www.gnu.org/licenses/>.
 
 ## -*- texinfo -*-
-## @deftypefn {Function File} {@var{x} =} mustBeScalar (@var{x}, @var{label})
+## @deftypefn {Function File} {@var{x} =} mustBeA (@var{x}, @var{type})
+## @deftypefnx {Function File} {@var{x} =} mustBeA (@var{x}, @var{type}, @var{label})
 ##
-## Requires that input is scalar.
+## Requires that input is of a given type.
 ##
-## Raises an error if the input @var{x} is not scalar, as determined by
-## @code{isscalar (x)}.
+## Raises an error if the input @var{x} is not of type @var{type}, as determined by
+## @code{isa (x, type)}.
 ##
 ## @var{label} is an optional input that determines how the input will be described in
 ## error messages. If not supplied, @code{inputname (1)} is used, and if that is
@@ -27,12 +28,16 @@
 ##
 ## @end deftypefn
 
-function mustBeScalar (x)
-  if !isscalar (x)
-    name = inputname (1);
-    if isempty (name)
-      name = 'input';
-    endif
-    error ('%s must be scalar', name);
+function mustBeA (x, type, label)
+  if nargin < 3; label = []; endif
+  if isa (x, type)
+    return
   endif
+  if isempty (label)
+    label = inputname (1);
+  endif
+  if isempty (label)
+    label = "input";
+  endif
+  error ('%s must be of type %s; got %s', label, type, class (x));
 endfunction
