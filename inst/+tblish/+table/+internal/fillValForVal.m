@@ -18,30 +18,35 @@
 ##
 ## Outer fill value for variable within a table.
 ##
-## Determines the fill value to usse for a given variable value @var{x}
+## Determines the fill value to use for a given variable value @var{x}
 ## when that value is used as a variable in a table that is involved in
-## an outer join.
+## an outer join, an all-missing table is being constructed, or "missing"
+## placeholder values are needed for other reasons.
 ##
-## The default implementation for @code{fillValForVal} has support for
-## all Octave primitive types, plus cellstrs, datetime & friends, strings,
-## and @code{table}-valued variables.
+## This implementation for @code{fillValForVal} has support for all Octave
+## primitive types, plus cellstrs, datetime & friends, strings, and
+## @code{table}-valued variables. It also default logic that will determine
+## the fill value for an arbitrary type by detecting the value used to fill
+## elements during array expansion operations. This will be appropriate for
+## most data types.
 ##
-## This function may become private to table before version 1.0. It is currently
-## global to make debugging more convenient. It (or an equivalent) will remain
-## global if we want to allow user-defined classes to customize their fill value.
-## It also has default logic that will determine the fill value for an arbitrary
-## type by detecting the value used to fill elements during array expansion
-## operations. This will be appropriate for most data types.
+## This is an internal function for Tablicious's own use, and not part of its
+## public API. In the future, a public function may be provided to allow
+## user-defined classes to define their own fill values, but this is not
+## currently supported.
 ##
-## Returns a 1-by-ncols value of the same type as x, which may be any type, where
-## ncols is the number of columns in the input.
+## Returns a 1-by-ncols value of the same type as x, which may be any type,
+## where ncols is the number of columns in the input.
 ##
 ## @end deftypefn
 function out = fillValForVal (x)
   nCols = size (x, 2);
+
   if isnumeric (x)
-    if isa (x, 'double') || isa (x, 'single')
+    if isa (x, 'double')
       out = NaN (1, nCols);
+    elseif isa (x, 'single')
+      out = single (NaN (1, nCols));
     elseif isinteger (x)
       out = zeros (1, nCols, class (x));
     else
@@ -53,14 +58,12 @@ function out = fillValForVal (x)
       # This is an exception to the "check the type, not its values" rule.
       out = repmat ({''}, 1, nCols);
     else
-      error ('table: outer fill values for non-cellstr cells are not supported');
+      out = repmat ({[]}, 1, nCols);
     endif
   elseif isa (x, 'datetime')
     out = NaT (1, nCols);
-  elseif isa (x, 'duration') || isa (x, 'calendarDuration')
-    out = NaN (1, nCols);
   elseif isa (x, 'string')
-    out = NaS ([1 nCols]);
+    out = NaS (1, nCols);
   elseif isa (x, 'table')
     if hasrownames (x)
       error (['table: cannot construct outer fill values for table-valued ' ...
@@ -68,17 +71,14 @@ function out = fillValForVal (x)
     endif
     varVals = cell (1, size (x, 2));
     for i = 1:width (x)
-      varVals{i} = tableOuterFillValue (x.Properties.VariableValues{i});
+      varVals{i} = tblish.table.internal.fillValForVal (x.Properties.VariableValues{i});
     endfor
     varNames = x.Properties.VariableNames;
     out = table (varVals{:}, 'VariableNames', x.Properties.VariableNames);
   elseif isa (x, 'categorical')
-    # We may need to construct an <undefined> value of the particular categories
-    # in a categorical variable. Currently a moot point since categorical is not
-    # defined in Octave yet.
-    error ('table: outer fill values for categorical variables are not yet implemented');
+    out = NaC (1, nCols);
   else
-    # Fall back to using array-expansion fill value
+    # General case: Fall back to using array-expansion fill value
     if isempty (x)
       # Assume the 0-arg constructor works
       x0 = feval (class (x));

@@ -14,9 +14,14 @@
 ## along with this program; If not, see <http://www.gnu.org/licenses/>.
 
 function [opts, remainingArgs, peeledArgs] = peelOffNameValueOptions (args, knownOpts)
-  #PEELOFFNAMEVALUEOPTIONS Peel off name-value options from argins
+  # Peel off name-value options from argins.
   #
   # Peels off recognized name-value options from the end of an argument array.
+  #
+  # Returns:
+  #   * opts: a struct of the name/value options
+  #   * remainingArgs: a cell vector of the arguments before the ones peeled off.
+  #   * peeldArgs: a cell vector of the arguments that were peeled off.
   opts = struct;
   peeledArgs = {};
   while numel (args) >= 2 && ischar (args{end-1}) && ismember (args{end-1}, knownOpts)

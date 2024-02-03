@@ -92,6 +92,11 @@ classdef table
     ## inputs to this constructor become the variables of the table. Their names
     ## are automatically detected from the input variable names that you used.
     ##
+    ## Note: If you call the constructor with exactly three arguments, and the first
+    ## argument is exactly the value '__tblish_backdoor__', that will trigger a special internal-use
+    ## backdoor calling form, and you will get incorrect results. This is a bug in
+    ## Tablicious.
+    ##
     ## @end deftypefn
     ##
     ## @deftypefn {Constructor} {@var{obj} =} table (@code{'Size'}, @var{sz}, @
@@ -111,34 +116,85 @@ classdef table
     ## @end deftypefn
     function this = table (varargin)
 
-      # Peel off trailing options
-      [opts, args] = peelOffNameValueOptions (varargin, {'VariableNames', 'RowNames'});
+      # TODO: Add object validation, for all calling forms
 
-      # Calling form handling
+      # Special internal-use calling forms
+      # Handle these first to avoid getting mixed up with general arg-parsing code
+      if nargin == 3 && isequal (varargin{1}, '__tblish_backdoor__')
+        # Undocumented form for internal use; not part of table's public interface.
+        #
+        # This backdoor form provides a uniform interface for constructing tables with
+        # variables of any value, avoiding edge cases in the variadic calling form where
+        # the input variables are string values that match option names and collide with
+        # the name/val options calling forms.
+        #
+        # TODO: Replace the string backdoor indicator with a special sentinel class.
+        [varNames, varVals] = varargin{2:3};
+        this.VariableNames = varNames;
+        this.VariableValues = varVals;
+        return
+      endif
+
+      # Parse input args
+      optNames = {'VariableNames', 'Size', 'VariableTypes', 'RowNames', 'DimensionNames'};
+      unsupportedOptions = {};
+      [opts, args] = peelOffNameValueOptions (varargin, optNames);
+      optsPresent = fieldnames (opts);
+      tfUnsupp = ismember (optsPresent, unsupportedOptions);
+      if any (tfUnsupp)
+        error ('table: unsupported constructor options: %s', ...
+          strjoin (optsPresent(tfUnsupp), ', '))
+      endif
       nargs = numel (args);
-      if nargs == 3 && isequal (args{1}, 'Backdoor')
-        # Undocumented form for internal use
-        [varNames, varVals] = args{2:3};
-      elseif nargs == 4 && isequal (args{1}, 'Size') && isequal (args{3}, 'VariableTypes')
-        error('table: This constructor form is unimplemented');
-      else
-        varVals = args;
+
+      # Special case for "preallocation constructor" form
+      preallocOptions = {'Size', 'VariableTypes'};
+      tfPrealloc = ismember (preallocOptions, fieldnames (opts));
+      if any (tfPrealloc)
+        if ~all (tfPrealloc)
+          error (['table: invalid constructor call: if any of the options (%s) are ' ...
+            'given, they all must be. Missing: %s'], ...
+            strjoin (preallocOptions, ', '), strjoin (preallocOptions(!tfPrealloc), ', '))
+        endif
+        # Copy fields from a new object bc I don't know if Octave supports 'this'
+        # replacement in constructors.
         if isfield (opts, 'VariableNames')
           varNames = opts.VariableNames;
         else
-          varNames = cell (size (args));
-          for i = 1:numel (args)
-            varNames{i} = inputname (i);
-            if isempty (varNames{i})
-              varNames{i} = sprintf('Var%d', i);
-            endif
-          endfor
+          varNames = [];
         endif
+        blank = tblish.table.internal.blankTable (opts.Size, opts.VariableTypes, varNames, 'ctor');
+        flds = fieldnames (this);
+        for iFld = 1:numel(flds)
+          this.(flds{iFld}) = blank.(flds{iFld});
+        endfor
+        return
+      endif
+
+      # General case (variadic form)
+
+      nVars = numel (args);
+      varVals = args;
+      if isfield (opts, 'VariableNames')
+        varNames = opts.VariableNames;
+      else
+        # Infer variable names from argin names
+        varNames = cell (1, nVars);
+        defaultVarNames = tblish.table.internal.defaultVarNames (nVars);
+        for i = 1:numel (args)
+          varNames{i} = inputname (i);
+          if isempty (varNames{i})
+            varNames{i} = defaultVarNames{i};
+          endif
+        endfor
       endif
 
       # Input validation
       if !iscell (varVals) || (!isvector (varVals) && !isempty (varVals))
         error('table: VariableValues must be a cell vector');
+      endif
+      if isstring (varNames)
+        varNames = cellstr (varNames);
       endif
       if !iscellstr (varNames) || (!isvector (varNames) && !isempty (varNames))
         error('table: VariableNames must be a cellstr vector');
@@ -147,19 +203,19 @@ classdef table
       varVals = varVals(:)';
       if numel (varNames) ~= numel (varVals)
         error ('table: Inconsistent number of VariableNames (%d) and VariableValues (%d)', ...
-         numel (varNames), numel (varVals));
+          numel (varNames), numel (varVals));
       endif
       if !isempty (varVals)
-        nrows = size (varVals{1}, 1);
+        nRows = size (varVals{1}, 1);
         for i = 2:numel (varVals)
           if ndims (varVals{i}) > 2
             error (['table: Variable values may not have > 2 dimensions; ' ...
               'input %d (%s) has %d'], i, varNames{i}, ndims (varVals{i}));
           endif
-          nrows2 = size (varVals{i}, 1);
-          if nrows ~= nrows2
+          nRows2 = size (varVals{i}, 1);
+          if nRows ~= nRows2
             error ('table: Inconsistent sizes: var 1 (%s) is %d rows; var %d (%s) is %d rows', ...
-              varNames{1}, nrows, i, varNames{i}, nrows2);
+              varNames{1}, nRows, i, varNames{i}, nRows2);
           endif
         endfor
       endif
@@ -175,6 +231,9 @@ classdef table
       this.VariableValues = varVals;
       if isfield (opts, 'RowNames')
         this.RowNames = opts.RowNames;
+      endif
+      if isfield (opts, 'DimensionNames')
+        this.DimensionNames = opts.DimensionNames;
       endif
     endfunction
 
@@ -2121,7 +2180,7 @@ classdef table
       fillVals = cell (1, width (this));
       for iCol = 1:width (this)
         x = this.VariableValues{iCol};
-        fillVals{iCol} = tblish.internal.fillValForVal (x);
+        fillVals{iCol} = tblish.table.internal.fillValForVal (x);
       endfor
       out = table (fillVals{:}, 'VariableNames', this.VariableNames);
     endfunction
