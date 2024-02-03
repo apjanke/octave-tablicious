@@ -163,7 +163,7 @@ classdef table
         else
           varNames = [];
         endif
-        blank = tblish.table.internal.blankTable (opts.Size, opts.VariableTypes, varNames, 'ctor');
+        blank = tblish.internal.table.blankTable (opts.Size, opts.VariableTypes, varNames, 'ctor');
         flds = fieldnames (this);
         for iFld = 1:numel(flds)
           this.(flds{iFld}) = blank.(flds{iFld});
@@ -180,7 +180,7 @@ classdef table
       else
         # Infer variable names from argin names
         varNames = cell (1, nVars);
-        defaultVarNames = tblish.table.internal.defaultVarNames (nVars);
+        defaultVarNames = tblish.internal.table.defaultVarNames (nVars);
         for i = 1:numel (args)
           varNames{i} = inputname (i);
           if isempty (varNames{i})
@@ -2052,7 +2052,7 @@ classdef table
       keysA = subsetvars (A, opts2.keyIxA);
       keysB = subsetvars (B, opts2.keyIxB);
       [pkA, pkB] = proxykeysForMatrixes (keysA, keysB);
-      ixs = tblish.table.internal.matchrows (pkA, pkB);
+      ixs = tblish.internal.table.matchrows (pkA, pkB);
       subA = subsetvars (A, opts2.varIxA);
       subB = subsetvars (B, opts2.varIxB);
       [subA, subB] = makeVarNamesUnique (subA, subB);
@@ -2132,7 +2132,7 @@ classdef table
       keysA = subsetvars (A, opts2.keyIxA);
       keysB = subsetvars (B, opts2.keyIxB);
       [pkA, pkB] = proxykeysForMatrixes (keysA, keysB);
-      [ixs, ixUnmatchedA, ixUnmatchedB] = tblish.table.internal.matchrows (pkA, pkB);
+      [ixs, ixUnmatchedA, ixUnmatchedB] = tblish.internal.table.matchrows (pkA, pkB);
       subA = subsetvars (A, opts2.varIxA);
       subB = subsetvars (B, opts2.varIxB);
       [subA, subB] = makeVarNamesUnique (subA, subB);
@@ -2180,7 +2180,7 @@ classdef table
       fillVals = cell (1, width (this));
       for iCol = 1:width (this)
         x = this.VariableValues{iCol};
-        fillVals{iCol} = tblish.table.internal.fillValForVal (x);
+        fillVals{iCol} = tblish.internal.table.fillValForVal (x);
       endfor
       out = table (fillVals{:}, 'VariableNames', this.VariableNames);
     endfunction
@@ -3266,7 +3266,7 @@ classdef table
         else
           ixVar(!tf) = 0;
         endif
-      elseif isa (varRef, 'tblish.table.internal.vartype_filter')
+      elseif isa (varRef, 'tblish.internal.table.vartype_filter')
         ixVar = [];
         for i = 1:width (this)
           if varRef.matches (this.VariableValues{i})

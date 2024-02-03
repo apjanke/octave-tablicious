@@ -98,6 +98,6 @@ if tf
 endif
 
 # General case: detect using ctor and array expansion
-out = tblish.table.internal.fillValForTypeGeneric (typeName);
+out = tblish.internal.table.fillValForTypeGeneric (typeName);
 
 endfunction

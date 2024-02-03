@@ -63,7 +63,7 @@ classdef WindowsIanaZoneConverter
     function out = readWindowsZonesFile (this)
       this_dir = fileparts (mfilename ('fullpath'));
       zones_file = fullfile (this_dir, 'resources', 'windowsZones', 'windowsZones.xml');
-      txt = tblish.chrono.internal.slurpTextFile (zones_file);
+      txt = tblish.internal.chrono.slurpTextFile (zones_file);
       # Base Octave doesn't have XML reading, so we'll kludge it with regexps
       pattern = '<mapZone +other="([^"]*)" +territory="([^"]*)" type="([^"]*)" */>';
       [starts,tok] = regexp (txt, pattern, 'start', 'tokens');

@@ -49,15 +49,15 @@ doCtorStyle = isequal (fillStyle, 'ctor');
 
 [nRows, nVars] = deal (sz(1), sz(2));
 if isempty (varNames)
-  varNames = tblish.table.internal.defaultVarNames (nVars);
+  varNames = tblish.internal.table.defaultVarNames (nVars);
 endif
 
 varVals = cell (1, nVars);
 for i = 1:nVars
   if doCtorStyle
-    proto = tblish.table.internal.fillValForTypeCtorStyle (varTypes{i});
+    proto = tblish.internal.table.fillValForTypeCtorStyle (varTypes{i});
   else
-    proto = tblish.table.internal.fillValForType (varTypes{i});
+    proto = tblish.internal.table.fillValForType (varTypes{i});
   endif
   if nRows == 1
     varVal = proto;

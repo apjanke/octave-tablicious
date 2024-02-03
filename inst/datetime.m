@@ -65,7 +65,7 @@ classdef datetime
 
   properties (Constant)
     PosixEpochDatenum = datenum (1970, 1, 1);
-    SystemTimeZone = tblish.chrono.internal.detect_system_timezone;
+    SystemTimeZone = tblish.internal.chrono.detect_system_timezone;
   endproperties
 
   properties (Access = private)
@@ -384,7 +384,7 @@ classdef datetime
         error ('TimeZone must be a char row vector; got a %s %s', ...
           size2str (size (x)), class (x));
       endif
-      tzdb = tblish.chrono.internal.tzinfo.TzDb.instance;
+      tzdb = tblish.internal.chrono.tzinfo.TzDb.instance;
       if ! isempty (x) && ! ismember (x, tzdb.definedZones)
         error ('Undefined TimeZone: %s', x);
       endif
@@ -606,7 +606,7 @@ classdef datetime
         endif
         fprintf (' %s\n', str);
       else
-        txt = tblish.chrono.internal.format_dispstr_array (dispstrs (this));
+        txt = tblish.internal.chrono.format_dispstr_array (dispstrs (this));
         fprintf ('%s\n', txt);
         if !isempty (this.TimeZone)
           fprintf ('  %s\n', this.TimeZone);
@@ -1016,7 +1016,7 @@ classdef datetime
         out = A;
         out.dnums = A.dnums + B.days;
       elseif isa (B, 'calendarDuration')
-        [A, B] = tblish.chrono.internal.scalarexpand (A, B);
+        [A, B] = tblish.internal.chrono.scalarexpand (A, B);
         out = A;
         for i = 1:numel (A)
           A_i = subset (A, i);
@@ -1488,7 +1488,7 @@ classdef datetime
         rhs = datetime (rhs);
       endif
       out = this;
-      out.dnums = tblish.chrono.internal.prefillNewSizeForSubsasgn(this.dnums, s.subs, NaN);
+      out.dnums = tblish.internal.chrono.prefillNewSizeForSubsasgn(this.dnums, s.subs, NaN);
       out.dnums(s.subs{:}) = rhs.dnums;
     endfunction
 
@@ -1549,7 +1549,7 @@ classdef datetime
     function out = convertDatenumTimeZone (dnum, fromZoneId, toZoneId)
       #CONVERTDATENUMTIMEZONE Convert time zone on datenums
       narginchk (3, 3);
-      tzdb = tblish.chrono.internal.tzinfo.TzDb;
+      tzdb = tblish.internal.chrono.tzinfo.TzDb;
       fromZone = tzdb.zoneDefinition (fromZoneId);
       toZone = tzdb.zoneDefinition (toZoneId);
       dnumUtc = fromZone.localtimeToGmt (dnum);

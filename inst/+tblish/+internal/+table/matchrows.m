@@ -63,8 +63,8 @@ function [ixs, ixUnmatchedA, ixUnmatchedB] = matchrows_two_way_ismember (A, B)
   [uB, ixIB, ixJB] = unique (B, 'rows');
   # ixsK is a cell containing a list of all indexes in the input that mapped
   # to that row in the unique output
-  ixsKA = tblish.table.internal.jndx2kndxs (ixJA);
-  ixsKB = tblish.table.internal.jndx2kndxs (ixJB);
+  ixsKA = tblish.internal.table.jndx2kndxs (ixJA);
+  ixsKB = tblish.internal.table.jndx2kndxs (ixJB);
 
   [tf, loc] = ismember (uA, uB, 'rows');
   tfUnmatchedUA = !tf;

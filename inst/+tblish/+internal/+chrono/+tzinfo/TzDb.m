@@ -31,7 +31,7 @@ classdef TzDb
       #INSTANCE Shared global instance of TzDb
       persistent value
       if isempty (value)
-        value = tblish.chrono.internal.tzinfo.TzDb;
+        value = tblish.internal.chrono.tzinfo.TzDb;
       endif
       out = value;
     endfunction
@@ -48,7 +48,7 @@ classdef TzDb
       # and an error on Windows).
       if nargin < 1;  path = [];  endif
       if isempty (path)
-        this.path = tblish.chrono.internal.tzinfo.TzDb.defaultPath;
+        this.path = tblish.internal.chrono.tzinfo.TzDb.defaultPath;
       else
         this.path = path;
       endif
@@ -61,7 +61,7 @@ classdef TzDb
       #
       # Returns the zoneinfo database version as a string.
       versionFile = [this.path '/+VERSION'];
-      txt = tblish.chrono.internal.slurpTextFile (versionFile);
+      txt = tblish.internal.chrono.slurpTextFile (versionFile);
       out = strtrim (txt);
     endfunction
 
@@ -91,7 +91,7 @@ classdef TzDb
       persistent value
       if isempty (value)
         specialFiles = {'+VERSION', 'iso3166.tab', 'zone.tab', 'posixrules'};
-        files = tblish.chrono.internal.findFiles (this.path);
+        files = tblish.internal.chrono.findFiles (this.path);
         if ispc
           files = strrep(files, '\', '/');
         endif
@@ -113,7 +113,7 @@ classdef TzDb
       s = this.readZoneFile (zoneId);
 
       # We prefer the version 2 stuff
-      out = tblish.chrono.internal.tzinfo.TzInfo;
+      out = tblish.internal.chrono.tzinfo.TzInfo;
       if isfield (s, 'section2')
         defn_s = s.section2;
         defn_s.goingForwardPosixZone = s.goingForwardPosixZone;
@@ -121,7 +121,7 @@ classdef TzDb
         defn_s = s.section1;
       endif
       defn_s.zoneId = zoneId;
-      out = tblish.chrono.internal.tzinfo.TzInfo (defn_s);
+      out = tblish.internal.chrono.tzinfo.TzInfo (defn_s);
       out = calculateDerivedData (out);
     endfunction
   endmethods
@@ -134,7 +134,7 @@ classdef TzDb
       # on all systems.
       zoneTabFile = [this.path '/zone.tab'];
 
-      txt = tblish.chrono.internal.slurpTextFile (zoneTabFile);
+      txt = tblish.internal.chrono.slurpTextFile (zoneTabFile);
       lines = strsplit (txt, sprintf('\n'));
       starts = regexp (lines, '^\s*#|^\s*$', 'start', 'once');
       tfComment = ~cellfun ('isempty', starts);
@@ -170,12 +170,12 @@ classdef TzDb
             zoneId, zoneFile);
       endif
 
-      tzZoneFile = tblish.chrono.internal.tzinfo.TzZoneFile (zoneFile);
+      tzZoneFile = tblish.internal.chrono.tzinfo.TzZoneFile (zoneFile);
       out = tzZoneFile.readZoneFile ();
     endfunction
 
     function [out, n_bytes_read] = parseZoneSection(this, data, sectionFormat)
-      parser = tblish.chrono.internal.tzinfo.ZoneFileSectionParser;
+      parser = tblish.internal.chrono.tzinfo.ZoneFileSectionParser;
       parser.data = data;
       parser.sectionFormat = sectionFormat;
       [out, n_bytes_read] = parser.parseZoneSection;

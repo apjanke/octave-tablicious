@@ -19,7 +19,7 @@
 function out = detect_system_timezone
   try
     out = do_detection ();
-    tzdb = tblish.chrono.internal.tzinfo.TzDb;
+    tzdb = tblish.internal.chrono.tzinfo.TzDb;
     if !ismember (out, tzdb.definedZones)
       warning ('System time zone ''%s'' is not defined in the tzinfo database.', ...
         out);
@@ -59,13 +59,13 @@ function out = do_detection ()
   endif
   if isempty (out) && exist ('/etc/timezone')
     # This exists on Debian
-    out = strtrim (tblish.chrono.internal.slurpTextFile ('/etc/timezone'));
+    out = strtrim (tblish.internal.chrono.slurpTextFile ('/etc/timezone'));
   endif
   if isempty (out) && ispc
     # Newer Windows can do it with PowerShell
     win_zone = detect_timezone_using_powershell;
     if !isempty (win_zone)
-      converter = tblish.chrono.internal.tzinfo.WindowsIanaZoneConverter;
+      converter = tblish.internal.chrono.tzinfo.WindowsIanaZoneConverter;
       out = converter.windows2iana (win_zone);
     endif
   endif

@@ -281,7 +281,7 @@ classdef duration
         fprintf ('Empty %s %s\n', size2str (size (this)), class (this));
         return;
       endif
-      out = tblish.chrono.internal.format_dispstr_array (dispstrs (this));
+      out = tblish.internal.chrono.format_dispstr_array (dispstrs (this));
       fprintf ('%s\n', out);
     endfunction
 
@@ -916,7 +916,7 @@ classdef duration
         rhs = duration (rhs);
       endif
       out = this;
-      out.days = tblish.chrono.internal.prefillNewSizeForSubsasgn(this.days, s.subs, NaN);
+      out.days = tblish.internal.chrono.prefillNewSizeForSubsasgn(this.days, s.subs, NaN);
       out.days(s.subs{:}) = rhs.days;
     endfunction
 

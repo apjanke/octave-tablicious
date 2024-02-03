@@ -63,7 +63,7 @@ classdef TzInfo
         this.isGmt = s.is_gmt;
         if isfield (s, 'goingForwardPosixZone')
           this.goingForwardPosixZone = s.goingForwardPosixZone;
-          #this.goingForwardPosixZoneRule = tblish.chrono.internal.tzinfo.PosixZoneRule(...
+          #this.goingForwardPosixZoneRule = tblish.internal.chrono.tzinfo.PosixZoneRule(...
           #  this.goingForwardPosixZone);
         endif
         this = calculateDerivedData (this);
@@ -75,7 +75,7 @@ classdef TzInfo
     function this = calculateDerivedData (this)
       #CALCULATEDERIVEDDATA Calculate this' derived data fields.
       this.ttinfos.gmtoff = double (this.ttinfos.gmtoff);
-      this.ttinfos.gmtoffDatenum = tblish.chrono.internal.tzinfo.TzInfo.secondsToDatenum (this.ttinfos.gmtoff);
+      this.ttinfos.gmtoffDatenum = tblish.internal.chrono.tzinfo.TzInfo.secondsToDatenum (this.ttinfos.gmtoff);
       gmtoffsAtTransitions = this.ttinfos.gmtoff(this.timeTypes);
       this.transitionsLocal = this.transitions + gmtoffsAtTransitions;
       this.transitionsDatenum = datetime.posix2datenum (this.transitions);
@@ -96,19 +96,19 @@ classdef TzInfo
     function disp (this)
       #DISP Custom display.
       if isempty (this)
-        fprintf ('Empty %s %s\n', tblish.chrono.internal.size2str (size (this)), class (this));
+        fprintf ('Empty %s %s\n', tblish.internal.chrono.size2str (size (this)), class (this));
       elseif isscalar (this)
         fprintf ('TzInfo: %s\n', this.id);
         displayCommonInfo (this);
       else
-        fprintf ('%s: %s\n', class (this), tblish.chrono.internal.size2str (size (this)));
+        fprintf ('%s: %s\n', class (this), tblish.internal.chrono.size2str (size (this)));
       endif
     endfunction
 
     function prettyprint (this)
       #PRETTYPRINT Display this' data in human-readable format.
       if !isscalar (this)
-        fprintf ('%s: %s\n', class (this), tblish.chrono.internal.size2str (size (this)));
+        fprintf ('%s: %s\n', class (this), tblish.internal.chrono.size2str (size (this)));
         return;
       endif
       fprintf ('TzInfo: %s\n', this.id);
@@ -124,7 +124,7 @@ classdef TzInfo
       fprintf ('  %12s %10s %5s %8s %-8s\n', 'gmtoff', 'gmtoffdn', 'isdst', 'abbrind', 'abbr');
       tti = this.ttinfos;
       for i = 1:numel (this.ttinfos.gmtoff)
-        gmtoffDur = duration.ofDays (tblish.chrono.internal.tzinfo.TzInfo.secondsToDatenum (this.ttinfos.gmtoff(i)));
+        gmtoffDur = duration.ofDays (tblish.internal.chrono.tzinfo.TzInfo.secondsToDatenum (this.ttinfos.gmtoff(i)));
         fprintf ('  %12d %10s %5d %8d %-8s\n', ...
           tti.gmtoff(i), char (gmtoffDur), tti.isdst(i), tti.abbrind(i), tti.abbr{i});
       endfor
@@ -151,7 +151,7 @@ classdef TzInfo
     endfunction
 
     function out = localtimeToGmt (this, dnum)
-      if ismember (this.id, tblish.chrono.internal.tzinfo.TzInfo.utcZoneAliases)
+      if ismember (this.id, tblish.internal.chrono.tzinfo.TzInfo.utcZoneAliases)
         # Have to special-case this because it relies on POSIX zone rules, which
         # are not implemented yet
         offsets = zeros (size (dnum));
@@ -173,7 +173,7 @@ classdef TzInfo
             loc(i_dnum) = ix;
           endif
         endfor
-        #[tf,loc] = tblish.chrono.internal.algo.binsearch (dnum, this.transitionsLocalDatenum);
+        #[tf,loc] = tblish.internal.chrono.algo.binsearch (dnum, this.transitionsLocalDatenum);
         ix = loc;
         tfOutOfRange = isnan(ix) | ix == numel (this.transitions);
         # In-range dates take their period's gmt offset
@@ -189,12 +189,12 @@ classdef TzInfo
     endfunction
 
     function out = gmtToLocaltime (this, dnum)
-      if ismember(this.id, tblish.chrono.internal.tzinfo.TzInfo.utcZoneAliases)
+      if ismember(this.id, tblish.internal.chrono.tzinfo.TzInfo.utcZoneAliases)
         # Have to special-case this because it relies on POSIX zone rules, which
         # are not implemented yet
         offsets = zeros( size (dnum));
       else
-        [tf,loc] = tblish.chrono.internal.algo.binsearch (dnum, this.transitionsDatenum);
+        [tf,loc] = tblish.internal.chrono.algo.binsearch (dnum, this.transitionsDatenum);
         ix = loc;
         ix(!tf) = (-loc(!tf)) - 1; % ix is now index of the transition each dnum is after
         tfOutOfRange = ix == 0 | ix == numel(this.transitions);

@@ -37,6 +37,6 @@ if ~isscalar (protoVal)
     "returned a non-scalar value: size was %s"], typeName, size2str (size (protoVal)))
 endif
 
-out = tblish.table.internal.fillValForVal (protoVal);
+out = tblish.internal.table.fillValForVal (protoVal);
 
 endfunction

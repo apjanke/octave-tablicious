@@ -54,7 +54,7 @@ classdef TzZoneFile
         # object construction.
         error('No such file: %s', this.file);
       endif
-      data = tblish.chrono.internal.slurpBinaryFile (this.file);
+      data = tblish.internal.chrono.slurpBinaryFile (this.file);
 
       # Parse tzinfo format file
       ix = 1;
@@ -92,7 +92,7 @@ classdef TzZoneFile
     endfunction
 
     function [out, n_bytes_read] = parseZoneSection(this, data, sectionFormat)
-      parser = tblish.chrono.internal.tzinfo.ZoneFileSectionParser;
+      parser = tblish.internal.chrono.tzinfo.ZoneFileSectionParser;
       parser.data = data;
       parser.sectionFormat = sectionFormat;
       [out, n_bytes_read] = parser.parseZoneSection;

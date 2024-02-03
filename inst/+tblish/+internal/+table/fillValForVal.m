@@ -71,7 +71,7 @@ function out = fillValForVal (x)
     endif
     varVals = cell (1, size (x, 2));
     for i = 1:width (x)
-      varVals{i} = tblish.table.internal.fillValForVal (x.Properties.VariableValues{i});
+      varVals{i} = tblish.internal.table.fillValForVal (x.Properties.VariableValues{i});
     endfor
     varNames = x.Properties.VariableNames;
     out = table (varVals{:}, 'VariableNames', x.Properties.VariableNames);

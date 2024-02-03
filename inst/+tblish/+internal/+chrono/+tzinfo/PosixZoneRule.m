@@ -12,7 +12,7 @@ classdef PosixZoneRule
 
   methods (Static)
     function out = parseZoneRule (str)
-      out = tblish.chrono.internal.algo.PosixZoneRule;
+      out = tblish.internal.chrono.algo.PosixZoneRule;
       if !isrow (in)
         error ('in must be charvec; got non-row char');
       endif
@@ -40,7 +40,7 @@ classdef PosixZoneRule
         return
       endif
       if ischar (in)
-        this = tblish.chrono.internal.tzinfo.PosixZoneRule.parseZoneRule(in);
+        this = tblish.internal.chrono.tzinfo.PosixZoneRule.parseZoneRule(in);
       endif
     endfunction
 
