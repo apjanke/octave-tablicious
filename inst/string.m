@@ -142,9 +142,9 @@ classdef string
     ## @end deftypefn
     function out = missing (sz)
       if nargin < 2
-        out = string;
+        out = string (missing);
       else
-        out = repmat (string, sz);
+        out = repmat (string (missing), sz);
       endif
     endfunction
 
