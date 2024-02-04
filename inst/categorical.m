@@ -250,10 +250,13 @@ classdef categorical
       if (ischar (x))
         x = cellstr (x);
       endif
-      if (numel (args) >= 1)
+      if isempty (args)
+        valueset = unique (x);
+        valueset = valueset(! isnanny (valueset));
+      else
         valueset = args{1};
         valueset = valueset(:)';
-        if (any (ismissing (valueset)))
+        if (any (isnanny (valueset)))
           error ('categorical:InvalidInput', 'categorical: Cannot have missing values in valueset');
         endif
         u_valueset = unique (valueset);
@@ -261,9 +264,6 @@ classdef categorical
           error ("categorical:InvalidInput", ...
             "categorical: Non-unique values in valueset; valueset values must be unique.");
         endif
-      else
-        valueset = unique (x);
-        valueset = valueset(!ismissing (valueset));
       endif
       if (numel (args) >= 2)
         category_names = args{2};
@@ -1229,6 +1229,7 @@ classdef categorical
   endmethods
 
   methods
+
     function varargout = promote_to_existing_categories (this, varargin)
       # Convert strings or numerics to categorical, using an existing categorical
       #
@@ -1238,21 +1239,21 @@ classdef categorical
       # existing categories mapping in this. Strings or numeric codes which do
       # not correspond to a defined category in this are an error.
       varargout = cell (size (varargin));
-      for i_arg = 1:numel(varargin)
+      for i_arg = 1:numel (varargin)
         arg = varargin{i_arg};
         if (isa (arg, 'categorical'))
           error ('promote_to_existing_categories: categorical input is not supported yet.');
         elseif isstring (arg) || iscellstr (arg)
           [tfMember, loc] = ismember (arg, this.cats);
-          tfBad = !tfMember & !ismissing (arg);
+          tfBad = !tfMember & !isnanny (arg);
           if (any (tfBad))
             error('input string had values that were not members of this''s categories');
           endif
           code = loc;
-          code(ismissing (arg)) = 0;
+          code(isnanny (arg)) = 0;
           out = categorical;
           out.cats = this.cats;
-          out.code = uint16(code);
+          out.code = uint16 (code);
           out.isOrdinal = this.isOrdinal;
           out.tfMissing = ismissing (arg);
         else
@@ -1260,6 +1261,7 @@ classdef categorical
         endif
       endfor
     endfunction
+
   endmethods
 
   methods (Access=private)
