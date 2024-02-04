@@ -1188,6 +1188,12 @@ classdef string
 
     function this = subsasgnParensPlanar (this, s, rhs)
       #SUBSASGNPARENSPLANAR ()-assignment for planar object
+      if (isnumeric (rhs) && isequal (size (rhs), [0 0]))
+        # Special `x(ix) = []` deletion form
+        this.strs(s.subs{:}) = [];
+        this.tfMissing(s.subs{:}) = [];
+        return
+      endif
       if (! isa (rhs, 'string'))
         rhs = string (rhs);
       endif

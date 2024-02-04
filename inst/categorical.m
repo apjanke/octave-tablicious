@@ -1264,6 +1264,12 @@ classdef categorical
 
     function this = subsasgnParensPlanar (this, s, rhs)
       #SUBSASGNPARENSPLANAR ()-assignment for planar object
+      if (isnumeric (rhs) && isequal (size (rhs), [0 0]))
+        # Special `x(ix) = []` deletion form
+        this.code(s.subs{:}) = [];
+        this.tfMissing(s.subs{:}) = [];
+        return
+      endif
       if (! isa (rhs, 'categorical'))
         # TODO: This conversion is probably wrong. It probably needs to be done
         # with respect to this's existing cats list

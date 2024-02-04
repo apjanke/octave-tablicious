@@ -1487,6 +1487,12 @@ classdef datetime
 
     function out = subsasgnParensPlanar (this, s, rhs)
       #SUBSASGNPARENSPLANAR ()-assignment for planar object
+      if (isnumeric (rhs) && isequal (size (rhs), [0 0]))
+        # Special `x(ix) = []` deletion form
+        out = this;
+        out.dnums(s.subs{:}) = [];
+        return
+      endif
       if (! isa (rhs, 'datetime'))
         rhs = datetime (rhs);
       endif

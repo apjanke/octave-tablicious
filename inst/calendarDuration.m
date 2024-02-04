@@ -834,6 +834,16 @@ classdef calendarDuration
 
     function this = subsasgnParensPlanar (this, s, rhs)
       #SUBSASGNPARENSPLANAR ()-assignment for planar object
+      if (isnumeric (rhs) && isequal (size (rhs), [0 0]))
+        # Special `x(ix) = []` deletion form
+        this.Sign(s.subs{:}) = [];
+        this.Years(s.subs{:}) = [];
+        this.Months(s.subs{:}) = [];
+        this.Days(s.subs{:}) = [];
+        this.Time(s.subs{:}) = [];
+        this.IsNaN(s.subs{:}) = [];
+        return
+      endif
       if (! isa (rhs, 'calendarDuration'))
         rhs = calendarDuration (rhs);
       endif

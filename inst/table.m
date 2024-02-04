@@ -987,15 +987,27 @@ classdef table
       endif
 
       out = this;
-      switch (s(1).type)
+      switch (s.type)
         case '()'
-          error ('table.subsasgn: Assignment using ()-indexing is not supported for table');
+          if (isnumeric (rhs) && isequal (size (rhs), [0 0]))
+            # Special `x(ix) = []` deletion form
+            if (numel (s.subs) != 2)
+              error ('table.subsasgn: table subscripting must use exactly 2 subscripts; got %d subscripts', ...
+              numel (s.subs))
+            endif
+            if (! isequal (s.subs{2}, ":"))
+              error ('table.subsasgn: in `tbl(ixR,ixC) = []`, ixC must be ":"')
+            endif
+            out = subsetrows_impl(this, s.subs{1}, true);
+          else
+            error ('table.subsasgn: Assignment using ()-indexing is not yet implemented for table');
+          end
         case '{}'
           if (numel (s.subs) != 2)
             error ('table.subsasgn: {}-indexing of table requires exactly two arguments');
           endif
           [ixRow, ixVar] = resolveRowVarRefs (this, s.subs{1}, s.subs{2});
-          if(! isscalar (ixVar))
+          if (! isscalar (ixVar))
             error ('table.subsasgn: {}-indexing must reference a single variable; got %d', ...
               numel (ixVar));
           endif
@@ -1009,6 +1021,8 @@ classdef table
           endif
           if (isequal (s.subs, 'Properties'))
             # Special case for this.Properties access
+            # Will need to be implemented using chained assignment, and probably handled
+            # up above in a special case near the top.
             error ('table.subsasgn: .Properties access is not implemented yet');
           else
             out = setvar (this, s.subs, rhs);
@@ -3314,22 +3328,7 @@ classdef table
     ##
     ## @end deftypefn
     function out = subsetrows (this, ixRows)
-      out = this;
-      if (! isnumeric (ixRows) && !islogical (ixRows))
-        # TODO: Hmm. Maybe we ought not to do this check, but just defer to the
-        # individual variable values' indexing logic, so SUBSREF/SUBSINDX overrides
-        # are respected. Would produce worse error messages, but be more "right"
-        # type-wise.
-        error ('table.subsetrows: ixRows must be numeric or logical; got a %s', ...
-          class (ixRows));
-      endif
-      s = struct ('type', '()', 'subs', {{ixRows,':'}});
-      for i = 1:width (this)
-        out.VariableValues{i} = subsref (out.VariableValues{i}, s);
-      endfor
-      if (! isempty (this.RowNames))
-        out.RowNames = out.RowNames(ixRows);
-      endif
+      out = subsetrows_impl (this, ixRows);
     endfunction
 
     ## -*- texinfo -*-
@@ -3479,6 +3478,50 @@ classdef table
   endmethods
 
   methods (Access = private)
+
+    function out = subsetrows_impl (this, ixRows, doInvertIx)
+      # Internal implementation for subsetrows and restrict, supporting index inversion
+      if (nargin < 3 || isempty (doInvertIx)); doInvertIx = false; end
+      mustBeScalarLogical (doInvertIx);
+
+      ixRowsIn = ixRows;
+      if (doInvertIx)
+        if (islogical (ixRowsIn))
+          ixRows = ! ixRowsIn;
+        elseif (isnumeric (ixRowsIn))
+          nRows = height (this);
+          tfBad = ixRows > nRows;
+          if any (tfBad)
+            badIxs = ixRows(tfBad);
+            error ('table: invalid row index: index (%d) exceeds number of rows (%d)', ...
+              badIxs(1), nRows)
+          endif
+          ixRows = 1:height (this);
+          ixRows(ixRowsIn) = [];
+        else
+          error ('table: invalid type for ixRows: must be logical or numeric; got %s', class (ixRows))
+        endif
+      endif
+
+      out = this;
+      if (! isnumeric (ixRows) && !islogical (ixRows))
+        # TODO: Hmm. Maybe we ought not to do this check, but just defer to the
+        # individual variable values' indexing logic, so SUBSREF/SUBSINDX overrides
+        # are respected. Would produce worse error messages, but be more "right"
+        # type-wise.
+        error ('table.subsetrows: ixRows must be numeric or logical; got a %s', ...
+          class (ixRows));
+      endif
+      s = struct ('type', '()', 'subs', {{ixRows,':'}});
+      varVals = this.VariableValues;
+      for i = 1:width (this)
+        varVals{i} = subsref (varVals{i}, s);
+      endfor
+      out.VariableValues = varVals;
+      if (! isempty (this.RowNames))
+        out.RowNames = out.RowNames(ixRows);
+      endif
+    endfunction
 
     function out = proxykeysForOneTable (this)
       varProxyKeys = cell (size (this.VariableNames));

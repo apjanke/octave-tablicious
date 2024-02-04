@@ -915,6 +915,13 @@ classdef duration
 
     function out = subsasgnParensPlanar (this, s, rhs)
       #SUBSASGNPARENSPLANAR ()-assignment for planar object
+      if (isnumeric (rhs) && isequal (size (rhs), [0 0]))
+        # Special `x(ix) = []` deletion form
+        out = this;
+        out.days = [];
+        out.days(s.subs{:}) = [];
+        return
+      endif
       if (! isa (rhs, 'duration'))
         rhs = duration (rhs);
       endif
