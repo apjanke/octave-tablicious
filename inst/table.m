@@ -168,6 +168,9 @@ classdef table
         for iFld = 1:numel(flds)
           this.(flds{iFld}) = blank.(flds{iFld});
         endfor
+        if (isfield (opts, 'DimensionNames'))
+          this = setDimensionNames (this, opts.DimensionNames);
+        endif
         return
       endif
 
@@ -233,7 +236,7 @@ classdef table
         this.RowNames = opts.RowNames;
       endif
       if (isfield (opts, 'DimensionNames'))
-        this.DimensionNames = opts.DimensionNames;
+        this = setDimensionNames (this, opts.DimensionNames);
       endif
     endfunction
 
