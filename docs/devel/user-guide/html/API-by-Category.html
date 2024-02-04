@@ -84,14 +84,29 @@ Next: <a href="API-Alphabetically.html" accesskey="n" rel="next">API Alphabetica
 <p>See <a class="xref" href="struct2table.html">struct2table</a>.
 </p></dd>
 <dt>tableOuterFillValue</dt>
-<dd><p>Outer fill value for variable within a table.
-</p>
+<dd>
+
 <p>See <a class="xref" href="tableOuterFillValue.html">tableOuterFillValue</a>.
 </p></dd>
 <dt>vartype</dt>
 <dd><p>Filter by variable type for use in suscripting.
 </p>
 <p>See <a class="xref" href="vartype.html">vartype</a>.
+</p></dd>
+<dt>istable</dt>
+<dd><p>True if input is a ‘table’ array or other table-like type, false otherwise.
+</p>
+<p>See <a class="xref" href="istable.html">istable</a>.
+</p></dd>
+<dt>istimetable</dt>
+<dd><p>True if input is a ‘timetable’ array or other timetable-like type, false otherwise.
+</p>
+<p>See <a class="xref" href="istimetable.html">istimetable</a>.
+</p></dd>
+<dt>istabular</dt>
+<dd><p>True if input is eitehr a ‘table’ or ‘timetable’ array, or an object like them.
+</p>
+<p>See <a class="xref" href="istabular.html">istabular</a>.
 </p></dd>
 </dl>
 </div>
@@ -147,6 +162,11 @@ Next: <a href="API-Alphabetically.html" accesskey="n" rel="next">API Alphabetica
 <dd><p>“Not-a-Time”.
 </p>
 <p>See <a class="xref" href="NaT.html">NaT</a>.
+</p></dd>
+<dt>todatetime</dt>
+<dd><p>Convert input to a Tablicious datetime array, with convenient interface.
+</p>
+<p>See <a class="xref" href="todatetime.html">todatetime</a>.
 </p></dd>
 <dt>localdate</dt>
 <dd><p>Represents a complete day using the Gregorian calendar.
@@ -244,18 +264,18 @@ Next: <a href="API-Alphabetically.html" accesskey="n" rel="next">API Alphabetica
 <h4 class="subsection"><span>8.1.5 Validation Functions<a class="copiable-link" href="#Validation-Functions-2"> &para;</a></span></h4>
 <dl class="table">
 <dt>mustBeA</dt>
-<dd><p>Requires that input is of a given type.
-</p>
+<dd>
+
 <p>See <a class="xref" href="mustBeA.html">mustBeA</a>.
 </p></dd>
 <dt>mustBeCellstr</dt>
-<dd><p>Requires that input is a cellstr.
-</p>
+<dd>
+
 <p>See <a class="xref" href="mustBeCellstr.html">mustBeCellstr</a>.
 </p></dd>
 <dt>mustBeCharvec</dt>
-<dd><p>Requires that input is a char row vector.
-</p>
+<dd>
+
 <p>See <a class="xref" href="mustBeCharvec.html">mustBeCharvec</a>.
 </p></dd>
 <dt>mustBeFinite</dt>
@@ -289,23 +309,23 @@ Next: <a href="API-Alphabetically.html" accesskey="n" rel="next">API Alphabetica
 <p>See <a class="xref" href="mustBeReal.html">mustBeReal</a>.
 </p></dd>
 <dt>mustBeSameSize</dt>
-<dd><p>Requires that the inputs are the same size.
-</p>
+<dd>
+
 <p>See <a class="xref" href="mustBeSameSize.html">mustBeSameSize</a>.
 </p></dd>
 <dt>mustBeScalar</dt>
-<dd><p>Requires that input is scalar.
-</p>
+<dd>
+
 <p>See <a class="xref" href="mustBeScalar.html">mustBeScalar</a>.
 </p></dd>
 <dt>mustBeScalarLogical</dt>
-<dd><p>Requires that input is a scalar logical.
-</p>
+<dd>
+
 <p>See <a class="xref" href="mustBeScalarLogical.html">mustBeScalarLogical</a>.
 </p></dd>
 <dt>mustBeVector</dt>
-<dd><p>Requires that input is a vector or empty.
-</p>
+<dd>
+
 <p>See <a class="xref" href="mustBeVector.html">mustBeVector</a>.
 </p></dd>
 </dl>
@@ -407,21 +427,6 @@ Next: <a href="API-Alphabetically.html" accesskey="n" rel="next">API Alphabetica
 <dd><p>True if input is a ‘categorical’ array, false otherwise.
 </p>
 <p>See <a class="xref" href="iscategorical.html">iscategorical</a>.
-</p></dd>
-<dt>istable</dt>
-<dd><p>True if input is a ‘table’ array or other table-like type, false otherwise.
-</p>
-<p>See <a class="xref" href="istable.html">istable</a>.
-</p></dd>
-<dt>tblish.chrono.dummy_function</dt>
-<dd><p>A dummy function just for testing the doco tools.
-</p>
-<p>See <a class="xref" href="tblish_002echrono_002edummy_005ffunction.html">tblish.chrono.dummy_function</a>.
-</p></dd>
-<dt>tblish.chrono.DummyClass</dt>
-<dd><p>A do-nothing class just for testing the doco tools.
-</p>
-<p>See <a class="xref" href="tblish_002echrono_002eDummyClass.html">tblish.chrono.DummyClass</a>.
 </p></dd>
 </dl>
 

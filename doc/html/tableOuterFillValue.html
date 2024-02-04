@@ -30,13 +30,12 @@ into another language, under the same conditions as for modified versions. -->
 <link href="index.html" rel="start" title="Top">
 <link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
 <link href="API-Alphabetically.html" rel="up" title="API Alphabetically">
-<link href="tblish_002echrono_002edummy_005ffunction.html" rel="next" title="tblish.chrono.dummy_function">
+<link href="tblish_002edataset.html" rel="next" title="tblish.dataset">
 <link href="table.html" rel="prev" title="table">
 <style type="text/css">
 <!--
 a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
 span:hover a.copiable-link {visibility: visible}
-strong.def-name {font-family: monospace; font-weight: bold; font-size: larger}
 -->
 </style>
 
@@ -47,37 +46,12 @@ strong.def-name {font-family: monospace; font-weight: bold; font-size: larger}
 <div class="subsection-level-extent" id="tableOuterFillValue">
 <div class="nav-panel">
 <p>
-Next: <a href="tblish_002echrono_002edummy_005ffunction.html" accesskey="n" rel="next">tblish.chrono.dummy_function</a>, Previous: <a href="table.html" accesskey="p" rel="prev">table</a>, Up: <a href="API-Alphabetically.html" accesskey="u" rel="up">API Alphabetically</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+Next: <a href="tblish_002edataset.html" accesskey="n" rel="next">tblish.dataset</a>, Previous: <a href="table.html" accesskey="p" rel="prev">table</a>, Up: <a href="API-Alphabetically.html" accesskey="u" rel="up">API Alphabetically</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
 </div>
 <hr>
-<h4 class="subsection" id="tableOuterFillValue-1"><span>8.2.52 tableOuterFillValue<a class="copiable-link" href="#tableOuterFillValue-1"> &para;</a></span></h4>
-<dl class="first-deftypefn">
-<dt class="deftypefn" id="index-tableOuterFillValue"><span class="category-def">Function: </span><span><code class="def-type"><var class="var">out</var> =</code> <strong class="def-name">tableOuterFillValue</strong> <code class="def-code-arguments">(<var class="var">x</var>)</code><a class="copiable-link" href="#index-tableOuterFillValue"> &para;</a></span></dt>
-<dd>
-<p>Outer fill value for variable within a table.
-</p>
-<p>Determines the fill value to usse for a given variable value <var class="var">x</var>
-when that value is used as a variable in a table that is involved in
-an outer join.
-</p>
-<p>The default implementation for <code class="code">tableOuterFillValue</code> has support for
-all Octave primitive types, plus cellstrs, datetime &amp; friends, strings,
-and <code class="code">table</code>-valued variables.
-</p>
-<p>This function may become private to table before version 1.0. It is currently
-global to make debugging more convenient. It (or an equivalent) will remain
-global if we want to allow user-defined classes to customize their fill value.
-It also has default logic that will determine the fill value for an arbitrary
-type by detecting the value used to fill elements during array expansion
-operations. This will be appropriate for most data types.
-</p>
-<p>Returns a 1-by-ncols value of the same type as x, which may be any type, where
-ncols is the number of columns in the input.
-</p>
-</dd></dl>
-
-
-</div>
+<h4 class="subsection" id="tableOuterFillValue-1"><span>8.2.54 tableOuterFillValue<a class="copiable-link" href="#tableOuterFillValue-1"> &para;</a></span></h4>
+<p><em class="emph">Not documented</em>
+</p></div>
 
 
 

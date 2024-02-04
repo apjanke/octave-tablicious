@@ -572,13 +572,25 @@ Convert struct to a table.
 
 @xref{struct2table}.
 @item tableOuterFillValue
-Outer fill value for variable within a table.
+
 
 @xref{tableOuterFillValue}.
 @item vartype
 Filter by variable type for use in suscripting.
 
 @xref{vartype}.
+@item istable
+True if input is a ‘table’ array or other table-like type, false otherwise.
+
+@xref{istable}.
+@item istimetable
+True if input is a ‘timetable’ array or other timetable-like type, false otherwise.
+
+@xref{istimetable}.
+@item istabular
+True if input is eitehr a ‘table’ or ‘timetable’ array, or an object like them.
+
+@xref{istabular}.
 @end table
 @subsection Strings and Categoricals
 @table @asis
@@ -621,6 +633,10 @@ Represents points in time using the Gregorian calendar.
 “Not-a-Time”.
 
 @xref{NaT}.
+@item todatetime
+Convert input to a Tablicious datetime array, with convenient interface.
+
+@xref{todatetime}.
 @item localdate
 Represents a complete day using the Gregorian calendar.
 
@@ -696,15 +712,15 @@ Determine element-wise equality, treating NaNs as equal
 @subsection Validation Functions
 @table @asis
 @item mustBeA
-Requires that input is of a given type.
+
 
 @xref{mustBeA}.
 @item mustBeCellstr
-Requires that input is a cellstr.
+
 
 @xref{mustBeCellstr}.
 @item mustBeCharvec
-Requires that input is a char row vector.
+
 
 @xref{mustBeCharvec}.
 @item mustBeFinite
@@ -732,19 +748,19 @@ Requires that input is a char row vector.
 
 @xref{mustBeReal}.
 @item mustBeSameSize
-Requires that the inputs are the same size.
+
 
 @xref{mustBeSameSize}.
 @item mustBeScalar
-Requires that input is scalar.
+
 
 @xref{mustBeScalar}.
 @item mustBeScalarLogical
-Requires that input is a scalar logical.
+
 
 @xref{mustBeScalarLogical}.
 @item mustBeVector
-Requires that input is a vector or empty.
+
 
 @xref{mustBeVector}.
 @end table
@@ -823,18 +839,6 @@ True if input is a ‘calendarDuration’ array, false otherwise.
 True if input is a ‘categorical’ array, false otherwise.
 
 @xref{iscategorical}.
-@item istable
-True if input is a ‘table’ array or other table-like type, false otherwise.
-
-@xref{istable}.
-@item tblish.chrono.dummy_function
-A dummy function just for testing the doco tools.
-
-@xref{tblish.chrono.dummy_function}.
-@item tblish.chrono.DummyClass
-A do-nothing class just for testing the doco tools.
-
-@xref{tblish.chrono.DummyClass}.
 @end table
 
 @node API Alphabetically
@@ -872,25 +876,29 @@ A do-nothing class just for testing the doco tools.
 * isnanny::	Test if elements are NaN or NaN-like
 * istable::	True if input is a ‘table’ array or other table-like
 		type, false otherwise.
+* istabular::	True if input is eitehr a ‘table’ or ‘timetable’
+		array, or an object like them.
+* istimetable:: True if input is a ‘timetable’ array or other
+		timetable-like type, false otherwise.
 * localdate::	Represents a complete day using the Gregorian calendar.
 * milliseconds::	Create a ‘duration’ X milliseconds long, or get
 		the milliseconds in a ‘duration’ X.
 * minutes::	Create a ‘duration’ X hours long, or get the hours in a
 		‘duration’ X.
 * missing::	Generic auto-converting missing value.
-* mustBeA::	Requires that input is of a given type.
-* mustBeCellstr::	Requires that input is a cellstr.
-* mustBeCharvec::	Requires that input is a char row vector.
+* mustBeA::	
+* mustBeCellstr::	
+* mustBeCharvec::	
 * mustBeFinite::	
 * mustBeInteger::	
 * mustBeMember::	
 * mustBeNonempty::	
 * mustBeNumeric::	
 * mustBeReal::	
-* mustBeSameSize::	Requires that the inputs are the same size.
-* mustBeScalar::	Requires that input is scalar.
-* mustBeScalarLogical:: Requires that input is a scalar logical.
-* mustBeVector::	Requires that input is a vector or empty.
+* mustBeSameSize::	
+* mustBeScalar::	
+* mustBeScalarLogical:: 
+* mustBeVector::	
 * NaC:: “Not-a-Categorical".
 * NaS:: “Not-a-String".
 * NaT:: “Not-a-Time”.
@@ -904,11 +912,7 @@ A do-nothing class just for testing the doco tools.
 * string::	A string array of Unicode strings.
 * struct2table::	Convert struct to a table.
 * table::	Tabular data array containing multiple columnar variables.
-* tableOuterFillValue:: Outer fill value for variable within a table.
-* tblish.chrono.dummy_function::	A dummy function just for testing
-		the doco tools.
-* tblish.chrono.DummyClass::	A do-nothing class just for testing the
-		doco tools.
+* tableOuterFillValue:: 
 * tblish.dataset::	The ‘dataset’ class provides convenient access
 		to the various datasets included with Tablicious.
 * tblish.datasets::	Example dataset collection.
@@ -916,6 +920,8 @@ A do-nothing class just for testing the doco tools.
 * tblish.examples.plot_pairs::	Plot pairs of variables against each other.
 * tblish.examples.SpDb::	
 * timezones::	List all the time zones defined on this system.
+* todatetime::	Convert input to a Tablicious datetime array, with
+		convenient interface.
 * vartype::	Filter by variable type for use in suscripting.
 * vecfun::	Apply function to vectors in array along arbitrary
 		dimension.
@@ -2547,7 +2553,7 @@ isnan() errors out for some types that do not support isnan(), like cells.
 @end enumerate
 
 @code{isnanny()} smooths over those differences so you can call it polymorphically on
-any input type.
+any input type. Hopefully.
 
 Under normal operation, @code{isnanny()} should not throw an error for any type or
 value of input.
@@ -2569,6 +2575,42 @@ they do not inherit from @code{table} or were known to Tablicious at
 authoring time.
 
 User-defined classes should only override @code{istable} to return true if
+they conform to the @code{table} public interface. That interface is not
+well-defined or documented yet, so maybe you don't want to do that yet.
+
+Returns a scalar logical.
+
+@end deftypefn
+
+
+@node istabular
+@subsection istabular
+@deftypefn {Function} {@var{out} =} istabular (@var{x})
+
+True if input is eitehr a @code{table} or @code{timetable} array, or an object
+like them.
+
+Respects @code{istable} and @code{istimetable} override methods on user-defined
+classes, even if they do not inherit from @code{table} or were known to Tablicious
+at authoring time.
+
+Returns a scalar logical.
+
+@end deftypefn
+
+
+@node istimetable
+@subsection istimetable
+@deftypefn {Function} {@var{out} =} istimetable (@var{x})
+
+True if input is a @code{timetable} array or other timetable-like type, false
+otherwise.
+
+Respects @code{istimetable} override methods on user-defined classes, even if
+they do not inherit from @code{table} or were known to Tablicious at
+authoring time.
+
+User-defined classes should only override @code{istimetable} to return true if
 they conform to the @code{table} public interface. That interface is not
 well-defined or documented yet, so maybe you don't want to do that yet.
 
@@ -2887,60 +2929,13 @@ Returns a logical array the same size as @var{obj}.
 
 @node mustBeA
 @subsection mustBeA
-@deftypefn {Function File} {@var{x} =} mustBeA (@var{x}, @var{type})
-@deftypefnx {Function File} {@var{x} =} mustBeA (@var{x}, @var{type}, @var{label})
-
-Requires that input is of a given type.
-
-Raises an error if the input @var{x} is not of type @var{type}, as determined by
-@code{isa (x, type)}.
-
-@var{label} is an optional input that determines how the input will be described in
-error messages. If not supplied, @code{inputname (1)} is used, and if that is
-empty, it falls back to "input".
-
-@end deftypefn
-
-
+@emph{Not documented}
 @node mustBeCellstr
 @subsection mustBeCellstr
-@deftypefn {Function File} {@code{x} =} mustBeCellstr (@var{x}, @var{label})
-
-Requires that input is a cellstr.
-
-Raises an error if the input @var{x} is not a cellstr (a cell array
-of @code{char} arrays).
-
-TODO: Decide whether to require the contained char arrays be rowvec/empty.
-
-@var{label} is an optional input that determines how the input will be described in
-error messages. If not supplied, @code{inputname (1)} is used, and if that is
-empty, it falls back to "input".
-
-@end deftypefn
-
-
+@emph{Not documented}
 @node mustBeCharvec
 @subsection mustBeCharvec
-@deftypefn {Function File} {@var{x} =} mustBeCharvec (@var{x}, @var{label})
-
-Requires that input is a char row vector.
-
-Raises an error if the input @var{x} is not a row vector of @code{char}s.
-@code{char} row vectors are Octave's normal representation of single strings.
-(They are what are produced by @code{'...'} string literals.) As a special
-case, 0-by-0 empty chars (what is produced by the string literal @code{''})
-are also considered charvecs.
-
-This does not differentiate between single-quoted and double-quoted strings.
-
-@var{label} is an optional input that determines how the input will be described in
-error messages. If not supplied, @code{inputname (1)} is used, and if that is
-empty, it falls back to "input".
-
-@end deftypefn
-
-
+@emph{Not documented}
 @node mustBeFinite
 @subsection mustBeFinite
 @emph{Not documented}
@@ -2961,68 +2956,16 @@ empty, it falls back to "input".
 @emph{Not documented}
 @node mustBeSameSize
 @subsection mustBeSameSize
-@deftypefn {Function File} {[@var{a}, @var{b}] =} mustBeSameSize (@var{a}, @var{b}, @var{labelA}, @var{labelB})
-
-Requires that the inputs are the same size.
-
-Raises an error if the inputs @var{a} and @var{b} are not the same size,
-as determined by @code{isequal (size (a), size (b))}.
-
-@var{labelA} and @var{labelB} are optional inputs that determine how
-the input will be described in error messages. If not supplied,
-@code{inputname (...)} is used, and if that is empty, it falls back to
-"input 1" and "input 2".
-
-@end deftypefn
-
-
+@emph{Not documented}
 @node mustBeScalar
 @subsection mustBeScalar
-@deftypefn {Function File} {@var{x} =} mustBeScalar (@var{x}, @var{label})
-
-Requires that input is scalar.
-
-Raises an error if the input @var{x} is not scalar, as determined by
-@code{isscalar (x)}.
-
-@var{label} is an optional input that determines how the input will be described in
-error messages. If not supplied, @code{inputname (1)} is used, and if that is
-empty, it falls back to "input".
-
-@end deftypefn
-
-
+@emph{Not documented}
 @node mustBeScalarLogical
 @subsection mustBeScalarLogical
-@deftypefn {Function File} {@var{x} =} mustBeScalarLogical (@var{x}, @var{label})
-
-Requires that input is a scalar logical.
-
-Raises an error if the input @var{x} is not scalar, as determined by
-@code{isscalar (x) && islogical (x)}.
-
-@var{label} is an optional input that determines how the input will be described in
-error messages. If not supplied, @code{inputname (1)} is used, and if that is
-empty, it falls back to "input".
-
-@end deftypefn
-
-
+@emph{Not documented}
 @node mustBeVector
 @subsection mustBeVector
-@deftypefn {Function File} {@var{x} =} mustBeVector (@var{x}, @var{label})
-
-Requires that input is a vector or empty.
-
-Raises an error if the input @var{x} is not a row vector and is not 0-by-0 empty.
-
-@var{label} is an optional input that determines how the input will be described in
-error messages. If not supplied, @code{inputname (1)} is used, and if that is
-empty, it falls back to "input".
-
-@end deftypefn
-
-
+@emph{Not documented}
 @node NaC
 @subsection NaC
 @deftypefn {Function} {@var{out} =} NaC ()
@@ -3813,6 +3756,11 @@ Constructs a new empty (0 rows by 0 variables) table.
 Constructs a new table from the given variables. The variables passed as
 inputs to this constructor become the variables of the table. Their names
 are automatically detected from the input variable names that you used.
+
+Note: If you call the constructor with exactly three arguments, and the first
+argument is exactly the value '__tblish_backdoor__', that will trigger a special internal-use
+backdoor calling form, and you will get incorrect results. This is a bug in
+Tablicious.
 
 @end deftypefn
 
@@ -5029,110 +4977,7 @@ The resulting table will have its variables reordered to match ixVars.
 
 @node tableOuterFillValue
 @subsection tableOuterFillValue
-@deftypefn {Function} {@var{out} =} tableOuterFillValue (@var{x})
-
-Outer fill value for variable within a table.
-
-Determines the fill value to usse for a given variable value @var{x}
-when that value is used as a variable in a table that is involved in
-an outer join.
-
-The default implementation for @code{tableOuterFillValue} has support for
-all Octave primitive types, plus cellstrs, datetime & friends, strings,
-and @code{table}-valued variables.
-
-This function may become private to table before version 1.0. It is currently
-global to make debugging more convenient. It (or an equivalent) will remain
-global if we want to allow user-defined classes to customize their fill value.
-It also has default logic that will determine the fill value for an arbitrary
-type by detecting the value used to fill elements during array expansion
-operations. This will be appropriate for most data types.
-
-Returns a 1-by-ncols value of the same type as x, which may be any type, where
-ncols is the number of columns in the input.
-
-@end deftypefn
-
-
-@node tblish.chrono.dummy_function
-@subsection tblish.chrono.dummy_function
-@deftypefn {Function} {@var{out} =} dummy_function (@var{x})
-
-A dummy function just for testing the doco tools.
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur
-ullamcorper pulvinar ligula, sit amet accumsan turpis dapibus at.
-Ut sit amet quam orci. Donec vel mauris elementum massa pretium tincidunt.
-
-@end deftypefn
-
-
-@node tblish.chrono.DummyClass
-@subsection tblish.chrono.DummyClass
-@deftp {Class} DummyClass
-
-A do-nothing class just for testing the doco tools.
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur
-ullamcorper pulvinar ligula, sit amet accumsan turpis dapibus at.
-Ut sit amet quam orci. Donec vel mauris elementum massa pretium tincidunt.
-
-@end deftp
-
-@deftypeivar DummyClass @code{double} x
-
-An x. Has no semantics.
-
-@end deftypeivar
-
-@deftypeivar DummyClass @code{double} y
-
-A y. Has no semantics.
-
-@end deftypeivar
-
-
-@node tblish.chrono.DummyClass.DummyClass
-@subsubsection tblish.chrono.DummyClass.DummyClass
-
-@deftypefn {Constructor} {@var{obj} =} tblish.chrono.DummyClass ()
-
-Constructs a new scalar @code{DummyClass} with default values.
-
-@end deftypefn
-
-@deftypefn {Constructor} {@var{obj} =} tblish.chrono.DummyClass (@var{x}, @var{y})
-
-Constructs a new @code{DummyClass} with the specified values.
-
-@end deftypefn
-
-@node tblish.chrono.DummyClass.foo
-@subsubsection tblish.chrono.DummyClass.foo
-
-@deftypefn {Method} {@var{out} =} foo (@var{obj})
-
-Computes a foo value.
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur
-ullamcorper pulvinar ligula, sit amet accumsan turpis dapibus at.
-Ut sit amet quam orci. Donec vel mauris elementum massa pretium tincidunt.
-
-@end deftypefn
-
-@node tblish.chrono.DummyClass.bar
-@subsubsection tblish.chrono.DummyClass.bar
-
-@deftypefn {Method} {@var{out} =} bar (@var{obj})
-
-Computes a bar value.
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur
-ullamcorper pulvinar ligula, sit amet accumsan turpis dapibus at.
-Ut sit amet quam orci. Donec vel mauris elementum massa pretium tincidunt.
-
-@end deftypefn
-
+@emph{Not documented}
 @node tblish.dataset
 @subsection tblish.dataset
 @deftp {Class} dataset
@@ -9627,6 +9472,28 @@ The geographical area the zone is in, as cellstr.
 
 Compatibility note: Matlab also includes UTCOffset and DSTOffset fields in
 the output; these are currently unimplemented.
+
+@end deftypefn
+
+
+@node todatetime
+@subsection todatetime
+@deftypefn {Function} {@var{out} =} todatetime (@var{x})
+
+Convert input to a Tablicious datetime array, with convenient interface.
+
+This is an alternative to the regular datetime constructor, with a signature
+and conversion logic that Tablicious's author likes better.
+
+This mainly exists because datetime's constructor signature does not accept
+datenums, and instead treats one-arg numeric inputs as datevecs. (For compatibility
+with Matlab's interface.) I think that's less convenient: datenums seem to be
+more common than datevecs in M-code, and it returns an object array that's not the
+same size as the input.
+
+Returns a datetime array whose size depends on the size and type of the input
+array, but will generally be the same size as the array of strings or numerics
+the input array "represents".
 
 @end deftypefn
 

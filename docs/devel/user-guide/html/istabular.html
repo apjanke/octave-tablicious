@@ -18,10 +18,10 @@ notice identical to this one.
 
 Permission is granted to copy and distribute translations of this manual
 into another language, under the same conditions as for modified versions. -->
-<title>tblish.chrono.DummyClass.bar (Tablicious v0.4.0-SNAPSHOT)</title>
+<title>istabular (Tablicious v0.4.0-SNAPSHOT)</title>
 
 <meta name="description" content="User manual for Tablicious for Octave.">
-<meta name="keywords" content="tblish.chrono.DummyClass.bar (Tablicious v0.4.0-SNAPSHOT)">
+<meta name="keywords" content="istabular (Tablicious v0.4.0-SNAPSHOT)">
 <meta name="resource-type" content="document">
 <meta name="distribution" content="global">
 <meta name="Generator" content="makeinfo">
@@ -29,8 +29,9 @@ into another language, under the same conditions as for modified versions. -->
 
 <link href="index.html" rel="start" title="Top">
 <link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
-<link href="tblish_002echrono_002eDummyClass.html" rel="up" title="tblish.chrono.DummyClass">
-<link href="tblish_002echrono_002eDummyClass_002efoo.html" rel="prev" title="tblish.chrono.DummyClass.foo">
+<link href="API-Alphabetically.html" rel="up" title="API Alphabetically">
+<link href="istimetable.html" rel="next" title="istimetable">
+<link href="istable.html" rel="prev" title="istable">
 <style type="text/css">
 <!--
 a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
@@ -43,24 +44,27 @@ strong.def-name {font-family: monospace; font-weight: bold; font-size: larger}
 </head>
 
 <body lang="en">
-<div class="subsubsection-level-extent" id="tblish_002echrono_002eDummyClass_002ebar">
+<div class="subsection-level-extent" id="istabular">
 <div class="nav-panel">
 <p>
-Previous: <a href="tblish_002echrono_002eDummyClass_002efoo.html" accesskey="p" rel="prev">tblish.chrono.DummyClass.foo</a>, Up: <a href="tblish_002echrono_002eDummyClass.html" accesskey="u" rel="up">tblish.chrono.DummyClass</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+Next: <a href="istimetable.html" accesskey="n" rel="next">istimetable</a>, Previous: <a href="istable.html" accesskey="p" rel="prev">istable</a>, Up: <a href="API-Alphabetically.html" accesskey="u" rel="up">API Alphabetically</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
 </div>
 <hr>
-<h4 class="subsubsection" id="tblish_002echrono_002eDummyClass_002ebar-1"><span>8.2.54.3 tblish.chrono.DummyClass.bar<a class="copiable-link" href="#tblish_002echrono_002eDummyClass_002ebar-1"> &para;</a></span></h4>
-
+<h4 class="subsection" id="istabular-1"><span>8.2.24 istabular<a class="copiable-link" href="#istabular-1"> &para;</a></span></h4>
 <dl class="first-deftypefn">
-<dt class="deftypefn" id="index-bar"><span class="category-def">Method: </span><span><code class="def-type"><var class="var">out</var> =</code> <strong class="def-name">bar</strong> <code class="def-code-arguments">(<var class="var">obj</var>)</code><a class="copiable-link" href="#index-bar"> &para;</a></span></dt>
+<dt class="deftypefn" id="index-istabular"><span class="category-def">Function: </span><span><code class="def-type"><var class="var">out</var> =</code> <strong class="def-name">istabular</strong> <code class="def-code-arguments">(<var class="var">x</var>)</code><a class="copiable-link" href="#index-istabular"> &para;</a></span></dt>
 <dd>
-<p>Computes a bar value.
+<p>True if input is eitehr a <code class="code">table</code> or <code class="code">timetable</code> array, or an object
+like them.
 </p>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur
-ullamcorper pulvinar ligula, sit amet accumsan turpis dapibus at.
-Ut sit amet quam orci. Donec vel mauris elementum massa pretium tincidunt.
+<p>Respects <code class="code">istable</code> and <code class="code">istimetable</code> override methods on user-defined
+classes, even if they do not inherit from <code class="code">table</code> or were known to Tablicious
+at authoring time.
+</p>
+<p>Returns a scalar logical.
 </p>
 </dd></dl>
+
 
 </div>
 

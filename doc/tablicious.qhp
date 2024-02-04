@@ -239,6 +239,10 @@
                         </section>
                         <section title="istable" ref="html/istable.html">
                         </section>
+                        <section title="istabular" ref="html/istabular.html">
+                        </section>
+                        <section title="istimetable" ref="html/istimetable.html">
+                        </section>
                         <section title="localdate" ref="html/localdate.html">
                             <section title="localdate.localdate" ref="html/localdate_002elocaldate.html">
                             </section>
@@ -527,16 +531,6 @@
                         </section>
                         <section title="tableOuterFillValue" ref="html/tableOuterFillValue.html">
                         </section>
-                        <section title="tblish.chrono.dummy_function" ref="html/tblish_002echrono_002edummy_005ffunction.html">
-                        </section>
-                        <section title="tblish.chrono.DummyClass" ref="html/tblish_002echrono_002eDummyClass.html">
-                            <section title="tblish.chrono.DummyClass.DummyClass" ref="html/tblish_002echrono_002eDummyClass_002eDummyClass.html">
-                            </section>
-                            <section title="tblish.chrono.DummyClass.foo" ref="html/tblish_002echrono_002eDummyClass_002efoo.html">
-                            </section>
-                            <section title="tblish.chrono.DummyClass.bar" ref="html/tblish_002echrono_002eDummyClass_002ebar.html">
-                            </section>
-                        </section>
                         <section title="tblish.dataset" ref="html/tblish_002edataset.html">
                             <section title="tblish.dataset.airmiles" ref="html/tblish_002edataset_002eairmiles.html">
                             </section>
@@ -727,6 +721,8 @@
                         </section>
                         <section title="timezones" ref="html/timezones.html">
                         </section>
+                        <section title="todatetime" ref="html/todatetime.html">
+                        </section>
                         <section title="vartype" ref="html/vartype.html">
                         </section>
                         <section title="vecfun" ref="html/vecfun.html">
@@ -840,6 +836,8 @@
             <keyword name="isduration" id="isduration" ref="html/isduration.html"/>
             <keyword name="isnanny" id="isnanny" ref="html/isnanny.html"/>
             <keyword name="istable" id="istable" ref="html/istable.html"/>
+            <keyword name="istabular" id="istabular" ref="html/istabular.html"/>
+            <keyword name="istimetable" id="istimetable" ref="html/istimetable.html"/>
             <keyword name="localdate" id="localdate" ref="html/localdate.html"/>
             <keyword name="localdate.NaT" id="localdate.NaT" ref="html/localdate_002eNaT.html"/>
             <keyword name="localdate.datenum" id="localdate.datenum" ref="html/localdate_002edatenum.html"/>
@@ -860,13 +858,6 @@
             <keyword name="missing.isnan" id="missing.isnan" ref="html/missing_002eisnan.html"/>
             <keyword name="missing.isnanny" id="missing.isnanny" ref="html/missing_002eisnanny.html"/>
             <keyword name="missing.missing" id="missing.missing" ref="html/missing_002emissing.html"/>
-            <keyword name="mustBeA" id="mustBeA" ref="html/mustBeA.html"/>
-            <keyword name="mustBeCellstr" id="mustBeCellstr" ref="html/mustBeCellstr.html"/>
-            <keyword name="mustBeCharvec" id="mustBeCharvec" ref="html/mustBeCharvec.html"/>
-            <keyword name="mustBeSameSize" id="mustBeSameSize" ref="html/mustBeSameSize.html"/>
-            <keyword name="mustBeScalar" id="mustBeScalar" ref="html/mustBeScalar.html"/>
-            <keyword name="mustBeScalarLogical" id="mustBeScalarLogical" ref="html/mustBeScalarLogical.html"/>
-            <keyword name="mustBeVector" id="mustBeVector" ref="html/mustBeVector.html"/>
             <keyword name="pp" id="pp" ref="html/pp.html"/>
             <keyword name="scalarexpand" id="scalarexpand" ref="html/scalarexpand.html"/>
             <keyword name="seconds" id="seconds" ref="html/seconds.html"/>
@@ -974,12 +965,6 @@
             <keyword name="table.varnames" id="table.varnames" ref="html/table_002evarnames.html"/>
             <keyword name="table.vertcat" id="table.vertcat" ref="html/table_002evertcat.html"/>
             <keyword name="table.width" id="table.width" ref="html/table_002ewidth.html"/>
-            <keyword name="tableOuterFillValue" id="tableOuterFillValue" ref="html/tableOuterFillValue.html"/>
-            <keyword name="tblish.chrono.DummyClass" id="tblish.chrono.DummyClass" ref="html/tblish_002echrono_002eDummyClass.html"/>
-            <keyword name="tblish.chrono.DummyClass.DummyClass" id="tblish.chrono.DummyClass.DummyClass" ref="html/tblish_002echrono_002eDummyClass_002eDummyClass.html"/>
-            <keyword name="tblish.chrono.DummyClass.bar" id="tblish.chrono.DummyClass.bar" ref="html/tblish_002echrono_002eDummyClass_002ebar.html"/>
-            <keyword name="tblish.chrono.DummyClass.foo" id="tblish.chrono.DummyClass.foo" ref="html/tblish_002echrono_002eDummyClass_002efoo.html"/>
-            <keyword name="tblish.chrono.dummy_function" id="tblish.chrono.dummy_function" ref="html/tblish_002echrono_002edummy_005ffunction.html"/>
             <keyword name="tblish.dataset" id="tblish.dataset" ref="html/tblish_002edataset.html"/>
             <keyword name="tblish.dataset.AirPassengers" id="tblish.dataset.AirPassengers" ref="html/tblish_002edataset_002eAirPassengers.html"/>
             <keyword name="tblish.dataset.BJsales" id="tblish.dataset.BJsales" ref="html/tblish_002edataset_002eBJsales.html"/>
@@ -1074,6 +1059,7 @@
             <keyword name="tblish.examples.coplot" id="tblish.examples.coplot" ref="html/tblish_002eexamples_002ecoplot.html"/>
             <keyword name="tblish.examples.plot_pairs" id="tblish.examples.plot_pairs" ref="html/tblish_002eexamples_002eplot_005fpairs.html"/>
             <keyword name="timezones" id="timezones" ref="html/timezones.html"/>
+            <keyword name="todatetime" id="todatetime" ref="html/todatetime.html"/>
             <keyword name="vartype" id="vartype" ref="html/vartype.html"/>
             <keyword name="vecfun" id="vecfun" ref="html/vecfun.html"/>
             <keyword name="years" id="years" ref="html/years.html"/>
@@ -1084,6 +1070,7 @@
             <file>html/years.html</file>
             <file>html/vecfun.html</file>
             <file>html/vartype.html</file>
+            <file>html/todatetime.html</file>
             <file>html/timezones.html</file>
             <file>html/tblish_002eexamples_002eSpDb.html</file>
             <file>html/tblish_002eexamples_002eplot_005fpairs.html</file>
@@ -1179,11 +1166,6 @@
             <file>html/tblish_002edataset_002eAirPassengers.html</file>
             <file>html/tblish_002edataset_002eairmiles.html</file>
             <file>html/tblish_002edataset.html</file>
-            <file>html/tblish_002echrono_002eDummyClass_002ebar.html</file>
-            <file>html/tblish_002echrono_002eDummyClass_002efoo.html</file>
-            <file>html/tblish_002echrono_002eDummyClass_002eDummyClass.html</file>
-            <file>html/tblish_002echrono_002eDummyClass.html</file>
-            <file>html/tblish_002echrono_002edummy_005ffunction.html</file>
             <file>html/tableOuterFillValue.html</file>
             <file>html/table_002esubsetvars.html</file>
             <file>html/table_002esubsetrows.html</file>
@@ -1328,6 +1310,8 @@
             <file>html/localdate_002eNaT.html</file>
             <file>html/localdate_002elocaldate.html</file>
             <file>html/localdate.html</file>
+            <file>html/istimetable.html</file>
+            <file>html/istabular.html</file>
             <file>html/istable.html</file>
             <file>html/isnanny.html</file>
             <file>html/isfolder.html</file>
