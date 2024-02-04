@@ -13,6 +13,7 @@ Version 0.4.0 (in progress)
 * Add idempotent one-arg constructor forms for string, datetime, categorical. (But not table.)
 * Add `istable`, `istimetable`, and `istabular` functions.
 * Add `NaS`, `NaC`, and `todatetime` functions.
+* Have `fieldnames (table)` expose variable and dimension names and Properties, instead of the internal implementation properties.
 * Rename `+tablicious` package to `+tblish`; merge `+octave` package into `+tblish`.
 * Move `+table_examples` package to `+tblish/+examples`.
 * Make internal-use properties on the main classes Access = private, now that the code is a little more mature.

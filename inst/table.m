@@ -446,6 +446,26 @@ classdef table
 
     # Structural stuff
 
+    function out = fieldnames (this)
+      # fieldnames is customize to expose the variable and dimension names as fields, and
+      # hide the real fields inside "Properties".
+      out = [this.VariableNames'; {'Properties'}; this.DimensionNames'];
+    endfunction
+
+    function out = properties (this)
+      # properties, like fieldnames, is customize to expose the variable and dimension
+      # names as fields, and hide the real fields inside "Properties".
+      out = fieldnames (this);
+      if nargout == 0
+        fprintf('Properties for class %s:\n\n', class (this));
+        for i = 1:numel (out)
+          fprintf('  %s\n', out{i});
+        endfor
+        fprintf('\n');
+        clear out
+      endif
+    endfunction
+
     ## -*- texinfo -*-
     ## @node table.varnames
     ## @deftypefn {Method} {@var{out} =} varnames (@var{obj})
