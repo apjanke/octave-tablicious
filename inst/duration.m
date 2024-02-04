@@ -98,19 +98,19 @@ classdef duration
       # Peel off options
       knownOptions = {'InputFormat','Format'};
       opts = struct;
-      while numel (args) >= 3 && isa (args{end-1}, 'char') ...
-          && ismember (args{end-1}, knownOptions)
+      while (numel (args) >= 3 && isa (args{end-1}, 'char') ...
+          && ismember (args{end-1}, knownOptions))
         opts.(args{end-1}) = args{end};
         args(end-1:end) = [];
       endwhile
       # Handle inputs
-      switch numel (args)
+      switch (numel (args))
         case 0
           return
         case 1
           in = args{1};
-          if isnumeric (in)
-            switch size (in, 2)
+          if (isnumeric (in))
+            switch (size (in, 2))
               case 3
                 [H, MI, S] = deal (in(:,1), in(:,2), in(:,3));
                 this.days = duration.hms2datenum (H, MI, S, 0);
@@ -122,7 +122,7 @@ classdef duration
             endswitch
           else
             in = cellstr (in);
-            if isfield (opts, 'InputFormat')
+            if (isfield (opts, 'InputFormat'))
               this.days = duration.parseTimeStringsToDatenumWithFormat (in, opts.InputFormat);
             else
               this.days = duration.parseTimeStringsToDatenum (in);
@@ -130,10 +130,10 @@ classdef duration
           endif
         case 2
           # Undocumented calling form for internal use
-          if !isequal (args{2}, 'Backdoor')
+          if (! isequal (args{2}, 'Backdoor'))
             error ('Invalid number if inputs: %d', numel (args));
           endif
-          if !isnumeric (args{1})
+          if (! isnumeric (args{1}))
             error ('Input must be numeric; got a %s', class (args{1}));
           endif
           this.days = double (args{1});
@@ -269,7 +269,7 @@ classdef duration
     function display (this)
       #DISPLAY Custom display.
       in_name = inputname (1);
-      if !isempty (in_name)
+      if (! isempty (in_name))
         fprintf ('%s =\n', in_name);
       endif
       disp (this);
@@ -277,7 +277,7 @@ classdef duration
 
     function disp (this)
       #DISP Custom display.
-      if isempty (this)
+      if (isempty (this))
         fprintf ('Empty %s %s\n', size2str (size (this)), class (this));
         return;
       endif
@@ -300,16 +300,16 @@ classdef duration
       out = cell (size (this));
       for i = 1:numel (this)
         d = this.days(i);
-        if isnan (d)
+        if (isnan (d))
           out{i} = 'NaT';
           continue
         endif
         str = '';
-        if d < 0
+        if (d < 0)
           str = [str '-'];
           d = abs(d);
         endif
-        if d > 1
+        if (d > 1)
           str = [str sprintf('%d days ', floor(d))];
           d = mod (d,1);
         endif
@@ -323,12 +323,12 @@ classdef duration
         x = rem (x, 60);
         seconds = x;
         msec = round (fracSec * 1000);
-        if msec == 1000
+        if (msec == 1000)
           seconds = seconds + 1;
           msec = 0;
         endif
         str = [str sprintf('%02d:%02d:%02d', hours, minutes, seconds)];
-        if msec >= 1
+        if (msec >= 1)
           str = [str '.' sprintf('%03d', msec)];
         endif
         out{i} = str;
@@ -338,7 +338,7 @@ classdef duration
     function out = sprintf(fmt, varargin)
       args = varargin;
       for i = 1:numel (args)
-        if isa (args{i}, 'duration')
+        if (isa (args{i}, 'duration'))
           args{i} = dispstr (args{i});
         endif
       endfor
@@ -347,7 +347,7 @@ classdef duration
 
     function out = fprintf(varargin)
       args = varargin;
-      if isnumeric (args{1})
+      if (isnumeric (args{1}))
         fid = args{1};
         args(1) = [];
       else
@@ -356,11 +356,11 @@ classdef duration
       fmt = args{1};
       args(1) = [];
       for i = 1:numel (args)
-        if isa (args{i}, 'duration')
+        if (isa (args{i}, 'duration'))
           args{i} = dispstr (args{i});
         endif
       endfor
-      if isempty (fid)
+      if (isempty (fid))
         fprintf (fmt, args{:});
       else
         fprintf (fid, fmt, args{:});
@@ -403,7 +403,7 @@ classdef duration
     function out = ne (A, B)
       #NE Not equal.
       [A, B] = duration.promote (A, B);
-      out = A.days ~= B.days;
+      out = A.days != B.days;
     endfunction
 
     function out = eq (A, B)
@@ -428,10 +428,10 @@ classdef duration
 
     function out = times (A, B)
       #TIMES Multiplication
-      if isnumeric (A)
+      if (isnumeric (A))
         out = B;
         out.days = out.days .* A;
-      elseif isnumeric (B)
+      elseif (isnumeric (B))
         out = A;
         out.days = out.days .* B;
       else
@@ -441,10 +441,10 @@ classdef duration
 
     function out = mtimes (A, B)
       #MTIMES Multiplication
-      if isnumeric (A)
+      if (isnumeric (A))
         out = B;
         out.days = out.days * A;
-      elseif isnumeric (B)
+      elseif (isnumeric (B))
         out = A;
         out.days = out.days * B;
       else
@@ -454,13 +454,13 @@ classdef duration
 
     function out = rdivide (A, B)
       #RDIVIDE Element-wise right division
-      if !isa (A, 'duration')
+      if (! isa (A, 'duration'))
         error ('When dividing using duration, the left-hand side must be a duration; got a %s', ...
           class (A));
       endif
-      if isa (B, 'duration')
+      if (isa (B, 'duration'))
         out = A.days ./ B.days;
-      elseif isa (B, 'double')
+      elseif (isa (B, 'double'))
         out = A;
         out.days = A.days ./ B;
       else
@@ -470,11 +470,11 @@ classdef duration
 
     function out = mrdivide (A, B)
       #MRDIVIDE Matrix right division
-      if !isa (A, 'duration')
+      if (! isa (A, 'duration'))
         error ('When dividing using duration, the left-hand side must be a duration; got a %s', ...
           class (A));
       endif
-      if isa (B, 'double')
+      if (isa (B, 'double'))
         out = A;
         out.days = A.days / B;
       else
@@ -484,18 +484,18 @@ classdef duration
 
     function out = plus (A, B)
       #PLUS Addition
-      if isa (A, 'datetime') && isa (B, 'duration')
+      if (isa (A, 'datetime') && isa (B, 'duration'))
         out = A;
         out.dnums = out.dnums + B.days;
-      elseif isa (A, 'duration') && isa (B, 'datetime')
+      elseif (isa (A, 'duration') && isa (B, 'datetime'))
         out = B + A;
-      elseif isa (A, 'duration') && isa (B, 'duration')
+      elseif (isa (A, 'duration') && isa (B, 'duration'))
         out = A;
         out.days = A.days + B.days;
-      elseif isa (A, 'duration') && isa (B, 'double')
+      elseif (isa (A, 'duration') && isa (B, 'double'))
         out = A;
         out.days = A.days + B;
-      elseif isa (A, 'double') && isa (B, 'duration')
+      elseif (isa (A, 'double') && isa (B, 'duration'))
         out = B + A;
       endif
     endfunction
@@ -519,7 +519,7 @@ classdef duration
     function out = colon (varargin)
       #COLON Generate range for colon expression
       narginchk (2, 3);
-      if nargin == 2;
+      if (nargin == 2)
         [from, to] = varargin{:};
         increment = 1;
       else
@@ -550,7 +550,7 @@ classdef duration
     function out = linspace (A, B, n)
       #LINSPACE Linearly spaced elements between two values
       narginchk (2, 3);
-      if nargin < 3; n = 100; end
+      if (nargin < 3); n = 100; end
       [A, B] = duration.promote (A, B);
       out = A;
       out.days = linspace (A.days, B.days, n);
@@ -559,7 +559,7 @@ classdef duration
 
   methods (Static, Access = private)
     function out = hms2datenum (H, MI, S, MS)
-      if nargin < 4; MS = 0; endif
+      if (nargin < 4); MS = 0; endif
       [H, MI, S, MS] = deal (double(H), double(MI), double(S), double(MS));
       out = (H / 24) + (MI / (24 * 60)) + (S / (24 * 60 * 60)) ...
         + (MS / (24 * 60 * 60 * 1000));
@@ -572,9 +572,9 @@ classdef duration
         strIn = strs{i};
         str = strIn;
         ixDot = find (str == '.');
-        if numel (ixDot) > 1
+        if (numel (ixDot) > 1)
           error ('Invalid TimeString: ''%s''', strIn);
-        elseif !isempty (ixDot)
+        elseif (! isempty (ixDot))
           fractionalSecStr = str(ixDot+1:end);
           str(ixDot:end) = [];
           nFracs = str2double (fractionalSecStr);
@@ -584,11 +584,11 @@ classdef duration
           MS = 0;
         endif
         els = strsplit (str, ':');
-        if numel (els) == 3
+        if (numel (els) == 3)
           D = 0;
           [H, MI, S] = deal (str2double (els{1}), str2double (els{2}), ...
             str2double (els{3}));
-        elseif numel(els) == 4
+        elseif (numel(els) == 4)
           [D, H, MI ,S] = deal(str2double (els{1}), str2double (els{2}), ...
             str2double (els{3}), str2double (els{4}));
         else
@@ -620,7 +620,7 @@ classdef duration
 
     function out = size (this, dim)
       #SIZE Size of array.
-      if nargin == 1
+      if (nargin == 1)
         out = size (this.days);
       else
         out = size (this.days, dim);
@@ -704,7 +704,7 @@ classdef duration
 
     function [this, nshifts] = shiftdim (this, n)
       #SHIFTDIM Shift dimensions.
-      if nargin > 1
+      if (nargin > 1)
           this.days = shiftdim (this.days, n);
       else
           [this.days, nshifts] = shiftdim (this.days);
@@ -715,7 +715,7 @@ classdef duration
       #CAT Concatenate arrays.
       args = varargin;
       for i = 1:numel (args)
-          if !isa (args{i}, 'duration')
+          if (! isa (args{i}, 'duration'))
               args{i} = duration (args{i});
           endif
       endfor
@@ -738,7 +738,7 @@ classdef duration
       #SUBSASGN Subscripted assignment.
 
       # Chained subscripts
-      if numel (s) > 1
+      if (numel (s) > 1)
         rhs_in = subsref (this, s(1));
         rhs = subsasgn (rhs_in, s(2:end), b);
       else
@@ -746,7 +746,7 @@ classdef duration
       endif
 
       # Base case
-      switch s(1).type
+      switch (s(1).type)
         case '()'
           this = subsasgnParensPlanar (this, s(1), rhs);
         case '{}'
@@ -760,7 +760,7 @@ classdef duration
       #SUBSREF Subscripted reference.
 
       # Base case
-      switch s(1).type
+      switch (s(1).type)
         case '()'
           out = subsrefParensPlanar (this, s(1));
         case '{}'
@@ -770,14 +770,14 @@ classdef duration
       endswitch
 
       # Chained reference
-      if numel(s) > 1
+      if (numel (s) > 1)
         out = subsref (out, s(2:end));
       endif
     endfunction
 
     function [out,Indx] = sort (this)
       #SORT Sort array elements.
-      if isvector (this)
+      if (isvector (this))
         isRow = isrow (this);
         this = subset (this, ':');
         # NaNs sort stably to end, so handle them separately
@@ -789,10 +789,10 @@ classdef duration
         [~, ix] = sortrows (proxy);
         out = [subset(nonnans, ix); nans];
         Indx = [ixNonNan(ix); find(tfNan)];
-        if isRow
+        if (isRow)
           out = out';
         endif
-      elseif ismatrix (this)
+      elseif (ismatrix (this))
         out = this;
         Indx = NaN (size (out));
         for iCol = 1:size(this, 2)
@@ -807,29 +807,29 @@ classdef duration
         sz = size (this);
         nDims = ndims (this);
         ixs = [{':'} repmat({1}, [1 nDims-1])];
-        while true
+        while (true)
           col = subset (this, ixs{:});
           [sortedCol, sortIx] = sort (col);
           Indx(ixs{:}) = sortIx;
           out = asgn (out, ixs, sortedCol);
           ixs{end} = ixs{end}+1;
           for iDim=nDims:-1:3
-            if ixs{iDim} > sz(iDim)
+            if (ixs{iDim} > sz(iDim))
               ixs{iDim-1} = ixs{iDim-1} + 1;
               ixs{iDim} = 1;
             endif
           endfor
-          if ixs{2} > sz(2)
-            break;
+          if (ixs{2} > sz(2))
+            break
           endif
         endwhile
       endif
     endfunction
 
-    function [out,Indx] = unique (this, varargin)
+    function [out, Indx] = unique (this, varargin)
       #UNIQUE Set unique.
       flags = setdiff (varargin, {'rows'});
-      if ismember ('rows', varargin)
+      if (ismember ('rows', varargin))
         [~, proxyIx] = unique (this);
         proxyIx = reshape (proxyIx, size (this));
         [~, Indx] = unique (proxyIx, 'rows', flags{:});
@@ -842,14 +842,14 @@ classdef duration
         nonnans = subset (this, !tfNaN);
         ixNonnan = find (!tfNaN);
         keys = proxyKeys (nonnans);
-        if isa (keys, 'table')
+        if (isa (keys, 'table'))
           [~,ix] = unique (keys, flags{:});
         else
           [~,ix] = unique (keys, 'rows', flags{:});
         endif
         out = [subset(nonnans, ix); nans];
         Indx = [ixNonnan(ix); find(tfNaN)];
-        if isRow
+        if (isRow)
           out = out';
         endif
       endif
@@ -857,13 +857,13 @@ classdef duration
 
     function [out, Indx] = ismember (a, b, varargin)
       #ISMEMBER True for set member.
-      if ismember ('rows', varargin)
+      if (ismember ('rows', varargin))
         error ('ismember(..., ''rows'') is unsupported');
       endif
-      if !isa (a, 'duration')
+      if (! isa (a, 'duration'))
         a = duration (a);
       endif
-      if !isa (b, 'duration')
+      if (! isa (b, 'duration'))
         b = duration (b);
       endif
       [proxyA, proxyB] = proxyKeys (a, b);
@@ -874,7 +874,7 @@ classdef duration
 
     function [out,Indx] = setdiff (a, b, varargin)
       #SETDIFF Set difference.
-      if ismember ('rows', varargin)
+      if (ismember ('rows', varargin))
         error ('setdiff(..., ''rows'') is unsupported');
       endif
       [tf,~] = ismember (a, b);
@@ -886,7 +886,7 @@ classdef duration
 
     function [out, ia, ib] = intersect (a, b, varargin)
       #INTERSECT Set intersection.
-      if ismember ('rows', varargin)
+      if (ismember ('rows', varargin))
         error ('intersect(..., ''rows'') is unsupported');
       endif
       [proxyA, proxyB] = proxyKeys (a, b);
@@ -896,7 +896,7 @@ classdef duration
 
     function [out, ia, ib] = union (a, b, varargin)
       #UNION Set union.
-      if ismember ('rows', varargin)
+      if (ismember ('rows', varargin))
         error ('union(..., ''rows'') is unsupported');
       endif
       [proxyA, proxyB] = proxyKeys (a, b);
@@ -912,7 +912,7 @@ classdef duration
 
     function out = subsasgnParensPlanar (this, s, rhs)
       #SUBSASGNPARENSPLANAR ()-assignment for planar object
-      if !isa (rhs, 'duration')
+      if (! isa (rhs, 'duration'))
         rhs = duration (rhs);
       endif
       out = this;
@@ -944,7 +944,7 @@ classdef duration
       # This is what you call internally inside the class instead of doing
       # ()-indexing references on the LHS, which don't work properly inside
       # the class because they don't respect the subsasgn() override.
-      if !iscell (ix)
+      if (! iscell (ix))
         ix = { ix };
       endif
       s.type = '()';
@@ -959,10 +959,10 @@ classdef duration
       #PROMOTE Promote inputs to be compatible
       args = varargin;
       for i = 1:numel(args)
-        if !isa (args{i}, 'duration')
+        if (! isa (args{i}, 'duration'))
           # Sigh. We can't use a simple constructor call because of its weird
           # signature.
-          if isnumeric (args{i})
+          if (isnumeric (args{i}))
             args{i} = duration.ofDays (args{i});
           else
             args{i} = duration (args{i});

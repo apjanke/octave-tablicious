@@ -88,21 +88,21 @@ function [pkA, pkB] = proxykeysForMatrixes (A, B)
 
   # Input handling / conversion
 
-  if nargin == 1
+  if (nargin == 1)
     pkA = proxykeysForOneMatrix (A);
     return
   endif
 
-  if !isequal (class (A), class (B))
+  if (! isequal (class (A), class (B)))
     [origA, origB] = deal (A, B);
     [A, B] = widenTypesForProxyKeys (A, B);
-    if !isequal (class (A), class (B))
+    if (! isequal (class (A), class (B)))
       error ("proxykeysForMatrixes: Could not convert %s and %s to compatible types", ...
         class (origA), class (origB));
     endif
   endif
 
-  if size (A, 2) != size (B, 2)
+  if (size (A, 2) != size (B, 2))
     error ("proxykeysForMatrixes: Inputs must have same number of columns; got %d and %d", ...
       size (A, 2), size (B, 2));
   endif
@@ -111,13 +111,13 @@ function [pkA, pkB] = proxykeysForMatrixes (A, B)
 
   # Special-case type optimizations
   widenableToDoubleIntTypes = {'uint8' 'int8' 'uint16' 'int16' 'uint32' 'int32'};
-  if isa (A, 'double')
+  if (isa (A, 'double'))
     pkA = A;
     pkB = B;
-  elseif isa (A, 'single')
+  elseif (isa (A, 'single'))
     pkA = double (A);
     pkB = double (B);
-  elseif ismember (class (A), widenableToDoubleIntTypes)
+  elseif (ismember (class (A), widenableToDoubleIntTypes))
     pkA = double (A);
     pkB = double (B);
   else
@@ -131,12 +131,12 @@ function [outA, outB] = widenTypesForProxyKeys (A, B)
   outA = A;
   outB = B;
   widenableToDoubleIntTypes = {'uint8' 'int8' 'uint16' 'int16' 'uint32' 'int32'};
-  if isa (A, 'double') && isa (B, 'single')
+  if (isa (A, 'double') && isa (B, 'single'))
     outB = double (B);
-  elseif isa (A, 'single') && isa (B, 'double')
+  elseif (isa (A, 'single') && isa (B, 'double'))
     outA = double (A);
-  elseif ismember (class (A), widenableToDoubleIntTypes) ...
-      && ismember (class (B), widenableToDoubleIntTypes)
+  elseif (ismember (class (A), widenableToDoubleIntTypes) ...
+      && ismember (class (B), widenableToDoubleIntTypes))
     outA = double(A);
     outB = double(B);
   endif
@@ -144,19 +144,19 @@ endfunction
 
 function pk = proxykeysForOneMatrix (A)
   # Special-case optimizations
-  if isa (A, 'double')
+  if (isa (A, 'double'))
     pk = A;
-    return;
-  elseif isa (A, 'single')
+    return
+  elseif (isa (A, 'single'))
     pk = double (A);
-    return;
-  elseif ismember (class (A), {'uint8' 'int8' 'uint16' 'int16' 'uint32' 'int32'})
+    return
+  elseif (ismember (class (A), {'uint8' 'int8' 'uint16' 'int16' 'uint32' 'int32'}))
     # Note that (u)int64 is not included here; it cannot be losslessly widened to double
     pk = double (A);
-    return;
-  elseif isa (A, 'datetime')
+    return
+  elseif (isa (A, 'datetime'))
     pk = datenum (A);
-    return;
+    return
   endif
 
   # General case: use the "unique() trick"

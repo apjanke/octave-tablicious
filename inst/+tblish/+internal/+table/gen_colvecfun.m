@@ -15,11 +15,11 @@
 
 function gen_colvecfun (maxdepth)
   #GEN_COLVECFUN Meta-function to generate the colvecfun implementation
-  if nargin < 2 || isempty (maxdepth); maxdepth = 20; endif
+  if (nargin < 2 || isempty (maxdepth)); maxdepth = 20; endif
 
   out_file = 'colvecfun_impl.txt';
   fid = fopen (out_file, 'w');
-  function p(fmt, varargin)
+  function p (fmt, varargin)
     fprintf(fid, [fmt '\n'], varargin{:});
   endfunction
 

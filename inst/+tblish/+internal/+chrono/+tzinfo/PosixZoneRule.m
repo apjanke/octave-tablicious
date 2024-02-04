@@ -11,13 +11,14 @@ classdef PosixZoneRule
   endproperties
 
   methods (Static)
+
     function out = parseZoneRule (str)
       out = tblish.internal.chrono.algo.PosixZoneRule;
-      if !isrow (in)
+      if (! isrow (in))
         error ('in must be charvec; got non-row char');
       endif
       els = strsplit (in, ',');
-      if numel (els ~= 3)
+      if (numel (els != 3))
         error ('Invalid POSIX time zone rule specification: ''%s''', in);
       endif
       out.local_timezone = els{1};
@@ -25,21 +26,23 @@ classdef PosixZoneRule
       out.dst_end_rule = els{3};
       tok = regexp (out.local_timezone, '^([A-Za-z]+)(\d+)([A-Za-z]+)$', 'tokens');
       tok = tok{1};
-      if numel (tok) ~= 3
+      if (numel (tok) != 3)
         error ('Failed parsing POSIX zone name: ''%s''', out.local_timezone);
       endif
       out.std_name = tok{1};
       out.gmt_offset_hours = str2double(tok{2});
       out.dst_name = tok{3};
     endfunction
+
   endmethods
 
   methods
+
     function this = PosixZoneRule(in)
-      if nargin == 0
+      if (nargin == 0)
         return
       endif
-      if ischar (in)
+      if (ischar (in))
         this = tblish.internal.chrono.tzinfo.PosixZoneRule.parseZoneRule(in);
       endif
     endfunction
@@ -51,5 +54,7 @@ classdef PosixZoneRule
     function out = localToGmtDatenum (this, dnums, isDst)
       error ('Unimplemented');
     endfunction
+
   endmethods
+
 endclassdef

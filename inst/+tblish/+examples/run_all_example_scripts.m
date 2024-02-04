@@ -1,4 +1,4 @@
-function run_all_example_scripts
+function run_all_example_scripts ()
   # Runs all example scripts in the inst/examples directory.
   #
   # This function is meant for use in BIST tests. It just ensures that all

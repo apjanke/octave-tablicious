@@ -26,15 +26,15 @@ function out = mx_summary (x)
   out.Size = size (x);
   out.Type = class (x);
 
-  if isnumeric (x)
+  if (isnumeric (x))
   	out = mx_summary_numeric (x, out);
-  elseif isa (x, 'datetime')
+  elseif (isa (x, 'datetime'))
     out = mx_summary_datetime (x, out);
-  elseif isa (x, 'duration')
+  elseif (isa (x, 'duration'))
     out = mx_summary_numeric (x, out); % Works because duration supports isnan()
-  elseif islogical (x)
+  elseif (islogical (x))
     out = mx_summary_logical (x, out);
-  elseif isa (x, 'categorical')
+  elseif (isa (x, 'categorical'))
     out = mx_summary_categorical (x, out);
   else
   	% nop: we've already got Size and Type; that's all that is supported

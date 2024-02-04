@@ -28,7 +28,7 @@
 ## This is so you can conveniently run it from the command line.
 ##
 ## @end deftypefn
-function pp(varargin)
+function pp (varargin)
   #PP Alias for prettyprint, for debugging
   #
   # pp (x)
@@ -45,18 +45,18 @@ function pp(varargin)
   show_label = nargin > 1;
   for i = 1:numel (varargin)
     arg = varargin{i};
-    if ischar (arg)
+    if (ischar (arg))
       label = arg;
       value = evalin ("caller", arg);
     else
       value = arg;
       label = inputname (i);
-      if isempty (label)
+      if (isempty (label))
         label = sprintf ("Input %d", i);
       endif
     endif
 
-    if show_label
+    if (show_label)
       fprintf ("%s:\n", label);
     endif
     prettyprint (value);

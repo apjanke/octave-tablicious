@@ -43,17 +43,17 @@
 
 function out = istable (x)
   #ISTABLE True for table arrays or table-like arrays.
-  if isa (x, 'table')
+  if (isa (x, 'table'))
     # Main case: table arrays are tables.
     # This is actually redundant with the generic isobject/method test below,
     # but written separately for readability.
     out = true;
-  elseif isobject (x)
+  elseif (isobject (x))
     # Respect istable methods on classes. Normally, those methods would "grab"
     # this call. We check for it here so that these method overrides are respected
     # even if this istable function was called through a function handle or
     # similar mechanism, bypassing the regular method dispatch mechanism.
-    if ismember ('istable', methods (x))
+    if (ismember ('istable', methods (x)))
       out = istable (x);
     else
       out = false;

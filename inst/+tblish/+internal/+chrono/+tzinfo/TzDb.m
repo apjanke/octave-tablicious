@@ -30,7 +30,7 @@ classdef TzDb
     function out = instance ()
       #INSTANCE Shared global instance of TzDb
       persistent value
-      if isempty (value)
+      if (isempty (value))
         value = tblish.internal.chrono.tzinfo.TzDb;
       endif
       out = value;
@@ -38,6 +38,7 @@ classdef TzDb
   endmethods
 
   methods
+
     function this = TzDb (path)
       #TZDB Construct a new TzDb object
       #
@@ -46,8 +47,8 @@ classdef TzDb
       # path (char) is the path to the tzinfo database directory. If omitted or
       # empty, it defaults to the default path ('/usr/share/zoneinfo' on Unix,
       # and an error on Windows).
-      if nargin < 1;  path = [];  endif
-      if isempty (path)
+      if (nargin < 1);  path = [];  endif
+      if (isempty (path))
         this.path = tblish.internal.chrono.tzinfo.TzDb.defaultPath;
       else
         this.path = path;
@@ -78,7 +79,7 @@ classdef TzDb
       #   Comments
       # Each of which contains a cellstr column vector.
       persistent data
-      if isempty (data)
+      if (isempty (data))
         data = this.readZoneTab;
       endif
       out = data;
@@ -89,10 +90,10 @@ classdef TzDb
       #
       # out = definedZones (this)
       persistent value
-      if isempty (value)
+      if (isempty (value))
         specialFiles = {'+VERSION', 'iso3166.tab', 'zone.tab', 'posixrules'};
         files = tblish.internal.chrono.findFiles (this.path);
-        if ispc
+        if (ispc)
           files = strrep(files, '\', '/');
         endif
         value = setdiff (files', specialFiles);
@@ -114,7 +115,7 @@ classdef TzDb
 
       # We prefer the version 2 stuff
       out = tblish.internal.chrono.tzinfo.TzInfo;
-      if isfield (s, 'section2')
+      if (isfield (s, 'section2'))
         defn_s = s.section2;
         defn_s.goingForwardPosixZone = s.goingForwardPosixZone;
       else
@@ -127,6 +128,7 @@ classdef TzDb
   endmethods
 
   methods (Access = private)
+
     function out = readZoneTab (this)
       #READZONETAB Actually read and parse the zonetab file
 
@@ -144,7 +146,7 @@ classdef TzDb
       pattern = '^(\w+)\s+(\S+)\s+(\S+)\s*(.*)';
       [match,tok] = regexp (lines, pattern, 'match', 'tokens');
       tfMatch = ~cellfun ('isempty', match);
-      if !all (tfMatch)
+      if (! all (tfMatch))
         ixBad = find (!tfMatch);
         error ('Failed parsing line in zone.tab file: "%s"', lines{ixBad(1)});
       endif
@@ -160,11 +162,11 @@ classdef TzDb
 
     function out = readZoneFile (this, zoneId)
       #READZONEFILE Read and parse a zone definition file
-      if !ismember (zoneId, this.definedZones)
+      if (! ismember (zoneId, this.definedZones))
         error ("Undefined time zone: '%s'", zoneId);
       endif
       zoneFile = [this.path '/' zoneId];
-      if ~exist (zoneFile)
+      if (! exist (zoneFile))
         error (["tzinfo time zone file for zone %s does not exist: %s\n" ...
           "This is probably an error in the tzinfo database files."], ...
             zoneId, zoneFile);
@@ -184,8 +186,9 @@ classdef TzDb
   endmethods
 
   methods (Static)
+
     function out = defaultPath ()
-      if ispc
+      if (ispc)
         # Use the zoneinfo database bundled with Tablicious, because Windows doesn't
         # supply one.
         this_dir = fileparts (mfilename ('fullpath'));
@@ -194,6 +197,8 @@ classdef TzDb
         out = '/usr/share/zoneinfo';
       endif
     endfunction
+
   endmethods
+
 endclassdef
 

@@ -23,16 +23,16 @@ classdef WindowsIanaZoneConverter
     function out = windows2iana (this, winZoneId)
       map = getZoneMap (this);
       ix = find (strcmp (winZoneId, map.Windows));
-      if isempty (ix)
+      if (isempty (ix))
         error ('Unrecognized Windows time zone ID: ''%s''', winZoneId);
       endif
       territories = map.Territory(ix);
       ianas = map.Iana(ix);
-      if isscalar (ix)
+      if (isscalar (ix))
         out = ianas{1};
       else
         [tf,loc] = ismember ('001', territories);
-        if !tf
+        if (! tf)
           out = ianas{1};
           warning (['No "001" territory found for Windows time zone ''%s'' in map file. ' ...
             'Guessing IANA zone randomly as ''%s''.'], ...
@@ -46,7 +46,7 @@ classdef WindowsIanaZoneConverter
     function out = iana2windows (this, ianaZoneId)
       map = getZoneMap (this);
       [tf,loc] = ismember (ianaZoneId, map.Iana);
-      if !tf
+      if (! tf)
         error ('Unrecognized IANA time zone ID: ''%s''', ianaZoneId);
       endif
       out = map.Windows{loc};
@@ -54,7 +54,7 @@ classdef WindowsIanaZoneConverter
 
     function out = getZoneMap (this)
       persistent cache
-      if isempty (cache)
+      if (isempty (cache))
         cache = readWindowsZonesFile (this);
       endif
       out = cache;
@@ -73,5 +73,6 @@ classdef WindowsIanaZoneConverter
       out.Iana = tok(:,3);
     endfunction
   endmethods
+
 endclassdef
 

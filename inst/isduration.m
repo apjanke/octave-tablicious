@@ -33,11 +33,11 @@ function out = isduration (x)
   #ISDURATION True if input is a duration array
 
   # Developer note: see istable for an explanation of this logic.
-  if isa (x, 'duration')
+  if (isa (x, 'duration'))
     out = true;
-  elseif isobject (x)
+  elseif (isobject (x))
     # Respect isduration methods on classes.
-    if ismember ('isduration', methods (x))
+    if (ismember ('isduration', methods (x)))
       out = isduration (x);
     else
       out = false;

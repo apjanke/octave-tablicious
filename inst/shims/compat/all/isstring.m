@@ -26,5 +26,5 @@
 ## @end deftypefn
 
 function out = isstring (x)
-  out = isa (x, 'string');
+  out = isa (x, "string");
 endfunction

@@ -41,7 +41,7 @@ function out = NaC (sz)
   #NaS Not-a-Categorical (missing-valued categorical array)
   #
   # Creates a categorical array with all-missing values.
-  if nargin == 0
+  if (nargin == 0)
     out = categorical.undefined;
   else
     out = categorical.undefined (sz);

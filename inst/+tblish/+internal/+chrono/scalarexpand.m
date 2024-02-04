@@ -21,12 +21,12 @@ function varargout = scalarexpand (varargin)
   sz = [];
 
   for i = 1:nargin
-    if !isscalar (varargin{i})
+    if (! isscalar (varargin{i}))
       sz_i = size (varargin{i});
-      if isempty (sz)
+      if (isempty (sz))
         sz = sz_i;
       else
-        if !isequal (sz, sz_i)
+        if (! isequal (sz, sz_i))
           error ('Matrix dimensions must agree (%s vs %s)',...
             tblish.internal.chrono.size2str (sz), tblish.internal.chrono.size2str (sz_i))
         endif
@@ -36,12 +36,12 @@ function varargout = scalarexpand (varargin)
 
   varargout = varargin;
 
-  if isempty (sz)
+  if (isempty (sz))
     return
   endif
 
   for i = 1:nargin
-    if isscalar (varargin{i})
+    if (isscalar (varargin{i}))
       varargout{i} = repmat (varargin{i}, sz);
     endif
   endfor

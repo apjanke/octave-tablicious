@@ -30,15 +30,15 @@
 ## @end deftypefn
 
 function mustBeCellstr (x, label)
-  if nargin < 2; label = []; endif
-  if ! iscellstr (x)
-    if isempty (label)
+  if (nargin < 2); label = []; endif
+  if (! iscellstr (x))
+    if (isempty (label))
       label = inputname (1);
     endif
-    if isempty (label)
+    if (isempty (label))
       label = "input";
     endif
-    if iscell (x)
+    if (iscell (x))
       el_classes = cellfun (@(e) {class (e)}, x);
       type_descr = sprintf ("cell array containing %s", strjoin (el_classes, ", "));
     else

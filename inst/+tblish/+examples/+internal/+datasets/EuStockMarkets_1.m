@@ -11,7 +11,7 @@ price = table2array (t2);
 
 price0 = price(1,:);
 
-rel_price = price ./ repmat (price0, [size(price,1) 1]);
+rel_price = price ./ repmat (price0, [size(price, 1) 1]);
 
 figure;
 plot (day, rel_price);

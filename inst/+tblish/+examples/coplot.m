@@ -58,7 +58,7 @@
 ##
 ## @end deftypefn
 
-function [fig, hax] = coplot(varargin)
+function [fig, hax] = coplot (varargin)
   narginchk (4, Inf);
   defaults = {
     "PlotFcn"   "plot"
@@ -70,10 +70,10 @@ function [fig, hax] = coplot(varargin)
       "PlotArgs"  {}
     });
   mustBeA (opts.PlotFcn, "function_handle", "opts.PlotFcn");
-  if ! iscell (opts.PlotArgs)
+  if (! iscell (opts.PlotArgs))
     opts.PlotArgs = { opts.PlotArgs };
   endif
-  if isnumeric (args{1})
+  if (isnumeric (args{1}))
     fig = args{1};
     mustBeScalar (fig);
     figure (fig);
@@ -87,12 +87,12 @@ function [fig, hax] = coplot(varargin)
   [X, x_name] = getvar (tbl, xvar);
   [Y, y_name] = getvar (tbl, yvar);
   [g_ix, g_names] = resolveVarRef (tbl, gvar);
-  if isscalar (g_ix)
+  if (isscalar (g_ix))
     hax = coplot_one (fig, tbl, X, x_name, Y, y_name, g_ix, g_names, opts);
   else
     hax = coplot_two (fig, tbl, X, x_name, Y, y_name, g_ix, g_names, opts);
   endif
-  if nargout < 1
+  if (nargout < 1)
     clear fig
   endif
 endfunction
@@ -116,10 +116,10 @@ function hax = coplot_one (fig, tbl, X, x_name, Y, y_name, g_ix, g_names, opts)
     ix_row = ceil (i / n_cols);
     ix_col = 1 + rem (i, n_rows);
     ax = subplot (n_rows, n_cols, i);
-    if ix_col != 1
+    if (ix_col != 1)
       set(ax, 'yticklabel', {});
     endif
-    if ix_row != n_rows
+    if (ix_row != n_rows)
       set(ax, 'xticklabel', {});
     endif
     set(ax, 'position', get(ax, 'outerposition'));

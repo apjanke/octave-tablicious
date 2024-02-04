@@ -27,12 +27,12 @@
 ## @end deftypefn
 
 function mustBeVector (x, label)
-  if nargin < 2; label = []; endif
-  if ! (isvector (x) || isequal (size (x), [0 0]))
-    if isempty (label)
+  if (nargin < 2); label = []; endif
+  if (! (isvector (x) || isequal (size (x), [0 0])))
+    if (isempty (label))
       label = inputname (1);
     endif
-    if isempty (label)
+    if (isempty (label))
       label = "input";
     endif
     error ("%s must be a vector; got a %s", ...

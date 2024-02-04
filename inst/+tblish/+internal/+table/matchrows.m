@@ -42,11 +42,11 @@ function [ixs, ixUnmatchedA, ixUnmatchedB] = matchrows (A, B)
   #     values (as long as output ordering for partial-NaN rows is not significant),
   #     at which point a pair of ismember() calls might work.
 
-  if !ismatrix (A)
-    error ('matchrows: input A must be a matrix; got a %s', size2str ( size (A)));
+  if (! ismatrix (A))
+    error ('matchrows: input A must be a matrix; got a %s', size2str (size (A)));
   endif
-  if !ismatrix (B)
-    error ('matchrows: input B must be a matrix; got a %s', size2str ( size (B)));
+  if (! ismatrix (B))
+    error ('matchrows: input B must be a matrix; got a %s', size2str (size (B)));
   endif
 
   # Two-way ismember will often be faster, but it's not well tested yet
@@ -122,7 +122,7 @@ function [ixs, ixUnmatchedA, ixUnmatchedB] = matchrows_dumb_nested_loops (A, B)
     for iB = 1:nRowsB
       # all(... == ...) is much faster than isequal(). Use that.
       #if isequal (A(iA,:), B(iB,:))
-      if all (A(iA,:) == B(iB,:))
+      if (all (A(iA,:) == B(iB,:)))
         nMatches = nMatches + 1;
         ixs(nMatches,:) = [iA iB];
         tfMatchedA(iA) = true;

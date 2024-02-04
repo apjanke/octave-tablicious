@@ -29,33 +29,33 @@
 ## See also: @ref{array2table}, @ref{table}, @ref{struct2table}
 ##
 ## @end deftypefn
-function out = cell2table(c, varargin)
+function out = cell2table (c, varargin)
   #CELL2TABLE Convert a cell array to a table
 
-  if !iscell (c)
+  if (! iscell (c))
     error ('cell2table: Input must be cell; got %s', class (c));
   endif
-  if ndims (c) > 2
+  if (ndims (c) > 2)
     error ('cell2table: Input must be 2-D; got %d-D', ndims (c));
   endif
 
   # Peel off trailing options
   [opts, args] = peelOffNameValueOptions (varargin, {'VariableNames', 'RowNames'});
-  if !isempty (args)
+  if (! isempty (args))
     error ('cell2table: Unrecognized options');
   endif
 
   nCols = size (c, 2);
   colVals = cell (1, nCols);
   for iCol = 1:nCols
-    if iscellstr (c(:,iCol))
+    if (iscellstr (c(:,iCol)))
       # Special-case char conversion
       colVals{iCol} = c(:,iCol);
     else
       # Cheap hack to test for cat-ability
       try
         x = cat (1, c{:,iCol});
-        if size (x, 1) == size (c, 1)
+        if (size (x, 1) == size (c, 1))
           colVals{iCol} = x;
           continue
         endif
@@ -66,7 +66,7 @@ function out = cell2table(c, varargin)
     endif
   endfor
 
-  if isfield (opts, 'VariableNames')
+  if (isfield (opts, 'VariableNames'))
     varNames = opts.VariableNames;
   else
     varNames = cell (1, nCols);
@@ -76,7 +76,7 @@ function out = cell2table(c, varargin)
   endif
 
   optArgs = {'VariableNames', varNames};
-  if isfield (opts, 'RowNames')
+  if (isfield (opts, 'RowNames'))
     optArgs = [optArgs {'RowNames', opts.RowNames}];
   endif
   out = table (colVals{:}, optArgs{:});

@@ -36,13 +36,13 @@
 function out = array2table(c, varargin)
   #ARRAY2TABLE Convert an array to a table
 
-  if ndims (c) > 2
+  if (ndims (c) > 2)
     error ('array2table: Input must be 2-D; got %d-D', ndims (c));
   endif
 
   # Peel off trailing options
   [opts, args] = peelOffNameValueOptions (varargin, {'VariableNames', 'RowNames'});
-  if !isempty (args)
+  if (! isempty (args))
     error ('array2table: Unrecognized options');
   endif
 
@@ -52,7 +52,7 @@ function out = array2table(c, varargin)
     colVals{iCol} = c(:,iCol);
   endfor
 
-  if isfield (opts, 'VariableNames')
+  if (isfield (opts, 'VariableNames'))
     varNames = opts.VariableNames;
   else
     varNames = cell (1, nCols);
@@ -62,7 +62,7 @@ function out = array2table(c, varargin)
   endif
 
   optArgs = {'VariableNames', varNames};
-  if isfield (opts, 'RowNames')
+  if (isfield (opts, 'RowNames'))
     optArgs = [optArgs {'RowNames', opts.RowNames}];
   endif
   out = table (colVals{:}, optArgs{:});

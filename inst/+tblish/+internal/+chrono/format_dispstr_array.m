@@ -19,7 +19,7 @@
 function out = format_dispstr_array (strs)
   #FORMAT_DISPSTR_ARRAY Format an array of strings as a matrix display
 
-  if ismatrix (strs)
+  if (ismatrix (strs))
       out = prettyprint_matrix (strs);
   else
       sz = size (strs);
@@ -40,14 +40,14 @@ function out = format_dispstr_array (strs)
       endfor
       out = strjoin (chunks, '\n');
   endif
-  if nargout == 0
+  if (nargout == 0)
       disp (out);
       clear out;
   endif
 endfunction
 
 function out = prettyprint_matrix (strs)
-  if !ismatrix (strs)
+  if (! ismatrix (strs))
     error ('Input must be matrix; got %d-D', ndims (strs));
   endif
   lens = cellfun ('prodofsize', strs);

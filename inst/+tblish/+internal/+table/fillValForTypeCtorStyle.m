@@ -38,7 +38,7 @@
 function out = fillValForTypeCtorStyle (typeName)
 
 persistent ctorSpecialCases specialCases intTypes unsupportedTypes
-if isempty (ctorSpecialCases)
+if (isempty (ctorSpecialCases))
   dummyTable = table (NaN);
   dummyTable = dummyTable(:,[]);
   # ctorSpecialCases are those for which the preallocation constructor defines a fill
@@ -71,28 +71,28 @@ if isempty (ctorSpecialCases)
   unsupportedTypes = {};
 endif
 
-if isstring (typeName)
+if (isstring (typeName))
   mustBeScalar (typeName);
   typeName = char (typeName);
 endif
-if isempty (typeName)
+if (isempty (typeName))
   error ('typeName may not be an empty string')
 endif
-if ismember (typeName, unsupportedTypes)
+if (ismember (typeName, unsupportedTypes))
   error ('type is not supported for table fill value detection: %s', typeName)
 endif
 
 # Special cases
-if ismember (typeName, intTypes)
+if (ismember (typeName, intTypes))
   out = zeros ([1 1], typeName);
 end
 [tf,loc] = ismember (typeName, ctorSpecialCases(:,1));
-if tf
+if (tf)
   out = ctorSpecialCases{loc,2};
   return
 endif
 [tf,loc] = ismember (typeName, specialCases(:,1));
-if tf
+if (tf)
   out = specialCases{loc,2};
   return
 endif

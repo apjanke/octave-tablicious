@@ -41,7 +41,7 @@ function out = NaS (sz)
   #NaS Not-a-String (missing-valued string array)
   #
   # Creates a string array with all-missing values.
-  if nargin == 0
+  if (nargin == 0)
     out = string.missing;
   else
     out = string.missing (sz);

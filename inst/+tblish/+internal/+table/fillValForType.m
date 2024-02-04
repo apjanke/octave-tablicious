@@ -53,7 +53,7 @@ function out = fillValForType (typeName)
 #   * The regular array expansion fill value is not what we want for a fill value
 #     for use in tables.
 persistent specialCases unsupportedTypes
-if isempty (specialCases)
+if (isempty (specialCases))
   dummyTable = table (NaN);
   dummyTable = dummyTable(:,[]);
   specialCases = {
@@ -68,20 +68,20 @@ if isempty (specialCases)
   unsupportedTypes = {'table'};
 endif
 
-if isstring (typeName)
+if (isstring (typeName))
   mustBeScalar (typeName);
   typeName = char (typeName);
 endif
-if isempty (typeName)
+if (isempty (typeName))
   error ('typeName may not be an empty string')
 endif
-if ismember (typeName, unsupportedTypes)
+if (ismember (typeName, unsupportedTypes))
   error ('type is not supported for table fill value detection: %s', typeName)
 endif
 
 # Special cases
 [tf,loc] = ismember (typeName, specialCases(:,1));
-if tf
+if (tf)
   out = specialCases{loc,2};
   return
 endif

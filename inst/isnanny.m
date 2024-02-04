@@ -42,17 +42,17 @@
 ##
 ## @end deftypefn
 function out = isnanny (x)
-  if isnumeric (x)
+  if (isnumeric (x))
     out = isnan (x);
-  elseif isa (x, 'datetime')
+  elseif (isa (x, 'datetime'))
     out = isnat (x);
-  elseif isa (x, 'duration') || isa (x, 'calendarDuration')
+  elseif (isa (x, 'duration') || isa (x, 'calendarDuration'))
     out = isnan (x);
-  elseif isobject (x)
+  elseif (isobject (x))
     # Static method invocation (instead of string-based/feval) for speed
-    if ismethod (x, 'ismissing')
+    if (ismethod (x, 'ismissing'))
       out = ismissing (x);
-    elseif ismethod (x, 'isnan')
+    elseif (ismethod (x, 'isnan'))
       out = isnan (x);
     else
       out = false (size (x));

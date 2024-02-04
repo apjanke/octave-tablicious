@@ -134,7 +134,7 @@ classdef (Abstract) dataset
   methods (Static)
 
     function out = lookup (name)
-      if ! ismember (name, tblish.internal.dataset.included_datasets)
+      if (! ismember (name, tblish.internal.dataset.included_datasets))
         error ("No defined dataset with name '%s'", name);
       endif
       class_name = ["tblish.internal.datasets." name];
@@ -160,14 +160,14 @@ classdef (Abstract) dataset
       #
       # This method must return a scalar struct whose fields are
       # the variables defined in this dataset.
-      error("dataset.load is abstract. Subclass %s must implement it, but it does not.", ...
+      error ("dataset.load is abstract. Subclass %s must implement it, but it does not.", ...
         class (this));
     endfunction
 
     function out = description_texi (this)
       #DESCRIPTION_TEXI Get the Texinfo description for this dataset
       description_file = fullfile (this.class_dir, "description.texi");
-      if ! isfile (description_file)
+      if (! isfile (description_file))
         out = "<no description available>";
         return
       endif
@@ -178,15 +178,15 @@ classdef (Abstract) dataset
       example_scripts_dir = fullfile (octave_namespace_dir, "+examples", ...
         "+internal", "+datasets");
       # Include example scripts
-      while true
+      while (true)
         [ix_start, ix_end, tok] = regexp (texi, '@INCLUDE_DATASET_EXAMPLE_SCRIPT\{(.*?)\}', ...
           "start", "end", "tokens");
-        if isempty (ix_start)
+        if (isempty (ix_start))
           break
         endif
         script_file_base = tok{1}{1};
         script_file = fullfile (example_scripts_dir, script_file_base);
-        if ! isfile (script_file)
+        if (! isfile (script_file))
           error ("dataset.description_texi: File not found: %s", script_file);
         endif
         script = fileread (script_file);
@@ -230,7 +230,7 @@ classdef (Abstract) dataset
     function out = cache_file_path (this)
       #CACHE_FILE_PATH Path to the local cache file, for classes that use caching
 
-      if ispc
+      if (ispc)
         error (["tblish.internal.dataset.cache_file_path: this is not " ...
           "implemented for Windows yet. Sorry."]);
       else

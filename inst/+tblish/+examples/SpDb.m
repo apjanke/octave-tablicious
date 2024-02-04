@@ -53,7 +53,7 @@ function varargout = SpDb
     'S4'  'P4'  300
     'S4'  'P5'  400
   }, 'VariableNames', {'SNum', 'PNum', 'Qty'});
-  if nargout == 1
+  if (nargout == 1)
     varargout = { struct('S', S, 'P', P, 'SP', SP) };
   else
     varargout = { S, P, SP };

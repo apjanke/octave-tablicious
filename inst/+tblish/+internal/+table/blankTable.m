@@ -36,30 +36,30 @@
 ## Returns a table array.
 function out = blankTable (sz, varTypes, varNames, fillStyle)
 
-if nargin < 3 || isempty(varNames);     varNames = {}; endif
-if nargin < 4 || isempty (fillStyle);   fillStyle = 'outer'; endif
+if (nargin < 3 || isempty(varNames));     varNames = {}; endif
+if (nargin < 4 || isempty (fillStyle));   fillStyle = 'outer'; endif
 
 varTypes = cellstr (varTypes);
 varNames = cellstr (varNames);
 mustBeMember (fillStyle, {'outer', 'ctor'})
-if !isequal (size (sz), [1 2])
+if (! isequal (size (sz), [1 2]))
   error ('sz must be exactly size 1-by-2; was size %s', size2str (size (sz)))
 endif
 doCtorStyle = isequal (fillStyle, 'ctor');
 
 [nRows, nVars] = deal (sz(1), sz(2));
-if isempty (varNames)
+if (isempty (varNames))
   varNames = tblish.internal.table.defaultVarNames (nVars);
 endif
 
 varVals = cell (1, nVars);
 for i = 1:nVars
-  if doCtorStyle
+  if (doCtorStyle)
     proto = tblish.internal.table.fillValForTypeCtorStyle (varTypes{i});
   else
     proto = tblish.internal.table.fillValForType (varTypes{i});
   endif
-  if nRows == 1
+  if (nRows == 1)
     varVal = proto;
   else
     varVal = repmat (proto, [nRows 1]);

@@ -51,7 +51,7 @@ classdef datasets
         c = [c; {dset.name dset.summary}];
       endfor
       out = cell2table(c, "VariableNames", {"Name", "Summary"});
-      if nargout == 0
+      if (nargout == 0)
         prettyprint (out);
         clear out
       endif
@@ -71,8 +71,8 @@ classdef datasets
     function out = load (name)
       dset = tblish.internal.dataset.lookup (name);
       data = dset.load ();
-      if nargout == 0
-        if isstruct (data)
+      if (nargout == 0)
+        if (isstruct (data))
           s = data;
           vars = fieldnames (s);
           for i = 1:numel(vars)
@@ -107,7 +107,7 @@ classdef datasets
       # this method and let it be replaced by "help tblish.dataset.<name>".
       dset = tblish.internal.dataset.lookup (name);
       out = dset.description_texi;
-      if nargout == 0
+      if (nargout == 0)
         disp (out);
         clear out
       endif

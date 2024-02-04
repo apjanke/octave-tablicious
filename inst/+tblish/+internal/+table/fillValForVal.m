@@ -42,30 +42,30 @@
 function out = fillValForVal (x)
   nCols = size (x, 2);
 
-  if isnumeric (x)
-    if isa (x, 'double')
+  if (isnumeric (x))
+    if (isa (x, 'double'))
       out = NaN (1, nCols);
-    elseif isa (x, 'single')
+    elseif (isa (x, 'single'))
       out = single (NaN (1, nCols));
-    elseif isinteger (x)
+    elseif (isinteger (x))
       out = zeros (1, nCols, class (x));
     else
       error ('table: value was numeric but not single, double, or integer: %s', ...
         class (x));
     endif
-  elseif iscell (x)
-    if iscellstr (x)
+  elseif (iscell (x))
+    if (iscellstr (x))
       # This is an exception to the "check the type, not its values" rule.
       out = repmat ({''}, 1, nCols);
     else
       out = repmat ({[]}, 1, nCols);
     endif
-  elseif isa (x, 'datetime')
+  elseif (isa (x, 'datetime'))
     out = NaT (1, nCols);
-  elseif isa (x, 'string')
+  elseif (isa (x, 'string'))
     out = NaS (1, nCols);
-  elseif isa (x, 'table')
-    if hasrownames (x)
+  elseif (isa (x, 'table'))
+    if (hasrownames (x))
       error (['table: cannot construct outer fill values for table-valued ' ...
        'variables that have row names']);
     endif
@@ -75,11 +75,11 @@ function out = fillValForVal (x)
     endfor
     varNames = x.Properties.VariableNames;
     out = table (varVals{:}, 'VariableNames', x.Properties.VariableNames);
-  elseif isa (x, 'categorical')
+  elseif (isa (x, 'categorical'))
     out = NaC (1, nCols);
   else
     # General case: Fall back to using array-expansion fill value
-    if isempty (x)
+    if (isempty (x))
       # Assume the 0-arg constructor works
       x0 = feval (class (x));
     else

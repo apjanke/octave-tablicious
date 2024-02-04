@@ -28,12 +28,12 @@
 ## @end deftypefn
 
 function x = mustBeScalarLogical (x, label)
-  if nargin < 2; label = []; endif
-  if ! (isscalar (x) && islogical (x))
-    if isempty (label)
+  if (nargin < 2); label = []; endif
+  if (! (isscalar (x) && islogical (x)))
+    if (isempty (label))
       label = inputname (1);
     endif
-    if isempty (label)
+    if (isempty (label))
       label = "input";
     endif
     error ("%s must be a scalar logical; got a %s %s", ...

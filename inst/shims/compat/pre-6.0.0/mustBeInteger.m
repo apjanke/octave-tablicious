@@ -28,25 +28,25 @@
 ## @end deftypefn
 
 function x = mustBeInteger (x, label)
-  if nargin < 2; label = []; endif
+  if (nargin < 2); label = []; endif
   if isinteger (x) || islogical (x)
     return
   endif
   but = [];
-  if ! isnumeric (x)
+  if (! isnumeric (x))
     but = sprintf ("it was non-numeric (got a %s)", class (x));
-  elseif any (! isfinite (x))
+  elseif (any (! isfinite (x)))
     but = "there were Inf values";
-  elseif ! isreal (x)
+  elseif (! isreal (x))
     but = "it was complex";
-  elseif ! all (floor (x) == x)
+  elseif (! all (floor (x) == x))
     but = "it had fractional values in some elements";
   endif
-  if ! isempty (but)
-    if isempty (label)
+  if (! isempty (but))
+    if (isempty (label))
       label = inputname (1);
     endif
-    if isempty (label)
+    if (isempty (label))
       label = "input";
     endif
     error ("%s must be integer-valued; but %s", ...

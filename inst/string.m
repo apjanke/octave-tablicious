@@ -112,11 +112,11 @@ classdef string
     ##
     ## @end deftypefn
     function out = empty (varargin)
-      if nargin == 0
+      if (nargin == 0)
         out = string ([]);
-      elseif nargin == 1
+      elseif (nargin == 1)
         sz = varargin{1};
-        if isscalar (sz)
+        if (isscalar (sz))
           sz(2) = 0;
         endif
         out = reshape (string ([]), sz);
@@ -141,7 +141,7 @@ classdef string
     ##
     ## @end deftypefn
     function out = missing (sz)
-      if nargin < 2
+      if (nargin < 2)
         out = string (missing);
       else
         out = repmat (string (missing), sz);
@@ -179,10 +179,10 @@ classdef string
       # (empty strings, NaN, NaT) to string missings.
       #
       # TODO: Maybe fall back to calling cellstr() on arbitrary input objects.
-      if nargin == 0
-        return;
+      if (nargin == 0)
+        return
       endif
-      if isa(in, "string")
+      if (isa (in, "string"))
         # Copy properties, because I don't know if a full-array pass-through
         # works in Octave. -apj
         # this = in; % That is, don't do this.
@@ -190,51 +190,51 @@ classdef string
         this.tfMissing = in.tfMissing;
         return
       endif
-      if ischar (in)
+      if (ischar (in))
         this.strs = cellstr (in);
         this.tfMissing = false (size (this.strs));
-      elseif iscell (in)
-        if ! iscellstr (in)
+      elseif (iscell (in))
+        if (! iscellstr (in))
           error ('string: cell inputs must be cellstr');
         endif
         this.strs = in;
         this.tfMissing = false (size (this.strs));
-      elseif isnumeric (in)
+      elseif (isnumeric (in))
         tfNan = isnan (in);
         this.tfMissing = tfNan;
-        if any(tfNan(:))
+        if (any (tfNan(:)))
           strs = repmat ({''}, size (in));
           strs(!tfNan) = arrayfun (@(x) {num2str(x)}, in(!tfNan));
           this.strs = strs;
         else
           this.strs = arrayfun (@(x) {num2str(x)}, in);
         endif
-      elseif islogical (in)
+      elseif (islogical (in))
         strs = repmat ({'false'}, size (in));
         strs(in) = {'true'};
         this.strs = strs;
         this.tfMissing = false (size (in));
-      elseif isa (in, 'datetime')
+      elseif (isa (in, 'datetime'))
         tfNat = isnat (in);
         this.tfMissing = tfNat;
-        if any(tfNat(:))
+        if (any (tfNat(:)))
           strs = repmat ({''}, size (in));
           strs(!tfNat) = arrayfun (@(x) {datestr(x)}, in(!tfNat));
           this.strs = strs;
         else
           this.strs = arrayfun (@(x) {datestr(x)}, in);
         endif
-      elseif isa (in, 'duration') || isa (in, 'calendarDuration')
+      elseif (isa (in, 'duration') || isa (in, 'calendarDuration'))
         tfNat = isnat (in);
         this.tfMissing = tfNat;
-        if any(tfNat(:))
+        if (any (tfNat(:)))
           strs = repmat ({''}, size (in));
           strs(!tfNat) = dispstrs (in(!tfNat));
           this.strs = strs;
         else
           this.strs = dispstrs (in);
         endif
-      elseif isa (in, 'missing')
+      elseif (isa (in, 'missing'))
         this.strs = repmat ({''}, size (in));
         this.tfMissing = true (size (in));
       else
@@ -260,21 +260,21 @@ classdef string
     function display (this)
       #DISPLAY Custom display
       in_name = inputname(1);
-      if !isempty(in_name)
-        fprintf('%s =\n', in_name);
+      if (! isempty(in_name))
+        fprintf ('%s =\n', in_name);
       endif
-      disp(this);
+      disp (this);
     endfunction
 
     function disp (this)
       #DISP Custom display
-      if isempty (this)
+      if (isempty (this))
         fprintf ('Empty %s string\n', size2str (size (this)));
         return
       endif
       my_dispstrs = this.dispstrs;
       out = format_dispstr_array (my_dispstrs);
-      fprintf("%s", out);
+      fprintf ("%s", out);
     endfunction
 
     ## -*- texinfo -*-
@@ -419,8 +419,8 @@ classdef string
       args = varargin;
       out = args;
       for i = 1:numel(args)
-        if isa (args{i}, 'string')
-          if isscalar (args{i})
+        if (isa (args{i}, 'string'))
+          if (isscalar (args{i}))
             out{i} = char (args{i});
           else
             out{i} = cellstr (args{i});
@@ -514,7 +514,7 @@ classdef string
     function out = strlength(this)
       out = NaN (size(this));
       for i = 1:numel (out)
-        if this.tfMissing(i)
+        if (this.tfMissing(i))
           continue
         endif
         utf16 = unicode2native (this.strs{i}, 'UTF-16LE');
@@ -567,7 +567,7 @@ classdef string
       points = codepoints (this);
       rev_points = points;
       for i = 1:numel (this)
-        if this.tfMissing(i)
+        if (this.tfMissing(i))
           continue
         endif
         rev_points{i} = points{i}(end:-1:1);
@@ -797,14 +797,14 @@ classdef string
       for i = 1:numel (A)
         a = A.strs{i};
         b = B.strs{i};
-        if isequal (a, b)
+        if (isequal (a, b))
           out(i) = 0;
         else
           # This implementation is gross, but it's the best I can do with what
           # the base language provides. - apj
           tmp = [a b];
           [tmp2, ix] = sort (tmp);
-          if ix(1) == 1
+          if (ix(1) == 1)
             out(i) = -1;
           else
             out(i) = 1;
@@ -907,7 +907,7 @@ classdef string
       # TODO: Handle missings.
       args = demote_strings (varargin);
       out = fprintf (args{:});
-      if nargout == 0
+      if (nargout == 0)
         clear out
       endif
     endfunction
@@ -916,9 +916,9 @@ classdef string
       #PRINTF Formatted output
       #
       # TODO: Handle missings.
-      args = demote_strings( varargin);
+      args = demote_strings (varargin);
       printf (args{:});
-      if nargout == 0
+      if (nargout == 0)
         clear out
       endif
     endfunction
@@ -1014,7 +1014,7 @@ classdef string
 
     function out = size (this, dim)
       #SIZE Size of array.
-      if nargin == 1
+      if (nargin == 1)
         out = size (this.strs);
       else
         out = size (this.strs, dim);
@@ -1111,7 +1111,7 @@ classdef string
 
     function [this, nshifts] = shiftdim( this, n)
       #SHIFTDIM Shift dimensions.
-      if nargin > 1
+      if (nargin > 1)
         this.strs = shiftdim (this.strs, n);
         this.tfMissing = shiftdim (this.strs, n);
       else
@@ -1123,16 +1123,16 @@ classdef string
     function out = cat (dim, varargin)
       #CAT Concatenate arrays.
       args = varargin;
-      for i = 1:numel(args)
-        if !isa(args{i}, 'string')
-          args{i} = string(args{i});
+      for i = 1:numel (args)
+        if (! isa (args{i}, 'string'))
+          args{i} = string (args{i});
         endif
       endfor
       out = args{1};
-      fieldArgs1 = cellfun(@(obj) {obj.strs}, args);
-      out.strs = cat(dim, fieldArgs1{:});
-      fieldArgs2 = cellfun(@(obj) {obj.tfMissing}, args);
-      out.tfMissing = cat(dim, fieldArgs2{:});
+      fieldArgs1 = cellfun (@(obj) {obj.strs}, args);
+      out.strs = cat (dim, fieldArgs1{:});
+      fieldArgs2 = cellfun (@(obj) {obj.tfMissing}, args);
+      out.tfMissing = cat (dim, fieldArgs2{:});
     endfunction
 
     function out = horzcat (varargin)
@@ -1149,7 +1149,7 @@ classdef string
       #SUBSASGN Subscripted assignment.
 
       # Chained subscripts
-      if numel(s) > 1
+      if (numel (s) > 1)
         rhs_in = subsref(this, s(1));
         rhs = subsasgn(rhs_in, s(2:end), b);
       else
@@ -1157,7 +1157,7 @@ classdef string
       endif
 
       # Base case
-      switch s(1).type
+      switch (s(1).type)
         case '()'
           this = subsasgnParensPlanar(this, s(1), rhs);
         case '{}'
@@ -1173,7 +1173,7 @@ classdef string
     #SUBSREF Subscripted reference.
 
       # Base case
-      switch s(1).type
+      switch (s(1).type)
         case '()'
           varargout = { subsrefParensPlanar(this, s(1)) };
         case '{}'
@@ -1185,7 +1185,7 @@ classdef string
       endswitch
 
       # Chained reference
-      if numel (s) > 1
+      if (numel (s) > 1)
         out = subsref (out, s(2:end));
       endif
     endfunction
@@ -1196,7 +1196,7 @@ classdef string
 
     function this = subsasgnParensPlanar (this, s, rhs)
       #SUBSASGNPARENSPLANAR ()-assignment for planar object
-      if !isa (rhs, 'string')
+      if (! isa (rhs, 'string'))
         rhs = string (rhs);
       endif
       this.strs(s.subs{:}) = rhs.strs;
@@ -1228,12 +1228,12 @@ classdef string
       # This is what you call internally inside the class instead of doing
       # ()-indexing references on the LHS, which don't work properly inside
       # the class because they don't respect the subsasgn() override.
-      if !iscell(ix)
+      if (! iscell (ix))
         ix = { ix };
       endif
       s.type = '()';
       s.subs = ix;
-      out = subsasgnParensPlanar(this, s, value);
+      out = subsasgnParensPlanar (this, s, value);
     endfunction
 
   endmethods
@@ -1266,7 +1266,7 @@ classdef string
       #
       # This is the inverse of codepoints().
       persistent native_utf32_encoding
-      if isempty (native_utf32_encoding)
+      if (isempty (native_utf32_encoding))
         [~,~,endian] = computer ();
         native_utf32_encoding = sprintf ('UTF-32%cE', endian);
       endif
@@ -1317,7 +1317,7 @@ function varargout = promote (varargin)
   #PROMOTEC Promote arguments to strings
   varargout = varargin;
   for i = 1:numel (varargin)
-    if !isa (varargin{i}, 'string')
+    if (! isa (varargin{i}, 'string'))
       varargout{i} = string (varargin{i});
     endif
   endfor
@@ -1328,7 +1328,7 @@ function out = promotec (args)
   #PROMOTEC Promote arguments to strings, cell-wise
   out = args;
   for i = 1:numel (args)
-    if !isa (args{i}, 'string')
+    if (! isa (args{i}, 'string'))
       out{i} = string (args{i});
     endif
   endfor

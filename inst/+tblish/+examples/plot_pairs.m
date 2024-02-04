@@ -45,33 +45,33 @@
 function out = plot_pairs (varargin)
   args = varargin;
   fig = [];
-  if isnumeric (args{1})
+  if (isnumeric (args{1}))
     fig = args{1};
     args(1) = [];
   endif
   data = args{1};
-  if numel (args) > 1
+  if (numel (args) > 1)
     plot_type = args{2};
   else
     plot_type = 'scatter';
   endif
 
-  if isstruct (data)
+  if (isstruct (data))
     data = struct2table (data);
   endif
-  if ! istable (data)
+  if (! istable (data))
     error ('plot_pairs: input data must be a table or struct');
   endif
   t = data;
 
-  if isempty (fig)
+  if (isempty (fig))
     fig = figure;
   endif
   vars = t.Properties.VariableNames;
   n_vars = numel (vars);
   for i = 1:n_vars
     for j = 1:n_vars
-      if i == j
+      if (i == j)
         # TODO: Figure out how to put the variable name in big text in this axes
         continue
       endif
@@ -81,7 +81,7 @@ function out = plot_pairs (varargin)
       var_y = vars{j};
       x = t.(var_x);
       y = t.(var_y);
-      switch plot_type
+      switch (plot_type)
         case "scatter"
           scatter (hax, x, y, 10);
         case "smooth"
@@ -92,7 +92,7 @@ function out = plot_pairs (varargin)
     endfor
   endfor
 
-  if nargout > 0
+  if (nargout > 0)
     out = fig;
   endif
 endfunction
@@ -103,7 +103,7 @@ function smooth (hax, x, y, marker_sz)
   # port that. For now, just use a cubic.
   hold on
   p = polyfit (x, y, 3);
-  x_hat = unique(x);
+  x_hat = unique (x);
   p_y = polyval (p, x_hat);
   plot (hax, x_hat, p_y, "r");
   hold off

@@ -131,33 +131,33 @@ classdef datetime
       args = varargin;
       knownOptions = {'Format','InputFormat','Locale','PivotYear','TimeZone'};
       opts = struct;
-      while numel (args) >= 3 && isa (args{end-1}, 'char') ...
-          && ismember (args{end-1}, knownOptions)
+      while (numel (args) >= 3 && isa (args{end-1}, 'char') ...
+          && ismember (args{end-1}, knownOptions))
         opts.(args{end-1}) = args{end};
         args(end-1:end) = [];
       endwhile
 
       # Handle inputs
       timeZone = '';
-      if isfield (opts, 'TimeZone')
+      if (isfield (opts, 'TimeZone'))
         timeZone = opts.TimeZone;
       endif
-      switch numel (args)
+      switch (numel (args))
         case 0
           dnums = now;
         case 1
           x = args{1};
-          if isnumeric (x)
+          if (isnumeric (x))
             # Convert date vectors
             dnums = datenum (x);
-          elseif ischar (x) || iscellstr (x) || isa (x, 'string')
+          elseif (ischar (x) || iscellstr (x) || isa (x, 'string'))
             x = cellstr (x);
             tfRelative = ismember (x, {'today','tomorrow','yesterday','now'});
-            if all (tfRelative)
-              if !isscalar (x)
+            if (all (tfRelative))
+              if (! isscalar (x))
                 error ('Multiple arguments not allowed for relativeDay format');
               endif
-              switch x{1}
+              switch (x{1})
                 case 'yesterday'
                   dnums = floor (now) - 1;
                 case 'today'
@@ -170,41 +170,41 @@ classdef datetime
             else
               # They're datestrs
               # TODO: Support Locale option
-              if isfield (opts, 'Locale')
+              if (isfield (opts, 'Locale'))
                 error ('Locale option is unimplemented');
               endif
               # TODO: Support PivotYear option
-              if isfield (opts, 'PivotYear')
+              if (isfield (opts, 'PivotYear'))
                 error ('PivotYear option is unimplemented');
               endif
-              if isfield (opts, 'TimeZone')
+              if (isfield (opts, 'TimeZone'))
                 timeZone = opts.TimeZone;
               endif
-              if isfield (opts, 'InputFormat')
+              if (isfield (opts, 'InputFormat'))
                 dnums = datenum (x, opts.InputFormat);
               else
                 dnums = datenum (x);
               endif
               dnums = reshape (dnums, size(x));
             endif
-          elseif isstruct (x)
+          elseif (isstruct (x))
             error ('datetime: struct to datetime conversion has not been spec''ed or implemented yet');
-          elseif ismember (class (x), {'java.util.Date', 'java.util.Date[]', 'java.time.TemporalAccessor', ...
-                                       'java.time.TemporalAccessor[]'})
+          elseif (ismember (class (x), {'java.util.Date', 'java.util.Date[]', 'java.time.TemporalAccessor', ...
+                                       'java.time.TemporalAccessor[]'}))
             error ('datetime: Java date conversion is not implemented yet. Sorry.');
           else
             error ('datetime: Invalid input type: %s', class (x));
           endif
         case 2
           # Undocumented calling form for Tablicious's internal use
-          if !isequal (args{2}, 'Backdoor')
+          if (! isequal (args{2}, 'Backdoor'))
             error ('Invalid number of inputs (excluding options): %d', numel (args));
           endif
           dnums = args{1};
         case 3
           [in1, in2, in3] = args{:};
-          if isequal (in2, 'ConvertFrom')
-            switch in3
+          if (isequal (in2, 'ConvertFrom'))
+            switch (in3)
               case 'datenum'
                 dnums = double (in1);
               case 'posixtime'
@@ -214,7 +214,7 @@ classdef datetime
                 error ('Unsupported ConvertFrom format: %s', in3);
                 # TODO: Implement more formats
             endswitch
-          elseif isnumeric (in2)
+          elseif (isnumeric (in2))
             [Y, M, D] = varargin{:};
             dnums = datenum (Y, M, D);
           else
@@ -235,14 +235,14 @@ classdef datetime
       endswitch
 
       # Construct
-      if !isempty (timeZone)
+      if (! isempty (timeZone))
         this.TimeZone = timeZone;
-        if !isequal (timeZone, 'UTC')
+        if (! isequal (timeZone, 'UTC'))
           dnums = datetime.convertDatenumTimeZone(dnums, timeZone, 'UTC');
         endif
       endif
       this.dnums = dnums;
-      if isfield (opts, 'Format')
+      if (isfield (opts, 'Format'))
         this.Format = opts.Format;
       endif
     endfunction
@@ -380,17 +380,17 @@ classdef datetime
     endfunction
 
     function this = set.TimeZone (this, x)
-      if !ischar (x) || ! (isrow (x) || isempty (x))
+      if (! ischar (x) || ! (isrow (x) || isempty (x)))
         error ('TimeZone must be a char row vector; got a %s %s', ...
           size2str (size (x)), class (x));
       endif
       tzdb = tblish.internal.chrono.tzinfo.TzDb.instance;
-      if ! isempty (x) && ! ismember (x, tzdb.definedZones)
+      if (! isempty (x) && ! ismember (x, tzdb.definedZones))
         error ('Undefined TimeZone: %s', x);
       endif
-      if isempty (this.TimeZone) && ! isempty (x)
+      if (isempty (this.TimeZone) && ! isempty (x))
         this.dnums = datetime.convertDatenumTimeZone (this.dnums, x, 'UTC');
-      elseif ! isempty (this.TimeZone) && isempty (x)
+      elseif (! isempty (this.TimeZone) && isempty (x))
         this.dnums = datetime.convertDatenumTimeZone (this.dnums, 'UTC', this.TimeZone);
       endif
       this.TimeZone = x;
@@ -582,13 +582,13 @@ classdef datetime
     ##
     ## @end deftypefn
     function out = week (this)
-      error('week() is unimplemented');
+      error ('week() is unimplemented');
     endfunction
 
     function display (this)
       #DISPLAY Custom display.
       in_name = inputname (1);
-      if !isempty (in_name)
+      if (! isempty (in_name))
         fprintf ('%s =\n', in_name);
       endif
       disp (this);
@@ -596,19 +596,19 @@ classdef datetime
 
     function disp (this)
       #DISP Custom display.
-      if isempty (this)
+      if (isempty (this))
         fprintf ('Empty %s %s\n', size2str (size (this)), class (this));
-      elseif isscalar (this)
+      elseif (isscalar (this))
         str = dispstrs (this);
         str = str{1};
-        if !isempty (this.TimeZone)
+        if (! isempty (this.TimeZone))
           str = [str ' ' this.TimeZone];
         endif
         fprintf (' %s\n', str);
       else
         txt = tblish.internal.chrono.format_dispstr_array (dispstrs (this));
         fprintf ('%s\n', txt);
-        if !isempty (this.TimeZone)
+        if (! isempty (this.TimeZone))
           fprintf ('  %s\n', this.TimeZone);
         endif
       endif
@@ -626,7 +626,7 @@ classdef datetime
     function out = dispstrs (this)
 
       # TODO: Uh oh; TimeZone isn't included in the output here!
-      if isempty (this.TimeZone)
+      if (isempty (this.TimeZone))
         local_dnums = this.dnums;
       else
         local_dnums = datetime.convertDatenumTimeZone (this.dnums, 'UTC', this.TimeZone);
@@ -634,7 +634,7 @@ classdef datetime
       out = cell (size (this));
       tfNaN = isnan (local_dnums);
       out(tfNaN) = {'NaT'};
-      if any(!tfNaN(:))
+      if (any (!tfNaN(:)))
         out(!tfNaN) = cellstr (datestr (local_dnums(!tfNaN)));
       endif
     endfunction
@@ -680,7 +680,7 @@ classdef datetime
     function out = sprintf(fmt, varargin)
       args = varargin;
       for i = 1:numel (args)
-        if isa (args{i}, 'datetime')
+        if (isa (args{i}, 'datetime'))
           args{i} = datestr (args{i});
         endif
       endfor
@@ -689,7 +689,7 @@ classdef datetime
 
     function out = fprintf(varargin)
       args = varargin;
-      if isnumeric (args{1})
+      if (isnumeric (args{1}))
         fid = args{1};
         args(1) = [];
       else
@@ -698,11 +698,11 @@ classdef datetime
       fmt = args{1};
       args(1) = [];
       for i = 1:numel (args)
-        if isa (args{i}, 'datetime')
+        if (isa (args{i}, 'datetime'))
           args{i} = datestr (args{i});
         endif
       endfor
-      if isempty (fid)
+      if (isempty (fid))
         fprintf (fmt, args{:});
       else
         fprintf (fid, fmt, args{:});
@@ -727,7 +727,7 @@ classdef datetime
     ##
     ## @end deftypefn
     function out = datestruct (this)
-      if isempty (this.TimeZone)
+      if (isempty (this.TimeZone))
         local_dnums = this.dnums;
       else
         local_dnums = datetime.convertDatenumTimeZone (this.dnums, 'UTC', this.TimeZone);
@@ -770,7 +770,7 @@ classdef datetime
     ## @end deftypefn
     function out = datenum (this)
       dnums = this.dnums;
-      if !isempty (this.TimeZone) && !isequal (this.TimeZone, 'UTC')
+      if (! isempty (this.TimeZone) && !isequal (this.TimeZone, 'UTC'))
         dnums = datetime.convertDatenumTimeZone (dnums, 'UTC', this.TimeZone);
       endif
       out = dnums;
@@ -789,7 +789,7 @@ classdef datetime
     ##
     ## @end deftypefn
     function out = gmtime (this)
-      if isempty (this)
+      if (isempty (this))
         tm_struct = gmtime (time ());
         out = reshape (repmat (tm_struct, [0 0]), size (this));
         return
@@ -825,7 +825,7 @@ classdef datetime
     ##
     ## @end deftypefn
     function out = localtime (this)
-      if isempty (this)
+      if (isempty (this))
         tm_struct = localtime (time ());
         out = reshape (repmat (tm_struct, [0 0]), size (this));
         return
@@ -925,7 +925,7 @@ classdef datetime
     function out = ne (A, B)
       #NE Not equal.
       [A, B] = datetime.promote (A, B);
-      out = A.dnums ~= B.dnums;
+      out = A.dnums != B.dnums;
     endfunction
 
     ## -*- texinfo -*-
@@ -1008,14 +1008,14 @@ classdef datetime
       B_in = B;
       # TODO: Maybe support `duration/calendarDuration + datetime` form by just swapping the
       # arguments.
-      if !isa (A, 'datetime')
+      if (! isa (A, 'datetime'))
         error ('datetime.plus: Expected left-hand side of A + B to be a datetime; got a %s', ...
           class (A));
       endif
-      if isa (B, 'duration')
+      if (isa (B, 'duration'))
         out = A;
         out.dnums = A.dnums + B.days;
-      elseif isa (B, 'calendarDuration')
+      elseif (isa (B, 'calendarDuration'))
         [A, B] = tblish.internal.chrono.scalarexpand (A, B);
         out = A;
         for i = 1:numel (A)
@@ -1024,7 +1024,7 @@ classdef datetime
           out_i = plusScalarCalendarDuration (A_i, B_i);
           out = asgn(out, i, out_i);
         endfor
-      elseif isnumeric (B)
+      elseif (isnumeric (B))
         out = A + duration.ofDays (B);
       else
         error ('datetime.plus: Invalid input type: %s', class (B));
@@ -1034,7 +1034,7 @@ classdef datetime
     function out = plusScalarCalendarDuration (this, dur)
       ds = datestruct (this);
       out = this;
-      if dur.Sign < 0
+      if (dur.Sign < 0)
         ds.Year = ds.Year - dur.Years;
         ds.Month = ds.Month - dur.Months;
         ds.Day = ds.Day - dur.Days;
@@ -1070,7 +1070,7 @@ classdef datetime
     ## @end deftypefn
     function out = minus (A, B)
       #MINUS Subtraction.
-      if isa (A, 'datetime') && isa (B, 'datetime')
+      if (isa (A, 'datetime') && isa (B, 'datetime'))
         [A, B] = datetime.promote(A, B);
         out = duration.ofDays (A.dnums - B.dnums);
       else
@@ -1116,7 +1116,7 @@ classdef datetime
 
     function out = colon (this, varargin)
       narginchk (2, 3);
-      switch nargin
+      switch (nargin)
         case 2
           limit = varargin{1};
           increment = 1;
@@ -1124,22 +1124,22 @@ classdef datetime
           increment = varargin{1};
           limit = varargin{2};
       endswitch
-      if isa (increment, 'calendarDuration')
+      if (isa (increment, 'calendarDuration'))
         # TODO: Fix this slow, Shlemiel implementation
         out = this;
-        while subset (out, numel(out)) < limit
+        while (subset (out, numel(out)) < limit)
           next_date = subset (out, numel(out)) + increment;
           out = [out next_date];
         endwhile
         return
       endif
-      if isnumeric (increment)
+      if (isnumeric (increment))
         increment = duration.ofDays (increment);
       endif
-      if !isa (increment, 'duration')
+      if (! isa (increment, 'duration'))
         error ('increment must be a duration object');
       endif
-      if !isscalar (this) || !isscalar (limit)
+      if (! isscalar (this) || !isscalar (limit))
         error ('base and limit must both be scalar');
       endif
       out = this;
@@ -1166,12 +1166,12 @@ classdef datetime
     function out = linspace (from, to, n)
       #LINSPACE Linearly-spaced values
       narginchk (2, 3);
-      if nargin < 3; n = 100; endif
-      if isnumeric (from)
+      if (nargin < 3); n = 100; endif
+      if (isnumeric (from))
         from = datetime.ofDatenum (from);
       endif
       [from, to] = datetime.promote (from, to);
-      if !isscalar (from) || !isscalar (to)
+      if (! isscalar (from) || !isscalar (to))
         error ('Inputs must be scalar');
       endif
       out = from;
@@ -1195,7 +1195,7 @@ classdef datetime
 
     function out = size (this, dim)
       #SIZE Size of array.
-      if nargin == 1
+      if (nargin == 1)
         out = size (this.dnums);
       else
         out = size (this.dnums, dim);
@@ -1274,7 +1274,7 @@ classdef datetime
 
     function [this, nshifts] = shiftdim (this, n)
       #SHIFTDIM Shift dimensions.
-      if nargin > 1
+      if (nargin > 1)
         this.dnums = shiftdim (this.dnums, n);
       else
         [this.dnums, nshifts] = shiftdim (this.dnums);
@@ -1303,7 +1303,7 @@ classdef datetime
       #SUBSASGN Subscripted assignment.
 
       # Chained subscripts
-      if numel(s) > 1
+      if (numel(s) > 1)
         rhs_in = subsref (this, s(1));
         rhs = subsasgn (rhs_in, s(2:end), b);
       else
@@ -1311,7 +1311,7 @@ classdef datetime
       endif
 
       # Base case
-      switch s(1).type
+      switch (s(1).type)
         case '()'
           this = subsasgnParensPlanar (this, s(1), rhs);
           #TODO: Correct value of vivified indexes to NaN; right now it's zero.
@@ -1326,7 +1326,7 @@ classdef datetime
       #SUBSREF Subscripted reference.
 
       # Base case
-      switch s(1).type
+      switch (s(1).type)
         case '()'
           out = subsrefParensPlanar (this, s(1));
         case '{}'
@@ -1336,14 +1336,14 @@ classdef datetime
       endswitch
 
       # Chained reference
-      if numel (s) > 1
+      if (numel (s) > 1)
         out = subsref (out, s(2:end));
       endif
     endfunction
 
     function [out, Indx] = sort (this)
       #SORT Sort array elements.
-      if isvector (this)
+      if (isvector (this))
         isRow = isrow (this);
         this = subset (this, ':');
         # NaNs sort stably to end, so handle them separately
@@ -1355,10 +1355,10 @@ classdef datetime
         [~, ix] = sortrows (proxy);
         out = [subset(nonnans, ix); nans];
         Indx = [ixNonNan(ix); find (tfNan)];
-        if isRow
+        if (isRow)
             out = out';
         endif
-      elseif ismatrix (this)
+      elseif (ismatrix (this))
         out = this;
         Indx = NaN (size(out));
         for iCol = 1:size (this, 2)
@@ -1380,19 +1380,19 @@ classdef datetime
       sz = size (this);
       nDims = ndims (this);
       ixs = [{':'} repmat({1}, [1 nDims-1])];
-      while true
+      while (true)
         col = subset (this, ixs{:});
         [sortedCol, sortIx] = sort (col);
         Indx(ixs{:}) = sortIx;
         out = asgn (out, ixs, sortedCol);
         ixs{end} = ixs{end}+1;
         for iDim=nDims:-1:3
-          if ixs{iDim} > sz(iDim)
+          if (ixs{iDim} > sz(iDim))
             ixs{iDim-1} = ixs{iDim-1} + 1;
             ixs{iDim} = 1;
           endif
         endfor
-        if ixs{2} > sz(2)
+        if (ixs{2} > sz(2))
           break;
         endif
       endwhile
@@ -1401,7 +1401,7 @@ classdef datetime
     function [out, Indx] = unique (this, varargin)
       #UNIQUE Set unique.
       flags = setdiff (varargin, {'rows'});
-      if ismember('rows', varargin)
+      if (ismember ('rows', varargin))
         [~,proxyIx] = unique (this);
         proxyIx = reshape (proxyIx, size (this));
         [~,Indx] = unique (proxyIx, 'rows', flags{:});
@@ -1414,14 +1414,14 @@ classdef datetime
         nonnans = subset (this, !tfNaN);
         ixNonnan = find (!tfNaN);
         keys = proxyKeys (nonnans);
-        if isa (keys, 'table')
+        if (isa (keys, 'table'))
           [~,ix] = unique (keys, flags{:});
         else
           [~,ix] = unique (keys, 'rows', flags{:});
         endif
         out = [subset(nonnans, ix); nans];
         Indx = [ixNonnan(ix); find (tfNaN)];
-        if isRow
+        if (isRow)
           out = out';
         endif
       endif
@@ -1429,13 +1429,13 @@ classdef datetime
 
     function [out, Indx] = ismember (a, b, varargin)
       #ISMEMBER True for set member.
-      if ismember ('rows', varargin)
+      if (ismember ('rows', varargin))
         error ('ismember(..., ''rows'') is unsupported');
       endif
-      if !isa (a, 'datetime')
+      if (! isa (a, 'datetime'))
         a = datetime (a);
       endif
-      if !isa (b, 'datetime')
+      if (! isa (b, 'datetime'))
         b = datetime (b);
       endif
       [proxyA, proxyB] = proxyKeys (a, b);
@@ -1446,7 +1446,7 @@ classdef datetime
 
     function [out, Indx] = setdiff (a, b, varargin)
       #SETDIFF Set difference.
-      if ismember ('rows', varargin)
+      if (ismember ('rows', varargin))
         error ('setdiff(..., ''rows'') is unsupported');
       endif
       [tf,~] = ismember (a, b);
@@ -1458,7 +1458,7 @@ classdef datetime
 
     function [out, ia, ib] = intersect (a, b, varargin)
       #INTERSECT Set intersection.
-      if ismember ('rows', varargin)
+      if (ismember ('rows', varargin))
         error ('intersect(..., ''rows'') is unsupported');
       endif
       [proxyA, proxyB] = proxyKeys (a, b);
@@ -1468,7 +1468,7 @@ classdef datetime
 
     function [out, ia, ib] = union (a, b, varargin)
       #UNION Set union.
-      if ismember ('rows', varargin)
+      if (ismember ('rows', varargin))
         error ('union(..., ''rows'') is unsupported');
       endif
       [proxyA, proxyB] = proxyKeys (a, b);
@@ -1484,7 +1484,7 @@ classdef datetime
 
     function out = subsasgnParensPlanar (this, s, rhs)
       #SUBSASGNPARENSPLANAR ()-assignment for planar object
-      if !isa (rhs, 'datetime')
+      if (! isa (rhs, 'datetime'))
         rhs = datetime (rhs);
       endif
       out = this;
@@ -1516,7 +1516,7 @@ classdef datetime
       # This is what you call internally inside the class instead of doing
       # ()-indexing references on the LHS, which don't work properly inside
       # the class because they don't respect the subsasgn() override.
-      if !iscell (ix)
+      if (! iscell (ix))
         ix = { ix };
       endif
       s.type = '()';
@@ -1566,14 +1566,14 @@ classdef datetime
       #PROMOTE Promote inputs to be compatible
       args = varargin;
       for i = 1:numel (args)
-        if !isa (args{i}, 'datetime')
+        if (! isa (args{i}, 'datetime'))
           args{i} = datetime (args{i});
         endif
       endfor
       tz0 = args{1}.TimeZone;
       for i = 2:numel (args)
-        if !isequal (args{i}.TimeZone, tz0)
-          if isempty (tz0) || isempty (args{i}.TimeZone)
+        if (! isequal (args{i}.TimeZone, tz0))
+          if (isempty (tz0) || isempty (args{i}.TimeZone))
             error('Cannot mix zoned and zoneless datetimes.');
           else
             args{i}.TimeZone = tz0;

@@ -33,11 +33,11 @@ function out = iscalendarduration (x)
   #ISCALENDARDURATION True if input is a calendar duration array
 
   # Developer note: see istable for an explanation of this logic.
-  if isa (x, 'calendarDuration')
+  if (isa (x, 'calendarDuration'))
     out = true;
-  elseif isobject (x)
+  elseif (isobject (x))
     # Respect iscalendarduration methods on classes.
-    if ismember ('iscalendarduration', methods (x))
+    if (ismember ('iscalendarduration', methods (x)))
       out = iscalendarduration (x);
     else
       out = false;

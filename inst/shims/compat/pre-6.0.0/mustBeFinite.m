@@ -28,13 +28,13 @@
 ## @end deftypefn
 
 function x = mustBeFinite (x, label)
-  if nargin < 2; label = []; endif
+  if (nargin < 2); label = []; endif
   tf = isfinite (x);
-  if ! all (tf)
-    if isempty (label)
+  if (! all (tf))
+    if (isempty (label))
       label = inputname (1);
     endif
-    if isempty (label)
+    if (isempty (label))
       label = "input";
     endif
     ix_bad = find (!tf);

@@ -36,10 +36,10 @@ classdef TzZoneFile
   methods
 
     function this = TzZoneFile (file)
-      if nargin == 0
+      if (nargin == 0)
         return
       endif
-      if !isfile(file)
+      if (! isfile(file))
         error('tblish.chrono:NoSuchFile', ...
           'Cannot read TZ zone file: no such file: %s', file);
       endif
@@ -49,7 +49,7 @@ classdef TzZoneFile
     function out = readZoneFile (this)
       #READZONEFILE Read and parse a zone definition file
 
-      if ~exist (this.file)
+      if (! exist (this.file))
         # This shouldn't happen unless the file has been moved on disk since
         # object construction.
         error('No such file: %s', this.file);
@@ -63,16 +63,16 @@ classdef TzZoneFile
       out.section1 = section1;
 
       # Version 2 stuff
-      if ismember (section1.header.format_id, {'2','3'})
+      if (ismember (section1.header.format_id, {'2','3'}))
         # A whole nother header/data, except using 8-byte transition/leap times
         ix = ix + n_bytes_read;
         # Scan for the magic cookie to double-check our parsing.
         magic_ixs = strfind (char (data(ix:end)), 'TZif');
-        if isempty (magic_ixs)
+        if (isempty (magic_ixs))
           # No second section found
         else
           # Advance to where we found the magic cookie
-          if magic_ixs(1) ~= 1
+          if (magic_ixs(1) != 1)
             warning (['Unexpected extra data at end of section in tzinfo file for %s.\n' ...
               'Possible bug in chrono''s parsing code.'], zoneId);
           endif

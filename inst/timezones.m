@@ -65,7 +65,7 @@ function out = timezones (area)
   ids = ids(:);
   areas = cell (size (ids));
   for i = 1:numel (ids)
-    if any (ids{i} == '/')
+    if (any (ids{i} == '/'))
       area = regexprep (ids{i}, '/.*', '');
     else
       area = '';
@@ -73,13 +73,13 @@ function out = timezones (area)
     areas{i} = area;
   endfor
 
-  if nargin > 0
+  if (nargin > 0)
     tf = strcmp (out.Area, area);
     ids = ids(tf);
     areas = areas(tf);
   endif
 
-  if octave_has_table
+  if (octave_has_table)
     out = table (ids, areas, 'VariableNames',{'Name','Area'});
   else
     out = struct;
@@ -88,9 +88,10 @@ function out = timezones (area)
   endif
 
   if nargout == 0
-    if octave_has_table
-      # This assumes you're using Tablicious's table implementation
-      prettyprint (out);
+    if (octave_has_table)
+      # This assumes you're using Tablicious's table implementation; prettyprint
+      # is nonstandard.
+      prettyprint (out)
     else
       fmt = '  %-32s  %-20s\n';
       fprintf (fmt, 'Name', 'Area');
@@ -106,7 +107,7 @@ endfunction
 
 function out = octave_has_table
   persistent cache
-  if isempty (cache)
+  if (isempty (cache))
     try
       t = table;
       cache = isa (t, 'table');

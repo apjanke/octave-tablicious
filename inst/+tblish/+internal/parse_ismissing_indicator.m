@@ -34,8 +34,8 @@ in = indicator;
 x = in;
 
 # Convert non-cells by breaking out elements or converting strings
-if !iscell (x)
-  if ischar (x)
+if (! iscell (x))
+  if (ischar (x))
   	x = cellstr (x);
   else
   	x = num2cell (x);
@@ -47,13 +47,13 @@ x = x(:)';
 # Validate
 for i = 1:numel (x)
   el = x{i};
-  if ischar (el)
-  	if size (el, 1) > 1
+  if (ischar (el))
+  	if (size (el, 1) > 1)
   	  error ('ismissing: char indicator elements must be row vectors; element %d is %d rows high', ...
   	    i, size (el, 1));
   	endif
   else
-  	if !isscalar (el)
+  	if (! isscalar (el))
   	  error ('ismissing: non-char indicator elements must be scalar; element %d is a %s %s', ...
   	    size2str (size (el)), class (el));
   	endif

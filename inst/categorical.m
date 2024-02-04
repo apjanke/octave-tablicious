@@ -107,12 +107,12 @@ classdef categorical
     function out = from_codes (codes, cats, varargin)
       [opts, args] = peelOffNameValueOptions (varargin, {'Ordinal', 'Protected'});
       isOrdinal = false;
-      if isfield (opts, 'Ordinal')
+      if (isfield (opts, 'Ordinal'))
         mustBeScalarLogical (opts.Ordinal, 'Ordinal option');
         isOrdinal = opts.Ordinal;
       endif
       isProtected = false;
-      if isfield (opts, 'Protected')
+      if (isfield (opts, 'Protected'))
         mustBeScalarLogical (opts.Protected, 'Protected option');
         isProtected = opts.Protected;
       endif
@@ -120,7 +120,7 @@ classdef categorical
       cats = cats(:)';
 
       code = uint16 (codes);
-      if ! isa (codes, 'uint16')
+      if (! isa (codes, 'uint16'))
         # TODO: Check for clean conversion
       endif
 
@@ -153,7 +153,7 @@ classdef categorical
     ##
     ## @end deftypefn
     function out = undefined (sz)
-      if nargin < 1 || isempty (sz)
+      if (nargin < 1 || isempty (sz))
         sz = [1 1];
       endif
       out = categorical;
@@ -181,7 +181,7 @@ classdef categorical
     ##
     ## @end deftypefn
     function out = missing (sz)
-      if nargin == 0
+      if (nargin == 0)
         out = categorical.undefined;
       else
         out = categorical.undefined (sz);
@@ -235,23 +235,23 @@ classdef categorical
       # num2str representation of numbers instead, and make those all categories.
       # TODO: Support objects.
 
-      if nargin == 0
+      if (nargin == 0)
         return
       endif
 
       validOptions = {'Ordinal', 'Protected'};
       [opts, args] = peelOffNameValueOptions (varargin, validOptions);
-      if ischar (x)
+      if (ischar (x))
         x = cellstr (x);
       endif
-      if numel (args) >= 1
+      if (numel (args) >= 1)
         valueset = args{1};
         valueset = valueset(:)';
-        if any (ismissing (valueset))
+        if (any (ismissing (valueset)))
           error ('categorical:InvalidInput', 'categorical: Cannot have missing values in valueset');
         endif
         u_valueset = unique (valueset);
-        if numel (u_valueset) < numel (valueset)
+        if (numel (u_valueset) < numel (valueset))
           error ("categorical:InvalidInput", ...
             "categorical: Non-unique values in valueset; valueset values must be unique.");
         endif
@@ -259,31 +259,31 @@ classdef categorical
         valueset = unique (x);
         valueset = valueset(!ismissing (valueset));
       endif
-      if numel (args) >= 2
+      if (numel (args) >= 2)
         category_names = args{2};
       else
-        if isa (valueset, 'string') || iscellstr (valueset)
+        if (isa (valueset, 'string') || iscellstr (valueset))
           category_names = cellstr (valueset);
         else
           category_names = dispstrs (valueset);
         endif
       endif
       doProtected = false;
-      if isfield (opts, 'Protected')
+      if (isfield (opts, 'Protected'))
         mustBeScalarLogical (opts.Protected, 'Protected option');
         doProtected = opts.Protected;
       endif
       doOrdinal = false;
-      if isfield (opts, 'Ordinal')
+      if (isfield (opts, 'Ordinal'))
         mustBeScalarLogical (opts.Ordinal, 'Ordinal option');
         doOrdinal = opts.Ordinal;
       endif
-      if doOrdinal
+      if (doOrdinal)
         doProtected = true;
       endif
 
       [tf, loc] = ismember (x, valueset);
-      if any(loc > intmax ('uint16'))
+      if (any (loc > intmax ('uint16')))
         error (['Category count out of range: categorical supports a max of %d ' ...
           'categories; this input has %d'], intmax ('uint16'), max (loc));
       endif
@@ -315,12 +315,12 @@ classdef categorical
     endfunction
 
     function this = set.code (this, x)
-      if ! isnumeric (x)
+      if (! isnumeric (x))
         error ('categorical.code: values must be numeric');
       endif
       code = uint16 (x);
-      if ! isa (x, 'uint16')
-        if ! all (code(:) == x(:))
+      if (! isa (x, 'uint16'))
+        if (! all (code(:) == x(:)))
           error ('categorical.code: input did not convert cleanly to uint16');
         endif
       endif
@@ -420,21 +420,21 @@ classdef categorical
     function display (this)
       #DISPLAY Custom display
       in_name = inputname(1);
-      if !isempty(in_name)
-        fprintf('%s =\n', in_name);
+      if (! isempty(in_name))
+        fprintf ('%s =\n', in_name);
       endif
-      disp(this);
+      disp (this);
     endfunction
 
     function disp (this)
       #DISP Custom display
-      if isempty (this)
+      if (isempty (this))
         fprintf ('Empty %s categorical\n', size2str (size (this)));
         return
       endif
       my_dispstrs = this.dispstrs;
       out = format_dispstr_array (my_dispstrs);
-      fprintf("%s", out);
+      fprintf ("%s", out);
     endfunction
 
     ## -*- texinfo -*-
@@ -457,7 +457,7 @@ classdef categorical
     endfunction
 
     function out = dispstr (this)
-      if isscalar (this)
+      if (isscalar (this))
         d = dispstrs (this);
         out = d{1};
       else
@@ -465,19 +465,19 @@ classdef categorical
       endif
     endfunction
 
-    function out = sprintf(fmt, varargin)
+    function out = sprintf (fmt, varargin)
       args = varargin;
       for i = 1:numel (args)
-        if isa (args{i}, 'categorical')
+        if (isa (args{i}, 'categorical'))
           args{i} = dispstr (args{i});
         endif
       endfor
       out = sprintf (fmt, args{:});
     endfunction
 
-    function out = fprintf(varargin)
+    function out = fprintf (varargin)
       args = varargin;
-      if isnumeric (args{1})
+      if (isnumeric (args{1}))
         fid = args{1};
         args(1) = [];
       else
@@ -486,11 +486,11 @@ classdef categorical
       fmt = args{1};
       args(1) = [];
       for i = 1:numel (args)
-        if isa (args{i}, 'categorical')
+        if (isa (args{i}, 'categorical'))
           args{i} = dispstr (args{i});
         endif
       endfor
-      if isempty (fid)
+      if (isempty (fid))
         fprintf (fmt, args{:});
       else
         fprintf (fid, fmt, args{:});
@@ -540,12 +540,12 @@ classdef categorical
       narginchk (2, 2);
       newcats = cellstr (newcats);
       newcats = newcats(:)';
-      if this.isOrdinal
+      if (this.isOrdinal)
         error (['categorical.addcats: Adding categories for Ordinal arrays is ' ...
           'not implemented yet. Sorry.']);
       endif
       [tf, loc] = ismember (newcats, this.cats);
-      if any (tf)
+      if (any (tf))
         error ('categorical.addcats: Categories are already present in input: %s', ...
           strjoin (newcats(tf), ', '));
       endif
@@ -574,7 +574,7 @@ classdef categorical
     ##
     ## @end deftypefn
     function out = removecats (this, oldcats)
-      if nargin == 1
+      if (nargin == 1)
         out = squeezecats (this);
         return
       endif
@@ -607,17 +607,17 @@ classdef categorical
     function out = mergecats (this, oldcats, newcat)
       narginchk (2, 3);
       mustBeNonEmpty (oldcats);
-      if nargin < 3
+      if (nargin < 3)
         newcat = oldcats{1};
       endif
       oldcats = cellstr (oldcats);
 
-      if this.isOrdinal
+      if (this.isOrdinal)
         error ('categorical: Merging of ordinal categories is not yet implemented. Sorry.');
       endif
 
       [tf, old_cat_codes] = ismember (oldcats, this.cats);
-      if ! all (tf)
+      if (! all (tf))
         # TODO: I don't know if this should be an error, or just silently ignored -apj
         error ('categorical.mergecats: Specified categories not present in input: %s', ...
           strjoin(oldcats(!tf), ', '));
@@ -625,7 +625,7 @@ classdef categorical
       [is_current_cat, new_cat_code] = ismember (newcat, this.cats)
 
       out = this;
-      if is_current_cat
+      if (is_current_cat)
         # Merge into existing category
         cats_to_delete = setdiff (oldcats, newcat);
         [tf, loc] = ismember (this.code, old_cat_codes);
@@ -655,7 +655,7 @@ classdef categorical
     ## @end deftypefn
     function out = renamecats (this, varargin)
       narginchk (2, 3);
-      if nargin == 2
+      if (nargin == 2)
         oldnames = this.cats;
         newnames = varargin{1};
       else
@@ -666,14 +666,14 @@ classdef categorical
       oldnames = oldnames(:)';
       newnames = cellstr (newnames);
       newnames = newnames(:)';
-      if ! isequal (size (oldnames), size (newnames));
+      if (! isequal (size (oldnames), size (newnames)))
         error (['categorical.renamecats: Inconsistent dimensions for oldnames ' ...
           'and newnames: %s vs %s'], size2str (size (oldnames)), size2str (size (newnames)));
       endif
 
       out = this;
       [tf, loc] = ismember (oldnames, this.cats);
-      if ! all (tf)
+      if (! all (tf))
         error ('categorical.renamecats: Specified categories do not exist in input: %s', ...
           strjoin (oldnames(!tf), ', '));
       endif
@@ -695,12 +695,12 @@ classdef categorical
     ##
     ## @end deftypefn
     function out = reordercats (this, newcats)
-      if nargin == 1
+      if (nargin == 1)
         newcats = sort (this.cats);
       endif
       newcats = cellstr (newcats);
       newcats = newcats(:)';
-      if ! isequal (sort (newcats), sort (this.cats))
+      if (! isequal (sort (newcats), sort (this.cats)))
         error ('categorical.reordercats: newcats and oldcats must be the same sets, just reordered');
       endif
 
@@ -727,14 +727,14 @@ classdef categorical
       newcats = cellstr (newcats);
       newcats = newcats(:)';
 
-      if this.isOrdinal
+      if (this.isOrdinal)
         error ('categorical.setcats: Cannot set categories on Ordinal categorical arrays');
       endif
 
       [tf, loc] = ismember (this.cats, newcats);
       loc(!tf) = 0;
       codes = codes_with_nans (this);
-      new_codes = NaN(size(codes));
+      new_codes = NaN (size(codes));
       new_codes(!isnan(codes)) = loc(codes(!isnan(codes)));
       out = this;
       out.code = uint16 (new_codes);
@@ -824,15 +824,15 @@ classdef categorical
       # categories on the categorical input. Whether that is required should be
       # determined by the Protected property; non-Protected categoricals may expand
       # their set of categories automatically.
-      if ! isa (A, 'categorical')
-        if isordinal (B)
+      if (! isa (A, 'categorical'))
+        if (isordinal (B))
           B = promote_to_existing_categories (A, B);
         else
           A = categorical (A);
         endif
       endif
-      if ! isa (B, 'categorical')
-        if isordinal (A)
+      if (! isa (B, 'categorical'))
+        if (isordinal (A))
           B = promote_to_existing_categories (B, A);
         else
           B = categorical (B);
@@ -840,10 +840,10 @@ classdef categorical
       endif
 
       # Unify their category definitions
-      if isequal (A.cats, B.cats)
+      if (isequal (A.cats, B.cats))
         return
       endif
-      if isordinal (A) || isordinal (B)
+      if (isordinal (A) || isordinal (B))
         error ('categorical: cannot unify different categories for Ordinal categorical arrays');
       endif
       [A, B] = unify_nonordinal_categories (A, B);
@@ -854,16 +854,16 @@ classdef categorical
       mustBeA (B, 'categorical');
       # TODO: In the protected case, eliminate categories that have no values on
       # the non-protected side, to avoid possibly-spurious errors.
-      if A.isProtected
+      if (A.isProtected)
         cats_only_in_B = setdiff (B.cats, A.cats);
-        if ! isempty (cats_only_in_B)
+        if (! isempty (cats_only_in_B))
           error ('categorical: input A is Protected, but input B has categories not in A: %s', ...
             strjoin (cats_only_in_B, ', '));
         endif
       endif
-      if B.isProtected
+      if (B.isProtected)
         cats_only_in_A = setdiff (A.cats, B.cats);
-        if ! isempty (cats_only_in_A)
+        if (! isempty (cats_only_in_A))
           error ('categorical: input B is Protected, but input A has categories not in B: %s', ...
             strjoin (cats_only_in_A, ', '));
         endif
@@ -1030,7 +1030,7 @@ classdef categorical
 
     function out = size (this, dim)
       #SIZE Size of array.
-      if nargin == 1
+      if (nargin == 1)
         out = size (this.code);
       else
         out = size (this.code, dim);
@@ -1127,7 +1127,7 @@ classdef categorical
 
     function [this, nshifts] = shiftdim( this, n)
       #SHIFTDIM Shift dimensions.
-      if nargin > 1
+      if (nargin > 1)
         this.code = shiftdim (this.code, n);
         this.tfMissing = shiftdim (this.code, n);
       else
@@ -1140,7 +1140,7 @@ classdef categorical
       #CAT Concatenate arrays.
       args = varargin;
       for i = 1:numel(args)
-        if !isa(args{i}, 'categorical')
+        if (! isa(args{i}, 'categorical'))
           args{i} = categorical(args{i});
         endif
       endfor
@@ -1169,7 +1169,7 @@ classdef categorical
       #SUBSASGN Subscripted assignment.
 
       # Chained subscripts
-      if numel(s) > 1
+      if (numel(s) > 1)
         rhs_in = subsref(this, s(1));
         rhs = subsasgn(rhs_in, s(2:end), b);
       else
@@ -1177,7 +1177,7 @@ classdef categorical
       endif
 
       # Base case
-      switch s(1).type
+      switch (s(1).type)
         case '()'
           this = subsasgnParensPlanar(this, s(1), rhs);
         case '{}'
@@ -1193,7 +1193,7 @@ classdef categorical
     #SUBSREF Subscripted reference.
 
       # Base case
-      switch s(1).type
+      switch (s(1).type)
         case '()'
           varargout = { subsrefParensPlanar(this, s(1)) };
         case '{}'
@@ -1215,7 +1215,7 @@ classdef categorical
       endswitch
 
       # Chained reference
-      if numel (s) > 1
+      if (numel (s) > 1)
         out = subsref (out, s(2:end));
       endif
     endfunction
@@ -1223,7 +1223,7 @@ classdef categorical
   endmethods
 
   methods
-    function varargout = promote_to_existing_categories(this, varargin)
+    function varargout = promote_to_existing_categories (this, varargin)
       # Convert strings or numerics to categorical, using an existing categorical
       #
       # varargout = promote_to_existing_categories(this, varargin)
@@ -1234,12 +1234,12 @@ classdef categorical
       varargout = cell (size (varargin));
       for i_arg = 1:numel(varargin)
         arg = varargin{i_arg};
-        if isa (arg, 'categorical')
+        if (isa (arg, 'categorical'))
           error ('promote_to_existing_categories: categorical input is not supported yet.');
         elseif isstring (arg) || iscellstr (arg)
           [tfMember, loc] = ismember (arg, this.cats);
           tfBad = !tfMember & !ismissing (arg);
-          if any (tfBad)
+          if (any (tfBad))
             error('input string had values that were not members of this''s categories');
           endif
           code = loc;
@@ -1260,7 +1260,7 @@ classdef categorical
 
     function this = subsasgnParensPlanar (this, s, rhs)
       #SUBSASGNPARENSPLANAR ()-assignment for planar object
-      if !isa (rhs, 'categorical')
+      if (! isa (rhs, 'categorical'))
         # TODO: This conversion is probably wrong. It probably needs to be done
         # with respect to this's existing cats list
         [this, rhs] = promote2 (this, rhs);
@@ -1269,19 +1269,19 @@ classdef categorical
       this.tfMissing(s.subs{:}) = rhs.tfMissing;
     endfunction
 
-    function out = subsrefParensPlanar(this, s)
+    function out = subsrefParensPlanar (this, s)
       #SUBSREFPARENSPLANAR ()-indexing for planar object
       out = this;
       out.code = this.code(s.subs{:});
       out.tfMissing = this.tfMissing(s.subs{:});
     endfunction
 
-    function out = parensRef(this, varargin)
+    function out = parensRef (this, varargin)
       #PARENSREF ()-indexing, for this class's internal use
       out = subsrefParensPlanar (this, struct ('subs', {varargin}));
     endfunction
 
-    function out = subset(this, varargin)
+    function out = subset (this, varargin)
       #SUBSET Subset array by indexes.
       # This is what you call internally inside the class instead of doing
       # ()-indexing references on the RHS, which don't work properly inside the class
@@ -1289,17 +1289,17 @@ classdef categorical
       out = parensRef (this, varargin{:});
     endfunction
 
-    function out = asgn(this, ix, value)
+    function out = asgn (this, ix, value)
       #ASGN Assign array elements by indexes.
       # This is what you call internally inside the class instead of doing
       # ()-indexing references on the LHS, which don't work properly inside
       # the class because they don't respect the subsasgn() override.
-      if !iscell(ix)
+      if (! iscell(ix))
         ix = { ix };
       endif
       s.type = '()';
       s.subs = ix;
-      out = subsasgnParensPlanar(this, s, value);
+      out = subsasgnParensPlanar (this, s, value);
     endfunction
 
   endmethods
@@ -1316,7 +1316,7 @@ classdef categorical
       cat_codes_to_rm = cat_codes_to_rm(tf);
       cats_to_delete2 = cats_to_delete(tf);
       [tf_code_used, loc] = ismember (cat_codes_to_rm, this.code);
-      if any (tf_code_used)
+      if (any (tf_code_used))
         error ('categorical: Internal error: some categories to delete are still in use: %s', ...
           strjoin (cats_to_delete2(tf_code_used), ', '));
       endif

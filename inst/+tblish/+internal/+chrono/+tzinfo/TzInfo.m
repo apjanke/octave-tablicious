@@ -18,7 +18,6 @@
 
 classdef TzInfo
   #TZINFO Zone definition for a single time zone
-  #
 
   properties (Constant)
     utcZoneAliases = {'Etc/GMT' 'Etc/GMT+0' 'Etc/GMT-0' 'Etc/Greenwich' ...
@@ -45,11 +44,12 @@ classdef TzInfo
   endproperties
 
   methods
+
     function this = TzInfo(in)
-      if nargin == 0
-        return;
+      if (nargin == 0)
+        return
       endif
-      if isstruct (in)
+      if (isstruct (in))
         # Convert from TzDb's tzinfo struct
         s = in;
         this.id = s.zoneId;
@@ -61,7 +61,7 @@ classdef TzInfo
         this.leapSecondTotals = s.leap_second_totals;
         this.isStd = s.is_std;
         this.isGmt = s.is_gmt;
-        if isfield (s, 'goingForwardPosixZone')
+        if (isfield (s, 'goingForwardPosixZone'))
           this.goingForwardPosixZone = s.goingForwardPosixZone;
           #this.goingForwardPosixZoneRule = tblish.internal.chrono.tzinfo.PosixZoneRule(...
           #  this.goingForwardPosixZone);
@@ -87,7 +87,7 @@ classdef TzInfo
     function display (this)
       #DISPLAY Custom display.
       in_name = inputname (1);
-      if !isempty (in_name)
+      if (! isempty (in_name))
         fprintf ('%s =\n', in_name);
       endif
       disp (this);
@@ -95,9 +95,9 @@ classdef TzInfo
 
     function disp (this)
       #DISP Custom display.
-      if isempty (this)
+      if (isempty (this))
         fprintf ('Empty %s %s\n', tblish.internal.chrono.size2str (size (this)), class (this));
-      elseif isscalar (this)
+      elseif (isscalar (this))
         fprintf ('TzInfo: %s\n', this.id);
         displayCommonInfo (this);
       else
@@ -107,7 +107,7 @@ classdef TzInfo
 
     function prettyprint (this)
       #PRETTYPRINT Display this' data in human-readable format.
-      if !isscalar (this)
+      if (! isscalar (this))
         fprintf ('%s: %s\n', class (this), tblish.internal.chrono.size2str (size (this)));
         return;
       endif
@@ -129,7 +129,7 @@ classdef TzInfo
           tti.gmtoff(i), char (gmtoffDur), tti.isdst(i), tti.abbrind(i), tti.abbr{i});
       endfor
       fprintf ('leap times:\n');
-      if isempty (this.leapTimes)
+      if (isempty (this.leapTimes))
         fprintf ('  <none>\n');
       else
         fprintf ('  %12s  %20s\n', 'time', 'leap seconds');
@@ -144,14 +144,14 @@ classdef TzInfo
       fprintf ('  %s\n', strjoin (num2cellstr (this.isStd), '  '));
       fprintf ('is_gmt:\n');
       fprintf ('  %s\n', strjoin (num2cellstr (this.isGmt), '  '));
-      if !isempty (this.goingForwardPosixZone)
+      if (! isempty (this.goingForwardPosixZone))
         fprintf ('posix_zone:\n');
         fprintf ('  %s\n', this.goingForwardPosixZone);
       endif
     endfunction
 
     function out = localtimeToGmt (this, dnum)
-      if ismember (this.id, tblish.internal.chrono.tzinfo.TzInfo.utcZoneAliases)
+      if (ismember (this.id, tblish.internal.chrono.tzinfo.TzInfo.utcZoneAliases))
         # Have to special-case this because it relies on POSIX zone rules, which
         # are not implemented yet
         offsets = zeros (size (dnum));
@@ -168,19 +168,19 @@ classdef TzInfo
         for i_dnum = 1:numel(dnum)
           d = dnum(i_dnum);
           ix = find(this.transitionsLocalDatenum <= d, 1, "last");
-          if !isempty(ix)
+          if (! isempty(ix))
             tf(i_dnum) = true;
             loc(i_dnum) = ix;
           endif
         endfor
-        #[tf,loc] = tblish.internal.chrono.algo.binsearch (dnum, this.transitionsLocalDatenum);
+        # [tf,loc] = tblish.internal.chrono.algo.binsearch (dnum, this.transitionsLocalDatenum);
         ix = loc;
         tfOutOfRange = isnan(ix) | ix == numel (this.transitions);
         # In-range dates take their period's gmt offset
         offsets = NaN (size (dnum));
         offsets(!tfOutOfRange) = this.ttinfos.gmtoffDatenum(this.timeTypes(ix(!tfOutOfRange)));
         # Out-of-range dates are handled by the POSIX look-ahead zone
-        if any (tfOutOfRange(:))
+        if (any (tfOutOfRange(:)))
           # TODO: Implement this
           error ('POSIX zone rules are unimplemented');
         endif
@@ -189,7 +189,7 @@ classdef TzInfo
     endfunction
 
     function out = gmtToLocaltime (this, dnum)
-      if ismember(this.id, tblish.internal.chrono.tzinfo.TzInfo.utcZoneAliases)
+      if (ismember(this.id, tblish.internal.chrono.tzinfo.TzInfo.utcZoneAliases))
         # Have to special-case this because it relies on POSIX zone rules, which
         # are not implemented yet
         offsets = zeros( size (dnum));
@@ -202,7 +202,7 @@ classdef TzInfo
         offsets = NaN (size (dnum));
         offsets(!tfOutOfRange) = this.ttinfos.gmtoffDatenum(this.timeTypes(ix(!tfOutOfRange)));
         # Out-of-range dates are handled by the POSIX look-ehead zone
-        if any (tfOutOfRange(:))
+        if (any (tfOutOfRange(:)))
           # TODO: Implement this
           error ('POSIX zone rules are unimplemented');
         endif
@@ -216,10 +216,10 @@ classdef TzInfo
     function displayCommonInfo (this)
       #DISPLAYCOMMONINFO Info common to disp() and prettyprint()
       formatId = this.formatId;
-      if formatId == 0
+      if (formatId == 0)
         formatId = '1';
       endif
-      if ismember (this.formatId, {'2','3'})
+      if (ismember (this.formatId, {'2','3'}))
         time_size = '64-bit';
       else
         time_size = '32-bit';
@@ -229,7 +229,7 @@ classdef TzInfo
         numel (this.transitions), numel (this.ttinfos.gmtoff), numel (this.leapTimes));
       fprintf ('  %d is_stds, %d is_gmts\n', ...
         numel (this.isStd), numel (this.isGmt));
-      if !isempty (this.goingForwardPosixZone)
+      if (! isempty (this.goingForwardPosixZone))
         fprintf ('  Forward-looking POSIX zone: %s\n', this.goingForwardPosixZone);
       endif
     endfunction

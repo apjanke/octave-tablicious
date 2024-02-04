@@ -1,6 +1,6 @@
 t = tblish.dataset.freeny;
 
-summary(t)
+summary (t)
 
 tblish.examples.plot_pairs (removevars (t, "date"))
 

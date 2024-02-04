@@ -46,7 +46,7 @@ function out = years (x)
   # Note: years creates fixed-length years, which is probably not what you want.
   # To create a duration of calendar years (which account for actual leap days),
   # use calyears.
-  if isnumeric (x)
+  if (isnumeric (x))
     out = duration.ofDays (double (x) * 365.2425);
   else
     error ('Invalid input: expected numeric or duration; got %s', class (x));

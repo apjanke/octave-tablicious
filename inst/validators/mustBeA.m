@@ -29,14 +29,14 @@
 ## @end deftypefn
 
 function mustBeA (x, type, label)
-  if nargin < 3; label = []; endif
-  if isa (x, type)
+  if (nargin < 3); label = []; endif
+  if (isa (x, type))
     return
   endif
-  if isempty (label)
+  if (isempty (label))
     label = inputname (1);
   endif
-  if isempty (label)
+  if (isempty (label))
     label = "input";
   endif
   error ('%s must be of type %s; got %s', label, type, class (x));

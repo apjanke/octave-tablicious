@@ -19,7 +19,7 @@
 function out = slurpTextFile (file)
   #SLURPTEXTFILE Read a file's contents as text.
   [fid, msg] = fopen (file, 'r');
-  if fid == -1
+  if (fid == -1)
     error ('Could not open file %s: %s', file, msg);
   endif
   cleanup.fid = onCleanup (@() fclose (fid));

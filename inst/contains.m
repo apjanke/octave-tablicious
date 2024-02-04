@@ -36,7 +36,7 @@ function out = contains (str, pattern, varargin)
 
   [opts, args] = peelOffNameValueOptions (varargin, {'IgnoreCase'});
   ignore_case = false;
-  if isfield (opts, 'IgnoreCase')
+  if (isfield (opts, 'IgnoreCase'))
     mustBeScalarLogical (opts.IgnoreCase, 'IgnoreCase option');
     ignore_case = opts.IgnoreCase;
   endif
@@ -44,7 +44,7 @@ function out = contains (str, pattern, varargin)
   str = cellstr (str);
   pattern = cellstr (pattern);
 
-  if any (cellfun ('isempty', pattern(:)))
+  if (any (cellfun ('isempty', pattern(:))))
     out = true (size (str));
     return;
   endif
@@ -53,7 +53,7 @@ function out = contains (str, pattern, varargin)
   # full string for multiple matches. Could replace this whole function with
   # an oct-file that does efficient scanning.
 
-  if ignore_case
+  if (ignore_case)
     str = lower (str);
     pattern = lower (pattern);
   endif
@@ -63,7 +63,7 @@ function out = contains (str, pattern, varargin)
       pat = pattern{i_pattern};
       ix = strfind (str{i_str}, pattern{i_pattern});
       tf = ! isempty (ix);
-      if tf
+      if (tf)
         out(i_str) = true;
         break
       endif

@@ -35,7 +35,7 @@ function out = hours (x)
   # If input is numeric, returns a @duration array that is that many hours long.
   #
   # If input is a duration, converts the duration to a number of hours.
-  if isnumeric (x)
+  if (isnumeric (x))
     out = duration.ofDays (double (x) / 24);
   else
     error ('Invalid input: expected numeric or duration; got %s', class (x));

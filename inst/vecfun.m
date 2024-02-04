@@ -38,5 +38,5 @@ function out = vecfun(fcn, x, dim)
 
   n_dims = ndims (x);
 
-  error('vecfun: This function is not yet implemented. Sorry.');
+  error ('vecfun: This function is not yet implemented. Sorry.');
 endfunction

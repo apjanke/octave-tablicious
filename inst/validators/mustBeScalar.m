@@ -28,12 +28,12 @@
 ## @end deftypefn
 
 function mustBeScalar (x, label)
-  if nargin < 3; label = []; endif
-  if !isscalar (x)
-    if isempty (label)
+  if (nargin < 3); label = []; endif
+  if (! isscalar (x))
+    if (isempty (label))
       label = inputname (1);
     endif
-    if isempty (label)
+    if (isempty (label))
       label = "input";
     endif
     error ('%s must be scalar', label);

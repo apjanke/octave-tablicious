@@ -33,11 +33,11 @@ function out = isdatetime (x)
   #ISDATETIME True if input is a datetime array.
 
   # Developer note: see istable for an explanation of this logic.
-  if isa (x, 'datetime')
+  if (isa (x, 'datetime'))
     out = true;
-  elseif isobject (x)
+  elseif (isobject (x))
     # Respect isdatetime methods on classes.
-    if ismember ('isdatetime', methods (x))
+    if (ismember ('isdatetime', methods (x)))
       out = isdatetime (x);
     else
       out = false;

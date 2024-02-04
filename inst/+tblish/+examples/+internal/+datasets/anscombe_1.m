@@ -23,5 +23,5 @@ endfor
 
 # Fiddle with the plot axes parameters
 linkaxes (haxs);
-xlim(haxs(1), x_limits);
-ylim(haxs(1), y_limits);
+xlim (haxs(1), x_limits);
+ylim (haxs(1), y_limits);

@@ -29,29 +29,30 @@ classdef ZoneFileSectionParser < handle
   endproperties
 
   methods
+
     function out = take_byte (this, n)
-      if nargin < 2; n = 1; end
+      if (nargin < 2); n = 1; end
       n = double (n);
       out = this.data(this.ix:this.ix + n - 1);
       this.ix = this.ix + n;
     endfunction
 
     function out = take_int (this, n)
-      if nargin < 2; n = 1; end
+      if (nargin < 2); n = 1; end
       n = double (n);
       out = this.get_int (this.data(this.ix:this.ix + (4*n) - 1));
       this.ix = this.ix + 4*n;
     endfunction
 
     function out = take_int64 (this, n)
-      if nargin < 2; n = 1; end
+      if (nargin < 2); n = 1; end
       n = double (n);
       out = this.get_int64 (this.data(this.ix:this.ix+(8*n)-1));
       this.ix = this.ix + 8*n;
     endfunction
 
     function out = take_timeval (this, n)
-      if this.sectionFormat == 1
+      if (this.sectionFormat == 1)
         out = this.take_int (n);
       else
         out = this.take_int64 (n);
@@ -68,7 +69,7 @@ classdef ZoneFileSectionParser < handle
 
     function out = get_null_terminated_string (this, my_bytes)
       my_ix = 1;
-      while my_bytes(my_ix) ~= 0
+      while (my_bytes(my_ix) != 0)
         my_ix = my_ix + 1;
       endwhile
       out = char (my_bytes(1:my_ix - 1));
@@ -113,10 +114,10 @@ classdef ZoneFileSectionParser < handle
       # no length indicator for them, so we have to scan for the null after the
       # last string.
       abbrs = {};
-      if !isempty (ttinfos.abbrind)
+      if (! isempty (ttinfos.abbrind))
         last_abbrind = max (ttinfos.abbrind);
         ix_end = this.ix + double (last_abbrind);
-        while this.data(ix_end) ~= 0
+        while (this.data(ix_end) != 0)
           ix_end = ix_end + 1;
         endwhile
         abbr_section = this.data(this.ix:ix_end);
@@ -127,7 +128,7 @@ classdef ZoneFileSectionParser < handle
         this.ix = ix_end + 1;
       endif
       ttinfos.abbr = abbrs;
-      if this.sectionFormat == 1
+      if (this.sectionFormat == 1)
         leap_times = repmat (uint32 (0), [h.n_leap 1]);
       else
         leap_times = repmat (uint64 (0), [h.n_leap 1]);
@@ -150,6 +151,7 @@ classdef ZoneFileSectionParser < handle
       out.is_gmt = is_gmt;
       nBytesRead = this.ix - 1;
     endfunction
+
   endmethods
 
 endclassdef

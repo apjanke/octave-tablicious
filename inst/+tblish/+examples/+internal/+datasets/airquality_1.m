@@ -5,10 +5,10 @@ n_vars = numel (vars);
 figure;
 for i = 1:n_vars
   for j = 1:n_vars
-    if i == j
+    if (i == j)
       continue
     endif
-    ix_subplot = (n_vars*(j - 1) + i);
+    ix_subplot = (n_vars * (j - 1) + i);
     hax = subplot (n_vars, n_vars, ix_subplot);
     var_x = vars{i};
     var_y = vars{j};

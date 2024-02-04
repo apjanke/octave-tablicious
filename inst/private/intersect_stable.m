@@ -19,7 +19,7 @@ function [out, indx, jndx] = intersect_stable (A, B)
   [tf, indx] = ismember (A, B);
   out = A(tf);
   [uOut, ix2] = unique (out);
-  if numel (uOut) < numel (out)
+  if (numel (uOut) < numel (out))
     ixDup = 1:numel (out);
     ixDup(ix2) = [];
     out(ixDup) = [];

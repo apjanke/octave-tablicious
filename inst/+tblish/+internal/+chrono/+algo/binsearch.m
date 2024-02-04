@@ -21,10 +21,10 @@ function [tf, loc] = binsearch (needles, haystack)
   # inserted; that is, the index of the first element larger than it, or one past
   # the end of the array if it is larger than all the elements in the haystack.
 
-  if !isvector (haystack) && !isempty (haystack)
+  if (! isvector (haystack) && !isempty (haystack))
     error ('haystack must be a vector or empty');
   endif
-  if !isequal (class (needles), class (haystack))
+  if (! isequal (class (needles), class (haystack)))
     error ('needles and haystack must be same type; got %s and %s', ...
       class (needles), class (haystack));
   endif
@@ -34,8 +34,8 @@ function [tf, loc] = binsearch (needles, haystack)
     'uint8' 'uint16' 'uint32' 'uint64'};
   is_numeric = ismember (class (needles), numeric_types);
 
-  if is_numeric
-    if iscomplex (needles) || iscomplex (haystack)
+  if (is_numeric)
+    if (iscomplex (needles) || iscomplex (haystack))
       error ('Complex values are not supported');
     endif
     loc = double (__tblish_time_binsearch__ (needles, haystack));
@@ -53,13 +53,13 @@ function out = binsearch_mcode (vals, arr)
     low = 1;
     high = numel (arr);
     found = false;
-    while low <= high
+    while (low <= high)
       mid = floor ((low + high) / 2);
-      if arr(mid) > val
+      if (arr(mid) > val)
         high = mid - 1;
-      elseif arr(mid) < val
+      elseif (arr(mid) < val)
         low = mid + 1;
-      elseif arr(mid) == val
+      elseif (arr(mid) == val)
           found = true;
           out(i) = mid;
           break;
@@ -67,7 +67,7 @@ function out = binsearch_mcode (vals, arr)
         error('Total ordering violation: neither <, >, nor == was true for this value.');
       endif
     endwhile
-    if !found
+    if (! found)
       out(i) = -1 * low;
     endif
   endfor

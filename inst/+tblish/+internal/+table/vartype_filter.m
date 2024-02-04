@@ -21,18 +21,20 @@ classdef vartype_filter
   endproperties
 
   methods
-    function this = vartype_filter(type)
-      mustBeCharvec(type);
+
+    function this = vartype_filter (type)
+      mustBeCharvec (type);
       this.type = type;
     endfunction
 
     function out = matches (this, variable_value)
-      if isequal (this.type, 'cellstr')
+      if (isequal (this.type, 'cellstr'))
         out = iscellstr (variable_value);
       else
         out = isa (variable_value, this.type);
       endif
     endfunction
+
   endmethods
 
 endclassdef

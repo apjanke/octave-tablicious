@@ -32,7 +32,7 @@
 ## @end deftypefn
 function out = colvecfun (fcn, x)
   narginchk (2, 2);
-  if ! isa (fcn, 'function_handle')
+  if (! isa (fcn, 'function_handle'))
     error ('colvecfun: input fcn must be a function handle; got a %s', class (fcn));
   endif
 
@@ -43,7 +43,7 @@ endfunction
 
 function out = colvecfun_impl (fcn, x)
 
-  switch ndims (x)
+  switch (ndims (x))
     case 1
       out = colvecfun_for_1_dims (fcn, x);
     case 2

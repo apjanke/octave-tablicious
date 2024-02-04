@@ -29,19 +29,19 @@
 ## @end deftypefn
 
 function [a, b] = mustBeSameSize (a, b, labelA, labelB)
-  if nargin < 3; labelA = []; endif
-  if nargin < 4; labelB = []; endif
-  if ! isequal (size (a), size (b))
-    if isempty (labelA)
+  if (nargin < 3); labelA = []; endif
+  if (nargin < 4); labelB = []; endif
+  if (! isequal (size (a), size (b)))
+    if (isempty (labelA))
       label = inputname (1);
     endif
-    if isempty (labelA)
+    if (isempty (labelA))
       label = "input 1";
     endif
-    if isempty (labelB)
+    if (isempty (labelB))
       label = inputname (2);
     endif
-    if isempty (labelB)
+    if (isempty (labelB))
       label = "input 2";
     endif
     error ("%s and %s must be the same size; got %s and %s", ...

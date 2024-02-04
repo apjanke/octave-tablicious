@@ -32,7 +32,7 @@ catch err
   error (["could not detect table fill value for type '%s': error when calling " ...
     "zero-arg constructor: %s"], typeName, err.message)
 end
-if ~isscalar (protoVal)
+if (! isscalar (protoVal))
   error (["could not detect table fill value for type '%s': zero-arg constructor " ...
     "returned a non-scalar value: size was %s"], typeName, size2str (size (protoVal)))
 endif

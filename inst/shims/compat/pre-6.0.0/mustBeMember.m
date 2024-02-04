@@ -32,13 +32,13 @@
 ## @end deftypefn
 
 function x = mustBeMember (x, valid, label)
-  if nargin < 2; label = []; endif
+  if (nargin < 2); label = []; endif
   tf = ismember (x, valid);
-  if ! all (tf)
-    if isempty (label)
+  if (! all (tf))
+    if (isempty (label))
       label = inputname (1);
     endif
-    if isempty (label)
+    if (isempty (label))
       label = "input";
     endif
     n_bad = numel (find (! tf));

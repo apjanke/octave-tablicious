@@ -128,13 +128,13 @@ classdef calendarDuration
       # Peel off options
       knownOptions = {'Format'};
       opts = struct;
-      while numel (args) >= 3 && isa (args{end-1}, 'char') ...
-          && ismember (args{end-1}, knownOptions)
+      while (numel (args) >= 3 && isa (args{end-1}, 'char') ...
+          && ismember (args{end-1}, knownOptions))
         opts.(args{end-1}) = args{end};
         args(end-1:end) = [];
       endwhile
       # Parse inputs
-      switch numel (args)
+      switch (numel (args))
         case 0
           return
         case 1
@@ -142,7 +142,7 @@ classdef calendarDuration
           Y = X(:,1);
           M = X(:,2);
           D = X(:,3);
-          if size(X, 2) > 3
+          if (size(X, 2) > 3)
             T = X(:,4);
           else
             T = zeros (size (Y));
@@ -170,7 +170,7 @@ classdef calendarDuration
       this.Days = D;
       this.Time = T;
       this.Sign = ones (size (Y));
-      if isfield (opts, 'Format')
+      if (isfield (opts, 'Format'))
         this.Format = opts.Format;
       endif
       this = normalizeNaNs(this);
@@ -256,13 +256,13 @@ classdef calendarDuration
     ## @end deftypefn
     function out = plus (this, B)
       #PLUS Addition.
-      if !isa (this, 'calendarDuration')
+      if (! isa (this, 'calendarDuration'))
         error ('Left-hand side of + must be a calendarDuration');
       endif
-      if isnumeric (B)
+      if (isnumeric (B))
         B = calendarDuration.ofDays (B);
       endif
-      if isa (B, 'calendarDuration')
+      if (isa (B, 'calendarDuration'))
         out = this;
         out.Years = this.Years + (B.Sign .* B.Years);
         out.Months = this.Months + (B.Sign .* B.Months);
@@ -287,18 +287,18 @@ classdef calendarDuration
     ## @end deftypefn
     function out = times (this, B)
       #TIMES Array multiplication.
-      if isnumeric (this) && isa (B, 'calendarDuration')
+      if (isnumeric (this) && isa (B, 'calendarDuration'))
         out = times (B, this);
       endif
-      if !isa (this, 'calendarDuration')
+      if (! isa (this, 'calendarDuration'))
         error ('Left-hand side of * must be numeric or calendarDuration');
       endif
-      if !isnumeric (B)
+      if (! isnumeric (B))
         error ('B must be numeric; got a %s', class (B));
       endif
       out = this;
       tfNeg = B < 0;
-      if any (any (tfNeg))
+      if (any (any (tfNeg)))
         out.Sign(tfNeg) = -out.Sign(tfNeg);
         B = abs (B);
       endif
@@ -329,7 +329,7 @@ classdef calendarDuration
     function display (this)
       #DISPLAY Custom display.
       in_name = inputname (1);
-      if !isempty (in_name)
+      if (! isempty (in_name))
         fprintf ('%s =\n', in_name);
       endif
       disp (this);
@@ -337,7 +337,7 @@ classdef calendarDuration
 
     function disp (this)
       #DISP Custom display.
-      if isempty (this)
+      if (isempty (this))
         fprintf ('Empty %s %s\n', size2str (size (this)), class (this));
         return
       endif
@@ -363,49 +363,50 @@ classdef calendarDuration
   endmethods
 
   methods (Access = private)
+
     function out = dispstrScalar (this)
       tblish.internal.chrono.mustBeScalar (this);
-      if isnat (this)
+      if (isnat (this))
         out = 'NaT';
         return
       endif
       els = {};
-      if this.Sign < 0
+      if (this.Sign < 0)
         els{end+1} = '-';
       endif
-      if this.Years ~= 0
+      if (this.Years != 0)
         els{end+1} = sprintf ('%dy', this.Years);
       endif
-      if this.Months ~= 0
+      if (this.Months != 0)
         els{end+1} = sprintf ('%dmo', this.Months);
       endif
-      if this.Days ~= 0
+      if (this.Days != 0)
         els{end+1} = sprintf ('%dd', this.Days);
       endif
-      if this.Time ~= 0
+      if (this.Time != 0)
         time_str = dispstrs (duration.ofDays (this.Time));
         time_str = time_str{1};
         els{end+1} = time_str;
       endif
-      if isempty (els)
+      if (isempty (els))
         els = {'0d'};
       endif
       out = strjoin (els, ' ');
     endfunction
 
-    function out = sprintf(fmt, varargin)
+    function out = sprintf (fmt, varargin)
       args = varargin;
       for i = 1:numel (args)
-        if isa (args{i}, 'calendarDuration')
+        if (isa (args{i}, 'calendarDuration'))
           args{i} = dispstr (args{i});
         endif
       endfor
       out = sprintf (fmt, args{:});
     endfunction
 
-    function out = fprintf(varargin)
+    function out = fprintf (varargin)
       args = varargin;
-      if isnumeric (args{1})
+      if (isnumeric (args{1}))
         fid = args{1};
         args(1) = [];
       else
@@ -414,11 +415,11 @@ classdef calendarDuration
       fmt = args{1};
       args(1) = [];
       for i = 1:numel (args)
-        if isa (args{i}, 'calendarDuration')
+        if (isa (args{i}, 'calendarDuration'))
           args{i} = dispstr (args{i});
         endif
       endfor
-      if isempty (fid)
+      if (isempty (fid))
         fprintf (fmt, args{:});
       else
         fprintf (fid, fmt, args{:});
@@ -439,6 +440,7 @@ classdef calendarDuration
         this.Time(tfNaN) = NaN;
       endif
     endfunction
+
   endmethods
 
   # Planar boilerplate stuff
@@ -457,7 +459,7 @@ classdef calendarDuration
 
     function out = size (this, dim)
       #SIZE Size of array.
-      if nargin == 1
+      if (nargin == 1)
         out = size (this.Sign);
       else
         out = size (this, dim);
@@ -617,7 +619,7 @@ classdef calendarDuration
       #CAT Concatenate arrays.
       args = varargin;
       for i = 1:numel (args)
-        if !isa (args{i}, 'calendarDuration')
+        if (! isa (args{i}, 'calendarDuration'))
           args{i} = calendarDuration (args{i});
         endif
       endfor
@@ -650,7 +652,7 @@ classdef calendarDuration
       #SUBSASGN Subscripted assignment.
 
       # Chained subscripts
-      if numel (s) > 1
+      if (numel (s) > 1)
         rhs_in = subsref (this, s(1));
         rhs = subsasgn (rhs_in, s(2:end), b);
       else
@@ -658,7 +660,7 @@ classdef calendarDuration
       endif
 
       # Base case
-      switch s(1).type
+      switch (s(1).type)
         case '()'
           this = subsasgnParensPlanar (this, s(1), rhs);
         case '{}'
@@ -672,7 +674,7 @@ classdef calendarDuration
       #SUBSREF Subscripted reference.
 
       # Base case
-      switch s(1).type
+      switch (s(1).type)
         case '()'
           out = subsrefParensPlanar (this, s(1));
         case '{}'
@@ -682,14 +684,14 @@ classdef calendarDuration
       endswitch
 
       # Chained reference
-      if numel (s) > 1
+      if (numel (s) > 1)
         out = subsref (out, s(2:end));
       endif
     endfunction
 
-    function [out,Indx] = sort (this)
+    function [out, Indx] = sort (this)
       #SORT Sort array elements.
-      if isvector (this)
+      if (isvector (this))
         isRow = isrow (this);
         this = subset (this, ':');
         # NaNs sort stably to end, so handle them separately
@@ -705,7 +707,7 @@ classdef calendarDuration
         if isRow
           out = out';
         endif
-      elseif ismatrix (this)
+      elseif (ismatrix (this))
         out = this;
         Indx = NaN (size (out));
         for iCol = 1:size (this, 2)
@@ -721,29 +723,29 @@ classdef calendarDuration
         nDims = ndims (this);
         # Can't have a space after "repmat" or you get a syntax error
         ixs = [{':'} repmat({1}, [1 nDims-1])];
-        while true
+        while (true)
           col = subset (this, ixs{:});
           [sortedCol,sortIx] = sort (col);
           Indx(ixs{:}) = sortIx;
           out = asgn (out, ixs, sortedCol);
           ixs{end} = ixs{end}+1;
           for iDim = nDims:-1:3
-            if ixs{iDim} > sz(iDim)
+            if (ixs{iDim} > sz(iDim))
               ixs{iDim-1} = ixs{iDim-1} + 1;
               ixs{iDim} = 1;
             endif
           endfor
-          if ixs{2} > sz(2)
-            break;
+          if (ixs{2} > sz(2))
+            break
           endif
         endwhile
       endif
     endfunction
 
-    function [out,Indx] = unique (this, varargin)
+    function [out, Indx] = unique (this, varargin)
       #UNIQUE Set unique.
       flags = setdiff (varargin, {'rows'});
-      if ismember ('rows', varargin)
+      if (ismember ('rows', varargin))
         [~,proxyIx] = unique (this);
         proxyIx = reshape (proxyIx, size (this));
         [~,Indx] = unique (proxyIx, 'rows', flags{:});
@@ -756,51 +758,51 @@ classdef calendarDuration
         nonnans = subset (this, !tfNaN);
         ixNonnan = find (!tfNaN);
         keys = proxyKeys (nonnans);
-        if isa (keys, 'table')
+        if (isa (keys, 'table'))
           [~,ix] = unique (keys, flags{:});
         else
           [~,ix] = unique (keys, 'rows', flags{:});
         endif
         out = [subset(nonnans, ix); nans];
         Indx = [ixNonnan(ix); find(tfNaN)];
-        if isRow
+        if (isRow)
           out = out';
         endif
       endif
     endfunction
 
-    function [out,Indx] = ismember (a, b, varargin)
+    function [out, Indx] = ismember (a, b, varargin)
       #ISMEMBER True for set member.
-      if ismember ('rows', varargin)
+      if (ismember ('rows', varargin))
         error ('ismember(..., ''rows'') is unsupported');
       endif
-      if !isa (a, 'calendarDuration')
+      if (! isa (a, 'calendarDuration'))
         a = calendarDuration (a);
       endif
-      if !isa (b, 'calendarDuration')
+      if (! isa (b, 'calendarDuration'))
         b = calendarDuration (b);
       endif
       [proxyA, proxyB] = proxyKeys (a, b);
-      [out,Indx] = ismember (proxyA, proxyB, 'rows');
+      [out, Indx] = ismember (proxyA, proxyB, 'rows');
       out = reshape (out, size (a));
       Indx = reshape (Indx, size (a));
     endfunction
 
-    function [out,Indx] = setdiff (a, b, varargin)
+    function [out, Indx] = setdiff (a, b, varargin)
       #SETDIFF Set difference.
-      if ismember ('rows', varargin)
+      if (ismember ('rows', varargin))
         error ('setdiff(..., ''rows'') is unsupported');
       endif
-      [tf,~] = ismember (a, b);
+      [tf, ~] = ismember (a, b);
       out = parensRef (a, !tf);
       Indx = find (!tf);
-      [out,ix] = unique (out);
+      [out, ix] = unique (out);
       Indx = Indx(ix);
     endfunction
 
     function [out,ia,ib] = intersect (a, b, varargin)
       #INTERSECT Set intersection.
-      if ismember ('rows', varargin)
+      if (ismember ('rows', varargin))
         error ('intersect(..., ''rows'') is unsupported');
       endif
       [proxyA, proxyB] = proxyKeys (a, b);
@@ -810,7 +812,7 @@ classdef calendarDuration
 
     function [out,ia,ib] = union (a, b, varargin)
       #UNION Set union.
-      if ismember ('rows', varargin)
+      if (ismember ('rows', varargin))
         error ('union(..., ''rows'') is unsupported');
       endif
       [proxyA, proxyB] = proxyKeys (a, b);
@@ -827,7 +829,7 @@ classdef calendarDuration
 
     function this = subsasgnParensPlanar (this, s, rhs)
       #SUBSASGNPARENSPLANAR ()-assignment for planar object
-      if !isa (rhs, 'calendarDuration')
+      if (! isa (rhs, 'calendarDuration'))
         rhs = calendarDuration (rhs);
       endif
       this.Sign(s.subs{:}) = rhs.Sign;
@@ -867,7 +869,7 @@ classdef calendarDuration
       # This is what you call internally inside the class instead of doing
       # ()-indexing references on the LHS, which don't work properly inside
       # the class because they don't respect the subsasgn() override.
-      if !iscell (ix)
+      if (! iscell (ix))
         ix = { ix };
       endif
       s.type = '()';

@@ -40,9 +40,9 @@ function out = days (x)
   #
   # If x is a duration, then returns a double array indicating the number of
   # days that duration is.
-  if isnumeric (x)
+  if (isnumeric (x))
     out = duration.ofDays (double (x));
-  elseif isa (x, 'duration')
+  elseif (isa (x, 'duration'))
     out = x.days;
   else
     error ('Invalid input: expected numeric or duration; got %s', class (x));

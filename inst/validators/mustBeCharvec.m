@@ -33,12 +33,12 @@
 ## @end deftypefn
 
 function mustBeCharvec (x, label)
-  if nargin < 2; label = []; endif
-  if ! (ischar (x) && (isrow (x) || isequal (size (x), [0 0])))
-    if isempty (label)
+  if (nargin < 2); label = []; endif
+  if (! (ischar (x) && (isrow (x) || isequal (size (x), [0 0]))))
+    if (isempty (label))
       label = inputname (1);
     endif
-    if isempty (label)
+    if (isempty (label))
       label = "input";
     endif
     error ("%s must be a char row vector; got a %s %s", ...

@@ -6,12 +6,12 @@ t = tblish.dataset.cars;
 
 figure;
 plot (t.speed, t.dist, "o");
-xlabel ("Speed (mph)"); ylabel("Stopping distance (ft)");
+xlabel ("Speed (mph)"); ylabel ("Stopping distance (ft)");
 title ("cars data");
 
 figure;
 loglog (t.speed, t.dist, "o");
-xlabel ("Speed (mph)"); ylabel("Stopping distance (ft)");
+xlabel ("Speed (mph)"); ylabel ("Stopping distance (ft)");
 title ("cars data (logarithmic scales)");
 
 # TODO: Do the linear model plot
@@ -19,7 +19,7 @@ title ("cars data (logarithmic scales)");
 # Polynomial regression
 figure;
 plot (t.speed, t.dist, "o");
-xlabel ("Speed (mph)"); ylabel("Stopping distance (ft)");
+xlabel ("Speed (mph)"); ylabel ("Stopping distance (ft)");
 title ("cars polynomial regressions");
 hold on
 xlim ([0 25]);

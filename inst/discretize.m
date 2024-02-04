@@ -44,38 +44,38 @@ function [Y, E] = discretize (X, arg1, varargin)
   display_format = [];
   category_names = [];
   [opts, args] = peelOffNameValueOptions (varargin, {'IncludedEdge'});
-  if numel (args) >= 1 && isequal (args{end}, 'categorical')
+  if (numel (args) >= 1 && isequal (args{end}, 'categorical'))
     do_categorical = true;
     args(end) = [];
   endif
-  if numel (args) >= 2 && isequal (args{end-1}, 'categorical')
+  if (numel (args) >= 2 && isequal (args{end-1}, 'categorical'))
     do_categorical = true;
     categorical_arg = args{end};
-    if isa (X, 'datetime') || isa (X, 'duration') && ischar (categorical_arg)
+    if (isa (X, 'datetime') || isa (X, 'duration') && ischar (categorical_arg))
       display_format = categorical_arg;
     else
       category_names = cellstr (categorical_arg);
     endif
     args(end-1:end) = [];
   endif
-  if numel (args) > 1
+  if (numel (args) > 1)
     error ('discretize: too many arguments');
   endif
   value_map = [];
-  if ! isempty (args)
+  if (! isempty (args))
     value_map = args{i};
   endif
 
-  if isa (arg1, 'duration')
+  if (isa (arg1, 'duration'))
     error ('discretize: duration-valued bin size is not yet implemented. Sorry.');
-  elseif isscalar (arg1)
+  elseif (isscalar (arg1))
     mustBeNumeric (arg1);
     n_bins = arg1;
     min_x = min (X(:));
     max_x = max (X(:));
     bin_size = (max_x - min_x) / n_bins;
     edges = min_x:bin_size:max_x;
-    if numel (edges) < n_bins + 1
+    if (numel (edges) < n_bins + 1)
       edges(end+1) = max_x;
     else
       edges(end) = max_x;
@@ -96,23 +96,23 @@ function [Y, E] = discretize (X, arg1, varargin)
   tf = edges(end-1) <= X & X <= edges(end);
   Y(tf) = n_bins;
   cat_names{n_bins} = gen_category_name (edges(i_bin), edges(i_bin+1), 1);
-  if isempty (category_names)
+  if (isempty (category_names))
     category_names = cat_names;
   endif
 
-  if do_categorical
+  if (do_categorical)
     codes = Y;
     Y = categorical.from_codes (codes, category_names, 'Ordinal', true);
   endif
 
-  if nargout > 1
+  if (nargout > 1)
     E = edges;
   endif
 endfunction
 
 function out = gen_category_name (lo, hi, is_closed_on_right)
   edge_strs = dispstrs ([lo hi]);
-  if is_closed_on_right
+  if (is_closed_on_right)
     out = sprintf ('[%s, %s)', edge_strs{1}, edge_strs{2});
   else
     out = sprintf ('[%s, %s]', edge_strs{1}, edge_strs{2});

@@ -20,10 +20,10 @@ function out = mycombvec (vecs)
   #MYCOMBVEC All combinations of values from vectors
   #
   # This is similar to Matlab's combvec, but has a different signature.
-  if !iscell (vecs)
+  if (! iscell (vecs))
     error ('Input vecs must be cell');
   endif
-  switch numel (vecs)
+  switch (numel (vecs))
     case 0
       error ('Must supply at least one input vector');
     case 1

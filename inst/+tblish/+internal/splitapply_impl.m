@@ -21,7 +21,7 @@ function varargout = splitapply_impl (func, varargin)
   mustBeA (func, 'function_handle');
   narginchk (3, Inf);
   G = varargin{end};
-  if ! isnumeric (G)
+  if (! isnumeric (G))
     error ('splitapply: G, the last input argument, must be numeric; got a %s', ...
       class (G));
   endif

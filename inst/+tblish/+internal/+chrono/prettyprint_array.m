@@ -44,23 +44,23 @@ else
     endfor
     out = strjoin (chunks, '\n');
 endif
-if nargout == 0
+if (nargout == 0)
     disp (out);
     clear out;
 endif
 endfunction
 
 function out = prettyprint_matrix (strs)
-if !ismatrix (strs)
+if (! ismatrix (strs))
     error ('Input must be matrix; got %d-D', ndims (strs));
 endif
 lens = cellfun ('prodofsize', strs);
 widths = max (lens);
 formats = tblish.internal.chrono.sprintfv ('%%%ds', widths);
-format = strjoin (formats, '   ');
+myFormat = strjoin (formats, '   ');
 lines = cell (size (strs,1), 1);
 for i = 1:size (strs, 1)
-    lines{i} = sprintf (format, strs{i,:});
+    lines{i} = sprintf (myFormat, strs{i,:});
 endfor
 out = strjoin (lines, '\n');
 endfunction

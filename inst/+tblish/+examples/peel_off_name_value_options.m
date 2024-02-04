@@ -63,11 +63,11 @@ function [opts, remaining_args] = peel_off_name_value_options (args, known_opts,
 
   #
 
-  if nargin < 3 || isempty (defaults); defaults = struct; endif
+  if (nargin < 3 || isempty (defaults)); defaults = struct; endif
   defaults = parse_defaults (defaults);
   opts = defaults;
   peeled_args = {};
-  while numel (args) >= 2 && ischar (args{end-1}) && ismember (args{end-1}, known_opts)
+  while (numel (args) >= 2 && ischar (args{end-1}) && ismember (args{end-1}, known_opts))
     peeled_args = [peeled_args args(end-1:end)];
     opts.(args{end-1}) = args{end};
     args(end-1:end) = [];
@@ -76,12 +76,12 @@ function [opts, remaining_args] = peel_off_name_value_options (args, known_opts,
 endfunction
 
 function out = parse_defaults (defaults)
-  if isstruct (defaults)
+  if (isstruct (defaults))
     out = struct;
     return
   endif
-  if iscell (defaults)
-    if size (defaults, 2) == 2
+  if (iscell (defaults))
+    if (size (defaults, 2) == 2)
       # Convert cellrec to name/value list
       defaults = defaults';
       defaults = defaults(:)';

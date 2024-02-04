@@ -35,7 +35,7 @@
 function out = endsWith (str, pattern, varargin)
   [opts, args] = peelOffNameValueOptions (varargin, {'IgnoreCase'});
   ignore_case = false;
-  if isfield (opts, 'IgnoreCase')
+  if (isfield (opts, 'IgnoreCase'))
     mustBeScalarLogical (opts.IgnoreCase, 'IgnoreCase option');
     ignore_case = opts.IgnoreCase;
   endif
@@ -43,12 +43,12 @@ function out = endsWith (str, pattern, varargin)
   str = cellstr (str);
   pattern = cellstr (pattern);
 
-  if any (cellfun ('isempty', pattern(:)))
+  if (any (cellfun ('isempty', pattern(:))))
     out = true (size (str));
     return;
   endif
 
-  if ignore_case
+  if (ignore_case)
     str = lower (str);
     pattern = lower (pattern);
   endif
@@ -58,11 +58,11 @@ function out = endsWith (str, pattern, varargin)
     for i_pattern = 1:numel (pattern)
       pat = pattern{i_pattern};
       n = numel(pat);
-      if n > numel (s)
+      if (n > numel (s))
         continue
       endif
       tf = isequal (s(end-n+1:end), pat);
-      if tf
+      if (tf)
         out(i_str) = true;
         break
       endif

@@ -38,7 +38,7 @@ function out = NaT (sz)
   #NaT Not-a-Time
   #
   # Creates an array of datetimes with the value NaT.
-  if nargin == 0
+  if (nargin == 0)
     out = datetime.NaT;
   else
     out = repmat (datetime.NaT, sz);

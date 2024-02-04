@@ -93,30 +93,30 @@ classdef localdate
       args = varargin;
       knownOptions = {'Format','InputFormat','Locale','PivotYear'};
       opts = struct;
-      while numel (args) >= 3 && isa (args{end-1}, 'char') ...
-          && ismember (args{end-1}, knownOptions)
+      while (numel (args) >= 3 && isa (args{end-1}, 'char') ...
+          && ismember (args{end-1}, knownOptions))
         opts.(args{end-1}) = args{end};
         args(end-1:end) = [];
       endwhile
 
       # Handle inputs
-      switch numel (args)
+      switch (numel (args))
         case 0
           dnums = floor (now);
         case 1
           x = args{1};
-          if isnumeric (x)
+          if (isnumeric (x))
             # Convert datenums
             mustBeIntOrNanOrInf (x, 'input');
             dnums = double (x);
-          elseif ischar (x) || iscellstr (x) || isa (x, 'string')
+          elseif (ischar (x) || iscellstr (x) || isa (x, 'string'))
             x = cellstr (x);
             tfRelative = ismember (x, {'today','tomorrow','yesterday','now'});
-            if all (tfRelative)
-              if !isscalar (x)
+            if (all (tfRelative))
+              if (! isscalar (x))
                 error ('Multiple arguments not allowed for relativeDay format');
               endif
-              switch x{1}
+              switch (x{1})
                 case 'yesterday'
                   dnums = floor (now) - 1;
                 case 'today'
@@ -129,37 +129,37 @@ classdef localdate
             else
               # They're datestrs
               # TODO: Support Locale option
-              if isfield (opts, 'Locale')
+              if (isfield (opts, 'Locale'))
                 error ('Locale option is unimplemented');
               endif
               # TODO: Support PivotYear option
-              if isfield (opts, 'PivotYear')
+              if (isfield (opts, 'PivotYear'))
                 error ('PivotYear option is unimplemented');
               endif
-              if isfield (opts, 'InputFormat')
+              if (isfield (opts, 'InputFormat'))
                 dnums = datenum (x, opts.InputFormat);
               else
                 dnums = datenum (x);
               endif
               tf = isIntOrNanOrInf (dnums);
-              if ! all (tf)
+              if (! all (tf))
                 error ('localdate: input datestrs may not have nonzero time-of-day parts');
               endif
               dnums = reshape (dnums, size (x));
             endif
-          elseif isstruct (x)
+          elseif (isstruct (x))
             error ('localdate: struct to localdate conversion has not been spec''ed or implemented yet');
           elseif ismember (class (x), {'java.util.Date', 'java.util.Date[]', 'java.time.TemporalAccessor', ...
                                        'java.time.TemporalAccessor[]'})
             error ('localdate: Java date conversion is not implemented yet. Sorry.');
-          elseif isa (x, 'datetime')
+          elseif (isa (x, 'datetime'))
             dnums = datenum (x);
           else
             error ('localdate: Invalid input type: %s', class (x));
           endif
         case 2
           # Undocumented calling form for Tablicious's internal use
-          if !isequal (args{2}, 'Backdoor')
+          if (! isequal (args{2}, 'Backdoor'))
             error ('Invalid number of inputs (excluding options): %d', numel (args));
           endif
           dnums = args{1};
@@ -215,13 +215,13 @@ classdef localdate
       dvec(:,1) = dstruct.Year(:);
       dvec(:,2) = dstruct.Month(:);
       dvec(:,3) = dstruct.Day(:);
-      if isfield (dstruct, 'Hour')
+      if (isfield (dstruct, 'Hour'))
         mustBeIntOrNanOrInf (dstruct.Hour, 'Hour field of datestruct');
       endif
-      if isfield (dstruct, 'Hour')
+      if (isfield (dstruct, 'Hour'))
         mustBeIntOrNanOrInf (dstruct.Minute, 'Minute field of datestruct');
       endif
-      if isfield (dstruct, 'Hour')
+      if (isfield (dstruct, 'Hour'))
         mustBeIntOrNanOrInf (dstruct.Second, 'Second field of datestruct');
       endif
       dvec(:,4) = 0;
@@ -318,13 +318,13 @@ classdef localdate
     endfunction
 
     function out = week (this)
-      error('week() is unimplemented');
+      error ('week() is unimplemented');
     endfunction
 
     function display (this)
       #DISPLAY Custom display.
       in_name = inputname (1);
-      if !isempty (in_name)
+      if (! isempty (in_name))
         fprintf ('%s =\n', in_name);
       endif
       disp (this);
@@ -332,9 +332,9 @@ classdef localdate
 
     function disp (this)
       #DISP Custom display.
-      if isempty (this)
+      if (isempty (this))
         fprintf ('Empty %s %s\n', size2str (size (this)), class (this));
-      elseif isscalar (this)
+      elseif (isscalar (this))
         str = dispstrs (this);
         str = str{1};
         fprintf (' %s\n', str);
@@ -360,24 +360,24 @@ classdef localdate
       local_dnums = this.dnums;
       tfNaN = isnan (local_dnums);
       out(tfNaN) = {'NaT'};
-      if any(!tfNaN(:))
+      if (any (!tfNaN(:)))
         out(!tfNaN) = cellstr (datestr (local_dnums(!tfNaN)));
       endif
     endfunction
 
-    function out = sprintf(fmt, varargin)
+    function out = sprintf (fmt, varargin)
       args = varargin;
       for i = 1:numel (args)
-        if isa (args{i}, 'localdate')
+        if (isa (args{i}, 'localdate'))
           args{i} = datestr (args{i});
         endif
       endfor
       out = sprintf (fmt, args{:});
     endfunction
 
-    function out = fprintf(varargin)
+    function out = fprintf (varargin)
       args = varargin;
-      if isnumeric (args{1})
+      if (isnumeric (args{1}))
         fid = args{1};
         args(1) = [];
       else
@@ -386,11 +386,11 @@ classdef localdate
       fmt = args{1};
       args(1) = [];
       for i = 1:numel (args)
-        if isa (args{i}, 'localdate')
+        if (isa (args{i}, 'localdate'))
           args{i} = datestr (args{i});
         endif
       endfor
-      if isempty (fid)
+      if (isempty (fid))
         fprintf (fmt, args{:});
       else
         fprintf (fid, fmt, args{:});
@@ -551,7 +551,7 @@ classdef localdate
     function out = ne (A, B)
       #NE Not equal.
       [A, B] = localdate.promote (A, B);
-      out = A.dnums ~= B.dnums;
+      out = A.dnums != B.dnums;
     endfunction
 
     function out = eq (A, B)
@@ -576,22 +576,22 @@ classdef localdate
 
     function out = plus (this, b)
       mustBeA (this, 'localdate');
-      if isnumeric (b)
-        if ! all (b == floor (b))
+      if (isnumeric (b))
+        if (! all (b == floor (b)))
           error('Numeric addends must be integer-valued');
         endif
         b = duration.ofDays (b);
       endif
       mustBeScalar (b);
-      if isa (b, 'duration')
+      if (isa (b, 'duration'))
         days = b.days;
-        if days ~= floor (days)
+        if (days != floor (days))
           error ('Duration addends must be whole-day valued');
         endif
         out = this;
         out.dnums = this.dnums + days;
-      elseif isa (b, 'calendarDuration')
-        if ! all (b.Time == 0)
+      elseif (isa (b, 'calendarDuration'))
+        if (! all (b.Time == 0))
           error('calendarDuration addends may not have non-zero Time components');
         endif
         year = this.Year + b.Years;
@@ -599,14 +599,15 @@ classdef localdate
         day = this.Day + b.Days;
         out = localdate (year, month, day);
       else
+        error ('unsupported input type: %s', class (b))
       endif
     endfunction
 
     function out = minus (a, b)
-      if ! isa (a, 'localdate')
+      if (! isa (a, 'localdate'))
         a = localdate (a);
       endif
-      if ! isa (b, 'localdate')
+      if (! isa (b, 'localdate'))
         b = localdate (b);
       endif
       delta = a.dnums - b.dnums;
@@ -627,7 +628,7 @@ classdef localdate
 
     function out = size (this, dim)
       #SIZE Size of array.
-      if nargin == 1
+      if (nargin == 1)
         out = size (this.dnums);
       else
         out = size (this.dnums, dim);
@@ -706,7 +707,7 @@ classdef localdate
 
     function [this, nshifts] = shiftdim (this, n)
       #SHIFTDIM Shift dimensions.
-      if nargin > 1
+      if (nargin > 1)
         this.dnums = shiftdim (this.dnums, n);
       else
         [this.dnums, nshifts] = shiftdim (this.dnums);
@@ -735,7 +736,7 @@ classdef localdate
       #SUBSASGN Subscripted assignment.
 
       # Chained subscripts
-      if numel(s) > 1
+      if (numel(s) > 1)
         rhs_in = subsref (this, s(1));
         rhs = subsasgn (rhs_in, s(2:end), b);
       else
@@ -743,7 +744,7 @@ classdef localdate
       endif
 
       # Base case
-      switch s(1).type
+      switch (s(1).type)
         case '()'
           this = subsasgnParensPlanar (this, s(1), rhs);
           #TODO: Correct value of vivified indexes to NaN; right now it's zero.
@@ -758,7 +759,7 @@ classdef localdate
       #SUBSREF Subscripted reference.
 
       # Base case
-      switch s(1).type
+      switch (s(1).type)
         case '()'
           out = subsrefParensPlanar (this, s(1));
         case '{}'
@@ -787,10 +788,10 @@ classdef localdate
         [~, ix] = sortrows (proxy);
         out = [subset(nonnans, ix); nans];
         Indx = [ixNonNan(ix); find (tfNan)];
-        if isRow
+        if (isRow)
             out = out';
         endif
-      elseif ismatrix (this)
+      elseif (ismatrix (this))
         out = this;
         Indx = NaN (size(out));
         for iCol = 1:size (this, 2)
@@ -812,20 +813,20 @@ classdef localdate
       sz = size (this);
       nDims = ndims (this);
       ixs = [{':'} repmat({1}, [1 nDims-1])];
-      while true
+      while (true)
         col = subset (this, ixs{:});
         [sortedCol, sortIx] = sort (col);
         Indx(ixs{:}) = sortIx;
         out = asgn (out, ixs, sortedCol);
         ixs{end} = ixs{end}+1;
         for iDim=nDims:-1:3
-          if ixs{iDim} > sz(iDim)
+          if (ixs{iDim} > sz(iDim))
             ixs{iDim-1} = ixs{iDim-1} + 1;
             ixs{iDim} = 1;
           endif
         endfor
-        if ixs{2} > sz(2)
-          break;
+        if (ixs{2} > sz(2))
+          break
         endif
       endwhile
     endfunction
@@ -833,7 +834,7 @@ classdef localdate
     function [out, Indx] = unique (this, varargin)
       #UNIQUE Set unique.
       flags = setdiff (varargin, {'rows'});
-      if ismember('rows', varargin)
+      if (ismember('rows', varargin))
         [~,proxyIx] = unique (this);
         proxyIx = reshape (proxyIx, size (this));
         [~,Indx] = unique (proxyIx, 'rows', flags{:});
@@ -846,14 +847,14 @@ classdef localdate
         nonnans = subset (this, !tfNaN);
         ixNonnan = find (!tfNaN);
         keys = proxyKeys (nonnans);
-        if isa (keys, 'table')
+        if (isa (keys, 'table'))
           [~,ix] = unique (keys, flags{:});
         else
           [~,ix] = unique (keys, 'rows', flags{:});
         endif
         out = [subset(nonnans, ix); nans];
         Indx = [ixNonnan(ix); find (tfNaN)];
-        if isRow
+        if (isRow)
           out = out';
         endif
       endif
@@ -861,13 +862,13 @@ classdef localdate
 
     function [out, Indx] = ismember (a, b, varargin)
       #ISMEMBER True for set member.
-      if ismember ('rows', varargin)
+      if (ismember ('rows', varargin))
         error ('ismember(..., ''rows'') is unsupported');
       endif
-      if !isa (a, 'localdate')
+      if (! isa (a, 'localdate'))
         a = localdate (a);
       endif
-      if !isa (b, 'localdate')
+      if (! isa (b, 'localdate'))
         b = localdate (b);
       endif
       [proxyA, proxyB] = proxyKeys (a, b);
@@ -878,7 +879,7 @@ classdef localdate
 
     function [out, Indx] = setdiff (a, b, varargin)
       #SETDIFF Set difference.
-      if ismember ('rows', varargin)
+      if (ismember ('rows', varargin))
         error ('setdiff(..., ''rows'') is unsupported');
       endif
       [tf,~] = ismember (a, b);
@@ -890,7 +891,7 @@ classdef localdate
 
     function [out, ia, ib] = intersect (a, b, varargin)
       #INTERSECT Set intersection.
-      if ismember ('rows', varargin)
+      if (ismember ('rows', varargin))
         error ('intersect(..., ''rows'') is unsupported');
       endif
       [proxyA, proxyB] = proxyKeys (a, b);
@@ -900,7 +901,7 @@ classdef localdate
 
     function [out, ia, ib] = union (a, b, varargin)
       #UNION Set union.
-      if ismember ('rows', varargin)
+      if (ismember ('rows', varargin))
         error ('union(..., ''rows'') is unsupported');
       endif
       [proxyA, proxyB] = proxyKeys (a, b);
@@ -916,7 +917,7 @@ classdef localdate
 
     function out = subsasgnParensPlanar (this, s, rhs)
       #SUBSASGNPARENSPLANAR ()-assignment for planar object
-      if !isa (rhs, 'localdate')
+      if (! isa (rhs, 'localdate'))
         rhs = localdate (rhs);
       endif
       out = this;
@@ -932,7 +933,7 @@ classdef localdate
 
     function out = parensRef (this, varargin)
       #PARENSREF ()-indexing, for this class's internal use
-      out = subsrefParensPlanar(this, struct ('subs', {varargin}));
+      out = subsrefParensPlanar (this, struct ('subs', {varargin}));
     endfunction
 
     function out = subset (this, varargin)
@@ -948,7 +949,7 @@ classdef localdate
       # This is what you call internally inside the class instead of doing
       # ()-indexing references on the LHS, which don't work properly inside
       # the class because they don't respect the subsasgn() override.
-      if !iscell (ix)
+      if (! iscell (ix))
         ix = { ix };
       endif
       s.type = '()';
@@ -970,7 +971,7 @@ classdef localdate
       #PROMOTE Promote inputs to be compatible
       args = varargin;
       for i = 1:numel (args)
-        if !isa (args{i}, 'localdate')
+        if (! isa (args{i}, 'localdate'))
           args{i} = localdate (args{i});
         endif
       endfor
@@ -988,14 +989,14 @@ function out = isIntOrNanOrInf (x)
 endfunction
 
 function mustBeNumeric (x, label)
-  if nargin < 2; label = []; endif
-  if isnumeric (x)
+  if (nargin < 2); label = []; endif
+  if (isnumeric (x))
     return
   endif
-    if isempty (label)
+    if (isempty (label))
       label = inputname (1);
     endif
-    if isempty (label)
+    if (isempty (label))
       label = "input";
     endif
     error ("localdate: %s must be numeric; but got a %s", ...
@@ -1003,23 +1004,23 @@ function mustBeNumeric (x, label)
 endfunction
 
 function x = mustBeIntOrNanOrInf (x, label)
-  if nargin < 2; label = []; endif
-  if isinteger (x) || islogical (x)
+  if (nargin < 2); label = []; endif
+  if (isinteger (x) || islogical (x))
     return
   endif
   but = [];
-  if ! isnumeric (x)
+  if (! isnumeric (x))
     but = sprintf ("it was non-numeric (got a %s)", class (x));
-  elseif ! isreal (x)
+  elseif (! isreal (x))
     but = "it was complex";
-  elseif ! all (floor (x) == x)
+  elseif (! all (floor (x) == x))
     but = "it had fractional values in some elements";
   endif
-  if ! isempty (but)
-    if isempty (label)
+  if (! isempty (but))
+    if (isempty (label))
       label = inputname (1);
     endif
-    if isempty (label)
+    if (isempty (label))
       label = "input";
     endif
     error ("localdate: %s must be integer-valued; but %s", ...

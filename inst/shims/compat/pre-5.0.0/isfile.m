@@ -41,9 +41,9 @@
 
 function out = isfile (file)
   st = stat (file);
-  if isempty (st)
+  if (isempty (st))
     out = false;
     return
   endif
-  out = st.modestr(1) != 'd';
+  out = st.modestr(1) != "d";
 endfunction

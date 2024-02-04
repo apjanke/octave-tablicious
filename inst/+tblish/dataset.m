@@ -58,8 +58,8 @@ classdef dataset
     function out = airmiles ()
       name = 'airmiles';
       data = tblish.datasets.load(name);
-      if nargout == 0
-        if isstruct (data)
+      if (nargout == 0)
+        if (isstruct (data))
           s = data;
           vars = fieldnames (s);
           for i = 1:numel (vars)
@@ -104,8 +104,8 @@ classdef dataset
     function out = AirPassengers ()
       name = 'AirPassengers';
       data = tblish.datasets.load(name);
-      if nargout == 0
-        if isstruct (data)
+      if (nargout == 0)
+        if (isstruct (data))
           s = data;
           vars = fieldnames (s);
           for i = 1:numel (vars)
@@ -197,8 +197,8 @@ classdef dataset
     function out = airquality ()
       name = 'airquality';
       data = tblish.datasets.load(name);
-      if nargout == 0
-        if isstruct (data)
+      if (nargout == 0)
+        if (isstruct (data))
           s = data;
           vars = fieldnames (s);
           for i = 1:numel (vars)
@@ -284,8 +284,8 @@ classdef dataset
     function out = anscombe ()
       name = 'anscombe';
       data = tblish.datasets.load(name);
-      if nargout == 0
-        if isstruct (data)
+      if (nargout == 0)
+        if (isstruct (data))
           s = data;
           vars = fieldnames (s);
           for i = 1:numel (vars)
@@ -353,8 +353,8 @@ classdef dataset
     function out = attenu ()
       name = 'attenu';
       data = tblish.datasets.load(name);
-      if nargout == 0
-        if isstruct (data)
+      if (nargout == 0)
+        if (isstruct (data))
           s = data;
           vars = fieldnames (s);
           for i = 1:numel (vars)
@@ -424,8 +424,8 @@ classdef dataset
     function out = attitude ()
       name = 'attitude';
       data = tblish.datasets.load(name);
-      if nargout == 0
-        if isstruct (data)
+      if (nargout == 0)
+        if (isstruct (data))
           s = data;
           vars = fieldnames (s);
           for i = 1:numel (vars)
@@ -481,8 +481,8 @@ classdef dataset
     function out = austres ()
       name = 'austres';
       data = tblish.datasets.load(name);
-      if nargout == 0
-        if isstruct (data)
+      if (nargout == 0)
+        if (isstruct (data))
           s = data;
           vars = fieldnames (s);
           for i = 1:numel (vars)
@@ -541,8 +541,8 @@ classdef dataset
     function out = beavers ()
       name = 'beavers';
       data = tblish.datasets.load(name);
-      if nargout == 0
-        if isstruct (data)
+      if (nargout == 0)
+        if (isstruct (data))
           s = data;
           vars = fieldnames (s);
           for i = 1:numel (vars)
@@ -604,8 +604,8 @@ classdef dataset
     function out = BJsales ()
       name = 'BJsales';
       data = tblish.datasets.load(name);
-      if nargout == 0
-        if isstruct (data)
+      if (nargout == 0)
+        if (isstruct (data))
           s = data;
           vars = fieldnames (s);
           for i = 1:numel (vars)
@@ -661,8 +661,8 @@ classdef dataset
     function out = BOD ()
       name = 'BOD';
       data = tblish.datasets.load(name);
-      if nargout == 0
-        if isstruct (data)
+      if (nargout == 0)
+        if (isstruct (data))
           s = data;
           vars = fieldnames (s);
           for i = 1:numel (vars)
@@ -749,8 +749,8 @@ classdef dataset
     function out = cars ()
       name = 'cars';
       data = tblish.datasets.load(name);
-      if nargout == 0
-        if isstruct (data)
+      if (nargout == 0)
+        if (isstruct (data))
           s = data;
           vars = fieldnames (s);
           for i = 1:numel (vars)
@@ -816,8 +816,8 @@ classdef dataset
     function out = ChickWeight ()
       name = 'ChickWeight';
       data = tblish.datasets.load(name);
-      if nargout == 0
-        if isstruct (data)
+      if (nargout == 0)
+        if (isstruct (data))
           s = data;
           vars = fieldnames (s);
           for i = 1:numel (vars)
@@ -892,8 +892,8 @@ classdef dataset
     function out = chickwts ()
       name = 'chickwts';
       data = tblish.datasets.load(name);
-      if nargout == 0
-        if isstruct (data)
+      if (nargout == 0)
+        if (isstruct (data))
           s = data;
           vars = fieldnames (s);
           for i = 1:numel (vars)
@@ -965,8 +965,8 @@ classdef dataset
     function out = co2 ()
       name = 'co2';
       data = tblish.datasets.load(name);
-      if nargout == 0
-        if isstruct (data)
+      if (nargout == 0)
+        if (isstruct (data))
           s = data;
           vars = fieldnames (s);
           for i = 1:numel (vars)
@@ -1067,8 +1067,8 @@ classdef dataset
     function out = crimtab ()
       name = 'crimtab';
       data = tblish.datasets.load(name);
-      if nargout == 0
-        if isstruct (data)
+      if (nargout == 0)
+        if (isstruct (data))
           s = data;
           vars = fieldnames (s);
           for i = 1:numel (vars)
@@ -1123,8 +1123,8 @@ classdef dataset
     function out = cupcake ()
       name = 'cupcake';
       data = tblish.datasets.load(name);
-      if nargout == 0
-        if isstruct (data)
+      if (nargout == 0)
+        if (isstruct (data))
           s = data;
           vars = fieldnames (s);
           for i = 1:numel (vars)
@@ -1184,8 +1184,8 @@ classdef dataset
     function out = discoveries ()
       name = 'discoveries';
       data = tblish.datasets.load(name);
-      if nargout == 0
-        if isstruct (data)
+      if (nargout == 0)
+        if (isstruct (data))
           s = data;
           vars = fieldnames (s);
           for i = 1:numel (vars)
@@ -1249,8 +1249,8 @@ classdef dataset
     function out = DNase ()
       name = 'DNase';
       data = tblish.datasets.load(name);
-      if nargout == 0
-        if isstruct (data)
+      if (nargout == 0)
+        if (isstruct (data))
           s = data;
           vars = fieldnames (s);
           for i = 1:numel (vars)
@@ -1315,8 +1315,8 @@ classdef dataset
     function out = esoph ()
       name = 'esoph';
       data = tblish.datasets.load(name);
-      if nargout == 0
-        if isstruct (data)
+      if (nargout == 0)
+        if (isstruct (data))
           s = data;
           vars = fieldnames (s);
           for i = 1:numel (vars)
@@ -1389,8 +1389,8 @@ classdef dataset
     function out = euro ()
       name = 'euro';
       data = tblish.datasets.load(name);
-      if nargout == 0
-        if isstruct (data)
+      if (nargout == 0)
+        if (isstruct (data))
           s = data;
           vars = fieldnames (s);
           for i = 1:numel (vars)
@@ -1444,8 +1444,8 @@ classdef dataset
     function out = eurodist ()
       name = 'eurodist';
       data = tblish.datasets.load(name);
-      if nargout == 0
-        if isstruct (data)
+      if (nargout == 0)
+        if (isstruct (data))
           s = data;
           vars = fieldnames (s);
           for i = 1:numel (vars)
@@ -1518,8 +1518,8 @@ classdef dataset
     function out = EuStockMarkets ()
       name = 'EuStockMarkets';
       data = tblish.datasets.load(name);
-      if nargout == 0
-        if isstruct (data)
+      if (nargout == 0)
+        if (isstruct (data))
           s = data;
           vars = fieldnames (s);
           for i = 1:numel (vars)
@@ -1601,8 +1601,8 @@ classdef dataset
     function out = faithful ()
       name = 'faithful';
       data = tblish.datasets.load(name);
-      if nargout == 0
-        if isstruct (data)
+      if (nargout == 0)
+        if (isstruct (data))
           s = data;
           vars = fieldnames (s);
           for i = 1:numel (vars)
@@ -1673,8 +1673,8 @@ classdef dataset
     function out = Formaldehyde ()
       name = 'Formaldehyde';
       data = tblish.datasets.load(name);
-      if nargout == 0
-        if isstruct (data)
+      if (nargout == 0)
+        if (isstruct (data))
           s = data;
           vars = fieldnames (s);
           for i = 1:numel (vars)
@@ -1753,8 +1753,8 @@ classdef dataset
     function out = freeny ()
       name = 'freeny';
       data = tblish.datasets.load(name);
-      if nargout == 0
-        if isstruct (data)
+      if (nargout == 0)
+        if (isstruct (data))
           s = data;
           vars = fieldnames (s);
           for i = 1:numel (vars)
@@ -1848,8 +1848,8 @@ classdef dataset
     function out = HairEyeColor ()
       name = 'HairEyeColor';
       data = tblish.datasets.load(name);
-      if nargout == 0
-        if isstruct (data)
+      if (nargout == 0)
+        if (isstruct (data))
           s = data;
           vars = fieldnames (s);
           for i = 1:numel (vars)
@@ -1906,8 +1906,8 @@ classdef dataset
     function out = Harman23cor ()
       name = 'Harman23cor';
       data = tblish.datasets.load(name);
-      if nargout == 0
-        if isstruct (data)
+      if (nargout == 0)
+        if (isstruct (data))
           s = data;
           vars = fieldnames (s);
           for i = 1:numel (vars)
@@ -1964,8 +1964,8 @@ classdef dataset
     function out = Harman74cor ()
       name = 'Harman74cor';
       data = tblish.datasets.load(name);
-      if nargout == 0
-        if isstruct (data)
+      if (nargout == 0)
+        if (isstruct (data))
           s = data;
           vars = fieldnames (s);
           for i = 1:numel (vars)
@@ -2025,8 +2025,8 @@ classdef dataset
     function out = Indometh ()
       name = 'Indometh';
       data = tblish.datasets.load(name);
-      if nargout == 0
-        if isstruct (data)
+      if (nargout == 0)
+        if (isstruct (data))
           s = data;
           vars = fieldnames (s);
           for i = 1:numel (vars)
@@ -2097,8 +2097,8 @@ classdef dataset
     function out = infert ()
       name = 'infert';
       data = tblish.datasets.load(name);
-      if nargout == 0
-        if isstruct (data)
+      if (nargout == 0)
+        if (isstruct (data))
           s = data;
           vars = fieldnames (s);
           for i = 1:numel (vars)
@@ -2160,8 +2160,8 @@ classdef dataset
     function out = InsectSprays ()
       name = 'InsectSprays';
       data = tblish.datasets.load(name);
-      if nargout == 0
-        if isstruct (data)
+      if (nargout == 0)
+        if (isstruct (data))
           s = data;
           vars = fieldnames (s);
           for i = 1:numel (vars)
@@ -2231,8 +2231,8 @@ classdef dataset
     function out = iris ()
       name = 'iris';
       data = tblish.datasets.load(name);
-      if nargout == 0
-        if isstruct (data)
+      if (nargout == 0)
+        if (isstruct (data))
           s = data;
           vars = fieldnames (s);
           for i = 1:numel (vars)
@@ -2291,8 +2291,8 @@ classdef dataset
     function out = islands ()
       name = 'islands';
       data = tblish.datasets.load(name);
-      if nargout == 0
-        if isstruct (data)
+      if (nargout == 0)
+        if (isstruct (data))
           s = data;
           vars = fieldnames (s);
           for i = 1:numel (vars)
@@ -2347,8 +2347,8 @@ classdef dataset
     function out = JohnsonJohnson ()
       name = 'JohnsonJohnson';
       data = tblish.datasets.load(name);
-      if nargout == 0
-        if isstruct (data)
+      if (nargout == 0)
+        if (isstruct (data))
           s = data;
           vars = fieldnames (s);
           for i = 1:numel (vars)
@@ -2409,8 +2409,8 @@ classdef dataset
     function out = LakeHuron ()
       name = 'LakeHuron';
       data = tblish.datasets.load(name);
-      if nargout == 0
-        if isstruct (data)
+      if (nargout == 0)
+        if (isstruct (data))
           s = data;
           vars = fieldnames (s);
           for i = 1:numel (vars)
@@ -2467,8 +2467,8 @@ classdef dataset
     function out = lh ()
       name = 'lh';
       data = tblish.datasets.load(name);
-      if nargout == 0
-        if isstruct (data)
+      if (nargout == 0)
+        if (isstruct (data))
           s = data;
           vars = fieldnames (s);
           for i = 1:numel (vars)
@@ -2551,8 +2551,8 @@ classdef dataset
     function out = LifeCycleSavings ()
       name = 'LifeCycleSavings';
       data = tblish.datasets.load(name);
-      if nargout == 0
-        if isstruct (data)
+      if (nargout == 0)
+        if (isstruct (data))
           s = data;
           vars = fieldnames (s);
           for i = 1:numel (vars)
@@ -2619,8 +2619,8 @@ classdef dataset
     function out = Loblolly ()
       name = 'Loblolly';
       data = tblish.datasets.load(name);
-      if nargout == 0
-        if isstruct (data)
+      if (nargout == 0)
+        if (isstruct (data))
           s = data;
           vars = fieldnames (s);
           for i = 1:numel (vars)
@@ -2693,8 +2693,8 @@ classdef dataset
     function out = longley ()
       name = 'longley';
       data = tblish.datasets.load(name);
-      if nargout == 0
-        if isstruct (data)
+      if (nargout == 0)
+        if (isstruct (data))
           s = data;
           vars = fieldnames (s);
           for i = 1:numel (vars)
@@ -2763,8 +2763,8 @@ classdef dataset
     function out = lynx ()
       name = 'lynx';
       data = tblish.datasets.load(name);
-      if nargout == 0
-        if isstruct (data)
+      if (nargout == 0)
+        if (isstruct (data))
           s = data;
           vars = fieldnames (s);
           for i = 1:numel (vars)
@@ -2837,8 +2837,8 @@ classdef dataset
     function out = morley ()
       name = 'morley';
       data = tblish.datasets.load(name);
-      if nargout == 0
-        if isstruct (data)
+      if (nargout == 0)
+        if (isstruct (data))
           s = data;
           vars = fieldnames (s);
           for i = 1:numel (vars)
@@ -2917,8 +2917,8 @@ classdef dataset
     function out = mtcars ()
       name = 'mtcars';
       data = tblish.datasets.load(name);
-      if nargout == 0
-        if isstruct (data)
+      if (nargout == 0)
+        if (isstruct (data))
           s = data;
           vars = fieldnames (s);
           for i = 1:numel (vars)
@@ -2979,8 +2979,8 @@ classdef dataset
     function out = nhtemp ()
       name = 'nhtemp';
       data = tblish.datasets.load(name);
-      if nargout == 0
-        if isstruct (data)
+      if (nargout == 0)
+        if (isstruct (data))
           s = data;
           vars = fieldnames (s);
           for i = 1:numel (vars)
@@ -3047,8 +3047,8 @@ classdef dataset
     function out = Nile ()
       name = 'Nile';
       data = tblish.datasets.load(name);
-      if nargout == 0
-        if isstruct (data)
+      if (nargout == 0)
+        if (isstruct (data))
           s = data;
           vars = fieldnames (s);
           for i = 1:numel (vars)
@@ -3103,8 +3103,8 @@ classdef dataset
     function out = nottem ()
       name = 'nottem';
       data = tblish.datasets.load(name);
-      if nargout == 0
-        if isstruct (data)
+      if (nargout == 0)
+        if (isstruct (data))
           s = data;
           vars = fieldnames (s);
           for i = 1:numel (vars)
@@ -3171,8 +3171,8 @@ classdef dataset
     function out = npk ()
       name = 'npk';
       data = tblish.datasets.load(name);
-      if nargout == 0
-        if isstruct (data)
+      if (nargout == 0)
+        if (isstruct (data))
           s = data;
           vars = fieldnames (s);
           for i = 1:numel (vars)
@@ -3223,8 +3223,8 @@ classdef dataset
     function out = occupationalStatus ()
       name = 'occupationalStatus';
       data = tblish.datasets.load(name);
-      if nargout == 0
-        if isstruct (data)
+      if (nargout == 0)
+        if (isstruct (data))
           s = data;
           vars = fieldnames (s);
           for i = 1:numel (vars)
@@ -3293,8 +3293,8 @@ classdef dataset
     function out = Orange ()
       name = 'Orange';
       data = tblish.datasets.load(name);
-      if nargout == 0
-        if isstruct (data)
+      if (nargout == 0)
+        if (isstruct (data))
           s = data;
           vars = fieldnames (s);
           for i = 1:numel (vars)
@@ -3376,8 +3376,8 @@ classdef dataset
     function out = OrchardSprays ()
       name = 'OrchardSprays';
       data = tblish.datasets.load(name);
-      if nargout == 0
-        if isstruct (data)
+      if (nargout == 0)
+        if (isstruct (data))
           s = data;
           vars = fieldnames (s);
           for i = 1:numel (vars)
@@ -3433,8 +3433,8 @@ classdef dataset
     function out = PlantGrowth ()
       name = 'PlantGrowth';
       data = tblish.datasets.load(name);
-      if nargout == 0
-        if isstruct (data)
+      if (nargout == 0)
+        if (isstruct (data))
           s = data;
           vars = fieldnames (s);
           for i = 1:numel (vars)
@@ -3493,8 +3493,8 @@ classdef dataset
     function out = precip ()
       name = 'precip';
       data = tblish.datasets.load(name);
-      if nargout == 0
-        if isstruct (data)
+      if (nargout == 0)
+        if (isstruct (data))
           s = data;
           vars = fieldnames (s);
           for i = 1:numel (vars)
@@ -3563,8 +3563,8 @@ classdef dataset
     function out = presidents ()
       name = 'presidents';
       data = tblish.datasets.load(name);
-      if nargout == 0
-        if isstruct (data)
+      if (nargout == 0)
+        if (isstruct (data))
           s = data;
           vars = fieldnames (s);
           for i = 1:numel (vars)
@@ -3634,8 +3634,8 @@ classdef dataset
     function out = pressure ()
       name = 'pressure';
       data = tblish.datasets.load(name);
-      if nargout == 0
-        if isstruct (data)
+      if (nargout == 0)
+        if (isstruct (data))
           s = data;
           vars = fieldnames (s);
           for i = 1:numel (vars)
@@ -3710,8 +3710,8 @@ classdef dataset
     function out = Puromycin ()
       name = 'Puromycin';
       data = tblish.datasets.load(name);
-      if nargout == 0
-        if isstruct (data)
+      if (nargout == 0)
+        if (isstruct (data))
           s = data;
           vars = fieldnames (s);
           for i = 1:numel (vars)
@@ -3784,8 +3784,8 @@ classdef dataset
     function out = quakes ()
       name = 'quakes';
       data = tblish.datasets.load(name);
-      if nargout == 0
-        if isstruct (data)
+      if (nargout == 0)
+        if (isstruct (data))
           s = data;
           vars = fieldnames (s);
           for i = 1:numel (vars)
@@ -3855,8 +3855,8 @@ classdef dataset
     function out = randu ()
       name = 'randu';
       data = tblish.datasets.load(name);
-      if nargout == 0
-        if isstruct (data)
+      if (nargout == 0)
+        if (isstruct (data))
           s = data;
           vars = fieldnames (s);
           for i = 1:numel (vars)
@@ -3914,8 +3914,8 @@ classdef dataset
     function out = rivers ()
       name = 'rivers';
       data = tblish.datasets.load(name);
-      if nargout == 0
-        if isstruct (data)
+      if (nargout == 0)
+        if (isstruct (data))
           s = data;
           vars = fieldnames (s);
           for i = 1:numel (vars)
@@ -3982,8 +3982,8 @@ classdef dataset
     function out = rock ()
       name = 'rock';
       data = tblish.datasets.load(name);
-      if nargout == 0
-        if isstruct (data)
+      if (nargout == 0)
+        if (isstruct (data))
           s = data;
           vars = fieldnames (s);
           for i = 1:numel (vars)
@@ -4052,8 +4052,8 @@ classdef dataset
     function out = sleep ()
       name = 'sleep';
       data = tblish.datasets.load(name);
-      if nargout == 0
-        if isstruct (data)
+      if (nargout == 0)
+        if (isstruct (data))
           s = data;
           vars = fieldnames (s);
           for i = 1:numel (vars)
@@ -4136,8 +4136,8 @@ classdef dataset
     function out = stackloss ()
       name = 'stackloss';
       data = tblish.datasets.load(name);
-      if nargout == 0
-        if isstruct (data)
+      if (nargout == 0)
+        if (isstruct (data))
           s = data;
           vars = fieldnames (s);
           for i = 1:numel (vars)
@@ -4222,8 +4222,8 @@ classdef dataset
     function out = state ()
       name = 'state';
       data = tblish.datasets.load(name);
-      if nargout == 0
-        if isstruct (data)
+      if (nargout == 0)
+        if (isstruct (data))
           s = data;
           vars = fieldnames (s);
           for i = 1:numel (vars)
@@ -4280,8 +4280,8 @@ classdef dataset
     function out = sunspot_month ()
       name = 'sunspot_month';
       data = tblish.datasets.load(name);
-      if nargout == 0
-        if isstruct (data)
+      if (nargout == 0)
+        if (isstruct (data))
           s = data;
           vars = fieldnames (s);
           for i = 1:numel (vars)
@@ -4337,8 +4337,8 @@ classdef dataset
     function out = sunspot_year ()
       name = 'sunspot_year';
       data = tblish.datasets.load(name);
-      if nargout == 0
-        if isstruct (data)
+      if (nargout == 0)
+        if (isstruct (data))
           s = data;
           vars = fieldnames (s);
           for i = 1:numel (vars)
@@ -4401,8 +4401,8 @@ classdef dataset
     function out = sunspots ()
       name = 'sunspots';
       data = tblish.datasets.load(name);
-      if nargout == 0
-        if isstruct (data)
+      if (nargout == 0)
+        if (isstruct (data))
           s = data;
           vars = fieldnames (s);
           for i = 1:numel (vars)
@@ -4489,8 +4489,8 @@ classdef dataset
     function out = swiss ()
       name = 'swiss';
       data = tblish.datasets.load(name);
-      if nargout == 0
-        if isstruct (data)
+      if (nargout == 0)
+        if (isstruct (data))
           s = data;
           vars = fieldnames (s);
           for i = 1:numel (vars)
@@ -4575,8 +4575,8 @@ classdef dataset
     function out = Theoph ()
       name = 'Theoph';
       data = tblish.datasets.load(name);
-      if nargout == 0
-        if isstruct (data)
+      if (nargout == 0)
+        if (isstruct (data))
           s = data;
           vars = fieldnames (s);
           for i = 1:numel (vars)
@@ -4668,8 +4668,8 @@ classdef dataset
     function out = Titanic ()
       name = 'Titanic';
       data = tblish.datasets.load(name);
-      if nargout == 0
-        if isstruct (data)
+      if (nargout == 0)
+        if (isstruct (data))
           s = data;
           vars = fieldnames (s);
           for i = 1:numel (vars)
@@ -4738,8 +4738,8 @@ classdef dataset
     function out = ToothGrowth ()
       name = 'ToothGrowth';
       data = tblish.datasets.load(name);
-      if nargout == 0
-        if isstruct (data)
+      if (nargout == 0)
+        if (isstruct (data))
           s = data;
           vars = fieldnames (s);
           for i = 1:numel (vars)
@@ -4799,8 +4799,8 @@ classdef dataset
     function out = treering ()
       name = 'treering';
       data = tblish.datasets.load(name);
-      if nargout == 0
-        if isstruct (data)
+      if (nargout == 0)
+        if (isstruct (data))
           s = data;
           vars = fieldnames (s);
           for i = 1:numel (vars)
@@ -4875,8 +4875,8 @@ classdef dataset
     function out = trees ()
       name = 'trees';
       data = tblish.datasets.load(name);
-      if nargout == 0
-        if isstruct (data)
+      if (nargout == 0)
+        if (isstruct (data))
           s = data;
           vars = fieldnames (s);
           for i = 1:numel (vars)
@@ -4956,8 +4956,8 @@ classdef dataset
     function out = UCBAdmissions ()
       name = 'UCBAdmissions';
       data = tblish.datasets.load(name);
-      if nargout == 0
-        if isstruct (data)
+      if (nargout == 0)
+        if (isstruct (data))
           s = data;
           vars = fieldnames (s);
           for i = 1:numel (vars)
@@ -5052,8 +5052,8 @@ classdef dataset
     function out = UKDriverDeaths ()
       name = 'UKDriverDeaths';
       data = tblish.datasets.load(name);
-      if nargout == 0
-        if isstruct (data)
+      if (nargout == 0)
+        if (isstruct (data))
           s = data;
           vars = fieldnames (s);
           for i = 1:numel (vars)
@@ -5111,8 +5111,8 @@ classdef dataset
     function out = UKgas ()
       name = 'UKgas';
       data = tblish.datasets.load(name);
-      if nargout == 0
-        if isstruct (data)
+      if (nargout == 0)
+        if (isstruct (data))
           s = data;
           vars = fieldnames (s);
           for i = 1:numel (vars)
@@ -5182,8 +5182,8 @@ classdef dataset
     function out = UKLungDeaths ()
       name = 'UKLungDeaths';
       data = tblish.datasets.load(name);
-      if nargout == 0
-        if isstruct (data)
+      if (nargout == 0)
+        if (isstruct (data))
           s = data;
           vars = fieldnames (s);
           for i = 1:numel (vars)
@@ -5235,8 +5235,8 @@ classdef dataset
     function out = USAccDeaths ()
       name = 'USAccDeaths';
       data = tblish.datasets.load(name);
-      if nargout == 0
-        if isstruct (data)
+      if (nargout == 0)
+        if (isstruct (data))
           s = data;
           vars = fieldnames (s);
           for i = 1:numel (vars)
@@ -5322,8 +5322,8 @@ classdef dataset
     function out = USArrests ()
       name = 'USArrests';
       data = tblish.datasets.load(name);
-      if nargout == 0
-        if isstruct (data)
+      if (nargout == 0)
+        if (isstruct (data))
           s = data;
           vars = fieldnames (s);
           for i = 1:numel (vars)
@@ -5398,8 +5398,8 @@ classdef dataset
     function out = USJudgeRatings ()
       name = 'USJudgeRatings';
       data = tblish.datasets.load(name);
-      if nargout == 0
-        if isstruct (data)
+      if (nargout == 0)
+        if (isstruct (data))
           s = data;
           vars = fieldnames (s);
           for i = 1:numel (vars)
@@ -5457,8 +5457,8 @@ classdef dataset
     function out = USPersonalExpenditure ()
       name = 'USPersonalExpenditure';
       data = tblish.datasets.load(name);
-      if nargout == 0
-        if isstruct (data)
+      if (nargout == 0)
+        if (isstruct (data))
           s = data;
           vars = fieldnames (s);
           for i = 1:numel (vars)
@@ -5516,8 +5516,8 @@ classdef dataset
     function out = uspop ()
       name = 'uspop';
       data = tblish.datasets.load(name);
-      if nargout == 0
-        if isstruct (data)
+      if (nargout == 0)
+        if (isstruct (data))
           s = data;
           vars = fieldnames (s);
           for i = 1:numel (vars)
@@ -5582,8 +5582,8 @@ classdef dataset
     function out = VADeaths ()
       name = 'VADeaths';
       data = tblish.datasets.load(name);
-      if nargout == 0
-        if isstruct (data)
+      if (nargout == 0)
+        if (isstruct (data))
           s = data;
           vars = fieldnames (s);
           for i = 1:numel (vars)
@@ -5645,8 +5645,8 @@ classdef dataset
     function out = volcano ()
       name = 'volcano';
       data = tblish.datasets.load(name);
-      if nargout == 0
-        if isstruct (data)
+      if (nargout == 0)
+        if (isstruct (data))
           s = data;
           vars = fieldnames (s);
           for i = 1:numel (vars)
@@ -5714,8 +5714,8 @@ classdef dataset
     function out = warpbreaks ()
       name = 'warpbreaks';
       data = tblish.datasets.load(name);
-      if nargout == 0
-        if isstruct (data)
+      if (nargout == 0)
+        if (isstruct (data))
           s = data;
           vars = fieldnames (s);
           for i = 1:numel (vars)
@@ -5785,8 +5785,8 @@ classdef dataset
     function out = women ()
       name = 'women';
       data = tblish.datasets.load(name);
-      if nargout == 0
-        if isstruct (data)
+      if (nargout == 0)
+        if (isstruct (data))
           s = data;
           vars = fieldnames (s);
           for i = 1:numel (vars)
@@ -5845,8 +5845,8 @@ classdef dataset
     function out = WorldPhones ()
       name = 'WorldPhones';
       data = tblish.datasets.load(name);
-      if nargout == 0
-        if isstruct (data)
+      if (nargout == 0)
+        if (isstruct (data))
           s = data;
           vars = fieldnames (s);
           for i = 1:numel (vars)
@@ -5899,8 +5899,8 @@ classdef dataset
     function out = WWWusage ()
       name = 'WWWusage';
       data = tblish.datasets.load(name);
-      if nargout == 0
-        if isstruct (data)
+      if (nargout == 0)
+        if (isstruct (data))
           s = data;
           vars = fieldnames (s);
           for i = 1:numel (vars)
@@ -5960,8 +5960,8 @@ classdef dataset
     function out = zCO2 ()
       name = 'zCO2';
       data = tblish.datasets.load(name);
-      if nargout == 0
-        if isstruct (data)
+      if (nargout == 0)
+        if (isstruct (data))
           s = data;
           vars = fieldnames (s);
           for i = 1:numel (vars)

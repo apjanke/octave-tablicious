@@ -24,11 +24,11 @@ function generate_datasets_list ()
   names = tblish.internal.dataset.included_datasets;
 
   txt = {};
-  function p(fmt, varargin)
-    txt{end+1} = sprintf(fmt, varargin{:});
+  function p (fmt, varargin)
+    txt{end+1} = sprintf (fmt, varargin{:});
   endfunction
 
-  for i_dataset = 1:numel(names)
+  for i_dataset = 1:numel (names)
     name = names{i_dataset};
     dset = tblish.internal.dataset.lookup (name);
 
@@ -74,7 +74,7 @@ function generate_datasets_list ()
   out_txt = strrep (in_txt, '@DATASET_LIST_GOES_HERE@', txt);
 
   [fid, msg] = fopen (dataset_m_file, "w");
-  fprintf(fid, "%s", out_txt);
+  fprintf (fid, "%s", out_txt);
   fclose (fid);
   fprintf ("Regenerated %s\n", dataset_m_file);
 endfunction

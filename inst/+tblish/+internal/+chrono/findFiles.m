@@ -26,8 +26,7 @@ function out = findFilesStep (dirPath, pathPrefix)
   d = mydir (dirPath);
   for i = 1:numel (d)
     f = d(i);
-    if f.isdir
-      # Can't use spaces here or syntax error happens
+    if (f.isdir)
       found = [found findFilesStep(fullfile (dirPath, f.name), ...
         fullfile(pathPrefix, f.name))];
     else

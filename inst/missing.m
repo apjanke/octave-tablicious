@@ -65,7 +65,7 @@ classdef missing
     function display (this)
       #DISPLAY Custom display.
       in_name = inputname (1);
-      if !isempty (in_name)
+      if (! isempty (in_name))
         fprintf ('%s =\n', in_name);
       endif
       disp (this);
@@ -76,7 +76,7 @@ classdef missing
     endfunction
 
     function out = dispstr (this)
-      if isscalar (this)
+      if (isscalar (this))
         out = '<missing>';
       else
         out = sprintf ('%s <missing>', size2str (size (this)));
@@ -424,7 +424,7 @@ classdef missing
       #SUBSASGN Subscripted assignment.
 
       # Chained subscripts
-      if numel(s) > 1
+      if (numel(s) > 1)
         rhs_in = subsref(this, s(1));
         rhs = subsasgn(rhs_in, s(2:end), b);
       else
@@ -432,7 +432,7 @@ classdef missing
       endif
 
       # Base case
-      switch s(1).type
+      switch (s(1).type)
         case '()'
           this = subsasgnParensPlanar(this, s(1), rhs);
         case '{}'
@@ -446,7 +446,7 @@ classdef missing
     #SUBSREF Subscripted reference.
 
       # Base case
-      switch s(1).type
+      switch (s(1).type)
         case '()'
           varargout = { subsrefParensPlanar(this, s(1)) };
         case '{}'
@@ -458,7 +458,7 @@ classdef missing
       endswitch
 
       # Chained reference
-      if numel (s) > 1
+      if (numel (s) > 1)
         out = subsref (out, s(2:end));
       endif
     endfunction
@@ -469,7 +469,7 @@ classdef missing
 
     function this = subsasgnParensPlanar (this, s, rhs)
       #SUBSASGNPARENSPLANAR ()-assignment for planar object
-      if !isa (rhs, 'missing')
+      if (! isa (rhs, 'missing'))
         rhs = missing (rhs);
       endif
       this.data(s.subs{:}) = rhs.data;
@@ -499,7 +499,7 @@ classdef missing
       # This is what you call internally inside the class instead of doing
       # ()-indexing references on the LHS, which don't work properly inside
       # the class because they don't respect the subsasgn() override.
-      if !iscell(ix)
+      if (! iscell(ix))
         ix = { ix };
       endif
       s.type = '()';
@@ -516,17 +516,17 @@ classdef missing
       # This will become private before tblish.table release 1.0.
       found_type = [];
       for i = 1:numel (args)
-        if isa (args{i}, 'missing')
+        if (isa (args{i}, 'missing'))
           continue
-        elseif isnumeric (args{i}) || isa (args{i}, 'duration') ...
-            || isa (args{i}, 'calendarDuration')
+        elseif (isnumeric (args{i}) || isa (args{i}, 'duration') ...
+            || isa (args{i}, 'calendarDuration'))
           # These all take NaNs.
           found_type = 'numeric';
-        elseif iscell (args{i})
+        elseif (iscell (args{i}))
           found_type = 'cell';
-        elseif ischar (args{i})
+        elseif (ischar (args{i}))
           found_type = 'char';
-        elseif isa (args{i}, 'datetime')
+        elseif (isa (args{i}, 'datetime'))
           found_type = 'datetime';
         else
           error ('missing:InvalidInput', ['missing: Unsupported type: %s. ' ...
@@ -536,8 +536,8 @@ classdef missing
       endfor
       out = args;
       for i = 1:numel (args)
-        if isa (args{i}, 'missing')
-          switch found_type
+        if (isa (args{i}, 'missing'))
+          switch (found_type)
             case 'numeric'
               out{i} = NaN (size (args{i}));
             case 'cell'
@@ -553,11 +553,12 @@ classdef missing
 
     function out = size_scalar_expand (A, B)
       #SIZE_SCALAR_EXPAND Internal implementation method
-      if isscalar (A)
+      if (isscalar (A))
         out = size (B);
       else
         out = size (A);
       endif
     endfunction
   endmethods
+
 endclassdef

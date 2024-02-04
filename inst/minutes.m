@@ -29,7 +29,7 @@ function out = minutes (x)
   # If input is numeric, returns a @duration array that is that many minutes long.
   #
   # If input is a duration, converts the duration to a number of minutes.
-  if isnumeric (x)
+  if (isnumeric (x))
     out = duration.ofDays (double(x) / (24 * 60));
   else
     error ('Invalid input: expected numeric or duration; got %s', class (x));
