@@ -13,7 +13,6 @@
 ## You should have received a copy of the GNU General Public License
 ## along with this program; If not, see <http://www.gnu.org/licenses/>.
 
-
 # Developer's notes:
 # - Wherever you see the abbreviation "pk" here, that means "proxy keys", not
 #   "primary keys".
@@ -2505,54 +2504,6 @@ classdef table
     endfunction
 
     ## -*- texinfo -*-
-    ## @node table.congruentize
-    ## @deftypefn {Method} {[@var{outA}, @var{outB}] =} congruentize (@var{A}, @var{B})
-    ##
-    ## Make tables congruent.
-    ##
-    ## Makes tables congruent by ensuring they have the same variables of the
-    ## same types in the same order. Congruent tables may be safely unioned,
-    ## intersected, vertcatted, or have other set operations done to them.
-    ##
-    ## Variable names present in one input but not in the other produces an error.
-    ## Variables with the same name but different types in the inputs produces
-    ## an error.
-    ## Inputs must either both have row names or both not have row names; it is
-    ## an error if one has row names and the other doesn't.
-    ## Variables in different orders are reordered to be in the same order as A.
-    ##
-    ## @end deftypefn
-    function [outA, outB] = congruentize (A, B)
-      if (! istable (A))
-        A = table (A);
-      endif
-      if (! istable (B))
-        B = table (B);
-      endif
-      if (hasrownames (A) && !hasrownames (B))
-        error ('table.congruentize: Input A has row names but input B does not');
-      endif
-      if (! hasrownames (A) && hasrownames (B))
-        error ('table.congruentize: Input B has row names but input A does not');
-      endif
-      varsOnlyInA = setdiff (A.VariableNames, B.VariableNames);
-      if (! isempty (varsOnlyInA))
-        error ('table.congruentize: Input A has variables not present in B: %s', ...
-          strjoin (varsOnlyInA, ', '));
-      endif
-      varsOnlyInB = setdiff (B.VariableNames, A.VariableNames);
-      if (! isempty (varsOnlyInB))
-        error ('table.congruentize: Input B has variables not present in A: %s', ...
-          strjoin (varsOnlyInB, ', '));
-      endif
-
-      outA = A;
-      outB = B;
-      [~,loc] = ismember (A.VariableNames, outB.VariableNames);
-      outB = subsetvars (outB, loc);
-    endfunction
-
-    ## -*- texinfo -*-
     ## @node table.union
     ## @deftypefn {Method} {[@var{C}, @var{ia}, @var{ib}] =} union (@var{A}, @var{B})
     ##
@@ -3689,4 +3640,55 @@ function out = summary_for_var_string (x)
     "N. Miss."  num2str(n_missing)
     #"Redund."   num2str(redundancy)
   };
+endfunction
+
+## ====== texinfo disabled for this to prevent it from appearing in the doco =====
+##
+## @node table.congruentize
+## @deftypefn {Method} {[@var{outA}, @var{outB}] =} congruentize (@var{A}, @var{B})
+##
+## Make tables congruent.
+##
+## Makes tables congruent by ensuring they have the same variables of the
+## same types in the same order. Congruent tables may be safely unioned,
+## intersected, vertcatted, or have other set operations done to them.
+##
+## Variable names present in one input but not in the other produces an error.
+## Variables with the same name but different types in the inputs produces
+## an error.
+## Inputs must either both have row names or both not have row names; it is
+## an error if one has row names and the other doesn't.
+## Variables in different orders are reordered to be in the same order as A.
+##
+## @end deftypefn
+function [outA, outB] = congruentize (A, B)
+  if (! istable (A))
+    A = table (A);
+  endif
+  if (! istable (B))
+    B = table (B);
+  endif
+  if (hasrownames (A) && !hasrownames (B))
+    error ('table.congruentize: Input A has row names but input B does not');
+  endif
+  if (! hasrownames (A) && hasrownames (B))
+    error ('table.congruentize: Input B has row names but input A does not');
+  endif
+  varsA = A.Properties.VariableNames;
+  varsB = B.Properties.VariableNames;
+  varsOnlyInA = setdiff (varsA, varsB);
+  if (! isempty (varsOnlyInA))
+    error ('table.congruentize: Input A has variables not present in B: %s', ...
+      strjoin (varsOnlyInA, ', '));
+  endif
+  varsOnlyInB = setdiff (varsB, varsA);
+  if (! isempty (varsOnlyInB))
+    error ('table.congruentize: Input B has variables not present in A: %s', ...
+      strjoin (varsOnlyInB, ', '));
+  endif
+
+  outA = A;
+  outB = B;
+  [~,loc] = ismember (varsA, varsB);
+  outB = subsetvars (outB, loc);
 endfunction
