@@ -6,6 +6,7 @@ Version 0.4.0 (in progress)
 
 * Require Octave 7.x or later.
 * Remove `(fill,rm,standardize)missing` functions, deferring to the Statistics package.
+* Fix `x(ix) = []` element deletion for string, datetime, table, and other classes.
 * Add `istable` function.
 * Rename `+tablicious` package to `+tblish`; merge `+octave` package into `+tblish`.
 * Move `+table_examples` package to `+tblish/+examples`.

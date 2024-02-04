@@ -50,11 +50,13 @@ classdef duration
   ##
   ## @end deftypeivar
 
-  properties
+  properties (Access = private)
     # Duration length in whole and fractional days (double)
     days = 0 % planar
+  end
+  properties (SetAccess = private)
     # Display format (currently unsupported)
-    Format = ''
+    Format = 'hh:mm:ss'
   endproperties
 
   methods (Static)

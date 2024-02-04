@@ -66,7 +66,7 @@ classdef table
   ##
   ## @end deftypeivar
 
-  properties
+  properties (SetAccess = private)
     # The names of the variables (columns), as cellstr
     VariableNames = {}
     # The values of the variables, as a cell vector of arbitrary types

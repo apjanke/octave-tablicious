@@ -87,7 +87,7 @@ classdef string
   ##
   ## @end deftp
 
-  properties
+  properties (Access = private)
     # The underlying char data, as cellstr
     strs = {''};  % planar
     # A logical mask indicating whether each element is a missing value

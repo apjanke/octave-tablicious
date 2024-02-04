@@ -89,7 +89,7 @@ classdef categorical
   ##
   ## @end deftypeivar
 
-  properties (SetAccess = private)
+  properties (Access = private)
     # Code for each element. Codes are an index into cats.
     code = uint16 (0)     % planar
     # Whether each element is missing/undefined
@@ -104,6 +104,7 @@ classdef categorical
   endproperties
 
   methods (Static = true, Hidden = true)
+
     function out = from_codes (codes, cats, varargin)
       [opts, args] = peelOffNameValueOptions (varargin, {'Ordinal', 'Protected'});
       isOrdinal = false;
@@ -131,6 +132,7 @@ classdef categorical
       out.isOrdinal = isOrdinal;
       out.isProtected = isProtected;
     endfunction
+
   endmethods
 
   methods (Static)

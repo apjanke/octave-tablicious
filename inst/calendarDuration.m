@@ -79,7 +79,7 @@ classdef calendarDuration
 
   # planar precedence: (IsNaN,Sign,Years,Months,Days,Time)
 
-  properties (SetAccess = private)
+  properties (Access = private)
     Sign = 1     % planar
     # Whole calendar years
     Years = 0    % planar
