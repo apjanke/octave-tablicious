@@ -174,23 +174,15 @@ classdef string
     ## @end itemize
     ##
     ## @end deftypefn
-    function this = string(in, varargin)
-      # TODO: Support a 'MapMissing' option to map "standard missing values"
-      # (empty strings, NaN, NaT) to string missings.
-      #
+    function this = string(in)
       # TODO: Maybe fall back to calling cellstr() on arbitrary input objects.
       if (nargin == 0)
         return
       endif
       if (isa (in, "string"))
-        # Copy properties, because I don't know if a full-array pass-through
-        # works in Octave. -apj
-        # this = in; % That is, don't do this.
-        this.strs = in.strs;
-        this.tfMissing = in.tfMissing;
+        this = in;
         return
-      endif
-      if (ischar (in))
+      elseif (ischar (in))
         this.strs = cellstr (in);
         this.tfMissing = false (size (this.strs));
       elseif (iscell (in))

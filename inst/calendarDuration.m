@@ -125,6 +125,11 @@ classdef calendarDuration
       # this = calendarDuration (..., 'Format',displayFormat)
 
       args = varargin;
+      if (nargin == 1 && isa (args{1}, 'calendarDuration'))
+        this = args{1};
+        return
+      endif
+
       # Peel off options
       knownOptions = {'Format'};
       opts = struct;

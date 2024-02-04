@@ -105,7 +105,10 @@ classdef localdate
           dnums = floor (now);
         case 1
           x = args{1};
-          if (isnumeric (x))
+          if (isa (x, 'localdate'))
+            this = x;
+            return
+          elseif (isnumeric (x))
             # Convert datenums
             mustBeIntOrNanOrInf (x, 'input');
             dnums = double (x);

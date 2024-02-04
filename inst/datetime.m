@@ -129,9 +129,9 @@ classdef datetime
 
       # Peel off options
       args = varargin;
-      knownOptions = {'Format','InputFormat','Locale','PivotYear','TimeZone'};
+      knownOptions = {"Format", "InputFormat", "Locale", "PivotYear", "TimeZone"};
       opts = struct;
-      while (numel (args) >= 3 && isa (args{end-1}, 'char') ...
+      while (numel (args) >= 3 && isa (args{end-1}, "char") ...
           && ismember (args{end-1}, knownOptions))
         opts.(args{end-1}) = args{end};
         args(end-1:end) = [];
@@ -147,7 +147,10 @@ classdef datetime
           dnums = now;
         case 1
           x = args{1};
-          if (isnumeric (x))
+          if (isa (x, 'datetime'))
+            this = x;
+            return
+          elseif (isnumeric (x))
             # Convert date vectors
             dnums = datenum (x);
           elseif (ischar (x) || iscellstr (x) || isa (x, 'string'))

@@ -96,7 +96,7 @@ classdef duration
       #DURATION Construct a new duration array
       args = varargin;
       # Peel off options
-      knownOptions = {'InputFormat','Format'};
+      knownOptions = {'InputFormat', 'Format'};
       opts = struct;
       while (numel (args) >= 3 && isa (args{end-1}, 'char') ...
           && ismember (args{end-1}, knownOptions))
@@ -109,7 +109,10 @@ classdef duration
           return
         case 1
           in = args{1};
-          if (isnumeric (in))
+          if (isa (in, 'duration'))
+            this = in;
+            return
+          elseif (isnumeric (in))
             switch (size (in, 2))
               case 3
                 [H, MI, S] = deal (in(:,1), in(:,2), in(:,3));

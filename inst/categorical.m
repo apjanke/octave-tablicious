@@ -238,6 +238,10 @@ classdef categorical
       if (nargin == 0)
         return
       endif
+      if (nargin == 1 && isa (x, 'categorical'))
+        this = x;
+        return
+      end
 
       validOptions = {'Ordinal', 'Protected'};
       [opts, args] = peelOffNameValueOptions (varargin, validOptions);
