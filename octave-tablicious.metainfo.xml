@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- metainfo file for GNOME/AppStream packaging -->
+<component type="addon">
+  <id>octave-tablicious</id>
+  <extends>org.octave.octave.desktop</extends>
+  <metadata_license>FSFAP</metadata_license>
+
+  <name>Tablicious</name>
+  <summary>Tabular data support, providing a table array class, plus string, datetime, and categorical array classes.</summary>
+  <category>Science</category>
+  <keywords>
+    <keyword translate="no">Octave</keyword>
+    <keyword>tabular</keyword>
+    <keyword>date/time</keyword>
+    <keyword>relational algebra</keyword>
+  </keywords>
+  <suggests>
+    <id>io.github.gnu_octave.statistics</id>
+  </suggests>
+  <project_license>GPL-3.0+</project_license>
+  <project_license>Unicode-DFS-2016</project_license>
+
+  <url type="homepage">https://apjanke.github.io/octave-tablicious/</url>
+  <url type="bugtracker">https://github.com/apjanke/octave-tablicious/issues</url>
+  <url type="help">https://apjanke.github.io/octave-tablicious/devel/user-guide/html/index.html</url>
+  <url type="faq">https://apjanke.github.io/octave-tablicious/FAQ.html</url>
+  <developer>
+    <id>net.apjanke</id>
+    <name>Andrew Janke</name>
+  </developer>
+  <update_contact>floss@apjanke.net</update_contact>
+</component>

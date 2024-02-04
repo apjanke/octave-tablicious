@@ -71,6 +71,10 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for more details.
 
 To avoid issues with the Matlab license's Non-Compete clause, this project needs to be developed entirely using Octave, and not using Matlab at all, including for testing or benchmarking purposes. Please do not submit any Matlab test or benchmark results, or any code produced using Matlab. And if you know anything about how the Matlab internals work, please do not tell me!
 
+## License
+
+The main code of Tablicious is licensed under the GNU GPL version 3. (See the `LICENSE` file.) It also redistributes files licensed under the Unicode License Agreement - Data Files and Software. (See the `LICENSE-Unicode` file.)
+
 ## Author and Acknowledgments
 
 Tablicious is created by [Andrew Janke](https://apjanke.net).
