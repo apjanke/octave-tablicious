@@ -631,10 +631,13 @@ classdef table
     ## Matlab.
     ##
     ## @end deftypefn
-    function out = numel (this)
+    function out = numel (this, varargin)
+      # The nargin is needed bc Octave calls it with extra args sometimes as of 7.x or so.
+      # FIXME: Figure out what those other calling forms are. Maybe we can fix this for real
+      # now.
       out = 1;
-      # This bit breaks subsasgn
-      #out = heignt (this) * width (this);
+      # This approach breaks subsasgn
+      # out = heignt (this) * width (this);
     endfunction
 
     ## -*- texinfo -*-
