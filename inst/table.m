@@ -676,18 +676,6 @@ classdef table
     endfunction
 
     ## -*- texinfo -*-
-    ## @node table.hasrownames
-    ## @deftypefn {Method} {@var{out} =} hasrownames (@var{obj})
-    ##
-    ## True if this table has row names defined.
-    ##
-    ## @end deftypefn
-    function out = hasrownames (this)
-      #HASROWNAMES True if this table has row names defined
-      out = ! isempty (this.RowNames);
-    endfunction
-
-    ## -*- texinfo -*-
     ## @node table.vertcat
     ## @deftypefn {Method} {@var{out} =} vertcat (@var{varargin})
     ##
@@ -3662,4 +3650,17 @@ function [ixVar, varNames] = resolveVarRef (tbl, varRef, strictness)
   endif
   varNames = repmat ({''}, size (ixVar));
   varNames(ixVar != 0) = tbl.Properties.VariableNames(ixVar(ixVar != 0));
+endfunction
+
+## ===== texinfo disabled so it doesn't show up in the doco =====
+##
+## @node table.hasrownames
+## @deftypefn {Function} {@var{out} =} hasrownames (@var{tbl})
+##
+## True if this table has row names defined.
+##
+## @end deftypefn
+function out = hasrownames (tbl)
+  #HASROWNAMES True if this table has row names defined
+  out = ! isempty (tbl.Properties.RowNames);
 endfunction

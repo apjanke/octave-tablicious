@@ -65,7 +65,7 @@ function out = fillValForVal (x)
   elseif (isa (x, 'string'))
     out = NaS (1, nCols);
   elseif (isa (x, 'table'))
-    if (hasrownames (x))
+    if (! isempty (x.Properties.RowNames))
       error (['table: cannot construct outer fill values for table-valued ' ...
        'variables that have row names']);
     endif
