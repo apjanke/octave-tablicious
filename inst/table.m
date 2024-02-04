@@ -540,16 +540,6 @@ classdef table
       out = size (this, k);
     endfunction
 
-    ## -*- texinfo -*-
-    ## @node table.length
-    ## @deftypefn {Method} {@var{out} =} length (@var{obj})
-    ##
-    ## Length along longest dimension
-    ##
-    ## Use of @code{length} is not recommended. Use @code{numel}
-    ## or @code{size} instead.
-    ##
-    ## @end deftypefn
     function out = length (this, varargin)
       out = max (size (this));
     endfunction
@@ -560,7 +550,8 @@ classdef table
     ##
     ## Number of dimensions
     ##
-    ## For tables, @code{ndims(obj)} is always 2.
+    ## For tables, @code{ndims(obj)} is always 2, because table arrays are always
+    ## 2-D (rows-by-columns).
     ##
     ## @end deftypefn
     function out = ndims (this)
@@ -576,8 +567,9 @@ classdef table
     ##
     ## Remove singleton dimensions.
     ##
-    ## For tables, this is always a no-op that returns the input
-    ## unmodified, because tables always have exactly 2 dimensions.
+    ## For tables, this is always a no-op that returns the input unmodified,
+    ## because tables always have exactly 2 dimensions, and 2-D arrays are unaffected
+    ## by squeeze.
     ##
     ## @end deftypefn
     function out = squeeze (this)
@@ -634,6 +626,10 @@ classdef table
     ## @deftypefn {Method} {@var{out} =} height (@var{obj})
     ##
     ## Number of rows in table.
+    ##
+    ## For a zero-variable table, this currently always returns 0. This is a bug,
+    ## and will change in the future. It should be possible for zero-variable table
+    ## arrays to have any number of rows.
     ##
     ## @end deftypefn
     function out = height (this)
@@ -725,15 +721,6 @@ classdef table
       out = prod (size (this)) == 0;
     endfunction
 
-    ## -*- texinfo -*-
-    ## @node table.ismatrix
-    ## @deftypefn {Method} {@var{out} =} ismatrix (@var{obj})
-    ##
-    ## Test whether array is a matrix.
-    ##
-    ## For tables, @code{ismatrix} is always true, by definition.
-    ##
-    ## @end deftypefn
     function out = ismatrix (this)
       #ISMATRIX True if input is a matrix
       #
@@ -741,51 +728,20 @@ classdef table
       out = true;
     endfunction
 
-    ## -*- texinfo -*-
-    ## @node table.isrow
-    ## @deftypefn {Method} {@var{out} =} isrow (@var{obj})
-    ##
-    ## Test whether array is a row vector.
-    ##
-    ## @end deftypefn
     function out = isrow (this)
       #ISROW True if input is a row vector
       out = height (this) == 1;
     endfunction
 
-    ## -*- texinfo -*-
-    ## @node table.iscol
-    ## @deftypefn {Method} {@var{out} =} iscol (@var{obj})
-    ##
-    ## Test whether array is a column vector.
-    ##
-    ## For tables, @code{iscol} is true if the input has a single variable.
-    ## The number of columns within that variable does not matter.
-    ##
-    ## @end deftypefn
     function out = iscol (this)
       out = width (this) == 1;
     endfunction
 
-    ## -*- texinfo -*-
-    ## @node table.isvector
-    ## @deftypefn {Method} {@var{out} =} isvector (@var{obj})
-    ##
-    ## Test whether array is a vector.
-    ##
-    ## @end deftypefn
     function out = isvector (this)
       #ISVECTOR True if input is a vector
       out = isrow (this) || iscol (this);
     endfunction
 
-    ## -*- texinfo -*-
-    ## @node table.isscalar
-    ## @deftypefn {Method} {@var{out} =} isscalar (@var{obj})
-    ##
-    ## Test whether array is scalar.
-    ##
-    ## @end deftypefn
     function out = isscalar (this)
       #ISSCALAR True if input is a scalar
       out = height (this) == 1 && width (this) == 1;
@@ -815,7 +771,9 @@ classdef table
     ## table() on them.
     ##
     ## The inputs must have the same number and names of variables, and their
-    ## variable value types and sizes must be cat-compatible.
+    ## variable value types and sizes must be cat-compatible. The types of the resulting
+    ## variables are the types that result from doing a `vertcat()` on the variables
+    ## from the corresponding input tables, in the order they were input in.
     ##
     ## @end deftypefn
     function out = vertcat (varargin)
@@ -827,6 +785,11 @@ classdef table
       endfor
       mustBeAllSameVars (args{:});
       out = args{1};
+      #FIXME: This should probably collect the vars from all the table inputs, and then vertcat
+      # each variable in a single vertcat call, instead of doing it incrementally. Not for efficiency,
+      # but so the per-variable vertcat behavior aligns with the table-level vertcat call, in
+      # case that affects the output types or values due to the behavior of the variable content's
+      # types.
       for i = 2:numel (args)
         if (isempty (out.RowNames))
           if (! isempty (args{i}.RowNames))
@@ -849,8 +812,7 @@ classdef table
     ##
     ## Combines tables by horizontally concatenating them.
     ## Inputs that are not tables are automatically converted to tables by calling
-    ## table() on them.
-    ## Inputs must have all distinct variable names.
+    ## table() on them. Inputs must have all distinct variable names.
     ##
     ## Output has the same RowNames as @code{varargin@{1@}}. The variable names and values
     ## are the result of the concatenation of the variable names and values lists
@@ -888,7 +850,10 @@ classdef table
     ## Repmats a table by repmatting each of its variables vertically.
     ##
     ## For tables, repmatting is only supported along dimension 1. That is, the
-    ## values of sz(2:end) must all be exactly 1.
+    ## values of sz(2:end) must all be exactly 1. This behavior may change in the
+    ## future to support repmatting horizontally, with the added variable names being
+    ## automatically changed to maintain uniqueness of variable names within the
+    ## resulting table.
     ##
     ## Returns a new table with the same variable names and types as tbl, but
     ## with a possibly different row count.
@@ -917,15 +882,15 @@ classdef table
     ## Replicate elements of matrix.
     ##
     ## Replicates elements of this table matrix by applying repelem to each of
-    ## its variables.
+    ## its variables. This
     ##
     ## Only two dimensions are supported for @code{repelem} on tables.
     ##
     ## @end deftypefn
-    function out = repelem(this, varargin);
+    function out = repelem(this, varargin)
       args = varargin;
       if (numel (args) > 2)
-        error ("table.repelem: Only 2 dimensions are supported for repelem on tables");
+        error ("table.repelem: Only exactly 2 dimensions are supported for repelem on tables");
       endif
       out = this;
       for i = 1:width (this)
@@ -1160,7 +1125,6 @@ classdef table
       endif
     endfunction
 
-
     ## -*- texinfo -*-
     ## @node table.setRowNames
     ## @deftypefn {Method} {@var{out} =} setRowNames (@var{obj}, @var{names})
@@ -1362,7 +1326,7 @@ classdef table
     ## @deftypefnx {Method} {@var{out} =} addvars (@dots{}, @
     ##   @code{'NewVariableNames'}, @var{NewVariableNames})
     ##
-    ## Add variables to table
+    ## Add variables to table.
     ##
     ## Adds the specified variables to a table.
     ##
@@ -2040,28 +2004,32 @@ classdef table
       ixb = ix(:,2);
     endfunction
 
+    ## -*- texinfo -*-
+    ## @node table.realjoin
+    ## @deftypefn {Method} {[@var{out}, @var{ixs}] =} realjoin (@var{A}, @var{B})
+    ## @deftypefnx {Method} {[@dots{}] =} realjoin (@var{A}, @var{B}, @dots{})
+    ##
+    ## "Real" relational inner join, without key restrictions
+    ##
+    ## Performs a "real" relational natural inner join between two tables,
+    ## without the key restrictions that JOIN imposes.
+    ##
+    ## Currently does not support tables which have RowNames. This may be
+    ## added in the future.
+    ##
+    ## This is a Tablicious/Octave extension, not defined in the Matlab table interface.
+    ##
+    ## Name/value option arguments are: @var{Keys}, @var{LeftKeys}, @var{RightKeys},
+    ## @var{LeftVariables}, @var{RightVariables}.
+    ##
+    ## FIXME: Document those options.
+    ##
+    ## Returns:
+    ##   @var{out} - A table that is the result of joining A and B
+    ##   @var{ixs} - Indexes into A for each row in out
+    ##
+    ## @end deftypefn
     function [out, ixs] = realjoin (A, B, varargin)
-      #REALJOIN "Real" relational inner join, without key restrictions
-      #
-      # [out, ixs] = realjoin(A, B, varargin)
-      #
-      # Performs a "real" relational natural inner join between two tables,
-      # without the key restrictions that JOIN imposes.
-      #
-      # Currently does not support tables which have RowNames. This may be
-      # added in the future.
-      #
-      # This is an Octave extension.
-      #
-      # TODO: Document options.
-      #
-      # Returns:
-      #   out - a table containing the result of joining A and B, with RowNames
-      #         removed.
-      #   ixs - an n-by-2 double matrix where ixs(i,:) is [ixA ixB], which are
-      #         the indexes from A and B containing the input rows that resulted
-      #         in this output row.
-
       # Input handling
       optNames = {'Keys', 'LeftKeys', 'RightKeys', ...
         'LeftVariables', 'RightVariables'};
@@ -2241,6 +2209,8 @@ classdef table
     ##   @var{outB} - all the rows in B with matching row(s) in A
     ##   @var{ixB} - the row indexes into B which produced @var{outB}
     ##
+    ## This is a Tablicious/Octave extension, not defined in the Matlab table interface.
+    ##
     ## @end deftypefn
     function [outA, ixA, outB, ixB] = semijoin (A, B)
 
@@ -2293,6 +2263,8 @@ classdef table
     ##   @var{ixA} - the row indexes into A which produced @var{outA}
     ##   @var{outB} - all the rows in B with no matching row in A
     ##   @var{ixB} - the row indexes into B which produced @var{outB}
+    ##
+    ## This is a Tablicious/Octave extension, not defined in the Matlab table interface.
     ##
     ## @end deftypefn
     function [outA, ixA, outB, ixB] = antijoin (A, B)
@@ -2352,6 +2324,8 @@ classdef table
     ## dependent. TODO: Determine if we can lock this behavior down to a fixed,
     ## defined ordering, without killing performance.
     ##
+    ## This is a Tablicious/Octave extension, not defined in the Matlab table interface.
+    ##
     ## @end deftypefn
     function [out, ixs] = cartesian (A, B)
 
@@ -2397,6 +2371,8 @@ classdef table
     ##   @var{in_vars} (cellstr) is a list of the input variables to pass to fcn
     ##
     ## Returns a table.
+    ##
+    ## This is a Tablicious/Octave extension, not defined in the Matlab table interface.
     ##
     ## @end deftypefn
     function out = groupby (this, groupvars, aggcalcs)
@@ -3230,6 +3206,10 @@ classdef table
 
     function [out, nshifts] = shiftdim (this, n)
       #SHIFTDIM Shift dimensions (only minimally supported)
+      #
+      # shiftdim on table only works for n = multiples of 2, because that's a no-op for
+      # 2-D arrays, which a table is. You can't otherwise alter the dimensionality of
+      # a table, so calling shiftdim with other `n` values raises an error.
       if isequal (mod (n, 2), 0)
         out = this;
         nshifts = 0;
@@ -3243,6 +3223,9 @@ classdef table
 
     function out = reshape (this, varargin)
       #RESHAPE Not supported
+      #
+      # FIXME: This should actually be allowed when the input is the same as the original
+      # size.
       error ('Function reshape is not supported for tables');
     endfunction
 
@@ -3253,14 +3236,20 @@ classdef table
 
     function out = vec (this, varargin)
       #VEC Not supported
-      error ('Function vec is not supported for tables');
+      #
+      # FIXME: This should probably be supported for degenerate operations, i.e.
+      # when the input is already one-var so it's a column vector already. Maybe even
+      # allow its use to reshape a multi-var or multi-column table to a single
+      # variable with a single column?
+      error ('Function vec is not (yet) supported for tables');
     endfunction
 
   endmethods
 
   methods (Access = private)
 
-    ## -*- texinfo -*-
+    ## === texinfo disabled for this method so it doesn't show in the doco ===
+    ##
     ## @node table.resolveVarRef
     ## @deftypefn {Method} {[@var{ixVar}, @var{varNames}] =} resolveVarRef (@var{obj}, @var{varRef})
     ## @deftypefnx {Method} {[@var{ixVar}, @var{varNames}] =} resolveVarRef (@var{obj}, @var{varRef}, @var{strictness})
@@ -3345,7 +3334,8 @@ classdef table
       ixVar = resolveVarRef (this, varRef);
     endfunction
 
-    ## -*- texinfo -*-
+    ## === texinfo disabled for this method so it doesn't show in the doco ===
+    ##
     ## @node table.subsetrows
     ## @deftypefn {Method} {@var{out} =} subsetrows (@var{obj}, @var{ixRows})
     ##
@@ -3360,7 +3350,8 @@ classdef table
       out = subsetrows_impl (this, ixRows);
     endfunction
 
-    ## -*- texinfo -*-
+    ## === texinfo disabled for this method so it doesn't show in the doco ===
+    ##
     ## @node table.subsetvars
     ## @deftypefn {Method} {@var{out} =} subsetvars (@var{obj}, @var{ixVars})
     ##
@@ -3490,6 +3481,9 @@ classdef table
       #
       # Note: This is called "proxykeysForMatrixes", not "proxyKeysForTables", because
       # it overrides the generic proxykeysForMatrixes, and tables *are* matrixes.
+      #
+      # This method will become private soon. It's only public for debugging purposes
+      # during early development.
 
       if (nargin == 1)
         mustBeA (A, 'table');
