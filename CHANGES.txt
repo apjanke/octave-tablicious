@@ -12,7 +12,7 @@ Version 0.4.0 (in progress)
 * Fix `x(ix) = []` element deletion for string, datetime, table, and other classes.
 * Add idempotent one-arg constructor forms for string, datetime, categorical. (But not table.)
 * Add `istable` function.
-* Add `NaS` and `NaC` functions.
+* Add `NaS`, `NaC`, and `todatetime` functions.
 * Rename `+tablicious` package to `+tblish`; merge `+octave` package into `+tblish`.
 * Move `+table_examples` package to `+tblish/+examples`.
 * Make internal-use properties on the main classes Access = private, now that the code is a little more mature.

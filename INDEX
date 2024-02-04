@@ -17,6 +17,7 @@ Strings and Categoricals
 Dates and Times
  datetime
  NaT
+ todatetime
  localdate
  isdatetime
  calendarDuration
