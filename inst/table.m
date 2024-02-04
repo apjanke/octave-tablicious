@@ -43,6 +43,8 @@ classdef table
   ## (And due to this mechanism, it will cause problems if you have a @code{table}
   ## with a variable named @code{Properties}. Try to avoid that.)
   ##
+  ## See also: @code{tblish.table.grpstats}, @code{tblish.evalWithTableVars}.
+  ##
   ## @end deftp
   ##
   ## @deftypeivar table @code{cellstr} VariableNames
@@ -2210,69 +2212,6 @@ classdef table
     endfunction
 
     ## -*- texinfo -*-
-    ## @node table.grpstats
-    ## @deftypefn {Method} {[@var{out}] =} grpstats (@var{obj}, @var{groupvar})
-    ## @deftypefnx {Method} {[@var{out}] =} grpstats (@dots{}, @code{'DataVars'}, @var{DataVars})
-    ##
-    ## Statistics by group.
-    ##
-    ## See also: @ref{table.groupby}.
-    ##
-    ## @end deftypefn
-    function out = grpstats (this, groupvar, varargin)
-      [opts, args] = peelOffNameValueOptions (varargin, {'DataVars'});
-      if (numel (args) > 1)
-        error ('table.grpstats: too many inputs');
-      elseif (numel (args) == 1)
-        whichstats = args{1};
-      else
-        whichstats = {'mean'};
-      endif
-      if (! iscell (whichstats))
-        error ('whichstats must be a cell array');
-      endif
-      [ix_groupvar, groupvar_names] = resolveVarRef (this, groupvar);
-      if (isfield (opts, 'DataVars'))
-        data_vars = opts.DataVars;
-        [ix_data_vars, data_vars] = resolveVarRef (this, data_vars);
-      else
-        data_vars = setdiff (this.VariableNames, groupvar_names);
-      endif
-      aggs = cell(0, 3);
-
-      # TODO: Implement sem, gname, meanci, predci
-      stat_map = {
-        'mean'    @mean
-        'numel'   @numel
-        'std'     @std
-        'var'     @var
-        'min'     @min
-        'max'     @max
-        'range'   @range
-        };
-
-      for i_var = 1:numel (data_vars)
-        for i_stat = 1:numel (whichstats)
-          if (ischar (whichstats{i_stat}))
-            stat_fcn_name = whichstats{i_stat};
-            [tf,loc] = ismember (stat_fcn_name, stat_map(:,1));
-            if (! tf)
-              error ('table.grpstats: unsupported stat name: %s', stat_fcn_name);
-            endif
-            stat_fcn = stat_map{loc,2};
-          elseif (isa (whichstats{i_stat}, fcn_handle))
-            stat_fcn = whichstats{i_stat};
-            stat_fcn_name = func2str (stat_fcn);
-          endif
-          out_var = sprintf('%s_%s', stat_fcn_name, data_vars{i_var});
-          aggs = [aggs; { out_var, stat_fcn, data_vars{i_var} }];
-        endfor
-      endfor
-
-      out = groupby (this, groupvar, aggs);
-    endfunction
-
-    ## -*- texinfo -*-
     ## @node table.splitapply
     ## @deftypefn {Method} {@var{out} =} splitapply (@var{func}, @var{obj}, @var{G})
     ## @deftypefnx {Method} {[@var{Y1}, @dots{}, @var{YM}] =} splitapply (@var{func}, @var{obj}, @var{G})
@@ -3566,67 +3505,9 @@ function [ixRow, ixVar] = resolveRowVarRefs (tbl, rowRef, varRef)
   ixVar = resolveVarRef (tbl, varRef);
 endfunction
 
-## === texinfo disabled for this function so it doesn't show in the doco ===
-##
-## @node table.resolveVarRef
-## @deftypefn {Function} {[@var{ixVar}, @var{varNames}] =} resolveVarRef (@var{tbl}, @var{varRef})
-## @deftypefnx {Function} {[@var{ixVar}, @var{varNames}] =} resolveVarRef (@var{tbl}, @var{varRef}, @var{strictness})
-##
-## Resolve a variable reference against this table.
-##
-## A @var{varRef} is a numeric or char/cellstr indicator of which variables within
-## @var{tbl} are being referenced.
-##
-## @var{strictness} controls what to do when the given variable references
-## could not be resolved. It may be 'strict' (the default) or 'lenient'.
-##
-## Returns:
-##   @var{ixVar} - the indexes of the variables in @var{tbl}
-##   @var{varNames} - a cellstr of the names of the variables in @var{tbl}
-##
-## Raises an error if any of the specified variables could not be resolved,
-## unless strictness is 'lenient', in which case it will return 0 for the
-## index and '' for the name for each variable which could not be resolved.
-##
-## @end deftypefn
 function [ixVar, varNames] = resolveVarRef (tbl, varRef, strictness)
-  #RESOLVEVARREF Resolve a reference to variables
-  #
-  # A varRef is a numeric or char/cellstr indicator of which variables within
-  # this table are being referenced.
   if (nargin < 3 || isempty (strictness)); strictness = 'strict'; endif
-  mustBeMember (strictness, {'strict','lenient'});
-  if (isnumeric (varRef) || islogical (varRef))
-    ixVar = varRef;
-    ix_bad = find(ixVar > width (tbl) | ixVar < 1);
-    if (! isempty (ix_bad))
-      error ('table: variable index out of bounds: %d (table has %d variables)', ...
-        ix_bad(1), width (tbl));
-    endif
-  elseif (isequal (varRef, ':'))
-    ixVar = 1:width (tbl);
-  elseif (ischar (varRef) || iscellstr (varRef))
-    varRef = cellstr (varRef);
-    [tf, ixVar] = ismember (varRef, tbl.Properties.VariableNames);
-    if (isequal (strictness, 'strict'))
-      if (! all (tf))
-        error ('table: No such variable in table: %s', strjoin (varRef(!tf), ', '));
-      endif
-    else
-      ixVar(!tf) = 0;
-    endif
-  elseif (isa (varRef, 'tblish.internal.table.vartype_filter'))
-    ixVar = [];
-    for i = 1:width (tbl)
-      if (varRef.matches (tbl.Properties.VariableValues{i}))
-        ixVar(end+1) = i;
-      endif
-    endfor
-  else
-    error ('table: Unsupported variable indexing operand type: %s', class (varRef));
-  endif
-  varNames = repmat ({''}, size (ixVar));
-  varNames(ixVar != 0) = tbl.Properties.VariableNames(ixVar(ixVar != 0));
+  [ixVar, varNames] = tblish.internal.table.resolveVarRef (tbl, varRef, strictness);
 endfunction
 
 ## ===== texinfo disabled so it doesn't show up in the doco =====

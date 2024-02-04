@@ -86,7 +86,7 @@ function [fig, hax] = coplot (varargin)
 
   [X, x_name] = getvar (tbl, xvar);
   [Y, y_name] = getvar (tbl, yvar);
-  [g_ix, g_names] = resolveVarRef (tbl, gvar);
+  [g_ix, g_names] = tblish.internal.table.resolveVarRef (tbl, gvar);
   if (isscalar (g_ix))
     hax = coplot_one (fig, tbl, X, x_name, Y, y_name, g_ix, g_names, opts);
   else
