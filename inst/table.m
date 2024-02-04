@@ -1775,127 +1775,6 @@ classdef table
       C = [outA outB];
     endfunction
 
-    function out = resolveJoinKeysAndVars (A, B, opts)
-      #RESOLVEJOINKEYSANDVARS Internal implementation method
-      if (isfield (opts, 'Keys'))
-        if (isnumeric (opts.Keys) || islogical (opts.Keys))
-          if (islogical (opts.Keys))
-            keyIxA = find (opts.Keys);
-            keyIxB = find (opts.Keys);
-          else
-            keyIxA = opts.Keys;
-            keyIxB = opts.Keys;
-          endif
-          keyNamesA = A.VariableNames(keyIxA);
-          keyNamesB = B.VariableNames(keyIxB);
-        elseif (ischar (opts.Keys) || iscellstr (opts.Keys))
-          keyNamesA = cellstr (opts.Keys);
-          keyNamesB = cellstr (opts.Keys);
-          [tf, keyIxA] = ismember (keyNamesA, A.VariableNames);
-          if (! all (tf))
-            error ('Named keys not found in table A: %s', strjoin (keyNamesA(!tf), ', '));
-          endif
-          [tf, keyIxB] = ismember (keyNamesB, B.VariableNames);
-          if (! all (tf))
-            error ('Named keys not found in table B: %s', strjoin (keyNamesB(!tf), ', '));
-          endif
-        endif
-      elseif (isfield (opts, 'LeftKeys'))
-        if (! isfield (opts, 'RightKeys'))
-          error ('If option LeftKeys is supplied, then RightKeys must be, too.');
-        endif
-        if (isnumeric (opts.LeftKeys) || islogical (opts.LeftKeys))
-          if (islogical (opts.LeftKeys))
-            keyIxA = find (opts.LeftKeys);
-          else
-            keyIxA = opts.LeftKeys;
-          endif
-          keyNamesA = A.VariableNames(keyIxA);
-        elseif (ischar (opts.LeftKeys) || iscellstr (opts.LeftKeys))
-          keyNamesA = cellstr (opts.LeftKeys);
-          [tf, keyIxA] = ismember (keyNamesA, A.VariableNames);
-          if (! all (tf))
-            error ('Named keys not found in table A: %s', strjoin (keyNamesA(!tf), ', '));
-          endif
-        endif
-        if (isnumeric (opts.RightKeys) || islogical (opts.RightKeys))
-          if (islogical (opts.RightKeys))
-            keyIxB = find (opts.RightKeys);
-          else
-            keyIxB = opts.RightKeys;
-          endif
-          keyNamesB = B.VariableNames(keyIxB);
-        elseif (ischar (opts.RightKeys) || iscellstr (opts.RightKeys))
-          keyNamesB = cellstr (opts.RightKeys);
-          [tf, keyIxB] = ismember (keyNamesB, B.VariableNames);
-          if (! all (tf))
-            error ('Named keys not found in table B: %s', strjoin (keyNamesB(!tf), ', '));
-          endif
-        endif
-      elseif (isfield (opts, 'RightKeys'))
-          error ('If option RightKeys is supplied, then LeftKeys must be, too.');
-      else
-        # Default keys are a natural join
-        commonCols = intersect (A.VariableNames, B.VariableNames);
-        keyNamesA = commonCols;
-        keyNamesB = commonCols;
-        [~, keyIxA] = ismember (commonCols, A.VariableNames);
-        [~, keyIxB] = ismember (commonCols, B.VariableNames);
-      endif
-      if (numel (keyIxA) != numel (keyIxB))
-        error ('Number of keys must be same for A and B; got %d vs. %s', ...
-          numel (keyIxA), numel (keyIxB));
-      endif
-
-      if (isfield (opts, 'LeftVariables'))
-        if (isnumeric (opts.LeftVariables) || islogical (opts.LeftVariables))
-          if (islogical (opts.LeftVariables))
-            varIxA = find (opts.LeftVariables);
-          else
-            varIxA = opts.LeftVariables;
-          endif
-          varNamesA = A.VariableNames(varIxA);
-        else
-          varNamesA = cellstr (opts.LeftVariables);
-          [tf, varIxA] = ismember (varNamesA, A.VariableNames);
-          if (! all (tf))
-            error ('Named variables not found in table A: %s', strjoin (varNamesA(!tf), ', '));
-          endif
-        endif
-      else
-        varIxA = 1:width(A);
-        varNamesA = A.VariableNames;
-      endif
-      if (isfield (opts, 'RightVariables'))
-        if (isnumeric (opts.RightVariables) || islogical (opts.RightVariables))
-          if (islogical (opts.RightVariables))
-            varIxB = find (opts.RightVariables);
-          else
-            varIxB = opts.RightVariables;
-          endif
-          varNamesB = B.VariableNames(varIxB);
-        else
-          varNamesB = cellstr (opts.RightVariables);
-          [tf, varIxB] = ismember (varNamesB, B.VariableNames);
-          if (! all (tf))
-            error ('Named variables not found in table B: %s', strjoin (varNamesB(!tf), ', '));
-          endif
-        endif
-      else
-        varIxB = find (! ismember (B.VariableNames, varNamesA));
-        varNamesB = B.VariableNames(varIxB);
-      endif
-
-      out.keyIxA = keyIxA;
-      out.keyIxB = keyIxB;
-      out.keyNamesA = keyNamesA;
-      out.keyNamesB = keyNamesB;
-      out.varIxA = varIxA;
-      out.varIxB = varIxB;
-      out.varNamesA = varNamesA;
-      out.varNamesB = varNamesB;
-    endfunction
-
     ## -*- texinfo -*-
     ## @node table.innerjoin
     ## @deftypefn {Method} {[@var{out}, @var{ixa}, @var{ixb}] =} innerjoin (@var{A}, @var{B})
@@ -3097,92 +2976,6 @@ classdef table
 
     ## === texinfo disabled for this method so it doesn't show in the doco ===
     ##
-    ## @node table.resolveVarRef
-    ## @deftypefn {Method} {[@var{ixVar}, @var{varNames}] =} resolveVarRef (@var{obj}, @var{varRef})
-    ## @deftypefnx {Method} {[@var{ixVar}, @var{varNames}] =} resolveVarRef (@var{obj}, @var{varRef}, @var{strictness})
-    ##
-    ## Resolve a variable reference against this table.
-    ##
-    ## A @var{varRef} is a numeric or char/cellstr indicator of which variables within
-    ## @var{obj} are being referenced.
-    ##
-    ## @var{strictness} controls what to do when the given variable references
-    ## could not be resolved. It may be 'strict' (the default) or 'lenient'.
-    ##
-    ## Returns:
-    ##   @var{ixVar} - the indexes of the variables in @var{obj}
-    ##   @var{varNames} - a cellstr of the names of the variables in @var{obj}
-    ##
-    ## Raises an error if any of the specified variables could not be resolved,
-    ## unless strictness is 'lenient', in which case it will return 0 for the
-    ## index and '' for the name for each variable which could not be resolved.
-    ##
-    ## @end deftypefn
-    function [ixVar, varNames] = resolveVarRef (this, varRef, strictness)
-      #RESOLVEVARREF Resolve a reference to variables
-      #
-      # A varRef is a numeric or char/cellstr indicator of which variables within
-      # this table are being referenced.
-      if (nargin < 3 || isempty (strictness)); strictness = 'strict'; endif
-      mustBeMember (strictness, {'strict','lenient'});
-      if (isnumeric (varRef) || islogical (varRef))
-        ixVar = varRef;
-        ix_bad = find(ixVar > width (this) | ixVar < 1);
-        if (! isempty (ix_bad))
-          error ('table: variable index out of bounds: %d (table has %d variables)', ...
-            ix_bad(1), width (this));
-        endif
-      elseif (isequal (varRef, ':'))
-        ixVar = 1:width (this);
-      elseif (ischar (varRef) || iscellstr (varRef))
-        varRef = cellstr (varRef);
-        [tf, ixVar] = ismember (varRef, this.VariableNames);
-        if (isequal (strictness, 'strict'))
-          if (! all (tf))
-            error ('table: No such variable in table: %s', strjoin (varRef(!tf), ', '));
-          endif
-        else
-          ixVar(!tf) = 0;
-        endif
-      elseif (isa (varRef, 'tblish.internal.table.vartype_filter'))
-        ixVar = [];
-        for i = 1:width (this)
-          if (varRef.matches (this.VariableValues{i}))
-            ixVar(end+1) = i;
-          endif
-        endfor
-      else
-        error ('table: Unsupported variable indexing operand type: %s', class (varRef));
-      endif
-      varNames = repmat ({''}, size (ixVar));
-      varNames(ixVar != 0) = this.VariableNames(ixVar(ixVar != 0));
-    endfunction
-
-    function [ixRow, ixVar] = resolveRowVarRefs (this, rowRef, varRef)
-      #RESOLVEROWVARREFS Internal implementation method
-      #
-      # This resolves both row and variable refs to indexes.
-      if (isnumeric (rowRef) || islogical (rowRef))
-        ixRow = rowRef;
-      elseif (iscellstr (rowRef))
-        if (isempty (this.RowNames))
-          error ('table: this table has no RowNames');
-        endif
-        [tf, ixRow] = ismember (rowRef, this.RowNames);
-        if (! all (tf))
-          error ('table: No such named row in table: %s', strjoin (rowRef(!tf), ', '));
-        endif
-      elseif (isequal (rowRef, ':'))
-        ixRow = 1:height (this);
-      else
-        error ('table: Unsupported row indexing operand type: %s', class (rowRef));
-      endif
-
-      ixVar = resolveVarRef (this, varRef);
-    endfunction
-
-    ## === texinfo disabled for this method so it doesn't show in the doco ===
-    ##
     ## @node table.subsetrows
     ## @deftypefn {Method} {@var{out} =} subsetrows (@var{obj}, @var{ixRows})
     ##
@@ -3658,4 +3451,215 @@ function [outA, outB] = congruentize (A, B)
   outB = B;
   [~,loc] = ismember (varsA, varsB);
   outB = subsetvars (outB, loc);
+endfunction
+
+function out = resolveJoinKeysAndVars (A, B, opts)
+  #RESOLVEJOINKEYSANDVARS Internal implementation method
+  #
+  # A and B must already be tables.
+  allVarsA = A.Properties.VariableNames;
+  allVarsB = B.Properties.VariableNames;
+  if (isfield (opts, 'Keys'))
+    if (isnumeric (opts.Keys) || islogical (opts.Keys))
+      if (islogical (opts.Keys))
+        keyIxA = find (opts.Keys);
+        keyIxB = find (opts.Keys);
+      else
+        keyIxA = opts.Keys;
+        keyIxB = opts.Keys;
+      endif
+      keyNamesA = allVarsA(keyIxA);
+      keyNamesB = allVarsB(keyIxB);
+    elseif (ischar (opts.Keys) || iscellstr (opts.Keys))
+      keyNamesA = cellstr (opts.Keys);
+      keyNamesB = cellstr (opts.Keys);
+      [tf, keyIxA] = ismember (keyNamesA, allVarsA);
+      if (! all (tf))
+        error ('Named keys not found in table A: %s', strjoin (keyNamesA(!tf), ', '));
+      endif
+      [tf, keyIxB] = ismember (keyNamesB, allVarsB);
+      if (! all (tf))
+        error ('Named keys not found in table B: %s', strjoin (keyNamesB(!tf), ', '));
+      endif
+    endif
+  elseif (isfield (opts, 'LeftKeys'))
+    if (! isfield (opts, 'RightKeys'))
+      error ('If option LeftKeys is supplied, then RightKeys must be, too.');
+    endif
+    if (isnumeric (opts.LeftKeys) || islogical (opts.LeftKeys))
+      if (islogical (opts.LeftKeys))
+        keyIxA = find (opts.LeftKeys);
+      else
+        keyIxA = opts.LeftKeys;
+      endif
+      keyNamesA = allVarsA(keyIxA);
+    elseif (ischar (opts.LeftKeys) || iscellstr (opts.LeftKeys))
+      keyNamesA = cellstr (opts.LeftKeys);
+      [tf, keyIxA] = ismember (keyNamesA, allVarsA);
+      if (! all (tf))
+        error ('Named keys not found in table A: %s', strjoin (keyNamesA(!tf), ', '));
+      endif
+    endif
+    if (isnumeric (opts.RightKeys) || islogical (opts.RightKeys))
+      if (islogical (opts.RightKeys))
+        keyIxB = find (opts.RightKeys);
+      else
+        keyIxB = opts.RightKeys;
+      endif
+      keyNamesB = allVarsB(keyIxB);
+    elseif (ischar (opts.RightKeys) || iscellstr (opts.RightKeys))
+      keyNamesB = cellstr (opts.RightKeys);
+      [tf, keyIxB] = ismember (keyNamesB, allVarsB);
+      if (! all (tf))
+        error ('Named keys not found in table B: %s', strjoin (keyNamesB(!tf), ', '));
+      endif
+    endif
+  elseif (isfield (opts, 'RightKeys'))
+      error ('If option RightKeys is supplied, then LeftKeys must be, too.');
+  else
+    # Default keys are a natural join
+    commonCols = intersect (allVarsA, allVarsB);
+    keyNamesA = commonCols;
+    keyNamesB = commonCols;
+    [~, keyIxA] = ismember (commonCols, allVarsA);
+    [~, keyIxB] = ismember (commonCols, allVarsB);
+  endif
+  if (numel (keyIxA) != numel (keyIxB))
+    error ('Number of keys must be same for A and B; got %d vs. %s', ...
+      numel (keyIxA), numel (keyIxB));
+  endif
+
+  if (isfield (opts, 'LeftVariables'))
+    if (isnumeric (opts.LeftVariables) || islogical (opts.LeftVariables))
+      if (islogical (opts.LeftVariables))
+        varIxA = find (opts.LeftVariables);
+      else
+        varIxA = opts.LeftVariables;
+      endif
+      varNamesA = allVarsA(varIxA);
+    else
+      varNamesA = cellstr (opts.LeftVariables);
+      [tf, varIxA] = ismember (varNamesA, allVarsA);
+      if (! all (tf))
+        error ('Named variables not found in table A: %s', strjoin (varNamesA(!tf), ', '));
+      endif
+    endif
+  else
+    varIxA = 1:width(A);
+    varNamesA = allVarsA;
+  endif
+  if (isfield (opts, 'RightVariables'))
+    if (isnumeric (opts.RightVariables) || islogical (opts.RightVariables))
+      if (islogical (opts.RightVariables))
+        varIxB = find (opts.RightVariables);
+      else
+        varIxB = opts.RightVariables;
+      endif
+      varNamesB = allVarsB(varIxB);
+    else
+      varNamesB = cellstr (opts.RightVariables);
+      [tf, varIxB] = ismember (varNamesB, allVarsB);
+      if (! all (tf))
+        error ('Named variables not found in table B: %s', strjoin (varNamesB(!tf), ', '));
+      endif
+    endif
+  else
+    varIxB = find (! ismember (allVarsB, varNamesA));
+    varNamesB = allVarsB(varIxB);
+  endif
+
+  out.keyIxA = keyIxA;
+  out.keyIxB = keyIxB;
+  out.keyNamesA = keyNamesA;
+  out.keyNamesB = keyNamesB;
+  out.varIxA = varIxA;
+  out.varIxB = varIxB;
+  out.varNamesA = varNamesA;
+  out.varNamesB = varNamesB;
+endfunction
+
+function [ixRow, ixVar] = resolveRowVarRefs (tbl, rowRef, varRef)
+  #RESOLVEROWVARREFS Internal implementation method
+  #
+  # This resolves both row and variable refs to indexes.
+  if (isnumeric (rowRef) || islogical (rowRef))
+    ixRow = rowRef;
+  elseif (iscellstr (rowRef))
+    if (isempty (tbl.Properties.RowNames))
+      error ('table: this table has no RowNames');
+    endif
+    [tf, ixRow] = ismember (rowRef, tbl.Properties.RowNames);
+    if (! all (tf))
+      error ('table: No such named row in table: %s', strjoin (rowRef(!tf), ', '));
+    endif
+  elseif (isequal (rowRef, ':'))
+    ixRow = 1:height (tbl);
+  else
+    error ('table: Unsupported row indexing operand type: %s', class (rowRef));
+  endif
+
+  ixVar = resolveVarRef (tbl, varRef);
+endfunction
+
+## === texinfo disabled for this function so it doesn't show in the doco ===
+##
+## @node table.resolveVarRef
+## @deftypefn {Function} {[@var{ixVar}, @var{varNames}] =} resolveVarRef (@var{tbl}, @var{varRef})
+## @deftypefnx {Function} {[@var{ixVar}, @var{varNames}] =} resolveVarRef (@var{tbl}, @var{varRef}, @var{strictness})
+##
+## Resolve a variable reference against this table.
+##
+## A @var{varRef} is a numeric or char/cellstr indicator of which variables within
+## @var{tbl} are being referenced.
+##
+## @var{strictness} controls what to do when the given variable references
+## could not be resolved. It may be 'strict' (the default) or 'lenient'.
+##
+## Returns:
+##   @var{ixVar} - the indexes of the variables in @var{tbl}
+##   @var{varNames} - a cellstr of the names of the variables in @var{tbl}
+##
+## Raises an error if any of the specified variables could not be resolved,
+## unless strictness is 'lenient', in which case it will return 0 for the
+## index and '' for the name for each variable which could not be resolved.
+##
+## @end deftypefn
+function [ixVar, varNames] = resolveVarRef (tbl, varRef, strictness)
+  #RESOLVEVARREF Resolve a reference to variables
+  #
+  # A varRef is a numeric or char/cellstr indicator of which variables within
+  # this table are being referenced.
+  if (nargin < 3 || isempty (strictness)); strictness = 'strict'; endif
+  mustBeMember (strictness, {'strict','lenient'});
+  if (isnumeric (varRef) || islogical (varRef))
+    ixVar = varRef;
+    ix_bad = find(ixVar > width (tbl) | ixVar < 1);
+    if (! isempty (ix_bad))
+      error ('table: variable index out of bounds: %d (table has %d variables)', ...
+        ix_bad(1), width (tbl));
+    endif
+  elseif (isequal (varRef, ':'))
+    ixVar = 1:width (tbl);
+  elseif (ischar (varRef) || iscellstr (varRef))
+    varRef = cellstr (varRef);
+    [tf, ixVar] = ismember (varRef, tbl.Properties.VariableNames);
+    if (isequal (strictness, 'strict'))
+      if (! all (tf))
+        error ('table: No such variable in table: %s', strjoin (varRef(!tf), ', '));
+      endif
+    else
+      ixVar(!tf) = 0;
+    endif
+  elseif (isa (varRef, 'tblish.internal.table.vartype_filter'))
+    ixVar = [];
+    for i = 1:width (tbl)
+      if (varRef.matches (tbl.Properties.VariableValues{i}))
+        ixVar(end+1) = i;
+      endif
+    endfor
+  else
+    error ('table: Unsupported variable indexing operand type: %s', class (varRef));
+  endif
+  varNames = repmat ({''}, size (ixVar));
+  varNames(ixVar != 0) = tbl.Properties.VariableNames(ixVar(ixVar != 0));
 endfunction
