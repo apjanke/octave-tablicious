@@ -8,7 +8,11 @@ The stuff in here is not the standard Octave Forge ("OF") doco toolchain. This i
 
 ## Requirements
 
+Texinfo 6.0+, Perl, and Perl CPAN modules as described below.
+
 This toolchain requires Texinfo version 6.0 or newer. Might even need 7.x as of 2023. Texinfo versions 5.x and older will result in a lot of errors complaining about node relationships and whatnot.
+
+If you're on macOS and installed the newer Texinfo using Homebrew on a system that also has Texinfo tools from another source (like maybe MacTeX/TeXLive?), you may need to do a `brew link --overwrite texinfo` to force-link them, uninstall the other Texinfo-providing program, or do something else to reconcile that conflict.
 
 Perl modules, which must be installed in your perl environment:
 
@@ -19,6 +23,8 @@ Perl modules, which must be installed in your perl environment:
 * `IPC::Open3`
 
 Sorry for the dependencies.
+
+To install these, run `perl -MCPAN -e shell` (you may need `sudo` on that, depending on your Perl installation's setup), and in that shell, run `install Moose Data::Dumper Date::Parse Text::Wrap IPC::Open3`. On macOS, you'll probably want to install a Perl via Homebrew or MacPorts instead of using the system Perl for this.
 
 ## How it works
 
@@ -182,9 +188,9 @@ Here’s what documentation of a classdef class named `Example` should look like
 ##
 ## An example class that does nothing.
 ##
-## Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur 
-## ullamcorper pulvinar ligula, sit amet accumsan turpis dapibus at. 
-## Ut sit amet quam orci. Donec vel mauris elementum massa pretium tincidunt. 
+## Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur
+## ullamcorper pulvinar ligula, sit amet accumsan turpis dapibus at.
+## Ut sit amet quam orci. Donec vel mauris elementum massa pretium tincidunt.
 ##
 ## @end deftp
 ##
@@ -209,7 +215,7 @@ classdef Example
   endproperties
 
   methods
-    
+
     ## -*- texinfo -*-
     ## @node Example.Example
     ## @deftypefn {Constructor} {@var{obj} =} Example ()
