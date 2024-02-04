@@ -2873,6 +2873,8 @@ classdef table
     ## prettyprint (restrict (p, 'Weight >= 14 & strcmp(Color, "Red")'))
     ## @end example
     ##
+    ## This is a Tablicious/Octave extension, not defined in the Matlab table interface.
+    ##
     ## @end deftypefn
     function out = restrict (this, arg)
       if (ischar (arg))
