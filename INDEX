@@ -66,7 +66,7 @@ Miscellaneous
  size2str
  splitapply
  vecfun
- tblish.sizeof
+ tblish.sizeof2
 Example Datasets
  tblish.datasets
  tblish.dataset
