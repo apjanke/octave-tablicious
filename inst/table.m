@@ -581,26 +581,6 @@ classdef table
     endfunction
 
     ## -*- texinfo -*-
-    ## @node table.size_equal
-    ## @deftypefn {Method} {@var{out} =} size_equal (@var{varargin})
-    ##
-    ## True if the dimensions of all arguments agree.
-    ##
-    ## @end deftypefn
-    function out = size_equal (varargin)
-      #SIZE_EQUAL True if the dimensions of all arguments agree.
-      [nrows, nvars] = size (varargin{1});
-      out = true;
-      for i = 2:numel (varargin)
-        [nrowsi, nvarsi] = size (varargin{i});
-        if (nrowsi != nrows || nvarsi != nvars)
-            out = false;
-            return
-        endif
-      endfor
-    endfunction
-
-    ## -*- texinfo -*-
     ## @node table.sizeof
     ## @deftypefn {Method} {@var{out} =} sizeof (@var{obj})
     ##
