@@ -69,7 +69,7 @@ classdef datetime
   endproperties
 
   properties (Access = private)
-    # The underlying datenum values, always in UTC
+    # The underlying datenum values, always in UTC when zoned, or pseudo-UTC when unzoned.
     dnums = NaN % planar
   endproperties
   properties
@@ -238,13 +238,17 @@ classdef datetime
       endswitch
 
       # Construct
+      # FIXME: The set.TimeZone here invokes conversion before dnums is set, which
+      # hits a NaN-not-supported case
       if (! isempty (timeZone))
         this.TimeZone = timeZone;
         if (! isequal (timeZone, 'UTC'))
           dnums = datetime.convertDatenumTimeZone(dnums, timeZone, 'UTC');
         endif
+        this.dnums = dnums;
+      else
+        this.dnums = dnums;
       endif
-      this.dnums = dnums;
       if (isfield (opts, 'Format'))
         this.Format = opts.Format;
       endif
@@ -392,6 +396,9 @@ classdef datetime
         error ('Undefined TimeZone: %s', x);
       endif
       if (isempty (this.TimeZone) && ! isempty (x))
+        # Converting an unzoned date to a zoned one declares that the wall time represented by
+        # the unzoned dnums is a local time. Zoned datetimes store their internal dnums in UTC,
+        # so we need to convert *from* the new time zone to UTC for the internal representation.
         this.dnums = datetime.convertDatenumTimeZone (this.dnums, x, 'UTC');
       elseif (! isempty (this.TimeZone) && isempty (x))
         this.dnums = datetime.convertDatenumTimeZone (this.dnums, 'UTC', this.TimeZone);
@@ -1598,10 +1605,10 @@ endclassdef
 
 %!test datetime;
 %!test datetime ('2011-03-07');
-%!xtest <unimplemented timezone support> datetime ('2011-03-07 12:34:56', 'TimeZone', 'America/New_York');
+%!test datetime ('2011-03-07 12:34:56', 'TimeZone', 'America/New_York');
 %!test
 %!  d = datetime;
 %!  d.TimeZone = 'America/New_York';
 %!  d2 = d;
 %!  d2.TimeZone = 'America/Chicago';
-%!  assert (abs(d.dnums - d2.dnums), (1/24), .0001)
+%!  assert (abs (datenum (d) - datenum (d2)), (1/24), .0001)

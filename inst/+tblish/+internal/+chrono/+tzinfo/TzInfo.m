@@ -28,7 +28,9 @@ classdef TzInfo
   properties
     id
     formatId
-    # These fields are all parallel
+    # These fields are all parallel.
+    # The transitions and transitionslocal are int64s holding (I think) Unix times.
+    # The *Datenum suffixed ones are doubles holding datenums.
     transitions
     transitionsLocal
     transitionsDatenum
@@ -154,7 +156,7 @@ classdef TzInfo
       if (ismember (this.id, tblish.internal.chrono.tzinfo.TzInfo.utcZoneAliases))
         # Have to special-case this because it relies on POSIX zone rules, which
         # are not implemented yet
-        offsets = zeros (size (dnum));
+        out = dnum;
       else
         # The time zone record is identified by finding the last record whose start
         # time is less than or equal to the local time.
@@ -163,8 +165,11 @@ classdef TzInfo
         # the right transition point. (It has to be a *modified* bin search
         # because the local times for transitions are not necessarily monotonic increasing.
         # I think.)
+        #
+        # FIXME: Handle NaN inputs.
         tf = false (size (dnum));
         loc = NaN (size (dnum));
+        last_transition = this.transitionsLocalDatenum(end);
         for i_dnum = 1:numel(dnum)
           d = dnum(i_dnum);
           ix = find(this.transitionsLocalDatenum <= d, 1, "last");
@@ -175,17 +180,22 @@ classdef TzInfo
         endfor
         # [tf,loc] = tblish.internal.chrono.algo.binsearch (dnum, this.transitionsLocalDatenum);
         ix = loc;
-        tfOutOfRange = isnan(ix) | ix == numel (this.transitions);
+        tfOutOfRange = (! isnan (dnum)) & (isnan(ix) | ix == numel (this.transitions));
+        tfToConvert = (! isnan (dnum)) & ! tfOutOfRange;
+
+        out = dnum;
         # In-range dates take their period's gmt offset
-        offsets = NaN (size (dnum));
-        offsets(!tfOutOfRange) = this.ttinfos.gmtoffDatenum(this.timeTypes(ix(!tfOutOfRange)));
+        if any (tfToConvert(:))
+          offsets = this.ttinfos.gmtoffDatenum(this.timeTypes(ix(tfToConvert)));
+          out(tfToConvert) = dnum(tfToConvert) - offsets;
+        endif
         # Out-of-range dates are handled by the POSIX look-ahead zone
         if (any (tfOutOfRange(:)))
-          # TODO: Implement this
-          error ('POSIX zone rules are unimplemented');
+          # FIXME: Implement this
+          error ('datetime: POSIX zone rules are required to convert out-of-tzdb-range dates, but are unimplemented');
         endif
+        # Anything left over should be NaNs; no change needed.
       endif
-      out = dnum - offsets;
     endfunction
 
     function out = gmtToLocaltime (this, dnum)
@@ -227,6 +237,10 @@ classdef TzInfo
       fprintf ('  Version %s (%s time values)\n', this.formatId, time_size);
       fprintf ('  %d transitions, %d ttinfos, %d leap times\n', ...
         numel (this.transitions), numel (this.ttinfos.gmtoff), numel (this.leapTimes));
+      if (! isempty (this.transitions))
+        fprintf ('    First transition: %s   Last transition: %s  (UTC)\n', ...
+          datestr (this.transitionsDatenum(1)), datestr (this.transitionsDatenum(end)));
+      endif
       fprintf ('  %d is_stds, %d is_gmts\n', ...
         numel (this.isStd), numel (this.isGmt));
       if (! isempty (this.goingForwardPosixZone))
