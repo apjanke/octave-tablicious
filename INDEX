@@ -16,6 +16,7 @@ Strings and Categoricals
  contains
  dispstrs
  categorical
+ iscategorical
  NaC
  discretize
 Dates and Times
@@ -25,6 +26,7 @@ Dates and Times
  localdate
  isdatetime
  calendarDuration
+ iscalendarduration
  calmonths
  calyears
  days
