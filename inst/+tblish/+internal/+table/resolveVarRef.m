@@ -28,7 +28,8 @@
 ## could not be resolved. It may be 'strict' (the default) or 'lenient'.
 ##
 ## Returns:
-##   @var{ixVar} - the indexes of the variables in @var{tbl}
+##   @var{ixVar} - the indexes of the variables in @var{tbl}, as a numeric or logical
+##       row vector.
 ##   @var{varNames} - a cellstr of the names of the variables in @var{tbl}
 ##
 ## Raises an error if any of the specified variables could not be resolved,
@@ -74,4 +75,5 @@ function [ixVar, varNames] = resolveVarRef (tbl, varRef, strictness)
   endif
   varNames = repmat ({''}, size (ixVar));
   varNames(ixVar != 0) = tbl.Properties.VariableNames(ixVar(ixVar != 0));
+  ixVar = ixVar(:)';
 endfunction

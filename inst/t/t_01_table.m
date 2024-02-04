@@ -76,11 +76,10 @@ for k = 1:n_classes
 
     t = sprintf ('%s : constructor - ind vars, w/names : ', cls);
     T = table_class (var1, var2, var3, var4, var5, var6, ...
-        'VariableNames', var_names, 'RowNames', row_names);
-    # FIXME: Add a loop and do the with-DimensionNames variant too?
+        'VariableNames', var_names, 'RowNames', row_names, 'DimensionNames', dim_names);
+    # FIXME: Add a loop and do the without-DimensionNames variant too?
     #     T = table_class(var1, var2, var3, var4, var5, var6, ...
-    #         'VariableNames', var_names, 'RowNames', row_names, ...
-    #         'DimensionNames', dim_names);
+    #         'VariableNames', var_names, 'RowNames', row_names);
     t_ok (isa (T, class_names{k}), [t 'class'])
     t_ok (! isempty (T), [t 'not isempty']);
     t_is (size (T), [6 6], 12, [t 'sz = size (T)']);
@@ -90,11 +89,7 @@ for k = 1:n_classes
     t_is ([nr, nz], [6 6], 12, [t '[nr, nz] = size (T)']);
     t_ok (isequal (T.Properties.VariableNames, var_names), [t 'VariableNames'] );
     t_ok (isequal (T.Properties.RowNames, row_names), [t 'RowNames'] );
-    if skip_oct_tab
-        t_skip (1, [t 'DimensionNames not yet supported'] );
-    else
-        t_ok (isequal (T.Properties.DimensionNames, dim_names), [t 'DimensionNames'] );
-    endif
+    t_ok (isequal (T.Properties.DimensionNames, dim_names), [t 'DimensionNames'] );
 
     # . indexing
     # get full variables

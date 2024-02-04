@@ -8,14 +8,20 @@ Version 0.4.0 (in progress)
 * Fix Octave 7.x and 8.x compatibility in installation and package loading.
 * Fix `string.missing()` and to actually return a missing value, instead of "".
 * Remove `(fill,rm,standardize)missing` functions, deferring to the Statistics package.
-* Fix `table` "preallocation" constructor to use 0s and ""s for fill values, unless missings are requested using an alternate pseudotype. (For compatibility with Matlab.)
+* `table` arrays:
+  * `table`: Fix "preallocation" constructor to use 0s and ""s for fill values, unless missings are requested using an alternate pseudotype. (For compatibility with Matlab.)
+  * `table`: Have `fieldnames (obj)` expose variable and dimension names and Properties, instead of the internal implementation properties.
+  * `table`: Fix some advanced ()- and {}-indexing cases, including some related to multi-variable subscripting, multi-column table variables, multi-column RHS inputs, and the combination of the three.
+  * `table`: Remove `grpstats` method and replace with `tblish.table.grpstats()` function, to avoid overriding or interacting with Statistics' `grpstats()` function.
+  * `table`: Remove `rows`, `cols`, `reshape`, `resize`, `vec`, `hasrownames`, and `size_equal` methods.
+  * `table`: Make `congruentize` aprivate function.
+  * Add `istable`, `istimetable`, and `istabular` functions.
 * Fix `x(ix) = []` element deletion for string, datetime, table, and other classes.
 * Add idempotent one-arg constructor forms for string, datetime, categorical. (But not table.)
-* Add `istable`, `istimetable`, and `istabular` functions.
 * Add `NaS`, `NaC`, and `todatetime` functions.
-* Have `fieldnames (table)` expose variable and dimension names and Properties, instead of the internal implementation properties.
 * Rename `+tablicious` package to `+tblish`; merge `+octave` package into `+tblish`.
 * Move `+table_examples` package to `+tblish/+examples`.
+* Move the `sizeof()` override methods to a `tblish.sizeof()` function to avoid shadowing core Octave's `sizeof`, until I understand if it's intended to support extension by classdefs.
 * Make internal-use properties on the main classes Access = private, now that the code is a little more mature.
 * Fix the doco generation, including publishing to GitHub Pages.
 
@@ -24,6 +30,7 @@ Internal:
 * Convert code style to GNU Octave code style, mostly.
 * Move `mustBe*` functions to a `validators/` subdirectory, just for tidiness.
 * Revamp doc-generation tools.
+* Add experimental MP-Test based unit tests to supplement BISTs, for detailed testing of `table` behavior.
 
 Version 0.3.7 (2023-01-05)
 -----------------------------

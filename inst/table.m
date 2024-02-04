@@ -847,22 +847,32 @@ classdef table
             error ('table.subsref: {}-indexing of table requires exactly two arguments');
           endif
           [ixRow, ixVar] = resolveRowVarRefs (this, s.subs{1}, s.subs{2});
-          if (numel (ixRow) != 1 && numel (ixVar) != 1)
-            error('table.subsref: {}-indexing of table requires one of the inputs to be scalar');
+          if isnumeric (ixVar) && isempty (ixVar)
+            if islogical (ixRow); ixRow2 = find (ixRow); else; ixRow2 = ixRow; endif
+            out = reshape ([], [numel(ixRow2), 0])
+          elseif numel (ixVar) == 1
+            varData = this.VariableValues{ixVar};
+            out = varData(ixRow,:);
+          else
+            if islogical (ixVar); ixVar2 = find (ixVar); else; ixVar2 = ixVar; endif
+            nExVars = numel (ixVar2);
+            exVarVals = cell(1, nExVars);
+            for iExVar = 1:nExVars
+              tmp = this.VariableValues{ixVar2(iExVar)};
+              exVarVals{iExVar} = tmp(ixRow,:);
+            endfor
+            out = cat (2, exVarVals{:});
+            # error(['table.subsref: {}-indexing of table requires one of the inputs to be scalar, but ' ...
+            #   'ixRow was %s %s and ixVar was %s %s'], ...
+            #   size2str (size (ixRow)), class (ixRow), size2str (size (ixVar)), class (ixVar));
           endif
-          #FIXME: I'm not sure how to handle the signature here yet
-          if (numel (ixVar) > 1)
-            error ('table.subsref: {}-indexing across multiple variables is currently unimplemented');
-          endif
-          if (numel (ixRow) > 1)
-            error ('table.subsref: {}-indexing across multiple rows is currently unimplemented');
-          endif
-          varData = this.VariableValues{ixVar};
-          out = varData(ixRow);
         case '.'
           name = s.subs;
+          if isstring (name)
+            name = char (name);
+          endif
           if (! ischar (name))
-            error ('table.subsref: .-reference arguments must be char');
+            error ('table.subsref: .-reference arguments must be char or string');
           endif
           # Special cases for special properties and other attribute access
           # TODO: should variable names or dimension names take precedence?
@@ -885,6 +895,9 @@ classdef table
     function out = subsasgn (this, s, val)
       #SUBSASGN Subscripted assignment
 
+      # Debugging display
+      # fprintf('subsasgn:\n'); this, s, val
+
       # Chained subscripts
       chain_s = s(2:end);
       s = s(1);
@@ -898,31 +911,51 @@ classdef table
       out = this;
       switch (s.type)
         case '()'
-          if (isnumeric (rhs) && isequal (size (rhs), [0 0]))
-            # Special `x(ix) = []` deletion form
-            if (numel (s.subs) != 2)
-              error ('table.subsasgn: table subscripting must use exactly 2 subscripts; got %d subscripts', ...
-              numel (s.subs))
+          if (numel (s.subs) != 2)
+            error ('table.subsasgn: table subscripting must use exactly 2 subscripts; got %d subscripts', ...
+            numel (s.subs))
+          endif
+          if (isnumeric (rhs) && isempty (rhs))
+            # Special `x(ixR,ixC) = []` deletion form
+            [isRowColon, isVarColon] = deal (isequal (s.subs{1}, ':'), isequal (s.subs{2}, ':'));
+            if (isRowColon)
+              # Variable deletion form
+              out = removevars (this, s.subs{2});
+            elseif (isVarColon)
+              # Row deletion form
+              out = subsetrows_impl(this, s.subs{1}, true);
             endif
-            if (! isequal (s.subs{2}, ":"))
-              error ('table.subsasgn: in `tbl(ixR,ixC) = []`, ixC must be ":"')
-            endif
-            out = subsetrows_impl(this, s.subs{1}, true);
           else
-            error ('table.subsasgn: Assignment using ()-indexing is not yet implemented for table');
+            error ('table.subsasgn: assignment using ()-indexing is not yet implemented for table');
           end
         case '{}'
           if (numel (s.subs) != 2)
             error ('table.subsasgn: {}-indexing of table requires exactly two arguments');
           endif
+          # General case
           [ixRow, ixVar] = resolveRowVarRefs (this, s.subs{1}, s.subs{2});
-          if (! isscalar (ixVar))
-            error ('table.subsasgn: {}-indexing must reference a single variable; got %d', ...
-              numel (ixVar));
+          if (isscalar (ixVar))
+            varData = this.VariableValues{ixVar};
+            varData(ixRow,:) = rhs;
+            out.VariableValues{ixVar} = varData;
+          elseif isempty (ixVar) || (islogical (ixVar) && ! any (ixVar))
+            # no-op
+          else
+            if islogical (ixVar); ixVar2 = find (ixVar); else; ixVar2 = ixVar; end
+            newVarVals = out.VariableValues;
+            ixRhsColStart = 1;
+            for iVar = 1:numel (ixVar2)
+              ixV = ixVar2(iVar);
+              varData = this.VariableValues{ixV};
+              # Each variable takes as many RHS columns as it is wide itself
+              nColsThisVar = size (varData, 2);
+              ixRhsCols = ixRhsColStart:(ixRhsColStart+nColsThisVar-1);
+              varData(ixRow,:) = rhs(:,ixRhsCols);
+              newVarVals{ixV} = varData;
+              ixRhsColStart = ixRhsColStart + nColsThisVar;
+            endfor
+            out.VariableValues = newVarVals;
           endif
-          varData = this.VariableValues{ixVar};
-          varData(ixRow) = rhs;
-          out.VariableValues{ixVar} = varData;
         case '.'
           if (! ischar (s.subs))
             error ('table.subsasgn: .-index argument must be char; got a %s', ...
@@ -3489,6 +3522,9 @@ function [ixRow, ixVar] = resolveRowVarRefs (tbl, rowRef, varRef)
   #RESOLVEROWVARREFS Internal implementation method
   #
   # This resolves both row and variable refs to indexes.
+  #
+  # Returns ixRow as a *row* vector. (For readability, especially in the debugger.)
+  # In places where orientation matters, the caller must transpose it.
   if (isnumeric (rowRef) || islogical (rowRef))
     ixRow = rowRef;
   elseif (iscellstr (rowRef))
@@ -3504,6 +3540,7 @@ function [ixRow, ixVar] = resolveRowVarRefs (tbl, rowRef, varRef)
   else
     error ('table: Unsupported row indexing operand type: %s', class (rowRef));
   endif
+  ixRow = ixRow(:)'';
 
   ixVar = resolveVarRef (tbl, varRef);
 endfunction
