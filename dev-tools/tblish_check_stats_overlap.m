@@ -23,7 +23,7 @@ stats_inst = fullfile (stats_pkg_path, 'inst');
 stats_src_paths = {stats_inst};
 for i = 1:numel (stats_src_subdirs)
   stats_src_paths{end+1} = fullfile (stats_inst, stats_src_subdirs{i});
-end
+endfor
 
 # Announce
 
@@ -47,11 +47,11 @@ emit ('Found %d duplicate functions', numel (dupe_fcns))
 emit ('  dupes: %s', strjoin (dupe_fcns, ', '))
 emit ('')
 
-end
+endfunction
 
 function emit (fmt, varargin)
   fprintf ([fmt '\n'], varargin{:});
-end
+endfunction
 
 function out = list_mfiles_in_dir (f)
   files = readdir (f);
@@ -59,6 +59,7 @@ function out = list_mfiles_in_dir (f)
 endfunction
 
 function out = list_fcns_in_dirs (dirs)
+  # Lists functions (or classes) implied by M-files in a set of directories.
   dirs = cellstr (dirs);
   out = {};
   for i = 1:numel (dirs)
