@@ -3208,12 +3208,18 @@ classdef table
       out.VariableNames(loc) = renameMap(:,2);
     endfunction
 
-    # Prohibited operations
-
-    function out = shiftdims (this, varargin)
-      #SHIFTDIMS Not supported
-      error ('Function shiftdims is not supported for tables');
+    function [out, nshifts] = shiftdim (this, n)
+      #SHIFTDIM Shift dimensions (only minimally supported)
+      if isequal (mod (n, 2), 0)
+        out = this;
+        nshifts = 0;
+        return
+      endif
+      error (['Function shiftdim for table arrays is only supported for values of ' ...
+        'N that are multiples of 2']);
     endfunction
+
+    # Prohibited operations
 
     function out = reshape (this, varargin)
       #RESHAPE Not supported
