@@ -2935,31 +2935,6 @@ classdef table
         'N that are multiples of 2']);
     endfunction
 
-    # Prohibited operations
-
-    function out = reshape (this, varargin)
-      #RESHAPE Not supported
-      #
-      # FIXME: This should actually be allowed when the input is the same as the original
-      # size.
-      error ('Function reshape is not supported for tables');
-    endfunction
-
-    function out = resize (this, varargin)
-      #RESIZE Not supported
-      error ('Function resize is not supported for tables');
-    endfunction
-
-    function out = vec (this, varargin)
-      #VEC Not supported
-      #
-      # FIXME: This should probably be supported for degenerate operations, i.e.
-      # when the input is already one-var so it's a column vector already. Maybe even
-      # allow its use to reshape a multi-var or multi-column table to a single
-      # variable with a single column?
-      error ('Function vec is not (yet) supported for tables');
-    endfunction
-
   endmethods
 
   methods (Access = private)
