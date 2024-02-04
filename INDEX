@@ -6,6 +6,9 @@ Tables
  struct2table
  tableOuterFillValue
  vartype
+ istable
+ istimetable
+ istabular
 Strings and Categoricals
  string
  NaS

@@ -1,4 +1,4 @@
-## Copyright (C) 2019, 2023, 2024 Andrew Janke <floss@apjanke.net>
+## Copyright (C) 2024 Andrew Janke <floss@apjanke.net>
 ##
 ## This file is part of Tablicious.
 ##
@@ -17,16 +17,16 @@
 ## <https://www.gnu.org/licenses/>.
 
 ## -*- texinfo -*-
-## @deftypefn {Function} {@var{out} =} istable (@var{x})
+## @deftypefn {Function} {@var{out} =} istimetable (@var{x})
 ##
-## True if input is a @code{table} array or other table-like type, false
+## True if input is a @code{timetable} array or other timetable-like type, false
 ## otherwise.
 ##
-## Respects @code{istable} override methods on user-defined classes, even if
+## Respects @code{istimetable} override methods on user-defined classes, even if
 ## they do not inherit from @code{table} or were known to Tablicious at
 ## authoring time.
 ##
-## User-defined classes should only override @code{istable} to return true if
+## User-defined classes should only override @code{istimetable} to return true if
 ## they conform to the @code{table} public interface. That interface is not
 ## well-defined or documented yet, so maybe you don't want to do that yet.
 ##
@@ -36,25 +36,25 @@
 
 # Developers' note: Other packages that wish to support tables and be compatible
 # with Tablicious, but not take a mandatory dependency on Tablicious, may want
-# to use istable() to test for table inputs. This function is simple, well-defined,
+# to use istimetable() to test for table inputs. This function is simple, well-defined,
 # and likely stable enough for other packages to just copy-paste an exact copy
-# of it in to their own `inst/` directory, so there will be an istable() available
+# of it in to their own `inst/` directory, so there will be an istimetable() available
 # whether or not Tablicious is installed and loaded.
 
-function out = istable (x)
-  #ISTABLE True for table arrays or table-like arrays.
-  if (isa (x, 'table'))
-    # Main case: table arrays are tables.
+function out = istimetable (x)
+  #ISTIMETABLE True for table arrays or timetable-like arrays.
+  if (isa (x, 'timetable'))
+    # Main case: timetable arrays are timetables.
     # This is actually redundant with the generic isobject/method test below,
     # but written separately for readability.
     out = true;
   elseif (isobject (x))
-    # Respect istable methods on classes. Normally, those methods would "grab"
+    # Respect istimetable methods on classes. Normally, those methods would "grab"
     # this call. We check for it here so that these method overrides are respected
-    # even if this istable function was called through a function handle or
+    # even if this istimetable function was called through a function handle or
     # similar mechanism, bypassing the regular method dispatch mechanism.
-    if (ismember ('istable', methods (x)))
-      out = istable (x);
+    if (ismember ('istimetable', methods (x)))
+      out = istimetable (x);
     else
       out = false;
     endif

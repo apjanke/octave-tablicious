@@ -17,18 +17,14 @@
 ## <https://www.gnu.org/licenses/>.
 
 ## -*- texinfo -*-
-## @deftypefn {Function} {@var{out} =} istable (@var{x})
+## @deftypefn {Function} {@var{out} =} istabular (@var{x})
 ##
-## True if input is a @code{table} array or other table-like type, false
-## otherwise.
+## True if input is eitehr a @code{table} or @code{timetable} array, or an object
+## like them.
 ##
-## Respects @code{istable} override methods on user-defined classes, even if
-## they do not inherit from @code{table} or were known to Tablicious at
-## authoring time.
-##
-## User-defined classes should only override @code{istable} to return true if
-## they conform to the @code{table} public interface. That interface is not
-## well-defined or documented yet, so maybe you don't want to do that yet.
+## Respects @code{istable} and @code{istimetable} override methods on user-defined
+## classes, even if they do not inherit from @code{table} or were known to Tablicious
+## at authoring time.
 ##
 ## Returns a scalar logical.
 ##
@@ -41,24 +37,7 @@
 # of it in to their own `inst/` directory, so there will be an istable() available
 # whether or not Tablicious is installed and loaded.
 
-function out = istable (x)
-  #ISTABLE True for table arrays or table-like arrays.
-  if (isa (x, 'table'))
-    # Main case: table arrays are tables.
-    # This is actually redundant with the generic isobject/method test below,
-    # but written separately for readability.
-    out = true;
-  elseif (isobject (x))
-    # Respect istable methods on classes. Normally, those methods would "grab"
-    # this call. We check for it here so that these method overrides are respected
-    # even if this istable function was called through a function handle or
-    # similar mechanism, bypassing the regular method dispatch mechanism.
-    if (ismember ('istable', methods (x)))
-      out = istable (x);
-    else
-      out = false;
-    endif
-  else
-    out = false;
-  endif
+function out = istabular (x)
+  #ISTABULAR True for table-like and timetable-like arrays.
+  out = istable (x) || istimetable (x);
 endfunction
