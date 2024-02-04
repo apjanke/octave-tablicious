@@ -581,27 +581,6 @@ classdef table
     endfunction
 
     ## -*- texinfo -*-
-    ## @node table.sizeof
-    ## @deftypefn {Method} {@var{out} =} sizeof (@var{obj})
-    ##
-    ## Approximate size of array in bytes. For tables, this returns the sume
-    ## of @code{sizeof} for all of its variables’ arrays, plus the size of the
-    ## VariableNames and any other metadata stored in @var{obj}.
-    ##
-    ## This is currently unimplemented.
-    ##
-    ## @end deftypefn
-    function out = sizeof (this)
-      total_size = 0;
-      total_size += sizeof(this.VariableNames);
-      for i = 1:width(this)
-        total_size += sizeof(this.VariableValues{i});
-      endfor
-      total_size += sizeof(this.RowNames);
-      out = total_size;
-    endfunction
-
-    ## -*- texinfo -*-
     ## @node table.height
     ## @deftypefn {Method} {@var{out} =} height (@var{obj})
     ##

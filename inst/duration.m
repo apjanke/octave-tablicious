@@ -158,19 +158,6 @@ classdef duration
     endfunction
 
     ## -*- texinfo -*-
-    ## @node duration.sizeof
-    ## @deftypefn {Method} {@var{out} =} sizeof (@var{obj})
-    ##
-    ## Size of array in bytes.
-    ##
-    ## @end deftypefn
-    function out = sizeof (this)
-      out = 0;
-      out += sizeof (this.days);
-      out += sizeof (this.Format);
-    endfunction
-
-    ## -*- texinfo -*-
     ## @node duration.years
     ## @deftypefn {Method} {@var{out} =} years (@var{obj})
     ##

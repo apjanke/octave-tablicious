@@ -183,23 +183,6 @@ classdef calendarDuration
 
     # Structure
 
-    ## -*- texinfo -*-
-    ## @node calendarDuration.sizeof
-    ## @deftypefn {Method} {@var{out} =} sizeof (@var{obj})
-    ##
-    ## Size of array in bytes.
-    ##
-    ## @end deftypefn
-    function out = sizeof (this)
-      out = 0;
-      out += sizeof (this.Sign);
-      out += sizeof (this.Years);
-      out += sizeof (this.Months);
-      out += sizeof (this.Days);
-      out += sizeof (this.Time);
-      out += sizeof (this.isNaN);
-    endfunction
-
     function [keysA, keysB] = proxyKeys (a, b)
       #PROXYKEYS Proxy key values for sorting and set operations
       keysA = [a.Sign(:) a.Years(:) a.Months(:) a.Days(:) a.Time(:) double (a.IsNaN(:))];
