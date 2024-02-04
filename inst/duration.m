@@ -667,6 +667,11 @@ classdef duration
       out = isnan (this.days);
     endfunction
 
+    function out = ismissing (this)
+      #ISMISSING True for missing values.
+      out = isnan (this);
+    endfunction
+
     function this = reshape (this, varargin)
       #RESHAPE Reshape array.
       this.days = reshape (this.days, varargin{:});
@@ -967,6 +972,7 @@ classdef duration
   endmethods
 
   methods (Static)
+
     function varargout = promote (varargin)
       #PROMOTE Promote inputs to be compatible
       args = varargin;
@@ -984,10 +990,11 @@ classdef duration
       varargout = args;
     endfunction
   endmethods
+
 endclassdef
 
 
-#!test duration;
-#!test duration (1, 2, 3);
-#!test assert (duration (1, 2, 3) < duration (1, 2, 4))
+%!test duration;
+%!test duration (1, 2, 3);
+%!test assert (duration (1, 2, 3) < duration (1, 2, 4))
 

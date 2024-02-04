@@ -217,7 +217,7 @@ classdef string
           this.strs = arrayfun (@(x) {datestr(x)}, in);
         endif
       elseif (isa (in, 'duration') || isa (in, 'calendarDuration'))
-        tfNat = isnat (in);
+        tfNat = ismissing (in);
         this.tfMissing = tfNat;
         if (any (tfNat(:)))
           strs = repmat ({''}, size (in));
@@ -730,6 +730,11 @@ classdef string
     function out = eq (A, B)
       #EQ Equals.
       out = strcmp (A, B);
+    endfunction
+
+    function out = ne (A, B)
+      #NE Not equal.
+      out = ! eq (A, B);
     endfunction
 
     ## -*- texinfo -*-
@@ -1333,29 +1338,29 @@ function out = promotec (args)
 endfunction
 
 ## Test string constructor
-#!test
-#! str = string (["a";"b";"c"]);
-#! assert (cellstr (str), {"a";"b";"c"})
-#!test
-#! str = string ({"a";"b";"c"});
-#! assert (cellstr (str), {"a";"b";"c"})
-#!test
-#! str = string ({"a";"";"c"});
-#! tfM = ismissing (str);
-#! assert (cell (str), {"a";"";"c"})
-#! assert (tfM, logical ([0; 0; 0]))
-#!test
-#! str = string ([1 2 3 NaN 5]);
-#! tfM = ismissing (str);
-#! assert (cellstr (str), {"1", "2", "3", "", "5"})
-#! assert (tfM, logical ([0 0 0 0 0]))
-#!test
-#! str = string (duration ([3,4,5; NaN,NaN,NaN]));
-#! tfM = ismissing (str);
-#! assert (cellstr (str), {"03:04:05"; ""})
-#! assert (tfM, logical ([0; 1]))
-#!test
-#! str = string (calendarDuration ([3,4,5; NaN,NaN,NaN]));
-#! tfM = ismissing (str);
-#! assert (cellstr (str), {"3y 4mo 5d"; ""})
-#! assert (tfM, logical ([0; 1]))
+%!test
+%! str = string (["a";"b";"c"]);
+%! assert (cellstr (str), {"a";"b";"c"})
+%!test
+%! str = string ({"a";"b";"c"});
+%! assert (cellstr (str), {"a";"b";"c"})
+%!test
+%! str = string ({"a";"";"c"});
+%! tfM = ismissing (str);
+%! assert (cell (str), {"a";"";"c"})
+%! assert (tfM, logical ([0; 0; 0]))
+%!test
+%! str = string ([1 2 3 NaN 5]);
+%! tfM = ismissing (str);
+%! assert (cellstr (str), {"1", "2", "3", "", "5"})
+%! assert (tfM, logical ([0 0 0 1 0]))
+%!test
+%! str = string (duration ([3,4,5; NaN,NaN,NaN]));
+%! tfM = ismissing (str);
+%! assert (cellstr (str), {"03:04:05"; ""})
+%! assert (tfM, logical ([0; 1]))
+%!test
+%! str = string (calendarDuration ([3,4,5; NaN,NaN,NaN]));
+%! tfM = ismissing (str);
+%! assert (cellstr (str), {"3y 4mo 5d"; ""})
+%! assert (tfM, logical ([0; 1]))

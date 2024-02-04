@@ -217,20 +217,6 @@ classdef calendarDuration
     # Arithmetic
 
     ## -*- texinfo -*-
-    ## @node calendarDuration.isnat
-    ## @deftypefn {Method} {@var{out} =} isnat (@var{obj})
-    ##
-    ## True if input elements are NaT.
-    ##
-    ## Returns logical array the same size as @var{obj}.
-    ##
-    ## @end deftypefn
-    function out = isnat (this)
-      #ISNAT True for Not-a-Time.
-      out = isnan (this);
-    endfunction
-
-    ## -*- texinfo -*-
     ## @node calendarDuration.uminus
     ## @deftypefn {Method} {@var{out} =} uminus (@var{obj})
     ##
@@ -371,8 +357,8 @@ classdef calendarDuration
 
     function out = dispstrScalar (this)
       tblish.internal.chrono.mustBeScalar (this);
-      if (isnat (this))
-        out = 'NaT';
+      if (ismissing (this))
+        out = 'NaN';
         return
       endif
       els = {};
@@ -505,8 +491,10 @@ classdef calendarDuration
     ## @node calendarDuration.isnan
     ## @deftypefn {Method} {@var{out} =} isnan (@var{obj})
     ##
-    ## True if input elements are NaT. This is just an alias for @code{isnat},
-    ## provided for compatibility and polymorphic programming purposes.
+    ## True if input elements are NaN.
+    ##
+    ## This is equivalent to @code{ismissing}, and is provided for compatibility
+    ## and polymorphic programming purposes.
     ##
     ## Returns logical array the same size as @var{obj}.
     ##
@@ -519,6 +507,21 @@ classdef calendarDuration
               | isnan (this.Time) ...
               | isnan (this.Years);
       out (this.IsNaN) = true;
+    endfunction
+
+    ## -*- texinfo -*-
+    ## @node calendarDuration.ismissing
+    ## @deftypefn {Method} {@var{out} =} ismissing (@var{obj})
+    ##
+    ## True if input elements are missing.
+    ##
+    ## This is equivalent to @code{ismissing}.
+    ##
+    ## Returns logical array the same size as @var{obj}.
+    ##
+    ## @end deftypefn
+    function out = ismissing (this)
+      out = isnan (this);
     endfunction
 
     function this = reshape (this, varargin)

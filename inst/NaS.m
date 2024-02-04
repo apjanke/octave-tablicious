@@ -47,3 +47,12 @@ function out = NaS (sz)
     out = string.missing (sz);
   endif
 endfunction
+
+%!test
+%! str = NaS;
+%! assert (ismissing (str))
+%! assert (! (str == ""))
+%! assert (str != "")
+%! assert (! (str == str))
+%! assert (str != str)
+

@@ -1596,12 +1596,12 @@ classdef datetime
 
 endclassdef
 
-#!test datetime;
-#!test datetime ('2011-03-07');
-#!test datetime ('2011-03-07 12:34:56', 'TimeZone','America/New_York');
-#!test
-#!  d = datetime;
-#!  d.TimeZone = 'America/New_York';
-#!  d2 = d;
-#!  d2.TimeZone = 'America/Chicago';
-#!  assert (abs(d.dnums - d2.dnums), (1/24), .0001)
+%!test datetime;
+%!test datetime ('2011-03-07');
+%!test datetime ('2011-03-07 12:34:56', 'TimeZone', 'America/New_York');
+%!test
+%!  d = datetime;
+%!  d.TimeZone = 'America/New_York';
+%!  d2 = d;
+%!  d2.TimeZone = 'America/Chicago';
+%!  assert (abs(d.dnums - d2.dnums), (1/24), .0001)
