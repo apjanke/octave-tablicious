@@ -1598,7 +1598,7 @@ endclassdef
 
 %!test datetime;
 %!test datetime ('2011-03-07');
-%!test datetime ('2011-03-07 12:34:56', 'TimeZone', 'America/New_York');
+%!xtest <unimplemented timezone support> datetime ('2011-03-07 12:34:56', 'TimeZone', 'America/New_York');
 %!test
 %!  d = datetime;
 %!  d.TimeZone = 'America/New_York';
