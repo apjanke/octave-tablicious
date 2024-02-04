@@ -211,12 +211,17 @@ local: src/__tblish_time_binsearch__.cc octave_tablicious_make_local.m
 # Always make docs from clean, bc oure modification tracking isn't quite adequate,
 # maybe due to transitive dependencies on original source files that aren't captured
 # in doc/Makefile?
-doc:
-	cd doc && make clean && make all
+doc: doc-clean
+	cd doc && make all
 
-gh-pages:
-	rm -rf docs/devel/user-guide
+doc-clean:
+	cd doc && make clean
+
+docs-clean:
+	rm -rf docs/devl/user-guide
 	mkdir -p docs/devel/user-guide
+
+gh-pages: docs-clean
 	cp -R doc/tablicious.pdf doc/tablicious.html doc/html docs/devel/user-guide
 
 ##

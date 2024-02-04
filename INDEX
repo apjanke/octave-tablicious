@@ -9,6 +9,7 @@ Tables
  istable
  istimetable
  istabular
+ tblish.evalWithTableVars
 Strings and Categoricals
  string
  NaS

@@ -2979,39 +2979,6 @@ classdef table
     endfunction
 
     ## -*- texinfo -*-
-    ## @node table.evalWithVars
-    ## @deftypefn {Method} {@var{out} =} evalWithVars (@var{obj}, @var{expr})
-    ##
-    ## Evaluate an expression against table’s variables.
-    ##
-    ## Evaluates the M-code expression @var{expr} in a workspace where all of @var{obj}’s
-    ## variables have been assigned to workspace variables.
-    ##
-    ## @var{expr} is a charvec containing an Octave expression.
-    ##
-    ## As an implementation detail, the workspace will also contain some variables
-    ## that are prefixed and suffixed with "__". So try to avoid those in your
-    ## table variable names.
-    ##
-    ## Returns the result of the evaluation.
-    ##
-    ## Examples:
-    ##
-    ## @example
-    ## [s,p,sp] = tblish.examples.SpDb
-    ## tmp = join (sp, p);
-    ## shipment_weight = evalWithVars (tmp, "Qty .* Weight")
-    ## @end example
-    ##
-    ## @end deftypefn
-    function out = evalWithVars (this, expr)
-      if (! ischar (expr))
-        error ('table.evalWithVars: expr must be char; got a %s', class (expr));
-      endif
-      out = __eval_expr_with_table_vars_in_workspace__ (this, expr);
-    endfunction
-
-    ## -*- texinfo -*-
     ## @node table.restrict
     ## @deftypefn {Method} {@var{out} =} restrict (@var{obj}, @var{expr})
     ## @deftypefnx {Method} {@var{out} =} restrict (@var{obj}, @var{ix})
@@ -3026,9 +2993,9 @@ classdef table
     ##
     ## If the argument is a char, then it is evaulated as an M-code expression,
     ## with all of this’ variables available as workspace variables, as with
-    ## @code{evalWithVars}. The output of expr must be a numeric or logical index
+    ## @code{tblish.evalWithTableVars}. The output of expr must be a numeric or logical index
     ## vector (This form is a shorthand for
-    ## @code{out = subsetrows (this, evalWithVars (this, expr))}.)
+    ## @code{out = subsetrows (this, tblish.evalWithTableVars (this, expr))}.)
     ##
     ## TODO: Decide whether to name this to "where" to be more like SQL instead
     ## of relational algebra.
@@ -3042,7 +3009,7 @@ classdef table
     ## @end deftypefn
     function out = restrict (this, arg)
       if (ischar (arg))
-        rowIx = evalWithVars (this, arg);
+        rowIx = tblish.evalWithTableVars (this, arg);
         out = subsetrows (this, rowIx);
       elseif (isnumeric (arg) || islogical (arg))
         out = subsetrows (this, arg);
