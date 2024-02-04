@@ -642,18 +642,6 @@ classdef table
     endfunction
 
     ## -*- texinfo -*-
-    ## @node table.rows
-    ## @deftypefn {Method} {@var{out} =} rows (@var{obj})
-    ##
-    ## Number of rows in table.
-    ##
-    ## @end deftypefn
-    function out = rows (this)
-      #ROWS Number of rows in table
-      out = height (this);
-    endfunction
-
-    ## -*- texinfo -*-
     ## @node table.width
     ## @deftypefn {Method} {@var{out} =} width (@var{obj})
     ##
@@ -669,24 +657,6 @@ classdef table
       # Note that this is not the sum of the number of columns in each variable.
       # It is just the number of variables.
       out = numel (this.VariableNames);
-    endfunction
-
-    ## -*- texinfo -*-
-    ## @node table.columns
-    ## @deftypefn {Method} {@var{out} =} columns (@var{obj})
-    ##
-    ## Number of variables in table.
-    ##
-    ## Note that this is not the sum of the number of columns in each variable.
-    ## It is just the number of variables.
-    ##
-    ## @end deftypefn
-    function out = columns (this)
-      #COLUMNS Number of columns (variables) in table
-      #
-      # Note that this is not the sum of the number of columns in each variable.
-      # It is just the number of variables.
-      out = width (this);
     endfunction
 
     ## -*- texinfo -*-
@@ -3637,6 +3607,45 @@ classdef table
         out.info = cell (0, 2);
       endif
     endfunction
+  endmethods
+
+  methods (Hidden = true)
+
+    ## rows() and columns() are old deprecated functions, introduced (I think) before height()
+    ## and width() were introduced to the standard interface. I'm removing them to simplify
+    ## the interface and keep it more consistent with the Matlab table interface, but leaving
+    ## them as deprecated back-compatibility things for a release, so existing Tablicious
+    ## users that are already using rows() and columns() don't get a hard breaking change.
+    ## Deprecation warning was added in 0.4.0; targeting removal in 0.5.0.
+
+    function out = rows (this)
+      persistent hasWarned
+      if isempty (hasWarned)
+        hasWarned = false;
+      endif
+      if ! hasWarned
+        warning ("Tablicious:deprecated-function", ["table.rows() is deprecated and replaced by height(table). " ...
+          "table.rows() is deprecated as of Tablicious 0.4.0, and targeted for removal in 0.5.0. " ...
+          "Please switch to using height(tbl)."])
+        hasWarned = true;
+      endif
+      out = height (this);
+    endfunction
+
+    function out = columns (this)
+      persistent hasWarned
+      if isempty (hasWarned)
+        hasWarned = false;
+      endif
+      if ! hasWarned
+        warning ("Tablicious:deprecated-function", ["table.columns() is deprecated and replaced by width(table). " ...
+          "table.columns() is deprecated as of Tablicious 0.4.0, and targeted for removal in 0.5.0. " ...
+          "Please switch to using width(tbl)."])
+        hasWarned = true;
+      endif
+      out = width (this);
+    endfunction
+
   endmethods
 
 endclassdef
