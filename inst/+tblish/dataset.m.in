@@ -13,15 +13,23 @@
 ## You should have received a copy of the GNU General Public License
 ## along with this program; If not, see <http://www.gnu.org/licenses/>.
 
+## NOTE: The dataset.m.in file is a template for generating the dataset.m file.
+## The dataset.m file is auto-generated from the dataset.m.in file, and will be
+## completely overwritten when it is regenerated. All changes made directly to
+## dataset.m will be lost. To modify the dataset.m file correctly, you must modify
+## the dataset.m.in file and/or the generator tool instead of modifying it
+## directly. The generator tool is tblish.internal.generate_datasets_list, in
+## the inst/ directory.
+
 ## -*- texinfo -*-
-## @deftp {Class} dataset
+## @deftp {Class} tblish.dataset
 ##
-## The @code{dataset} class provides convenient access to the various
+## The @code{tblish.dataset} class provides convenient access to the various
 ## datasets included with Tablicious.
 ##
 ## This class just contains a bunch of static methods, each of which loads
-## the dataset of that name. It’s provided so you can use tab completion
-## on the dataset list.
+## the dataset of that name. It is provided as a convenience so you can use tab
+## completion or other run-time introspection on the dataset list.
 ##
 ## @end deftp
 classdef dataset

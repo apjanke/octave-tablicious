@@ -14,8 +14,7 @@
 ## along with this program; If not, see <http://www.gnu.org/licenses/>.
 
 ## -*- texinfo -*-
-## @node tblish.evalWithTableVars
-## @deftypefn {Function} {@var{out} =} evalWithTableVars (@var{tbl}, @var{expr})
+## @deftypefn {Function} {@var{out} =} tblish.evalWithTableVars (@var{tbl}, @var{expr})
 ##
 ## Evaluate an expression against a table array’s variables.
 ##
@@ -37,6 +36,8 @@
 ## tmp = join (sp, p);
 ## shipment_weight = tblish.evalWithTableVars (tmp, "Qty .* Weight")
 ## @end example
+##
+## See also: @ref{table.restrict}
 ##
 ## @end deftypefn
 function out = evalWithTableVars (this, expr)

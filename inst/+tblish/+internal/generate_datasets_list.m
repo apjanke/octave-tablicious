@@ -38,7 +38,7 @@ function generate_datasets_list ()
     descr_comment = strjoin (descr_comment_lines, "\n");
 
     p ("    ## -*- texinfo -*-");
-    p ("    ## @node dataset.%s", name);
+    p ("    ## @node tblish.dataset.%s", name);
     p ("    ## @deftypefn {Static Method} {@var{out} =} %s ()", name);
     p ("    ##");
     p ("    ## %s", dset.summary);

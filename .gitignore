@@ -22,6 +22,7 @@ cmake-build-debug
 # Editor and IDE config and droppings
 !.idea
 .idea/workspace.xml
+.vscode
 
 # GitHub Pages deployment stuff
 /docs/Gemfile.lock

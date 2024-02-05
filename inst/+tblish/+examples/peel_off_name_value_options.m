@@ -16,7 +16,7 @@
 function [opts, remaining_args] = peel_off_name_value_options (args, known_opts, defaults)
   #PEEL_OFF_NAME_VALUE_OPTIONS Peel off name-value options from argins
   #
-  # [opts, remaining_args] = peel_off_name_value_options (args, known_opts, defaults)
+  # [opts, remaining_args] = tblish.examples.peel_off_name_value_options (args, known_opts, defaults)
   #
   # Peels off recognized name-value options from the end of an argument array.
   #

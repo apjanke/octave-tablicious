@@ -10,6 +10,7 @@ Tables
  istimetable
  istabular
  tblish.evalWithTableVars
+ tblish.table.grpstats
 Strings and Categoricals
  string
  NaS

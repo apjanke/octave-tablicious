@@ -14,16 +14,27 @@
 ## along with this program; If not, see <http://www.gnu.org/licenses/>.
 
 ## -*- texinfo -*-
-## @deftypefn {Function File} {@var{x} =} mustBeInteger (@var{x}, @var{label})
+## @deftypefn {Function} {@var{x} =} mustBeInteger (@var{x}, @var{label})
 ##
 ## Requires that input is integer-valued (but not necessarily integer-typed).
 ##
 ## Raises an error if any element of the input @var{x} is not a finite,
-## real, integer-valued numeric value, as determined by various checks.
+## real, integer-valued numeric value, as determined by various checks. This does
+## not require that the input be of an integer numeric type like @code{int32}, just
+## that it contains only integer-valued elements, like @code{3.0}. Complex values
+## are not considered to be integer-valued, even if the coefficient of their @code{i}
+## imaginary component is itself integer-valued.
 ##
 ## @var{label} is an optional input that determines how the input will be described in
 ## error messages. If not supplied, @code{inputname (1)} is used, and if that is
-## empty, it falls back to "input".
+## empty, it falls back to "input". The @var{label} argument is a Tablicious extension,
+## and is not part of the standard interface of this function.
+##
+## This definition of @code{mustBeInteger} is supplied by Tablicious, and is a
+## compatibility shim for versions of Octave which do not provide one. It is only loaded
+## in Octaves older than 6.0.0.
+##
+## @seealso{isinteger, islogical, isfinite, isreal}
 ##
 ## @end deftypefn
 

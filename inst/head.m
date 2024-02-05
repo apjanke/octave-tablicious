@@ -14,7 +14,6 @@
 ## along with this program; If not, see <http://www.gnu.org/licenses/>.
 
 ## -*- texinfo -*-
-## @node head
 ## @deftypefn {Function} {@var{out} =} head (@var{A})
 ## @deftypefnx {Function} {@var{out} =} head (@var{A}, @var{k})
 ##

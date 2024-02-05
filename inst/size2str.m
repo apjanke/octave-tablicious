@@ -14,7 +14,6 @@
 ## along with this program; If not, see <http://www.gnu.org/licenses/>.
 
 ## -*- texinfo -*-
-## @node size2str
 ## @deftypefn {Function} {@var{out} =} size2str (@var{sz})
 ##
 ## Format an array size for display.

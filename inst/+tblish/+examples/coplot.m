@@ -14,13 +14,13 @@
 ## along with this program; If not, see <http://www.gnu.org/licenses/>.
 
 ## -*- texinfo -*-
-## @deftypefn {Function} {[@var{fig}, @var{hax}] =} coplot (@var{tbl}, @var{xvar}, @var{yvar}, @var{gvar})
-## @deftypefnx {Function} {[@var{fig}, @var{hax}] =} coplot (@var{fig}, @var{tbl}, @var{xvar}, @var{yvar}, @var{gvar})
-## @deftypefnx {Function} {[@var{fig}, @var{hax}] =} coplot (@dots{}, @var{OptionName}, @var{OptionValue}, @dots{})
+## @deftypefn {Function} {[@var{fig}, @var{hax}] =} tblish.examples.coplot (@var{tbl}, @var{xvar}, @var{yvar}, @var{gvar})
+## @deftypefnx {Function} {[@var{fig}, @var{hax}] =} tblish.examples.coplot (@var{fig}, @var{tbl}, @var{xvar}, @var{yvar}, @var{gvar})
+## @deftypefnx {Function} {[@var{fig}, @var{hax}] =} tblish.examples.coplot (@dots{}, @var{OptionName}, @var{OptionValue}, @dots{})
 ##
 ## Conditioning plot.
 ##
-## @code{coplot} produces conditioning plots. This is a kind of plot that breaks up the
+## @code{tblish.examples.coplot} produces conditioning plots. This is a kind of plot that breaks up the
 ## data into groups based on one or two grouping variables, and plots each group of data
 ## in a separate subplot.
 ##

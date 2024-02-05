@@ -19,6 +19,9 @@ indent_size = 2
 [*.cc]
 indent_size = 2
 
+[*.{pl,pm}]
+indent_size = 4
+
 [Makefile]
 indent_style = tab
 indent_size = 4

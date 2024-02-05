@@ -25,6 +25,13 @@
 # Andrew Janke 2019, 2024
 
 # OctTexiDoc module: common code for mk*.pl in Tablicious Octave package
+#
+# Note: In Octave, "package" can mean two different things: either an Octave Forge style
+# package of software managed by the `pkg` command (like the Tablicious library), or a
+# namespace in M-code defined by placing source code files in "+<pkgname>" directories
+# (like the +tblish namespace within Tablicious). For clarity, this code uses "package"
+# to mean a pkg-managed software package, and "namespace" to mean the "+<pkgname>"
+# namespacing mechanism.
 
 use strict;
 
@@ -36,7 +43,31 @@ use Moose;
 
 use File::Basename;
 
-# Docs: top-level thing index
+# auto_namespace: whether to auto-prepend namespaces to node names
+#
+# Modes:
+# 'yes' - DocSet will automatically detect the namespace of a source file
+#   based on its location in a "+namespace" directory hierarchy, and prefix the
+#   generated node names with that namespace, prepending it to the identifiers found
+#   in the texinfo items like @deftp and @deftypefn found in that file.
+# 'no' - the identifiers in those texinfo items are used unmodified as the node names,
+#   and namespaces inferred from dir structure are ignored entirely.
+# Additional modes may be added later, like 'auto', to add namespaces only if it
+# looks like the item names in the texinfo look like they don't include  it already.
+has 'auto_namespace' => ( is => 'rw', isa => 'Str', default => 'no' );
+
+# include_internal: whether to include internal-use items.
+# Currently covers "+internal" namespaces and "__<name>__.m" files; can be expanded
+# to cover other categories like "__<name>__" methods/functions inside regular-named
+# files, etc. Does not consider private/protected access or scope access modifiers;
+# we consider that to be a different mechanism, where "private" is not a synonym for
+# "internal".
+has 'include_internal' => ( is => 'rw', isa => 'Bool', default => 0 );
+# include_plain_subdirs: whether to include non-namespace subdirs
+has 'include_plain_subdirs' => ( is => 'rw', isa => 'Bool', default => 0 );
+
+# docs: top-level hierarchical doc node index
+#
 #  {$node => {node => $node, block => $block, file => $file, children => [...]}}
 # Children are also {node => $node, block => $block, file => $file}
 # where:
@@ -44,7 +75,8 @@ use File::Basename;
 #   $block is the stripped text of the texinfo block
 #   $file is the path to the file where this block came from
 has 'docs' => ( is  => 'rw', isa => 'HashRef', default => sub { {} } );
-# Index into all the nodes: {$node => {}}
+
+# nodes: flat index of all the nodes: {$node => {}}
 has 'nodes' => ( is => 'rw', isa => 'HashRef', default => sub { {} } );
 
 sub topic_node_names {
@@ -61,7 +93,7 @@ sub add_thing {
     my $self = shift;
     my ($node_name, $block) = @_;
     die "Node name was undefined" unless $node_name;
-    die "Node name cannot be empty or blank" 
+    die "Node name cannot be empty or blank"
         if ($node_name eq "" or $node_name eq " ");
     my $file = $$block{file};
     if ($self->docs->{$node_name}) {
@@ -80,7 +112,7 @@ sub add_sub_thing {
     my $self = shift;
     my ($node_name, $parent_thing_name, $block) = @_;
     die "Sub-thing node name was undefined" unless $node_name;
-    die "Sub-thing node name cannot be empty or blank" 
+    die "Sub-thing node name cannot be empty or blank"
         if ($node_name eq "" or $node_name eq " ");
     my $file = $$block{file};
     if ($self->nodes->{$node_name}) {
@@ -97,9 +129,11 @@ sub add_sub_thing {
     $self->nodes->{$node_name} = $block;
 }
 
+# Read texinfo from all source files in a directory, possibly recursively
 sub read_source_dir {
     my $self = shift;
     my ($dir, $namespace) = @_;
+    my $eff_namespace;
     opendir my $dh, $dir
         or die "Unable to open directory $dir: $!\n";
     while (my $file_name = readdir($dh)) {
@@ -107,32 +141,52 @@ sub read_source_dir {
         my $file = "$dir/$file_name";
         if (-d $file) {
             if ($file_name =~ /^\+/) {
-                # Ignore +internal namespaces; they're not part of the public API
-                next if ($file_name eq "+internal");
-                $self->read_source_dir ($file, OctTexiDoc::append_namespace ($namespace, $file_name));
+                # Only include +internal namespaces if asked; they're not part of the public API
+                if ($file_name eq "+internal") {
+                    next unless $self->include_internal
+                }
+                $self->read_source_dir ($file, OctTexiDoc::prepend_namespace ($namespace, $file_name));
             } elsif ($file_name =~ /^\@/) {
                 $self->read_class_at_dir ($file, $namespace);
+            } elsif ($file_name = "private") {
+                # Always ignore private stuff, bc we don't have a convention for naming the nodes
+                # inside them (identifiers in private dirs are local to the parent dir, but the texinfo
+                # node namespace is a flat global one).
             } else {
-                # ignore
+                # Arbitrary subdirs are conditional. Handles the case where packages arrange their
+                # code in some multi-dir hierarchy where nested dirs may be placed on the path.
+                # May not work right if there are plain-named subdirs under a "+namespace" dir.
+                $self->read_source_dir ($file, $namespace) if $self->include_plain_subdirs
             }
         } else {
-            next if $file_name =~ /^__/;  # __foo__ functions are internal impl details
+            # switch ($self->auto_namespace) {
+            #     case 'yes'  { $eff_namespace = $namespace }
+            #     case 'no'   { $eff_namespace = "" }
+            #     else        { die "Invalid value for DocSet.auto_namespace Must be 'yes' or 'no'." }
+            # }
+            $eff_namespace = $namespace;
+            # "__foo__" functions are internal implementation items. Assume "__foo" is internal too.
+            if ($file_name =~ /^__/) {
+                next unless $self->include_internal
+            }
+            # Need to switch on file type because the manner of embedding texinfo differs between them,
+            # e.g. with different comment-intro characters.
             if ($file_name =~ /\.m$/) {
-                $self->read_m_source_file ($file, $namespace);
+                $self->read_m_source_file ($file, $eff_namespace);
             } elsif ($file_name =~ /\.cc$/) {
-                $self->read_cxx_source_file ($file, $namespace);
+                $self->read_cxx_source_file ($file, $eff_namespace);
             } else {
-                # ignore
+                # Silently ignore any other type of file.
             }
         }
     }
 }
 
-# Read a regular, top-level .m function or classdef source file
+# Read texinfo from a regular, top-level .m function or classdef source file in to $self
 sub read_m_source_file {
     my $self = shift;
     my ($file, $namespace) = @_;
-    my $blocks = OctTexiDoc::extract_multiple_texinfo_blocks_from_mfile ($file, $namespace);
+    my $blocks = OctTexiDoc::extract_multiple_texinfo_blocks_from_mfile ($file, $namespace, $self->auto_namespace);
     my $n_blocks = scalar (@$blocks);
     my $ns_name = $namespace || "";
     return unless (scalar (@$blocks));
@@ -144,8 +198,12 @@ sub read_m_source_file {
     $self->add_thing($node, $first_block);
 }
 
-# Read a top-level .cxx oct-file source file
-# This assumes oct-files are always in the base namespace/package
+# Read texinfo from a top-level .cxx oct-file source file
+#
+# This assumes that oct-files are always in the base namespace/package, or have
+# fully-qualified names in their texinfo content. We do this because the conventional
+# OF package layout puts all its oct-files in the root of `src/` and doesn't have a
+# namespaced layout.
 sub read_cxx_source_file {
     my $self = shift;
     my ($file, $namespace) = @_;
@@ -193,7 +251,7 @@ sub read_class_at_dir {
     }
 
     # Stash the docs
-    my $node = OctTexiDoc::append_namespace($namespace, $class_name);
+    my $node = OctTexiDoc::prepend_namespace($namespace, $class_name);
     $self->add_thing($node, $class_block);
 }
 
@@ -224,11 +282,15 @@ use File::Basename;
 use IO::File;
 use IPC::Open3;
 
-sub append_namespace {
-    my ($parent, $child) = @_;
-    $child =~ s/^\+//; # convenience hack
-    return $child unless $parent and $parent ne "";
-    return "$parent.$child";
+sub prepend_namespace {
+    my ($namespace, $child) = @_;
+    # convenience hack: strip the "+" used in dir names corresponding to namespaces
+    $child =~ s/^\+//;
+    if ($namespace and $namespace ne "") {
+        return "$namespace.$child";
+    } else {
+        return $child;
+    }
 }
 
 # Munge texinfo doco blocks into actual texinfo, or whatever it is that
@@ -260,7 +322,7 @@ sub munge_texi_block_text {
 #   "name" => $toolbox_name,
 #   "long_name" => $long_toolbox_name,
 #   "categories" => \@category_names,
-#   "by_category" => { $category_name => \@category_fcn_names }, 
+#   "by_category" => { $category_name => \@category_fcn_names },
 #   "functions" => \@all_fcn_names,
 #   "descriptions" => { $function_name => $description }
 # }
@@ -359,7 +421,7 @@ sub extract_description_from_mfile {
 # Returns an arrayref of extracted blocks, with each block being
 # a hashref with keys "node" and "block".
 sub extract_multiple_texinfo_blocks_from_mfile {
-    my ($mfile, $namespace) = @_;
+    my ($mfile, $namespace, $auto_namespace) = @_;
     my $retval = '';
     my $file_node_name = basename($mfile, ('.m'));
 
@@ -382,6 +444,7 @@ sub extract_multiple_texinfo_blocks_from_mfile {
     # This is currently broken: I'm using @node lines in the Texinfo to indicate node
     # starts, but the @node and @section/@subsection/@subsubsection are emitted automatically
     # by mktexi.pl.
+    my $do_prepend_ns = $auto_namespace eq 'yes';
     my @blocks;
     my $block; # the current block
     my $in_block = 0;
@@ -401,12 +464,16 @@ sub extract_multiple_texinfo_blocks_from_mfile {
             $line = strip_mfile_block_line ($line);
             if ($line =~ /^\s*\@node (\S*)/) {
                 my $node_basename = $1;
-                $node = append_namespace($namespace, $node_basename);
+                if ($do_prepend_ns) {
+                    $node = prepend_namespace($namespace, $node_basename);
+                } else {
+                    $node = $node_basename;
+                }
             } else {
                 # For back-compatibility, the first block may take the file as its node name
                 # Only the first block! Otherwise you'd have collisions.
                 if ((scalar (@blocks)) == 0) {
-                    $node = append_namespace($namespace, $file_node_name);
+                    $node = prepend_namespace($namespace, $file_node_name);
                 } else {
                     die "Found non-first block with no \@node statement in file $mfile at line $line_num\n";
                 }
@@ -514,8 +581,8 @@ sub get_package_metadata_from_description_file {
     return \%defn;
 }
 
+# extract the first "real sentence" from a function (or classdef?) doco texinfo block
 sub first_sentence { # {{{1
-# grab the first real sentence from the function documentation
     my ($desc) = @_;
     my $retval = '';
     my $line;
@@ -531,6 +598,7 @@ sub first_sentence { # {{{1
         . "--no-headers --force --ifinfo";
     open3(*Writer, *Reader, *Errer, $cmd)
         or die "Error: Could not run makeinfo: $!";
+    # I have no idea what this @macro seealso thing is doing -apj 2024-02-05
     print Writer "\@macro seealso {args}\n\n\@noindent\nSee also: \\args\\.\n\@end macro\n";
     print Writer "$desc";
     close (Writer);
@@ -538,8 +606,8 @@ sub first_sentence { # {{{1
     close (Reader);
     my @err = <Errer>;
     close (Errer);
-    # I think this &WNOHANG needs "use POSIX ":sys_wait_h"" -apj
-    #waitpid (-1, &WNOHANG);
+    # I think this &WNOHANG needs 'use POSIX ":sys_wait_h"' to work right? -apj 2020
+    # waitpid (-1, &WNOHANG);
     waitpid (-1, 0);
 
     # Display source and errors, if any

@@ -2,7 +2,7 @@
 #
 # David Bateman Feb 02 2003
 # Andrew Janke 2019, 2024
-# 
+#
 # Extracts the help in texinfo format from Octave source code for use
 # in documentation and generates <pkg>.texi and <pkg>.qhp files from it.
 #
@@ -23,6 +23,13 @@
 # for generating the QHelp collection.
 #
 # Emits diagnostic messages to stdout.
+#
+# Note: In Octave, "package" can mean two different things: either an Octave Forge style
+# package of software managed by the `pkg` command (like the Tablicious library), or a
+# namespace in M-code defined by placing source code files in "+<pkgname>" directories
+# (like the +tblish namespace within Tablicious). For clarity, this code uses "package"
+# to mean a pkg-managed software package, and "namespace" to mean the "+<pkgname>"
+# namespacing mechanism.
 
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -70,7 +77,7 @@ if ($ARGV[0] eq "--check-texinfo-version") {
     my $major = $1;
     my $minor = $2;
     if ($major < 6) {
-        die "Texinfo version $major.$minor is too old. Need 6.0 or newer.\n"; 
+        die "Texinfo version $major.$minor is too old. Need 6.0 or newer.\n";
     }
     printf "Texinfo version $major.$minor is new enough\n";
     exit 0;
@@ -325,9 +332,9 @@ while (my $line = <TEXI>) {
 		}
 		qhp $indent . ("    " x $level) . "</section>\n";
 	}
-	qhp $indent . ("    " x $section_level) 
+	qhp $indent . ("    " x $section_level)
 	    . "<section title=\"$section_qhelp_title\" ref=\"html/$html_file\">\n";
-	qhp $indent . ("    " x $section_level) 
+	qhp $indent . ("    " x $section_level)
 	    . "    <!-- orig_title=\"$section_title\" node_name=\"$node_name\" -->\n"
 	    if $debug;
 	$level = $section_level;
@@ -336,7 +343,7 @@ while ($level > 1) {
 	qhp $indent . ("    " x $level--) . "</section>\n";
 }
 # Include the all-on-one-page version
-qhp $indent . ("    " x $level) 
+qhp $indent . ("    " x $level)
     . "<section title=\"Entire Manual in One Page\" ref=\"$pkg_name.html\"/>\n"
     . "$indent</section>\n";
 qhp <<EOS;

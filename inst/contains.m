@@ -31,6 +31,8 @@
 ## Returns a logical array of the same size as the string array represented by
 ## @var{str}.
 ##
+## @seealso{startsWith, endsWith}
+##
 ## @end deftypefn
 function out = contains (str, pattern, varargin)
 

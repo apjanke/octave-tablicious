@@ -14,7 +14,6 @@
 ## along with this program; If not, see <http://www.gnu.org/licenses/>.
 
 ## -*- texinfo -*-
-## @node tail
 ## @deftypefn {Function} {@var{out} =} tail (@var{A})
 ## @deftypefnx {Function} {@var{out} =} tail (@var{A}, @var{k})
 ##

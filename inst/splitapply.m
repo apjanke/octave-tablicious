@@ -14,7 +14,6 @@
 ## along with this program; If not, see <http://www.gnu.org/licenses/>.
 
 ## -*- texinfo -*-
-## @node splitapply
 ## @deftypefn {Function} {@var{out} =} splitapply (@var{func}, @var{X}, @var{G})
 ## @deftypefnx {Function} {@var{out} =} splitapply (@var{func}, @var{X1}, @dots{}, @var{XN}, @var{G})
 ## @deftypefnx {Function} {[@var{Y1}, @dots{}, @var{YM}] =} splitapply (@dots{})

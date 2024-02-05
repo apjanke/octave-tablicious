@@ -35,7 +35,11 @@
 ## @code{isfile}. In particular, it seems that the @code{~} alias for the home
 ## directory is supported, at least on Unix platforms.
 ##
-## See also: @ref{isfolder}, @code{exist}
+## This definition of @code{isfile} is supplied by Tablicious, and is a
+## compatibility shim for versions of Octave which do not provide one. It is only loaded
+## in Octaves older than 5.0.0.
+##
+## @seealso{isfolder, exist}
 ##
 ## @end deftypefn
 

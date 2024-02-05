@@ -14,9 +14,9 @@
 ## along with this program; If not, see <http://www.gnu.org/licenses/>.
 
 ## -*- texinfo -*-
-## @deftypefn {Function} {@var{out} =} plot_pairs (@var{data})
-## @deftypefnx {Function} {@var{out} =} plot_pairs (@var{data}, @var{plot_type})
-## @deftypefnx {Function} {@var{out} =} plot_pairs (@var{fig}, @dots{})
+## @deftypefn {Function} {@var{out} =} tblish.examples.plot_pairs (@var{data})
+## @deftypefnx {Function} {@var{out} =} tblish.examples.plot_pairs (@var{data}, @var{plot_type})
+## @deftypefnx {Function} {@var{out} =} tblish.examples.plot_pairs (@var{fig}, @dots{})
 ##
 ## Plot pairs of variables against each other.
 ##

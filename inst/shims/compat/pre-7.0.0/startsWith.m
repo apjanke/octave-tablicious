@@ -31,6 +31,12 @@
 ## Returns a logical array of the same size as the string array represented by
 ## @var{str}.
 ##
+## This definition of @code{startsWith} is supplied by Tablicious, and is a compatibility shim
+## for versions of Octave which do not provide one. It is only loaded in Octaves older than
+## 7.0.0.
+##
+## @seealso{endsWith, contains}
+##
 ## @end deftypefn
 function out = startsWith (str, pattern, varargin)
   [opts, args] = peelOffNameValueOptions (varargin, {'IgnoreCase'});

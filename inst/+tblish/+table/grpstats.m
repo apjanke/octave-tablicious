@@ -14,9 +14,8 @@
 ## along with this program; If not, see <http://www.gnu.org/licenses/>.
 
 ## -*- texinfo -*-
-## @node tblish.table.grpstats
-## @deftypefn {Method} {[@var{out}] =} grpstats (@var{tbl}, @var{groupvar})
-## @deftypefnx {Method} {[@var{out}] =} grpstats (@dots{}, @code{'DataVars'}, @var{DataVars})
+## @deftypefn {Function} {[@var{out}] =} tblish.table.grpstats (@var{tbl}, @var{groupvar})
+## @deftypefnx {Function} {[@var{out}] =} tblish.table.grpstats (@dots{}, @code{'DataVars'}, @var{DataVars})
 ##
 ## Statistics by group for a table array.
 ##
@@ -30,7 +29,7 @@
 ## and call it as @code{tblish.table.grpstats(tbl)} instead of with a plain
 ## @code{grpstats(tbl)}.
 ##
-## See also: @ref{table.groupby}.
+## @seealso{table.groupby, table.findgroups, table.splitapply}
 ##
 ## @end deftypefn
 function out = grpstats (tbl, groupvar, varargin)

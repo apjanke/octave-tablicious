@@ -43,7 +43,7 @@ classdef table
   ## (And due to this mechanism, it will cause problems if you have a @code{table}
   ## with a variable named @code{Properties}. Try to avoid that.)
   ##
-  ## See also: @code{tblish.table.grpstats}, @code{tblish.evalWithTableVars}.
+  ## @seealso{tblish.table.grpstats, tblish.evalWithTableVars, tblish.examples.SpDb}
   ##
   ## @end deftp
   ##
@@ -2228,7 +2228,7 @@ classdef table
     ## Performs a splitapply, using the variables in @var{obj} as the input X variables
     ## to the @code{splitapply} function call.
     ##
-    ## See also: @ref{splitapply}, @ref{table.groupby}
+    ## @seealso{splitapply, table.groupby, tblish.table.grpstats}
     ##
     ## @end deftypefn
     function varargout = splitapply (func, this, G)
@@ -2820,6 +2820,8 @@ classdef table
     ## @end example
     ##
     ## This is a Tablicious/Octave extension, not defined in the Matlab table interface.
+    ##
+    ## @seealso{tblish.evalWithTableVars}
     ##
     ## @end deftypefn
     function out = restrict (this, arg)

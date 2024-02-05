@@ -17,8 +17,7 @@
 ## <https://www.gnu.org/licenses/>.
 
 ## -*- texinfo -*-
-## @node tblish.sizeof22
-## @deftypefn {Function} {@var{out} =} sizeof2 (@var{x})
+## @deftypefn {Function} {@var{out} =} tblish.sizeof2 (@var{x})
 ##
 ## Approximate size of an array in bytes, with object support.
 ##
@@ -52,6 +51,8 @@
 ## Returns a scalar numeric. Returns NaN for types that are known to not be supported,
 ## instead of raising an error. Raises an error if it fails to determine the size of an
 ## input of a type that it thought was supported.
+##
+## See also: sizeof
 ##
 ## @end deftypefn
 function out = sizeof2 (x)

@@ -13,8 +13,24 @@
 ## You should have received a copy of the GNU General Public License
 ## along with this program; If not, see <http://www.gnu.org/licenses/>.
 
+## -*- texinfo -*-
+## @deftypefn {Function} {@var{spdb} =} tblish.examples.SpDb ()
+## @deftypefnx {Function} {[@var{s}, @var{p}, @var{sp}] =} tblish.examples.SpDb ()
+##
+## The classic Suppliers-Parts example database.
+##
+## Constructs the classic C. J. Date Suppliers-Parts ("SP") example database as tables.
+## This database is the one used as an example throughout Date's "An Introduction to
+## Database Systems" textbook.
+##
+## Returns the database as a set of three table arrays. If one argout is captured, the
+## tables are returned in the fields of a single struct. If multiple argouts are captured, the
+## tables are returned as three argouts with a single table in each, in the order (@var{s},
+## @var{p}, @var{sp}).
+##
+## @end deftypefn
 function varargout = SpDb
-  #SPDB The classic suppliers-parts example database
+  # The classic suppliers-parts example database
   #
   # s = tblish.examples.SpDb
   # [s, p, sp] = tblish.examples.SpDb

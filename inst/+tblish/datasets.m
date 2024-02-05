@@ -14,14 +14,14 @@
 ## along with this program; If not, see <http://www.gnu.org/licenses/>.
 
 ## -*- texinfo -*-
-## @deftp {Class} datasets
+## @deftp {Class} tblish.datasets
 ##
 ## Example dataset collection.
 ##
-## @code{datasets} is a collection of example datasets to go with the
+## @code{tblish.datasets} is a collection of example datasets to go with the
 ## Tablicious package.
 ##
-## The @code{datasets} class provides methods for listing and loading
+## The @code{tblish.datasets} class provides methods for listing and loading
 ## the example datasets.
 ##
 ## @end deftp
