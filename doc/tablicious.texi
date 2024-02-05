@@ -917,7 +917,7 @@ Approximate size of an array in bytes, with object support.
 * mustBeReal::	
 * mustBeSameSize::	
 * mustBeScalar::	
-* mustBeScalarLogical::
+* mustBeScalarLogical:: 
 * mustBeVector::	
 * NaC:: “Not-a-Categorical".
 * NaS:: “Not-a-String".
@@ -932,7 +932,7 @@ Approximate size of an array in bytes, with object support.
 * string::	A string array of Unicode strings.
 * struct2table::	Convert struct to a table.
 * table::	Tabular data array containing multiple columnar variables.
-* tableOuterFillValue::
+* tableOuterFillValue:: 
 * tblish.dataset::	The ‘dataset’ class provides convenient access
 		to the various datasets included with Tablicious.
 * tblish.datasets::	Example dataset collection.
@@ -9473,9 +9473,13 @@ use @code{calyears}.
 
 @section Package Copyright
 
-Tablicious for GNU Octave is covered by the GNU GPLv3.
+Tablicious for GNU Octave is covered by the GNU GPLv3 and other Free and Open Source Software licenses.
 
-All the code in the package is GNU GPLv3.
+The main code of Tablicious is licensed under the GNU GPL version 3.
+
+The date/time portion of Tablicious includes some Unicode data files licensed under the Unicode License Agreement - Data Files and Software license.
+
+The Tablicious test suite contains some files, specifically some table-related tests using MP-Test like @code{t/t_01_table.m}, which are BSD 3-Clause licensed, and are adapted from MATPOWER written by Ray Zimmerman.
 
 The Fisher Iris dataset is Public Domain.
 

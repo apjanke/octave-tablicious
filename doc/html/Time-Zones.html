@@ -60,14 +60,14 @@ object. A zoneless <code class="code">datetime</code> represents the local time 
 continuous time scale (no DST shifts).
 </p>
 <p>A zoned <code class="code">datetime</code> is associated with a time zone. It is represented by having the time zone&rsquo;s
-IANA zone identifier (e.g. <code class="code">'UTC'</code> or <code class="code">'America/New_York'</code>) in its <code class="code">TimeZone</code> 
+IANA zone identifier (e.g. <code class="code">'UTC'</code> or <code class="code">'America/New_York'</code>) in its <code class="code">TimeZone</code>
 property. A zoned <code class="code">datetime</code> represents the local time in that time zone.
 </p>
-<p>By default, the <code class="code">datetime</code> constructor creates unzoned <code class="code">datetime</code>s. To 
-make a zoned <code class="code">datetime</code>, either pass the <code class="code">'TimeZone'</code> option to the constructor, 
+<p>By default, the <code class="code">datetime</code> constructor creates unzoned <code class="code">datetime</code>s. To
+make a zoned <code class="code">datetime</code>, either pass the <code class="code">'TimeZone'</code> option to the constructor,
 or set the <code class="code">TimeZone</code> property after object creation. Setting the <code class="code">TimeZone</code>
 property on a zoneless <code class="code">datetime</code> declares that it&rsquo;s a local time in that time zone.
-Setting the <code class="code">TimeZone</code> property on a zoned <code class="code">datetime</code> turns it back into a 
+Setting the <code class="code">TimeZone</code> property on a zoned <code class="code">datetime</code> turns it back into a
 zoneless <code class="code">datetime</code> without changing the local time it represents.
 </p>
 <p>You can tell a zoned from a zoneless time zone in the object display because the time zone
@@ -91,7 +91,7 @@ d_chi.TimeZone = 'America/Chicago'
     &rArr;  04-Mar-2011 05:00:00 America/Chicago
 </pre></div>
 
-<p>When you combine two zoned <code class="code">datetime</code>s via concatenation, assignment, or 
+<p>When you combine two zoned <code class="code">datetime</code>s via concatenation, assignment, or
 arithmetic, if their time zones differ, they are converted to the time zone of
 the left-hand input.
 </p>

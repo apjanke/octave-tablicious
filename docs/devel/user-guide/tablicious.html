@@ -509,7 +509,7 @@ Next: <a href="#Getting-Started" accesskey="n" rel="next">Getting Started</a>, U
 GNU Octave.
 This includes a <code class="code">table</code> class with support for filtering and join operations;
 <code class="code">datetime</code>, <code class="code">duration</code>, and related classes;
-Missing Data support; <code class="code">string</code> and <code class="code">categorical</code> data types; 
+Missing Data support; <code class="code">string</code> and <code class="code">categorical</code> data types;
 and other miscellaneous things.
 </p>
 <p>This document is a work in progress. You are invited to help improve it and
@@ -536,7 +536,7 @@ Next: <a href="#Table-Representation" accesskey="n" rel="next">Table Representat
 </div>
 <h2 class="chapter" id="Getting-Started-1"><span>2 Getting Started<a class="copiable-link" href="#Getting-Started-1"> &para;</a></span></h2>
 
-<p>The easiest way to obtain Tablicious is by using Octave&rsquo;s <code class="code">pkg</code> package manager. 
+<p>The easiest way to obtain Tablicious is by using Octave&rsquo;s <code class="code">pkg</code> package manager.
 To install the development prerelease of Tablicious, run this in Octave:
 </p>
 <div class="example">
@@ -546,7 +546,7 @@ To install the development prerelease of Tablicious, run this in Octave:
 <p>(Check the releases page at <a class="url" href="https://github.com/apjanke/octave-tablicious/releases">https://github.com/apjanke/octave-tablicious/releases</a> to
 find out what the actual latest release number is.)
 </p>
-<p>For development, you can obtain the source code for Tablicious from the project repo on GitHub at 
+<p>For development, you can obtain the source code for Tablicious from the project repo on GitHub at
 <a class="url" href="https://github.com/apjanke/octave-tablicious">https://github.com/apjanke/octave-tablicious</a>. Make a local clone of the repo.
 Then add the <samp class="file">inst</samp> directory in the repo to your Octave path.
 </p>
@@ -596,7 +596,7 @@ Next: <a href="#Tables-vs-SQL" accesskey="n" rel="next">Tables vs SQL</a>, Up: <
 <h3 class="section" id="Table-Construction-1"><span>3.1 Table Construction<a class="copiable-link" href="#Table-Construction-1"> &para;</a></span></h3>
 
 <p>There are two main ways to construct a <code class="code">table</code> array: build one up by combining
-multiple variables together, or convert an existing tabular-organized array into a 
+multiple variables together, or convert an existing tabular-organized array into a
 <code class="code">table</code>.
 </p>
 <p>To build an array from multiple variables, use the <code class="code">table(&hellip;)</code> constructor, passing
@@ -606,7 +606,7 @@ inputs directly from variables, it automatically picks up their names and uses t
 as the table variable names. Otherwise, if you’re using more complex expressions, you’ll
 need to supply the <code class="code">'VariableNames'</code> option.
 </p>
-<p>To convert a tabular-organized array of another type into a <code class="code">table</code>, use the 
+<p>To convert a tabular-organized array of another type into a <code class="code">table</code>, use the
 conversion functions like <code class="code">array2table</code>, <code class="code">struct2table</code> and <code class="code">cell2table</code>.
 <code class="code">array2table</code> and <code class="code">cell2table</code> take each column of the input array and turn
 it into a separate table variable in the resulting <code class="code">table</code>. <code class="code">struct2table</code> takes
@@ -624,7 +624,7 @@ Previous: <a href="#Table-Construction" accesskey="p" rel="prev">Table Construct
 <p>Here’s a table (ha!) of what SQL and relational algebar operations correspond to
 what Octave <code class="code">table</code> operations.
 </p>
-<p>In this table, <code class="code">t</code> is a variable holding a <code class="code">table</code> array, and <code class="code">ix</code> is 
+<p>In this table, <code class="code">t</code> is a variable holding a <code class="code">table</code> array, and <code class="code">ix</code> is
 some indexing expression.
 </p>
 <table class="multitable">
@@ -694,7 +694,7 @@ also contains some Octave-specific extensions.
 containing the number of days since the Matlab epoch), but encapsulating it in an
 object provides several benefits: friendly human-readable display, type safety,
 automatic type conversion, and time zone support. In addition to the underlying
-datenum array, a <code class="code">datetime</code> inclues an optional <code class="code">TimeZone</code> property 
+datenum array, a <code class="code">datetime</code> inclues an optional <code class="code">TimeZone</code> property
 indicating what time zone the datetimes are in.
 </p>
 <p>So, basically, a <code class="code">datetime</code> is an object wrapper around a datenum array,
@@ -761,14 +761,14 @@ object. A zoneless <code class="code">datetime</code> represents the local time 
 continuous time scale (no DST shifts).
 </p>
 <p>A zoned <code class="code">datetime</code> is associated with a time zone. It is represented by having the time zone&rsquo;s
-IANA zone identifier (e.g. <code class="code">'UTC'</code> or <code class="code">'America/New_York'</code>) in its <code class="code">TimeZone</code> 
+IANA zone identifier (e.g. <code class="code">'UTC'</code> or <code class="code">'America/New_York'</code>) in its <code class="code">TimeZone</code>
 property. A zoned <code class="code">datetime</code> represents the local time in that time zone.
 </p>
-<p>By default, the <code class="code">datetime</code> constructor creates unzoned <code class="code">datetime</code>s. To 
-make a zoned <code class="code">datetime</code>, either pass the <code class="code">'TimeZone'</code> option to the constructor, 
+<p>By default, the <code class="code">datetime</code> constructor creates unzoned <code class="code">datetime</code>s. To
+make a zoned <code class="code">datetime</code>, either pass the <code class="code">'TimeZone'</code> option to the constructor,
 or set the <code class="code">TimeZone</code> property after object creation. Setting the <code class="code">TimeZone</code>
 property on a zoneless <code class="code">datetime</code> declares that it&rsquo;s a local time in that time zone.
-Setting the <code class="code">TimeZone</code> property on a zoned <code class="code">datetime</code> turns it back into a 
+Setting the <code class="code">TimeZone</code> property on a zoned <code class="code">datetime</code> turns it back into a
 zoneless <code class="code">datetime</code> without changing the local time it represents.
 </p>
 <p>You can tell a zoned from a zoneless time zone in the object display because the time zone
@@ -792,7 +792,7 @@ d_chi.TimeZone = 'America/Chicago'
     &rArr;  04-Mar-2011 05:00:00 America/Chicago
 </pre></div>
 
-<p>When you combine two zoned <code class="code">datetime</code>s via concatenation, assignment, or 
+<p>When you combine two zoned <code class="code">datetime</code>s via concatenation, assignment, or
 arithmetic, if their time zones differ, they are converted to the time zone of
 the left-hand input.
 </p>
@@ -834,7 +834,7 @@ time zone database redistributed with Tablicious (for Windows).
 </p>
 <blockquote class="quotation">
 <p><b class="b">Note:</b> The IANA Time Zone Database only covers dates from about the year 1880 to 2038. Converting
-time zones for <code class="code">datetime</code>s outside that range is currently unimplemented. (Tablicious 
+time zones for <code class="code">datetime</code>s outside that range is currently unimplemented. (Tablicious
 needs to add support for proleptic POSIX time zone rules, which are used to govern
 behavior outside that date range.)
 </p></blockquote>
@@ -866,7 +866,7 @@ Next: <a href="#calendarDuration-Class" accesskey="n" rel="next"><code class="co
 or whatever you want to measure it in.)
 </p>
 <p>A <code class="code">duration</code> has a resolution of about a nanosecond for typical dates. The underlying
-representation is a <code class="code">double</code> representing the number of days elapsed, similar to a 
+representation is a <code class="code">double</code> representing the number of days elapsed, similar to a
 datenum, except it&rsquo;s interpreted as relative to some other reference point you provide,
 instead of being relative to the Matlab/Octave epoch.
 </p>
@@ -882,9 +882,9 @@ Previous: <a href="#duration-Class" accesskey="p" rel="prev"><code class="code">
 </div>
 <h4 class="subsection" id="calendarDuration-Class-1"><span>4.3.2 <code class="code">calendarDuration</code> Class<a class="copiable-link" href="#calendarDuration-Class-1"> &para;</a></span></h4>
 
-<p>A <code class="code">calendarDuration</code> represents a period of time in variable-length calendar 
+<p>A <code class="code">calendarDuration</code> represents a period of time in variable-length calendar
 components. For example, years and months can have varying numbers of days, and days
-in time zones with Daylight Saving Time have varying numbers of hours. A 
+in time zones with Daylight Saving Time have varying numbers of hours. A
 <code class="code">calendarDuration</code> does arithmetic with &quot;whole&quot; calendar periods.
 </p>
 <p><code class="code">calendarDuration</code>s and <code class="code">duration</code>s cannot be directly combined, because
@@ -12936,9 +12936,13 @@ Previous: <a href="#API-Reference" accesskey="p" rel="prev">API Reference</a>, U
 <div class="section-level-extent" id="Package-Copyright">
 <h3 class="section"><span>9.1 Package Copyright<a class="copiable-link" href="#Package-Copyright"> &para;</a></span></h3>
 
-<p>Tablicious for GNU Octave is covered by the GNU GPLv3.
+<p>Tablicious for GNU Octave is covered by the GNU GPLv3 and other Free and Open Source Software licenses.
 </p>
-<p>All the code in the package is GNU GPLv3.
+<p>The main code of Tablicious is licensed under the GNU GPL version 3.
+</p>
+<p>The date/time portion of Tablicious includes some Unicode data files licensed under the Unicode License Agreement - Data Files and Software license.
+</p>
+<p>The Tablicious test suite contains some files, specifically some table-related tests using MP-Test like <code class="code">t/t_01_table.m</code>, which are BSD 3-Clause licensed, and are adapted from MATPOWER written by Ray Zimmerman.
 </p>
 <p>The Fisher Iris dataset is Public Domain.
 </p>
