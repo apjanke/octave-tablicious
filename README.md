@@ -73,7 +73,15 @@ To avoid issues with the Matlab license's Non-Compete clause, this project needs
 
 ## License
 
-The main code of Tablicious is licensed under the GNU GPL version 3. (See the `LICENSE` file.) It also redistributes files licensed under the Unicode License Agreement - Data Files and Software. (See the `LICENSE-Unicode` file.)
+Tablicious is mostly GNU GPL v3, with some other Free and Open Source licensed code redistributed with it. I believe this is all compatible with redistribution as a GNU GPL licensed package, but I am not a lawyer.
+
+The main code of Tablicious is licensed under the GNU GPL version 3. See the `LICENSE` file.
+
+The date/time portion of Tablicious includes some Unicode data files licensed under the Unicode License Agreement - Data Files and Software license. See the `LICENSES/LICENSE-Unicode` file.
+
+The test suite contains some files, specifically some table-related tests in `inst/t` using MP-Test, which are BSD 3-clause licensed. See the `LICENSES/LICENSE-MATPOWER` file.
+
+The Fisher Iris dataset is Public Domain.
 
 ## Author and Acknowledgments
 
