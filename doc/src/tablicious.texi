@@ -83,7 +83,7 @@ Tablicious provides somewhat-Matlab-compatible tabular data and date/time suppor
 GNU Octave.
 This includes a @code{table} class with support for filtering and join operations;
 @code{datetime}, @code{duration}, and related classes;
-Missing Data support; @code{string} and @code{categorical} data types; 
+Missing Data support; @code{string} and @code{categorical} data types;
 and other miscellaneous things.
 
 This document is a work in progress. You are invited to help improve it and
@@ -104,7 +104,7 @@ GitHub page}.
 @node Getting Started
 @chapter Getting Started
 
-The easiest way to obtain Tablicious is by using Octave's @code{pkg} package manager. 
+The easiest way to obtain Tablicious is by using Octave's @code{pkg} package manager.
 To install the development prerelease of Tablicious, run this in Octave:
 
 @example
@@ -114,7 +114,7 @@ pkg install https://github.com/apjanke/octave-tablicious/releases/download/v%%%%
 (Check the releases page at @url{https://github.com/apjanke/octave-tablicious/releases} to
 find out what the actual latest release number is.)
 
-For development, you can obtain the source code for Tablicious from the project repo on GitHub at 
+For development, you can obtain the source code for Tablicious from the project repo on GitHub at
 @url{https://github.com/apjanke/octave-tablicious}. Make a local clone of the repo.
 Then add the @file{inst} directory in the repo to your Octave path.
 
@@ -149,7 +149,7 @@ in Octave using @code{table} arrays. It’s like having your own in-memory SQL e
 @section Table Construction
 
 There are two main ways to construct a @code{table} array: build one up by combining
-multiple variables together, or convert an existing tabular-organized array into a 
+multiple variables together, or convert an existing tabular-organized array into a
 @code{table}.
 
 To build an array from multiple variables, use the @code{table(@dots{})} constructor, passing
@@ -159,7 +159,7 @@ inputs directly from variables, it automatically picks up their names and uses t
 as the table variable names. Otherwise, if you’re using more complex expressions, you’ll
 need to supply the @code{'VariableNames'} option.
 
-To convert a tabular-organized array of another type into a @code{table}, use the 
+To convert a tabular-organized array of another type into a @code{table}, use the
 conversion functions like @code{array2table}, @code{struct2table} and @code{cell2table}.
 @code{array2table} and @code{cell2table} take each column of the input array and turn
 it into a separate table variable in the resulting @code{table}. @code{struct2table} takes
@@ -171,7 +171,7 @@ the fields of a struct and puts them into table variables.
 Here’s a table (ha!) of what SQL and relational algebar operations correspond to
 what Octave @code{table} operations.
 
-In this table, @code{t} is a variable holding a @code{table} array, and @code{ix} is 
+In this table, @code{t} is a variable holding a @code{table} array, and @code{ix} is
 some indexing expression.
 
 @multitable @columnfractions .33 .33 .33
@@ -237,7 +237,7 @@ The underlying representation is that of a datenum (a @code{double}
 containing the number of days since the Matlab epoch), but encapsulating it in an
 object provides several benefits: friendly human-readable display, type safety,
 automatic type conversion, and time zone support. In addition to the underlying
-datenum array, a @code{datetime} inclues an optional @code{TimeZone} property 
+datenum array, a @code{datetime} inclues an optional @code{TimeZone} property
 indicating what time zone the datetimes are in.
 
 So, basically, a @code{datetime} is an object wrapper around a datenum array,
@@ -292,14 +292,14 @@ object. A zoneless @code{datetime} represents the local time in some unknown tim
 continuous time scale (no DST shifts).
 
 A zoned @code{datetime} is associated with a time zone. It is represented by having the time zone's
-IANA zone identifier (e.g. @code{'UTC'} or @code{'America/New_York'}) in its @code{TimeZone} 
+IANA zone identifier (e.g. @code{'UTC'} or @code{'America/New_York'}) in its @code{TimeZone}
 property. A zoned @code{datetime} represents the local time in that time zone.
 
-By default, the @code{datetime} constructor creates unzoned @code{datetime}s. To 
-make a zoned @code{datetime}, either pass the @code{'TimeZone'} option to the constructor, 
+By default, the @code{datetime} constructor creates unzoned @code{datetime}s. To
+make a zoned @code{datetime}, either pass the @code{'TimeZone'} option to the constructor,
 or set the @code{TimeZone} property after object creation. Setting the @code{TimeZone}
 property on a zoneless @code{datetime} declares that it's a local time in that time zone.
-Setting the @code{TimeZone} property on a zoned @code{datetime} turns it back into a 
+Setting the @code{TimeZone} property on a zoned @code{datetime} turns it back into a
 zoneless @code{datetime} without changing the local time it represents.
 
 You can tell a zoned from a zoneless time zone in the object display because the time zone
@@ -323,7 +323,7 @@ d_chi.TimeZone = 'America/Chicago'
     @result{}  04-Mar-2011 05:00:00 America/Chicago
 @end example
 
-When you combine two zoned @code{datetime}s via concatenation, assignment, or 
+When you combine two zoned @code{datetime}s via concatenation, assignment, or
 arithmetic, if their time zones differ, they are converted to the time zone of
 the left-hand input.
 
@@ -350,7 +350,7 @@ into a time zone where that local time did not exist are currently undefined.
 @node Defined Time Zones
 @subsection Defined Time Zones
 
-Tablicious's time zone data is drawn from the @uref{https://www.iana.org/time-zones, 
+Tablicious's time zone data is drawn from the @uref{https://www.iana.org/time-zones,
 IANA Time Zone Database}, also known as the “Olson Database”. Tablicious includes a
 copy of this database in its distribution so it can work on Windows, which does
 not supply it like Unix systems do.
@@ -361,7 +361,7 @@ time zone database redistributed with Tablicious (for Windows).
 
 @quotation Note
 The IANA Time Zone Database only covers dates from about the year 1880 to 2038. Converting
-time zones for @code{datetime}s outside that range is currently unimplemented. (Tablicious 
+time zones for @code{datetime}s outside that range is currently unimplemented. (Tablicious
 needs to add support for proleptic POSIX time zone rules, which are used to govern
 behavior outside that date range.)
 @end quotation
@@ -381,7 +381,7 @@ A @code{duration} represents a period of time in fixed-length seconds (or minute
 or whatever you want to measure it in.)
 
 A @code{duration} has a resolution of about a nanosecond for typical dates. The underlying
-representation is a @code{double} representing the number of days elapsed, similar to a 
+representation is a @code{double} representing the number of days elapsed, similar to a
 datenum, except it's interpreted as relative to some other reference point you provide,
 instead of being relative to the Matlab/Octave epoch.
 
@@ -391,9 +391,9 @@ You can also add or subtract @code{durations} to each other.
 @node calendarDuration Class
 @subsection @code{calendarDuration} Class
 
-A @code{calendarDuration} represents a period of time in variable-length calendar 
+A @code{calendarDuration} represents a period of time in variable-length calendar
 components. For example, years and months can have varying numbers of days, and days
-in time zones with Daylight Saving Time have varying numbers of hours. A 
+in time zones with Daylight Saving Time have varying numbers of hours. A
 @code{calendarDuration} does arithmetic with "whole" calendar periods.
 
 @code{calendarDuration}s and @code{duration}s cannot be directly combined, because

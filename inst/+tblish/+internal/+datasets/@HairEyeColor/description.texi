@@ -33,7 +33,7 @@ sieve diagrams or association plots.
 
 @url{http://euclid.psych.yorku.ca/ftp/sas/vcd/catdata/haireye.sas}
 
-Snee (1974) gives the two-way table aggregated over Sex. The Sex split of 
+Snee (1974) gives the two-way table aggregated over Sex. The Sex split of
 the ‘Brown hair, Brown eye’ cell was changed to agree with that used by
 Friendly (2000).
 

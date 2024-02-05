@@ -26,7 +26,7 @@ Width of petals, in centimeters.
 @url{https://en.wikipedia.org/wiki/Iris_flower_data_set}
 
 Fisher, R. A. (1936). The use of multiple measurements in taxonomic problems.
-Annals of Eugenics, 7, Part II, 179-188. also in @cite{Contributions 
+Annals of Eugenics, 7, Part II, 179-188. also in @cite{Contributions
 to Mathematical Statistics} (John Wiley, NY, 1950).
 
 Duda, R.O., & Hart, P.E. (1973). @cite{Pattern Classification and Scene Analysis}.

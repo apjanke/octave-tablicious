@@ -6,7 +6,7 @@ Body temperature readings for two beavers.
 
 @table @code
 @item day
-Day of observation (in days since the beginning of 1990), December 12–13 (beaver1) 
+Day of observation (in days since the beginning of 1990), December 12–13 (beaver1)
 and November 3–4 (beaver2).
 @item time
 Time of observation, in the form 0330 for 3:30am

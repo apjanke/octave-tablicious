@@ -37,7 +37,7 @@ Here, all variables are scaled to [0, 100], where in the original, all but
 
 @subsubheading Note
 
-Files for all 182 districts in 1888 and other years have been available at 
+Files for all 182 districts in 1888 and other years have been available at
 @url{https://opr.princeton.edu/archive/pefp/switz.aspx}.
 
 They state that variables @code{Examination} and @code{Education} are averages

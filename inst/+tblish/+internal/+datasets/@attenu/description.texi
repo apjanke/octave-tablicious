@@ -33,7 +33,7 @@ motion. @cite{Bulletin of the Seismological Society of America}, 72, S269–S268
 
 @example
 # TODO: Port the example code from R
-# It does coplot() and pairs(), which are higher-level plotting tools 
+# It does coplot() and pairs(), which are higher-level plotting tools
 # than core Octave provides. This could turn into a long example if we
 # just use base Octave here.
 @end example
