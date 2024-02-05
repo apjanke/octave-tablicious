@@ -19,7 +19,7 @@ skip_oct_tab = false;
 skip_oct_tab2 = false;
 
 n_classes = numel (table_classes);
-nt = 161 + (8 * n_classes);
+nt = 160 + (8 * n_classes);
 
 t_begin (n_classes * nt, quiet);
 
