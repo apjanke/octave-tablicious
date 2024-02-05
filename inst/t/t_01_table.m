@@ -17,6 +17,8 @@ table_classes = {@table};
 class_names = {'table'};
 skip_oct_tab = false;
 skip_oct_tab2 = false;
+skip_subsasgn_paren = false;
+skip_rowname_autogen = true;
 
 n_classes = numel (table_classes);
 nt = 160 + (8 * n_classes);
@@ -74,12 +76,12 @@ for k = 1:n_classes
     T1 = table_class();
     t_ok (isempty (T1), [t 'true']);
 
-    t = sprintf ('%s : constructor - ind vars, w/names : ', cls);
-    T = table_class (var1, var2, var3, var4, var5, var6, ...
-        'VariableNames', var_names, 'RowNames', row_names, 'DimensionNames', dim_names);
     # FIXME: Add a loop and do the without-DimensionNames variant too?
     #     T = table_class(var1, var2, var3, var4, var5, var6, ...
     #         'VariableNames', var_names, 'RowNames', row_names);
+    t = sprintf ('%s : constructor - ind vars, w/names : ', cls);
+    T = table_class (var1, var2, var3, var4, var5, var6, ...
+        'VariableNames', var_names, 'RowNames', row_names, 'DimensionNames', dim_names);
     t_ok (isa (T, class_names{k}), [t 'class'])
     t_ok (! isempty (T), [t 'not isempty']);
     t_is (size (T), [6 6], 12, [t 'sz = size (T)']);
@@ -191,40 +193,24 @@ for k = 1:n_classes
 
     T{2, 1} = v1(2);
     t_ok (isequal (T{2, 1}, v1(2)), [t 'T{i, j} = v<j>(i)']);
-    if skip_oct_tab || skip_oct_tab2
-      t_skip (1, 'T{i, j} = M syntax not yet supported for matrices');
-    else
-      T{4, 6} = v6(4, :);
-      t_ok (isequal (T{4, 6}, v6(4, :)), [t 'T{i, j} = v<j>(i, :)']);
-    endif
+    T{4, 6} = v6(4, :);
+    t_ok (isequal (T{4, 6}, v6(4, :)), [t 'T{i, j} = v<j>(i, :)']);
     T{1:3, 2} = v2(1:3);
     t_ok (isequal (T.flt(1:3), v2(1:3)), [t 'T{i1:iN, j} = v<j>(i1:iN)']);
-    if skip_oct_tab || skip_oct_tab2
-      t_skip (2, 'T{i1:iN, j} = M syntax not yet supported for matrices');
-    else
-      T{1:3, 6} = v6(1:3, :);
-      t_ok (isequal (T.mat(1:3, :), v6(1:3, :)), [t 'T{i1:iN, j} = v<j>(i1:iN, :)']);
-      T{1:3, 6} = v6(1:3, [2; 1]);
-      t_ok (isequal (T.mat(1:3, :), v6(1:3, [2; 1])), [t 'T{i1:iN, j} = v<j>(i1:iN, jj)']);
-    endif
+    T{1:3, 6} = v6(1:3, :);
+    t_ok (isequal (T.mat(1:3, :), v6(1:3, :)), [t 'T{i1:iN, j} = v<j>(i1:iN, :)']);
+    T{1:3, 6} = v6(1:3, [2; 1]);
+    t_ok (isequal (T.mat(1:3, :), v6(1:3, [2; 1])), [t 'T{i1:iN, j} = v<j>(i1:iN, jj)']);
     T{[6;3], 5} = v5([6;3]);
     t_ok (isequal (T.boo([6;3]), v5([6;3])), [t 'T{ii, j} = v<j>(ii)']);
-    if skip_oct_tab || skip_oct_tab2
-      t_skip (2, 'T{ii, j} = M syntax not yet supported for matrices');
-    else
-      T{[6;3], 6} = v6([6;3], :);
-      t_ok (isequal (T.mat([6;3], :), v6([6;3], :)), [t 'T{ii, j} = v<j>(ii, :)']);
-      T{[6;3], 6} = v6([6;3], [2;1]);
-      t_ok (isequal (T.mat([6;3], :), v6([6;3], [2;1])), [t 'T{ii, j} = v<j>(ii, jj)']);
-    endif
-    if skip_oct_tab || skip_oct_tab2
-      t_skip (2, [t 'T{ii, jj} syntax not yet supported'])
-    else
-      T{6:-1:3, [2;4;6;5]} = [v2(6:-1:3) v4(6:-1:3) v6(6:-1:3, :) v5(6:-1:3)];
-      t_ok (isequal (T{6:-1:3, [2;4;6;5]}, [v2(6:-1:3) v4(6:-1:3) v6(6:-1:3, :) v5(6:-1:3)]), [t 'T{iN:-1:i1, jj}']);
-      T{:, [6;4;1]} = [v6 v4 v1];
-      t_ok (isequal (T{:, [6;4;1]}, [v6 v4 v1]), [t 'T{:, jj} = [v<j1> v<j2> ...]']);
-    endif
+    T{[6;3], 6} = v6([6;3], :);
+    t_ok (isequal (T.mat([6;3], :), v6([6;3], :)), [t 'T{ii, j} = v<j>(ii, :)']);
+    T{[6;3], 6} = v6([6;3], [2;1]);
+    t_ok (isequal (T.mat([6;3], :), v6([6;3], [2;1])), [t 'T{ii, j} = v<j>(ii, jj)']);
+    T{6:-1:3, [2;4;6;5]} = [v2(6:-1:3) v4(6:-1:3) v6(6:-1:3, :) v5(6:-1:3)];
+    t_ok (isequal (T{6:-1:3, [2;4;6;5]}, [v2(6:-1:3) v4(6:-1:3) v6(6:-1:3, :) v5(6:-1:3)]), [t 'T{iN:-1:i1, jj}']);
+    T{:, [6;4;1]} = [v6 v4 v1];
+    t_ok (isequal (T{:, [6;4;1]}, [v6 v4 v1]), [t 'T{:, jj} = [v<j1> v<j2> ...]']);
     T{:, 1} = v1;
     T{:, 2} = v2;
     T{:, 3} = v3;
@@ -240,11 +226,7 @@ for k = 1:n_classes
     t_ok (isequal (T2.Properties.VariableNames, var_names(jj)), [t 'VariableNames']);
     t_ok (isequal (table_values(T2), {v1(ii), v3(ii), v4(ii), v6(ii, :)}), [t 'VariableValues']);
     t_ok (isequal (T2.Properties.RowNames, row_names(ii)), [t 'RowNames']);
-    if skip_oct_tab
-      t_skip (1, [t 'DimensionNames not yet supported'])
-    else
-      t_ok (isequal (T2.Properties.DimensionNames, T.Properties.DimensionNames), [t 'DimensionNames']);
-    endif
+    t_ok (isequal (T2.Properties.DimensionNames, T.Properties.DimensionNames), [t 'DimensionNames']);
 
     t = sprintf ('%s : subsref () : T(:,j1:s:jN) : ', cls);
     jj = [2:2:6];
@@ -286,7 +268,7 @@ for k = 1:n_classes
     t_ok (isequal (T2.Properties.RowNames, row_names(end)), [t 'RowNames']);
     t_ok (isequal (T2.Properties.DimensionNames, T.Properties.DimensionNames), [t 'DimensionNames']);
 
-    if true || skip_oct_tab
+    if skip_subsasgn_paren
       t_skip (20, sprintf ('%s : subsasgn () not yet supported.', cls));
     else
       t = sprintf ('%s : subsasgn () : T(ii,jj) : ', cls);
@@ -355,7 +337,7 @@ for k = 1:n_classes
     t_ok (isequal (T4, T3), [t '[T1;T2]']);
     T5 = table_class([7;8],[7.7;8.8],{'seven';'eight'},1./[7;8],[-1;2]<=0, [70 75; 80 85], ...
       'VariableNames', var_names);
-    if true || skip_oct_tab
+    if skip_rowname_autogen
       t_skip (1, [t 'RowNames auto-generation not yet supported']);
     else
       T6 = [T5; T2; T1];

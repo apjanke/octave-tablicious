@@ -862,9 +862,6 @@ classdef table
               exVarVals{iExVar} = tmp(ixRow,:);
             endfor
             out = cat (2, exVarVals{:});
-            # error(['table.subsref: {}-indexing of table requires one of the inputs to be scalar, but ' ...
-            #   'ixRow was %s %s and ixVar was %s %s'], ...
-            #   size2str (size (ixRow)), class (ixRow), size2str (size (ixVar)), class (ixVar));
           endif
         case '.'
           name = s.subs;
@@ -924,9 +921,27 @@ classdef table
             elseif (isVarColon)
               # Row deletion form
               out = subsetrows_impl(this, s.subs{1}, true);
+            else
+              error (['table.subsasgin: ()-indexed assignment with [] as RHS must have a ":" as ' ...
+                'either the row or variable subscript'])
             endif
+          elseif istable (rhs)
+            out = this;
+            [ixRow, ixVar] = resolveRowVarRefs (this, s.subs{1}, s.subs{2});
+            if islogical (ixVar); ixVar2 = find (ixVar); else; ixVar2 = ixVar; endif
+            nVarsSet = numel (ixVar2);
+            for iVar = 1:nVarsSet
+              ixVarI = ixVar(iVar);
+              v = this.VariableValues{ixVarI};
+              vRhs = rhs.VariableValues{iVar};
+              v(ixRow,:) = vRhs;
+              out.VariableValues{ixVarI} = v;
+            endfor
+          elseif iscell (rhs)
+            error ('table.subsasgn: ()-indexed assignment with a cell array RHS is not implemented yet');
           else
-            error ('table.subsasgn: assignment using ()-indexing is not yet implemented for table');
+            error ("table.subsasgn: ()-indexed assignment's RHS must be table, cell, or []; got a %s %s", ...
+              size2str (size (rhs)), class (rhs))
           end
         case '{}'
           if (numel (s.subs) != 2)
