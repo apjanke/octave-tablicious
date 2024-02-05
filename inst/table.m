@@ -909,8 +909,8 @@ classdef table
       switch (s.type)
         case '()'
           if (numel (s.subs) != 2)
-            error ('table.subsasgn: table subscripting must use exactly 2 subscripts; got %d subscripts', ...
-            numel (s.subs))
+            error ('table.subsasgn: table ()-subscripting must use exactly 2 subscripts; got %d subscripts', ...
+              numel (s.subs))
           endif
           if (isnumeric (rhs) && isempty (rhs))
             # Special `x(ixR,ixC) = []` deletion form
@@ -945,16 +945,21 @@ classdef table
           end
         case '{}'
           if (numel (s.subs) != 2)
-            error ('table.subsasgn: {}-indexing of table requires exactly two arguments');
+            error ('table.subsasgn: table {}-subscripting must use exactly 2 subscripts; got %d subscripts', ...
+              numel (s.subs))
           endif
           # General case
           [ixRow, ixVar] = resolveRowVarRefs (this, s.subs{1}, s.subs{2});
           if (isscalar (ixVar))
             varData = this.VariableValues{ixVar};
+            # FIXME: Will this fail for varData that is a nested table?
             varData(ixRow,:) = rhs;
             out.VariableValues{ixVar} = varData;
           elseif isempty (ixVar) || (islogical (ixVar) && ! any (ixVar))
-            # no-op
+            if (! isempty (rhs))
+              error (['table.subasasgn: inconsistent dimensions: {}-assignment of non-empty RHS to ' ...
+                'empty set of target table variables'])
+            endif
           else
             if islogical (ixVar); ixVar2 = find (ixVar); else; ixVar2 = ixVar; end
             newVarVals = out.VariableValues;
@@ -965,6 +970,8 @@ classdef table
               # Each variable takes as many RHS columns as it is wide itself
               nColsThisVar = size (varData, 2);
               ixRhsCols = ixRhsColStart:(ixRhsColStart+nColsThisVar-1);
+              # FIXME: this ()-indexing of rhs will probably break if rhs is a table, as in the
+              # case of {}-assignment across multiple nested tables.
               varData(ixRow,:) = rhs(:,ixRhsCols);
               newVarVals{ixV} = varData;
               ixRhsColStart = ixRhsColStart + nColsThisVar;
@@ -972,17 +979,25 @@ classdef table
             out.VariableValues = newVarVals;
           endif
         case '.'
-          if (! ischar (s.subs))
-            error ('table.subsasgn: .-index argument must be char; got a %s', ...
+          targetField = s.subs;
+          if isstring (targetField)
+            targetField = char (targetField);
+          endif
+          if (! ischar (targetField))
+            error ('table.subsasgn: .-indexing index argument must be char; got a %s', ...
               class (s.subs));
           endif
-          if (isequal (s.subs, 'Properties'))
+          if (! isrow (targetField))
+            error ('table.subsasgn: .-indexing variable name must be a single string; got a %d-row char array', ...
+              size (targetField, 1))
+          endif
+          if (isequal (targetField, 'Properties'))
             # Special case for this.Properties access
             # Will need to be implemented using chained assignment, and probably handled
             # up above in a special case near the top.
             error ('table.subsasgn: .Properties access is not implemented yet');
           else
-            out = setvar (this, s.subs, rhs);
+            out = setvar (this, targetField, rhs);
           endif
       endswitch
     endfunction
