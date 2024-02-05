@@ -50,7 +50,7 @@ strong.def-name {font-family: monospace; font-weight: bold; font-size: larger}
 Next: <a href="table_002ecartesian.html" accesskey="n" rel="next">table.cartesian</a>, Previous: <a href="table_002esemijoin.html" accesskey="p" rel="prev">table.semijoin</a>, Up: <a href="table.html" accesskey="u" rel="up">table</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
 </div>
 <hr>
-<h4 class="subsubsection" id="table_002eantijoin-1"><span>8.2.53.52 table.antijoin<a class="copiable-link" href="#table_002eantijoin-1"> &para;</a></span></h4>
+<h4 class="subsubsection" id="table_002eantijoin-1"><span>8.2.53.42 table.antijoin<a class="copiable-link" href="#table_002eantijoin-1"> &para;</a></span></h4>
 
 <dl class="first-deftypefn">
 <dt class="deftypefn" id="index-antijoin"><span class="category-def">Method: </span><span><code class="def-type">[<var class="var">outA</var>, <var class="var">ixA</var>, <var class="var">outB</var>, <var class="var">ixB</var>] =</code> <strong class="def-name">antijoin</strong> <code class="def-code-arguments">(<var class="var">A</var>, <var class="var">B</var>)</code><a class="copiable-link" href="#index-antijoin"> &para;</a></span></dt>
@@ -65,6 +65,8 @@ rows from one input which do not have matching rows in the other input.
   <var class="var">ixA</var> - the row indexes into A which produced <var class="var">outA</var>
   <var class="var">outB</var> - all the rows in B with no matching row in A
   <var class="var">ixB</var> - the row indexes into B which produced <var class="var">outB</var>
+</p>
+<p>This is a Tablicious/Octave extension, not defined in the Matlab table interface.
 </p>
 </dd></dl>
 

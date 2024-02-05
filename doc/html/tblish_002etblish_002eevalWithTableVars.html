@@ -18,10 +18,10 @@ notice identical to this one.
 
 Permission is granted to copy and distribute translations of this manual
 into another language, under the same conditions as for modified versions. -->
-<title>table.evalWithVars (Tablicious v0.4.0-SNAPSHOT)</title>
+<title>tblish.tblish.evalWithTableVars (Tablicious v0.4.0-SNAPSHOT)</title>
 
 <meta name="description" content="User manual for Tablicious for Octave.">
-<meta name="keywords" content="table.evalWithVars (Tablicious v0.4.0-SNAPSHOT)">
+<meta name="keywords" content="tblish.tblish.evalWithTableVars (Tablicious v0.4.0-SNAPSHOT)">
 <meta name="resource-type" content="document">
 <meta name="distribution" content="global">
 <meta name="Generator" content="makeinfo">
@@ -29,9 +29,9 @@ into another language, under the same conditions as for modified versions. -->
 
 <link href="index.html" rel="start" title="Top">
 <link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
-<link href="table.html" rel="up" title="table">
-<link href="table_002erestrict.html" rel="next" title="table.restrict">
-<link href="table_002efindgroups.html" rel="prev" title="table.findgroups">
+<link href="API-Alphabetically.html" rel="up" title="API Alphabetically">
+<link href="tblish_002etblish_002esizeof22.html" rel="next" title="tblish.tblish.sizeof22">
+<link href="tblish_002etable_002etblish_002etable_002egrpstats.html" rel="prev" title="tblish.table.tblish.table.grpstats">
 <style type="text/css">
 <!--
 a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
@@ -45,20 +45,19 @@ strong.def-name {font-family: monospace; font-weight: bold; font-size: larger}
 </head>
 
 <body lang="en">
-<div class="subsubsection-level-extent" id="table_002eevalWithVars">
+<div class="subsection-level-extent" id="tblish_002etblish_002eevalWithTableVars">
 <div class="nav-panel">
 <p>
-Next: <a href="table_002erestrict.html" accesskey="n" rel="next">table.restrict</a>, Previous: <a href="table_002efindgroups.html" accesskey="p" rel="prev">table.findgroups</a>, Up: <a href="table.html" accesskey="u" rel="up">table</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+Next: <a href="tblish_002etblish_002esizeof22.html" accesskey="n" rel="next">tblish.tblish.sizeof22</a>, Previous: <a href="tblish_002etable_002etblish_002etable_002egrpstats.html" accesskey="p" rel="prev">tblish.table.tblish.table.grpstats</a>, Up: <a href="API-Alphabetically.html" accesskey="u" rel="up">API Alphabetically</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
 </div>
 <hr>
-<h4 class="subsubsection" id="table_002eevalWithVars-1"><span>8.2.53.68 table.evalWithVars<a class="copiable-link" href="#table_002eevalWithVars-1"> &para;</a></span></h4>
-
+<h4 class="subsection" id="tblish_002etblish_002eevalWithTableVars-1"><span>8.2.63 tblish.tblish.evalWithTableVars<a class="copiable-link" href="#tblish_002etblish_002eevalWithTableVars-1"> &para;</a></span></h4>
 <dl class="first-deftypefn">
-<dt class="deftypefn" id="index-evalWithVars"><span class="category-def">Method: </span><span><code class="def-type"><var class="var">out</var> =</code> <strong class="def-name">evalWithVars</strong> <code class="def-code-arguments">(<var class="var">obj</var>, <var class="var">expr</var>)</code><a class="copiable-link" href="#index-evalWithVars"> &para;</a></span></dt>
+<dt class="deftypefn" id="index-evalWithTableVars"><span class="category-def">Function: </span><span><code class="def-type"><var class="var">out</var> =</code> <strong class="def-name">evalWithTableVars</strong> <code class="def-code-arguments">(<var class="var">tbl</var>, <var class="var">expr</var>)</code><a class="copiable-link" href="#index-evalWithTableVars"> &para;</a></span></dt>
 <dd>
-<p>Evaluate an expression against table’s variables.
+<p>Evaluate an expression against a table array’s variables.
 </p>
-<p>Evaluates the M-code expression <var class="var">expr</var> in a workspace where all of <var class="var">obj</var>’s
+<p>Evaluates the M-code expression <var class="var">expr</var> in a workspace where all of <var class="var">tbl</var>’s
 variables have been assigned to workspace variables.
 </p>
 <p><var class="var">expr</var> is a charvec containing an Octave expression.
@@ -74,10 +73,11 @@ table variable names.
 <div class="example">
 <pre class="example-preformatted">[s,p,sp] = tblish.examples.SpDb
 tmp = join (sp, p);
-shipment_weight = evalWithVars (tmp, &quot;Qty .* Weight&quot;)
+shipment_weight = tblish.evalWithTableVars (tmp, &quot;Qty .* Weight&quot;)
 </pre></div>
 
 </dd></dl>
+
 
 </div>
 

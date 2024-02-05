@@ -31,7 +31,7 @@ into another language, under the same conditions as for modified versions. -->
 <link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
 <link href="table.html" rel="up" title="table">
 <link href="table_002esqueeze.html" rel="next" title="table.squeeze">
-<link href="table_002elength.html" rel="prev" title="table.length">
+<link href="table_002eend.html" rel="prev" title="table.end">
 <style type="text/css">
 <!--
 a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
@@ -47,17 +47,18 @@ strong.def-name {font-family: monospace; font-weight: bold; font-size: larger}
 <div class="subsubsection-level-extent" id="table_002endims">
 <div class="nav-panel">
 <p>
-Next: <a href="table_002esqueeze.html" accesskey="n" rel="next">table.squeeze</a>, Previous: <a href="table_002elength.html" accesskey="p" rel="prev">table.length</a>, Up: <a href="table.html" accesskey="u" rel="up">table</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+Next: <a href="table_002esqueeze.html" accesskey="n" rel="next">table.squeeze</a>, Previous: <a href="table_002eend.html" accesskey="p" rel="prev">table.end</a>, Up: <a href="table.html" accesskey="u" rel="up">table</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
 </div>
 <hr>
-<h4 class="subsubsection" id="table_002endims-1"><span>8.2.53.12 table.ndims<a class="copiable-link" href="#table_002endims-1"> &para;</a></span></h4>
+<h4 class="subsubsection" id="table_002endims-1"><span>8.2.53.11 table.ndims<a class="copiable-link" href="#table_002endims-1"> &para;</a></span></h4>
 
 <dl class="first-deftypefn">
 <dt class="deftypefn" id="index-ndims"><span class="category-def">Method: </span><span><code class="def-type"><var class="var">out</var> =</code> <strong class="def-name">ndims</strong> <code class="def-code-arguments">(<var class="var">obj</var>)</code><a class="copiable-link" href="#index-ndims"> &para;</a></span></dt>
 <dd>
 <p>Number of dimensions
 </p>
-<p>For tables, <code class="code">ndims(obj)</code> is always 2.
+<p>For tables, <code class="code">ndims(obj)</code> is always 2, because table arrays are always
+2-D (rows-by-columns).
 </p>
 </dd></dl>
 

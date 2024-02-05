@@ -30,6 +30,7 @@ into another language, under the same conditions as for modified versions. -->
 <link href="index.html" rel="start" title="Top">
 <link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
 <link href="calendarDuration.html" rel="up" title="calendarDuration">
+<link href="calendarDuration_002eismissing.html" rel="next" title="calendarDuration.ismissing">
 <link href="calendarDuration_002edispstrs.html" rel="prev" title="calendarDuration.dispstrs">
 <style type="text/css">
 <!--
@@ -46,16 +47,18 @@ strong.def-name {font-family: monospace; font-weight: bold; font-size: larger}
 <div class="subsubsection-level-extent" id="calendarDuration_002eisnan">
 <div class="nav-panel">
 <p>
-Previous: <a href="calendarDuration_002edispstrs.html" accesskey="p" rel="prev">calendarDuration.dispstrs</a>, Up: <a href="calendarDuration.html" accesskey="u" rel="up">calendarDuration</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+Next: <a href="calendarDuration_002eismissing.html" accesskey="n" rel="next">calendarDuration.ismissing</a>, Previous: <a href="calendarDuration_002edispstrs.html" accesskey="p" rel="prev">calendarDuration.dispstrs</a>, Up: <a href="calendarDuration.html" accesskey="u" rel="up">calendarDuration</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
 </div>
 <hr>
-<h4 class="subsubsection" id="calendarDuration_002eisnan-1"><span>8.2.2.9 calendarDuration.isnan<a class="copiable-link" href="#calendarDuration_002eisnan-1"> &para;</a></span></h4>
+<h4 class="subsubsection" id="calendarDuration_002eisnan-1"><span>8.2.2.7 calendarDuration.isnan<a class="copiable-link" href="#calendarDuration_002eisnan-1"> &para;</a></span></h4>
 
 <dl class="first-deftypefn">
 <dt class="deftypefn" id="index-isnan"><span class="category-def">Method: </span><span><code class="def-type"><var class="var">out</var> =</code> <strong class="def-name">isnan</strong> <code class="def-code-arguments">(<var class="var">obj</var>)</code><a class="copiable-link" href="#index-isnan"> &para;</a></span></dt>
 <dd>
-<p>True if input elements are NaT. This is just an alias for <code class="code">isnat</code>,
-provided for compatibility and polymorphic programming purposes.
+<p>True if input elements are NaN.
+</p>
+<p>This is equivalent to <code class="code">ismissing</code>, and is provided for compatibility
+and polymorphic programming purposes.
 </p>
 <p>Returns logical array the same size as <var class="var">obj</var>.
 </p>

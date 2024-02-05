@@ -31,7 +31,7 @@ into another language, under the same conditions as for modified versions. -->
 <link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
 <link href="table.html" rel="up" title="table">
 <link href="table_002ehorzcat.html" rel="next" title="table.horzcat">
-<link href="table_002ehasrownames.html" rel="prev" title="table.hasrownames">
+<link href="table_002eisempty.html" rel="prev" title="table.isempty">
 <style type="text/css">
 <!--
 a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
@@ -47,10 +47,10 @@ strong.def-name {font-family: monospace; font-weight: bold; font-size: larger}
 <div class="subsubsection-level-extent" id="table_002evertcat">
 <div class="nav-panel">
 <p>
-Next: <a href="table_002ehorzcat.html" accesskey="n" rel="next">table.horzcat</a>, Previous: <a href="table_002ehasrownames.html" accesskey="p" rel="prev">table.hasrownames</a>, Up: <a href="table.html" accesskey="u" rel="up">table</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+Next: <a href="table_002ehorzcat.html" accesskey="n" rel="next">table.horzcat</a>, Previous: <a href="table_002eisempty.html" accesskey="p" rel="prev">table.isempty</a>, Up: <a href="table.html" accesskey="u" rel="up">table</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
 </div>
 <hr>
-<h4 class="subsubsection" id="table_002evertcat-1"><span>8.2.53.28 table.vertcat<a class="copiable-link" href="#table_002evertcat-1"> &para;</a></span></h4>
+<h4 class="subsubsection" id="table_002evertcat-1"><span>8.2.53.17 table.vertcat<a class="copiable-link" href="#table_002evertcat-1"> &para;</a></span></h4>
 
 <dl class="first-deftypefn">
 <dt class="deftypefn" id="index-vertcat"><span class="category-def">Method: </span><span><code class="def-type"><var class="var">out</var> =</code> <strong class="def-name">vertcat</strong> <code class="def-code-arguments">(<var class="var">varargin</var>)</code><a class="copiable-link" href="#index-vertcat"> &para;</a></span></dt>
@@ -63,7 +63,9 @@ Next: <a href="table_002ehorzcat.html" accesskey="n" rel="next">table.horzcat</a
 table() on them.
 </p>
 <p>The inputs must have the same number and names of variables, and their
-variable value types and sizes must be cat-compatible.
+variable value types and sizes must be cat-compatible. The types of the resulting
+variables are the types that result from doing a &lsquo;vertcat()&lsquo; on the variables
+from the corresponding input tables, in the order they were input in.
 </p>
 </dd></dl>
 
