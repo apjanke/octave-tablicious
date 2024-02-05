@@ -59,12 +59,14 @@ Validation Functions
 Miscellaneous
  colvecfun
  dispstrs
+ head
  isfile
  isfolder
  pp
  scalarexpand
  size2str
  splitapply
+ tail
  vecfun
  tblish.sizeof2
 Example Datasets

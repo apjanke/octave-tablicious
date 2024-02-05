@@ -1559,65 +1559,6 @@ classdef table
       out = [tbl stk_tbl];
     endfunction
 
-    ## -*- texinfo -*-
-    ## @node table.head
-    ## @deftypefn {Method} {@var{out} =} head (@var{obj})
-    ## @deftypefnx {Method} {@var{out} =} head (@var{obj}, @var{k})
-    ##
-    ## Get first K rows of table.
-    ##
-    ## Returns the first @var{k} rows of @var{obj}, as a table.
-    ##
-    ## @var{k} defaults to 8.
-    ##
-    ## If there are less than @var{k} rows in @var{obj}, returns all rows.
-    ##
-    ## @end deftypefn
-    function out = head (this, k)
-      if (nargin < 2 || isempty (k))
-        k = 8;
-      endif
-      nRows = height (this);
-      if (nRows < k)
-        out = this;
-        return
-      endif
-      out = subsetrows (this, 1:k);
-    endfunction
-
-    ## -*- texinfo -*-
-    ## @node table.tail
-    ## @deftypefn {Method} {@var{out} =} tail (@var{obj})
-    ## @deftypefnx {Method} {@var{out} =} tail (@var{obj}, @var{k})
-    ##
-    ## Get last K rows of table.
-    ##
-    ## Returns the last @var{k} rows of @var{obj}, as a table.
-    ##
-    ## @var{k} defaults to 8.
-    ##
-    ## If there are less than @var{k} rows in @var{obj}, returns all rows.
-    ##
-    ## @end deftypefn
-    function out = tail (this, k)
-      #TAIL Get last K rows of table
-      #
-      # out = tail (this, k)
-      #
-      # Returns the last k rows of this. K defaults to 8.
-      #
-      # If there are less than k rows in this, returns all rows.
-      if (nargin < 2 || isempty (k))
-        k = 8;
-      endif
-      nRows = height (this);
-      if (nRows < k)
-        out = this;
-        return
-      endif
-      out = subsetrows (this, [(nRows - (k - 1)):nRows]);
-    endfunction
-
     function out = transpose (this)
       out = transpose_table (this);
     endfunction
