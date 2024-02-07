@@ -140,12 +140,9 @@ classdef TzInfo
         endfor
       endif
       fprintf ('is_std:\n');
-      function out = num2cellstr (x)
-        out = reshape (strtrim (cellstr (num2str (x(:)))), size (x));
-      endfunction
-      fprintf ('  %s\n', strjoin (num2cellstr (this.isStd), '  '));
+      fprintf ('  %s\n', strjoin (tblish.internal.num2cellstr (this.isStd), '  '));
       fprintf ('is_gmt:\n');
-      fprintf ('  %s\n', strjoin (num2cellstr (this.isGmt), '  '));
+      fprintf ('  %s\n', strjoin (tblish.internal.num2cellstr (this.isGmt), '  '));
       if (! isempty (this.goingForwardPosixZone))
         fprintf ('posix_zone:\n');
         fprintf ('  %s\n', this.goingForwardPosixZone);

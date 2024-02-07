@@ -342,7 +342,7 @@ classdef localdate
         str = str{1};
         fprintf (' %s\n', str);
       else
-        txt = tblish.internal.chrono.format_dispstr_array (dispstrs (this));
+        txt = tblish.internal.format_dispstr_array (dispstrs (this));
         fprintf ('%s\n', txt);
       endif
     endfunction

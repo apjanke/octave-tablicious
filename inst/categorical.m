@@ -106,7 +106,7 @@ classdef categorical
   methods (Static = true, Hidden = true)
 
     function out = from_codes (codes, cats, varargin)
-      [opts, args] = peelOffNameValueOptions (varargin, {'Ordinal', 'Protected'});
+      [opts, args] = tblish.internal.peelOffNameValueOptions (varargin, {'Ordinal', 'Protected'});
       isOrdinal = false;
       if (isfield (opts, 'Ordinal'))
         mustBeScalarLogical (opts.Ordinal, 'Ordinal option');
@@ -246,7 +246,7 @@ classdef categorical
       end
 
       validOptions = {'Ordinal', 'Protected'};
-      [opts, args] = peelOffNameValueOptions (varargin, validOptions);
+      [opts, args] = tblish.internal.peelOffNameValueOptions (varargin, validOptions);
       if (ischar (x))
         x = cellstr (x);
       endif
@@ -423,7 +423,7 @@ classdef categorical
         return
       endif
       my_dispstrs = this.dispstrs;
-      out = format_dispstr_array (my_dispstrs);
+      out = tblish.internal.format_dispstr_array (my_dispstrs);
       fprintf ("%s", out);
     endfunction
 

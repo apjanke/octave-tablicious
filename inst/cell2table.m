@@ -40,7 +40,7 @@ function out = cell2table (c, varargin)
   endif
 
   # Peel off trailing options
-  [opts, args] = peelOffNameValueOptions (varargin, {'VariableNames', 'RowNames'});
+  [opts, args] = tblish.internal.peelOffNameValueOptions (varargin, {'VariableNames', 'RowNames'});
   if (! isempty (args))
     error ('cell2table: Unrecognized options');
   endif

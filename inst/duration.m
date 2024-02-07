@@ -273,7 +273,7 @@ classdef duration
         fprintf ('Empty %s %s\n', size2str (size (this)), class (this));
         return;
       endif
-      out = tblish.internal.chrono.format_dispstr_array (dispstrs (this));
+      out = tblish.internal.format_dispstr_array (dispstrs (this));
       fprintf ('%s\n', out);
     endfunction
 

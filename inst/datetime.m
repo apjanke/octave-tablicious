@@ -620,7 +620,7 @@ classdef datetime
         endif
         fprintf (' %s\n', str);
       else
-        txt = tblish.internal.chrono.format_dispstr_array (dispstrs (this));
+        txt = tblish.internal.format_dispstr_array (dispstrs (this));
         fprintf ('%s\n', txt);
         if (! isempty (this.TimeZone))
           fprintf ('  %s\n', this.TimeZone);

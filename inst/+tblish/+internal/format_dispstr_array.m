@@ -28,12 +28,12 @@ function out = format_dispstr_array (strs)
       for i = 1:numel (high_sz)
         high_ixs{i} = [1:high_sz(i)]';
       endfor
-      page_ixs = mycombvec (high_ixs);
+      page_ixs = tblish.internal.mycombvec (high_ixs);
       chunks = {};
       for i_page = 1:size (page_ixs, 1)
         page_ix = page_ixs(i_page,:);
         chunks{end+1} = sprintf ('(:,:,%s) = ', ...
-          strjoin (num2cellstr (page_ix), ':')); %#ok<*AGROW>
+          strjoin (tblish.internal.num2cellstr (page_ix), ':')); %#ok<*AGROW>
         page_ix_cell = num2cell (page_ix);
         page_strs = strs(:,:,page_ix_cell{:});
         chunks{end+1} = prettyprint_matrix (page_strs);
@@ -42,7 +42,7 @@ function out = format_dispstr_array (strs)
   endif
   if (nargout == 0)
       disp (out);
-      clear out
+      clear out;
   endif
 endfunction
 
@@ -52,11 +52,11 @@ function out = prettyprint_matrix (strs)
   endif
   lens = cellfun ('prodofsize', strs);
   widths = max (lens, 1);
-  formats = sprintfv ('%%%ds', widths);
+  formats = tblish.internal.sprintfv ('%%%ds', widths);
   format = strjoin (formats, '   ');
   lines = cell (size (strs,1), 1);
   for i = 1:size (strs, 1)
     lines{i} = sprintf (format, strs{i,:});
   endfor
-  out = [strjoin(lines, '\n') sprintf("\n")];
+  out = strjoin (lines, '\n');
 endfunction

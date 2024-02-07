@@ -36,7 +36,7 @@
 ## @end deftypefn
 function out = contains (str, pattern, varargin)
 
-  [opts, args] = peelOffNameValueOptions (varargin, {'IgnoreCase'});
+  [opts, args] = tblish.internal.peelOffNameValueOptions (varargin, {'IgnoreCase'});
   ignore_case = false;
   if (isfield (opts, 'IgnoreCase'))
     mustBeScalarLogical (opts.IgnoreCase, 'IgnoreCase option');

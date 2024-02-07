@@ -139,7 +139,7 @@ classdef table
       # Parse input args
       optNames = {'VariableNames', 'Size', 'VariableTypes', 'RowNames', 'DimensionNames'};
       unsupportedOptions = {};
-      [opts, args] = peelOffNameValueOptions (varargin, optNames);
+      [opts, args] = tblish.internal.peelOffNameValueOptions (varargin, optNames);
       optsPresent = fieldnames (opts);
       tfUnsupp = ismember (optsPresent, unsupportedOptions);
       if (any (tfUnsupp))
@@ -391,7 +391,7 @@ classdef table
     ##
     ## @end deftypefn
     function out = table2struct (this, varargin)
-      [opts, args] = peelOffNameValueOptions (varargin, {'ToScalar'});
+      [opts, args] = tblish.internal.peelOffNameValueOptions (varargin, {'ToScalar'});
       toScalar = false;
       if (isfield (opts, 'ToScalar'))
         mustBeA (opts.ToScalar, 'logical');
@@ -1316,7 +1316,7 @@ classdef table
     ##
     ## @end deftypefn
     function out = addvars (this, varargin)
-      [opts, args] = peelOffNameValueOptions (varargin, ...
+      [opts, args] = tblish.internal.peelOffNameValueOptions (varargin, ...
         {'Before', 'After', 'NewVariableNames'});
       ix_insertion = width (this);
       if (isfield (opts, 'Before'))
@@ -1401,7 +1401,7 @@ classdef table
     ##
     ## @end deftypefn
     function out = mergevars (this, vars, varargin)
-      [opts, args] = peelOffNameValueOptions (varargin, ...
+      [opts, args] = tblish.internal.peelOffNameValueOptions (varargin, ...
         {'NewVariableName', 'MergeAsTable'});
       if (isfield (opts, 'MergeAsTable'))
         merge_as_table = opts.MergeAsTable;
@@ -1448,7 +1448,7 @@ classdef table
     ##
     ## @end deftypefn
     function out = splitvars(this, varargin)
-      [opts, args] = peelOffNameValueOptions (varargin, {'NewVariableNames'});
+      [opts, args] = tblish.internal.peelOffNameValueOptions (varargin, {'NewVariableNames'});
       if (isfield (opts, 'NewVariableNames'))
         new_var_names = opts.NewVariableNames;
       else
@@ -1517,7 +1517,7 @@ classdef table
     ##
     ## @end deftypefn
     function out = stack (this, varRef, varargin)
-      [opts, args] = peelOffNameValueOptions (varargin, ...
+      [opts, args] = tblish.internal.peelOffNameValueOptions (varargin, ...
         {'NewDataVariableName', 'IndexVariableName', 'ConstantVariables'});
       index_var_name = [];
       if (isfield (opts, 'IndexVariableName'))
@@ -1583,7 +1583,7 @@ classdef table
       direction = 'ascend';
       varRef = ':';
       knownOptions = {'MissingPlacement', 'ComparisonMethod'};
-      [opts, ~, optArgs] = peelOffNameValueOptions (args, knownOptions);
+      [opts, ~, optArgs] = tblish.internal.peelOffNameValueOptions (args, knownOptions);
       if (! isempty (args) && (ischar (args{end}) || iscellstr (args{end})) ...
         && all (ismember (args{end}, {'ascend','descend'})))
         direction = args{end};
@@ -1732,7 +1732,7 @@ classdef table
       # Input munging
       optNames = {'Keys', 'KeepOneCopy', 'LeftKeys', 'RightKeys', ...
         'LeftVariables', 'RightVariables'};
-      opts = peelOffNameValueOptions (varargin, optNames);
+      opts = tblish.internal.peelOffNameValueOptions (varargin, optNames);
       unimplementedOptions = optNames;
       for i = 1:numel (unimplementedOptions)
         if (isfield (opts, unimplementedOptions{i}))
@@ -1748,8 +1748,8 @@ classdef table
       endif
 
       # Join logic
-      keyVarNames = intersect_stable (A.VariableNames, B.VariableNames);
-      nonKeyVarsB = setdiff_stable (B.VariableNames, keyVarNames);
+      keyVarNames = tblish.internal.intersect_stable (A.VariableNames, B.VariableNames);
+      nonKeyVarsB = tblish.internal.setdiff_stable (B.VariableNames, keyVarNames);
       if (isempty (keyVarNames))
         error ('table.join: Cannot join: inputs have no variable names in common');
       endif
@@ -1795,7 +1795,7 @@ classdef table
       # Input munging
       optNames = {'Keys', 'LeftKeys', 'RightKeys', ...
         'LeftVariables', 'RightVariables'};
-      opts = peelOffNameValueOptions (varargin, optNames);
+      opts = tblish.internal.peelOffNameValueOptions (varargin, optNames);
       if (! istable (A))
         A = table (A);
       endif
@@ -1837,7 +1837,7 @@ classdef table
       # Input handling
       optNames = {'Keys', 'LeftKeys', 'RightKeys', ...
         'LeftVariables', 'RightVariables'};
-      opts = peelOffNameValueOptions (varargin, optNames);
+      opts = tblish.internal.peelOffNameValueOptions (varargin, optNames);
       if (! istable (A))
         A = table (A);
       endif
@@ -1902,7 +1902,7 @@ classdef table
       endif
       optNames = {'Keys', 'LeftKeys', 'RightKeys', 'MergeKeys', ...
         'LeftVariables', 'RightVariables', 'Type'};
-      opts = peelOffNameValueOptions (varargin, optNames);
+      opts = tblish.internal.peelOffNameValueOptions (varargin, optNames);
       if (isfield (opts, 'Type'))
         joinType = opts.Type;
       else
@@ -2031,8 +2031,8 @@ classdef table
       endif
 
       # Join logic
-      keyVarNames = intersect_stable (A.VariableNames, B.VariableNames);
-      nonKeyVarsB = setdiff_stable (B.VariableNames, keyVarNames);
+      keyVarNames = tblish.internal.intersect_stable (A.VariableNames, B.VariableNames);
+      nonKeyVarsB = tblish.internal.setdiff_stable (B.VariableNames, keyVarNames);
       if (isempty (keyVarNames))
         # The degenerate case of no common variable names is to keep all the rows.
         outA = A;
@@ -2082,8 +2082,8 @@ classdef table
       endif
 
       # Join logic
-      keyVarNames = intersect_stable (A.VariableNames, B.VariableNames);
-      nonKeyVarsB = setdiff_stable (B.VariableNames, keyVarNames);
+      keyVarNames = tblish.internal.intersect_stable (A.VariableNames, B.VariableNames);
+      nonKeyVarsB = tblish.internal.setdiff_stable (B.VariableNames, keyVarNames);
       if (isempty (keyVarNames))
         # The degenerate case when there are no common variable names is the empty set
         outA = subsetrows (A, []);
@@ -2264,7 +2264,7 @@ classdef table
     ##
     ## @end deftypefn
     function out = rows2vars (this, varargin)
-      [opts, args] = peelOffNameValueOptions (varargin, {'VariableNamesSource', ...
+      [opts, args] = tblish.internal.peelOffNameValueOptions (varargin, {'VariableNamesSource', ...
         'DataVariables'});
 
       for i = 1:width (this)
@@ -2494,7 +2494,7 @@ classdef table
     function out = varfun (func, A, varargin)
       mustBeA (A, 'table');
       validOptions = {'InputVariables', 'GroupingVariables', 'OutputFormat', 'ErrorHandler'};
-      [opts, args] = peelOffNameValueOptions (varargin, validOptions);
+      [opts, args] = tblish.internal.peelOffNameValueOptions (varargin, validOptions);
       unimplementedOptions = {'GroupingVariables', 'ErrorHandler'};
       for i = 1:numel (unimplementedOptions)
         if (isfield (opts, unimplementedOptions{i}))
@@ -2639,7 +2639,7 @@ classdef table
       validOptions = {'InputVariables', 'GroupingVariables', 'OutputFormat', ...
         'SeparateInputs', 'ExtractCellContents', 'OutputVariableNames', ...
         'NumOutputs', 'ErrorHandler'};
-      [opts, args] = peelOffNameValueOptions (varargin, validOptions);
+      [opts, args] = tblish.internal.peelOffNameValueOptions (varargin, validOptions);
       unimplementedOptions = {'GroupingVariables'};
       for i = 1:numel (unimplementedOptions)
         if (isfield (opts, unimplementedOptions{i}))

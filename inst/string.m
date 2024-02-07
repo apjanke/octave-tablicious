@@ -265,7 +265,7 @@ classdef string
         return
       endif
       my_dispstrs = this.dispstrs;
-      out = format_dispstr_array (my_dispstrs);
+      out = tblish.internal.format_dispstr_array (my_dispstrs);
       fprintf ("%s", out);
     endfunction
 

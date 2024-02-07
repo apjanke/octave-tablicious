@@ -64,7 +64,7 @@ function out = sprintfv (fmt, varargin)
               theseArgs{iArg} = args{iArg}(ix_i);
           endif
       endfor
-      out{i} = sprintf (fofmtrmat, theseArgs{:});
+      out{i} = sprintf (fmt, theseArgs{:});
   endfor
 
 endfunction

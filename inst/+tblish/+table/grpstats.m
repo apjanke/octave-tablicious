@@ -33,7 +33,7 @@
 ##
 ## @end deftypefn
 function out = grpstats (tbl, groupvar, varargin)
-  [opts, args] = peelOffNameValueOptions (varargin, {'DataVars'});
+  [opts, args] = tblish.internal.peelOffNameValueOptions (varargin, {'DataVars'});
   if (numel (args) > 1)
     error ('table.table.grpstats: too many inputs');
   elseif (numel (args) == 1)

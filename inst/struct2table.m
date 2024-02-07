@@ -31,7 +31,7 @@
 function out = struct2table (s, varargin)
 
   # Peel off trailing options
-  [opts, args] = peelOffNameValueOptions (varargin, {'AsArray'});
+  [opts, args] = tblish.internal.peelOffNameValueOptions (varargin, {'AsArray'});
   if (isfield (opts, 'AsArray') && opts.AsArray)
     error ('struct2table: AsArray option is currently unimplemented');
   endif

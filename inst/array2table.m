@@ -41,7 +41,7 @@ function out = array2table(c, varargin)
   endif
 
   # Peel off trailing options
-  [opts, args] = peelOffNameValueOptions (varargin, {'VariableNames', 'RowNames'});
+  [opts, args] = tblish.internal.peelOffNameValueOptions (varargin, {'VariableNames', 'RowNames'});
   if (! isempty (args))
     error ('array2table: Unrecognized options');
   endif
