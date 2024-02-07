@@ -48,19 +48,19 @@
                         <section title="calendarDuration" ref="html/calendarDuration.html">
                             <section title="calendarDuration.calendarDuration" ref="html/calendarDuration_002ecalendarDuration.html">
                             </section>
-                            <section title="calendarDuration.uminus" ref="html/calendarDuration_002euminus.html">
+                            <section title="calendarDuration.dispstrs" ref="html/calendarDuration_002edispstrs.html">
+                            </section>
+                            <section title="calendarDuration.ismissing" ref="html/calendarDuration_002eismissing.html">
+                            </section>
+                            <section title="calendarDuration.isnan" ref="html/calendarDuration_002eisnan.html">
+                            </section>
+                            <section title="calendarDuration.minus" ref="html/calendarDuration_002eminus.html">
                             </section>
                             <section title="calendarDuration.plus" ref="html/calendarDuration_002eplus.html">
                             </section>
                             <section title="calendarDuration.times" ref="html/calendarDuration_002etimes.html">
                             </section>
-                            <section title="calendarDuration.minus" ref="html/calendarDuration_002eminus.html">
-                            </section>
-                            <section title="calendarDuration.dispstrs" ref="html/calendarDuration_002edispstrs.html">
-                            </section>
-                            <section title="calendarDuration.isnan" ref="html/calendarDuration_002eisnan.html">
-                            </section>
-                            <section title="calendarDuration.ismissing" ref="html/calendarDuration_002eismissing.html">
+                            <section title="calendarDuration.uminus" ref="html/calendarDuration_002euminus.html">
                             </section>
                         </section>
                         <section title="calmonths" ref="html/calmonths.html">
@@ -68,31 +68,31 @@
                         <section title="calyears" ref="html/calyears.html">
                         </section>
                         <section title="categorical" ref="html/categorical.html">
-                            <section title="categorical.undefined" ref="html/categorical_002eundefined.html">
-                            </section>
-                            <section title="categorical.missing" ref="html/categorical_002emissing.html">
+                            <section title="categorical.addcats" ref="html/categorical_002eaddcats.html">
                             </section>
                             <section title="categorical.categorical" ref="html/categorical_002ecategorical.html">
                             </section>
                             <section title="categorical.categories" ref="html/categorical_002ecategories.html">
                             </section>
-                            <section title="categorical.iscategory" ref="html/categorical_002eiscategory.html">
-                            </section>
-                            <section title="categorical.isordinal" ref="html/categorical_002eisordinal.html">
-                            </section>
-                            <section title="categorical.string" ref="html/categorical_002estring.html">
-                            </section>
                             <section title="categorical.cellstr" ref="html/categorical_002ecellstr.html">
                             </section>
                             <section title="categorical.dispstrs" ref="html/categorical_002edispstrs.html">
                             </section>
-                            <section title="categorical.summary" ref="html/categorical_002esummary.html">
+                            <section title="categorical.iscategory" ref="html/categorical_002eiscategory.html">
                             </section>
-                            <section title="categorical.addcats" ref="html/categorical_002eaddcats.html">
+                            <section title="categorical.ismissing" ref="html/categorical_002eismissing.html">
                             </section>
-                            <section title="categorical.removecats" ref="html/categorical_002eremovecats.html">
+                            <section title="categorical.isnanny" ref="html/categorical_002eisnanny.html">
+                            </section>
+                            <section title="categorical.isordinal" ref="html/categorical_002eisordinal.html">
+                            </section>
+                            <section title="categorical.isundefined" ref="html/categorical_002eisundefined.html">
                             </section>
                             <section title="categorical.mergecats" ref="html/categorical_002emergecats.html">
+                            </section>
+                            <section title="categorical.missing" ref="html/categorical_002emissing.html">
+                            </section>
+                            <section title="categorical.removecats" ref="html/categorical_002eremovecats.html">
                             </section>
                             <section title="categorical.renamecats" ref="html/categorical_002erenamecats.html">
                             </section>
@@ -100,13 +100,13 @@
                             </section>
                             <section title="categorical.setcats" ref="html/categorical_002esetcats.html">
                             </section>
-                            <section title="categorical.isundefined" ref="html/categorical_002eisundefined.html">
-                            </section>
-                            <section title="categorical.ismissing" ref="html/categorical_002eismissing.html">
-                            </section>
-                            <section title="categorical.isnanny" ref="html/categorical_002eisnanny.html">
-                            </section>
                             <section title="categorical.squeezecats" ref="html/categorical_002esqueezecats.html">
+                            </section>
+                            <section title="categorical.string" ref="html/categorical_002estring.html">
+                            </section>
+                            <section title="categorical.summary" ref="html/categorical_002esummary.html">
+                            </section>
+                            <section title="categorical.undefined" ref="html/categorical_002eundefined.html">
                             </section>
                         </section>
                         <section title="cell2table" ref="html/cell2table.html">
@@ -116,31 +116,11 @@
                         <section title="contains" ref="html/contains.html">
                         </section>
                         <section title="datetime" ref="html/datetime.html">
-                            <section title="datetime.datetime" ref="html/datetime_002edatetime.html">
+                            <section title="datetime.convertDatenumTimeZone" ref="html/datetime_002econvertDatenumTimeZone.html">
                             </section>
-                            <section title="datetime.ofDatenum" ref="html/datetime_002eofDatenum.html">
-                            </section>
-                            <section title="datetime.ofDatestruct" ref="html/datetime_002eofDatestruct.html">
-                            </section>
-                            <section title="datetime.NaT" ref="html/datetime_002eNaT.html">
-                            </section>
-                            <section title="datetime.posix2datenum" ref="html/datetime_002eposix2datenum.html">
+                            <section title="datetime.datenum" ref="html/datetime_002edatenum.html">
                             </section>
                             <section title="datetime.datenum2posix" ref="html/datetime_002edatenum2posix.html">
-                            </section>
-                            <section title="datetime.proxyKeys" ref="html/datetime_002eproxyKeys.html">
-                            </section>
-                            <section title="datetime.ymd" ref="html/datetime_002eymd.html">
-                            </section>
-                            <section title="datetime.hms" ref="html/datetime_002ehms.html">
-                            </section>
-                            <section title="datetime.ymdhms" ref="html/datetime_002eymdhms.html">
-                            </section>
-                            <section title="datetime.timeofday" ref="html/datetime_002etimeofday.html">
-                            </section>
-                            <section title="datetime.week" ref="html/datetime_002eweek.html">
-                            </section>
-                            <section title="datetime.dispstrs" ref="html/datetime_002edispstrs.html">
                             </section>
                             <section title="datetime.datestr" ref="html/datetime_002edatestr.html">
                             </section>
@@ -148,41 +128,61 @@
                             </section>
                             <section title="datetime.datestruct" ref="html/datetime_002edatestruct.html">
                             </section>
-                            <section title="datetime.posixtime" ref="html/datetime_002eposixtime.html">
+                            <section title="datetime.datetime" ref="html/datetime_002edatetime.html">
                             </section>
-                            <section title="datetime.datenum" ref="html/datetime_002edatenum.html">
+                            <section title="datetime.diff" ref="html/datetime_002ediff.html">
                             </section>
-                            <section title="datetime.gmtime" ref="html/datetime_002egmtime.html">
-                            </section>
-                            <section title="datetime.localtime" ref="html/datetime_002elocaltime.html">
-                            </section>
-                            <section title="datetime.isnat" ref="html/datetime_002eisnat.html">
-                            </section>
-                            <section title="datetime.isnan" ref="html/datetime_002eisnan.html">
-                            </section>
-                            <section title="datetime.lt" ref="html/datetime_002elt.html">
-                            </section>
-                            <section title="datetime.le" ref="html/datetime_002ele.html">
-                            </section>
-                            <section title="datetime.ne" ref="html/datetime_002ene.html">
+                            <section title="datetime.dispstrs" ref="html/datetime_002edispstrs.html">
                             </section>
                             <section title="datetime.eq" ref="html/datetime_002eeq.html">
                             </section>
                             <section title="datetime.ge" ref="html/datetime_002ege.html">
                             </section>
+                            <section title="datetime.gmtime" ref="html/datetime_002egmtime.html">
+                            </section>
                             <section title="datetime.gt" ref="html/datetime_002egt.html">
                             </section>
-                            <section title="datetime.plus" ref="html/datetime_002eplus.html">
-                            </section>
-                            <section title="datetime.minus" ref="html/datetime_002eminus.html">
-                            </section>
-                            <section title="datetime.diff" ref="html/datetime_002ediff.html">
+                            <section title="datetime.hms" ref="html/datetime_002ehms.html">
                             </section>
                             <section title="datetime.isbetween" ref="html/datetime_002eisbetween.html">
                             </section>
+                            <section title="datetime.isnan" ref="html/datetime_002eisnan.html">
+                            </section>
+                            <section title="datetime.isnat" ref="html/datetime_002eisnat.html">
+                            </section>
+                            <section title="datetime.le" ref="html/datetime_002ele.html">
+                            </section>
                             <section title="datetime.linspace" ref="html/datetime_002elinspace.html">
                             </section>
-                            <section title="datetime.convertDatenumTimeZone" ref="html/datetime_002econvertDatenumTimeZone.html">
+                            <section title="datetime.localtime" ref="html/datetime_002elocaltime.html">
+                            </section>
+                            <section title="datetime.lt" ref="html/datetime_002elt.html">
+                            </section>
+                            <section title="datetime.minus" ref="html/datetime_002eminus.html">
+                            </section>
+                            <section title="datetime.NaT" ref="html/datetime_002eNaT.html">
+                            </section>
+                            <section title="datetime.ne" ref="html/datetime_002ene.html">
+                            </section>
+                            <section title="datetime.ofDatenum" ref="html/datetime_002eofDatenum.html">
+                            </section>
+                            <section title="datetime.ofDatestruct" ref="html/datetime_002eofDatestruct.html">
+                            </section>
+                            <section title="datetime.plus" ref="html/datetime_002eplus.html">
+                            </section>
+                            <section title="datetime.posix2datenum" ref="html/datetime_002eposix2datenum.html">
+                            </section>
+                            <section title="datetime.posixtime" ref="html/datetime_002eposixtime.html">
+                            </section>
+                            <section title="datetime.proxyKeys" ref="html/datetime_002eproxyKeys.html">
+                            </section>
+                            <section title="datetime.timeofday" ref="html/datetime_002etimeofday.html">
+                            </section>
+                            <section title="datetime.week" ref="html/datetime_002eweek.html">
+                            </section>
+                            <section title="datetime.ymd" ref="html/datetime_002eymd.html">
+                            </section>
+                            <section title="datetime.ymdhms" ref="html/datetime_002eymdhms.html">
                             </section>
                         </section>
                         <section title="days" ref="html/days.html">
@@ -192,23 +192,23 @@
                         <section title="dispstrs" ref="html/dispstrs.html">
                         </section>
                         <section title="duration" ref="html/duration.html">
-                            <section title="duration.ofDays" ref="html/duration_002eofDays.html">
-                            </section>
-                            <section title="duration.years" ref="html/duration_002eyears.html">
-                            </section>
-                            <section title="duration.hours" ref="html/duration_002ehours.html">
-                            </section>
-                            <section title="duration.minutes" ref="html/duration_002eminutes.html">
-                            </section>
-                            <section title="duration.seconds" ref="html/duration_002eseconds.html">
-                            </section>
-                            <section title="duration.milliseconds" ref="html/duration_002emilliseconds.html">
+                            <section title="duration.char" ref="html/duration_002echar.html">
                             </section>
                             <section title="duration.dispstrs" ref="html/duration_002edispstrs.html">
                             </section>
-                            <section title="duration.char" ref="html/duration_002echar.html">
+                            <section title="duration.hours" ref="html/duration_002ehours.html">
                             </section>
                             <section title="duration.linspace" ref="html/duration_002elinspace.html">
+                            </section>
+                            <section title="duration.milliseconds" ref="html/duration_002emilliseconds.html">
+                            </section>
+                            <section title="duration.minutes" ref="html/duration_002eminutes.html">
+                            </section>
+                            <section title="duration.ofDays" ref="html/duration_002eofDays.html">
+                            </section>
+                            <section title="duration.seconds" ref="html/duration_002eseconds.html">
+                            </section>
+                            <section title="duration.years" ref="html/duration_002eyears.html">
                             </section>
                         </section>
                         <section title="eqn" ref="html/eqn.html">
@@ -238,13 +238,7 @@
                         <section title="istimetable" ref="html/istimetable.html">
                         </section>
                         <section title="localdate" ref="html/localdate.html">
-                            <section title="localdate.localdate" ref="html/localdate_002elocaldate.html">
-                            </section>
-                            <section title="localdate.NaT" ref="html/localdate_002eNaT.html">
-                            </section>
-                            <section title="localdate.ymd" ref="html/localdate_002eymd.html">
-                            </section>
-                            <section title="localdate.dispstrs" ref="html/localdate_002edispstrs.html">
+                            <section title="localdate.datenum" ref="html/localdate_002edatenum.html">
                             </section>
                             <section title="localdate.datestr" ref="html/localdate_002edatestr.html">
                             </section>
@@ -252,13 +246,19 @@
                             </section>
                             <section title="localdate.datestruct" ref="html/localdate_002edatestruct.html">
                             </section>
-                            <section title="localdate.posixtime" ref="html/localdate_002eposixtime.html">
+                            <section title="localdate.dispstrs" ref="html/localdate_002edispstrs.html">
                             </section>
-                            <section title="localdate.datenum" ref="html/localdate_002edatenum.html">
+                            <section title="localdate.isnan" ref="html/localdate_002eisnan.html">
                             </section>
                             <section title="localdate.isnat" ref="html/localdate_002eisnat.html">
                             </section>
-                            <section title="localdate.isnan" ref="html/localdate_002eisnan.html">
+                            <section title="localdate.localdate" ref="html/localdate_002elocaldate.html">
+                            </section>
+                            <section title="localdate.NaT" ref="html/localdate_002eNaT.html">
+                            </section>
+                            <section title="localdate.posixtime" ref="html/localdate_002eposixtime.html">
+                            </section>
+                            <section title="localdate.ymd" ref="html/localdate_002eymd.html">
                             </section>
                         </section>
                         <section title="milliseconds" ref="html/milliseconds.html">
@@ -266,8 +266,6 @@
                         <section title="minutes" ref="html/minutes.html">
                         </section>
                         <section title="missing" ref="html/missing.html">
-                            <section title="missing.missing" ref="html/missing_002emissing.html">
-                            </section>
                             <section title="missing.dispstrs" ref="html/missing_002edispstrs.html">
                             </section>
                             <section title="missing.ismissing" ref="html/missing_002eismissing.html">
@@ -275,6 +273,8 @@
                             <section title="missing.isnan" ref="html/missing_002eisnan.html">
                             </section>
                             <section title="missing.isnanny" ref="html/missing_002eisnanny.html">
+                            </section>
+                            <section title="missing.missing" ref="html/missing_002emissing.html">
                             </section>
                         </section>
                         <section title="mustBeA" ref="html/mustBeA.html">
@@ -320,171 +320,171 @@
                         <section title="splitapply" ref="html/splitapply.html">
                         </section>
                         <section title="string" ref="html/string.html">
-                            <section title="string.empty" ref="html/string_002eempty.html">
-                            </section>
-                            <section title="string.missing" ref="html/string_002emissing.html">
-                            </section>
-                            <section title="string.string" ref="html/string_002estring.html">
-                            </section>
-                            <section title="string.isstring" ref="html/string_002eisstring.html">
-                            </section>
-                            <section title="string.dispstrs" ref="html/string_002edispstrs.html">
-                            </section>
-                            <section title="string.ismissing" ref="html/string_002eismissing.html">
-                            </section>
-                            <section title="string.isnanny" ref="html/string_002eisnanny.html">
+                            <section title="string.cell" ref="html/string_002ecell.html">
                             </section>
                             <section title="string.cellstr" ref="html/string_002ecellstr.html">
                             </section>
-                            <section title="string.cell" ref="html/string_002ecell.html">
-                            </section>
                             <section title="string.char" ref="html/string_002echar.html">
-                            </section>
-                            <section title="string.encode" ref="html/string_002eencode.html">
-                            </section>
-                            <section title="string.strlength_bytes" ref="html/string_002estrlength_005fbytes.html">
-                            </section>
-                            <section title="string.strlength" ref="html/string_002estrlength.html">
-                            </section>
-                            <section title="string.reverse_bytes" ref="html/string_002ereverse_005fbytes.html">
-                            </section>
-                            <section title="string.reverse" ref="html/string_002ereverse.html">
-                            </section>
-                            <section title="string.strcat" ref="html/string_002estrcat.html">
-                            </section>
-                            <section title="string.plus" ref="html/string_002eplus.html">
-                            </section>
-                            <section title="string.lower" ref="html/string_002elower.html">
-                            </section>
-                            <section title="string.upper" ref="html/string_002eupper.html">
-                            </section>
-                            <section title="string.erase" ref="html/string_002eerase.html">
-                            </section>
-                            <section title="string.strrep" ref="html/string_002estrrep.html">
-                            </section>
-                            <section title="string.strfind" ref="html/string_002estrfind.html">
-                            </section>
-                            <section title="string.regexprep" ref="html/string_002eregexprep.html">
-                            </section>
-                            <section title="string.strcmp" ref="html/string_002estrcmp.html">
                             </section>
                             <section title="string.cmp" ref="html/string_002ecmp.html">
                             </section>
                             <section title="string.decode" ref="html/string_002edecode.html">
                             </section>
+                            <section title="string.dispstrs" ref="html/string_002edispstrs.html">
+                            </section>
+                            <section title="string.empty" ref="html/string_002eempty.html">
+                            </section>
+                            <section title="string.encode" ref="html/string_002eencode.html">
+                            </section>
+                            <section title="string.erase" ref="html/string_002eerase.html">
+                            </section>
+                            <section title="string.ismissing" ref="html/string_002eismissing.html">
+                            </section>
+                            <section title="string.isnanny" ref="html/string_002eisnanny.html">
+                            </section>
+                            <section title="string.isstring" ref="html/string_002eisstring.html">
+                            </section>
+                            <section title="string.lower" ref="html/string_002elower.html">
+                            </section>
+                            <section title="string.missing" ref="html/string_002emissing.html">
+                            </section>
+                            <section title="string.plus" ref="html/string_002eplus.html">
+                            </section>
+                            <section title="string.regexprep" ref="html/string_002eregexprep.html">
+                            </section>
+                            <section title="string.reverse" ref="html/string_002ereverse.html">
+                            </section>
+                            <section title="string.reverse_bytes" ref="html/string_002ereverse_005fbytes.html">
+                            </section>
+                            <section title="string.strcat" ref="html/string_002estrcat.html">
+                            </section>
+                            <section title="string.strcmp" ref="html/string_002estrcmp.html">
+                            </section>
+                            <section title="string.strfind" ref="html/string_002estrfind.html">
+                            </section>
+                            <section title="string.string" ref="html/string_002estring.html">
+                            </section>
+                            <section title="string.strlength" ref="html/string_002estrlength.html">
+                            </section>
+                            <section title="string.strlength_bytes" ref="html/string_002estrlength_005fbytes.html">
+                            </section>
+                            <section title="string.strrep" ref="html/string_002estrrep.html">
+                            </section>
+                            <section title="string.upper" ref="html/string_002eupper.html">
+                            </section>
                         </section>
                         <section title="struct2table" ref="html/struct2table.html">
                         </section>
                         <section title="table" ref="html/table.html">
-                            <section title="table.table" ref="html/table_002etable.html">
-                            </section>
-                            <section title="table.summary" ref="html/table_002esummary.html">
-                            </section>
-                            <section title="table.prettyprint" ref="html/table_002eprettyprint.html">
-                            </section>
-                            <section title="table.table2cell" ref="html/table_002etable2cell.html">
-                            </section>
-                            <section title="table.table2struct" ref="html/table_002etable2struct.html">
-                            </section>
-                            <section title="table.table2array" ref="html/table_002etable2array.html">
-                            </section>
-                            <section title="table.varnames" ref="html/table_002evarnames.html">
-                            </section>
-                            <section title="table.istable" ref="html/table_002eistable.html">
-                            </section>
-                            <section title="table.size" ref="html/table_002esize.html">
-                            </section>
-                            <section title="table.end" ref="html/table_002eend.html">
-                            </section>
-                            <section title="table.ndims" ref="html/table_002endims.html">
-                            </section>
-                            <section title="table.squeeze" ref="html/table_002esqueeze.html">
-                            </section>
-                            <section title="table.height" ref="html/table_002eheight.html">
-                            </section>
-                            <section title="table.width" ref="html/table_002ewidth.html">
-                            </section>
-                            <section title="table.numel" ref="html/table_002enumel.html">
-                            </section>
-                            <section title="table.isempty" ref="html/table_002eisempty.html">
-                            </section>
-                            <section title="table.vertcat" ref="html/table_002evertcat.html">
-                            </section>
-                            <section title="table.horzcat" ref="html/table_002ehorzcat.html">
-                            </section>
-                            <section title="table.repmat" ref="html/table_002erepmat.html">
-                            </section>
-                            <section title="table.repelem" ref="html/table_002erepelem.html">
-                            </section>
-                            <section title="table.setVariableNames" ref="html/table_002esetVariableNames.html">
-                            </section>
-                            <section title="table.setDimensionNames" ref="html/table_002esetDimensionNames.html">
-                            </section>
-                            <section title="table.setRowNames" ref="html/table_002esetRowNames.html">
-                            </section>
-                            <section title="table.removevars" ref="html/table_002eremovevars.html">
-                            </section>
-                            <section title="table.movevars" ref="html/table_002emovevars.html">
-                            </section>
-                            <section title="table.getvar" ref="html/table_002egetvar.html">
-                            </section>
-                            <section title="table.getvars" ref="html/table_002egetvars.html">
-                            </section>
-                            <section title="table.setvar" ref="html/table_002esetvar.html">
-                            </section>
                             <section title="table.addvars" ref="html/table_002eaddvars.html">
-                            </section>
-                            <section title="table.convertvars" ref="html/table_002econvertvars.html">
-                            </section>
-                            <section title="table.mergevars" ref="html/table_002emergevars.html">
-                            </section>
-                            <section title="table.splitvars" ref="html/table_002esplitvars.html">
-                            </section>
-                            <section title="table.stack" ref="html/table_002estack.html">
-                            </section>
-                            <section title="table.join" ref="html/table_002ejoin.html">
-                            </section>
-                            <section title="table.innerjoin" ref="html/table_002einnerjoin.html">
-                            </section>
-                            <section title="table.realjoin" ref="html/table_002erealjoin.html">
-                            </section>
-                            <section title="table.outerjoin" ref="html/table_002eouterjoin.html">
-                            </section>
-                            <section title="table.outerfillvals" ref="html/table_002eouterfillvals.html">
-                            </section>
-                            <section title="table.semijoin" ref="html/table_002esemijoin.html">
                             </section>
                             <section title="table.antijoin" ref="html/table_002eantijoin.html">
                             </section>
                             <section title="table.cartesian" ref="html/table_002ecartesian.html">
                             </section>
+                            <section title="table.convertvars" ref="html/table_002econvertvars.html">
+                            </section>
+                            <section title="table.end" ref="html/table_002eend.html">
+                            </section>
+                            <section title="table.findgroups" ref="html/table_002efindgroups.html">
+                            </section>
+                            <section title="table.getvar" ref="html/table_002egetvar.html">
+                            </section>
+                            <section title="table.getvars" ref="html/table_002egetvars.html">
+                            </section>
                             <section title="table.groupby" ref="html/table_002egroupby.html">
                             </section>
-                            <section title="table.splitapply" ref="html/table_002esplitapply.html">
+                            <section title="table.height" ref="html/table_002eheight.html">
                             </section>
-                            <section title="table.rows2vars" ref="html/table_002erows2vars.html">
+                            <section title="table.horzcat" ref="html/table_002ehorzcat.html">
                             </section>
-                            <section title="table.union" ref="html/table_002eunion.html">
+                            <section title="table.innerjoin" ref="html/table_002einnerjoin.html">
                             </section>
                             <section title="table.intersect" ref="html/table_002eintersect.html">
                             </section>
-                            <section title="table.setxor" ref="html/table_002esetxor.html">
-                            </section>
-                            <section title="table.setdiff" ref="html/table_002esetdiff.html">
+                            <section title="table.isempty" ref="html/table_002eisempty.html">
                             </section>
                             <section title="table.ismember" ref="html/table_002eismember.html">
                             </section>
                             <section title="table.ismissing" ref="html/table_002eismissing.html">
                             </section>
-                            <section title="table.varfun" ref="html/table_002evarfun.html">
+                            <section title="table.istable" ref="html/table_002eistable.html">
                             </section>
-                            <section title="table.rowfun" ref="html/table_002erowfun.html">
+                            <section title="table.join" ref="html/table_002ejoin.html">
                             </section>
-                            <section title="table.findgroups" ref="html/table_002efindgroups.html">
+                            <section title="table.mergevars" ref="html/table_002emergevars.html">
+                            </section>
+                            <section title="table.movevars" ref="html/table_002emovevars.html">
+                            </section>
+                            <section title="table.ndims" ref="html/table_002endims.html">
+                            </section>
+                            <section title="table.numel" ref="html/table_002enumel.html">
+                            </section>
+                            <section title="table.outerfillvals" ref="html/table_002eouterfillvals.html">
+                            </section>
+                            <section title="table.outerjoin" ref="html/table_002eouterjoin.html">
+                            </section>
+                            <section title="table.prettyprint" ref="html/table_002eprettyprint.html">
+                            </section>
+                            <section title="table.realjoin" ref="html/table_002erealjoin.html">
+                            </section>
+                            <section title="table.removevars" ref="html/table_002eremovevars.html">
+                            </section>
+                            <section title="table.renamevars" ref="html/table_002erenamevars.html">
+                            </section>
+                            <section title="table.repelem" ref="html/table_002erepelem.html">
+                            </section>
+                            <section title="table.repmat" ref="html/table_002erepmat.html">
                             </section>
                             <section title="table.restrict" ref="html/table_002erestrict.html">
                             </section>
-                            <section title="table.renamevars" ref="html/table_002erenamevars.html">
+                            <section title="table.rowfun" ref="html/table_002erowfun.html">
+                            </section>
+                            <section title="table.rows2vars" ref="html/table_002erows2vars.html">
+                            </section>
+                            <section title="table.semijoin" ref="html/table_002esemijoin.html">
+                            </section>
+                            <section title="table.setdiff" ref="html/table_002esetdiff.html">
+                            </section>
+                            <section title="table.setDimensionNames" ref="html/table_002esetDimensionNames.html">
+                            </section>
+                            <section title="table.setRowNames" ref="html/table_002esetRowNames.html">
+                            </section>
+                            <section title="table.setvar" ref="html/table_002esetvar.html">
+                            </section>
+                            <section title="table.setVariableNames" ref="html/table_002esetVariableNames.html">
+                            </section>
+                            <section title="table.setxor" ref="html/table_002esetxor.html">
+                            </section>
+                            <section title="table.size" ref="html/table_002esize.html">
+                            </section>
+                            <section title="table.splitapply" ref="html/table_002esplitapply.html">
+                            </section>
+                            <section title="table.splitvars" ref="html/table_002esplitvars.html">
+                            </section>
+                            <section title="table.squeeze" ref="html/table_002esqueeze.html">
+                            </section>
+                            <section title="table.stack" ref="html/table_002estack.html">
+                            </section>
+                            <section title="table.summary" ref="html/table_002esummary.html">
+                            </section>
+                            <section title="table.table" ref="html/table_002etable.html">
+                            </section>
+                            <section title="table.table2array" ref="html/table_002etable2array.html">
+                            </section>
+                            <section title="table.table2cell" ref="html/table_002etable2cell.html">
+                            </section>
+                            <section title="table.table2struct" ref="html/table_002etable2struct.html">
+                            </section>
+                            <section title="table.union" ref="html/table_002eunion.html">
+                            </section>
+                            <section title="table.varfun" ref="html/table_002evarfun.html">
+                            </section>
+                            <section title="table.varnames" ref="html/table_002evarnames.html">
+                            </section>
+                            <section title="table.vertcat" ref="html/table_002evertcat.html">
+                            </section>
+                            <section title="table.width" ref="html/table_002ewidth.html">
                             </section>
                         </section>
                         <section title="tableOuterFillValue" ref="html/tableOuterFillValue.html">
@@ -666,11 +666,11 @@
                             </section>
                         </section>
                         <section title="tblish.datasets" ref="html/tblish_002edatasets.html">
+                            <section title="datasets.description" ref="html/datasets_002edescription.html">
+                            </section>
                             <section title="datasets.list" ref="html/datasets_002elist.html">
                             </section>
                             <section title="datasets.load" ref="html/datasets_002eload.html">
-                            </section>
-                            <section title="datasets.description" ref="html/datasets_002edescription.html">
                             </section>
                         </section>
                         <section title="tblish.evalWithTableVars" ref="html/tblish_002eevalWithTableVars.html">
@@ -1028,9 +1028,9 @@
             <file>html/tblish_002eexamples_002eplot_005fpairs.html</file>
             <file>html/tblish_002eexamples_002ecoplot.html</file>
             <file>html/tblish_002eevalWithTableVars.html</file>
-            <file>html/datasets_002edescription.html</file>
             <file>html/datasets_002eload.html</file>
             <file>html/datasets_002elist.html</file>
+            <file>html/datasets_002edescription.html</file>
             <file>html/tblish_002edatasets.html</file>
             <file>html/tblish_002edataset_002ezCO2.html</file>
             <file>html/tblish_002edataset_002eWWWusage.html</file>
@@ -1121,89 +1121,89 @@
             <file>html/tblish_002edataset.html</file>
             <file>html/tail.html</file>
             <file>html/tableOuterFillValue.html</file>
-            <file>html/table_002erenamevars.html</file>
-            <file>html/table_002erestrict.html</file>
-            <file>html/table_002efindgroups.html</file>
-            <file>html/table_002erowfun.html</file>
-            <file>html/table_002evarfun.html</file>
-            <file>html/table_002eismissing.html</file>
-            <file>html/table_002eismember.html</file>
-            <file>html/table_002esetdiff.html</file>
-            <file>html/table_002esetxor.html</file>
-            <file>html/table_002eintersect.html</file>
-            <file>html/table_002eunion.html</file>
-            <file>html/table_002erows2vars.html</file>
-            <file>html/table_002esplitapply.html</file>
-            <file>html/table_002egroupby.html</file>
-            <file>html/table_002ecartesian.html</file>
-            <file>html/table_002eantijoin.html</file>
-            <file>html/table_002esemijoin.html</file>
-            <file>html/table_002eouterfillvals.html</file>
-            <file>html/table_002eouterjoin.html</file>
-            <file>html/table_002erealjoin.html</file>
-            <file>html/table_002einnerjoin.html</file>
-            <file>html/table_002ejoin.html</file>
-            <file>html/table_002estack.html</file>
-            <file>html/table_002esplitvars.html</file>
-            <file>html/table_002emergevars.html</file>
-            <file>html/table_002econvertvars.html</file>
-            <file>html/table_002eaddvars.html</file>
-            <file>html/table_002esetvar.html</file>
-            <file>html/table_002egetvars.html</file>
-            <file>html/table_002egetvar.html</file>
-            <file>html/table_002emovevars.html</file>
-            <file>html/table_002eremovevars.html</file>
-            <file>html/table_002esetRowNames.html</file>
-            <file>html/table_002esetDimensionNames.html</file>
-            <file>html/table_002esetVariableNames.html</file>
-            <file>html/table_002erepelem.html</file>
-            <file>html/table_002erepmat.html</file>
-            <file>html/table_002ehorzcat.html</file>
-            <file>html/table_002evertcat.html</file>
-            <file>html/table_002eisempty.html</file>
-            <file>html/table_002enumel.html</file>
             <file>html/table_002ewidth.html</file>
-            <file>html/table_002eheight.html</file>
-            <file>html/table_002esqueeze.html</file>
-            <file>html/table_002endims.html</file>
-            <file>html/table_002eend.html</file>
-            <file>html/table_002esize.html</file>
-            <file>html/table_002eistable.html</file>
+            <file>html/table_002evertcat.html</file>
             <file>html/table_002evarnames.html</file>
-            <file>html/table_002etable2array.html</file>
+            <file>html/table_002evarfun.html</file>
+            <file>html/table_002eunion.html</file>
             <file>html/table_002etable2struct.html</file>
             <file>html/table_002etable2cell.html</file>
-            <file>html/table_002eprettyprint.html</file>
-            <file>html/table_002esummary.html</file>
+            <file>html/table_002etable2array.html</file>
             <file>html/table_002etable.html</file>
+            <file>html/table_002esummary.html</file>
+            <file>html/table_002estack.html</file>
+            <file>html/table_002esqueeze.html</file>
+            <file>html/table_002esplitvars.html</file>
+            <file>html/table_002esplitapply.html</file>
+            <file>html/table_002esize.html</file>
+            <file>html/table_002esetxor.html</file>
+            <file>html/table_002esetVariableNames.html</file>
+            <file>html/table_002esetvar.html</file>
+            <file>html/table_002esetRowNames.html</file>
+            <file>html/table_002esetDimensionNames.html</file>
+            <file>html/table_002esetdiff.html</file>
+            <file>html/table_002esemijoin.html</file>
+            <file>html/table_002erows2vars.html</file>
+            <file>html/table_002erowfun.html</file>
+            <file>html/table_002erestrict.html</file>
+            <file>html/table_002erepmat.html</file>
+            <file>html/table_002erepelem.html</file>
+            <file>html/table_002erenamevars.html</file>
+            <file>html/table_002eremovevars.html</file>
+            <file>html/table_002erealjoin.html</file>
+            <file>html/table_002eprettyprint.html</file>
+            <file>html/table_002eouterjoin.html</file>
+            <file>html/table_002eouterfillvals.html</file>
+            <file>html/table_002enumel.html</file>
+            <file>html/table_002endims.html</file>
+            <file>html/table_002emovevars.html</file>
+            <file>html/table_002emergevars.html</file>
+            <file>html/table_002ejoin.html</file>
+            <file>html/table_002eistable.html</file>
+            <file>html/table_002eismissing.html</file>
+            <file>html/table_002eismember.html</file>
+            <file>html/table_002eisempty.html</file>
+            <file>html/table_002eintersect.html</file>
+            <file>html/table_002einnerjoin.html</file>
+            <file>html/table_002ehorzcat.html</file>
+            <file>html/table_002eheight.html</file>
+            <file>html/table_002egroupby.html</file>
+            <file>html/table_002egetvars.html</file>
+            <file>html/table_002egetvar.html</file>
+            <file>html/table_002efindgroups.html</file>
+            <file>html/table_002eend.html</file>
+            <file>html/table_002econvertvars.html</file>
+            <file>html/table_002ecartesian.html</file>
+            <file>html/table_002eantijoin.html</file>
+            <file>html/table_002eaddvars.html</file>
             <file>html/table.html</file>
             <file>html/struct2table.html</file>
-            <file>html/string_002edecode.html</file>
-            <file>html/string_002ecmp.html</file>
-            <file>html/string_002estrcmp.html</file>
-            <file>html/string_002eregexprep.html</file>
-            <file>html/string_002estrfind.html</file>
-            <file>html/string_002estrrep.html</file>
-            <file>html/string_002eerase.html</file>
             <file>html/string_002eupper.html</file>
-            <file>html/string_002elower.html</file>
-            <file>html/string_002eplus.html</file>
-            <file>html/string_002estrcat.html</file>
-            <file>html/string_002ereverse.html</file>
-            <file>html/string_002ereverse_005fbytes.html</file>
-            <file>html/string_002estrlength.html</file>
+            <file>html/string_002estrrep.html</file>
             <file>html/string_002estrlength_005fbytes.html</file>
-            <file>html/string_002eencode.html</file>
-            <file>html/string_002echar.html</file>
-            <file>html/string_002ecell.html</file>
-            <file>html/string_002ecellstr.html</file>
+            <file>html/string_002estrlength.html</file>
+            <file>html/string_002estring.html</file>
+            <file>html/string_002estrfind.html</file>
+            <file>html/string_002estrcmp.html</file>
+            <file>html/string_002estrcat.html</file>
+            <file>html/string_002ereverse_005fbytes.html</file>
+            <file>html/string_002ereverse.html</file>
+            <file>html/string_002eregexprep.html</file>
+            <file>html/string_002eplus.html</file>
+            <file>html/string_002emissing.html</file>
+            <file>html/string_002elower.html</file>
+            <file>html/string_002eisstring.html</file>
             <file>html/string_002eisnanny.html</file>
             <file>html/string_002eismissing.html</file>
-            <file>html/string_002edispstrs.html</file>
-            <file>html/string_002eisstring.html</file>
-            <file>html/string_002estring.html</file>
-            <file>html/string_002emissing.html</file>
+            <file>html/string_002eerase.html</file>
+            <file>html/string_002eencode.html</file>
             <file>html/string_002eempty.html</file>
+            <file>html/string_002edispstrs.html</file>
+            <file>html/string_002edecode.html</file>
+            <file>html/string_002ecmp.html</file>
+            <file>html/string_002echar.html</file>
+            <file>html/string_002ecellstr.html</file>
+            <file>html/string_002ecell.html</file>
             <file>html/string.html</file>
             <file>html/splitapply.html</file>
             <file>html/size2str.html</file>
@@ -1226,25 +1226,25 @@
             <file>html/mustBeCharvec.html</file>
             <file>html/mustBeCellstr.html</file>
             <file>html/mustBeA.html</file>
+            <file>html/missing_002emissing.html</file>
             <file>html/missing_002eisnanny.html</file>
             <file>html/missing_002eisnan.html</file>
             <file>html/missing_002eismissing.html</file>
             <file>html/missing_002edispstrs.html</file>
-            <file>html/missing_002emissing.html</file>
             <file>html/missing.html</file>
             <file>html/minutes.html</file>
             <file>html/milliseconds.html</file>
-            <file>html/localdate_002eisnan.html</file>
-            <file>html/localdate_002eisnat.html</file>
-            <file>html/localdate_002edatenum.html</file>
+            <file>html/localdate_002eymd.html</file>
             <file>html/localdate_002eposixtime.html</file>
+            <file>html/localdate_002eNaT.html</file>
+            <file>html/localdate_002elocaldate.html</file>
+            <file>html/localdate_002eisnat.html</file>
+            <file>html/localdate_002eisnan.html</file>
+            <file>html/localdate_002edispstrs.html</file>
             <file>html/localdate_002edatestruct.html</file>
             <file>html/localdate_002edatestrs.html</file>
             <file>html/localdate_002edatestr.html</file>
-            <file>html/localdate_002edispstrs.html</file>
-            <file>html/localdate_002eymd.html</file>
-            <file>html/localdate_002eNaT.html</file>
-            <file>html/localdate_002elocaldate.html</file>
+            <file>html/localdate_002edatenum.html</file>
             <file>html/localdate.html</file>
             <file>html/istimetable.html</file>
             <file>html/istabular.html</file>
@@ -1259,87 +1259,87 @@
             <file>html/hours.html</file>
             <file>html/head.html</file>
             <file>html/eqn.html</file>
-            <file>html/duration_002elinspace.html</file>
-            <file>html/duration_002echar.html</file>
-            <file>html/duration_002edispstrs.html</file>
-            <file>html/duration_002emilliseconds.html</file>
-            <file>html/duration_002eseconds.html</file>
-            <file>html/duration_002eminutes.html</file>
-            <file>html/duration_002ehours.html</file>
             <file>html/duration_002eyears.html</file>
+            <file>html/duration_002eseconds.html</file>
             <file>html/duration_002eofDays.html</file>
+            <file>html/duration_002eminutes.html</file>
+            <file>html/duration_002emilliseconds.html</file>
+            <file>html/duration_002elinspace.html</file>
+            <file>html/duration_002ehours.html</file>
+            <file>html/duration_002edispstrs.html</file>
+            <file>html/duration_002echar.html</file>
             <file>html/duration.html</file>
             <file>html/dispstrs.html</file>
             <file>html/discretize.html</file>
             <file>html/days.html</file>
-            <file>html/datetime_002econvertDatenumTimeZone.html</file>
-            <file>html/datetime_002elinspace.html</file>
-            <file>html/datetime_002eisbetween.html</file>
-            <file>html/datetime_002ediff.html</file>
-            <file>html/datetime_002eminus.html</file>
+            <file>html/datetime_002eymdhms.html</file>
+            <file>html/datetime_002eymd.html</file>
+            <file>html/datetime_002eweek.html</file>
+            <file>html/datetime_002etimeofday.html</file>
+            <file>html/datetime_002eproxyKeys.html</file>
+            <file>html/datetime_002eposixtime.html</file>
+            <file>html/datetime_002eposix2datenum.html</file>
             <file>html/datetime_002eplus.html</file>
+            <file>html/datetime_002eofDatestruct.html</file>
+            <file>html/datetime_002eofDatenum.html</file>
+            <file>html/datetime_002ene.html</file>
+            <file>html/datetime_002eNaT.html</file>
+            <file>html/datetime_002eminus.html</file>
+            <file>html/datetime_002elt.html</file>
+            <file>html/datetime_002elocaltime.html</file>
+            <file>html/datetime_002elinspace.html</file>
+            <file>html/datetime_002ele.html</file>
+            <file>html/datetime_002eisnat.html</file>
+            <file>html/datetime_002eisnan.html</file>
+            <file>html/datetime_002eisbetween.html</file>
+            <file>html/datetime_002ehms.html</file>
             <file>html/datetime_002egt.html</file>
+            <file>html/datetime_002egmtime.html</file>
             <file>html/datetime_002ege.html</file>
             <file>html/datetime_002eeq.html</file>
-            <file>html/datetime_002ene.html</file>
-            <file>html/datetime_002ele.html</file>
-            <file>html/datetime_002elt.html</file>
-            <file>html/datetime_002eisnan.html</file>
-            <file>html/datetime_002eisnat.html</file>
-            <file>html/datetime_002elocaltime.html</file>
-            <file>html/datetime_002egmtime.html</file>
-            <file>html/datetime_002edatenum.html</file>
-            <file>html/datetime_002eposixtime.html</file>
+            <file>html/datetime_002edispstrs.html</file>
+            <file>html/datetime_002ediff.html</file>
+            <file>html/datetime_002edatetime.html</file>
             <file>html/datetime_002edatestruct.html</file>
             <file>html/datetime_002edatestrs.html</file>
             <file>html/datetime_002edatestr.html</file>
-            <file>html/datetime_002edispstrs.html</file>
-            <file>html/datetime_002eweek.html</file>
-            <file>html/datetime_002etimeofday.html</file>
-            <file>html/datetime_002eymdhms.html</file>
-            <file>html/datetime_002ehms.html</file>
-            <file>html/datetime_002eymd.html</file>
-            <file>html/datetime_002eproxyKeys.html</file>
             <file>html/datetime_002edatenum2posix.html</file>
-            <file>html/datetime_002eposix2datenum.html</file>
-            <file>html/datetime_002eNaT.html</file>
-            <file>html/datetime_002eofDatestruct.html</file>
-            <file>html/datetime_002eofDatenum.html</file>
-            <file>html/datetime_002edatetime.html</file>
+            <file>html/datetime_002edatenum.html</file>
+            <file>html/datetime_002econvertDatenumTimeZone.html</file>
             <file>html/datetime.html</file>
             <file>html/contains.html</file>
             <file>html/colvecfun.html</file>
             <file>html/cell2table.html</file>
+            <file>html/categorical_002eundefined.html</file>
+            <file>html/categorical_002esummary.html</file>
+            <file>html/categorical_002estring.html</file>
             <file>html/categorical_002esqueezecats.html</file>
-            <file>html/categorical_002eisnanny.html</file>
-            <file>html/categorical_002eismissing.html</file>
-            <file>html/categorical_002eisundefined.html</file>
             <file>html/categorical_002esetcats.html</file>
             <file>html/categorical_002ereordercats.html</file>
             <file>html/categorical_002erenamecats.html</file>
-            <file>html/categorical_002emergecats.html</file>
             <file>html/categorical_002eremovecats.html</file>
-            <file>html/categorical_002eaddcats.html</file>
-            <file>html/categorical_002esummary.html</file>
+            <file>html/categorical_002emissing.html</file>
+            <file>html/categorical_002emergecats.html</file>
+            <file>html/categorical_002eisundefined.html</file>
+            <file>html/categorical_002eisordinal.html</file>
+            <file>html/categorical_002eisnanny.html</file>
+            <file>html/categorical_002eismissing.html</file>
+            <file>html/categorical_002eiscategory.html</file>
             <file>html/categorical_002edispstrs.html</file>
             <file>html/categorical_002ecellstr.html</file>
-            <file>html/categorical_002estring.html</file>
-            <file>html/categorical_002eisordinal.html</file>
-            <file>html/categorical_002eiscategory.html</file>
             <file>html/categorical_002ecategories.html</file>
             <file>html/categorical_002ecategorical.html</file>
-            <file>html/categorical_002emissing.html</file>
-            <file>html/categorical_002eundefined.html</file>
+            <file>html/categorical_002eaddcats.html</file>
             <file>html/categorical.html</file>
             <file>html/calyears.html</file>
             <file>html/calmonths.html</file>
-            <file>html/calendarDuration_002eismissing.html</file>
-            <file>html/calendarDuration_002eisnan.html</file>
-            <file>html/calendarDuration_002edispstrs.html</file>
-            <file>html/calendarDuration_002eminus.html</file>
+            <file>html/calendarDuration_002euminus.html</file>
             <file>html/calendarDuration_002etimes.html</file>
             <file>html/calendarDuration_002eplus.html</file>
-            <file>html/calendarDuration_002euminus.html</file>
+            <file>html/calendarDuration_002eminus.html</file>
+            <file>html/calendarDuration_002eisnan.html</file>
+            <file>html/calendarDuration_002eismissing.html</file>
+            <file>html/calendarDuration_002edispstrs.html</file>
             <file>html/calendarDuration_002ecalendarDuration.html</file>
             <file>html/calendarDuration.html</file>
             <file>html/array2table.html</file>

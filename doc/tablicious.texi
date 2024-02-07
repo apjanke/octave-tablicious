@@ -1056,12 +1056,52 @@ Constructs new @code{calendarDuration} arrays based on input values.
 
 @end deftypefn
 
-@node calendarDuration.uminus
-@subsubsection calendarDuration.uminus
+@node calendarDuration.dispstrs
+@subsubsection calendarDuration.dispstrs
 
-@deftypefn {Method} {@var{out} =} uminus (@var{obj})
+@deftypefn {Method} {@var{out} =} dispstrs (@var{obj})
 
-Unary minus. Negates the sign of @var{obj}.
+Get display strings for each element of @var{obj}.
+
+Returns a cellstr the same size as @var{obj}.
+
+@end deftypefn
+
+@node calendarDuration.ismissing
+@subsubsection calendarDuration.ismissing
+
+@deftypefn {Method} {@var{out} =} ismissing (@var{obj})
+
+True if input elements are missing.
+
+This is equivalent to @code{ismissing}.
+
+Returns logical array the same size as @var{obj}.
+
+@end deftypefn
+
+@node calendarDuration.isnan
+@subsubsection calendarDuration.isnan
+
+@deftypefn {Method} {@var{out} =} isnan (@var{obj})
+
+True if input elements are NaN.
+
+This is equivalent to @code{ismissing}, and is provided for compatibility
+and polymorphic programming purposes.
+
+Returns logical array the same size as @var{obj}.
+
+@end deftypefn
+
+@node calendarDuration.minus
+@subsubsection calendarDuration.minus
+
+@deftypefn {Method} {@var{out} =} times (@var{A}, @var{B})
+
+Subtraction: Subtracts one @code{calendarDuration} from another.
+
+Returns a @code{calendarDuration}.
 
 @end deftypefn
 
@@ -1094,52 +1134,12 @@ Returns a @code{calendarDuration}.
 
 @end deftypefn
 
-@node calendarDuration.minus
-@subsubsection calendarDuration.minus
+@node calendarDuration.uminus
+@subsubsection calendarDuration.uminus
 
-@deftypefn {Method} {@var{out} =} times (@var{A}, @var{B})
+@deftypefn {Method} {@var{out} =} uminus (@var{obj})
 
-Subtraction: Subtracts one @code{calendarDuration} from another.
-
-Returns a @code{calendarDuration}.
-
-@end deftypefn
-
-@node calendarDuration.dispstrs
-@subsubsection calendarDuration.dispstrs
-
-@deftypefn {Method} {@var{out} =} dispstrs (@var{obj})
-
-Get display strings for each element of @var{obj}.
-
-Returns a cellstr the same size as @var{obj}.
-
-@end deftypefn
-
-@node calendarDuration.isnan
-@subsubsection calendarDuration.isnan
-
-@deftypefn {Method} {@var{out} =} isnan (@var{obj})
-
-True if input elements are NaN.
-
-This is equivalent to @code{ismissing}, and is provided for compatibility
-and polymorphic programming purposes.
-
-Returns logical array the same size as @var{obj}.
-
-@end deftypefn
-
-@node calendarDuration.ismissing
-@subsubsection calendarDuration.ismissing
-
-@deftypefn {Method} {@var{out} =} ismissing (@var{obj})
-
-True if input elements are missing.
-
-This is equivalent to @code{ismissing}.
-
-Returns logical array the same size as @var{obj}.
+Unary minus. Negates the sign of @var{obj}.
 
 @end deftypefn
 
@@ -1241,42 +1241,18 @@ ordinal relationship.
 @end deftypeivar
 
 
-@node categorical.undefined
-@subsubsection categorical.undefined
+@node categorical.addcats
+@subsubsection categorical.addcats
 
-@deftypefn {Static Method} {@var{out} =} categorical.undefined ()
-@deftypefnx {Static Method} {@var{out} =} categorical.undefined (sz)
+@deftypefn {Method} {@var{out} =} addcats (@var{obj}, @var{newcats})
 
-Create an array of undefined categoricals.
+Add categories to categorical array.
 
-Creates a categorical array whose elements are all <undefined>.
+Adds the specified categories to @var{obj}, without changing any of
+its values.
 
-@var{sz} is the size of the array to create. If omitted or empty, creates
-a scalar.
-
-Returns a categorical array.
-
-See also: categorical.missing
-
-@end deftypefn
-
-@node categorical.missing
-@subsubsection categorical.missing
-
-@deftypefn {Static Method} {@var{out} =} categorical.missing ()
-@deftypefnx {Static Method} {@var{out} =} categorical.missing (sz)
-
-Create an array of missing (undefined) categoricals.
-
-Creates a categorical array whose elements are all missing (<undefined>).
-
-This is a convenience alias for @ref{categorical.undefined}, so you can call
-it generically. It returns strictly the same results as calling
-@ref{categorical.undefined} with the same arguments.
-
-Returns a categorical array.
-
-See also: categorical.undefined
+@var{newcats} is a cellstr listing the category names to add to
+@var{obj}.
 
 @end deftypefn
 
@@ -1329,47 +1305,6 @@ Returns a cellstr column vector.
 
 @end deftypefn
 
-@node categorical.iscategory
-@subsubsection categorical.iscategory
-
-@deftypefn {Method} {@var{out} =} iscategory (@var{obj}, @var{catnames})
-
-Test whether input is a category on a categorical array.
-
-@var{catnames} is a cellstr listing the category names to check against
-@var{obj}.
-
-Returns a logical array the same size as @var{catnames}.
-
-@end deftypefn
-
-@node categorical.isordinal
-@subsubsection categorical.isordinal
-
-@deftypefn {Method} {@var{out} =} isordinal (@var{obj})
-
-Whether @var{obj} is ordinal.
-
-Returns true if @var{obj} is ordinal (as determined by its
-@code{IsOrdinal} property), and false otherwise.
-
-@end deftypefn
-
-@node categorical.string
-@subsubsection categorical.string
-
-@deftypefn {Method} {@var{out} =} string (@var{obj})
-
-Convert to string array.
-
-Converts @var{obj} to a string array. The strings will be the
-category names for corresponding values, or <missing> for undefined
-values.
-
-Returns a @code{string} array the same size as @var{obj}.
-
-@end deftypefn
-
 @node categorical.cellstr
 @subsubsection categorical.cellstr
 
@@ -1399,31 +1334,111 @@ Returns a cellstr array the same size as @var{obj}.
 
 @end deftypefn
 
-@node categorical.summary
-@subsubsection categorical.summary
+@node categorical.iscategory
+@subsubsection categorical.iscategory
 
-@deftypefn {Method} {} summary (@var{obj})
+@deftypefn {Method} {@var{out} =} iscategory (@var{obj}, @var{catnames})
 
-Display summary of array’s values.
+Test whether input is a category on a categorical array.
 
-Displays a summary of the values in this categorical array. The output
-may contain info like the number of categories, number of undefined values,
-and frequency of each category.
+@var{catnames} is a cellstr listing the category names to check against
+@var{obj}.
+
+Returns a logical array the same size as @var{catnames}.
 
 @end deftypefn
 
-@node categorical.addcats
-@subsubsection categorical.addcats
+@node categorical.ismissing
+@subsubsection categorical.ismissing
 
-@deftypefn {Method} {@var{out} =} addcats (@var{obj}, @var{newcats})
+@deftypefn {Method} {@var{out} =} ismissing (@var{obj})
 
-Add categories to categorical array.
+Test whether elements are missing.
 
-Adds the specified categories to @var{obj}, without changing any of
-its values.
+For categorical arrays, undefined elements are considered to be
+missing.
 
-@var{newcats} is a cellstr listing the category names to add to
-@var{obj}.
+Returns a logical array the same size as @var{obj}.
+
+@end deftypefn
+
+@node categorical.isnanny
+@subsubsection categorical.isnanny
+
+@deftypefn {Method} {@var{out} =} isnanny (@var{obj})
+
+Test whethere elements are NaN-ish.
+
+Checks where each element in @var{obj} is NaN-ish. For categorical
+arrays, undefined values are considered NaN-ish; any other
+value is not.
+
+Returns a logical array the same size as @var{obj}.
+
+@end deftypefn
+
+@node categorical.isordinal
+@subsubsection categorical.isordinal
+
+@deftypefn {Method} {@var{out} =} isordinal (@var{obj})
+
+Whether @var{obj} is ordinal.
+
+Returns true if @var{obj} is ordinal (as determined by its
+@code{IsOrdinal} property), and false otherwise.
+
+@end deftypefn
+
+@node categorical.isundefined
+@subsubsection categorical.isundefined
+
+@deftypefn {Method} {@var{out} =} isundefined (@var{obj})
+
+Test whether elements are undefined.
+
+Checks whether each element in @var{obj} is undefined. "Undefined" is
+a special value defined by @code{categorical}. It is equivalent to
+a @code{NaN} or a @code{missing} value.
+
+Returns a logical array the same size as @var{obj}.
+
+@end deftypefn
+
+@node categorical.mergecats
+@subsubsection categorical.mergecats
+
+@deftypefn {Method} {@var{out} =} mergecats (@var{obj}, @var{oldcats})
+@deftypefnx {Method} {@var{out} =} mergecats (@var{obj}, @var{oldcats}, @var{newcat})
+
+Merge multiple categories.
+
+Merges the categories @var{oldcats} into a single category. If @var{newcat}
+is specified, that new category is added if necessary, and all of @var{oldcats}
+are merged into it. @var{newcat} must be an existing category in @var{obj} if
+@var{obj} is ordinal.
+
+If @var{newcat} is not provided, all of @var{odcats} are merged into
+@code{oldcats@{1@}}.
+
+@end deftypefn
+
+@node categorical.missing
+@subsubsection categorical.missing
+
+@deftypefn {Static Method} {@var{out} =} categorical.missing ()
+@deftypefnx {Static Method} {@var{out} =} categorical.missing (sz)
+
+Create an array of missing (undefined) categoricals.
+
+Creates a categorical array whose elements are all missing (<undefined>).
+
+This is a convenience alias for @ref{categorical.undefined}, so you can call
+it generically. It returns strictly the same results as calling
+@ref{categorical.undefined} with the same arguments.
+
+Returns a categorical array.
+
+See also: categorical.undefined
 
 @end deftypefn
 
@@ -1446,24 +1461,6 @@ whose values belonged to those categories are replaced with undefined.
 
 @var{newcats} is a cellstr listing the category names to add to
 @var{obj}.
-
-@end deftypefn
-
-@node categorical.mergecats
-@subsubsection categorical.mergecats
-
-@deftypefn {Method} {@var{out} =} mergecats (@var{obj}, @var{oldcats})
-@deftypefnx {Method} {@var{out} =} mergecats (@var{obj}, @var{oldcats}, @var{newcat})
-
-Merge multiple categories.
-
-Merges the categories @var{oldcats} into a single category. If @var{newcat}
-is specified, that new category is added if necessary, and all of @var{oldcats}
-are merged into it. @var{newcat} must be an existing category in @var{obj} if
-@var{obj} is ordinal.
-
-If @var{newcat} is not provided, all of @var{odcats} are merged into
-@code{oldcats@{1@}}.
 
 @end deftypefn
 
@@ -1509,50 +1506,6 @@ categories become undefined.
 
 @end deftypefn
 
-@node categorical.isundefined
-@subsubsection categorical.isundefined
-
-@deftypefn {Method} {@var{out} =} isundefined (@var{obj})
-
-Test whether elements are undefined.
-
-Checks whether each element in @var{obj} is undefined. "Undefined" is
-a special value defined by @code{categorical}. It is equivalent to
-a @code{NaN} or a @code{missing} value.
-
-Returns a logical array the same size as @var{obj}.
-
-@end deftypefn
-
-@node categorical.ismissing
-@subsubsection categorical.ismissing
-
-@deftypefn {Method} {@var{out} =} ismissing (@var{obj})
-
-Test whether elements are missing.
-
-For categorical arrays, undefined elements are considered to be
-missing.
-
-Returns a logical array the same size as @var{obj}.
-
-@end deftypefn
-
-@node categorical.isnanny
-@subsubsection categorical.isnanny
-
-@deftypefn {Method} {@var{out} =} isnanny (@var{obj})
-
-Test whethere elements are NaN-ish.
-
-Checks where each element in @var{obj} is NaN-ish. For categorical
-arrays, undefined values are considered NaN-ish; any other
-value is not.
-
-Returns a logical array the same size as @var{obj}.
-
-@end deftypefn
-
 @node categorical.squeezecats
 @subsubsection categorical.squeezecats
 
@@ -1564,6 +1517,53 @@ Removes all categories which have no corresponding values in @var{obj}’s
 elements.
 
 This is currently unimplemented.
+
+@end deftypefn
+
+@node categorical.string
+@subsubsection categorical.string
+
+@deftypefn {Method} {@var{out} =} string (@var{obj})
+
+Convert to string array.
+
+Converts @var{obj} to a string array. The strings will be the
+category names for corresponding values, or <missing> for undefined
+values.
+
+Returns a @code{string} array the same size as @var{obj}.
+
+@end deftypefn
+
+@node categorical.summary
+@subsubsection categorical.summary
+
+@deftypefn {Method} {} summary (@var{obj})
+
+Display summary of array’s values.
+
+Displays a summary of the values in this categorical array. The output
+may contain info like the number of categories, number of undefined values,
+and frequency of each category.
+
+@end deftypefn
+
+@node categorical.undefined
+@subsubsection categorical.undefined
+
+@deftypefn {Static Method} {@var{out} =} categorical.undefined ()
+@deftypefnx {Static Method} {@var{out} =} categorical.undefined (sz)
+
+Create an array of undefined categoricals.
+
+Creates a categorical array whose elements are all <undefined>.
+
+@var{sz} is the size of the array to create. If omitted or empty, creates
+a scalar.
+
+Returns a categorical array.
+
+See also: categorical.missing
 
 @end deftypefn
 
@@ -1678,85 +1678,34 @@ The format to display this @code{datetime} in. Currently unsupported.
 @end deftypeivar
 
 
-@node datetime.datetime
-@subsubsection datetime.datetime
+@node datetime.convertDatenumTimeZone
+@subsubsection datetime.convertDatenumTimeZone
 
-@deftypefn {Constructor} {@var{obj} =} datetime ()
+@deftypefn {Static Method} {@var{out} =} datetime.convertDatenumTimeZone @
+ (@var{dnum}, @var{fromZoneId}, @var{toZoneId})
 
-Constructs a new scalar @code{datetime} containing the current local time, with
-no time zone attached.
+Convert a datenum from one time zone to another.
 
-@end deftypefn
+@var{dnum} is a datenum array to convert.
 
-@deftypefn {Constructor} {@var{obj} =} datetime (@var{datevec})
-@deftypefnx {Constructor} {@var{obj} =} datetime (@var{datestrs})
-@deftypefnx {Constructor} {@var{obj} =} datetime (@var{in}, @code{'ConvertFrom'}, @var{inType})
-@deftypefnx {Constructor} {@var{obj} =} datetime @
-  (@var{Y}, @var{M}, @var{D}, @var{H}, @var{MI}, @var{S})
-@deftypefnx {Constructor} {@var{obj} =} datetime @
-  (@var{Y}, @var{M}, @var{D}, @var{H}, @var{MI}, @var{MS})
-@deftypefnx {Constructor} {@var{obj} =} datetime @
-  (@dots{}, @code{'Format'}, @var{Format}, @code{'InputFormat'}, @var{InputFormat}, @
-   @code{'Locale'}, @var{InputLocale}, @code{'PivotYear'}, @var{PivotYear}, @
-   @code{'TimeZone'}, @var{TimeZone})
+@var{fromZoneId} is a charvec containing the IANA Time Zone identifier for
+the time zone to convert from.
 
-Constructs a new @code{datetime} array based on input values.
+@var{toZoneId} is a charvec containing the IANA Time Zone identifier for
+the time zone to convert to.
+
+Returns a datenum array the same size as @var{dnum}.
 
 @end deftypefn
 
-@node datetime.ofDatenum
-@subsubsection datetime.ofDatenum
+@node datetime.datenum
+@subsubsection datetime.datenum
 
-@deftypefn {Static Method} {@var{obj} =} datetime.ofDatenum (@var{dnums})
+@deftypefn {Method} {@var{out} =} datenum (@var{obj})
 
-Converts a datenum array to a datetime array.
+Convert this to datenums that represent the same local time
 
-Returns an unzoned @code{datetime} array of the same size as the input.
-
-@end deftypefn
-
-@node datetime.ofDatestruct
-@subsubsection datetime.ofDatestruct
-
-@deftypefn {Static Method} {@var{obj} =} datetime.ofDatestruct (@var{dstruct})
-
-Converts a datestruct to a datetime array.
-
-A datestruct is a special struct format used by Tablicious that has fields
-Year, Month, Day, Hour, Minute, and Second. It is not a standard Octave datatype.
-
-Returns an unzoned @code{datetime} array.
-
-@end deftypefn
-
-@node datetime.NaT
-@subsubsection datetime.NaT
-
-@deftypefn {Static Method} {@var{out} =} datetime.NaT ()
-@deftypefnx {Static Method} {@var{out} =} datetime.NaT (@var{sz})
-
-“Not-a-Time”: Creates NaT-valued arrays.
-
-Constructs a new @code{datetime} array of all @code{NaT} values of
-the given size. If no input @var{sz} is given, the result is a scalar @code{NaT}.
-
-@code{NaT} is the @code{datetime} equivalent of @code{NaN}. It represents a missing
-or invalid value. @code{NaT} values never compare equal to, greater than, or less
-than any value, including other @code{NaT}s. Doing arithmetic with a @code{NaT} and
-any other value results in a @code{NaT}.
-
-@end deftypefn
-
-@node datetime.posix2datenum
-@subsubsection datetime.posix2datenum
-
-@deftypefn {Static Method} {@var{dnums} =} datetime.posix2datenum (@var{pdates})
-
-Converts POSIX (Unix) times to datenums
-
-Pdates (numeric) is an array of POSIX dates. A POSIX date is the number
-of seconds since January 1, 1970 UTC, excluding leap seconds. The output
-is implicitly in UTC.
+Returns double array of same size as this.
 
 @end deftypefn
 
@@ -1770,98 +1719,6 @@ Converts Octave datenums to Unix dates.
 The input datenums are assumed to be in UTC.
 
 Returns a double, which may have fractional seconds.
-
-@end deftypefn
-
-@node datetime.proxyKeys
-@subsubsection datetime.proxyKeys
-
-@deftypefn {Method} {[@var{keysA}, @var{keysB}] =} proxyKeys (@var{a}, @var{b})
-
-Computes proxy key values for two datetime arrays. Proxy keys are numeric
-values whose rows have the same equivalence relationships as the elements of
-the inputs.
-
-This is primarily for Tablicious's internal use; users will typically not need to call
-it or know how it works.
-
-Returns two 2-D numeric matrices of size n-by-k, where n is the number of elements
-in the corresponding input.
-
-@end deftypefn
-
-@node datetime.ymd
-@subsubsection datetime.ymd
-
-@deftypefn {Method} {[@var{y}, @var{m}, @var{d}] =} ymd (@var{obj})
-
-Get the Year, Month, and Day components of @var{obj}.
-
-For zoned @code{datetime}s, these will be local times in the associated time zone.
-
-Returns double arrays the same size as @code{obj}.
-
-@end deftypefn
-
-@node datetime.hms
-@subsubsection datetime.hms
-
-@deftypefn {Method} {[@var{h}, @var{m}, @var{s}] =} hms (@var{obj})
-
-Get the Hour, Minute, and Second components of a @var{obj}.
-
-For zoned @code{datetime}s, these will be local times in the associated time zone.
-
-Returns double arrays the same size as @code{obj}.
-
-@end deftypefn
-
-@node datetime.ymdhms
-@subsubsection datetime.ymdhms
-
-@deftypefn {Method} {[@var{y}, @var{m}, @var{d}, @var{h}, @var{mi}, @var{s}] =} ymdhms @
-  (@var{obj})
-
-Get the Year, Month, Day, Hour, Minute, and Second components of a @var{obj}.
-
-For zoned @code{datetime}s, these will be local times in the associated time zone.
-
-Returns double arrays the same size as @code{obj}.
-
-@end deftypefn
-
-@node datetime.timeofday
-@subsubsection datetime.timeofday
-
-@deftypefn {Method} {@var{out} =} timeofday (@var{obj})
-
-Get the time of day (elapsed time since midnight).
-
-For zoned @code{datetime}s, these will be local times in the associated time zone.
-
-Returns a @code{duration} array the same size as @code{obj}.
-
-@end deftypefn
-
-@node datetime.week
-@subsubsection datetime.week
-
-@deftypefn {Method} {@var{out} =} week (@var{obj})
-
-Get the week of the year.
-
-This method is unimplemented.
-
-@end deftypefn
-
-@node datetime.dispstrs
-@subsubsection datetime.dispstrs
-
-@deftypefn {Method} {@var{out} =} dispstrs (@var{obj})
-
-Get display strings for each element of @var{obj}.
-
-Returns a cellstr the same size as @var{obj}.
 
 @end deftypefn
 
@@ -1910,135 +1767,54 @@ Each field contains a double array of the same size as this.
 
 @end deftypefn
 
-@node datetime.posixtime
-@subsubsection datetime.posixtime
+@node datetime.datetime
+@subsubsection datetime.datetime
 
-@deftypefn {Method} {@var{out} =} posixtime (@var{obj})
+@deftypefn {Constructor} {@var{obj} =} datetime ()
 
-Converts this to POSIX time values (seconds since the Unix epoch)
-
-Converts this to POSIX time values that represent the same time. The
-returned values will be doubles that may include fractional second values.
-POSIX times are, by definition, in UTC.
-
-Returns double array of same size as this.
+Constructs a new scalar @code{datetime} containing the current local time, with
+no time zone attached.
 
 @end deftypefn
 
-@node datetime.datenum
-@subsubsection datetime.datenum
+@deftypefn {Constructor} {@var{obj} =} datetime (@var{datevec})
+@deftypefnx {Constructor} {@var{obj} =} datetime (@var{datestrs})
+@deftypefnx {Constructor} {@var{obj} =} datetime (@var{in}, @code{'ConvertFrom'}, @var{inType})
+@deftypefnx {Constructor} {@var{obj} =} datetime @
+  (@var{Y}, @var{M}, @var{D}, @var{H}, @var{MI}, @var{S})
+@deftypefnx {Constructor} {@var{obj} =} datetime @
+  (@var{Y}, @var{M}, @var{D}, @var{H}, @var{MI}, @var{MS})
+@deftypefnx {Constructor} {@var{obj} =} datetime @
+  (@dots{}, @code{'Format'}, @var{Format}, @code{'InputFormat'}, @var{InputFormat}, @
+   @code{'Locale'}, @var{InputLocale}, @code{'PivotYear'}, @var{PivotYear}, @
+   @code{'TimeZone'}, @var{TimeZone})
 
-@deftypefn {Method} {@var{out} =} datenum (@var{obj})
-
-Convert this to datenums that represent the same local time
-
-Returns double array of same size as this.
-
-@end deftypefn
-
-@node datetime.gmtime
-@subsubsection datetime.gmtime
-
-@deftypefn {Method} {@var{out} =} gmtime (@var{obj})
-
-Convert to TM_STRUCT structure in UTC time.
-
-Converts @var{obj} to a TM_STRUCT style structure array. The result is in
-UTC time. If @var{obj} is unzoned, it is assumed to be in UTC time.
-
-Returns a struct array in TM_STRUCT style.
+Constructs a new @code{datetime} array based on input values.
 
 @end deftypefn
 
-@node datetime.localtime
-@subsubsection datetime.localtime
+@node datetime.diff
+@subsubsection datetime.diff
 
-@deftypefn {Method} {@var{out} =} localtime (@var{obj})
+@deftypefn {Method} {@var{out} =} diff (@var{obj})
 
-Convert to TM_STRUCT structure in UTC time.
+Differences between elements.
 
-Converts @var{obj} to a TM_STRUCT style structure array. The result is a
-local time in the system default time zone. Note that the system default
-time zone is always used, regardless of what TimeZone is set on @var{obj}.
+Computes the difference between each successive element in @var{obj}, as a
+@code{duration}.
 
-If @var{obj} is unzoned, it is assumed to be in UTC time.
-
-Returns a struct array in TM_STRUCT style.
-
-Example:
-@example
-dt = datetime;
-dt.TimeZone = datetime.SystemTimeZone;
-tm_struct = localtime (dt);
-@end example
+Returns a @code{duration} array the same size as @var{obj}.
 
 @end deftypefn
 
-@node datetime.isnat
-@subsubsection datetime.isnat
+@node datetime.dispstrs
+@subsubsection datetime.dispstrs
 
-@deftypefn {Method} {@var{out} =} isnat (@var{obj})
+@deftypefn {Method} {@var{out} =} dispstrs (@var{obj})
 
-True if input elements are NaT.
+Get display strings for each element of @var{obj}.
 
-Returns logical array the same size as @var{obj}.
-
-@end deftypefn
-
-@node datetime.isnan
-@subsubsection datetime.isnan
-
-@deftypefn {Method} {@var{out} =} isnan (@var{obj})
-
-True if input elements are NaT. This is an alias for @code{isnat}
-to support type compatibility and polymorphic programming.
-
-Returns logical array the same size as @var{obj}.
-
-@end deftypefn
-
-@node datetime.lt
-@subsubsection datetime.lt
-
-@deftypefn {Method} {@var{out} =} lt (@var{A}, @var{B})
-
-True if @var{A} is less than @var{B}. This defines the @code{<} operator
-for @code{datetime}s.
-
-Inputs are implicitly converted to @code{datetime} using the one-arg
-constructor or conversion method.
-
-Returns logical array the same size as @var{obj}.
-
-@end deftypefn
-
-@node datetime.le
-@subsubsection datetime.le
-
-@deftypefn {Method} {@var{out} =} le (@var{A}, @var{B})
-
-True if @var{A} is less than or equal to@var{B}. This defines the @code{<=} operator
-for @code{datetime}s.
-
-Inputs are implicitly converted to @code{datetime} using the one-arg
-constructor or conversion method.
-
-Returns logical array the same size as @var{obj}.
-
-@end deftypefn
-
-@node datetime.ne
-@subsubsection datetime.ne
-
-@deftypefn {Method} {@var{out} =} ne (@var{A}, @var{B})
-
-True if @var{A} is not equal to @var{B}. This defines the @code{!=} operator
-for @code{datetime}s.
-
-Inputs are implicitly converted to @code{datetime} using the one-arg
-constructor or conversion method.
-
-Returns logical array the same size as @var{obj}.
+Returns a cellstr the same size as @var{obj}.
 
 @end deftypefn
 
@@ -2072,6 +1848,20 @@ Returns logical array the same size as @var{obj}.
 
 @end deftypefn
 
+@node datetime.gmtime
+@subsubsection datetime.gmtime
+
+@deftypefn {Method} {@var{out} =} gmtime (@var{obj})
+
+Convert to TM_STRUCT structure in UTC time.
+
+Converts @var{obj} to a TM_STRUCT style structure array. The result is in
+UTC time. If @var{obj} is unzoned, it is assumed to be in UTC time.
+
+Returns a struct array in TM_STRUCT style.
+
+@end deftypefn
+
 @node datetime.gt
 @subsubsection datetime.gt
 
@@ -2087,53 +1877,16 @@ Returns logical array the same size as @var{obj}.
 
 @end deftypefn
 
-@node datetime.plus
-@subsubsection datetime.plus
+@node datetime.hms
+@subsubsection datetime.hms
 
-@deftypefn {Method} {@var{out} =} plus (@var{A}, @var{B})
+@deftypefn {Method} {[@var{h}, @var{m}, @var{s}] =} hms (@var{obj})
 
-Addition (@code{+} operator). Adds a @code{duration}, @code{calendarDuration},
-or numeric @var{B} to a @code{datetime} @var{A}.
+Get the Hour, Minute, and Second components of a @var{obj}.
 
-@var{A} must be a @code{datetime}.
+For zoned @code{datetime}s, these will be local times in the associated time zone.
 
-Numeric @var{B} inputs are implicitly converted to @code{duration} using
-@code{duration.ofDays}.
-
-Returns @code{datetime} array the same size as @var{A}.
-
-@end deftypefn
-
-@node datetime.minus
-@subsubsection datetime.minus
-
-@deftypefn {Method} {@var{out} =} minus (@var{A}, @var{B})
-
-Subtraction (@code{-} operator). Subtracts a @code{duration},
-@code{calendarDuration} or numeric @var{B} from a @code{datetime} @var{A},
-or subtracts two @code{datetime}s from each other.
-
-If both inputs are @code{datetime}, then the output is a @code{duration}.
-Otherwise, the output is a @code{datetime}.
-
-Numeric @var{B} inputs are implicitly converted to @code{duration} using
-@code{duration.ofDays}.
-
-Returns an array the same size as @var{A}.
-
-@end deftypefn
-
-@node datetime.diff
-@subsubsection datetime.diff
-
-@deftypefn {Method} {@var{out} =} diff (@var{obj})
-
-Differences between elements.
-
-Computes the difference between each successive element in @var{obj}, as a
-@code{duration}.
-
-Returns a @code{duration} array the same size as @var{obj}.
+Returns double arrays the same size as @code{obj}.
 
 @end deftypefn
 
@@ -2149,6 +1902,44 @@ All inputs are implicitly converted to @code{datetime} arrays, and are subject
 to scalar expansion.
 
 Returns a logical array the same size as the scalar expansion of the inputs.
+
+@end deftypefn
+
+@node datetime.isnan
+@subsubsection datetime.isnan
+
+@deftypefn {Method} {@var{out} =} isnan (@var{obj})
+
+True if input elements are NaT. This is an alias for @code{isnat}
+to support type compatibility and polymorphic programming.
+
+Returns logical array the same size as @var{obj}.
+
+@end deftypefn
+
+@node datetime.isnat
+@subsubsection datetime.isnat
+
+@deftypefn {Method} {@var{out} =} isnat (@var{obj})
+
+True if input elements are NaT.
+
+Returns logical array the same size as @var{obj}.
+
+@end deftypefn
+
+@node datetime.le
+@subsubsection datetime.le
+
+@deftypefn {Method} {@var{out} =} le (@var{A}, @var{B})
+
+True if @var{A} is less than or equal to@var{B}. This defines the @code{<=} operator
+for @code{datetime}s.
+
+Inputs are implicitly converted to @code{datetime} using the one-arg
+constructor or conversion method.
+
+Returns logical array the same size as @var{obj}.
 
 @end deftypefn
 
@@ -2171,23 +1962,232 @@ Returns an @var{n}-long @code{datetime} vector.
 
 @end deftypefn
 
-@node datetime.convertDatenumTimeZone
-@subsubsection datetime.convertDatenumTimeZone
+@node datetime.localtime
+@subsubsection datetime.localtime
 
-@deftypefn {Static Method} {@var{out} =} datetime.convertDatenumTimeZone @
- (@var{dnum}, @var{fromZoneId}, @var{toZoneId})
+@deftypefn {Method} {@var{out} =} localtime (@var{obj})
 
-Convert a datenum from one time zone to another.
+Convert to TM_STRUCT structure in UTC time.
 
-@var{dnum} is a datenum array to convert.
+Converts @var{obj} to a TM_STRUCT style structure array. The result is a
+local time in the system default time zone. Note that the system default
+time zone is always used, regardless of what TimeZone is set on @var{obj}.
 
-@var{fromZoneId} is a charvec containing the IANA Time Zone identifier for
-the time zone to convert from.
+If @var{obj} is unzoned, it is assumed to be in UTC time.
 
-@var{toZoneId} is a charvec containing the IANA Time Zone identifier for
-the time zone to convert to.
+Returns a struct array in TM_STRUCT style.
 
-Returns a datenum array the same size as @var{dnum}.
+Example:
+@example
+dt = datetime;
+dt.TimeZone = datetime.SystemTimeZone;
+tm_struct = localtime (dt);
+@end example
+
+@end deftypefn
+
+@node datetime.lt
+@subsubsection datetime.lt
+
+@deftypefn {Method} {@var{out} =} lt (@var{A}, @var{B})
+
+True if @var{A} is less than @var{B}. This defines the @code{<} operator
+for @code{datetime}s.
+
+Inputs are implicitly converted to @code{datetime} using the one-arg
+constructor or conversion method.
+
+Returns logical array the same size as @var{obj}.
+
+@end deftypefn
+
+@node datetime.minus
+@subsubsection datetime.minus
+
+@deftypefn {Method} {@var{out} =} minus (@var{A}, @var{B})
+
+Subtraction (@code{-} operator). Subtracts a @code{duration},
+@code{calendarDuration} or numeric @var{B} from a @code{datetime} @var{A},
+or subtracts two @code{datetime}s from each other.
+
+If both inputs are @code{datetime}, then the output is a @code{duration}.
+Otherwise, the output is a @code{datetime}.
+
+Numeric @var{B} inputs are implicitly converted to @code{duration} using
+@code{duration.ofDays}.
+
+Returns an array the same size as @var{A}.
+
+@end deftypefn
+
+@node datetime.NaT
+@subsubsection datetime.NaT
+
+@deftypefn {Static Method} {@var{out} =} datetime.NaT ()
+@deftypefnx {Static Method} {@var{out} =} datetime.NaT (@var{sz})
+
+“Not-a-Time”: Creates NaT-valued arrays.
+
+Constructs a new @code{datetime} array of all @code{NaT} values of
+the given size. If no input @var{sz} is given, the result is a scalar @code{NaT}.
+
+@code{NaT} is the @code{datetime} equivalent of @code{NaN}. It represents a missing
+or invalid value. @code{NaT} values never compare equal to, greater than, or less
+than any value, including other @code{NaT}s. Doing arithmetic with a @code{NaT} and
+any other value results in a @code{NaT}.
+
+@end deftypefn
+
+@node datetime.ne
+@subsubsection datetime.ne
+
+@deftypefn {Method} {@var{out} =} ne (@var{A}, @var{B})
+
+True if @var{A} is not equal to @var{B}. This defines the @code{!=} operator
+for @code{datetime}s.
+
+Inputs are implicitly converted to @code{datetime} using the one-arg
+constructor or conversion method.
+
+Returns logical array the same size as @var{obj}.
+
+@end deftypefn
+
+@node datetime.ofDatenum
+@subsubsection datetime.ofDatenum
+
+@deftypefn {Static Method} {@var{obj} =} datetime.ofDatenum (@var{dnums})
+
+Converts a datenum array to a datetime array.
+
+Returns an unzoned @code{datetime} array of the same size as the input.
+
+@end deftypefn
+
+@node datetime.ofDatestruct
+@subsubsection datetime.ofDatestruct
+
+@deftypefn {Static Method} {@var{obj} =} datetime.ofDatestruct (@var{dstruct})
+
+Converts a datestruct to a datetime array.
+
+A datestruct is a special struct format used by Tablicious that has fields
+Year, Month, Day, Hour, Minute, and Second. It is not a standard Octave datatype.
+
+Returns an unzoned @code{datetime} array.
+
+@end deftypefn
+
+@node datetime.plus
+@subsubsection datetime.plus
+
+@deftypefn {Method} {@var{out} =} plus (@var{A}, @var{B})
+
+Addition (@code{+} operator). Adds a @code{duration}, @code{calendarDuration},
+or numeric @var{B} to a @code{datetime} @var{A}.
+
+@var{A} must be a @code{datetime}.
+
+Numeric @var{B} inputs are implicitly converted to @code{duration} using
+@code{duration.ofDays}.
+
+Returns @code{datetime} array the same size as @var{A}.
+
+@end deftypefn
+
+@node datetime.posix2datenum
+@subsubsection datetime.posix2datenum
+
+@deftypefn {Static Method} {@var{dnums} =} datetime.posix2datenum (@var{pdates})
+
+Converts POSIX (Unix) times to datenums
+
+Pdates (numeric) is an array of POSIX dates. A POSIX date is the number
+of seconds since January 1, 1970 UTC, excluding leap seconds. The output
+is implicitly in UTC.
+
+@end deftypefn
+
+@node datetime.posixtime
+@subsubsection datetime.posixtime
+
+@deftypefn {Method} {@var{out} =} posixtime (@var{obj})
+
+Converts this to POSIX time values (seconds since the Unix epoch)
+
+Converts this to POSIX time values that represent the same time. The
+returned values will be doubles that may include fractional second values.
+POSIX times are, by definition, in UTC.
+
+Returns double array of same size as this.
+
+@end deftypefn
+
+@node datetime.proxyKeys
+@subsubsection datetime.proxyKeys
+
+@deftypefn {Method} {[@var{keysA}, @var{keysB}] =} proxyKeys (@var{a}, @var{b})
+
+Computes proxy key values for two datetime arrays. Proxy keys are numeric
+values whose rows have the same equivalence relationships as the elements of
+the inputs.
+
+This is primarily for Tablicious's internal use; users will typically not need to call
+it or know how it works.
+
+Returns two 2-D numeric matrices of size n-by-k, where n is the number of elements
+in the corresponding input.
+
+@end deftypefn
+
+@node datetime.timeofday
+@subsubsection datetime.timeofday
+
+@deftypefn {Method} {@var{out} =} timeofday (@var{obj})
+
+Get the time of day (elapsed time since midnight).
+
+For zoned @code{datetime}s, these will be local times in the associated time zone.
+
+Returns a @code{duration} array the same size as @code{obj}.
+
+@end deftypefn
+
+@node datetime.week
+@subsubsection datetime.week
+
+@deftypefn {Method} {@var{out} =} week (@var{obj})
+
+Get the week of the year.
+
+This method is unimplemented.
+
+@end deftypefn
+
+@node datetime.ymd
+@subsubsection datetime.ymd
+
+@deftypefn {Method} {[@var{y}, @var{m}, @var{d}] =} ymd (@var{obj})
+
+Get the Year, Month, and Day components of @var{obj}.
+
+For zoned @code{datetime}s, these will be local times in the associated time zone.
+
+Returns double arrays the same size as @code{obj}.
+
+@end deftypefn
+
+@node datetime.ymdhms
+@subsubsection datetime.ymdhms
+
+@deftypefn {Method} {[@var{y}, @var{m}, @var{d}, @var{h}, @var{mi}, @var{s}] =} ymdhms @
+  (@var{obj})
+
+Get the Year, Month, Day, Hour, Minute, and Second components of a @var{obj}.
+
+For zoned @code{datetime}s, these will be local times in the associated time zone.
+
+Returns double arrays the same size as @code{obj}.
 
 @end deftypefn
 
@@ -2291,30 +2291,28 @@ The format to display this @code{duration} in. Currently unsupported.
 @end deftypeivar
 
 
-@node duration.ofDays
-@subsubsection duration.ofDays
+@node duration.char
+@subsubsection duration.char
 
-@deftypefn {Static Method} {@var{obj} =} duration.ofDays (@var{dnums})
+@deftypefn {Method} {@var{out} =} char (@var{obj})
 
-Converts a double array representing durations in whole and fractional days
-to a @code{duration} array. This is the method that is used for implicit conversion
-of numerics in many cases.
+Convert to char. The contents of the strings will be the same as
+returned by @code{dispstrs}.
 
-Returns a @code{duration} array of the same size as the input.
+This is primarily a convenience method for use on scalar @var{obj}s.
+
+Returns a 2-D char array with one row per element in @var{obj}.
 
 @end deftypefn
 
-@node duration.years
-@subsubsection duration.years
+@node duration.dispstrs
+@subsubsection duration.dispstrs
 
-@deftypefn {Method} {@var{out} =} years (@var{obj})
+@deftypefn {Method} {@var{out} =} duration (@var{obj})
 
-Equivalent number of years.
+Get display strings for each element of @var{obj}.
 
-Gets the number of fixed-length 365.2425-day years that is equivalent
-to this duration.
-
-Returns double array the same size as @var{obj}.
+Returns a cellstr the same size as @var{obj}.
 
 @end deftypefn
 
@@ -2326,6 +2324,39 @@ Returns double array the same size as @var{obj}.
 Equivalent number of hours.
 
 Gets the number of fixed-length 60-minute hours that is equivalent
+to this duration.
+
+Returns double array the same size as @var{obj}.
+
+@end deftypefn
+
+@node duration.linspace
+@subsubsection duration.linspace
+
+@deftypefn {Method} {@var{out} =} linspace (@var{from}, @var{to}, @var{n})
+
+Linearly-spaced values in time duration space.
+
+Constructs a vector of @code{duration}s that represent linearly spaced points
+starting at @var{from} and going up to @var{to}, with @var{n} points in the
+vector.
+
+@var{from} and @var{to} are implicitly converted to @code{duration}s.
+
+@var{n} is how many points to use. If omitted, defaults to 100.
+
+Returns an @var{n}-long @code{datetime} vector.
+
+@end deftypefn
+
+@node duration.milliseconds
+@subsubsection duration.milliseconds
+
+@deftypefn {Method} {@var{out} =} milliseconds (@var{obj})
+
+Equivalent number of milliseconds.
+
+Gets the number of milliseconds that is equivalent
 to this duration.
 
 Returns double array the same size as @var{obj}.
@@ -2346,6 +2377,19 @@ Returns double array the same size as @var{obj}.
 
 @end deftypefn
 
+@node duration.ofDays
+@subsubsection duration.ofDays
+
+@deftypefn {Static Method} {@var{obj} =} duration.ofDays (@var{dnums})
+
+Converts a double array representing durations in whole and fractional days
+to a @code{duration} array. This is the method that is used for implicit conversion
+of numerics in many cases.
+
+Returns a @code{duration} array of the same size as the input.
+
+@end deftypefn
+
 @node duration.seconds
 @subsubsection duration.seconds
 
@@ -2360,61 +2404,17 @@ Returns double array the same size as @var{obj}.
 
 @end deftypefn
 
-@node duration.milliseconds
-@subsubsection duration.milliseconds
+@node duration.years
+@subsubsection duration.years
 
-@deftypefn {Method} {@var{out} =} milliseconds (@var{obj})
+@deftypefn {Method} {@var{out} =} years (@var{obj})
 
-Equivalent number of milliseconds.
+Equivalent number of years.
 
-Gets the number of milliseconds that is equivalent
+Gets the number of fixed-length 365.2425-day years that is equivalent
 to this duration.
 
 Returns double array the same size as @var{obj}.
-
-@end deftypefn
-
-@node duration.dispstrs
-@subsubsection duration.dispstrs
-
-@deftypefn {Method} {@var{out} =} duration (@var{obj})
-
-Get display strings for each element of @var{obj}.
-
-Returns a cellstr the same size as @var{obj}.
-
-@end deftypefn
-
-@node duration.char
-@subsubsection duration.char
-
-@deftypefn {Method} {@var{out} =} char (@var{obj})
-
-Convert to char. The contents of the strings will be the same as
-returned by @code{dispstrs}.
-
-This is primarily a convenience method for use on scalar @var{obj}s.
-
-Returns a 2-D char array with one row per element in @var{obj}.
-
-@end deftypefn
-
-@node duration.linspace
-@subsubsection duration.linspace
-
-@deftypefn {Method} {@var{out} =} linspace (@var{from}, @var{to}, @var{n})
-
-Linearly-spaced values in time duration space.
-
-Constructs a vector of @code{duration}s that represent linearly spaced points
-starting at @var{from} and going up to @var{to}, with @var{n} points in the
-vector.
-
-@var{from} and @var{to} are implicitly converted to @code{duration}s.
-
-@var{n} is how many points to use. If omitted, defaults to 100.
-
-Returns an @var{n}-long @code{datetime} vector.
 
 @end deftypefn
 
@@ -2672,64 +2672,14 @@ The format to display this @code{localdate} in. Currently unsupported.
 @end deftypeivar
 
 
-@node localdate.localdate
-@subsubsection localdate.localdate
+@node localdate.datenum
+@subsubsection localdate.datenum
 
-@deftypefn {Constructor} {@var{obj} =} localdate ()
+@deftypefn {Method} {@var{out} =} datenum (@var{obj})
 
-Constructs a new scalar @code{localdate} containing the current local date.
+Convert this to datenums that represent midnight on @var{obj}’s days.
 
-@end deftypefn
-
-@deftypefn {Constructor} {@var{obj} =} localdate (@var{datenums})
-@deftypefnx {Constructor} {@var{obj} =} localdate (@var{datestrs})
-@deftypefnx {Constructor} {@var{obj} =} localdate (@var{Y}, @var{M}, @var{D})
-@deftypefnx {Constructor} {@var{obj} =} localdate (@dots{}, @code{'Format'}, @var{Format})
-
-Constructs a new @code{localdate} array based on input values.
-
-@end deftypefn
-
-@node localdate.NaT
-@subsubsection localdate.NaT
-
-@deftypefn {Static Method} {@var{out} =} localdate.NaT ()
-@deftypefnx {Static Method} {@var{out} =} localdate.NaT (@var{sz})
-
-“Not-a-Time”: Creates NaT-valued arrays.
-
-Constructs a new @code{datetime} array of all @code{NaT} values of
-the given size. If no input @var{sz} is given, the result is a scalar @code{NaT}.
-
-@code{NaT} is the @code{datetime} equivalent of @code{NaN}. It represents a missing
-or invalid value. @code{NaT} values never compare equal to, greater than, or less
-than any value, including other @code{NaT}s. Doing arithmetic with a @code{NaT} and
-any other value results in a @code{NaT}.
-
-This static method is provided because the global @code{NaT} function creates
-@code{datetime}s, not @code{localdate}s
-
-@end deftypefn
-
-@node localdate.ymd
-@subsubsection localdate.ymd
-
-@deftypefn {Method} {[@var{y}, @var{m}, @var{d}] =} ymd (@var{obj})
-
-Get the Year, Month, and Day components of @var{obj}.
-
-Returns double arrays the same size as @code{obj}.
-
-@end deftypefn
-
-@node localdate.dispstrs
-@subsubsection localdate.dispstrs
-
-@deftypefn {Method} {@var{out} =} dispstrs (@var{obj})
-
-Get display strings for each element of @var{obj}.
-
-Returns a cellstr the same size as @var{obj}.
+Returns double array of same size as this.
 
 @end deftypefn
 
@@ -2780,6 +2730,79 @@ Each field contains a double array of the same size as this.
 
 @end deftypefn
 
+@node localdate.dispstrs
+@subsubsection localdate.dispstrs
+
+@deftypefn {Method} {@var{out} =} dispstrs (@var{obj})
+
+Get display strings for each element of @var{obj}.
+
+Returns a cellstr the same size as @var{obj}.
+
+@end deftypefn
+
+@node localdate.isnan
+@subsubsection localdate.isnan
+
+@deftypefn {Method} {@var{out} =} isnan (@var{obj})
+
+True if input elements are NaT. This is an alias for @code{isnat}
+to support type compatibility and polymorphic programming.
+
+Returns logical array the same size as @var{obj}.
+
+@end deftypefn
+
+@node localdate.isnat
+@subsubsection localdate.isnat
+
+@deftypefn {Method} {@var{out} =} isnat (@var{obj})
+
+True if input elements are NaT.
+
+Returns logical array the same size as @var{obj}.
+
+@end deftypefn
+
+@node localdate.localdate
+@subsubsection localdate.localdate
+
+@deftypefn {Constructor} {@var{obj} =} localdate ()
+
+Constructs a new scalar @code{localdate} containing the current local date.
+
+@end deftypefn
+
+@deftypefn {Constructor} {@var{obj} =} localdate (@var{datenums})
+@deftypefnx {Constructor} {@var{obj} =} localdate (@var{datestrs})
+@deftypefnx {Constructor} {@var{obj} =} localdate (@var{Y}, @var{M}, @var{D})
+@deftypefnx {Constructor} {@var{obj} =} localdate (@dots{}, @code{'Format'}, @var{Format})
+
+Constructs a new @code{localdate} array based on input values.
+
+@end deftypefn
+
+@node localdate.NaT
+@subsubsection localdate.NaT
+
+@deftypefn {Static Method} {@var{out} =} localdate.NaT ()
+@deftypefnx {Static Method} {@var{out} =} localdate.NaT (@var{sz})
+
+“Not-a-Time”: Creates NaT-valued arrays.
+
+Constructs a new @code{datetime} array of all @code{NaT} values of
+the given size. If no input @var{sz} is given, the result is a scalar @code{NaT}.
+
+@code{NaT} is the @code{datetime} equivalent of @code{NaN}. It represents a missing
+or invalid value. @code{NaT} values never compare equal to, greater than, or less
+than any value, including other @code{NaT}s. Doing arithmetic with a @code{NaT} and
+any other value results in a @code{NaT}.
+
+This static method is provided because the global @code{NaT} function creates
+@code{datetime}s, not @code{localdate}s
+
+@end deftypefn
+
 @node localdate.posixtime
 @subsubsection localdate.posixtime
 
@@ -2795,37 +2818,14 @@ Returns double array of same size as this.
 
 @end deftypefn
 
-@node localdate.datenum
-@subsubsection localdate.datenum
+@node localdate.ymd
+@subsubsection localdate.ymd
 
-@deftypefn {Method} {@var{out} =} datenum (@var{obj})
+@deftypefn {Method} {[@var{y}, @var{m}, @var{d}] =} ymd (@var{obj})
 
-Convert this to datenums that represent midnight on @var{obj}’s days.
+Get the Year, Month, and Day components of @var{obj}.
 
-Returns double array of same size as this.
-
-@end deftypefn
-
-@node localdate.isnat
-@subsubsection localdate.isnat
-
-@deftypefn {Method} {@var{out} =} isnat (@var{obj})
-
-True if input elements are NaT.
-
-Returns logical array the same size as @var{obj}.
-
-@end deftypefn
-
-@node localdate.isnan
-@subsubsection localdate.isnan
-
-@deftypefn {Method} {@var{out} =} isnan (@var{obj})
-
-True if input elements are NaT. This is an alias for @code{isnat}
-to support type compatibility and polymorphic programming.
-
-Returns logical array the same size as @var{obj}.
+Returns double arrays the same size as @code{obj}.
 
 @end deftypefn
 
@@ -2882,18 +2882,6 @@ called for type conversion in that assignment. Darn it.
 @end deftp
 
 
-@node missing.missing
-@subsubsection missing.missing
-
-@deftypefn {Constructor} {@var{obj} =} missing ()
-
-Constructs a scalar @code{missing} array.
-
-The constructor takes no arguments, since there’s only one
-@code{missing} value.
-
-@end deftypefn
-
 @node missing.dispstrs
 @subsubsection missing.dispstrs
 
@@ -2945,6 +2933,18 @@ Test whether elements are NaN-like.
 @code{isnanny} is always true for @code{missing} arrays.
 
 Returns a logical array the same size as @var{obj}.
+
+@end deftypefn
+
+@node missing.missing
+@subsubsection missing.missing
+
+@deftypefn {Constructor} {@var{obj} =} missing ()
+
+Constructs a scalar @code{missing} array.
+
+The constructor takes no arguments, since there’s only one
+@code{missing} value.
 
 @end deftypefn
 
@@ -3248,134 +3248,6 @@ functions can use it to hack themselves into being string-aware.
 @end deftp
 
 
-@node string.empty
-@subsubsection string.empty
-
-@deftypefn {Function} {@var{out} =} empty (@var{sz})
-
-Get an empty string array of a specified size.
-
-The argument sz is optional. If supplied, it is a numeric size
-array whose product must be zero. If omitted, it defaults to [0 0].
-
-The size may also be supplied as multiple arguments containing
-scalar numerics.
-
-Returns an empty string array of the requested size.
-
-@end deftypefn
-
-@node string.missing
-@subsubsection string.missing
-
-@deftypefn {Static Method} {@var{out} = } string.missing (@var{sz})
-
-Missing string value.
-
-Creates a string array of all-missing values of the specified size @var{sz}.
-If @var{sz} is omitted, creates a scalar missing string.
-
-Returns a string array of size @var{sz} or [1 1].
-
-See also: NaS
-
-@end deftypefn
-
-@node string.string
-@subsubsection string.string
-
-@deftypefn {Constructor} {@var{obj} =} string ()
-@deftypefnx {Constructor} {@var{obj} =} string (@var{in})
-
-Construct a new string array.
-
-The zero-argument constructor creates a new scalar string array
-whose value is the empty string.
-
-The other constructors construct a new string array by converting
-various types of inputs.
-
-@itemize
-@item
-chars and cellstrs are converted via cellstr()
-@item
-numerics are converted via num2str()
-@item
-datetimes are converted via datestr()
-@end itemize
-
-@end deftypefn
-
-@node string.isstring
-@subsubsection string.isstring
-
-@deftypefn {Method} {@var{out} =} isstring (@var{obj})
-
-Test if input is a string array.
-
-@code{isstring} is always true for @code{string} inputs.
-
-Returns a scalar logical.
-
-@end deftypefn
-
-@node string.dispstrs
-@subsubsection string.dispstrs
-
-@deftypefn {Method} {@var{out} =} dispstrs (@var{obj})
-
-Display strings for array elements.
-
-Gets display strings for all the elements in @var{obj}. These display strings
-will either be the string contents of the element, enclosed in @code{"..."},
-and with CR/LF characters replaced with @code{'\r'} and @code{'\n'} escape sequences,
-or @code{"<missing>"} for missing values.
-
-Returns a cellstr of the same size as @var{obj}.
-
-@end deftypefn
-
-@node string.ismissing
-@subsubsection string.ismissing
-
-@deftypefn {Method} {@var{out} =} ismissing (@var{obj})
-
-Test whether array elements are missing.
-
-For @code{string} arrays, only the special “missing” value is
-considered missing. Empty strings are not considered missing,
-the way they are with cellstrs.
-
-Returns a logical array the same size as @code{obj}.
-
-@end deftypefn
-
-@node string.isnanny
-@subsubsection string.isnanny
-
-@deftypefn {Method} {@var{out} =} isnanny (@var{obj})
-
-Test whether array elements are NaN-like.
-
-Missing values are considered nannish; any other string value is not.
-
-Returns a logical array of the same size as @var{obj}.
-
-@end deftypefn
-
-@node string.cellstr
-@subsubsection string.cellstr
-
-@deftypefn {Method} {@var{out} =} cellstr (@var{obj})
-
-Convert to cellstr.
-
-Converts @var{obj} to a cellstr. Missing values are converted to @code{''}.
-
-Returns a cellstr array of the same size as @var{obj}.
-
-@end deftypefn
-
 @node string.cell
 @subsubsection string.cell
 
@@ -3390,6 +3262,19 @@ This method returns the same values as @code{cellstr(obj)}; it is just provided
 for interface compatibility purposes.
 
 Returns a cell array of the same size as @var{obj}.
+
+@end deftypefn
+
+@node string.cellstr
+@subsubsection string.cellstr
+
+@deftypefn {Method} {@var{out} =} cellstr (@var{obj})
+
+Convert to cellstr.
+
+Converts @var{obj} to a cellstr. Missing values are converted to @code{''}.
+
+Returns a cellstr array of the same size as @var{obj}.
 
 @end deftypefn
 
@@ -3408,262 +3293,6 @@ char. (NOTE: This may change in the future; it may be more appropriate)
 to convert them to space-padded empty strings.)
 
 Returns 2-D char array.
-
-@end deftypefn
-
-@node string.encode
-@subsubsection string.encode
-
-@deftypefn {Method} {@var{out} =} encode (@var{obj}, @var{charsetName})
-
-Encode string in a given character encoding.
-
-@var{obj} must be scalar.
-
-@var{charsetName} (charvec) is the name of a character encoding.
-(TODO: Document what determines the set of valid encoding names.)
-
-Returns the encoded string as a @code{uint8} vector.
-
-See also: @ref{string.decode}.
-
-@end deftypefn
-
-@node string.strlength_bytes
-@subsubsection string.strlength_bytes
-
-@deftypefn {Method} {@var{out} =} strlength_bytes (@var{obj})
-
-String length in bytes.
-
-Gets the length of each string in @var{obj}, counted in Unicode UTF-8
-code units (bytes). This is the same as @code{numel(str)} for the corresponding
-Octave char vector for each string, but may not be what you
-actually want to use. You may want @code{strlength} instead.
-
-Returns double array of the same size as @var{obj}. Returns NaNs for missing
-strings.
-
-See also: @ref{string.strlength}
-
-@end deftypefn
-
-@node string.strlength
-@subsubsection string.strlength
-
-@deftypefn {Method} {@var{out} =} strlength (@var{obj})
-
-String length in characters (actually, UTF-16 code units).
-
-Gets the length of each string, counted in UTF-16 code units. In most
-cases, this is the same as the number of characters. The exception is for
-characters outside the Unicode Basic Multilingual Plane, which are
-represented with UTF-16 surrogate pairs, and thus will count as 2 characters
-each.
-
-The reason this method counts UTF-16 code units, instead of Unicode code
-points (true characters), is for Matlab compatibility.
-
-This is the string length method you probably want to use,
-not @code{strlength_bytes}.
-
-Returns double array of the same size as @var{obj}. Returns NaNs for missing
-strings.
-
-See also: @ref{string.strlength_bytes}
-
-@end deftypefn
-
-@node string.reverse_bytes
-@subsubsection string.reverse_bytes
-
-@deftypefn {Method} {@var{out} =} reverse_bytes (@var{obj})
-
-Reverse string, byte-wise.
-
-Reverses the bytes in each string in @var{obj}. This operates on bytes
-(Unicode code units), not characters.
-
-This may well produce invalid strings as a result, because reversing a
-UTF-8 byte sequence does not necessarily produce another valid UTF-8
-byte sequence.
-
-You probably do not want to use this method. You probably want to use
-@code{string.reverse} instead.
-
-Returns a string array the same size as @var{obj}.
-
-See also: @ref{string.reverse}
-
-@end deftypefn
-
-@node string.reverse
-@subsubsection string.reverse
-
-@deftypefn {Method} {@var{out} =} reverse (@var{obj})
-
-Reverse string, character-wise.
-
-Reverses the characters in each string in @var{obj}. This operates on
-Unicode characters (code points), not on bytes, so it is guaranteed
-to produce valid UTF-8 as its output.
-
-Returns a string array the same size as @var{obj}.
-
-@end deftypefn
-
-@node string.strcat
-@subsubsection string.strcat
-
-@deftypefn {Method} {@var{out} =} strcat (@var{varargin})
-
-String concatenation.
-
-Concatenates the corresponding elements of all the input arrays,
-string-wise. Inputs that are not string arrays are converted to
-string arrays.
-
-The semantics of concatenating missing strings with non-missing
-strings has not been determined yet.
-
-Returns a string array the same size as the scalar expansion of its
-inputs.
-
-@end deftypefn
-
-@node string.plus
-@subsubsection string.plus
-
-@deftypefn {Method} {@var{out} =} plus (@var{a}, @var{b})
-
-String concatenation via plus operator.
-
-Concatenates the two input arrays, string-wise. Inputs that are
-not string arrays are converted to string arrays.
-
-The concatenation is done by calling `strcat` on the inputs, and has the
-same behavior.
-
-Returns a string array the same size as the scalar expansion of its
-inputs.
-
-See also: string.strcat
-
-@end deftypefn
-
-@node string.lower
-@subsubsection string.lower
-
-@deftypefn {Method} {@var{out} =} lower (@var{obj})
-
-Convert to lower case.
-
-Converts all the characters in all the strings in @var{obj} to lower case.
-
-This currently delegates to Octave’s own @code{lower()} function to
-do the conversion, so whatever character class handling it has, this
-has.
-
-Returns a string array of the same size as @var{obj}.
-
-@end deftypefn
-
-@node string.upper
-@subsubsection string.upper
-
-@deftypefn {Method} {@var{out} =} upper (@var{obj})
-
-Convert to upper case.
-
-Converts all the characters in all the strings in @var{obj} to upper case.
-
-This currently delegates to Octave’s own @code{upper()} function to
-do the conversion, so whatever character class handling it has, this
-has.
-
-Returns a string array of the same size as @var{obj}.
-
-@end deftypefn
-
-@node string.erase
-@subsubsection string.erase
-
-@deftypefn {Method} {@var{out} =} erase (@var{obj}, @var{match})
-
-Erase matching substring.
-
-Erases the substrings in @var{obj} which match the @var{match} input.
-
-Returns a string array of the same size as @var{obj}.
-
-@end deftypefn
-
-@node string.strrep
-@subsubsection string.strrep
-
-@deftypefn {Method} {@var{out} =} strrep (@var{obj}, @var{match}, @var{replacement})
-@deftypefnx {Method} {@var{out} =} strrep (@dots{}, @var{varargin})
-
-Replace occurrences of pattern with other string.
-
-Replaces matching substrings in @var{obj} with a given replacement string.
-
-@var{varargin} is passed along to the core Octave @code{strrep} function. This
-supports whatever options it does.
-TODO: Maybe document what those options are.
-
-Returns a string array of the same size as @var{obj}.
-
-@end deftypefn
-
-@node string.strfind
-@subsubsection string.strfind
-
-@deftypefn {Method} {@var{out} =} strfind (@var{obj}, @var{pattern})
-@deftypefnx {Method} {@var{out} =} strfind (@dots{}, @var{varargin})
-
-Find pattern in string.
-
-Finds the locations where @var{pattern} occurs in the strings of @var{obj}.
-
-TODO: It’s ambiguous whether a scalar this should result in a numeric
-out or a cell array out.
-
-Returns either an index vector, or a cell array of index vectors.
-
-@end deftypefn
-
-@node string.regexprep
-@subsubsection string.regexprep
-
-@deftypefn {Method} {@var{out} =} regexprep (@var{obj}, @var{pat}, @var{repstr})
-@deftypefnx {Method} {@var{out} =} regexprep (@dots{}, @var{varargin})
-
-Replace based on regular expression matching.
-
-Replaces all the substrings matching a given regexp pattern @var{pat} with
-the given replacement text @var{repstr}.
-
-Returns a string array of the same size as @var{obj}.
-
-@end deftypefn
-
-@node string.strcmp
-@subsubsection string.strcmp
-
-@deftypefn {Method} {@var{out} =} strcmp (@var{A}, @var{B})
-
-String comparison.
-
-Tests whether each element in A is exactly equal to the corresponding
-element in B. Missing values are not considered equal to each other.
-
-This does the same comparison as @code{A == B}, but is not polymorphic.
-Generally, there is no reason to use @code{strcmp} instead of @code{==}
-or @code{eq} on string arrays, unless you want to be compatible with
-cellstr inputs as well.
-
-Returns logical array the size of the scalar expansion of A and B.
 
 @end deftypefn
 
@@ -3704,6 +3333,377 @@ encoding, given by @var{charsetName}.
 Returns a scalar string.
 
 See also: @ref{string.encode}
+
+@end deftypefn
+
+@node string.dispstrs
+@subsubsection string.dispstrs
+
+@deftypefn {Method} {@var{out} =} dispstrs (@var{obj})
+
+Display strings for array elements.
+
+Gets display strings for all the elements in @var{obj}. These display strings
+will either be the string contents of the element, enclosed in @code{"..."},
+and with CR/LF characters replaced with @code{'\r'} and @code{'\n'} escape sequences,
+or @code{"<missing>"} for missing values.
+
+Returns a cellstr of the same size as @var{obj}.
+
+@end deftypefn
+
+@node string.empty
+@subsubsection string.empty
+
+@deftypefn {Function} {@var{out} =} empty (@var{sz})
+
+Get an empty string array of a specified size.
+
+The argument sz is optional. If supplied, it is a numeric size
+array whose product must be zero. If omitted, it defaults to [0 0].
+
+The size may also be supplied as multiple arguments containing
+scalar numerics.
+
+Returns an empty string array of the requested size.
+
+@end deftypefn
+
+@node string.encode
+@subsubsection string.encode
+
+@deftypefn {Method} {@var{out} =} encode (@var{obj}, @var{charsetName})
+
+Encode string in a given character encoding.
+
+@var{obj} must be scalar.
+
+@var{charsetName} (charvec) is the name of a character encoding.
+(TODO: Document what determines the set of valid encoding names.)
+
+Returns the encoded string as a @code{uint8} vector.
+
+See also: @ref{string.decode}.
+
+@end deftypefn
+
+@node string.erase
+@subsubsection string.erase
+
+@deftypefn {Method} {@var{out} =} erase (@var{obj}, @var{match})
+
+Erase matching substring.
+
+Erases the substrings in @var{obj} which match the @var{match} input.
+
+Returns a string array of the same size as @var{obj}.
+
+@end deftypefn
+
+@node string.ismissing
+@subsubsection string.ismissing
+
+@deftypefn {Method} {@var{out} =} ismissing (@var{obj})
+
+Test whether array elements are missing.
+
+For @code{string} arrays, only the special “missing” value is
+considered missing. Empty strings are not considered missing,
+the way they are with cellstrs.
+
+Returns a logical array the same size as @code{obj}.
+
+@end deftypefn
+
+@node string.isnanny
+@subsubsection string.isnanny
+
+@deftypefn {Method} {@var{out} =} isnanny (@var{obj})
+
+Test whether array elements are NaN-like.
+
+Missing values are considered nannish; any other string value is not.
+
+Returns a logical array of the same size as @var{obj}.
+
+@end deftypefn
+
+@node string.isstring
+@subsubsection string.isstring
+
+@deftypefn {Method} {@var{out} =} isstring (@var{obj})
+
+Test if input is a string array.
+
+@code{isstring} is always true for @code{string} inputs.
+
+Returns a scalar logical.
+
+@end deftypefn
+
+@node string.lower
+@subsubsection string.lower
+
+@deftypefn {Method} {@var{out} =} lower (@var{obj})
+
+Convert to lower case.
+
+Converts all the characters in all the strings in @var{obj} to lower case.
+
+This currently delegates to Octave’s own @code{lower()} function to
+do the conversion, so whatever character class handling it has, this
+has.
+
+Returns a string array of the same size as @var{obj}.
+
+@end deftypefn
+
+@node string.missing
+@subsubsection string.missing
+
+@deftypefn {Static Method} {@var{out} = } string.missing (@var{sz})
+
+Missing string value.
+
+Creates a string array of all-missing values of the specified size @var{sz}.
+If @var{sz} is omitted, creates a scalar missing string.
+
+Returns a string array of size @var{sz} or [1 1].
+
+See also: NaS
+
+@end deftypefn
+
+@node string.plus
+@subsubsection string.plus
+
+@deftypefn {Method} {@var{out} =} plus (@var{a}, @var{b})
+
+String concatenation via plus operator.
+
+Concatenates the two input arrays, string-wise. Inputs that are
+not string arrays are converted to string arrays.
+
+The concatenation is done by calling `strcat` on the inputs, and has the
+same behavior.
+
+Returns a string array the same size as the scalar expansion of its
+inputs.
+
+See also: string.strcat
+
+@end deftypefn
+
+@node string.regexprep
+@subsubsection string.regexprep
+
+@deftypefn {Method} {@var{out} =} regexprep (@var{obj}, @var{pat}, @var{repstr})
+@deftypefnx {Method} {@var{out} =} regexprep (@dots{}, @var{varargin})
+
+Replace based on regular expression matching.
+
+Replaces all the substrings matching a given regexp pattern @var{pat} with
+the given replacement text @var{repstr}.
+
+Returns a string array of the same size as @var{obj}.
+
+@end deftypefn
+
+@node string.reverse
+@subsubsection string.reverse
+
+@deftypefn {Method} {@var{out} =} reverse (@var{obj})
+
+Reverse string, character-wise.
+
+Reverses the characters in each string in @var{obj}. This operates on
+Unicode characters (code points), not on bytes, so it is guaranteed
+to produce valid UTF-8 as its output.
+
+Returns a string array the same size as @var{obj}.
+
+@end deftypefn
+
+@node string.reverse_bytes
+@subsubsection string.reverse_bytes
+
+@deftypefn {Method} {@var{out} =} reverse_bytes (@var{obj})
+
+Reverse string, byte-wise.
+
+Reverses the bytes in each string in @var{obj}. This operates on bytes
+(Unicode code units), not characters.
+
+This may well produce invalid strings as a result, because reversing a
+UTF-8 byte sequence does not necessarily produce another valid UTF-8
+byte sequence.
+
+You probably do not want to use this method. You probably want to use
+@code{string.reverse} instead.
+
+Returns a string array the same size as @var{obj}.
+
+See also: @ref{string.reverse}
+
+@end deftypefn
+
+@node string.strcat
+@subsubsection string.strcat
+
+@deftypefn {Method} {@var{out} =} strcat (@var{varargin})
+
+String concatenation.
+
+Concatenates the corresponding elements of all the input arrays,
+string-wise. Inputs that are not string arrays are converted to
+string arrays.
+
+The semantics of concatenating missing strings with non-missing
+strings has not been determined yet.
+
+Returns a string array the same size as the scalar expansion of its
+inputs.
+
+@end deftypefn
+
+@node string.strcmp
+@subsubsection string.strcmp
+
+@deftypefn {Method} {@var{out} =} strcmp (@var{A}, @var{B})
+
+String comparison.
+
+Tests whether each element in A is exactly equal to the corresponding
+element in B. Missing values are not considered equal to each other.
+
+This does the same comparison as @code{A == B}, but is not polymorphic.
+Generally, there is no reason to use @code{strcmp} instead of @code{==}
+or @code{eq} on string arrays, unless you want to be compatible with
+cellstr inputs as well.
+
+Returns logical array the size of the scalar expansion of A and B.
+
+@end deftypefn
+
+@node string.strfind
+@subsubsection string.strfind
+
+@deftypefn {Method} {@var{out} =} strfind (@var{obj}, @var{pattern})
+@deftypefnx {Method} {@var{out} =} strfind (@dots{}, @var{varargin})
+
+Find pattern in string.
+
+Finds the locations where @var{pattern} occurs in the strings of @var{obj}.
+
+TODO: It’s ambiguous whether a scalar this should result in a numeric
+out or a cell array out.
+
+Returns either an index vector, or a cell array of index vectors.
+
+@end deftypefn
+
+@node string.string
+@subsubsection string.string
+
+@deftypefn {Constructor} {@var{obj} =} string ()
+@deftypefnx {Constructor} {@var{obj} =} string (@var{in})
+
+Construct a new string array.
+
+The zero-argument constructor creates a new scalar string array
+whose value is the empty string.
+
+The other constructors construct a new string array by converting
+various types of inputs.
+
+@itemize
+@item
+chars and cellstrs are converted via cellstr()
+@item
+numerics are converted via num2str()
+@item
+datetimes are converted via datestr()
+@end itemize
+
+@end deftypefn
+
+@node string.strlength
+@subsubsection string.strlength
+
+@deftypefn {Method} {@var{out} =} strlength (@var{obj})
+
+String length in characters (actually, UTF-16 code units).
+
+Gets the length of each string, counted in UTF-16 code units. In most
+cases, this is the same as the number of characters. The exception is for
+characters outside the Unicode Basic Multilingual Plane, which are
+represented with UTF-16 surrogate pairs, and thus will count as 2 characters
+each.
+
+The reason this method counts UTF-16 code units, instead of Unicode code
+points (true characters), is for Matlab compatibility.
+
+This is the string length method you probably want to use,
+not @code{strlength_bytes}.
+
+Returns double array of the same size as @var{obj}. Returns NaNs for missing
+strings.
+
+See also: @ref{string.strlength_bytes}
+
+@end deftypefn
+
+@node string.strlength_bytes
+@subsubsection string.strlength_bytes
+
+@deftypefn {Method} {@var{out} =} strlength_bytes (@var{obj})
+
+String length in bytes.
+
+Gets the length of each string in @var{obj}, counted in Unicode UTF-8
+code units (bytes). This is the same as @code{numel(str)} for the corresponding
+Octave char vector for each string, but may not be what you
+actually want to use. You may want @code{strlength} instead.
+
+Returns double array of the same size as @var{obj}. Returns NaNs for missing
+strings.
+
+See also: @ref{string.strlength}
+
+@end deftypefn
+
+@node string.strrep
+@subsubsection string.strrep
+
+@deftypefn {Method} {@var{out} =} strrep (@var{obj}, @var{match}, @var{replacement})
+@deftypefnx {Method} {@var{out} =} strrep (@dots{}, @var{varargin})
+
+Replace occurrences of pattern with other string.
+
+Replaces matching substrings in @var{obj} with a given replacement string.
+
+@var{varargin} is passed along to the core Octave @code{strrep} function. This
+supports whatever options it does.
+TODO: Maybe document what those options are.
+
+Returns a string array of the same size as @var{obj}.
+
+@end deftypefn
+
+@node string.upper
+@subsubsection string.upper
+
+@deftypefn {Method} {@var{out} =} upper (@var{obj})
+
+Convert to upper case.
+
+Converts all the characters in all the strings in @var{obj} to upper case.
+
+This currently delegates to Octave’s own @code{upper()} function to
+do the conversion, so whatever character class handling it has, this
+has.
+
+Returns a string array of the same size as @var{obj}.
 
 @end deftypefn
 
@@ -3776,447 +3776,6 @@ is a cellstr column vector, if present.
 @end deftypeivar
 
 
-@node table.table
-@subsubsection table.table
-
-@deftypefn {Constructor} {@var{obj} =} table ()
-
-Constructs a new empty (0 rows by 0 variables) table.
-
-@end deftypefn
-
-@deftypefn {Constructor} {@var{obj} =} table (@var{var1}, @var{var2}, @dots{}, @var{varN})
-
-Constructs a new table from the given variables. The variables passed as
-inputs to this constructor become the variables of the table. Their names
-are automatically detected from the input variable names that you used.
-
-Note: If you call the constructor with exactly three arguments, and the first
-argument is exactly the value '__tblish_backdoor__', that will trigger a special internal-use
-backdoor calling form, and you will get incorrect results. This is a bug in
-Tablicious.
-
-@end deftypefn
-
-@deftypefn {Constructor} {@var{obj} =} table (@code{'Size'}, @var{sz}, @
-  @code{'VariableTypes'}, @var{varTypes})
-
-Constructs a new table of the given size, and with the given variable types.
-The variables will contain the default value for elements of that type.
-
-@end deftypefn
-
-@deftypefn {Constructor} {@var{obj} =} table (@dots{}, @code{'VariableNames'}, @var{varNames})
-@deftypefnx {Constructor} {@var{obj} =} table (@dots{}, @code{'RowNames'}, @var{rowNames})
-
-Specifies the variable names or row names to use in the constructed table.
-Overrides the implicit names garnered from the input variable names.
-
-@end deftypefn
-
-@node table.summary
-@subsubsection table.summary
-
-@deftypefn {Method} summary (@var{obj})
-
-Summary of table's data.
-
-Displays a summary of data in the input table. This will contain some
-statistical information on each of its variables.
-
-@end deftypefn
-
-@node table.prettyprint
-@subsubsection table.prettyprint
-
-@deftypefn {Method} {} prettyprint (@var{obj})
-
-Display table's values in tabular format. This prints the contents
-of the table in human-readable, tabular form.
-
-Variables which contain objects are displayed using the strings
-returned by their @code{dispstrs} method, if they define one.
-
-@end deftypefn
-
-@node table.table2cell
-@subsubsection table.table2cell
-
-@deftypefn {Method} {@var{c} =} table2cell (@var{obj})
-
-Converts table to a cell array. Each variable in @var{obj} becomes
-one or more columns in the output, depending on how many columns
-that variable has.
-
-Returns a cell array with the same number of rows as @var{obj}, and
-with as many or more columns as @var{obj} has variables.
-
-@end deftypefn
-
-@node table.table2struct
-@subsubsection table.table2struct
-
-@deftypefn {Method} {@var{s} =} table2struct (@var{obj})
-@deftypefnx {Method} {@var{s} =} table2struct (@dots{}, @code{'ToScalar'}, @var{trueOrFalse})
-
-Converts @var{obj} to a scalar structure or structure array.
-
-Row names are not included in the output struct. To include them, you
-must add them manually:
-  s = table2struct (tbl, 'ToScalar', true);
-  s.RowNames = tbl.Properties.RowNames;
-
-Returns a scalar struct or struct array, depending on the value of the
-@code{ToScalar} option.
-
-@end deftypefn
-
-@node table.table2array
-@subsubsection table.table2array
-
-@deftypefn {Method} {@var{s} =} table2struct (@var{obj})
-
-Converts @var{obj} to a homogeneous array.
-
-@end deftypefn
-
-@node table.varnames
-@subsubsection table.varnames
-
-@deftypefn {Method} {@var{out} =} varnames (@var{obj})
-@deftypefnx {Method} {@var{out} =} varnames (@var{obj}, @var{varNames})
-
-Get or set variable names for a table.
-
-Returns cellstr in the getter form. Returns an updated datetime in the
-setter form.
-
-@end deftypefn
-
-@node table.istable
-@subsubsection table.istable
-
-@deftypefn {Method} {@var{tf} =} istable (@var{obj})
-
-True if input is a table.
-
-@end deftypefn
-
-@node table.size
-@subsubsection table.size
-
-@deftypefn {Method} {@var{sz} =} size (@var{obj})
-@deftypefnx {Method} {[@var{nr}, @var{nv}] =} size (@var{obj})
-@deftypefnx {Method} {[@var{nr}, @var{nv}, @dots{}] =} size (@var{obj})
-
-Gets the size of a table.
-
-For tables, the size is [number-of-rows x number-of-variables].
-This is the same as @code{[height(obj), width(obj)]}.
-
-@end deftypefn
-
-@node table.end
-@subsubsection table.end
-
-@deftypefn {Method} {@var{out} =} end (@var{obj}, @var{k}, @var{n})
-
-Last index for given dimension of a table.
-
-@end deftypefn
-
-@node table.ndims
-@subsubsection table.ndims
-
-@deftypefn {Method} {@var{out} =} ndims (@var{obj})
-
-Number of dimensions
-
-For tables, @code{ndims(obj)} is always 2, because table arrays are always
-2-D (rows-by-columns).
-
-@end deftypefn
-
-@node table.squeeze
-@subsubsection table.squeeze
-
-@deftypefn {Method} {@var{obj} =} squeeze (@var{obj})
-
-Remove singleton dimensions.
-
-For tables, this is always a no-op that returns the input unmodified,
-because tables always have exactly 2 dimensions, and 2-D arrays are unaffected
-by squeeze.
-
-@end deftypefn
-
-@node table.height
-@subsubsection table.height
-
-@deftypefn {Method} {@var{out} =} height (@var{obj})
-
-Number of rows in table.
-
-For a zero-variable table, this currently always returns 0. This is a bug,
-and will change in the future. It should be possible for zero-variable table
-arrays to have any number of rows.
-
-@end deftypefn
-
-@node table.width
-@subsubsection table.width
-
-@deftypefn {Method} {@var{out} =} width (@var{obj})
-
-Number of variables in table.
-
-Note that this is not the sum of the number of columns in each variable.
-It is just the number of variables.
-
-@end deftypefn
-
-@node table.numel
-@subsubsection table.numel
-
-@deftypefn {Method} {@var{out} =} numel (@var{obj})
-
-Total number of elements in table (actually 1).
-
-For compatibility reasons with Octave's OOP interface and subsasgn behavior,
-table's numel is defined to always return 1. It is not useful for client
-code to query a table's size using numel. This is an incompatibility with
-Matlab.
-
-@end deftypefn
-
-@node table.isempty
-@subsubsection table.isempty
-
-@deftypefn {Method} {@var{out} =} isempty (@var{obj})
-
-Test whether array is empty.
-
-For tables, @code{isempty} is true if the number of rows is 0 or the number
-of variables is 0.
-
-@end deftypefn
-
-@node table.vertcat
-@subsubsection table.vertcat
-
-@deftypefn {Method} {@var{out} =} vertcat (@var{varargin})
-
-Vertical concatenation.
-
-Combines tables by vertically concatenating them.
-
-Inputs that are not tables are automatically converted to tables by calling
-table() on them.
-
-The inputs must have the same number and names of variables, and their
-variable value types and sizes must be cat-compatible. The types of the resulting
-variables are the types that result from doing a `vertcat()` on the variables
-from the corresponding input tables, in the order they were input in.
-
-@end deftypefn
-
-@node table.horzcat
-@subsubsection table.horzcat
-
-@deftypefn {Method} {@var{out} =} horzcat (@var{varargin})
-
-Horizontal concatenation.
-
-Combines tables by horizontally concatenating them.
-Inputs that are not tables are automatically converted to tables by calling
-table() on them. Inputs must have all distinct variable names.
-
-Output has the same RowNames as @code{varargin@{1@}}. The variable names and values
-are the result of the concatenation of the variable names and values lists
-from the inputs.
-
-@end deftypefn
-
-@node table.repmat
-@subsubsection table.repmat
-
-@deftypefn {Method} {@var{out} =} repmat (@var{obj}, @var{sz})
-
-Replicate matrix.
-
-Repmats a table by repmatting each of its variables vertically.
-
-For tables, repmatting is only supported along dimension 1. That is, the
-values of sz(2:end) must all be exactly 1. This behavior may change in the
-future to support repmatting horizontally, with the added variable names being
-automatically changed to maintain uniqueness of variable names within the
-resulting table.
-
-Returns a new table with the same variable names and types as tbl, but
-with a possibly different row count.
-
-@end deftypefn
-
-@node table.repelem
-@subsubsection table.repelem
-
-@deftypefn {Method} {@var{out} =} repelem (@var{obj}, @var{R})
-@deftypefnx {Method} {@var{out} =} repelem (@var{obj}, @var{R_1}, @var{R_2})
-
-Replicate elements of matrix.
-
-Replicates elements of this table matrix by applying repelem to each of
-its variables. This
-
-Only two dimensions are supported for @code{repelem} on tables.
-
-@end deftypefn
-
-@node table.setVariableNames
-@subsubsection table.setVariableNames
-
-@deftypefn {Method} {@var{out} =} setVariableNames (@var{obj}, @var{names})
-@deftypefnx {Method} {@var{out} =} setVariableNames (@var{obj}, @var{ix}, @var{names})
-
-Set variable names.
-
-Sets the @code{VariableNames} for this table to a new list of names.
-
-@var{names} is a char or cellstr vector. It must have the same number of elements
-as the number of variable names being assigned.
-
-@var{ix} is an index vector indicating which variable names to set. If
-omitted, it sets all of them present in @var{obj}.
-
-This method exists because the @code{obj.Properties.VariableNames = @dots{}}
-assignment form does not work, possibly due to an Octave bug.
-
-@end deftypefn
-
-@node table.setDimensionNames
-@subsubsection table.setDimensionNames
-
-@deftypefn {Method} {@var{out} =} setDimensionNames (@var{obj}, @var{names})
-@deftypefnx {Method} {@var{out} =} setDimensionNames (@var{obj}, @var{ix}, @var{names})
-
-Set dimension names.
-
-Sets the @code{DimensionNames} for this table to a new list of names.
-
-@var{names} is a char or cellstr vector. It must have the same number of elements
-as the number of dimension names being assigned.
-
-@var{ix} is an index vector indicating which dimension names to set. If
-omitted, it sets all two of them. Since there are always two dimension,
-the indexes in @var{ix} may never be higher than 2.
-
-This method exists because the @code{obj.Properties.DimensionNames = @dots{}}
-assignment form does not work, possibly due to an Octave bug.
-
-@end deftypefn
-
-@node table.setRowNames
-@subsubsection table.setRowNames
-
-@deftypefn {Method} {@var{out} =} setRowNames (@var{obj}, @var{names})
-
-Set row names.
-
-Sets the row names on @var{obj} to @var{names}.
-
-@var{names} is a cellstr column vector, with the same number of rows as
-@var{obj} has.
-
-@end deftypefn
-
-@node table.removevars
-@subsubsection table.removevars
-
-@deftypefn {Method} {@var{out} =} removevars (@var{obj}, @var{vars})
-
-Remove variables from table.
-
-Deletes the variables specified by @var{vars} from @var{obj}.
-
-@var{vars} may be a char, cellstr, numeric index vector, or logical
-index vector.
-
-@end deftypefn
-
-@node table.movevars
-@subsubsection table.movevars
-
-@deftypefn {Method} {@var{out} =} movevars (@var{obj}, @var{vars}, @var{relLocation}, @var{location})
-
-Move around variables in a table.
-
-@var{vars} is a list of variables to move, specified by name or index.
-
-@var{relLocation} is @code{'Before'} or @code{'After'}.
-
-@var{location} indicates a single variable to use as the target location,
-specified by name or index. If it is specified by index, it is the index
-into the list of *unmoved* variables from @var{obj}, not the original full
-list of variables in @var{obj}.
-
-Returns a table with the same variables as @var{obj}, but in a different order.
-
-@end deftypefn
-
-@node table.getvar
-@subsubsection table.getvar
-
-@deftypefn {Method} {[@var{out}, @var{name}]} = getvar (@var{obj}, @var{varRef})
-
-Get value and name for single table variable.
-
-@var{varRef} is a variable reference. It may be a name or an index. It
-may only specify a single table variable.
-
-Returns:
-  @var{out} – the value of the referenced table variable
-  @var{name} – the name of the referenced table variable
-
-@end deftypefn
-
-@node table.getvars
-@subsubsection table.getvars
-
-@deftypefn {Method} {[@var{out1}, @dots{}]} = getvars (@var{obj}, @var{varRef})
-
-Get values for one ore more table variables.
-
-@var{varRef} is a variable reference in the form of variable names or
-indexes.
-
-Returns as many outputs as @var{varRef} referenced variables. Each output
-contains the contents of the corresponding table variable.
-
-@end deftypefn
-
-@node table.setvar
-@subsubsection table.setvar
-
-@deftypefn {Method} {@var{out} =} setvar (@var{obj}, @var{varRef}, @var{value})
-
-Set value for a variable in table.
-
-This sets (adds or replaces) the value for a variable in @var{obj}. It
-may be used to change the value of an existing variable, or add a new
-variable.
-
-This method exists primarily because I cannot get @code{obj.foo = value} to work,
-apparently due to an issue with Octave's subsasgn support.
-
-@var{varRef} is a variable reference, either the index or name of a variable.
-If you are adding a new variable, it must be a name, and not an index.
-
-@var{value} is the value to set the variable to. If it is scalar or
-a single string as charvec, it is scalar-expanded to match the number
-of rows in @var{obj}.
-
-@end deftypefn
-
 @node table.addvars
 @subsubsection table.addvars
 
@@ -4229,199 +3788,6 @@ of rows in @var{obj}.
 Add variables to table.
 
 Adds the specified variables to a table.
-
-@end deftypefn
-
-@node table.convertvars
-@subsubsection table.convertvars
-
-@deftypefn {Method} {@var{out} =} convertvars (@var{obj}, @var{vars}, @var{dataType})
-
-Convert variables to specified data type.
-
-Converts the variables in @var{obj} specified by @var{vars} to the specified data type.
-
-@var{vars} is a cellstr or numeric vector specifying which variables to convert.
-
-@var{dataType} specifies the data type to convert those variables to. It is either
-a char holding the name of the data type, or a function handle which will
-perform the conversion. If it is the name of the data type, there must
-either be a one-arg constructor of that type which accepts the specified
-variables' current types as input, or a conversion method of that name
-defined on the specified variables' current type.
-
-Returns a table with the same variable names as @var{obj}, but with converted
-types.
-
-@end deftypefn
-
-@node table.mergevars
-@subsubsection table.mergevars
-
-@deftypefn {Method} {@var{out} =} mergevars (@var{obj}, @var{vars})
-@deftypefnx {Method} {@var{out} =} mergevars (@dots{}, @
-  @code{'NewVariableName'}, @var{NewVariableName})
-@deftypefnx {Method} {@var{out} =} mergevars (@dots{}, @
-  @code{'MergeAsTable'}, @var{MergeAsTable})
-
-Merge table variables into a single variable.
-
-@end deftypefn
-
-@node table.splitvars
-@subsubsection table.splitvars
-
-@deftypefn {Method} {@var{out} =} splitvars (@var{obj})
-@deftypefnx {Method} {@var{out} =} splitvars (@var{obj}, @var{vars})
-@deftypefnx {Method} {@var{out} =} splitvars (@dots{}, @
-  @code{'NewVariableNames'}, @var{NewVariableNames})
-
-Split multicolumn table variables.
-
-Splits multicolumn table variables into new single-column variables.
-If @var{vars} is supplied, splits only those variables. If @var{vars}
-is not supplied, splits all multicolumn variables.
-
-@end deftypefn
-
-@node table.stack
-@subsubsection table.stack
-
-@deftypefn {Method} {@var{out} =} stack (@var{obj}, @var{vars})
-@deftypefnx {Method} {@var{out} =} stack (@dots{}, @
-  @code{'NewDataVariableName'}, @var{NewDataVariableName})
-@deftypefnx {Method} {@var{out} =} stack (@dots{}, @
-  @code{'IndexVariableName'}, @var{IndexVariableName})
-
-Stack multiple table variables into a single variable.
-
-@end deftypefn
-
-@node table.join
-@subsubsection table.join
-
-@deftypefn {Method} {[@var{C}, @var{ib}] =} join (@var{A}, @var{B})
-@deftypefnx {Method} {[@var{C}, @var{ib}] =} join (@var{A}, @var{B}, @dots{})
-
-Combine two tables by rows using key variables, in a restricted form.
-
-This is not a "real" relational join operation. It has the restrictions
-that:
- 1) The key values in B must be unique.
- 2) Every key value in A must map to a key value in B.
-These are restrictions inherited from the Matlab definition of table.join.
-
-You probably don’t want to use this method. You probably want to use
-innerjoin or outerjoin instead.
-
-See also: @ref{table.innerjoin}, @ref{table.outerjoin}
-
-@end deftypefn
-
-@node table.innerjoin
-@subsubsection table.innerjoin
-
-@deftypefn {Method} {[@var{out}, @var{ixa}, @var{ixb}] =} innerjoin (@var{A}, @var{B})
-@deftypefnx {Method} {[@dots{}] =} innerjoin (@var{A}, @var{B}, @dots{})
-
-Combine two tables by rows using key variables.
-
-Computes the relational inner join between two tables. “Inner” means that
-only rows which had matching rows in the other input are kept in the
-output.
-
-TODO: Document options.
-
-Returns:
-  @var{out} - A table that is the result of joining A and B
-  @var{ix} - Indexes into A for each row in out
-  @var{ixb} - Indexes into B for each row in out
-
-@end deftypefn
-
-@node table.realjoin
-@subsubsection table.realjoin
-
-@deftypefn {Method} {[@var{out}, @var{ixs}] =} realjoin (@var{A}, @var{B})
-@deftypefnx {Method} {[@dots{}] =} realjoin (@var{A}, @var{B}, @dots{})
-
-"Real" relational inner join, without key restrictions
-
-Performs a "real" relational natural inner join between two tables,
-without the key restrictions that JOIN imposes.
-
-Currently does not support tables which have RowNames. This may be
-added in the future.
-
-This is a Tablicious/Octave extension, not defined in the Matlab table interface.
-
-Name/value option arguments are: @var{Keys}, @var{LeftKeys}, @var{RightKeys},
-@var{LeftVariables}, @var{RightVariables}.
-
-FIXME: Document those options.
-
-Returns:
-  @var{out} - A table that is the result of joining A and B
-  @var{ixs} - Indexes into A for each row in out
-
-@end deftypefn
-
-@node table.outerjoin
-@subsubsection table.outerjoin
-
-@deftypefn {Method} {[@var{out}, @var{ixa}, @var{ixb}] =} outerjoin (@var{A}, @var{B})
-@deftypefnx {Method} {[@dots{}] =} outerjoin (@var{A}, @var{B}, @dots{})
-
-Combine two tables by rows using key variables, retaining unmatched rows.
-
-Computes the relational outer join of tables A and B. This is like a
-regular join, but also includes rows in each input which did not have
-matching rows in the other input; the columns from the missing side are
-filled in with placeholder values.
-
-TODO: Document options.
-
-Returns:
-  @var{out} - A table that is the result of the outer join of A and B
-  @var{ixa} - indexes into A for each row in out
-  @var{ixb} - indexes into B for each row in out
-
-@end deftypefn
-
-@node table.outerfillvals
-@subsubsection table.outerfillvals
-
-@deftypefn {Method} {@var{out} =} outerfillvals (@var{obj})
-
-Get fill values for outer join.
-
-Returns a table with the same variables as this, but containing only
-a single row whose variable values are the values to use as fill values
-when doing an outer join.
-
-@end deftypefn
-
-@node table.semijoin
-@subsubsection table.semijoin
-
-@deftypefn {Method} {[@var{outA}, @var{ixA}, @var{outB}, @var{ixB}] =} semijoin @
-  (@var{A}, @var{B})
-
-Natural semijoin.
-
-Computes the natural semijoin of tables A and B. The semi-join of tables
-A and B is the set of all rows in A which have matching rows in B, based
-on comparing the values of variables with the same names.
-
-This method also computes the semijoin of B and A, for convenience.
-
-Returns:
-  @var{outA} - all the rows in A with matching row(s) in B
-  @var{ixA} - the row indexes into A which produced @var{outA}
-  @var{outB} - all the rows in B with matching row(s) in A
-  @var{ixB} - the row indexes into B which produced @var{outB}
-
-This is a Tablicious/Octave extension, not defined in the Matlab table interface.
 
 @end deftypefn
 
@@ -4476,6 +3842,85 @@ This is a Tablicious/Octave extension, not defined in the Matlab table interface
 
 @end deftypefn
 
+@node table.convertvars
+@subsubsection table.convertvars
+
+@deftypefn {Method} {@var{out} =} convertvars (@var{obj}, @var{vars}, @var{dataType})
+
+Convert variables to specified data type.
+
+Converts the variables in @var{obj} specified by @var{vars} to the specified data type.
+
+@var{vars} is a cellstr or numeric vector specifying which variables to convert.
+
+@var{dataType} specifies the data type to convert those variables to. It is either
+a char holding the name of the data type, or a function handle which will
+perform the conversion. If it is the name of the data type, there must
+either be a one-arg constructor of that type which accepts the specified
+variables' current types as input, or a conversion method of that name
+defined on the specified variables' current type.
+
+Returns a table with the same variable names as @var{obj}, but with converted
+types.
+
+@end deftypefn
+
+@node table.end
+@subsubsection table.end
+
+@deftypefn {Method} {@var{out} =} end (@var{obj}, @var{k}, @var{n})
+
+Last index for given dimension of a table.
+
+@end deftypefn
+
+@node table.findgroups
+@subsubsection table.findgroups
+
+@deftypefn {Method} {[@var{G}, @var{TID}] =} findgroups (@var{obj})
+
+Find groups within a table’s row values.
+
+Finds groups within a table’s row values and get group numbers. A group
+is a set of rows that have the same values in all their variable elements.
+
+Returns:
+  @var{G} - A double column vector of group numbers created from @var{obj}.
+  @var{TID} - A table containing the row values corresponding to the group numbers.
+
+@end deftypefn
+
+@node table.getvar
+@subsubsection table.getvar
+
+@deftypefn {Method} {[@var{out}, @var{name}]} = getvar (@var{obj}, @var{varRef})
+
+Get value and name for single table variable.
+
+@var{varRef} is a variable reference. It may be a name or an index. It
+may only specify a single table variable.
+
+Returns:
+  @var{out} – the value of the referenced table variable
+  @var{name} – the name of the referenced table variable
+
+@end deftypefn
+
+@node table.getvars
+@subsubsection table.getvars
+
+@deftypefn {Method} {[@var{out1}, @dots{}]} = getvars (@var{obj}, @var{varRef})
+
+Get values for one ore more table variables.
+
+@var{varRef} is a variable reference in the form of variable names or
+indexes.
+
+Returns as many outputs as @var{varRef} referenced variables. Each output
+contains the contents of the corresponding table variable.
+
+@end deftypefn
+
 @node table.groupby
 @subsubsection table.groupby
 
@@ -4500,62 +3945,54 @@ This is a Tablicious/Octave extension, not defined in the Matlab table interface
 
 @end deftypefn
 
-@node table.splitapply
-@subsubsection table.splitapply
+@node table.height
+@subsubsection table.height
 
-@deftypefn {Method} {@var{out} =} splitapply (@var{func}, @var{obj}, @var{G})
-@deftypefnx {Method} {[@var{Y1}, @dots{}, @var{YM}] =} splitapply (@var{func}, @var{obj}, @var{G})
+@deftypefn {Method} {@var{out} =} height (@var{obj})
 
-Split table data into groups and apply function.
+Number of rows in table.
 
-Performs a splitapply, using the variables in @var{obj} as the input X variables
-to the @code{splitapply} function call.
-
-See also: splitapply, table.groupby, tblish.table.grpstats
+For a zero-variable table, this currently always returns 0. This is a bug,
+and will change in the future. It should be possible for zero-variable table
+arrays to have any number of rows.
 
 @end deftypefn
 
-@node table.rows2vars
-@subsubsection table.rows2vars
+@node table.horzcat
+@subsubsection table.horzcat
 
-@deftypefn {Method} {@var{out} =} rows2vars (@var{obj})
-@deftypefnx {Method} {@var{out} =} rows2vars (@var{obj}, @
-  @code{'VariableNamesSource'}, @var{VariableNamesSource})
-@deftypefnx {Method} {@var{out} =} rows2vars (@dots{}, @
-  @code{'DataVariables'}, @var{DataVariables})
+@deftypefn {Method} {@var{out} =} horzcat (@var{varargin})
 
-Reorient table, swapping rows and variables dimensions.
+Horizontal concatenation.
 
-This flips the dimensions of the given table @var{obj}, swapping the
-orientation of the contained data, and swapping the row names/labels
-and variable names.
+Combines tables by horizontally concatenating them.
+Inputs that are not tables are automatically converted to tables by calling
+table() on them. Inputs must have all distinct variable names.
 
-The variable names become a new variable named “OriginalVariableNames”.
-
-The row names are drawn from the column @var{VariableNamesSource} if it
-is specified. Otherwise, if @var{obj} has row names, they are used.
-Otherwise, new variable names in the form “VarN” are generated.
-
-If all the variables in @var{obj} are of the same type, they are concatenated
-and then sliced to create the new variable values. Otherwise, they are
-converted to cells, and the new table has cell variable values.
+Output has the same RowNames as @code{varargin@{1@}}. The variable names and values
+are the result of the concatenation of the variable names and values lists
+from the inputs.
 
 @end deftypefn
 
-@node table.union
-@subsubsection table.union
+@node table.innerjoin
+@subsubsection table.innerjoin
 
-@deftypefn {Method} {[@var{C}, @var{ia}, @var{ib}] =} union (@var{A}, @var{B})
+@deftypefn {Method} {[@var{out}, @var{ixa}, @var{ixb}] =} innerjoin (@var{A}, @var{B})
+@deftypefnx {Method} {[@dots{}] =} innerjoin (@var{A}, @var{B}, @dots{})
 
-Set union.
+Combine two tables by rows using key variables.
 
-Computes the union of two tables. The union is defined to be the unique
-row values which are present in either of the two input tables.
+Computes the relational inner join between two tables. “Inner” means that
+only rows which had matching rows in the other input are kept in the
+output.
+
+TODO: Document options.
 
 Returns:
-  @var{C} - A table containing all the unique row values present in A or B.
-  @var{ia} - Row indexes into A of the rows from A included in C.
-  @var{ib} - Row indexes into B of the rows from B included in C.
+  @var{out} - A table that is the result of joining A and B
+  @var{ix} - Indexes into A for each row in out
+  @var{ixb} - Indexes into B for each row in out
 
 @end deftypefn
 
@@ -4576,37 +4013,15 @@ Returns:
 
 @end deftypefn
 
-@node table.setxor
-@subsubsection table.setxor
+@node table.isempty
+@subsubsection table.isempty
 
-@deftypefn {Method} {[@var{C}, @var{ia}, @var{ib}] =} setxor (@var{A}, @var{B})
+@deftypefn {Method} {@var{out} =} isempty (@var{obj})
 
-Set exclusive OR.
+Test whether array is empty.
 
-Computes the setwise exclusive OR of two tables. The set XOR is defined to be
-the unique row values which are present in one or the other of the two input
-tables, but not in both.
-
-Returns:
-  @var{C} - A table containing all the unique row values in the set XOR of A and B.
-  @var{ia} - Row indexes into A of the rows from A included in C.
-  @var{ib} - Row indexes into B of the rows from B included in C.
-
-@end deftypefn
-
-@node table.setdiff
-@subsubsection table.setdiff
-
-@deftypefn {Method} {[@var{C}, @var{ia}] =} setdiff (@var{A}, @var{B})
-
-Set difference.
-
-Computes the set difference of two tables. The set difference is defined to be
-the unique row values which are present in table A that are not in table B.
-
-Returns:
-  @var{C} - A table containing the unique row values in A that were not in B.
-  @var{ia} - Row indexes into A of the rows from A included in C.
+For tables, @code{isempty} is true if the number of rows is 0 or the number
+of variables is 0.
 
 @end deftypefn
 
@@ -4646,18 +4061,273 @@ Returns a logical array the same size as @var{obj}.
 
 @end deftypefn
 
-@node table.varfun
-@subsubsection table.varfun
+@node table.istable
+@subsubsection table.istable
 
-@deftypefn {Method} {@var{out} =} varfun (@var{fcn}, @var{obj})
-@deftypefnx {Method} {@var{out} =} varfun (@dots{}, @code{'OutputFormat'}, @var{outputFormat})
-@deftypefnx {Method} {@var{out} =} varfun (@dots{}, @code{'InputVariables'}, @var{vars})
-@deftypefnx {Method} {@var{out} =} varfun (@dots{}, @code{'ErrorHandler'}, @var{errorFcn})
+@deftypefn {Method} {@var{tf} =} istable (@var{obj})
 
-Apply function to table variables.
+True if input is a table.
 
-Applies the given function @var{fcn} to each variable in @var{obj},
-collecting the output in a table, cell array, or array of another type.
+@end deftypefn
+
+@node table.join
+@subsubsection table.join
+
+@deftypefn {Method} {[@var{C}, @var{ib}] =} join (@var{A}, @var{B})
+@deftypefnx {Method} {[@var{C}, @var{ib}] =} join (@var{A}, @var{B}, @dots{})
+
+Combine two tables by rows using key variables, in a restricted form.
+
+This is not a "real" relational join operation. It has the restrictions
+that:
+ 1) The key values in B must be unique.
+ 2) Every key value in A must map to a key value in B.
+These are restrictions inherited from the Matlab definition of table.join.
+
+You probably don’t want to use this method. You probably want to use
+innerjoin or outerjoin instead.
+
+See also: @ref{table.innerjoin}, @ref{table.outerjoin}
+
+@end deftypefn
+
+@node table.mergevars
+@subsubsection table.mergevars
+
+@deftypefn {Method} {@var{out} =} mergevars (@var{obj}, @var{vars})
+@deftypefnx {Method} {@var{out} =} mergevars (@dots{}, @
+  @code{'NewVariableName'}, @var{NewVariableName})
+@deftypefnx {Method} {@var{out} =} mergevars (@dots{}, @
+  @code{'MergeAsTable'}, @var{MergeAsTable})
+
+Merge table variables into a single variable.
+
+@end deftypefn
+
+@node table.movevars
+@subsubsection table.movevars
+
+@deftypefn {Method} {@var{out} =} movevars (@var{obj}, @var{vars}, @var{relLocation}, @var{location})
+
+Move around variables in a table.
+
+@var{vars} is a list of variables to move, specified by name or index.
+
+@var{relLocation} is @code{'Before'} or @code{'After'}.
+
+@var{location} indicates a single variable to use as the target location,
+specified by name or index. If it is specified by index, it is the index
+into the list of *unmoved* variables from @var{obj}, not the original full
+list of variables in @var{obj}.
+
+Returns a table with the same variables as @var{obj}, but in a different order.
+
+@end deftypefn
+
+@node table.ndims
+@subsubsection table.ndims
+
+@deftypefn {Method} {@var{out} =} ndims (@var{obj})
+
+Number of dimensions
+
+For tables, @code{ndims(obj)} is always 2, because table arrays are always
+2-D (rows-by-columns).
+
+@end deftypefn
+
+@node table.numel
+@subsubsection table.numel
+
+@deftypefn {Method} {@var{out} =} numel (@var{obj})
+
+Total number of elements in table (actually 1).
+
+For compatibility reasons with Octave's OOP interface and subsasgn behavior,
+table's numel is defined to always return 1. It is not useful for client
+code to query a table's size using numel. This is an incompatibility with
+Matlab.
+
+@end deftypefn
+
+@node table.outerfillvals
+@subsubsection table.outerfillvals
+
+@deftypefn {Method} {@var{out} =} outerfillvals (@var{obj})
+
+Get fill values for outer join.
+
+Returns a table with the same variables as this, but containing only
+a single row whose variable values are the values to use as fill values
+when doing an outer join.
+
+@end deftypefn
+
+@node table.outerjoin
+@subsubsection table.outerjoin
+
+@deftypefn {Method} {[@var{out}, @var{ixa}, @var{ixb}] =} outerjoin (@var{A}, @var{B})
+@deftypefnx {Method} {[@dots{}] =} outerjoin (@var{A}, @var{B}, @dots{})
+
+Combine two tables by rows using key variables, retaining unmatched rows.
+
+Computes the relational outer join of tables A and B. This is like a
+regular join, but also includes rows in each input which did not have
+matching rows in the other input; the columns from the missing side are
+filled in with placeholder values.
+
+TODO: Document options.
+
+Returns:
+  @var{out} - A table that is the result of the outer join of A and B
+  @var{ixa} - indexes into A for each row in out
+  @var{ixb} - indexes into B for each row in out
+
+@end deftypefn
+
+@node table.prettyprint
+@subsubsection table.prettyprint
+
+@deftypefn {Method} {} prettyprint (@var{obj})
+
+Display table's values in tabular format. This prints the contents
+of the table in human-readable, tabular form.
+
+Variables which contain objects are displayed using the strings
+returned by their @code{dispstrs} method, if they define one.
+
+@end deftypefn
+
+@node table.realjoin
+@subsubsection table.realjoin
+
+@deftypefn {Method} {[@var{out}, @var{ixs}] =} realjoin (@var{A}, @var{B})
+@deftypefnx {Method} {[@dots{}] =} realjoin (@var{A}, @var{B}, @dots{})
+
+"Real" relational inner join, without key restrictions
+
+Performs a "real" relational natural inner join between two tables,
+without the key restrictions that JOIN imposes.
+
+Currently does not support tables which have RowNames. This may be
+added in the future.
+
+This is a Tablicious/Octave extension, not defined in the Matlab table interface.
+
+Name/value option arguments are: @var{Keys}, @var{LeftKeys}, @var{RightKeys},
+@var{LeftVariables}, @var{RightVariables}.
+
+FIXME: Document those options.
+
+Returns:
+  @var{out} - A table that is the result of joining A and B
+  @var{ixs} - Indexes into A for each row in out
+
+@end deftypefn
+
+@node table.removevars
+@subsubsection table.removevars
+
+@deftypefn {Method} {@var{out} =} removevars (@var{obj}, @var{vars})
+
+Remove variables from table.
+
+Deletes the variables specified by @var{vars} from @var{obj}.
+
+@var{vars} may be a char, cellstr, numeric index vector, or logical
+index vector.
+
+@end deftypefn
+
+@node table.renamevars
+@subsubsection table.renamevars
+
+@deftypefn {Method} {@var{out} =} renamevars (@var{obj}, @var{renameMap})
+
+Rename variables in a table.
+
+Renames selected variables in the table @var{obj} based on the mapping
+provided in @var{renameMap}.
+
+@var{renameMap} is an n-by-2 cellstr array, with the old variable names
+in the first column, and the corresponding new variable names in the
+second column.
+
+Variables which are not included in @var{renameMap} are not modified.
+
+It is an error if any variables named in the first column of @var{renameMap}
+are not present in @var{obj}.
+
+Renames
+@end deftypefn
+
+@node table.repelem
+@subsubsection table.repelem
+
+@deftypefn {Method} {@var{out} =} repelem (@var{obj}, @var{R})
+@deftypefnx {Method} {@var{out} =} repelem (@var{obj}, @var{R_1}, @var{R_2})
+
+Replicate elements of matrix.
+
+Replicates elements of this table matrix by applying repelem to each of
+its variables. This
+
+Only two dimensions are supported for @code{repelem} on tables.
+
+@end deftypefn
+
+@node table.repmat
+@subsubsection table.repmat
+
+@deftypefn {Method} {@var{out} =} repmat (@var{obj}, @var{sz})
+
+Replicate matrix.
+
+Repmats a table by repmatting each of its variables vertically.
+
+For tables, repmatting is only supported along dimension 1. That is, the
+values of sz(2:end) must all be exactly 1. This behavior may change in the
+future to support repmatting horizontally, with the added variable names being
+automatically changed to maintain uniqueness of variable names within the
+resulting table.
+
+Returns a new table with the same variable names and types as tbl, but
+with a possibly different row count.
+
+@end deftypefn
+
+@node table.restrict
+@subsubsection table.restrict
+
+@deftypefn {Method} {@var{out} =} restrict (@var{obj}, @var{expr})
+@deftypefnx {Method} {@var{out} =} restrict (@var{obj}, @var{ix})
+
+Subset rows using variable expression or index.
+
+Subsets a table row-wise, using either an index vector or an expression
+involving @var{obj}’s variables.
+
+If the argument is a numeric or logical vector, it is interpreted as an
+index into the rows of this. (Just as with `subsetrows (this, index)`.)
+
+If the argument is a char, then it is evaulated as an M-code expression,
+with all of this’ variables available as workspace variables, as with
+@code{tblish.evalWithTableVars}. The output of expr must be a numeric or logical index
+vector (This form is a shorthand for
+@code{out = subsetrows (this, tblish.evalWithTableVars (this, expr))}.)
+
+TODO: Decide whether to name this to "where" to be more like SQL instead
+of relational algebra.
+
+Examples:
+@example
+[s,p,sp] = tblish.examples.SpDb;
+prettyprint (restrict (p, 'Weight >= 14 & strcmp(Color, "Red")'))
+@end example
+
+This is a Tablicious/Octave extension, not defined in the Matlab table interface.
+
+See also: tblish.evalWithTableVars
 
 @end deftypefn
 
@@ -4723,77 +4393,407 @@ is @code{'cell'}).
 
 @end deftypefn
 
-@node table.findgroups
-@subsubsection table.findgroups
+@node table.rows2vars
+@subsubsection table.rows2vars
 
-@deftypefn {Method} {[@var{G}, @var{TID}] =} findgroups (@var{obj})
+@deftypefn {Method} {@var{out} =} rows2vars (@var{obj})
+@deftypefnx {Method} {@var{out} =} rows2vars (@var{obj}, @
+  @code{'VariableNamesSource'}, @var{VariableNamesSource})
+@deftypefnx {Method} {@var{out} =} rows2vars (@dots{}, @
+  @code{'DataVariables'}, @var{DataVariables})
 
-Find groups within a table’s row values.
+Reorient table, swapping rows and variables dimensions.
 
-Finds groups within a table’s row values and get group numbers. A group
-is a set of rows that have the same values in all their variable elements.
+This flips the dimensions of the given table @var{obj}, swapping the
+orientation of the contained data, and swapping the row names/labels
+and variable names.
 
-Returns:
-  @var{G} - A double column vector of group numbers created from @var{obj}.
-  @var{TID} - A table containing the row values corresponding to the group numbers.
+The variable names become a new variable named “OriginalVariableNames”.
+
+The row names are drawn from the column @var{VariableNamesSource} if it
+is specified. Otherwise, if @var{obj} has row names, they are used.
+Otherwise, new variable names in the form “VarN” are generated.
+
+If all the variables in @var{obj} are of the same type, they are concatenated
+and then sliced to create the new variable values. Otherwise, they are
+converted to cells, and the new table has cell variable values.
 
 @end deftypefn
 
-@node table.restrict
-@subsubsection table.restrict
+@node table.semijoin
+@subsubsection table.semijoin
 
-@deftypefn {Method} {@var{out} =} restrict (@var{obj}, @var{expr})
-@deftypefnx {Method} {@var{out} =} restrict (@var{obj}, @var{ix})
+@deftypefn {Method} {[@var{outA}, @var{ixA}, @var{outB}, @var{ixB}] =} semijoin @
+  (@var{A}, @var{B})
 
-Subset rows using variable expression or index.
+Natural semijoin.
 
-Subsets a table row-wise, using either an index vector or an expression
-involving @var{obj}’s variables.
+Computes the natural semijoin of tables A and B. The semi-join of tables
+A and B is the set of all rows in A which have matching rows in B, based
+on comparing the values of variables with the same names.
 
-If the argument is a numeric or logical vector, it is interpreted as an
-index into the rows of this. (Just as with `subsetrows (this, index)`.)
+This method also computes the semijoin of B and A, for convenience.
 
-If the argument is a char, then it is evaulated as an M-code expression,
-with all of this’ variables available as workspace variables, as with
-@code{tblish.evalWithTableVars}. The output of expr must be a numeric or logical index
-vector (This form is a shorthand for
-@code{out = subsetrows (this, tblish.evalWithTableVars (this, expr))}.)
-
-TODO: Decide whether to name this to "where" to be more like SQL instead
-of relational algebra.
-
-Examples:
-@example
-[s,p,sp] = tblish.examples.SpDb;
-prettyprint (restrict (p, 'Weight >= 14 & strcmp(Color, "Red")'))
-@end example
+Returns:
+  @var{outA} - all the rows in A with matching row(s) in B
+  @var{ixA} - the row indexes into A which produced @var{outA}
+  @var{outB} - all the rows in B with matching row(s) in A
+  @var{ixB} - the row indexes into B which produced @var{outB}
 
 This is a Tablicious/Octave extension, not defined in the Matlab table interface.
 
-See also: tblish.evalWithTableVars
+@end deftypefn
+
+@node table.setdiff
+@subsubsection table.setdiff
+
+@deftypefn {Method} {[@var{C}, @var{ia}] =} setdiff (@var{A}, @var{B})
+
+Set difference.
+
+Computes the set difference of two tables. The set difference is defined to be
+the unique row values which are present in table A that are not in table B.
+
+Returns:
+  @var{C} - A table containing the unique row values in A that were not in B.
+  @var{ia} - Row indexes into A of the rows from A included in C.
 
 @end deftypefn
 
-@node table.renamevars
-@subsubsection table.renamevars
+@node table.setDimensionNames
+@subsubsection table.setDimensionNames
 
-@deftypefn {Method} {@var{out} =} renamevars (@var{obj}, @var{renameMap})
+@deftypefn {Method} {@var{out} =} setDimensionNames (@var{obj}, @var{names})
+@deftypefnx {Method} {@var{out} =} setDimensionNames (@var{obj}, @var{ix}, @var{names})
 
-Rename variables in a table.
+Set dimension names.
 
-Renames selected variables in the table @var{obj} based on the mapping
-provided in @var{renameMap}.
+Sets the @code{DimensionNames} for this table to a new list of names.
 
-@var{renameMap} is an n-by-2 cellstr array, with the old variable names
-in the first column, and the corresponding new variable names in the
-second column.
+@var{names} is a char or cellstr vector. It must have the same number of elements
+as the number of dimension names being assigned.
 
-Variables which are not included in @var{renameMap} are not modified.
+@var{ix} is an index vector indicating which dimension names to set. If
+omitted, it sets all two of them. Since there are always two dimension,
+the indexes in @var{ix} may never be higher than 2.
 
-It is an error if any variables named in the first column of @var{renameMap}
-are not present in @var{obj}.
+This method exists because the @code{obj.Properties.DimensionNames = @dots{}}
+assignment form does not work, possibly due to an Octave bug.
 
-Renames
+@end deftypefn
+
+@node table.setRowNames
+@subsubsection table.setRowNames
+
+@deftypefn {Method} {@var{out} =} setRowNames (@var{obj}, @var{names})
+
+Set row names.
+
+Sets the row names on @var{obj} to @var{names}.
+
+@var{names} is a cellstr column vector, with the same number of rows as
+@var{obj} has.
+
+@end deftypefn
+
+@node table.setvar
+@subsubsection table.setvar
+
+@deftypefn {Method} {@var{out} =} setvar (@var{obj}, @var{varRef}, @var{value})
+
+Set value for a variable in table.
+
+This sets (adds or replaces) the value for a variable in @var{obj}. It
+may be used to change the value of an existing variable, or add a new
+variable.
+
+This method exists primarily because I cannot get @code{obj.foo = value} to work,
+apparently due to an issue with Octave's subsasgn support.
+
+@var{varRef} is a variable reference, either the index or name of a variable.
+If you are adding a new variable, it must be a name, and not an index.
+
+@var{value} is the value to set the variable to. If it is scalar or
+a single string as charvec, it is scalar-expanded to match the number
+of rows in @var{obj}.
+
+@end deftypefn
+
+@node table.setVariableNames
+@subsubsection table.setVariableNames
+
+@deftypefn {Method} {@var{out} =} setVariableNames (@var{obj}, @var{names})
+@deftypefnx {Method} {@var{out} =} setVariableNames (@var{obj}, @var{ix}, @var{names})
+
+Set variable names.
+
+Sets the @code{VariableNames} for this table to a new list of names.
+
+@var{names} is a char or cellstr vector. It must have the same number of elements
+as the number of variable names being assigned.
+
+@var{ix} is an index vector indicating which variable names to set. If
+omitted, it sets all of them present in @var{obj}.
+
+This method exists because the @code{obj.Properties.VariableNames = @dots{}}
+assignment form does not work, possibly due to an Octave bug.
+
+@end deftypefn
+
+@node table.setxor
+@subsubsection table.setxor
+
+@deftypefn {Method} {[@var{C}, @var{ia}, @var{ib}] =} setxor (@var{A}, @var{B})
+
+Set exclusive OR.
+
+Computes the setwise exclusive OR of two tables. The set XOR is defined to be
+the unique row values which are present in one or the other of the two input
+tables, but not in both.
+
+Returns:
+  @var{C} - A table containing all the unique row values in the set XOR of A and B.
+  @var{ia} - Row indexes into A of the rows from A included in C.
+  @var{ib} - Row indexes into B of the rows from B included in C.
+
+@end deftypefn
+
+@node table.size
+@subsubsection table.size
+
+@deftypefn {Method} {@var{sz} =} size (@var{obj})
+@deftypefnx {Method} {[@var{nr}, @var{nv}] =} size (@var{obj})
+@deftypefnx {Method} {[@var{nr}, @var{nv}, @dots{}] =} size (@var{obj})
+
+Gets the size of a table.
+
+For tables, the size is [number-of-rows x number-of-variables].
+This is the same as @code{[height(obj), width(obj)]}.
+
+@end deftypefn
+
+@node table.splitapply
+@subsubsection table.splitapply
+
+@deftypefn {Method} {@var{out} =} splitapply (@var{func}, @var{obj}, @var{G})
+@deftypefnx {Method} {[@var{Y1}, @dots{}, @var{YM}] =} splitapply (@var{func}, @var{obj}, @var{G})
+
+Split table data into groups and apply function.
+
+Performs a splitapply, using the variables in @var{obj} as the input X variables
+to the @code{splitapply} function call.
+
+See also: splitapply, table.groupby, tblish.table.grpstats
+
+@end deftypefn
+
+@node table.splitvars
+@subsubsection table.splitvars
+
+@deftypefn {Method} {@var{out} =} splitvars (@var{obj})
+@deftypefnx {Method} {@var{out} =} splitvars (@var{obj}, @var{vars})
+@deftypefnx {Method} {@var{out} =} splitvars (@dots{}, @
+  @code{'NewVariableNames'}, @var{NewVariableNames})
+
+Split multicolumn table variables.
+
+Splits multicolumn table variables into new single-column variables.
+If @var{vars} is supplied, splits only those variables. If @var{vars}
+is not supplied, splits all multicolumn variables.
+
+@end deftypefn
+
+@node table.squeeze
+@subsubsection table.squeeze
+
+@deftypefn {Method} {@var{obj} =} squeeze (@var{obj})
+
+Remove singleton dimensions.
+
+For tables, this is always a no-op that returns the input unmodified,
+because tables always have exactly 2 dimensions, and 2-D arrays are unaffected
+by squeeze.
+
+@end deftypefn
+
+@node table.stack
+@subsubsection table.stack
+
+@deftypefn {Method} {@var{out} =} stack (@var{obj}, @var{vars})
+@deftypefnx {Method} {@var{out} =} stack (@dots{}, @
+  @code{'NewDataVariableName'}, @var{NewDataVariableName})
+@deftypefnx {Method} {@var{out} =} stack (@dots{}, @
+  @code{'IndexVariableName'}, @var{IndexVariableName})
+
+Stack multiple table variables into a single variable.
+
+@end deftypefn
+
+@node table.summary
+@subsubsection table.summary
+
+@deftypefn {Method} summary (@var{obj})
+
+Summary of table's data.
+
+Displays a summary of data in the input table. This will contain some
+statistical information on each of its variables.
+
+@end deftypefn
+
+@node table.table
+@subsubsection table.table
+
+@deftypefn {Constructor} {@var{obj} =} table ()
+
+Constructs a new empty (0 rows by 0 variables) table.
+
+@end deftypefn
+
+@deftypefn {Constructor} {@var{obj} =} table (@var{var1}, @var{var2}, @dots{}, @var{varN})
+
+Constructs a new table from the given variables. The variables passed as
+inputs to this constructor become the variables of the table. Their names
+are automatically detected from the input variable names that you used.
+
+Note: If you call the constructor with exactly three arguments, and the first
+argument is exactly the value '__tblish_backdoor__', that will trigger a special internal-use
+backdoor calling form, and you will get incorrect results. This is a bug in
+Tablicious.
+
+@end deftypefn
+
+@deftypefn {Constructor} {@var{obj} =} table (@code{'Size'}, @var{sz}, @
+  @code{'VariableTypes'}, @var{varTypes})
+
+Constructs a new table of the given size, and with the given variable types.
+The variables will contain the default value for elements of that type.
+
+@end deftypefn
+
+@deftypefn {Constructor} {@var{obj} =} table (@dots{}, @code{'VariableNames'}, @var{varNames})
+@deftypefnx {Constructor} {@var{obj} =} table (@dots{}, @code{'RowNames'}, @var{rowNames})
+
+Specifies the variable names or row names to use in the constructed table.
+Overrides the implicit names garnered from the input variable names.
+
+@end deftypefn
+
+@node table.table2array
+@subsubsection table.table2array
+
+@deftypefn {Method} {@var{s} =} table2struct (@var{obj})
+
+Converts @var{obj} to a homogeneous array.
+
+@end deftypefn
+
+@node table.table2cell
+@subsubsection table.table2cell
+
+@deftypefn {Method} {@var{c} =} table2cell (@var{obj})
+
+Converts table to a cell array. Each variable in @var{obj} becomes
+one or more columns in the output, depending on how many columns
+that variable has.
+
+Returns a cell array with the same number of rows as @var{obj}, and
+with as many or more columns as @var{obj} has variables.
+
+@end deftypefn
+
+@node table.table2struct
+@subsubsection table.table2struct
+
+@deftypefn {Method} {@var{s} =} table2struct (@var{obj})
+@deftypefnx {Method} {@var{s} =} table2struct (@dots{}, @code{'ToScalar'}, @var{trueOrFalse})
+
+Converts @var{obj} to a scalar structure or structure array.
+
+Row names are not included in the output struct. To include them, you
+must add them manually:
+  s = table2struct (tbl, 'ToScalar', true);
+  s.RowNames = tbl.Properties.RowNames;
+
+Returns a scalar struct or struct array, depending on the value of the
+@code{ToScalar} option.
+
+@end deftypefn
+
+@node table.union
+@subsubsection table.union
+
+@deftypefn {Method} {[@var{C}, @var{ia}, @var{ib}] =} union (@var{A}, @var{B})
+
+Set union.
+
+Computes the union of two tables. The union is defined to be the unique
+row values which are present in either of the two input tables.
+
+Returns:
+  @var{C} - A table containing all the unique row values present in A or B.
+  @var{ia} - Row indexes into A of the rows from A included in C.
+  @var{ib} - Row indexes into B of the rows from B included in C.
+
+@end deftypefn
+
+@node table.varfun
+@subsubsection table.varfun
+
+@deftypefn {Method} {@var{out} =} varfun (@var{fcn}, @var{obj})
+@deftypefnx {Method} {@var{out} =} varfun (@dots{}, @code{'OutputFormat'}, @var{outputFormat})
+@deftypefnx {Method} {@var{out} =} varfun (@dots{}, @code{'InputVariables'}, @var{vars})
+@deftypefnx {Method} {@var{out} =} varfun (@dots{}, @code{'ErrorHandler'}, @var{errorFcn})
+
+Apply function to table variables.
+
+Applies the given function @var{fcn} to each variable in @var{obj},
+collecting the output in a table, cell array, or array of another type.
+
+@end deftypefn
+
+@node table.varnames
+@subsubsection table.varnames
+
+@deftypefn {Method} {@var{out} =} varnames (@var{obj})
+@deftypefnx {Method} {@var{out} =} varnames (@var{obj}, @var{varNames})
+
+Get or set variable names for a table.
+
+Returns cellstr in the getter form. Returns an updated datetime in the
+setter form.
+
+@end deftypefn
+
+@node table.vertcat
+@subsubsection table.vertcat
+
+@deftypefn {Method} {@var{out} =} vertcat (@var{varargin})
+
+Vertical concatenation.
+
+Combines tables by vertically concatenating them.
+
+Inputs that are not tables are automatically converted to tables by calling
+table() on them.
+
+The inputs must have the same number and names of variables, and their
+variable value types and sizes must be cat-compatible. The types of the resulting
+variables are the types that result from doing a `vertcat()` on the variables
+from the corresponding input tables, in the order they were input in.
+
+@end deftypefn
+
+@node table.width
+@subsubsection table.width
+
+@deftypefn {Method} {@var{out} =} width (@var{obj})
+
+Number of variables in table.
+
+Note that this is not the sum of the number of columns in each variable.
+It is just the number of variables.
+
 @end deftypefn
 
 @node tableOuterFillValue
@@ -9190,6 +9190,20 @@ the example datasets.
 @end deftp
 
 
+@node datasets.description
+@subsubsection datasets.description
+
+@deftypefn {Static Method} description (@var{datasetName})
+@deftypefnx {Static Method} {@var{out} =} description (@var{datasetName})
+
+Get or display the description for a dataset.
+
+Gets the description for the named dataset. If the output is captured,
+it is returned as a charvec containing plain text suitable for human display.
+If the output is not captured, displays the description to the console.
+
+@end deftypefn
+
 @node datasets.list
 @subsubsection datasets.list
 
@@ -9216,20 +9230,6 @@ Load a specified dataset.
 
 @var{datasetName} is the name of the dataset to load, as found in the
 @code{Name} column of the dataset list.
-
-@end deftypefn
-
-@node datasets.description
-@subsubsection datasets.description
-
-@deftypefn {Static Method} description (@var{datasetName})
-@deftypefnx {Static Method} {@var{out} =} description (@var{datasetName})
-
-Get or display the description for a dataset.
-
-Gets the description for the named dataset. If the output is captured,
-it is returned as a charvec containing plain text suitable for human display.
-If the output is not captured, displays the description to the console.
 
 @end deftypefn
 
