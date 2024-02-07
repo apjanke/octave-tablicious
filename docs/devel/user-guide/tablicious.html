@@ -3,7 +3,7 @@
 <!-- Created by GNU Texinfo 7.1, https://www.gnu.org/software/texinfo/ -->
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<!-- This manual is for Tablicious, version 0.4.1-SNAPSHOT.
+<!-- This manual is for Tablicious, version 0.4.1.
 
 Copyright © 2019, 2023, 2024 Andrew Janke
 
@@ -18,10 +18,10 @@ notice identical to this one.
 
 Permission is granted to copy and distribute translations of this manual
 into another language, under the same conditions as for modified versions. -->
-<title>Tablicious v0.4.1-SNAPSHOT</title>
+<title>Tablicious v0.4.1</title>
 
 <meta name="description" content="User manual for Tablicious for Octave.">
-<meta name="keywords" content="Tablicious v0.4.1-SNAPSHOT">
+<meta name="keywords" content="Tablicious v0.4.1">
 <meta name="resource-type" content="document">
 <meta name="distribution" content="global">
 <meta name="Generator" content="makeinfo">
@@ -59,7 +59,7 @@ Next: <a href="#Introduction" accesskey="n" rel="next">Introduction</a> &nbsp; [
 </div>
 <h1 class="top" id="Tablicious-for-GNU-Octave"><span>Tablicious for GNU Octave<a class="copiable-link" href="#Tablicious-for-GNU-Octave"> &para;</a></span></h1>
 
-<p>This manual is for Tablicious, version 0.4.1-SNAPSHOT.
+<p>This manual is for Tablicious, version 0.4.1.
 </p>
 
 
@@ -298,15 +298,16 @@ Next: <a href="#Introduction" accesskey="n" rel="next">Introduction</a> &nbsp; [
         <li><a id="toc-string_002ereverse_005fbytes-1" href="#string_002ereverse_005fbytes">8.2.52.14 string.reverse_bytes</a></li>
         <li><a id="toc-string_002ereverse-1" href="#string_002ereverse">8.2.52.15 string.reverse</a></li>
         <li><a id="toc-string_002estrcat-1" href="#string_002estrcat">8.2.52.16 string.strcat</a></li>
-        <li><a id="toc-string_002elower-1" href="#string_002elower">8.2.52.17 string.lower</a></li>
-        <li><a id="toc-string_002eupper-1" href="#string_002eupper">8.2.52.18 string.upper</a></li>
-        <li><a id="toc-string_002eerase-1" href="#string_002eerase">8.2.52.19 string.erase</a></li>
-        <li><a id="toc-string_002estrrep-1" href="#string_002estrrep">8.2.52.20 string.strrep</a></li>
-        <li><a id="toc-string_002estrfind-1" href="#string_002estrfind">8.2.52.21 string.strfind</a></li>
-        <li><a id="toc-string_002eregexprep-1" href="#string_002eregexprep">8.2.52.22 string.regexprep</a></li>
-        <li><a id="toc-string_002estrcmp-1" href="#string_002estrcmp">8.2.52.23 string.strcmp</a></li>
-        <li><a id="toc-string_002ecmp-1" href="#string_002ecmp">8.2.52.24 string.cmp</a></li>
-        <li><a id="toc-string_002edecode-1" href="#string_002edecode">8.2.52.25 string.decode</a></li>
+        <li><a id="toc-string_002eplus-1" href="#string_002eplus">8.2.52.17 string.plus</a></li>
+        <li><a id="toc-string_002elower-1" href="#string_002elower">8.2.52.18 string.lower</a></li>
+        <li><a id="toc-string_002eupper-1" href="#string_002eupper">8.2.52.19 string.upper</a></li>
+        <li><a id="toc-string_002eerase-1" href="#string_002eerase">8.2.52.20 string.erase</a></li>
+        <li><a id="toc-string_002estrrep-1" href="#string_002estrrep">8.2.52.21 string.strrep</a></li>
+        <li><a id="toc-string_002estrfind-1" href="#string_002estrfind">8.2.52.22 string.strfind</a></li>
+        <li><a id="toc-string_002eregexprep-1" href="#string_002eregexprep">8.2.52.23 string.regexprep</a></li>
+        <li><a id="toc-string_002estrcmp-1" href="#string_002estrcmp">8.2.52.24 string.strcmp</a></li>
+        <li><a id="toc-string_002ecmp-1" href="#string_002ecmp">8.2.52.25 string.cmp</a></li>
+        <li><a id="toc-string_002edecode-1" href="#string_002edecode">8.2.52.26 string.decode</a></li>
       </ul></li>
       <li><a id="toc-struct2table-1" href="#struct2table">8.2.53 struct2table</a></li>
       <li><a id="toc-table-1" href="#table">8.2.54 table</a>
@@ -500,7 +501,7 @@ Next: <a href="#Getting-Started" accesskey="n" rel="next">Getting Started</a>, U
 <div class="center">&mdash; <em class="emph">Douglas Adams</em>
 </div>
 
-<p>This is the manual for the Tablicious package version 0.4.1-SNAPSHOT for GNU Octave.
+<p>This is the manual for the Tablicious package version 0.4.1 for GNU Octave.
 </p>
 <p>Tablicious provides somewhat-Matlab-compatible tabular data and date/time support for
 GNU Octave.
@@ -537,7 +538,7 @@ Next: <a href="#Table-Representation" accesskey="n" rel="next">Table Representat
 To install the development prerelease of Tablicious, run this in Octave:
 </p>
 <div class="example">
-<pre class="example-preformatted">pkg install https://github.com/apjanke/octave-tablicious/releases/download/v0.4.1-SNAPSHOT/tablicious-0.4.1-SNAPSHOT.tar.gz
+<pre class="example-preformatted">pkg install https://github.com/apjanke/octave-tablicious/releases/download/v0.4.1/tablicious-0.4.1.tar.gz
 </pre></div>
 
 <p>(Check the releases page at <a class="url" href="https://github.com/apjanke/octave-tablicious/releases">https://github.com/apjanke/octave-tablicious/releases</a> to
@@ -4935,6 +4936,7 @@ functions can use it to hack themselves into being string-aware.
 <li><a href="#string_002ereverse_005fbytes">string.reverse_bytes</a></li>
 <li><a href="#string_002ereverse">string.reverse</a></li>
 <li><a href="#string_002estrcat">string.strcat</a></li>
+<li><a href="#string_002eplus">string.plus</a></li>
 <li><a href="#string_002elower">string.lower</a></li>
 <li><a href="#string_002eupper">string.upper</a></li>
 <li><a href="#string_002eerase">string.erase</a></li>
@@ -5315,7 +5317,7 @@ to produce valid UTF-8 as its output.
 <div class="subsubsection-level-extent" id="string_002estrcat">
 <div class="nav-panel">
 <p>
-Next: <a href="#string_002elower" accesskey="n" rel="next">string.lower</a>, Previous: <a href="#string_002ereverse" accesskey="p" rel="prev">string.reverse</a>, Up: <a href="#string" accesskey="u" rel="up">string</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+Next: <a href="#string_002eplus" accesskey="n" rel="next">string.plus</a>, Previous: <a href="#string_002ereverse" accesskey="p" rel="prev">string.reverse</a>, Up: <a href="#string" accesskey="u" rel="up">string</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
 </div>
 <h4 class="subsubsection" id="string_002estrcat-1"><span>8.2.52.16 string.strcat<a class="copiable-link" href="#string_002estrcat-1"> &para;</a></span></h4>
 
@@ -5338,12 +5340,39 @@ inputs.
 
 <hr>
 </div>
+<div class="subsubsection-level-extent" id="string_002eplus">
+<div class="nav-panel">
+<p>
+Next: <a href="#string_002elower" accesskey="n" rel="next">string.lower</a>, Previous: <a href="#string_002estrcat" accesskey="p" rel="prev">string.strcat</a>, Up: <a href="#string" accesskey="u" rel="up">string</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<h4 class="subsubsection" id="string_002eplus-1"><span>8.2.52.17 string.plus<a class="copiable-link" href="#string_002eplus-1"> &para;</a></span></h4>
+
+<dl class="first-deftypefn">
+<dt class="deftypefn" id="index-plus-2"><span class="category-def">Method: </span><span><code class="def-type"><var class="var">out</var> =</code> <strong class="def-name">plus</strong> <code class="def-code-arguments">(<var class="var">a</var>, <var class="var">b</var>)</code><a class="copiable-link" href="#index-plus-2"> &para;</a></span></dt>
+<dd>
+<p>String concatenation via plus operator.
+</p>
+<p>Concatenates the two input arrays, string-wise. Inputs that are
+not string arrays are converted to string arrays.
+</p>
+<p>The concatenation is done by calling &lsquo;strcat&lsquo; on the inputs, and has the
+same behavior.
+</p>
+<p>Returns a string array the same size as the scalar expansion of its
+inputs.
+</p>
+<p>See also: string.strcat
+</p>
+</dd></dl>
+
+<hr>
+</div>
 <div class="subsubsection-level-extent" id="string_002elower">
 <div class="nav-panel">
 <p>
-Next: <a href="#string_002eupper" accesskey="n" rel="next">string.upper</a>, Previous: <a href="#string_002estrcat" accesskey="p" rel="prev">string.strcat</a>, Up: <a href="#string" accesskey="u" rel="up">string</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+Next: <a href="#string_002eupper" accesskey="n" rel="next">string.upper</a>, Previous: <a href="#string_002eplus" accesskey="p" rel="prev">string.plus</a>, Up: <a href="#string" accesskey="u" rel="up">string</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
 </div>
-<h4 class="subsubsection" id="string_002elower-1"><span>8.2.52.17 string.lower<a class="copiable-link" href="#string_002elower-1"> &para;</a></span></h4>
+<h4 class="subsubsection" id="string_002elower-1"><span>8.2.52.18 string.lower<a class="copiable-link" href="#string_002elower-1"> &para;</a></span></h4>
 
 <dl class="first-deftypefn">
 <dt class="deftypefn" id="index-lower"><span class="category-def">Method: </span><span><code class="def-type"><var class="var">out</var> =</code> <strong class="def-name">lower</strong> <code class="def-code-arguments">(<var class="var">obj</var>)</code><a class="copiable-link" href="#index-lower"> &para;</a></span></dt>
@@ -5367,7 +5396,7 @@ has.
 <p>
 Next: <a href="#string_002eerase" accesskey="n" rel="next">string.erase</a>, Previous: <a href="#string_002elower" accesskey="p" rel="prev">string.lower</a>, Up: <a href="#string" accesskey="u" rel="up">string</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
 </div>
-<h4 class="subsubsection" id="string_002eupper-1"><span>8.2.52.18 string.upper<a class="copiable-link" href="#string_002eupper-1"> &para;</a></span></h4>
+<h4 class="subsubsection" id="string_002eupper-1"><span>8.2.52.19 string.upper<a class="copiable-link" href="#string_002eupper-1"> &para;</a></span></h4>
 
 <dl class="first-deftypefn">
 <dt class="deftypefn" id="index-upper"><span class="category-def">Method: </span><span><code class="def-type"><var class="var">out</var> =</code> <strong class="def-name">upper</strong> <code class="def-code-arguments">(<var class="var">obj</var>)</code><a class="copiable-link" href="#index-upper"> &para;</a></span></dt>
@@ -5391,7 +5420,7 @@ has.
 <p>
 Next: <a href="#string_002estrrep" accesskey="n" rel="next">string.strrep</a>, Previous: <a href="#string_002eupper" accesskey="p" rel="prev">string.upper</a>, Up: <a href="#string" accesskey="u" rel="up">string</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
 </div>
-<h4 class="subsubsection" id="string_002eerase-1"><span>8.2.52.19 string.erase<a class="copiable-link" href="#string_002eerase-1"> &para;</a></span></h4>
+<h4 class="subsubsection" id="string_002eerase-1"><span>8.2.52.20 string.erase<a class="copiable-link" href="#string_002eerase-1"> &para;</a></span></h4>
 
 <dl class="first-deftypefn">
 <dt class="deftypefn" id="index-erase"><span class="category-def">Method: </span><span><code class="def-type"><var class="var">out</var> =</code> <strong class="def-name">erase</strong> <code class="def-code-arguments">(<var class="var">obj</var>, <var class="var">match</var>)</code><a class="copiable-link" href="#index-erase"> &para;</a></span></dt>
@@ -5411,7 +5440,7 @@ Next: <a href="#string_002estrrep" accesskey="n" rel="next">string.strrep</a>, P
 <p>
 Next: <a href="#string_002estrfind" accesskey="n" rel="next">string.strfind</a>, Previous: <a href="#string_002eerase" accesskey="p" rel="prev">string.erase</a>, Up: <a href="#string" accesskey="u" rel="up">string</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
 </div>
-<h4 class="subsubsection" id="string_002estrrep-1"><span>8.2.52.20 string.strrep<a class="copiable-link" href="#string_002estrrep-1"> &para;</a></span></h4>
+<h4 class="subsubsection" id="string_002estrrep-1"><span>8.2.52.21 string.strrep<a class="copiable-link" href="#string_002estrrep-1"> &para;</a></span></h4>
 
 <dl class="first-deftypefn">
 <dt class="deftypefn" id="index-strrep"><span class="category-def">Method: </span><span><code class="def-type"><var class="var">out</var> =</code> <strong class="def-name">strrep</strong> <code class="def-code-arguments">(<var class="var">obj</var>, <var class="var">match</var>, <var class="var">replacement</var>)</code><a class="copiable-link" href="#index-strrep"> &para;</a></span></dt>
@@ -5436,7 +5465,7 @@ TODO: Maybe document what those options are.
 <p>
 Next: <a href="#string_002eregexprep" accesskey="n" rel="next">string.regexprep</a>, Previous: <a href="#string_002estrrep" accesskey="p" rel="prev">string.strrep</a>, Up: <a href="#string" accesskey="u" rel="up">string</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
 </div>
-<h4 class="subsubsection" id="string_002estrfind-1"><span>8.2.52.21 string.strfind<a class="copiable-link" href="#string_002estrfind-1"> &para;</a></span></h4>
+<h4 class="subsubsection" id="string_002estrfind-1"><span>8.2.52.22 string.strfind<a class="copiable-link" href="#string_002estrfind-1"> &para;</a></span></h4>
 
 <dl class="first-deftypefn">
 <dt class="deftypefn" id="index-strfind"><span class="category-def">Method: </span><span><code class="def-type"><var class="var">out</var> =</code> <strong class="def-name">strfind</strong> <code class="def-code-arguments">(<var class="var">obj</var>, <var class="var">pattern</var>)</code><a class="copiable-link" href="#index-strfind"> &para;</a></span></dt>
@@ -5460,7 +5489,7 @@ out or a cell array out.
 <p>
 Next: <a href="#string_002estrcmp" accesskey="n" rel="next">string.strcmp</a>, Previous: <a href="#string_002estrfind" accesskey="p" rel="prev">string.strfind</a>, Up: <a href="#string" accesskey="u" rel="up">string</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
 </div>
-<h4 class="subsubsection" id="string_002eregexprep-1"><span>8.2.52.22 string.regexprep<a class="copiable-link" href="#string_002eregexprep-1"> &para;</a></span></h4>
+<h4 class="subsubsection" id="string_002eregexprep-1"><span>8.2.52.23 string.regexprep<a class="copiable-link" href="#string_002eregexprep-1"> &para;</a></span></h4>
 
 <dl class="first-deftypefn">
 <dt class="deftypefn" id="index-regexprep"><span class="category-def">Method: </span><span><code class="def-type"><var class="var">out</var> =</code> <strong class="def-name">regexprep</strong> <code class="def-code-arguments">(<var class="var">obj</var>, <var class="var">pat</var>, <var class="var">repstr</var>)</code><a class="copiable-link" href="#index-regexprep"> &para;</a></span></dt>
@@ -5482,7 +5511,7 @@ the given replacement text <var class="var">repstr</var>.
 <p>
 Next: <a href="#string_002ecmp" accesskey="n" rel="next">string.cmp</a>, Previous: <a href="#string_002eregexprep" accesskey="p" rel="prev">string.regexprep</a>, Up: <a href="#string" accesskey="u" rel="up">string</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
 </div>
-<h4 class="subsubsection" id="string_002estrcmp-1"><span>8.2.52.23 string.strcmp<a class="copiable-link" href="#string_002estrcmp-1"> &para;</a></span></h4>
+<h4 class="subsubsection" id="string_002estrcmp-1"><span>8.2.52.24 string.strcmp<a class="copiable-link" href="#string_002estrcmp-1"> &para;</a></span></h4>
 
 <dl class="first-deftypefn">
 <dt class="deftypefn" id="index-strcmp"><span class="category-def">Method: </span><span><code class="def-type"><var class="var">out</var> =</code> <strong class="def-name">strcmp</strong> <code class="def-code-arguments">(<var class="var">A</var>, <var class="var">B</var>)</code><a class="copiable-link" href="#index-strcmp"> &para;</a></span></dt>
@@ -5508,7 +5537,7 @@ cellstr inputs as well.
 <p>
 Next: <a href="#string_002edecode" accesskey="n" rel="next">string.decode</a>, Previous: <a href="#string_002estrcmp" accesskey="p" rel="prev">string.strcmp</a>, Up: <a href="#string" accesskey="u" rel="up">string</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
 </div>
-<h4 class="subsubsection" id="string_002ecmp-1"><span>8.2.52.24 string.cmp<a class="copiable-link" href="#string_002ecmp-1"> &para;</a></span></h4>
+<h4 class="subsubsection" id="string_002ecmp-1"><span>8.2.52.25 string.cmp<a class="copiable-link" href="#string_002ecmp-1"> &para;</a></span></h4>
 
 <dl class="first-deftypefn">
 <dt class="deftypefn" id="index-cmp"><span class="category-def">Method: </span><span><code class="def-type">[<var class="var">out</var>, <var class="var">outA</var>, <var class="var">outB</var>] =</code> <strong class="def-name">cmp</strong> <code class="def-code-arguments">(<var class="var">A</var>, <var class="var">B</var>)</code><a class="copiable-link" href="#index-cmp"> &para;</a></span></dt>
@@ -5539,7 +5568,7 @@ of <var class="var">A</var> and <var class="var">B</var>. Each value in it will 
 <p>
 Previous: <a href="#string_002ecmp" accesskey="p" rel="prev">string.cmp</a>, Up: <a href="#string" accesskey="u" rel="up">string</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
 </div>
-<h4 class="subsubsection" id="string_002edecode-1"><span>8.2.52.25 string.decode<a class="copiable-link" href="#string_002edecode-1"> &para;</a></span></h4>
+<h4 class="subsubsection" id="string_002edecode-1"><span>8.2.52.26 string.decode<a class="copiable-link" href="#string_002edecode-1"> &para;</a></span></h4>
 
 <dl class="first-deftypefn">
 <dt class="deftypefn" id="index-string_002edecode"><span class="category-def">Static Method: </span><span><code class="def-type"><var class="var">out</var> =</code> <strong class="def-name">string.decode</strong> <code class="def-code-arguments">(<var class="var">bytes</var>, <var class="var">charsetName</var>)</code><a class="copiable-link" href="#index-string_002edecode"> &para;</a></span></dt>
@@ -12986,7 +13015,7 @@ Previous: <a href="#API-Reference" accesskey="p" rel="prev">API Reference</a>, U
 <div class="section-level-extent" id="Manual-Copyright">
 <h3 class="section"><span>9.2 Manual Copyright<a class="copiable-link" href="#Manual-Copyright"> &para;</a></span></h3>
 
-<p>This manual is for Tablicious, version 0.4.1-SNAPSHOT.
+<p>This manual is for Tablicious, version 0.4.1.
 </p>
 <p>Copyright &copy; 2019, 2023, 2024 Andrew Janke
 </p>

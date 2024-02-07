@@ -352,6 +352,8 @@
                             </section>
                             <section title="string.strcat" ref="html/string_002estrcat.html">
                             </section>
+                            <section title="string.plus" ref="html/string_002eplus.html">
+                            </section>
                             <section title="string.lower" ref="html/string_002elower.html">
                             </section>
                             <section title="string.upper" ref="html/string_002eupper.html">
@@ -842,6 +844,7 @@
             <keyword name="string.isstring" id="string.isstring" ref="html/string_002eisstring.html"/>
             <keyword name="string.lower" id="string.lower" ref="html/string_002elower.html"/>
             <keyword name="string.missing" id="string.missing" ref="html/string_002emissing.html"/>
+            <keyword name="string.plus" id="string.plus" ref="html/string_002eplus.html"/>
             <keyword name="string.regexprep" id="string.regexprep" ref="html/string_002eregexprep.html"/>
             <keyword name="string.reverse" id="string.reverse" ref="html/string_002ereverse.html"/>
             <keyword name="string.reverse_bytes" id="string.reverse_bytes" ref="html/string_002ereverse_005fbytes.html"/>
@@ -1184,6 +1187,7 @@
             <file>html/string_002eerase.html</file>
             <file>html/string_002eupper.html</file>
             <file>html/string_002elower.html</file>
+            <file>html/string_002eplus.html</file>
             <file>html/string_002estrcat.html</file>
             <file>html/string_002ereverse.html</file>
             <file>html/string_002ereverse_005fbytes.html</file>

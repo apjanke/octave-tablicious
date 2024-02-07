@@ -2,7 +2,7 @@
 
 @c %**start of header
 
-@set VERSION 0.4.1-SNAPSHOT
+@set VERSION 0.4.1
 
 @setfilename tablicious.info
 @settitle Tablicious v@value{VERSION}
@@ -108,7 +108,7 @@ The easiest way to obtain Tablicious is by using Octave's @code{pkg} package man
 To install the development prerelease of Tablicious, run this in Octave:
 
 @example
-pkg install https://github.com/apjanke/octave-tablicious/releases/download/v0.4.1-SNAPSHOT/tablicious-0.4.1-SNAPSHOT.tar.gz
+pkg install https://github.com/apjanke/octave-tablicious/releases/download/v0.4.1/tablicious-0.4.1.tar.gz
 @end example
 
 (Check the releases page at @url{https://github.com/apjanke/octave-tablicious/releases} to
@@ -3528,6 +3528,26 @@ strings has not been determined yet.
 
 Returns a string array the same size as the scalar expansion of its
 inputs.
+
+@end deftypefn
+
+@node string.plus
+@subsubsection string.plus
+
+@deftypefn {Method} {@var{out} =} plus (@var{a}, @var{b})
+
+String concatenation via plus operator.
+
+Concatenates the two input arrays, string-wise. Inputs that are
+not string arrays are converted to string arrays.
+
+The concatenation is done by calling `strcat` on the inputs, and has the
+same behavior.
+
+Returns a string array the same size as the scalar expansion of its
+inputs.
+
+See also: string.strcat
 
 @end deftypefn
 
