@@ -589,6 +589,26 @@ classdef string
     endfunction
 
     ## -*- texinfo -*-
+    ## @node string.plus
+    ## @deftypefn {Method} {@var{out} =} plus (@var{a}, @var{b})
+    ##
+    ## String concatenation via plus operator.
+    ##
+    ## Concatenates the two input arrays, string-wise. Inputs that are
+    ## not string arrays are converted to string arrays.
+    ##
+    ## The semantics of concatenating missing strings with non-missing
+    ## strings has not been determined yet.
+    ##
+    ## Returns a string array the same size as the scalar expansion of its
+    ## inputs.
+    ##
+    ## @end deftypefn
+    function out = plus (a, b)
+      out = string.strcat(a, b);
+    endfunction
+
+    ## -*- texinfo -*-
     ## @node string.lower
     ## @deftypefn {Method} {@var{out} =} lower (@var{obj})
     ##
