@@ -1,7 +1,7 @@
 Tablicious Changelog
 ====================
 
-Unreleased (in progress)
+Unreleased (2024-02-07)
 -----------------------
 
 * Add `end` override methods to string, datetime, etc. so `x(end)` indexing works correctly.

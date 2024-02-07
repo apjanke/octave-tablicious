@@ -3,7 +3,7 @@
 <!-- Created by GNU Texinfo 7.1, https://www.gnu.org/software/texinfo/ -->
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<!-- This manual is for Tablicious, version 0.4.2-SNAPSHOT.
+<!-- This manual is for Tablicious, version 0.4.2.
 
 Copyright © 2019, 2023, 2024 Andrew Janke
 
@@ -18,10 +18,10 @@ notice identical to this one.
 
 Permission is granted to copy and distribute translations of this manual
 into another language, under the same conditions as for modified versions. -->
-<title>table (Tablicious v0.4.2-SNAPSHOT)</title>
+<title>table (Tablicious v0.4.2)</title>
 
 <meta name="description" content="User manual for Tablicious for Octave.">
-<meta name="keywords" content="table (Tablicious v0.4.2-SNAPSHOT)">
+<meta name="keywords" content="table (Tablicious v0.4.2)">
 <meta name="resource-type" content="document">
 <meta name="distribution" content="global">
 <meta name="Generator" content="makeinfo">
@@ -105,61 +105,60 @@ is a cellstr column vector, if present.
 
 
 <ul class="mini-toc">
-<li><a href="table_002etable.html" accesskey="1">table.table</a></li>
-<li><a href="table_002esummary.html" accesskey="2">table.summary</a></li>
-<li><a href="table_002eprettyprint.html" accesskey="3">table.prettyprint</a></li>
-<li><a href="table_002etable2cell.html" accesskey="4">table.table2cell</a></li>
-<li><a href="table_002etable2struct.html" accesskey="5">table.table2struct</a></li>
-<li><a href="table_002etable2array.html" accesskey="6">table.table2array</a></li>
-<li><a href="table_002evarnames.html" accesskey="7">table.varnames</a></li>
-<li><a href="table_002eistable.html" accesskey="8">table.istable</a></li>
-<li><a href="table_002esize.html" accesskey="9">table.size</a></li>
-<li><a href="table_002eend.html">table.end</a></li>
-<li><a href="table_002endims.html">table.ndims</a></li>
-<li><a href="table_002esqueeze.html">table.squeeze</a></li>
-<li><a href="table_002eheight.html">table.height</a></li>
-<li><a href="table_002ewidth.html">table.width</a></li>
-<li><a href="table_002enumel.html">table.numel</a></li>
-<li><a href="table_002eisempty.html">table.isempty</a></li>
-<li><a href="table_002evertcat.html">table.vertcat</a></li>
+<li><a href="table_002eaddvars.html" accesskey="1">table.addvars</a></li>
+<li><a href="table_002eantijoin.html" accesskey="2">table.antijoin</a></li>
+<li><a href="table_002ecartesian.html" accesskey="3">table.cartesian</a></li>
+<li><a href="table_002econvertvars.html" accesskey="4">table.convertvars</a></li>
+<li><a href="table_002efindgroups.html" accesskey="5">table.findgroups</a></li>
+<li><a href="table_002egetvar.html" accesskey="6">table.getvar</a></li>
+<li><a href="table_002egetvars.html" accesskey="7">table.getvars</a></li>
+<li><a href="table_002egroupby.html" accesskey="8">table.groupby</a></li>
+<li><a href="table_002eheight.html" accesskey="9">table.height</a></li>
 <li><a href="table_002ehorzcat.html">table.horzcat</a></li>
-<li><a href="table_002erepmat.html">table.repmat</a></li>
-<li><a href="table_002erepelem.html">table.repelem</a></li>
-<li><a href="table_002esetVariableNames.html">table.setVariableNames</a></li>
-<li><a href="table_002esetDimensionNames.html">table.setDimensionNames</a></li>
-<li><a href="table_002esetRowNames.html">table.setRowNames</a></li>
-<li><a href="table_002eremovevars.html">table.removevars</a></li>
-<li><a href="table_002emovevars.html">table.movevars</a></li>
-<li><a href="table_002egetvar.html">table.getvar</a></li>
-<li><a href="table_002egetvars.html">table.getvars</a></li>
-<li><a href="table_002esetvar.html">table.setvar</a></li>
-<li><a href="table_002eaddvars.html">table.addvars</a></li>
-<li><a href="table_002econvertvars.html">table.convertvars</a></li>
-<li><a href="table_002emergevars.html">table.mergevars</a></li>
-<li><a href="table_002esplitvars.html">table.splitvars</a></li>
-<li><a href="table_002estack.html">table.stack</a></li>
-<li><a href="table_002ejoin.html">table.join</a></li>
 <li><a href="table_002einnerjoin.html">table.innerjoin</a></li>
-<li><a href="table_002erealjoin.html">table.realjoin</a></li>
-<li><a href="table_002eouterjoin.html">table.outerjoin</a></li>
-<li><a href="table_002eouterfillvals.html">table.outerfillvals</a></li>
-<li><a href="table_002esemijoin.html">table.semijoin</a></li>
-<li><a href="table_002eantijoin.html">table.antijoin</a></li>
-<li><a href="table_002ecartesian.html">table.cartesian</a></li>
-<li><a href="table_002egroupby.html">table.groupby</a></li>
-<li><a href="table_002esplitapply.html">table.splitapply</a></li>
-<li><a href="table_002erows2vars.html">table.rows2vars</a></li>
-<li><a href="table_002eunion.html">table.union</a></li>
 <li><a href="table_002eintersect.html">table.intersect</a></li>
-<li><a href="table_002esetxor.html">table.setxor</a></li>
-<li><a href="table_002esetdiff.html">table.setdiff</a></li>
+<li><a href="table_002eisempty.html">table.isempty</a></li>
 <li><a href="table_002eismember.html">table.ismember</a></li>
 <li><a href="table_002eismissing.html">table.ismissing</a></li>
-<li><a href="table_002evarfun.html">table.varfun</a></li>
-<li><a href="table_002erowfun.html">table.rowfun</a></li>
-<li><a href="table_002efindgroups.html">table.findgroups</a></li>
-<li><a href="table_002erestrict.html">table.restrict</a></li>
+<li><a href="table_002eistable.html">table.istable</a></li>
+<li><a href="table_002ejoin.html">table.join</a></li>
+<li><a href="table_002emergevars.html">table.mergevars</a></li>
+<li><a href="table_002emovevars.html">table.movevars</a></li>
+<li><a href="table_002endims.html">table.ndims</a></li>
+<li><a href="table_002enumel.html">table.numel</a></li>
+<li><a href="table_002eouterfillvals.html">table.outerfillvals</a></li>
+<li><a href="table_002eouterjoin.html">table.outerjoin</a></li>
+<li><a href="table_002eprettyprint.html">table.prettyprint</a></li>
+<li><a href="table_002erealjoin.html">table.realjoin</a></li>
+<li><a href="table_002eremovevars.html">table.removevars</a></li>
 <li><a href="table_002erenamevars.html">table.renamevars</a></li>
+<li><a href="table_002erepelem.html">table.repelem</a></li>
+<li><a href="table_002erepmat.html">table.repmat</a></li>
+<li><a href="table_002erestrict.html">table.restrict</a></li>
+<li><a href="table_002erowfun.html">table.rowfun</a></li>
+<li><a href="table_002erows2vars.html">table.rows2vars</a></li>
+<li><a href="table_002esemijoin.html">table.semijoin</a></li>
+<li><a href="table_002esetdiff.html">table.setdiff</a></li>
+<li><a href="table_002esetDimensionNames.html">table.setDimensionNames</a></li>
+<li><a href="table_002esetRowNames.html">table.setRowNames</a></li>
+<li><a href="table_002esetvar.html">table.setvar</a></li>
+<li><a href="table_002esetVariableNames.html">table.setVariableNames</a></li>
+<li><a href="table_002esetxor.html">table.setxor</a></li>
+<li><a href="table_002esize.html">table.size</a></li>
+<li><a href="table_002esplitapply.html">table.splitapply</a></li>
+<li><a href="table_002esplitvars.html">table.splitvars</a></li>
+<li><a href="table_002esqueeze.html">table.squeeze</a></li>
+<li><a href="table_002estack.html">table.stack</a></li>
+<li><a href="table_002esummary.html">table.summary</a></li>
+<li><a href="table_002etable.html">table.table</a></li>
+<li><a href="table_002etable2array.html">table.table2array</a></li>
+<li><a href="table_002etable2cell.html">table.table2cell</a></li>
+<li><a href="table_002etable2struct.html">table.table2struct</a></li>
+<li><a href="table_002eunion.html">table.union</a></li>
+<li><a href="table_002evarfun.html">table.varfun</a></li>
+<li><a href="table_002evarnames.html">table.varnames</a></li>
+<li><a href="table_002evertcat.html">table.vertcat</a></li>
+<li><a href="table_002ewidth.html">table.width</a></li>
 </ul>
 </div>
 <hr>

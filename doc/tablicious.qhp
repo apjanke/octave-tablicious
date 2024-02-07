@@ -384,8 +384,6 @@
                             </section>
                             <section title="table.convertvars" ref="html/table_002econvertvars.html">
                             </section>
-                            <section title="table.end" ref="html/table_002eend.html">
-                            </section>
                             <section title="table.findgroups" ref="html/table_002efindgroups.html">
                             </section>
                             <section title="table.getvar" ref="html/table_002egetvar.html">
@@ -862,7 +860,6 @@
             <keyword name="table.antijoin" id="table.antijoin" ref="html/table_002eantijoin.html"/>
             <keyword name="table.cartesian" id="table.cartesian" ref="html/table_002ecartesian.html"/>
             <keyword name="table.convertvars" id="table.convertvars" ref="html/table_002econvertvars.html"/>
-            <keyword name="table.end" id="table.end" ref="html/table_002eend.html"/>
             <keyword name="table.findgroups" id="table.findgroups" ref="html/table_002efindgroups.html"/>
             <keyword name="table.getvar" id="table.getvar" ref="html/table_002egetvar.html"/>
             <keyword name="table.getvars" id="table.getvars" ref="html/table_002egetvars.html"/>
@@ -1171,7 +1168,6 @@
             <file>html/table_002egetvars.html</file>
             <file>html/table_002egetvar.html</file>
             <file>html/table_002efindgroups.html</file>
-            <file>html/table_002eend.html</file>
             <file>html/table_002econvertvars.html</file>
             <file>html/table_002ecartesian.html</file>
             <file>html/table_002eantijoin.html</file>

@@ -3,7 +3,7 @@
 <!-- Created by GNU Texinfo 7.1, https://www.gnu.org/software/texinfo/ -->
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<!-- This manual is for Tablicious, version 0.4.2-SNAPSHOT.
+<!-- This manual is for Tablicious, version 0.4.2.
 
 Copyright © 2019, 2023, 2024 Andrew Janke
 
@@ -18,10 +18,10 @@ notice identical to this one.
 
 Permission is granted to copy and distribute translations of this manual
 into another language, under the same conditions as for modified versions. -->
-<title>table.varfun (Tablicious v0.4.2-SNAPSHOT)</title>
+<title>table.varfun (Tablicious v0.4.2)</title>
 
 <meta name="description" content="User manual for Tablicious for Octave.">
-<meta name="keywords" content="table.varfun (Tablicious v0.4.2-SNAPSHOT)">
+<meta name="keywords" content="table.varfun (Tablicious v0.4.2)">
 <meta name="resource-type" content="document">
 <meta name="distribution" content="global">
 <meta name="Generator" content="makeinfo">
@@ -30,8 +30,8 @@ into another language, under the same conditions as for modified versions. -->
 <link href="index.html" rel="start" title="Top">
 <link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
 <link href="table.html" rel="up" title="table">
-<link href="table_002erowfun.html" rel="next" title="table.rowfun">
-<link href="table_002eismissing.html" rel="prev" title="table.ismissing">
+<link href="table_002evarnames.html" rel="next" title="table.varnames">
+<link href="table_002eunion.html" rel="prev" title="table.union">
 <style type="text/css">
 <!--
 a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
@@ -47,16 +47,16 @@ strong.def-name {font-family: monospace; font-weight: bold; font-size: larger}
 <div class="subsubsection-level-extent" id="table_002evarfun">
 <div class="nav-panel">
 <p>
-Next: <a href="table_002erowfun.html" accesskey="n" rel="next">table.rowfun</a>, Previous: <a href="table_002eismissing.html" accesskey="p" rel="prev">table.ismissing</a>, Up: <a href="table.html" accesskey="u" rel="up">table</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+Next: <a href="table_002evarnames.html" accesskey="n" rel="next">table.varnames</a>, Previous: <a href="table_002eunion.html" accesskey="p" rel="prev">table.union</a>, Up: <a href="table.html" accesskey="u" rel="up">table</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
 </div>
 <hr>
 <h4 class="subsubsection" id="table_002evarfun-1"><span>8.2.54.51 table.varfun<a class="copiable-link" href="#table_002evarfun-1"> &para;</a></span></h4>
 
 <dl class="first-deftypefn">
-<dt class="deftypefn" id="index-varfun"><span class="category-def">Method: </span><span><code class="def-type"><var class="var">out</var> =</code> <strong class="def-name">varfun</strong> <code class="def-code-arguments">(<var class="var">fcn</var>, <var class="var">obj</var>)</code><a class="copiable-link" href="#index-varfun"> &para;</a></span></dt>
-<dt class="deftypefnx def-cmd-deftypefn" id="index-varfun-1"><span class="category-def">Method: </span><span><code class="def-type"><var class="var">out</var> =</code> <strong class="def-name">varfun</strong> <code class="def-code-arguments">(&hellip;, <code class="code">'OutputFormat'</code>, <var class="var">outputFormat</var>)</code><a class="copiable-link" href="#index-varfun-1"> &para;</a></span></dt>
-<dt class="deftypefnx def-cmd-deftypefn" id="index-varfun-2"><span class="category-def">Method: </span><span><code class="def-type"><var class="var">out</var> =</code> <strong class="def-name">varfun</strong> <code class="def-code-arguments">(&hellip;, <code class="code">'InputVariables'</code>, <var class="var">vars</var>)</code><a class="copiable-link" href="#index-varfun-2"> &para;</a></span></dt>
-<dt class="deftypefnx def-cmd-deftypefn" id="index-varfun-3"><span class="category-def">Method: </span><span><code class="def-type"><var class="var">out</var> =</code> <strong class="def-name">varfun</strong> <code class="def-code-arguments">(&hellip;, <code class="code">'ErrorHandler'</code>, <var class="var">errorFcn</var>)</code><a class="copiable-link" href="#index-varfun-3"> &para;</a></span></dt>
+<dt class="deftypefn" id="index-varfun-2"><span class="category-def">Method: </span><span><code class="def-type"><var class="var">out</var> =</code> <strong class="def-name">varfun</strong> <code class="def-code-arguments">(<var class="var">fcn</var>, <var class="var">obj</var>)</code><a class="copiable-link" href="#index-varfun-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn" id="index-varfun-3"><span class="category-def">Method: </span><span><code class="def-type"><var class="var">out</var> =</code> <strong class="def-name">varfun</strong> <code class="def-code-arguments">(&hellip;, <code class="code">'OutputFormat'</code>, <var class="var">outputFormat</var>)</code><a class="copiable-link" href="#index-varfun-3"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn" id="index-varfun-4"><span class="category-def">Method: </span><span><code class="def-type"><var class="var">out</var> =</code> <strong class="def-name">varfun</strong> <code class="def-code-arguments">(&hellip;, <code class="code">'InputVariables'</code>, <var class="var">vars</var>)</code><a class="copiable-link" href="#index-varfun-4"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn" id="index-varfun-5"><span class="category-def">Method: </span><span><code class="def-type"><var class="var">out</var> =</code> <strong class="def-name">varfun</strong> <code class="def-code-arguments">(&hellip;, <code class="code">'ErrorHandler'</code>, <var class="var">errorFcn</var>)</code><a class="copiable-link" href="#index-varfun-5"> &para;</a></span></dt>
 <dd>
 <p>Apply function to table variables.
 </p>
