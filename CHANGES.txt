@@ -6,7 +6,9 @@ Unreleased (unreleased)
 
 ### Bug Fixes
 
-* Fix missing trailing newline in string display in `string.disp`.
+* `string`:
+  * `string`: Fix missing trailing newline in string display in `string.disp`.
+  * `string`: Add `+` operator overload that does string concatenation.
 
 Version 0.4.0 (2024-02-07)
 --------------------------
