@@ -226,7 +226,8 @@ while (my $line = <IN>) {
             if ($node) {
                 my $main_doc = OctTexiDoc::munge_texi_block_text($$node{block});
                 emit "$main_doc\n\n";
-                for my $subnode (@{$$node{children}}) {
+                my @subnodes = sort { lc($$a{node}) cmp lc($$b{node}) } @{$$node{children}};
+                for my $subnode (@subnodes) {
                     my $subnode_name = $$subnode{node};
                     my $subnode_doc = OctTexiDoc::munge_texi_block_text($$subnode{block});
                     emit "\@node $subnode_name\n";
