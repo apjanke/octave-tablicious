@@ -577,7 +577,7 @@ classdef string
       args = promotec (varargin);
       args_strs = cell (size (args));
       args_tfMissing = cell (size (args));
-      for i = 1:numel (args2)
+      for i = 1:numel (args_strs)
         args_strs{i} = args{i}.strs;
         args_tfMissing{i} = args{i}.tfMissing;
       endfor
