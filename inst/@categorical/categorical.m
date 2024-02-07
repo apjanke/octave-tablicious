@@ -424,7 +424,7 @@ classdef categorical
       endif
       my_dispstrs = this.dispstrs;
       out = tblish.internal.format_dispstr_array (my_dispstrs);
-      fprintf ("%s", out);
+      fprintf ("%s\n", out);
     endfunction
 
     ## -*- texinfo -*-
