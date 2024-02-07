@@ -51,7 +51,7 @@ strong.def-name {font-family: monospace; font-weight: bold; font-size: larger}
 Next: <a href="tblish_002edataset_002eChickWeight.html" accesskey="n" rel="next">tblish.dataset.ChickWeight</a>, Previous: <a href="tblish_002edataset_002eBOD.html" accesskey="p" rel="prev">tblish.dataset.BOD</a>, Up: <a href="tblish_002edataset.html" accesskey="u" rel="up">tblish.dataset</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
 </div>
 <hr>
-<h4 class="subsubsection" id="tblish_002edataset_002ecars-1"><span>8.2.55.11 tblish.dataset.cars<a class="copiable-link" href="#tblish_002edataset_002ecars-1"> &para;</a></span></h4>
+<h4 class="subsubsection" id="tblish_002edataset_002ecars-1"><span>8.2.57.11 tblish.dataset.cars<a class="copiable-link" href="#tblish_002edataset_002ecars-1"> &para;</a></span></h4>
 
 <dl class="first-deftypefn">
 <dt class="deftypefn" id="index-cars"><span class="category-def">Static Method: </span><span><code class="def-type"><var class="var">out</var> =</code> <strong class="def-name">cars</strong> <code class="def-code-arguments">()</code><a class="copiable-link" href="#index-cars"> &para;</a></span></dt>
@@ -93,12 +93,12 @@ t = tblish.dataset.cars;
 
 figure;
 plot (t.speed, t.dist, &quot;o&quot;);
-xlabel (&quot;Speed (mph)&quot;); ylabel(&quot;Stopping distance (ft)&quot;);
+xlabel (&quot;Speed (mph)&quot;); ylabel (&quot;Stopping distance (ft)&quot;);
 title (&quot;cars data&quot;);
 
 figure;
 loglog (t.speed, t.dist, &quot;o&quot;);
-xlabel (&quot;Speed (mph)&quot;); ylabel(&quot;Stopping distance (ft)&quot;);
+xlabel (&quot;Speed (mph)&quot;); ylabel (&quot;Stopping distance (ft)&quot;);
 title (&quot;cars data (logarithmic scales)&quot;);
 
 # TODO: Do the linear model plot
@@ -106,7 +106,7 @@ title (&quot;cars data (logarithmic scales)&quot;);
 # Polynomial regression
 figure;
 plot (t.speed, t.dist, &quot;o&quot;);
-xlabel (&quot;Speed (mph)&quot;); ylabel(&quot;Stopping distance (ft)&quot;);
+xlabel (&quot;Speed (mph)&quot;); ylabel (&quot;Stopping distance (ft)&quot;);
 title (&quot;cars polynomial regressions&quot;);
 hold on
 xlim ([0 25]);

@@ -36,6 +36,7 @@ into another language, under the same conditions as for modified versions. -->
 <!--
 a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
 span:hover a.copiable-link {visibility: visible}
+strong.def-name {font-family: monospace; font-weight: bold; font-size: larger}
 -->
 </style>
 
@@ -49,9 +50,26 @@ span:hover a.copiable-link {visibility: visible}
 Next: <a href="tblish_002esizeof2.html" accesskey="n" rel="next">tblish.sizeof2</a>, Previous: <a href="tblish_002eexamples_002eplot_005fpairs.html" accesskey="p" rel="prev">tblish.examples.plot_pairs</a>, Up: <a href="API-Alphabetically.html" accesskey="u" rel="up">API Alphabetically</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
 </div>
 <hr>
-<h4 class="subsection" id="tblish_002eexamples_002eSpDb-1"><span>8.2.60 tblish.examples.SpDb<a class="copiable-link" href="#tblish_002eexamples_002eSpDb-1"> &para;</a></span></h4>
-<p><em class="emph">Not documented</em>
-</p></div>
+<h4 class="subsection" id="tblish_002eexamples_002eSpDb-1"><span>8.2.62 tblish.examples.SpDb<a class="copiable-link" href="#tblish_002eexamples_002eSpDb-1"> &para;</a></span></h4>
+<dl class="first-deftypefn">
+<dt class="deftypefn" id="index-tblish_002eexamples_002eSpDb"><span class="category-def">Function: </span><span><code class="def-type"><var class="var">spdb</var> =</code> <strong class="def-name">tblish.examples.SpDb</strong> <code class="def-code-arguments">()</code><a class="copiable-link" href="#index-tblish_002eexamples_002eSpDb"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn" id="index-tblish_002eexamples_002eSpDb-1"><span class="category-def">Function: </span><span><code class="def-type">[<var class="var">s</var>, <var class="var">p</var>, <var class="var">sp</var>] =</code> <strong class="def-name">tblish.examples.SpDb</strong> <code class="def-code-arguments">()</code><a class="copiable-link" href="#index-tblish_002eexamples_002eSpDb-1"> &para;</a></span></dt>
+<dd>
+<p>The classic Suppliers-Parts example database.
+</p>
+<p>Constructs the classic C. J. Date Suppliers-Parts (&quot;SP&quot;) example database as tables.
+This database is the one used as an example throughout Date&rsquo;s &quot;An Introduction to
+Database Systems&quot; textbook.
+</p>
+<p>Returns the database as a set of three table arrays. If one argout is captured, the
+tables are returned in the fields of a single struct. If multiple argouts are captured, the
+tables are returned as three argouts with a single table in each, in the order (<var class="var">s</var>,
+<var class="var">p</var>, <var class="var">sp</var>).
+</p>
+</dd></dl>
+
+
+</div>
 
 
 

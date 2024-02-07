@@ -213,6 +213,8 @@
                         </section>
                         <section title="eqn" ref="html/eqn.html">
                         </section>
+                        <section title="head" ref="html/head.html">
+                        </section>
                         <section title="hours" ref="html/hours.html">
                         </section>
                         <section title="iscalendarduration" ref="html/iscalendarduration.html">
@@ -438,10 +440,6 @@
                             </section>
                             <section title="table.stack" ref="html/table_002estack.html">
                             </section>
-                            <section title="table.head" ref="html/table_002ehead.html">
-                            </section>
-                            <section title="table.tail" ref="html/table_002etail.html">
-                            </section>
                             <section title="table.join" ref="html/table_002ejoin.html">
                             </section>
                             <section title="table.innerjoin" ref="html/table_002einnerjoin.html">
@@ -488,6 +486,8 @@
                             </section>
                         </section>
                         <section title="tableOuterFillValue" ref="html/tableOuterFillValue.html">
+                        </section>
+                        <section title="tail" ref="html/tail.html">
                         </section>
                         <section title="tblish.dataset" ref="html/tblish_002edataset.html">
                             <section title="tblish.dataset.airmiles" ref="html/tblish_002edataset_002eairmiles.html">
@@ -664,11 +664,11 @@
                             </section>
                         </section>
                         <section title="tblish.datasets" ref="html/tblish_002edatasets.html">
-                            <section title="tblish.datasets.list" ref="html/tblish_002edatasets_002elist.html">
+                            <section title="datasets.list" ref="html/datasets_002elist.html">
                             </section>
-                            <section title="tblish.datasets.load" ref="html/tblish_002edatasets_002eload.html">
+                            <section title="datasets.load" ref="html/datasets_002eload.html">
                             </section>
-                            <section title="tblish.datasets.description" ref="html/tblish_002edatasets_002edescription.html">
+                            <section title="datasets.description" ref="html/datasets_002edescription.html">
                             </section>
                         </section>
                         <section title="tblish.evalWithTableVars" ref="html/tblish_002eevalWithTableVars.html">
@@ -681,11 +681,7 @@
                         </section>
                         <section title="tblish.sizeof2" ref="html/tblish_002esizeof2.html">
                         </section>
-                        <section title="tblish.table.tblish.table.grpstats" ref="html/tblish_002etable_002etblish_002etable_002egrpstats.html">
-                        </section>
-                        <section title="tblish.tblish.evalWithTableVars" ref="html/tblish_002etblish_002eevalWithTableVars.html">
-                        </section>
-                        <section title="tblish.tblish.sizeof22" ref="html/tblish_002etblish_002esizeof22.html">
+                        <section title="tblish.table.grpstats" ref="html/tblish_002etable_002egrpstats.html">
                         </section>
                         <section title="timezones" ref="html/timezones.html">
                         </section>
@@ -744,6 +740,9 @@
             <keyword name="cell2table" id="cell2table" ref="html/cell2table.html"/>
             <keyword name="colvecfun" id="colvecfun" ref="html/colvecfun.html"/>
             <keyword name="contains" id="contains" ref="html/contains.html"/>
+            <keyword name="datasets.description" id="datasets.description" ref="html/datasets_002edescription.html"/>
+            <keyword name="datasets.list" id="datasets.list" ref="html/datasets_002elist.html"/>
+            <keyword name="datasets.load" id="datasets.load" ref="html/datasets_002eload.html"/>
             <keyword name="datetime" id="datetime" ref="html/datetime.html"/>
             <keyword name="datetime.NaT" id="datetime.NaT" ref="html/datetime_002eNaT.html"/>
             <keyword name="datetime.convertDatenumTimeZone" id="datetime.convertDatenumTimeZone" ref="html/datetime_002econvertDatenumTimeZone.html"/>
@@ -793,6 +792,7 @@
             <keyword name="duration.seconds" id="duration.seconds" ref="html/duration_002eseconds.html"/>
             <keyword name="duration.years" id="duration.years" ref="html/duration_002eyears.html"/>
             <keyword name="eqn" id="eqn" ref="html/eqn.html"/>
+            <keyword name="head" id="head" ref="html/head.html"/>
             <keyword name="hours" id="hours" ref="html/hours.html"/>
             <keyword name="iscalendarduration" id="iscalendarduration" ref="html/iscalendarduration.html"/>
             <keyword name="iscategorical" id="iscategorical" ref="html/iscategorical.html"/>
@@ -864,7 +864,6 @@
             <keyword name="table.getvar" id="table.getvar" ref="html/table_002egetvar.html"/>
             <keyword name="table.getvars" id="table.getvars" ref="html/table_002egetvars.html"/>
             <keyword name="table.groupby" id="table.groupby" ref="html/table_002egroupby.html"/>
-            <keyword name="table.head" id="table.head" ref="html/table_002ehead.html"/>
             <keyword name="table.height" id="table.height" ref="html/table_002eheight.html"/>
             <keyword name="table.horzcat" id="table.horzcat" ref="html/table_002ehorzcat.html"/>
             <keyword name="table.innerjoin" id="table.innerjoin" ref="html/table_002einnerjoin.html"/>
@@ -906,12 +905,12 @@
             <keyword name="table.table2array" id="table.table2array" ref="html/table_002etable2array.html"/>
             <keyword name="table.table2cell" id="table.table2cell" ref="html/table_002etable2cell.html"/>
             <keyword name="table.table2struct" id="table.table2struct" ref="html/table_002etable2struct.html"/>
-            <keyword name="table.tail" id="table.tail" ref="html/table_002etail.html"/>
             <keyword name="table.union" id="table.union" ref="html/table_002eunion.html"/>
             <keyword name="table.varfun" id="table.varfun" ref="html/table_002evarfun.html"/>
             <keyword name="table.varnames" id="table.varnames" ref="html/table_002evarnames.html"/>
             <keyword name="table.vertcat" id="table.vertcat" ref="html/table_002evertcat.html"/>
             <keyword name="table.width" id="table.width" ref="html/table_002ewidth.html"/>
+            <keyword name="tail" id="tail" ref="html/tail.html"/>
             <keyword name="tblish.dataset" id="tblish.dataset" ref="html/tblish_002edataset.html"/>
             <keyword name="tblish.dataset.AirPassengers" id="tblish.dataset.AirPassengers" ref="html/tblish_002edataset_002eAirPassengers.html"/>
             <keyword name="tblish.dataset.BJsales" id="tblish.dataset.BJsales" ref="html/tblish_002edataset_002eBJsales.html"/>
@@ -1000,14 +999,12 @@
             <keyword name="tblish.dataset.women" id="tblish.dataset.women" ref="html/tblish_002edataset_002ewomen.html"/>
             <keyword name="tblish.dataset.zCO2" id="tblish.dataset.zCO2" ref="html/tblish_002edataset_002ezCO2.html"/>
             <keyword name="tblish.datasets" id="tblish.datasets" ref="html/tblish_002edatasets.html"/>
-            <keyword name="tblish.datasets.description" id="tblish.datasets.description" ref="html/tblish_002edatasets_002edescription.html"/>
-            <keyword name="tblish.datasets.list" id="tblish.datasets.list" ref="html/tblish_002edatasets_002elist.html"/>
-            <keyword name="tblish.datasets.load" id="tblish.datasets.load" ref="html/tblish_002edatasets_002eload.html"/>
+            <keyword name="tblish.evalWithTableVars" id="tblish.evalWithTableVars" ref="html/tblish_002eevalWithTableVars.html"/>
+            <keyword name="tblish.examples.SpDb" id="tblish.examples.SpDb" ref="html/tblish_002eexamples_002eSpDb.html"/>
             <keyword name="tblish.examples.coplot" id="tblish.examples.coplot" ref="html/tblish_002eexamples_002ecoplot.html"/>
             <keyword name="tblish.examples.plot_pairs" id="tblish.examples.plot_pairs" ref="html/tblish_002eexamples_002eplot_005fpairs.html"/>
-            <keyword name="tblish.table.tblish.table.grpstats" id="tblish.table.tblish.table.grpstats" ref="html/tblish_002etable_002etblish_002etable_002egrpstats.html"/>
-            <keyword name="tblish.tblish.evalWithTableVars" id="tblish.tblish.evalWithTableVars" ref="html/tblish_002etblish_002eevalWithTableVars.html"/>
-            <keyword name="tblish.tblish.sizeof22" id="tblish.tblish.sizeof22" ref="html/tblish_002etblish_002esizeof22.html"/>
+            <keyword name="tblish.sizeof2" id="tblish.sizeof2" ref="html/tblish_002esizeof2.html"/>
+            <keyword name="tblish.table.grpstats" id="tblish.table.grpstats" ref="html/tblish_002etable_002egrpstats.html"/>
             <keyword name="timezones" id="timezones" ref="html/timezones.html"/>
             <keyword name="todatetime" id="todatetime" ref="html/todatetime.html"/>
             <keyword name="vartype" id="vartype" ref="html/vartype.html"/>
@@ -1022,17 +1019,15 @@
             <file>html/vartype.html</file>
             <file>html/todatetime.html</file>
             <file>html/timezones.html</file>
-            <file>html/tblish_002etblish_002esizeof22.html</file>
-            <file>html/tblish_002etblish_002eevalWithTableVars.html</file>
-            <file>html/tblish_002etable_002etblish_002etable_002egrpstats.html</file>
+            <file>html/tblish_002etable_002egrpstats.html</file>
             <file>html/tblish_002esizeof2.html</file>
             <file>html/tblish_002eexamples_002eSpDb.html</file>
             <file>html/tblish_002eexamples_002eplot_005fpairs.html</file>
             <file>html/tblish_002eexamples_002ecoplot.html</file>
             <file>html/tblish_002eevalWithTableVars.html</file>
-            <file>html/tblish_002edatasets_002edescription.html</file>
-            <file>html/tblish_002edatasets_002eload.html</file>
-            <file>html/tblish_002edatasets_002elist.html</file>
+            <file>html/datasets_002edescription.html</file>
+            <file>html/datasets_002eload.html</file>
+            <file>html/datasets_002elist.html</file>
             <file>html/tblish_002edatasets.html</file>
             <file>html/tblish_002edataset_002ezCO2.html</file>
             <file>html/tblish_002edataset_002eWWWusage.html</file>
@@ -1121,6 +1116,7 @@
             <file>html/tblish_002edataset_002eAirPassengers.html</file>
             <file>html/tblish_002edataset_002eairmiles.html</file>
             <file>html/tblish_002edataset.html</file>
+            <file>html/tail.html</file>
             <file>html/tableOuterFillValue.html</file>
             <file>html/table_002erenamevars.html</file>
             <file>html/table_002erestrict.html</file>
@@ -1144,8 +1140,6 @@
             <file>html/table_002erealjoin.html</file>
             <file>html/table_002einnerjoin.html</file>
             <file>html/table_002ejoin.html</file>
-            <file>html/table_002etail.html</file>
-            <file>html/table_002ehead.html</file>
             <file>html/table_002estack.html</file>
             <file>html/table_002esplitvars.html</file>
             <file>html/table_002emergevars.html</file>
@@ -1259,6 +1253,7 @@
             <file>html/iscategorical.html</file>
             <file>html/iscalendarduration.html</file>
             <file>html/hours.html</file>
+            <file>html/head.html</file>
             <file>html/eqn.html</file>
             <file>html/duration_002elinspace.html</file>
             <file>html/duration_002echar.html</file>

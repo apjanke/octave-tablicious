@@ -51,7 +51,7 @@ strong.def-name {font-family: monospace; font-weight: bold; font-size: larger}
 Next: <a href="tblish_002edataset_002eFormaldehyde.html" accesskey="n" rel="next">tblish.dataset.Formaldehyde</a>, Previous: <a href="tblish_002edataset_002eEuStockMarkets.html" accesskey="p" rel="prev">tblish.dataset.EuStockMarkets</a>, Up: <a href="tblish_002edataset.html" accesskey="u" rel="up">tblish.dataset</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
 </div>
 <hr>
-<h4 class="subsubsection" id="tblish_002edataset_002efaithful-1"><span>8.2.55.23 tblish.dataset.faithful<a class="copiable-link" href="#tblish_002edataset_002efaithful-1"> &para;</a></span></h4>
+<h4 class="subsubsection" id="tblish_002edataset_002efaithful-1"><span>8.2.57.23 tblish.dataset.faithful<a class="copiable-link" href="#tblish_002edataset_002efaithful-1"> &para;</a></span></h4>
 
 <dl class="first-deftypefn">
 <dt class="deftypefn" id="index-faithful"><span class="category-def">Static Method: </span><span><code class="def-type"><var class="var">out</var> =</code> <strong class="def-name">faithful</strong> <code class="def-code-arguments">()</code><a class="copiable-link" href="#index-faithful"> &para;</a></span></dt>
@@ -91,27 +91,28 @@ Faithful geyser. <cite class="cite">Applied Statistics</cite>, 39, 357–365.
 <div class="example">
 <pre class="example-preformatted">t = tblish.dataset.faithful;
 
-% Munge the data, rounding eruption time to the second
+# Munge the data, rounding eruption time to the second
 e60 = 60 * t.eruptions;
 ne60 = round (e60);
 # TODO: Port zapsmall to Octave
 eruptions = ne60 / 60;
 # TODO: Display mean relative difference and bins summary
 
-% Histogram of rounded eruption times
+# Histogram of rounded eruption times
 figure
 hist (ne60, max (ne60))
 xlabel (&quot;Eruption time (sec)&quot;)
 ylabel (&quot;n&quot;)
 title (&quot;faithful data: Eruptions of Old Faithful&quot;)
 
-% Scatter plot of eruption time vs waiting time
+# Scatter plot of eruption time vs waiting time
 figure
 scatter (t.eruptions, t.waiting)
 xlabel (&quot;Eruption time (min)&quot;)
 ylabel (&quot;Waiting time to next eruption (min)&quot;)
 title (&quot;faithful data: Eruptions of Old Faithful&quot;)
 # TODO: Port Lowess smoothing to Octave
+
 </pre></div>
 
 

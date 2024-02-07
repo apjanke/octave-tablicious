@@ -35,7 +35,9 @@ into another language, under the same conditions as for modified versions. -->
 <style type="text/css">
 <!--
 a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.example {margin-left: 3.2em}
 span:hover a.copiable-link {visibility: visible}
+strong.def-name {font-family: monospace; font-weight: bold; font-size: larger}
 -->
 </style>
 
@@ -49,9 +51,37 @@ span:hover a.copiable-link {visibility: visible}
 Next: <a href="tblish_002eexamples_002ecoplot.html" accesskey="n" rel="next">tblish.examples.coplot</a>, Previous: <a href="tblish_002edatasets.html" accesskey="p" rel="prev">tblish.datasets</a>, Up: <a href="API-Alphabetically.html" accesskey="u" rel="up">API Alphabetically</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
 </div>
 <hr>
-<h4 class="subsection" id="tblish_002eevalWithTableVars-1"><span>8.2.57 tblish.evalWithTableVars<a class="copiable-link" href="#tblish_002eevalWithTableVars-1"> &para;</a></span></h4>
-<p><em class="emph">Not documented</em>
-</p></div>
+<h4 class="subsection" id="tblish_002eevalWithTableVars-1"><span>8.2.59 tblish.evalWithTableVars<a class="copiable-link" href="#tblish_002eevalWithTableVars-1"> &para;</a></span></h4>
+<dl class="first-deftypefn">
+<dt class="deftypefn" id="index-tblish_002eevalWithTableVars"><span class="category-def">Function: </span><span><code class="def-type"><var class="var">out</var> =</code> <strong class="def-name">tblish.evalWithTableVars</strong> <code class="def-code-arguments">(<var class="var">tbl</var>, <var class="var">expr</var>)</code><a class="copiable-link" href="#index-tblish_002eevalWithTableVars"> &para;</a></span></dt>
+<dd>
+<p>Evaluate an expression against a table array’s variables.
+</p>
+<p>Evaluates the M-code expression <var class="var">expr</var> in a workspace where all of <var class="var">tbl</var>’s
+variables have been assigned to workspace variables.
+</p>
+<p><var class="var">expr</var> is a charvec containing an Octave expression.
+</p>
+<p>As an implementation detail, the workspace will also contain some variables
+that are prefixed and suffixed with &quot;__&quot;. So try to avoid those in your
+table variable names.
+</p>
+<p>Returns the result of the evaluation.
+</p>
+<p>Examples:
+</p>
+<div class="example">
+<pre class="example-preformatted">[s,p,sp] = tblish.examples.SpDb
+tmp = join (sp, p);
+shipment_weight = tblish.evalWithTableVars (tmp, &quot;Qty .* Weight&quot;)
+</pre></div>
+
+<p>See also: <a class="ref" href="table_002erestrict.html">table.restrict</a>
+</p>
+</dd></dl>
+
+
+</div>
 
 
 
