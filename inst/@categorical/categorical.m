@@ -503,14 +503,16 @@ classdef categorical
 
       Code = [1:numel(this.cats)]';
       Category = this.cats';
-      category_table = table (Code, Category);
+      Count = NaN(numel (this.cats), 1);
+      for i = 1:numel (this.cats)
+        Count(i) = sum (this.code == Code(i));
+      endfor
+      category_table = table (Code, Category, Count);
 
       fprintf ('Categorical array\n');
       fprintf ('  %d categories, %d elements\n', numel (Category), numel (this));
       fprintf ('  %d undefined values\n', numel (find (this.tfMissing(:))));
       prettyprint (category_table);
-      # TODO: Frequencies of each code value. Probably just roll that up into the
-      # above table as an additional column.
     endfunction
 
     ## -*- texinfo -*-

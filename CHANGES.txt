@@ -8,6 +8,7 @@ Unreleased (in progress)
 * table
   * table: summary: omit NaNs from mean(), include NaN counts.
   * table: Fix rownames, broken by bad internal `.Properties` reference.
+* categorical.summary: include frequencies in output
 
 ### Documentation
 
