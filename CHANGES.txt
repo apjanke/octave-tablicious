@@ -4,28 +4,39 @@ Tablicious Changelog
 Version 0.4.0 (in progress)
 -----------------------------
 
-* Require Octave 7.x or later.
-* Fix Octave 7.x and 8.x compatibility in installation and package loading.
-* Fix `string.missing()` and to actually return a missing value, instead of "".
+### Breaking Changes
+
 * Remove `(fill,rm,standardize)missing` functions, deferring to the Statistics package.
 * `table` arrays:
-  * `table`: Fix "preallocation" constructor to use 0s and ""s for fill values, unless missings are requested using an alternate pseudotype. (For compatibility with Matlab.)
   * `table`: Have `fieldnames (obj)` expose variable and dimension names and Properties, instead of the internal implementation properties.
-  * `table`: Fix some advanced ()- and {}-indexing cases, including some related to multi-variable subscripting, multi-column table variables, multi-column RHS inputs, and the combination of the three.
   * `table`: Remove `grpstats` method and replace with `tblish.table.grpstats()` function, to avoid overriding or interacting with Statistics' `grpstats()` function.
-  * `table`: Remove `rows`, `cols`, `reshape`, `resize`, `vec`, `hasrownames`, and `size_equal` methods.
-  * `table`: Make `congruentize` aprivate function.
+  * `table`: Deprecate `rows`, `columns` methods.
+* `datetime:
+  * Deprecate `.dnums` property access.
+    * This was only public for debugging purposes during initial development, and not intended to be part of the public API. The `datenum` method is the supported way to get datenums here.
+* Fix `string.missing()` to actually return a missing value, instead of "".
+* Make internal-use properties on the main classes Access = private, now that the code is a little more mature.
+
+### Changed
+
+* Require Octave 7.x or later.
+* Fix Octave 7.x and 8.x compatibility in installation and package loading.
+* `table` arrays:
+  * `table`: Fix "preallocation" constructor to use 0s and ""s for fill values, unless missings are requested using an alternate pseudotype. (For compatibility with Matlab.)
+  * `table`: Fix some advanced ()- and {}-indexing cases, including some related to multi-variable subscripting, multi-column table variables, multi-column RHS inputs, and the combination of the three.
+  * `table`: Remove `reshape`, `resize`, `vec`, `hasrownames`, and `size_equal` methods.
+  * `table`: Make `congruentize` a private function.
   * Add `istable`, `istimetable`, and `istabular` functions.
 * Fix `x(ix) = []` element deletion for string, datetime, table, and other classes.
 * Add idempotent one-arg constructor forms for string, datetime, categorical. (But not table.)
 * Add `NaS`, `NaC`, and `todatetime` functions.
+* Make `head` and `tail` functions instead of methods on `table`.
 * Rename `+tablicious` package to `+tblish`; merge `+octave` package into `+tblish`.
 * Move `+table_examples` package to `+tblish/+examples`.
 * Move the `sizeof()` override methods to a `tblish.sizeof()` function to avoid shadowing core Octave's `sizeof`, until I understand if it's intended to support extension by classdefs.
-* Make internal-use properties on the main classes Access = private, now that the code is a little more mature.
 * Fix the doco generation, including publishing to GitHub Pages.
 
-Internal:
+### Internal
 
 * Convert code style to GNU Octave code style, mostly.
 * Move `mustBe*` functions to a `validators/` subdirectory, just for tidiness.

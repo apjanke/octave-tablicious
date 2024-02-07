@@ -70,7 +70,7 @@ classdef datetime
 
   properties (Access = private)
     # The underlying datenum values, always in UTC when zoned, or pseudo-UTC when unzoned.
-    dnums = NaN % planar
+    dnum = NaN % planar
   endproperties
   properties
     # Time zone code as charvec. This governs how display strings and broken-down
@@ -86,6 +86,8 @@ classdef datetime
     Hour
     Minute
     Second
+    # Back-compatibility, deprecated access to old dnums property
+    dnums
   endproperties
 
   methods
@@ -245,9 +247,9 @@ classdef datetime
         if (! isequal (timeZone, 'UTC'))
           dnums = datetime.convertDatenumTimeZone(dnums, timeZone, 'UTC');
         endif
-        this.dnums = dnums;
+        this.dnum = dnums;
       else
-        this.dnums = dnums;
+        this.dnum = dnums;
       endif
       if (isfield (opts, 'Format'))
         this.Format = opts.Format;
@@ -369,8 +371,23 @@ classdef datetime
     ## @end deftypefn
     function [keysA, keysB] = proxyKeys (a, b)
       #PROXYKEYS Proxy key values for sorting and set operations
-      keysA = a.dnums(:);
-      keysB = b.dnums(:);
+      keysA = a.dnum(:);
+      keysB = b.dnum(:);
+    endfunction
+
+    function out = get.dnums (this)
+      persistent hasWarned
+      if isempty (hasWarned)
+        hasWarned = false;
+      endif
+      if ! hasWarned
+        warning ("Tablicious:deprecated-property", ["datetime.dnums is deprecated and will be removed. " ...
+          "You probably want to call datenum (x) instead." ...
+          "datetime.dnums is deprecated as of Tablicious 0.4.0, and targeted for removal in 0.5.0. " ...
+          "Please switch to using datenum (x)."])
+        hasWarned = true;
+      endif
+      out = this.dnum;
     endfunction
 
     function this = set.TimeZone (this, x)
@@ -386,9 +403,9 @@ classdef datetime
         # Converting an unzoned date to a zoned one declares that the wall time represented by
         # the unzoned dnums is a local time. Zoned datetimes store their internal dnums in UTC,
         # so we need to convert *from* the new time zone to UTC for the internal representation.
-        this.dnums = datetime.convertDatenumTimeZone (this.dnums, x, 'UTC');
+        this.dnum = datetime.convertDatenumTimeZone (this.dnum, x, 'UTC');
       elseif (! isempty (this.TimeZone) && isempty (x))
-        this.dnums = datetime.convertDatenumTimeZone (this.dnums, 'UTC', this.TimeZone);
+        this.dnum = datetime.convertDatenumTimeZone (this.dnum, 'UTC', this.TimeZone);
       endif
       this.TimeZone = x;
     endfunction
@@ -405,7 +422,7 @@ classdef datetime
     function this = set.Year (this, x)
       s = datestruct (this);
       s.Year(:) = x;
-      this.dnums = datetime.datestruct2datenum (s);
+      this.dnum = datetime.datestruct2datenum (s);
     endfunction
 
     function out = get.Month (this)
@@ -416,7 +433,7 @@ classdef datetime
     function this = set.Month (this, x)
       s = datestruct (this);
       s.Month(:) = x;
-      this.dnums = datetime.datestruct2datenum (s);
+      this.dnum = datetime.datestruct2datenum (s);
     endfunction
 
     function out = get.Day (this)
@@ -427,7 +444,7 @@ classdef datetime
     function this = set.Day (this, x)
       s = datestruct (this);
       s.Day(:) = x;
-      this.dnums = datetime.datestruct2datenum (s);
+      this.dnum = datetime.datestruct2datenum (s);
     endfunction
 
     function out = get.Hour (this)
@@ -438,7 +455,7 @@ classdef datetime
     function this = set.Hour (this, x)
       s = datestruct (this);
       s.Hour(:) = x;
-      this.dnums = datetime.datestruct2datenum (s);
+      this.dnum = datetime.datestruct2datenum (s);
     endfunction
 
     function out = get.Minute (this)
@@ -449,7 +466,7 @@ classdef datetime
     function this = set.Minute (this, x)
       s = datestruct (this);
       s.Minute(:) = x;
-      this.dnums = datetime.datestruct2datenum (s);
+      this.dnum = datetime.datestruct2datenum (s);
     endfunction
 
     function out = get.Second (this)
@@ -460,7 +477,7 @@ classdef datetime
     function this = set.Second (this, x)
       s = datestruct (this);
       s.Second(:) = x;
-      this.dnums = datetime.datestruct2datenum (s);
+      this.dnum = datetime.datestruct2datenum (s);
     endfunction
 
     function out = year (this)
@@ -565,7 +582,7 @@ classdef datetime
     ## @end deftypefn
     function out = timeofday (this)
       # Use mod, not rem, so negative dates give correct result
-      local_dnums = datetime.convertDatenumTimeZone (this.dnums, 'UTC', this.TimeZone);
+      local_dnums = datetime.convertDatenumTimeZone (this.dnum, 'UTC', this.TimeZone);
       out = duration.ofDays (mod (local_dnums, 1));
     endfunction
 
@@ -624,9 +641,9 @@ classdef datetime
 
       # TODO: Uh oh; TimeZone isn't included in the output here!
       if (isempty (this.TimeZone))
-        local_dnums = this.dnums;
+        local_dnums = this.dnum;
       else
-        local_dnums = datetime.convertDatenumTimeZone (this.dnums, 'UTC', this.TimeZone);
+        local_dnums = datetime.convertDatenumTimeZone (this.dnum, 'UTC', this.TimeZone);
       endif
       out = cell (size (this));
       tfNaN = isnan (local_dnums);
@@ -649,7 +666,7 @@ classdef datetime
     ## @end deftypefn
     function out = datestr (this, varargin)
       #DATESTR Format as date string.
-      out = datestr (this.dnums, varargin{:});
+      out = datestr (this.dnum, varargin{:});
     endfunction
 
     ## -*- texinfo -*-
@@ -725,9 +742,9 @@ classdef datetime
     ## @end deftypefn
     function out = datestruct (this)
       if (isempty (this.TimeZone))
-        local_dnums = this.dnums;
+        local_dnums = this.dnum;
       else
-        local_dnums = datetime.convertDatenumTimeZone (this.dnums, 'UTC', this.TimeZone);
+        local_dnums = datetime.convertDatenumTimeZone (this.dnum, 'UTC', this.TimeZone);
       endif
       dvec = datevec (local_dnums);
       sz = size (this);
@@ -753,7 +770,7 @@ classdef datetime
     ##
     ## @end deftypefn
     function out = posixtime (this)
-      out = datetime.datenum2posix (this.dnums);
+      out = datetime.datenum2posix (this.dnum);
     endfunction
 
     ## -*- texinfo -*-
@@ -766,7 +783,7 @@ classdef datetime
     ##
     ## @end deftypefn
     function out = datenum (this)
-      dnums = this.dnums;
+      dnums = this.dnum;
       if (! isempty (this.TimeZone) && !isequal (this.TimeZone, 'UTC'))
         dnums = datetime.convertDatenumTimeZone (dnums, 'UTC', this.TimeZone);
       endif
@@ -846,7 +863,7 @@ classdef datetime
     ## @end deftypefn
     function out = isnat (this)
       #ISNAT True if input is NaT.
-      out = isnan (this.dnums);
+      out = isnan (this.dnum);
     endfunction
 
     ## -*- texinfo -*-
@@ -884,7 +901,7 @@ classdef datetime
     function out = lt (A, B)
       #LT Less than.
       [A, B] = datetime.promote (A, B);
-      out = A.dnums < B.dnums;
+      out = A.dnum < B.dnum;
     endfunction
 
     ## -*- texinfo -*-
@@ -903,7 +920,7 @@ classdef datetime
     function out = le (A, B)
       #LE Less than or equal.
       [A, B] = datetime.promote (A, B);
-      out = A.dnums <= B.dnums;
+      out = A.dnum <= B.dnum;
     endfunction
 
     ## -*- texinfo -*-
@@ -922,7 +939,7 @@ classdef datetime
     function out = ne (A, B)
       #NE Not equal.
       [A, B] = datetime.promote (A, B);
-      out = A.dnums != B.dnums;
+      out = A.dnum != B.dnum;
     endfunction
 
     ## -*- texinfo -*-
@@ -941,7 +958,7 @@ classdef datetime
     function out = eq (A, B)
       #EQ Equals.
       [A, B] = datetime.promote (A, B);
-      out = A.dnums == B.dnums;
+      out = A.dnum == B.dnum;
     endfunction
 
     ## -*- texinfo -*-
@@ -960,7 +977,7 @@ classdef datetime
     function out = ge (A, B)
       #GE Greater than or equal.
       [A, B] = datetime.promote (A, B);
-      out = A.dnums >= B.dnums;
+      out = A.dnum >= B.dnum;
     endfunction
 
     ## -*- texinfo -*-
@@ -979,7 +996,7 @@ classdef datetime
     function out = gt (A, B)
       #GT Greater than.
       [A, B] = datetime.promote (A, B);
-      out = A.dnums > B.dnums;
+      out = A.dnum > B.dnum;
     endfunction
 
     # Arithmetic
@@ -1011,7 +1028,7 @@ classdef datetime
       endif
       if (isa (B, 'duration'))
         out = A;
-        out.dnums = A.dnums + B.days;
+        out.dnum = A.dnum + B.days;
       elseif (isa (B, 'calendarDuration'))
         [A, B] = tblish.internal.chrono.scalarexpand (A, B);
         out = A;
@@ -1036,15 +1053,15 @@ classdef datetime
         ds.Month = ds.Month - dur.Months;
         ds.Day = ds.Day - dur.Days;
         tmp = datetime.ofDatestruct (ds);
-        tmp.dnums = tmp.dnums - dur.Time;
-        out.dnums = tmp.dnums;
+        tmp.dnum = tmp.dnum - dur.Time;
+        out.dnum = tmp.dnum;
       else
         ds.Year = ds.Year + dur.Years;
         ds.Month = ds.Month + dur.Months;
         ds.Day = ds.Day + dur.Days;
         tmp = datetime.ofDatestruct (ds);
-        tmp.dnums = tmp.dnums + dur.Time;
-        out.dnums = tmp.dnums;
+        tmp.dnum = tmp.dnum + dur.Time;
+        out.dnum = tmp.dnum;
       endif
     endfunction
 
@@ -1069,7 +1086,7 @@ classdef datetime
       #MINUS Subtraction.
       if (isa (A, 'datetime') && isa (B, 'datetime'))
         [A, B] = datetime.promote(A, B);
-        out = duration.ofDays (A.dnums - B.dnums);
+        out = duration.ofDays (A.dnum - B.dnum);
       else
         out = A + -B;
       endif
@@ -1089,7 +1106,7 @@ classdef datetime
     ## @end deftypefn
     function out = diff (this)
       #DIFF Differences between elements
-      out = duration.ofDays (diff (this.dnums));
+      out = duration.ofDays (diff (this.dnum));
     endfunction
 
     ## -*- texinfo -*-
@@ -1108,7 +1125,7 @@ classdef datetime
     function out = isbetween (this, lower, upper)
       #ISBETWEEN Whether elements are within a time interval
       [this, lower, upper] = datetime.promote (this, lower, upper);
-      out = lower.dnums <= this.dnums && this.dnums <= upper.dnums;
+      out = lower.dnum <= this.dnum && this.dnum <= upper.dnum;
     endfunction
 
     function out = colon (this, varargin)
@@ -1140,7 +1157,7 @@ classdef datetime
         error ('base and limit must both be scalar');
       endif
       out = this;
-      out.dnums = this.dnums:increment.days:limit.dnums;
+      out.dnum = this.dnum:increment.days:limit.dnum;
     endfunction
 
     ## -*- texinfo -*-
@@ -1172,7 +1189,7 @@ classdef datetime
         error ('Inputs must be scalar');
       endif
       out = from;
-      out.dnums = linspace (from.dnums, to.dnums, n);
+      out.dnum = linspace (from.dnum, to.dnum, n);
     endfunction
   endmethods
 
@@ -1182,99 +1199,99 @@ classdef datetime
 
     function out = numel (this)
       #NUMEL Number of elements in array.
-      out = numel (this.dnums);
+      out = numel (this.dnum);
     endfunction
 
     function out = ndims (this)
       #NDIMS Number of dimensions.
-      out = ndims (this.dnums);
+      out = ndims (this.dnum);
     endfunction
 
     function out = size (this, dim)
       #SIZE Size of array.
       if (nargin == 1)
-        out = size (this.dnums);
+        out = size (this.dnum);
       else
-        out = size (this.dnums, dim);
+        out = size (this.dnum, dim);
       endif
     endfunction
 
     function out = isempty (this)
       #ISEMPTY True for empty array.
-      out = isempty (this.dnums);
+      out = isempty (this.dnum);
     endfunction
 
     function out = isscalar (this)
       #ISSCALAR True if input is scalar.
-      out = isscalar (this.dnums);
+      out = isscalar (this.dnum);
     endfunction
 
     function out = isvector (this)
       #ISVECTOR True if input is a vector.
-      out = isvector (this.dnums);
+      out = isvector (this.dnum);
     endfunction
 
     function out = iscolumn (this)
       #ISCOLUMN True if input is a column vector.
-      out = iscolumn (this.dnums);
+      out = iscolumn (this.dnum);
     endfunction
 
     function out = isrow (this)
       #ISROW True if input is a row vector.
-      out = isrow (this.dnums);
+      out = isrow (this.dnum);
     endfunction
 
     function out = ismatrix (this)
       #ISMATRIX True if input is a matrix.
-      out = ismatrix (this.dnums);
+      out = ismatrix (this.dnum);
     endfunction
 
     function this = reshape (this, varargin)
       #RESHAPE Reshape array.
-      this.dnums = reshape (this.dnums, varargin{:});
+      this.dnum = reshape (this.dnum, varargin{:});
     endfunction
 
     function this = squeeze (this, varargin)
       #SQUEEZE Remove singleton dimensions.
-      this.dnums = squeeze (this.dnums, varargin{:});
+      this.dnum = squeeze (this.dnum, varargin{:});
     endfunction
 
     function this = circshift (this, varargin)
       #CIRCSHIFT Shift positions of elements circularly.
-      this.dnums = circshift (this.dnums, varargin{:});
+      this.dnum = circshift (this.dnum, varargin{:});
     endfunction
 
     function this = permute (this, varargin)
       #PERMUTE Permute array dimensions.
-      this.dnums = permute (this.dnums, varargin{:});
+      this.dnum = permute (this.dnum, varargin{:});
     endfunction
 
     function this = ipermute (this, varargin)
       #IPERMUTE Inverse permute array dimensions.
-      this.dnums = ipermute (this.dnums, varargin{:});
+      this.dnum = ipermute (this.dnum, varargin{:});
     endfunction
 
     function this = repmat (this, varargin)
       #REPMAT Replicate and tile array.
-      this.dnums = repmat (this.dnums, varargin{:});
+      this.dnum = repmat (this.dnum, varargin{:});
     endfunction
 
     function this = ctranspose (this, varargin)
       #CTRANSPOSE Complex conjugate transpose.
-      this.dnums = ctranspose (this.dnums, varargin{:});
+      this.dnum = ctranspose (this.dnum, varargin{:});
     endfunction
 
     function this = transpose (this, varargin)
       #TRANSPOSE Transpose vector or matrix.
-      this.dnums = transpose (this.dnums, varargin{:});
+      this.dnum = transpose (this.dnum, varargin{:});
     endfunction
 
     function [this, nshifts] = shiftdim (this, n)
       #SHIFTDIM Shift dimensions.
       if (nargin > 1)
-        this.dnums = shiftdim (this.dnums, n);
+        this.dnum = shiftdim (this.dnum, n);
       else
-        [this.dnums, nshifts] = shiftdim (this.dnums);
+        [this.dnum, nshifts] = shiftdim (this.dnum);
       endif
     endfunction
 
@@ -1282,8 +1299,8 @@ classdef datetime
       #CAT Concatenate arrays.
       args = datetime.promotec (varargin);
       out = args{1};
-      fieldArgs = cellfun (@(obj) obj.dnums, args, 'UniformOutput', false);
-      out.dnums = cat (dim, fieldArgs{:});
+      fieldArgs = cellfun (@(obj) obj.dnum, args, 'UniformOutput', false);
+      out.dnum = cat (dim, fieldArgs{:});
     endfunction
 
     function out = horzcat (varargin)
@@ -1484,21 +1501,21 @@ classdef datetime
       if (isnumeric (rhs) && isequal (size (rhs), [0 0]))
         # Special `x(ix) = []` deletion form
         out = this;
-        out.dnums(s.subs{:}) = [];
+        out.dnum(s.subs{:}) = [];
         return
       endif
       if (! isa (rhs, 'datetime'))
         rhs = datetime (rhs);
       endif
       out = this;
-      out.dnums = tblish.internal.chrono.prefillNewSizeForSubsasgn(this.dnums, s.subs, NaN);
-      out.dnums(s.subs{:}) = rhs.dnums;
+      out.dnum = tblish.internal.chrono.prefillNewSizeForSubsasgn(this.dnum, s.subs, NaN);
+      out.dnum(s.subs{:}) = rhs.dnum;
     endfunction
 
     function out = subsrefParensPlanar (this, s)
       #SUBSREFPARENSPLANAR ()-indexing for planar object
       out = this;
-      out.dnums = this.dnums(s.subs{:});
+      out.dnum = this.dnum(s.subs{:});
     endfunction
 
     function out = parensRef (this, varargin)

@@ -3207,9 +3207,9 @@ classdef table
         hasWarned = false;
       endif
       if ! hasWarned
-        warning ("Tablicious:deprecated-function", ["table.rows() is deprecated and replaced by height(table). " ...
+        warning ("Tablicious:deprecated-function", ["table.rows() is deprecated and replaced by height (table). " ...
           "table.rows() is deprecated as of Tablicious 0.4.0, and targeted for removal in 0.5.0. " ...
-          "Please switch to using height(tbl)."])
+          "Please switch to using height (tbl)."])
         hasWarned = true;
       endif
       out = height (this);
@@ -3221,9 +3221,9 @@ classdef table
         hasWarned = false;
       endif
       if ! hasWarned
-        warning ("Tablicious:deprecated-function", ["table.columns() is deprecated and replaced by width(table). " ...
+        warning ("Tablicious:deprecated-function", ["table.columns() is deprecated and replaced by width (table). " ...
           "table.columns() is deprecated as of Tablicious 0.4.0, and targeted for removal in 0.5.0. " ...
-          "Please switch to using width(tbl)."])
+          "Please switch to using width (tbl)."])
         hasWarned = true;
       endif
       out = width (this);
