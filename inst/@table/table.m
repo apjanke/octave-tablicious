@@ -530,7 +530,7 @@ classdef table
       endif
     endfunction
 
-    ## -*- texinfo -*-
+    ## ===== texinfo disabled so it doesn't appear in the user namual =====
     ## @node table.end
     ## @deftypefn {Method} {@var{out} =} end (@var{obj}, @var{k}, @var{n})
     ##
@@ -538,6 +538,9 @@ classdef table
     ##
     ## @end deftypefn
     function out = end (this, k, n)
+      if (n == 1)
+        error ('table.end: single-index indexing is not supported for tables')
+      endif
       out = size (this, k);
     endfunction
 

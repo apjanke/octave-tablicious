@@ -1027,6 +1027,14 @@ classdef categorical
       endif
     endfunction
 
+    function out = end (this, k, n)
+      if n == 1
+        out = numel (this);
+      else
+        out = size (this, k);
+      endif
+    endfunction
+
     function out = numel (this)
       #NUMEL Number of elements in array.
       out = numel (this.code);

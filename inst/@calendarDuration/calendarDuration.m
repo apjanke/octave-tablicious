@@ -440,6 +440,14 @@ classdef calendarDuration
       endif
     endfunction
 
+    function out = end (this, k, n)
+      if n == 1
+        out = numel (this);
+      else
+        out = size (this, k);
+      endif
+    endfunction
+
     function out = isempty (this)
       #ISEMPTY True for empty array.
       out = isempty (this.Sign);
