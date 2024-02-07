@@ -238,7 +238,7 @@ classdef localdate
   methods
 
     function validate (this)
-      mustBeNumeric (this.dnums, 'datenum values');
+      myMustBeNumeric (this.dnums, 'datenum values');
     endfunction
 
     function out = datetime (this)
@@ -991,7 +991,7 @@ function out = isIntOrNanOrInf (x)
   out = tfInt | isnan (x) | isinf (x);
 endfunction
 
-function mustBeNumeric (x, label)
+function myMustBeNumeric (x, label)
   if (nargin < 2); label = []; endif
   if (isnumeric (x))
     return
