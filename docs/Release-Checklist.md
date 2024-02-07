@@ -1,34 +1,35 @@
 # Tablicious Release Checklist
 
 * Run all the tests.
-  * `make test`, duh.
-    * TODO: Fix the `make test` target! ;)
-  * Okay, so instead, run Octave, `cd` to the repo, and do `runtests .`.
+  * `__run_test_suite__ ({fullfile(getenv('HOME'),'/repos/octave-tablicious/inst')}, {})`
+  * `tblish_test_tablicious`
   * Wouldn't hurt to do `make clean && git status && make test` and manual-cleanup, just to be sure.
 * Double-check the version number and date in `DESCRIPTION`.
 * Update the `CHANGES.txt` file with the release date.
   * And check that it has a complete change list for the release. This _should_ be done as changes are committed, but we're not great about that.
 * Update the installation instructions in README to use the upcoming release tarball URL.
   * Format is: `https://github.com/apjanke/octave-tablicious/releases/download/v<version>/tablicious-<version>.tar.gz`
-* Regenerate the doco.
-  * `(cd doc; make maintainer-clean; make all)` if you had to change it.
+* Update the generated doco
+  * Regenerate the doco: `make doc; make gh-pages`
+  * Make a versioend copy for this release: `mkdir -p docs/release/v<version>/user-guide; cd doc; cp -R html tablicious.html tablicious.pdf ../docs/release/v<version>/user-guide`
 * Commit all the files changed by the above steps.
-  * Use form: `git commit -a -m 'Cut release v<version>'`
+  * Use form: `git add -A; git commit -a -m '[release] v<version>'`
 * Make sure your repo is clean: `git status` should show no local changes.
 * Run `make dist` first to make sure it works.
+  * This has to be done *after* the commit, because it extracts from git history.
 * Create a git tag and push it and the above changes to GitHub.
   * `git tag v<version>`
   * `git push; git push --tags`
 * Create a new GitHub release from the tag.
-  * Just use `<version>` as the name for the release.
+  * Just use `<version>` as the name for the release, not `v<version>` or `v <version>`.
   * Copy and paste the changes for this release from the `CHANGES.txt` file into the GitHub Release description field.
   * Upload the dist tarball as a file for the release.
 * Test installing the release using `pkg install` against the new release URL.
   * On macOS.
   * On Ubuntu.
   * _sigh_ I suppose, on Windows.
-  * Do this by copy-and-pasting the `pkg install` example from the 
-    [live README page](https://github.com/apjanke/octave-tablicious/blob/master/README.md) 
+  * Do this by copy-and-pasting the `pkg install` example from the
+    [live README page](https://github.com/apjanke/octave-tablicious/blob/master/README.md)
     on the GitHub repo. This makes sure the current install instructions are correct.
     * Don't short-circuit this and just edit an entry from your Octave command history! Open GitHub in a browser and actually copy-and-paste it!
     * I wish there there was a `pkg test <package>` command to run all the BISTs from a package.
