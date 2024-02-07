@@ -247,41 +247,49 @@ classdef missing
 
     function out = plus (A, B)
       args = missing.demote ({A B});
+      not_supported_by_missing (args, 'plus');
       out = plus(args{1}, args{2});
     endfunction
 
     function out = minus (A, B)
       args = missing.demote ({A B});
+      not_supported_by_missing (args, 'minus');
       out = minus(args{1}, args{2});
     endfunction
 
     function out = times (A, B)
       args = missing.demote ({A B});
+      not_supported_by_missing (args, 'times');
       out = times(args{1}, args{2});
     endfunction
 
     function out = mtimes (A, B)
       args = missing.demote ({A B});
+      not_supported_by_missing (args, 'mtimes');
       out = mtimes(args{1}, args{2});
     endfunction
 
     function out = divide (A, B)
       args = missing.demote ({A B});
+      not_supported_by_missing (args, 'divide');
       out = divide(args{1}, args{2});
     endfunction
 
     function out = rdivide (A, B)
       args = missing.demote ({A B});
+      not_supported_by_missing (args, 'rdivide');
       out = rdivide(args{1}, args{2});
     endfunction
 
     function out = power (A, B)
       args = missing.demote ({A B});
+      not_supported_by_missing (args, 'power');
       out = power(args{1}, args{2});
     endfunction
 
     function out = mpower (A, B)
       args = missing.demote ({A B});
+      not_supported_by_missing (args, 'mpower');
       out = mpower(args{1}, args{2});
     endfunction
 
@@ -289,6 +297,15 @@ classdef missing
 
     function out = cat (dim, varargin)
       args = missing.demote (varargin);
+      if is_all_cell_els_missing_type (args)
+        out = missing;
+        dt = cell (size (args));
+        for i = 1:numel (args)
+          dt{i} = args{i}.data;
+        endfor
+        out.data = cat (dim, dt{:});
+        return
+      endif
       out = cat (dim, args{:});
     endfunction
 
@@ -513,6 +530,12 @@ classdef missing
     function out = demote (args)
       #DEMOTE Internal implementation method
       #
+      # Convert a @missing array to the a type-specific missing value of its
+      # counterpart arguments, so it can be combined with them using that type's
+      # operations like cat() or plus(). This handles the implicit conversion of
+      # missing values to builtin types etc. for those types whose implementations
+      # do not themselves support missing values.
+      #
       # This will become private before tblish.table release 1.0.
       found_type = [];
       for i = 1:numel (args)
@@ -562,3 +585,35 @@ classdef missing
   endmethods
 
 endclassdef
+
+function out = is_all_cell_els_missing_type (c)
+  out = true;
+  for i = 1:numel (c)
+    if ! isa (c{i}, 'missing')
+      out = false;
+      return
+    endif
+  endfor
+endfunction
+
+function not_supported_by_missing (args, label)
+  if is_all_cell_els_missing_type (args)
+    error ('missing: operation not supported by @missing: %s', label)
+  endif
+endfunction
+
+## Tests for missing
+%!test
+%! m = missing;
+%! assert (isa (m, 'missing'))
+%! assert (m != m)
+%! assert (ismissing (m))
+%!test
+%! m = missing;
+%! m2 = [m m];
+%! assert (isequal (size (m2), [1 2]))
+%! m2 = [m m; m m];
+%! assert (isequal (size (m2), [2 2]))
+%! m2 = repmat (m, [3 3]);
+%! assert (isequal (size (m2), [3 3]))
+%! assert (all (ismissing (m2(:))))

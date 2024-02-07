@@ -31,6 +31,8 @@ Version 0.4.0 (in progress)
 * Add idempotent one-arg constructor forms for string, datetime, categorical. (But not table.)
 * Add `NaS`, `NaC`, and `todatetime` functions.
 * Make `head` and `tail` functions instead of methods on `table`.
+* Add `string.ne` method.
+* Fix concatenation of `@missing` arrays.
 * Rename `+tablicious` package to `+tblish`; merge `+octave` package into `+tblish`.
 * Move `+table_examples` package to `+tblish/+examples`.
 * Move the `sizeof()` override methods to a `tblish.sizeof()` function to avoid shadowing core Octave's `sizeof`, until I understand if it's intended to support extension by classdefs.
