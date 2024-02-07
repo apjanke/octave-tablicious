@@ -4,7 +4,9 @@ Tablicious Changelog
 Unreleased (unreleased)
 -----------------------
 
-Nothing here yet.
+### Bug Fixes
+
+* Fix missing trailing newline in string display in `string.disp`.
 
 Version 0.4.0 (2024-02-07)
 --------------------------
