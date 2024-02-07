@@ -5,7 +5,13 @@ Unreleased (in progress)
 -----------------------
 
 * Add `end` override methods to string, datetime, etc. so `x(end)` indexing works correctly.
-* table: summary: omit NaNs from mean(), include NaN counts
+* table
+  * table: summary: omit NaNs from mean(), include NaN counts.
+  * table: Fix rownames, broken by bad internal `.Properties` reference.
+
+### Documentation
+
+* Alphabetize methods under classes in alphabetical index.
 
 0.4.1 (2024-02-07)
 ------------------
