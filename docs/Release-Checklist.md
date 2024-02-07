@@ -11,7 +11,8 @@
   * Format is: `https://github.com/apjanke/octave-tablicious/releases/download/v<version>/tablicious-<version>.tar.gz`
 * Update the generated doco
   * Regenerate the doco: `make doc; make gh-pages`
-  * Make a versioend copy for this release: `mkdir -p docs/release/v<version>/user-guide; cd doc; cp -R html tablicious.html tablicious.pdf ../docs/release/v<version>/user-guide`
+  * Make a versioned copy for this release: `mkdir -p docs/release/v<version>/user-guide; cd doc; cp -R html tablicious.html tablicious.pdf ../docs/release/v<version>/user-guide`
+  * Add a section for the new release's doco to `docs/index.md`, and update the links in the main paragraph to point to it.
 * Commit all the files changed by the above steps.
   * Use form: `git add -A; git commit -a -m '[release] v<version>'`
 * Make sure your repo is clean: `git status` should show no local changes.
@@ -32,14 +33,13 @@
     [live README page](https://github.com/apjanke/octave-tablicious/blob/master/README.md)
     on the GitHub repo. This makes sure the current install instructions are correct.
     * Don't short-circuit this and just edit an entry from your Octave command history! Open GitHub in a browser and actually copy-and-paste it!
-    * I wish there there was a `pkg test <package>` command to run all the BISTs from a package.
-    * Barring that, do a manual `pkg list`, copy and paste the Tablicious package path into a `cd('<package_path>')`, and then do `runtests .`
+  * `pkg test tablicious` should do it.
 * Open development for next version
-  * Update version number in `DESCRIPTION` to next patch or minor version, as appropriate.
+  * Update version number and date in `DESCRIPTION` to next patch or minor version, as appropriate.
     * Include a `-SNAPSHOT` suffix to indicate this is a work in progress.
   * Add a section to `CHANGES.txt` for the new upcoming release. Use `(in progress)` for its release date.
-  * Rebuild the doco.
-    * `(cd doc; make maintainer-clean; make all)`
+  * Rebuild the doco
+    * `make doc; make gh-pages`
   * `git commit -a -m 'Open development for v<version>'; git push`
 * Close the GitHub Issues Milestone for this release.
   * Create a new Milestone for the next release, if one doesn't already exist.
