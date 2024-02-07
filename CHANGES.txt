@@ -4,16 +4,17 @@ Tablicious Changelog
 Unreleased (in progress)
 -----------------------
 
-* Add `end` override methods to `string`, `datetime`, etc. so `x(end)` indexing works correctly.
+* Add `end` override methods to string, datetime, etc. so `x(end)` indexing works correctly.
+* table: summary: omit NaNs from mean(), include NaN counts
 
 0.4.1 (2024-02-07)
 ------------------
 
 ### Bug Fixes
 
-* `string`:
-  * `string`: Fix missing trailing newline in string display in `string.disp`.
-  * `string`: Add `+` operator overload that does string concatenation.
+* string:
+  * string: Fix missing trailing newline in string display in `string.disp`.
+  * string: Add `+` operator overload that does string concatenation.
 
 Version 0.4.0 (2024-02-07)
 --------------------------

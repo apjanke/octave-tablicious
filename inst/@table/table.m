@@ -3267,10 +3267,12 @@ function out = glue_row_strs (strss, n_pad_chars)
 endfunction
 
 function out = summary_for_var_numeric (x)
-  x_min = min (x);
-  x_mean = mean (x);
-  x_max = max (x);
-  x_prcts = prctile (x, [25 50 75]);
+  xvec = x(:);
+  x_min = min (xvec);
+  x_mean = tblish.internal.nanmean (xvec);
+  x_max = max (xvec);
+  x_prcts = prctile (xvec, [25 50 75]);
+  n_nans = sum (isnan (xvec));
   out = {
     'Min.'      num2str(x_min)
     '1st Qu.'   num2str(x_prcts(1))
@@ -3279,6 +3281,9 @@ function out = summary_for_var_numeric (x)
     '3rd Qu.'   num2str(x_prcts(3))
     'Max.'      num2str(x_max)
   };
+  if (n_nans > 0)
+    out = [out; {'N. NaN', num2str(n_nans)}];
+  endif
 endfunction
 
 function out = summary_for_var_categorical (x)
