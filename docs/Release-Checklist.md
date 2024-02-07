@@ -40,7 +40,7 @@
   * Add a section to `CHANGES.txt` for the new upcoming release. Use `(in progress)` for its release date.
   * Rebuild the doco
     * `make doc; make gh-pages`
-  * `git commit -a -m 'Open development for v<version>'; git push`
+  * `git add -A; git commit -a -m 'Open development for next version'; git push`
 * Close the GitHub Issues Milestone for this release.
   * Create a new Milestone for the next release, if one doesn't already exist.
 * Post an announcement on the [Savannah bug for datetime support](https://savannah.gnu.org/bugs/index.php?47032) if this is a significant release with respect to the date/time classes.
