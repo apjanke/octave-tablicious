@@ -1,6 +1,11 @@
 Tablicious Changelog
 ====================
 
+Unreleased (in progress)
+------------------------
+
+Nothing here yet.
+
 0.4.2 (2024-02-07)
 ------------------
 
