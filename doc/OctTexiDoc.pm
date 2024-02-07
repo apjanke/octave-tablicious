@@ -232,7 +232,7 @@ sub read_class_at_dir {
         printf STDERR "Warning: No classdef file found in dir $dir\n";
         return;
     }
-    my $main_blocks = OctTexiDoc::extract_multiple_texinfo_blocks_from_mfile ($class_file);
+    my $main_blocks = OctTexiDoc::extract_multiple_texinfo_blocks_from_mfile ($class_file, $namespace, $self->auto_namespace);
     return unless (scalar (@$main_blocks));
     my $class_block = shift @$main_blocks;
     $$class_block{file} = $class_file;
@@ -246,7 +246,7 @@ sub read_class_at_dir {
         next unless $file_name =~ /\.m$/;
         next if $file_name eq $class_file_name;
         my $method_file = "$dir/$file_name";
-        my $blocks = OctTexiDoc::extract_multiple_texinfo_blocks_from_mfile ($method_file);
+        my $blocks = OctTexiDoc::extract_multiple_texinfo_blocks_from_mfile ($method_file, $namespace, $self->auto_namespace);
         push @{$$class_block{children}}, @$blocks;
     }
 
@@ -444,7 +444,7 @@ sub extract_multiple_texinfo_blocks_from_mfile {
     # This is currently broken: I'm using @node lines in the Texinfo to indicate node
     # starts, but the @node and @section/@subsection/@subsubsection are emitted automatically
     # by mktexi.pl.
-    my $do_prepend_ns = $auto_namespace eq 'yes';
+    my $do_prepend_ns = ($auto_namespace eq 'yes');
     my @blocks;
     my $block; # the current block
     my $in_block = 0;
