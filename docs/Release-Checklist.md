@@ -16,7 +16,7 @@
   * Use form: `git add -A; git commit -a -m '[release] v<version>'`
 * Make sure your repo is clean: `git status` should show no local changes.
 * Run `make dist` first to make sure it works.
-  * This has to be done *after* the commit, because it extracts from git history.
+  * This has to be done _after_ the commit, because it extracts from git history.
 * Create a git tag and push it and the above changes to GitHub.
   * `git tag v<version>`
   * `git push; git push --tags`
