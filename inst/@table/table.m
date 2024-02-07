@@ -3533,5 +3533,5 @@ endfunction
 ## @end deftypefn
 function out = hasrownames (tbl)
   #HASROWNAMES True if this table has row names defined
-  out = ! isempty (tbl.Properties.RowNames);
+  out = ! isempty (tbl.RowNames);
 endfunction
