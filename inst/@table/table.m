@@ -3120,15 +3120,15 @@ classdef table
 
     # Summary stuff
 
-    function summary_impl (this, format)
-      if (nargin < 2 || isempty (format)); format = 'compact'; endif
+    function summary_impl (this, fmt)
+      if (nargin < 2 || isempty (fmt)); fmt = 'compact'; endif
       infos = {};
       for i_var = 1:width (this)
         infos{i_var} = summary_for_variable (this, i_var);
       endfor
       printf ("%s: %d %s by %d %s\n", class (this), height (this), this.DimensionNames{1}, ...
         width (this), this.DimensionNames{2});
-      switch (format)
+      switch (fmt)
         case 'long'
           for i_var = 1:numel (infos)
             s = infos{i_var};
@@ -3168,7 +3168,7 @@ classdef table
             endfor
           endfor
         otherwise
-          error ('table.summary: invalid format: ''%s''', format);
+          error ('table.summary: invalid format: ''%s''', fmt);
       endswitch
     endfunction
 
