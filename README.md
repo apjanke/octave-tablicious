@@ -8,30 +8,24 @@ Tablicious provides tabular/relational data structures for Octave. You can think
 This package attempts to provide a set of mostly-Matlab-compatible implementations of the table class and related structures and functions.
 It provides:
 
-* `table` and related construction/conversion functions
-* Missing Data support
-  * `ismissing` and friends: `rmmissing`, `standardizeMissing`
-  * `@missing`
-  * `fillmissing` is not implemented yet, because that requires some actual math.
-* `eqn` and `isnanny`
-  * These are experimental Octave extensions for dealing with NaN-like values. They are used by `table`, `ismissing`, and friends, but should be generally useful, and need to be global so they can be overridden by user-defined classes.
-* `string`
-* `categorical`
+* A `table` array class, and related functions.
+  * (That's kind of our whole thing.)
+* `datetime`, `string`, and `categorical` array classes.
+  * (Because they're pretty useful when working with tables, and base Octave doesn't have them yet.)
+* Auxiliary functions related to those classes.
 
-It currently does not provide, but we would like to add:
+It currently does not provide, but we would like to maybe add at some point:
 
 * `timetable`
 * Table I/O, such as `readtable`, `writetable`, and `csvread`/`dlmread` `table` support
-
-The `string` and `categorical` support are incomplete, and less mature than the rest of the package.
 
 ## Installation and usage
 
 ### Requirements
 
-Tablicious 0.4.x requires Octave 7.0 or newer. It may well work on earlier versions, but is not tested against them.
+Tablicious 0.4.x requires Octave 7.0 or newer. It may well work on earlier versions, but is not really tested against them.
 
-Tablicious does not require the Octave Forge [Statistics package](https://gnu-octave.github.io/packages/statistics/), but you will probably want it, because Statistics supplies functions that are frequently useful for data analysis in a tabular context. In particular, `ismissing()` is very useful, and the Statistics package supplies the general implementation of it.
+Tablicious does not require the Octave Forge [Statistics package](https://gnu-octave.github.io/packages/statistics/), but you will probably want it, because Statistics supplies functions that are frequently useful for data analysis in a tabular context. In particular, `ismissing()` and the related missing-filling functions are useful, and the Statistics package supplies the general implementation of them.
 
 ### Quick start
 
@@ -73,7 +67,7 @@ To avoid issues with the Matlab license's Non-Compete clause, this project needs
 
 ## License
 
-Tablicious is mostly GNU GPL v3, with some other Free and Open Source licensed code redistributed with it. I believe this is all compatible with redistribution as a GNU GPL licensed package, but I am not a lawyer.
+Tablicious is mostly GNU GPL v3, with some other Free and Open Source licensed code and files redistributed with it. I believe this is all compatible with redistribution as a GNU GPL licensed package, but I am not a lawyer.
 
 The main code of Tablicious is licensed under the GNU GPL version 3. See the `LICENSE` file.
 
