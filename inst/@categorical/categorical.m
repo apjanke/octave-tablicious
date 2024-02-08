@@ -389,6 +389,28 @@ classdef categorical
     endfunction
 
     ## -*- texinfo -*-
+    ## @node categorical.double
+    ## @deftypefn {Method} {@var{out} =} double (@var{obj})
+    ##
+    ## Convert to double array, by getting the underlying code values.
+    ##
+    ## Converts @var{obj} to a string array. The doubles will be the
+    ## underlying numeric code values of @var{obj}, or @code{NaN} for
+    ## undefined values.
+    ##
+    ## The numeric code values of two different categorical arrays do
+    ## *not* necessarily correspond to the same string values, and can
+    ## *not* be meaningfully compared for equality or ordering.
+    ##
+    ## Returns a @code{double} array the same size as @var{obj}.
+    ##
+    ## @end deftypefn
+    function out = double (this)
+      x = double (this.code);
+      x(this.tfMissing) = NaN;
+    endfunction
+
+    ## -*- texinfo -*-
     ## @node categorical.cellstr
     ## @deftypefn {Method} {@var{out} =} cellstr (@var{obj})
     ##
