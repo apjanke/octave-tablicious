@@ -45,7 +45,7 @@ function out = mycombvec (vecs)
       rest = vecs(2:end);
       rest_combs = tblish.internal.mycombvec (rest);
       for i = 1:numel (a)
-        out = [out; [repmat (a(i), [size (rest_combs,1) 1]) rest_combs]];
+        out = [out; [repmat(a(i), [size(rest_combs,1), 1]), rest_combs]];
       endfor
   endswitch
 endfunction
