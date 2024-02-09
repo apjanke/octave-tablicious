@@ -44,8 +44,8 @@ endfunction
 function summary_of_table (x, fmt)
   if (nargin < 2 || isempty (fmt)); fmt = 'compact'; endif
   infos = {};
-  for i_var = 1:width (x)
-    infos{i_var} = summary_of_table_variable (x, i_var);
+  for i_var_1 = 1:width (x)
+    infos{i_var_1} = summary_of_table_variable (x, i_var_1);
   endfor
   printf ("%s: %d %s by %d %s\n", class (x), height (x), x.Properties.DimensionNames{1}, ...
     width (x), x.Properties.DimensionNames{2});
@@ -73,7 +73,7 @@ function summary_of_table (x, fmt)
         for j = 1:numel (strss)
           s = ss{j};
           col = {};
-          col{end+1} = sprintf ("%d: %s", i_var, s.name);
+          col{end+1} = sprintf ("%d: %s", i + j - 1, s.name);
           col{end+1} = sprintf ("   %s", s.type);
           val_col_width = max (cellfun(@numel, s.info(:,2)));
           val_col_width = max (val_col_width, 8);
@@ -84,8 +84,8 @@ function summary_of_table (x, fmt)
           strss{j} = col(:);
         endfor
         lines = glue_row_strs (strss, 3);
-        for j = 1:numel (lines)
-          printf ("%s\n", lines{j});
+        for i_line = 1:numel (lines)
+          printf ("%s\n", lines{i_line});
         endfor
       endfor
     otherwise
