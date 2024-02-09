@@ -19,7 +19,9 @@
 classdef TzDb
   #TZDB Interface to the tzinfo database
   #
-  # This class is an interface to the tzinfo database (AKA the Olson database)
+  # This class is a basic interface to the tzinfo database (AKA the Olson database).
+  # It is bare-bones, and only supports the specific functionality that Tablicious's
+  # chrono code needs.
 
   properties
     # Path to the zoneinfo directory
@@ -27,6 +29,7 @@ classdef TzDb
   endproperties
 
   methods (Static)
+
     function out = instance ()
       #INSTANCE Shared global instance of TzDb
       persistent value
@@ -35,6 +38,18 @@ classdef TzDb
       endif
       out = value;
     endfunction
+
+    function out = defaultZoneinfoPath ()
+      if (ispc)
+        # Use the zoneinfo database bundled with Tablicious, because Windows doesn't
+        # supply one.
+        this_dir = fileparts (mfilename ('fullpath'));
+        out = fullfile (this_dir, 'resources', 'zoneinfo');
+      else
+        out = '/usr/share/zoneinfo';
+      endif
+    endfunction
+
   endmethods
 
   methods
@@ -45,11 +60,11 @@ classdef TzDb
       # this = TzDb (path)
       #
       # path (char) is the path to the tzinfo database directory. If omitted or
-      # empty, it defaults to the default path ('/usr/share/zoneinfo' on Unix,
-      # and an error on Windows).
+      # empty, it defaults to the default path ('/usr/share/zoneinfo' on Linux,
+      # and the bundled tzdb on Windows).
       if (nargin < 1);  path = [];  endif
       if (isempty (path))
-        this.path = tblish.internal.chrono.tzinfo.TzDb.defaultPath;
+        this.path = tblish.internal.chrono.tzinfo.TzDb.defaultZoneinfoPath;
       else
         this.path = path;
       endif
@@ -125,6 +140,7 @@ classdef TzDb
       out = tblish.internal.chrono.tzinfo.TzInfo (defn_s);
       out = calculateDerivedData (out);
     endfunction
+
   endmethods
 
   methods (Access = private)
@@ -134,7 +150,8 @@ classdef TzDb
 
       # Use the "deprecated" plain zone.tab because zone1970.tab is not present
       # on all systems.
-      zoneTabFile = [this.path '/zone.tab'];
+      # TODO: Find a reference for doco on this.
+      zoneTabFile = fullfile (this.path, 'zone.tab');
 
       txt = tblish.internal.chrono.slurpTextFile (zoneTabFile);
       lines = strsplit (txt, sprintf('\n'));
@@ -181,21 +198,6 @@ classdef TzDb
       parser.data = data;
       parser.sectionFormat = sectionFormat;
       [out, n_bytes_read] = parser.parseZoneSection;
-    endfunction
-
-  endmethods
-
-  methods (Static)
-
-    function out = defaultPath ()
-      if (ispc)
-        # Use the zoneinfo database bundled with Tablicious, because Windows doesn't
-        # supply one.
-        this_dir = fileparts (mfilename ('fullpath'));
-        out = fullfile (this_dir, 'resources', 'zoneinfo');
-      else
-        out = '/usr/share/zoneinfo';
-      endif
     endfunction
 
   endmethods
