@@ -86,7 +86,7 @@ classdef table
   ##
   ## Names for the two dimensions of the table array, as a cellstr row vector. Always
   ## exactly 2-long, because tables are always exactly 2-D. Defaults to
-  ## @code{{"Row", "Variables"}}. (I feel the singular "Row" and plural "Variables" here
+  ## @code{@{"Row", "Variables"@}}. (I feel the singular "Row" and plural "Variables" here
   ## are inconsistent, but that's what Matlab uses, so Tablicious uses it too, for
   ## Matlab compatibility.)
   ##
