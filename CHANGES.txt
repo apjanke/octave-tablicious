@@ -78,8 +78,8 @@ Version 0.4.0 (2024-02-07)
 * Revamp doc-generation tools.
 * Add experimental MP-Test based unit tests to supplement BISTs, for detailed testing of `table` behavior.
 
-Version 0.3.7 (2023-01-05)
------------------------------
+Version 0.3.7 (2023-01-06)
+--------------------------
 
 * Fix installation under Octave 7.x. (#91)
 * Fix orphaned sections in documentation.
@@ -91,42 +91,42 @@ Internal refactoring:
 * Rearrange doco files so the main source file is named `*.texi` and its extension is recognized by editors.
 
 Version 0.3.6 (2021-07-05)
------------------------------
+--------------------------
 
 * Fix multi-argout calling form of table.size. (Thanks, @rdzman!)
 * Fix table dot-indexing assignment by having table.numel always return 1.
 * Support arbitrary strings as variable names (#82).
 
 Version 0.3.5 (2020-01-30)
------------------------------
+--------------------------
 
 * Fix compiler warnings on systems with 32-bit `octave_idx_type`
 
 Version 0.3.4 (2020-01-28)
------------------------------
+--------------------------
 
 * Octave 6.x compatibility: move some mustBe* validators into compatibility shims
 
 Version 0.3.3 (2020-01-28)
------------------------------
+--------------------------
 
 * Fix version metadata in the distribution
 
 Version 0.3.2 (2020-01-28)
------------------------------
+--------------------------
 
 * sprintf and fprintf support for datetime, categorical, and other classes
 * Added this ChangeLog
 * Octave 6.x compatibility fix: use different function for registering QHelp doco
 
 Version 0.3.1 (2020-01-27)
------------------------------
+--------------------------
 
 * Fix a dumb bug that broke string
 * Fix "shadowed function" warning in Octave 5.x
 
 Version 0.3.0 (2020-01-18)
------------------------------
+--------------------------
 
 * Various bugfixes
 * Added some examples
@@ -134,7 +134,7 @@ Version 0.3.0 (2020-01-18)
 This is the release that I think is ready for general consumption by the user community.
 
 Version 0.2.0 (2019-05-05)
------------------------------
+--------------------------
 
 * More basic table stuff
 * Now with datetime and duration, since I’ve merged the Chrono package into this project
@@ -144,7 +144,7 @@ Version 0.2.0 (2019-05-05)
 * Bug fixes, of course
 
 Version 0.1.0 (2019-04-30)
------------------------------
+--------------------------
 
 Initial release!
 

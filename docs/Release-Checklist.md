@@ -6,6 +6,7 @@
   * Wouldn't hurt to do `make clean && git status && make test` and manual-cleanup, just to be sure.
 * Double-check the version number and date in `DESCRIPTION`.
 * Update the `CHANGES.txt` file with the release date.
+  * Use the current calendar date in UTC time, not your local time.
   * And check that it has a complete change list for the release. This _should_ be done as changes are committed, but we're not great about that.
 * Update the installation instructions in README to use the upcoming release tarball URL.
   * Format is: `https://github.com/apjanke/octave-tablicious/releases/download/v<version>/tablicious-<version>.tar.gz`
