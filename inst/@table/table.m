@@ -43,6 +43,21 @@ classdef table
   ## (And due to this mechanism, it will cause problems if you have a @code{table}
   ## with a variable named @code{Properties}. Try to avoid that.)
   ##
+  ## WARNING ABOUT HANDLE CLASSES IN TABLE VARIABLES
+  ##
+  ## Using a handle class in a table variable (column) value may lead to unpredictable
+  ## and buggy behavior! A handle class array is a reference type, and it holds shared
+  ## mutable state, which may be shared with references to it in other table arrays or
+  ## outside the table array. The table class makes no guarantees about what it will
+  ## or will not do internally with arrays that are held in table variables, and any
+  ## operation on a table holding handle arrays may have unpredictable and undesirable
+  ## side effects. These side effects may change between versions of Tablicious.
+  ##
+  ## We currently recommend that you do not use handle classes in table variables. It
+  ## may be okay to use handle classes *inside* cells or other non-handle composite types
+  ## that are used in table variables, but this hasn't been fully thought through or
+  ## tested.
+  ##
   ## @seealso{tblish.table.grpstats, tblish.evalWithTableVars, tblish.examples.SpDb}
   ##
   ## @end deftp
@@ -66,6 +81,25 @@ classdef table
   ## is a cellstr column vector, if present.
   ##
   ## @end deftypeivar
+  ##
+  ## @deftypeivar table @code{cellstr} DimensionNames
+  ##
+  ## Names for the two dimensions of the table array, as a cellstr row vector. Always
+  ## exactly 2-long, because tables are always exactly 2-D. Defaults to
+  ## @code{{"Row", "Variables"}}. (I feel the singular "Row" and plural "Variables" here
+  ## are inconsistent, but that's what Matlab uses, so Tablicious uses it too, for
+  ## Matlab compatibility.)
+  ##
+  ## @end deftypeivar
+
+  properties (Constant, Access = private)
+    # Properties which are exposed under the .Properties property
+    # VariableValues will probably be deprecated soon, but it has been around from the
+    # beginning, so users may be using it; and we need to implement .Variables as a partial
+    # replacement anyway if we remove it.
+    # Order here is significant; it is the order of the fields in the external Properties struct.
+    ExposedProperties = {"VariableNames", "VariableValues", "RowNames", "DimensionNames"}
+  endproperties
 
   properties (SetAccess = private)
     # The names of the variables (columns), as cellstr
@@ -133,6 +167,7 @@ classdef table
         [varNames, varVals] = varargin{2:3};
         this.VariableNames = varNames;
         this.VariableValues = varVals;
+        mustBeValid (this)
         return
       endif
 
@@ -172,6 +207,7 @@ classdef table
         if (isfield (opts, 'DimensionNames'))
           this = setDimensionNames (this, opts.DimensionNames);
         endif
+        mustBeValid (this)
         return
       endif
 
@@ -194,40 +230,18 @@ classdef table
       endif
 
       # Input validation
-      if (! iscell (varVals) || (! isvector (varVals) && ! isempty (varVals)))
-        error ('table: VariableValues must be a cell vector');
-      endif
+      #
+      # Only need to do this for pre-assignment transformations or more-specific error
+      # messages. Overall class invariants are handled by the mustBeValid(this) call at
+      # the end.
       if (isstring (varNames))
         varNames = cellstr (varNames);
-      endif
-      if (! iscellstr (varNames) || (! isvector (varNames) && ! isempty (varNames)))
-        error ('table: VariableNames must be a cellstr vector');
       endif
       varNames = varNames(:)';
       varVals = varVals(:)';
       if (numel (varNames) != numel (varVals))
         error ('table: Inconsistent number of VariableNames (%d) and VariableValues (%d)', ...
           numel (varNames), numel (varVals));
-      endif
-      if (! isempty (varVals))
-        nRows = size (varVals{1}, 1);
-        for i = 2:numel (varVals)
-          if (ndims (varVals{i}) > 2)
-            error (['table: Variable values may not have > 2 dimensions; ' ...
-              'input %d (%s) has %d'], i, varNames{i}, ndims (varVals{i}));
-          endif
-          nRows2 = size (varVals{i}, 1);
-          if (nRows != nRows2)
-            error ('table: Inconsistent sizes: var 1 (%s) is %d rows; var %d (%s) is %d rows', ...
-              varNames{1}, nRows, i, varNames{i}, nRows2);
-          endif
-        endfor
-      endif
-      [uqNames, ix] = unique (varNames);
-      if (numel (uqNames) < numel (varNames))
-        ixBad = 1:numel (varNames);
-        ixBad(ix) = [];
-        error ('table: Duplicate VariableNames: %s', strjoin (varNames(ixBad), ', '));
       endif
 
       # Construction
@@ -237,8 +251,9 @@ classdef table
         this.RowNames = opts.RowNames;
       endif
       if (isfield (opts, 'DimensionNames'))
-        this = setDimensionNames (this, opts.DimensionNames);
+        this.DimensionNames = opts.DimensionNames;
       endif
+      mustBeValid (this)
     endfunction
 
     # Display
@@ -933,41 +948,46 @@ classdef table
       #SUBSASGN Subscripted assignment
 
       # Debugging display
-      # fprintf('subsasgn:\n'); this, s, val
+      # fprintf('table.subsasgn called:\n'); this, s, val
 
-      # Chained subscripts
+      # Detect chained subscripts
       chain_s = s(2:end);
-      s = s(1);
+      # "s1" is more to type than "s", but I like leaving the original input args unmodified
+      # for reference, and just not mutating vars when we can. So use a new "s1" instead of
+      # "s = s(1);".
+      s1 = s(1);
+
+      # Handle chained subscripts
       if (! isempty (chain_s))
-          rhs_in = subsref (this, s);
+          rhs_in = subsref (this, s1);
           rhs = subsasgn (rhs_in, chain_s, val);
       else
           rhs = val;
       endif
 
       out = this;
-      switch (s.type)
+      switch (s1.type)
         case '()'
-          if (numel (s.subs) != 2)
+          if (numel (s1.subs) != 2)
             error ('table.subsasgn: table ()-subscripting must use exactly 2 subscripts; got %d subscripts', ...
-              numel (s.subs))
+              numel (s1.subs))
           endif
           if (isnumeric (rhs) && isempty (rhs))
             # Special `x(ixR,ixC) = []` deletion form
-            [isRowColon, isVarColon] = deal (isequal (s.subs{1}, ':'), isequal (s.subs{2}, ':'));
+            [isRowColon, isVarColon] = deal (isequal (s1.subs{1}, ':'), isequal (s1.subs{2}, ':'));
             if (isRowColon)
               # Variable deletion form
-              out = removevars (this, s.subs{2});
+              out = removevars (this, s1.subs{2});
             elseif (isVarColon)
               # Row deletion form
-              out = subsetrows_impl(this, s.subs{1}, true);
+              out = subsetrows_impl(this, s1.subs{1}, true);
             else
-              error (['table.subsasgin: ()-indexed assignment with [] as RHS must have a ":" as ' ...
+              error (['table.subsasgn: ()-indexed assignment with [] as RHS must have a ":" as ' ...
                 'either the row or variable subscript'])
             endif
           elseif istable (rhs)
             out = this;
-            [ixRow, ixVar] = resolveRowVarRefs (this, s.subs{1}, s.subs{2});
+            [ixRow, ixVar] = resolveRowVarRefs (this, s1.subs{1}, s1.subs{2});
             if islogical (ixVar); ixVar2 = find (ixVar); else; ixVar2 = ixVar; endif
             nVarsSet = numel (ixVar2);
             for iVar = 1:nVarsSet
@@ -980,20 +1000,19 @@ classdef table
           elseif iscell (rhs)
             error ('table.subsasgn: ()-indexed assignment with a cell array RHS is not implemented yet');
           else
-            error ("table.subsasgn: ()-indexed assignment's RHS must be table, cell, or []; got a %s %s", ...
+            error ("table.subsasgn: ()-indexed assignment's RHS must be a table, cell, or []; got a %s %s", ...
               size2str (size (rhs)), class (rhs))
           end
         case '{}'
-          if (numel (s.subs) != 2)
+          if (numel (s1.subs) != 2)
             error ('table.subsasgn: table {}-subscripting must use exactly 2 subscripts; got %d subscripts', ...
-              numel (s.subs))
+              numel (s1.subs))
           endif
           # General case
-          [ixRow, ixVar] = resolveRowVarRefs (this, s.subs{1}, s.subs{2});
+          [ixRow, ixVar] = resolveRowVarRefs (this, s1.subs{1}, s1.subs{2});
           if (isscalar (ixVar))
             varData = this.VariableValues{ixVar};
-            # FIXME: Will this fail for varData that is a nested table?
-            varData(ixRow,:) = rhs;
+            varData = subsasgn (varData, struct ('type', '()', 'subs', {{ixRow, ':'}}), rhs);
             out.VariableValues{ixVar} = varData;
           elseif isempty (ixVar) || (islogical (ixVar) && ! any (ixVar))
             if (! isempty (rhs))
@@ -1010,36 +1029,49 @@ classdef table
               # Each variable takes as many RHS columns as it is wide itself
               nColsThisVar = size (varData, 2);
               ixRhsCols = ixRhsColStart:(ixRhsColStart+nColsThisVar-1);
-              # FIXME: this ()-indexing of rhs will probably break if rhs is a table, as in the
-              # case of {}-assignment across multiple nested tables.
-              varData(ixRow,:) = rhs(:,ixRhsCols);
+              rhsSubset = subsref (rhs, struct ('type', '()', 'subs', {{':', ixRhsCols}}));
+              varData = subsasgn (varData, struct ('type', '()', 'subs', {{ixRow, ':'}}), rhsSubset);
               newVarVals{ixV} = varData;
               ixRhsColStart = ixRhsColStart + nColsThisVar;
             endfor
             out.VariableValues = newVarVals;
           endif
         case '.'
-          targetField = s.subs;
+          # These checks are redundant with Octave's own restrictions on .-indexing as of
+          # 8.4, which restrict the subscript to be a charvec, but I don't know if that's
+          # guaranteed forever.
+          targetField = s1.subs;
           if isstring (targetField)
             targetField = char (targetField);
           endif
-          if (! ischar (targetField))
-            error ('table.subsasgn: .-indexing index argument must be char; got a %s', ...
-              class (s.subs));
+          if (! (ischar (targetField) && isrow (targetField)))
+            error ('table.subsasgn: .-indexing subscript must be char vector; got a %s %s', ...
+              size2str (size (s1.subs)), class (s1.subs));
           endif
           if (! isrow (targetField))
-            error ('table.subsasgn: .-indexing variable name must be a single string; got a %d-row char array', ...
-              size (targetField, 1))
+            error (['table.subsasgn: .-indexing subscript must be a single string; ' ...
+              'got a %d-row char array'], size (targetField, 1))
           endif
+          # End redundant input checks
           if (isequal (targetField, 'Properties'))
-            # Special case for this.Properties access
-            # Will need to be implemented using chained assignment, and probably handled
-            # up above in a special case near the top.
-            error ('table.subsasgn: .Properties access is not implemented yet');
+            # Special case for this.Properties access - demux to the actual properties.
+            # This depends on the general-case chained indexing support above, plus subsref
+            # returning .Properties in a complementary form.
+            mustBeValidPropertiesVal (rhs);
+            out = this;
+            out.VariableNames = rhs.VariableNames;
+            out.VariableValues = rhs.VariableValues;
+            out.RowNames = rhs.RowNames;
+            out.DimensionNames = rhs.DimensionNames;
+          elseif ismember (targetField, this.DimensionNames)
+            error ('table.subsasgn: assignment through .-indexing of named dimensions is not supported yet.')
           else
             out = setvar (this, targetField, rhs);
           endif
+        otherwise
+          error ('table.subsasgn: Invalid subscript type: "%s"', s.type)
       endswitch
+      mustBeValid (out);
     endfunction
 
     ## -*- texinfo -*-
@@ -1111,7 +1143,11 @@ classdef table
     ## the indexes in @var{ix} may never be higher than 2.
     ##
     ## This method exists because the @code{obj.Properties.DimensionNames = @dots{}}
-    ## assignment form does not work, possibly due to an Octave bug.
+    ## assignment form did not originally work, possibly due to an Octave bug, or more
+    ## likely due to a bug in Tablicious prior to the early 0.4.x versions. That was
+    ## fixed around 0.4.4. This method may be deprecated and removed at some point, since
+    ## it is not part of the standard Matlab table interface, and is now redundant with
+    ## the @code{obj.Properties.DimensionNames = @dots{}} assignment form.
     ##
     ## @end deftypefn
     function this = setDimensionNames (this, varargin)
@@ -3195,6 +3231,59 @@ classdef table
       out = width (this);
     endfunction
 
+    function mustBeValid (this)
+      # Require a valid object.
+      # This enforces all the class invariants for this class. (Or at least it should.)
+      # Raises an error if any are violated.
+      assert (iscellstr (this.VariableNames), 'table: VariableNames must be a cellstr; got a %s', ...
+        sizeclassstr (this.VariableNames))
+      assert (isrow (this.VariableNames), 'table: VariableNames must be a row vector; got a %s', ...
+        size2str (size (this.VariableNames)))
+      assert (iscellstr (this.DimensionNames), 'table: DimensionNames must be a cellstr; got a %s', ...
+        sizeclassstr (this.DimensionNames))
+      assert (isrow (this.DimensionNames), 'table: DimensionNames must be a row vector; got a %s', ...
+        size2str (size (this.DimensionNames)))
+      assert (isrow (this.DimensionNames), 'table: DimensionNames must be exactly 2-long; got a %d-long', ...
+        numel (this.DimensionNames))
+      assert (iscell (this.VariableValues) && (isrow (this.VariableValues) || isempty (this.VariableValues)), ...
+        'table: VariableValues must be a cell row vector or cell empty; got a %s', ...
+        sizeclassstr (this.VariableValues))
+      assert (numel (this.VariableNames) == numel (this.VariableValues), ...
+        ['table: VariableNames and VariableValues must be the same length; got a %d-long VariableNames ' ...
+        'but a %d-long VariableValues'], numel (this.VariableNames), numel (this.VariableValues))
+      if (! isempty (this.RowNames))
+        # Depending on public size() here is a hack, but we know (for now) that it does not itself
+        # depend on this.RowNames, so it's probably okay.
+        assert (numel (this.RowNames) == size (this, 1), ['table: RowNames, if present, must be the same ' ...
+          'length as the number of rows; got a %d-long RowNames vs. %d rows in table'], ...
+          numel (this.RowNames), size (this, 1))
+      endif
+      varNames = this.VariableNames;
+      [uqNames, ix] = unique (varNames);
+      if (numel (uqNames) < numel (varNames))
+        ixBad = 1:numel (varNames);
+        ixBad(ix) = [];
+        error ('table: VariableNames must be unique. Duplicates: %s', strjoin (varNames(ixBad), ', '));
+      endif
+      varVals = this.VariableValues;
+      if (! isempty (varVals))
+        nRows = size (varVals{1}, 1);
+        for i = 2:numel (varVals)
+          if (ndims (varVals{i}) > 2)
+            error (['table: Variable values may not have > 2 dimensions; ' ...
+              '%s (variable %d) has %d dims'], varNames{i}, i, ndims (varVals{i}));
+          endif
+          nRows2 = size (varVals{i}, 1);
+          if (nRows != nRows2)
+            error ('table: Inconsistent sizes: variable %s (#1) has %d rows; variable %s (#%d) has %d rows', ...
+              varNames{1}, nRows, varNames{i}, i, nRows2);
+          endif
+        endfor
+      endif
+
+
+    endfunction
+
   endmethods
 
 endclassdef
@@ -3427,4 +3516,24 @@ endfunction
 function out = hasrownames (tbl)
   #HASROWNAMES True if this table has row names defined
   out = ! isempty (tbl.RowNames);
+endfunction
+
+function out = mustBeValidPropertiesVal (s)
+  # Require that a value is valid for assignment to the this.Properties pseudoproperty
+  persistent exposedProperties
+  if (isempty (exposedProperties))
+    # This must be identical to table.ExposedProperties, but a col vec. Keep it in sync manually.
+    exposedProperties = {"VariableNames", "VariableValues", "RowNames", "DimensionNames"}';
+  endif
+  assert (isstruct (s) && isscalar (s), 'Properties must be a scalar struct; got a %s %s', ...
+    size2str (size (s)), class (s))
+  if (! isequal (fieldnames (s), exposedProperties))
+    keyboard
+    error (['table: Fields in a .Properties struct must be exactly (%s); got fields (%s).'], ...
+      strjoin (exposedProperties, ', '), strjoin (fieldnames (s), ', '))
+  endif
+endfunction
+
+function out = sizeclassstr (x)
+  out = sprintf ('%s %s', size2str (size (x)), class (x));
 endfunction
