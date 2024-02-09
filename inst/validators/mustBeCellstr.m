@@ -39,7 +39,7 @@ function mustBeCellstr (x, label)
       label = "input";
     endif
     if (iscell (x))
-      el_classes = cellfun (@(e) {class (e)}, x);
+      el_classes = cellfun (@(e) {class(e)}, x);
       type_descr = sprintf ("cell array containing %s", strjoin (el_classes, ", "));
     else
       type_descr = class (x);

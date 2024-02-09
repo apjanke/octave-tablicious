@@ -1,10 +1,11 @@
 Tablicious Changelog
 ====================
 
-Unreleased (in progress)
-------------------------
+0.4.3 (in progress)
+-------------------
 
-Nothing here yet.
+* Fix "[foo (...)]" syntax-ish errors in some functions.
+  * Affected datetime, calendarDuration, localdate, splitapply, mustBeCellstr, and some display functions using tblish.internal.mycombvec.
 
 0.4.2 (2024-02-07)
 ------------------

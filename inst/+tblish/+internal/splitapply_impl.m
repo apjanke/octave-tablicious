@@ -32,7 +32,7 @@ function varargout = splitapply_impl (func, varargin)
   n_g = max (u_g);
   n_outs = nargout;
 
-  bufs = repmat ({cell (n_g, 1)}, [1 n_outs]);
+  bufs = repmat ({cell(n_g, 1)}, [1 n_outs]);
 
   for i_group = 1:n_g
     tf = G == i_group;

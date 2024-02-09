@@ -1376,7 +1376,7 @@ classdef datetime
         proxy = proxyKeys (nonnans);
         [~, ix] = sortrows (proxy);
         out = [subset(nonnans, ix); nans];
-        Indx = [ixNonNan(ix); find (tfNan)];
+        Indx = [ixNonNan(ix); find(tfNan)];
         if (isRow)
             out = out';
         endif
@@ -1442,7 +1442,7 @@ classdef datetime
           [~,ix] = unique (keys, 'rows', flags{:});
         endif
         out = [subset(nonnans, ix); nans];
-        Indx = [ixNonnan(ix); find (tfNaN)];
+        Indx = [ixNonnan(ix); find(tfNaN)];
         if (isRow)
           out = out';
         endif

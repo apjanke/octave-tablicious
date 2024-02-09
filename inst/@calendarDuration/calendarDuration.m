@@ -185,8 +185,8 @@ classdef calendarDuration
 
     function [keysA, keysB] = proxyKeys (a, b)
       #PROXYKEYS Proxy key values for sorting and set operations
-      keysA = [a.Sign(:) a.Years(:) a.Months(:) a.Days(:) a.Time(:) double (a.IsNaN(:))];
-      keysB = [b.Sign(:) b.Years(:) b.Months(:) b.Days(:) b.Time(:) double (b.IsNaN(:))];
+      keysA = [a.Sign(:) a.Years(:) a.Months(:) a.Days(:) a.Time(:) double(a.IsNaN(:))];
+      keysB = [b.Sign(:) b.Years(:) b.Months(:) b.Days(:) b.Time(:) double(b.IsNaN(:))];
     endfunction
 
     function out = calyears (this)
@@ -702,7 +702,7 @@ classdef calendarDuration
         [~,ix] = sortrows (proxy);
         # Can't have a space after "subset" or you get a syntax error
         out = [subset(nonnans, ix); nans];
-        Indx = [ixNonNan(ix); find (tfNan)];
+        Indx = [ixNonNan(ix); find(tfNan)];
         if isRow
           out = out';
         endif

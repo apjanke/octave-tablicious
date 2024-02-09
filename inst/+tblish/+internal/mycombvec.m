@@ -17,9 +17,27 @@
 ## <https://www.gnu.org/licenses/>.
 
 function out = mycombvec (vecs)
-  #MYCOMBVEC All combinations of values from vectors
+  #MYCOMBVEC All combinations of elements from vectors
   #
-  # This is similar to Matlab's combvec, but has a different signature.
+  # out = mycombvec (vecs)
+  #
+  # This is kind of similar to Matlab's combvec, but has a different signature, taking
+  # a single cell array containing a list of vectors, instead of each vector in a
+  # separate argument, and combining all the elements of the input vectors, instead of
+  # combining rows of the input arrays. It should probably be named something like
+  # "combel" instead of "combvec", because it's not producing combinations of column
+  # vectors; it's just producing combinations of elements.
+  #
+  # Does not consider unique values of the input vec elements, it just combines them
+  # positionally. So if you have duplicate values in any inputs, you'll have duplicate
+  # combo values (rows) in the output.
+  #
+  # Vecs (cell) is a cell array of input vectors to combine. Each element is an array
+  # of elements to be combined, with the element from vecs{i} going in the column i
+  # of the output.
+  #
+  # Returns an n-by-m array, where vecs was m long, and n is how many combinations were
+  # produced.
   if (! iscell (vecs))
     error ('Input vecs must be cell');
   endif
@@ -31,7 +49,7 @@ function out = mycombvec (vecs)
     case 2
       a = vecs{1}(:);
       b = vecs{2}(:);
-      out = repmat (a, [numel (b) 2]);
+      out = repmat (a, [numel(b) 2]);
       i_comb = 1;
       for i_a = 1:numel (a)
         for i_b = 1:numel (b)
@@ -45,7 +63,7 @@ function out = mycombvec (vecs)
       rest = vecs(2:end);
       rest_combs = tblish.internal.mycombvec (rest);
       for i = 1:numel (a)
-        out = [out; [repmat (a(i), [size (rest_combs,1) 1]) rest_combs]];
+        out = [out; [repmat(a(i), [size(rest_combs,1) 1]) rest_combs]];
       endfor
   endswitch
 endfunction
