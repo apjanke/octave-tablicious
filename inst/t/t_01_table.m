@@ -21,7 +21,7 @@ skip_subsasgn_paren = false;
 skip_rowname_autogen = true;
 
 n_classes = numel (table_classes);
-nt = 160 + (8 * n_classes);
+nt = 229 + (8 * n_classes);
 
 t_begin (n_classes * nt, quiet);
 
@@ -57,6 +57,8 @@ for k = 1:n_classes
     [nr, nz] = size (T);
     t_is ([nr, nz], [6 6], 12, [t '[nr, nz] = size (T)']);
     t_ok (isempty (T.Properties.RowNames), [t 'RowNames'] );
+    t_ok (isequal (T.Properties.VariableNames, ...
+        {'var1', 'var2', 'var3', 'var4', 'Var5', 'var6'}), [t 'VariableNames'] );
     t_ok (isequal (T.Properties.DimensionNames, {'Row', 'Variables'}), ...
         [t 'DimensionNames'] );
 
@@ -164,9 +166,18 @@ for k = 1:n_classes
     t_ok (isequal (T{:, 5}, v5), [t 'T{:, 5} == v5']);
     t_ok (isequal (T{:, 6}, v6), [t 'T{:, 6} == v6']);
 
+    t_ok (isequal (T{:, 4:6}, [v4 v5 v6]), [t 'T{:, j1:jN}']);
+    t_ok (isequal (T{:, 2:2:6}, [v2 v4 v6]), [t 'T{:, j1:2:jN}']);
+
+    t_ok (isequal (T{:, 'igr'}, v1), [t 'T{:, ''igr''} == v1']);
+    t_ok (isequal (T{:, "flt"}, v2), [t 'T{:, "flt"} == v2']);
+    t_ok (isequal (T{:, 'str'}, v3), [t 'T{:, ''str''} == v3']);
+    t_ok (isequal (T{:, 'dbl'}, v4), [t 'T{:, ''dbl''} == v4']);
+    t_ok (isequal (T{:, 'boo'}, v5), [t 'T{:, ''boo''} == v5']);
+    t_ok (isequal (T{:, 'mat'}, v6), [t 'T{:, ''mat''} == v6']);
+
     t_ok (isequal (T{2, 1}, v1(2)), [t 'T{i, j} == v<j>(i)']);
     t_ok (isequal (T{4, 6}, v6(4, :)), [t 'T{i, j} == v<j>(i)']);
-
     t_ok (isequal (T{end, end}, v6(end,:)), [t 'T{end, end} == v<end>(end,:)']);
     t_ok (isequal (T{1:3, 2}, v2(1:3)), [t 'T{i1:iN, j} == v<j>(i1:iN)']);
     t_ok (isequal (T{1:3, 6}, v6(1:3, :)), [t 'T{i1:iN, j} == v<j>(i1:iN, :)']);
@@ -176,6 +187,17 @@ for k = 1:n_classes
     t_ok (isequal (T{6:-1:3, [2;4;6]}, [v2(6:-1:3) v4(6:-1:3) v6(6:-1:3, :)]), [t 'T{iN:-1:i1, jj}']);
     t_ok (isequal (T{:, [4;1]}, [v4 v1]), [t 'T{:, jj} == [v<j1> v<j2> ...]']);
     t_ok (isequal (T{:, [4;6;1]}, [v4 v6 v1]), [t 'T{:, jj} == [v<j1> v<j2> ...]']);
+
+    t_ok( isequal (T{2, 'igr'}, v1(2)), [t 'T{i, <str>} == v<j>(i)']);
+    t_ok( isequal (T{4, 'mat'}, v6(4, :)), [t 'T{i, <str>} == v<j>(i)']);
+    t_ok( isequal (T{1:3, 'flt'}, v2(1:3)), [t 'T{i1:iN, <str>} == v<j>(i1:iN)']);
+    t_ok( isequal (T{1:3, 'mat'}, v6(1:3, :)), [t 'T{i1:iN, <str>} == v<j>(i1:iN, :)']);
+    t_ok( isequal (T{[6;3], 'boo'}, v5([6;3])), [t 'T{ii, <str>} == v<j>(ii)']);
+    t_ok( isequal (T{[6;3], 'mat'}, v6([6;3], :)), [t 'T{ii, <str>} == v<j>(ii, :)']);
+    t_ok( isequal (T{6:-1:3, {'flt', 'dbl', 'boo'}}, [v2(6:-1:3) v4(6:-1:3) v5(6:-1:3)]), [t 'T{iN:-1:i1, <cell>}']);
+    t_ok( isequal (T{6:-1:3, {'flt', 'dbl', 'mat'}}, [v2(6:-1:3) v4(6:-1:3) v6(6:-1:3, :)]), [t 'T{iN:-1:i1, <cell>}']);
+    t_ok( isequal (T{:, {'dbl', 'igr'}}, [v4 v1]), [t 'T{:, <cell>} == [v<j1> v<j2> ...]']);
+    t_ok( isequal (T{:, {'dbl', 'mat', 'igr'}}, [v4 v6 v1]), [t 'T{:, <cell>} == [v<j1> v<j2> ...]']);
 
     t = sprintf ('%s : subsasgn {} : ', cls);
     T{:, 1} = var1;
@@ -190,6 +212,37 @@ for k = 1:n_classes
     t_is (T.boo, var5, 12, [t 'T{:, 5} = var5']);
     T{:, 6} = var6;
     t_is (T.mat, var6, 12, [t 'T{:, 6} = var6']);
+
+    T{:, 4:6} = [v4 v5 v6];
+    t_is (T{:, [2;4;5;6]}, [var2 v4 v5 v6], 12, [t 'T{:, j1:jN} = <mat>']);
+    T{:, 2:2:6} = [v2 var4 var6];
+    t_is (T{:, [2;4;5;6]}, [v2 var4 v5 var6], 12, [t 'T{:, j1:2:jN} = <mat>']);
+    T{:, [2 5]} = [var2 var5];  # reset values
+
+    T2 = table_class([1;2;3], [4;5;6], [7;8;9]);
+    T2{2, :} = T2{2, :} * 10;
+    t_is (T2{:, :}, [1 4 7; 20 50 80; 3 6 9], 12, [t 'T{i, :} = <vec>']);
+    T2{[1 3], :} = T2{[1 3], :} * -1;
+    t_is (T2{:, :}, [-1 -4 -7; 20 50 80; -3 -6 -9], 12, [t 'T{ii, :} = <mat>']);
+    T2{:, :} = [1 2 3; 4 5 6; 7 8 9];
+    t_is (T2{:, :}, [1 2 3; 4 5 6; 7 8 9], 12, [t 'T{:, :} = <mat>']);
+
+    T{:, 'igr'} = v1;
+    t_is (T.igr, v1, 12, [t 'T{:, ''igr''} = v1']);
+    T{:, 'flt'} = v2;
+    t_is (T.flt, v2, 12, [t 'T{:, ''flt''} = v2']);
+    T{:, 'str'} = v3;
+    t_ok (isequal (T.str, v3), [t 'T{:, ''str''} = v3']);
+    T{:, 'dbl'} = v4;
+    t_is (T.dbl, v4, 12, [t 'T{:, ''dbl''} = v4']);
+    T{:, 'boo'} = v5;
+    t_is (T.boo, v5, 12, [t 'T{:, ''boo''} = v5']);
+    T{:, 'mat'} = v6;
+    t_is (T.mat, v6, 12, [t 'T{:, ''mat''} = v6']);
+    T{:, {'str'}} = var3;
+    t_ok (isequal(T{:, 3}, var3), [t 'T{:, <cell>} = var3']);
+    T{:, {'igr', 'mat', 'dbl', 'flt', 'boo'}} = [var1 var6 var4 var2 var5];
+    t_is (T{:, [1;2;4;5;6]}, [var1 var2 var4 var5 var6], 12, [t 'T{:, <cell>} = <mat>']);
 
     T{2, 1} = v1(2);
     t_ok (isequal (T{2, 1}, v1(2)), [t 'T{i, j} = v<j>(i)']);
@@ -211,6 +264,28 @@ for k = 1:n_classes
     t_ok (isequal (T{6:-1:3, [2;4;6;5]}, [v2(6:-1:3) v4(6:-1:3) v6(6:-1:3, :) v5(6:-1:3)]), [t 'T{iN:-1:i1, jj}']);
     T{:, [6;4;1]} = [v6 v4 v1];
     t_ok (isequal (T{:, [6;4;1]}, [v6 v4 v1]), [t 'T{:, jj} = [v<j1> v<j2> ...]']);
+
+    T{2, 'igr'} = var1(2);
+    t_ok (isequal (T{2, 1}, var1(2)), [t 'T{i, <str>} = var<j>(i)']);
+    T{4, 'mat'} = var6(4, :);
+    t_ok (isequal (T{4, 6}, var6(4, :)), [t 'T{i, <str>} = var<j>(i, :)']);
+    T{1:3, 'flt'} = var2(1:3);
+    t_ok (isequal (T.flt(1:3), var2(1:3)), [t 'T{i1:iN, <str>} = var<j>(i1:iN)']);
+    T{1:3, 'mat'} = var6(1:3, :);
+    t_ok (isequal (T.mat(1:3, :), var6(1:3, :)), [t 'T{i1:iN, <str>} = var<j>(i1:iN, :)']);
+    T{1:3, 'mat'} = var6(1:3, [2; 1]);
+    t_ok (isequal (T.mat(1:3, :), var6(1:3, [2; 1])), [t 'T{i1:iN, <str>} = var<j>(i1:iN, jj)']);
+    T{[6;3], 'boo'} = var5([6;3]);
+    t_ok (isequal (T.boo([6;3]), var5([6;3])), [t 'T{ii, <str>} = var<j>(ii)']);
+    T{[6;3], 'mat'} = var6([6;3], :);
+    t_ok (isequal (T.mat([6;3], :), var6([6;3], :)), [t 'T{ii, <str>} = var<j>(ii, :)']);
+    T{[6;3], 'mat'} = var6([6;3], [2;1]);
+    t_ok (isequal (T.mat([6;3], :), var6([6;3], [2;1])), [t 'T{ii, <str>} = v<j>(ii, jj)']);
+    T{6:-1:3, {'flt', 'dbl', 'mat', 'boo'}} = [var2(6:-1:3) var4(6:-1:3) var6(6:-1:3, :) var5(6:-1:3)];
+    t_ok (isequal (T{6:-1:3, [2;4;6;5]}, [var2(6:-1:3) var4(6:-1:3) var6(6:-1:3, :) var5(6:-1:3)]), [t 'T{iN:-1:i1, <cell>}']);
+    T{:, {'mat', 'dbl', 'igr'}} = [var6 var4 var1];
+    t_ok (isequal (T{:, [6;4;1]}, [var6 var4 var1]), [t 'T{:, <cell>} = [var<j1> var<j2> ...]']);
+
     T{:, 1} = v1;
     T{:, 2} = v2;
     T{:, 3} = v3;
@@ -222,6 +297,15 @@ for k = 1:n_classes
     t = sprintf ('%s : subsref () : T(ii,jj) : ', cls);
     ii = [2;4]; jj = [1;3;4;6];
     T2 = T(ii,jj);
+    t_is (size (T2), [2 4], 12, [t 'size']);
+    t_ok (isequal (T2.Properties.VariableNames, var_names(jj)), [t 'VariableNames']);
+    t_ok (isequal (table_values(T2), {v1(ii), v3(ii), v4(ii), v6(ii, :)}), [t 'VariableValues']);
+    t_ok (isequal (T2.Properties.RowNames, row_names(ii)), [t 'RowNames']);
+    t_ok (isequal (T2.Properties.DimensionNames, T.Properties.DimensionNames), [t 'DimensionNames']);
+
+    t = sprintf ('%s : subsref () : T(ii,<cell>) : ', cls);
+    ii = [2;4]; jj = [1;3;4;6]; cc = {'igr', 'str', 'dbl', 'mat'};
+    T2 = T(ii,cc);
     t_is (size (T2), [2 4], 12, [t 'size']);
     t_ok (isequal (T2.Properties.VariableNames, var_names(jj)), [t 'VariableNames']);
     t_ok (isequal (table_values(T2), {v1(ii), v3(ii), v4(ii), v6(ii, :)}), [t 'VariableValues']);
@@ -260,6 +344,20 @@ for k = 1:n_classes
     t_ok (isequal (T2.Properties.RowNames, row_names(3)), [t 'RowNames']);
     t_ok (isequal (T2.Properties.DimensionNames, T.Properties.DimensionNames), [t 'DimensionNames']);
 
+    t = sprintf ('%s : subsref () : T(i,<str>) : ', cls);
+    T2 = T(5,'dbl');
+    t_is (size (T2), [1 1], 12, [t 'size']);
+    t_ok (isequal (T2.Properties.VariableNames, var_names(4)), [t 'VariableNames']);
+    t_ok (isequal (table_values(T2), {v4(5)}), [t 'VariableValues']);
+    t_ok (isequal (T2.Properties.RowNames, row_names(5)), [t 'RowNames']);
+    t_ok (isequal (T2.Properties.DimensionNames, T.Properties.DimensionNames), [t 'DimensionNames']);
+    T2 = T(3,'mat');
+    t_is (size (T2), [1 1], 12, [t 'size']);
+    t_ok (isequal (T2.Properties.VariableNames, var_names(6)), [t 'VariableNames']);
+    t_ok (isequal (table_values(T2), {v6(3, :)}), [t 'VariableValues']);
+    t_ok (isequal (T2.Properties.RowNames, row_names(3)), [t 'RowNames']);
+    t_ok (isequal (T2.Properties.DimensionNames, T.Properties.DimensionNames), [t 'DimensionNames']);
+
     t = sprintf ('%s : subsref () : T(end, end) : ', cls);
     T2 = T(end, end);
     t_is (size (T2), [1 1], 12, [t 'size']);
@@ -276,6 +374,18 @@ for k = 1:n_classes
       T3 = T(ii0,jj);
       ii = [4;2];
       T(ii,jj) = T3;
+      T2 = T(ii,jj);
+      t_ok (isequal (T2.Properties.VariableNames, var_names(jj)), [t 'VariableNames']);
+      t_ok (isequal (table_values(T2), {v1(ii0), v3(ii0), v4(ii0), v6(ii0, :)}), [t 'VariableValues']);
+      t_ok (isequal (T2.Properties.RowNames, row_names(ii)), [t 'RowNames']);
+      t_ok (isequal (T2.Properties.DimensionNames, T.Properties.DimensionNames), [t 'DimensionNames']);
+      T(ii0, jj) = T2;        # restore
+
+      t = sprintf ('%s : subsasgn () : T(ii,<cell>) : ', cls);
+      ii0 = [2;4]; jj = [1;3;4;6]; cc = {'igr', 'str', 'dbl', 'mat'};
+      T3 = T(ii0,jj);
+      ii = [4;2];
+      T(ii,cc) = T3;
       T2 = T(ii,jj);
       t_ok (isequal (T2.Properties.VariableNames, var_names(jj)), [t 'VariableNames']);
       t_ok (isequal (table_values(T2), {v1(ii0), v3(ii0), v4(ii0), v6(ii0, :)}), [t 'VariableValues']);
@@ -324,7 +434,28 @@ for k = 1:n_classes
       t_ok (isequal (T2.Properties.VariableNames, var_names(6)), [t 'VariableNames']);
       t_ok (isequal (table_values(T2), {[111 222]}), [t 'VariableValues']);
       t_ok (isequal (T2.Properties.RowNames, row_names(3)), [t 'RowNames']);
-      t_ok (isequal (T2.Properties.DimensionNames, dim_names), [t 'DimensionNames']);
+      t_ok (isequal (T2.Properties.DimensionNames, T.Properties.DimensionNames), [t 'DimensionNames']);
+      T{3,6} = [3 0.3];
+
+      t = sprintf ('%s : subsref () : T(i,<str>) : ', cls);
+      T3 = T(5,4);
+      T3{1,1} = exp(1);
+      T(5,4) = T3;
+      T2 = T(5,'dbl');
+      t_ok (isequal (T2.Properties.VariableNames, var_names(4)), [t 'VariableNames']);
+      t_ok (isequal (table_values(T2), {exp(1)}), [t 'VariableValues']);
+      t_ok (isequal (T2.Properties.RowNames, row_names(5)), [t 'RowNames']);
+      t_ok (isequal (T2.Properties.DimensionNames, T.Properties.DimensionNames), [t 'DimensionNames']);
+      T{5,4} = pi;
+
+      T3 = T(3,6);
+      T3{1,1} = [111 222];
+      T(3,6) = T3;
+      T2 = T(3,'mat');
+      t_ok (isequal (T2.Properties.VariableNames, var_names(6)), [t 'VariableNames']);
+      t_ok (isequal (table_values(T2), {[111 222]}), [t 'VariableValues']);
+      t_ok (isequal (T2.Properties.RowNames, row_names(3)), [t 'RowNames']);
+      t_ok (isequal (T2.Properties.DimensionNames, T.Properties.DimensionNames), [t 'DimensionNames']);
       T{3,6} = [3 0.3];
     endif
 
