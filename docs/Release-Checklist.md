@@ -44,6 +44,12 @@
   * `git add -A; git commit -a -m 'Open development for next version'; git push`
 * Close the GitHub Issues Milestone for this release.
   * Create a new Milestone for the next release, if one doesn't already exist.
-* Post an announcement on the [Savannah bug for datetime support](https://savannah.gnu.org/bugs/index.php?47032) if this is a significant release with respect to the date/time classes.
+* Announce the release.
+  * Update the OF packages index info in the gnu-octave/packages repo.
+    * Put in a PR to the [`gnu-octave/packages` repo](https://github.com/gnu-octave/packages) to update `packages/tablicious.yaml`.
+      * Add a new item to its `versions` section for this new release.
+      * See example: [Tablicious index update for 0.3.7 - 0.4.2](https://github.com/gnu-octave/packages/pull/401).
+  * Add a comment to the [Tablicious News issue](https://github.com/apjanke/octave-tablicious/issues/131) with a link to the new release.
+  * Post an announcement on the [Savannah bug for datetime support](https://savannah.gnu.org/bugs/index.php?47032) if this is a significant release with respect to the date/time classes.
 
 * If there were any problems following these instructions exactly as written, report it as a bug.
