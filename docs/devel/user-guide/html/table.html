@@ -3,7 +3,7 @@
 <!-- Created by GNU Texinfo 7.1, https://www.gnu.org/software/texinfo/ -->
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<!-- This manual is for Tablicious, version 0.4.3-SNAPSHOT.
+<!-- This manual is for Tablicious, version 0.4.3.
 
 Copyright © 2019, 2023, 2024 Andrew Janke
 
@@ -18,10 +18,10 @@ notice identical to this one.
 
 Permission is granted to copy and distribute translations of this manual
 into another language, under the same conditions as for modified versions. -->
-<title>table (Tablicious v0.4.3-SNAPSHOT)</title>
+<title>table (Tablicious v0.4.3)</title>
 
 <meta name="description" content="User manual for Tablicious for Octave.">
-<meta name="keywords" content="table (Tablicious v0.4.3-SNAPSHOT)">
+<meta name="keywords" content="table (Tablicious v0.4.3)">
 <meta name="resource-type" content="document">
 <meta name="distribution" content="global">
 <meta name="Generator" content="makeinfo">
@@ -76,6 +76,21 @@ a table <code class="code">t</code>. That will give you a property instead of a 
 (And due to this mechanism, it will cause problems if you have a <code class="code">table</code>
 with a variable named <code class="code">Properties</code>. Try to avoid that.)
 </p>
+<p>WARNING ABOUT HANDLE CLASSES IN TABLE VARIABLES
+</p>
+<p>Using a handle class in a table variable (column) value may lead to unpredictable
+and buggy behavior! A handle class array is a reference type, and it holds shared
+mutable state, which may be shared with references to it in other table arrays or
+outside the table array. The table class makes no guarantees about what it will
+or will not do internally with arrays that are held in table variables, and any
+operation on a table holding handle arrays may have unpredictable and undesirable
+side effects. These side effects may change between versions of Tablicious.
+</p>
+<p>We currently recommend that you do not use handle classes in table variables. It
+may be okay to use handle classes *inside* cells or other non-handle composite types
+that are used in table variables, but this hasn&rsquo;t been fully thought through or
+tested.
+</p>
 <p>See also: tblish.table.grpstats, tblish.evalWithTableVars, tblish.examples.SpDb
 </p>
 </dd></dl>
@@ -100,6 +115,17 @@ with a variable named <code class="code">Properties</code>. Try to avoid that.)
 <dd>
 <p>An optional list of row names that identify each row in the table. This
 is a cellstr column vector, if present.
+</p>
+</dd></dl>
+
+<dl class="first-deftypecv first-deftypeivar-alias-first-deftypecv">
+<dt class="deftypecv deftypeivar-alias-deftypecv" id="index-DimensionNames-of-table"><span class="category-def">Instance Variable of <code class="code">table</code>: </span><span><code class="def-type"><code class="code">cellstr</code></code> <strong class="def-name">DimensionNames</strong><a class="copiable-link" href="#index-DimensionNames-of-table"> &para;</a></span></dt>
+<dd>
+<p>Names for the two dimensions of the table array, as a cellstr row vector. Always
+exactly 2-long, because tables are always exactly 2-D. Defaults to
+<code class="code">{&quot;Row&quot;, &quot;Variables&quot;}</code>. (I feel the singular &quot;Row&quot; and plural &quot;Variables&quot; here
+are inconsistent, but that&rsquo;s what Matlab uses, so Tablicious uses it too, for
+Matlab compatibility.)
 </p>
 </dd></dl>
 

@@ -1,7 +1,7 @@
 Tablicious Changelog
 ====================
 
-0.4.3 (in progress)
+0.4.3 (2024-07-06)
 -------------------
 
 * Fix "[foo (...)]" syntax-ish errors in some functions.

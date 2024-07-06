@@ -218,7 +218,7 @@ doc-clean:
 	cd doc && make clean
 
 docs-clean:
-	rm -rf docs/devl/user-guide
+	rm -rf docs/devel/user-guide
 	mkdir -p docs/devel/user-guide
 
 gh-pages: docs-clean

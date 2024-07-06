@@ -3,7 +3,7 @@
 <!-- Created by GNU Texinfo 7.1, https://www.gnu.org/software/texinfo/ -->
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<!-- This manual is for Tablicious, version 0.4.3-SNAPSHOT.
+<!-- This manual is for Tablicious, version 0.4.3.
 
 Copyright © 2019, 2023, 2024 Andrew Janke
 
@@ -18,10 +18,10 @@ notice identical to this one.
 
 Permission is granted to copy and distribute translations of this manual
 into another language, under the same conditions as for modified versions. -->
-<title>table.setDimensionNames (Tablicious v0.4.3-SNAPSHOT)</title>
+<title>table.setDimensionNames (Tablicious v0.4.3)</title>
 
 <meta name="description" content="User manual for Tablicious for Octave.">
-<meta name="keywords" content="table.setDimensionNames (Tablicious v0.4.3-SNAPSHOT)">
+<meta name="keywords" content="table.setDimensionNames (Tablicious v0.4.3)">
 <meta name="resource-type" content="document">
 <meta name="distribution" content="global">
 <meta name="Generator" content="makeinfo">
@@ -68,7 +68,11 @@ omitted, it sets all two of them. Since there are always two dimension,
 the indexes in <var class="var">ix</var> may never be higher than 2.
 </p>
 <p>This method exists because the <code class="code">obj.Properties.DimensionNames = &hellip;</code>
-assignment form does not work, possibly due to an Octave bug.
+assignment form did not originally work, possibly due to an Octave bug, or more
+likely due to a bug in Tablicious prior to the early 0.4.x versions. That was
+fixed around 0.4.4. This method may be deprecated and removed at some point, since
+it is not part of the standard Matlab table interface, and is now redundant with
+the <code class="code">obj.Properties.DimensionNames = &hellip;</code> assignment form.
 </p>
 </dd></dl>
 

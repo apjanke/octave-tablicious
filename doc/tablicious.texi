@@ -2,7 +2,7 @@
 
 @c %**start of header
 
-@set VERSION 0.4.3-SNAPSHOT
+@set VERSION 0.4.3
 
 @setfilename tablicious.info
 @settitle Tablicious v@value{VERSION}
@@ -36,7 +36,7 @@ User manual for Tablicious for Octave.
 
 @titlepage
 @title  Tablicious for GNU Octave
-@subtitle version @value{VERSION}, January 2024
+@subtitle version @value{VERSION}, April 2024
 @author Andrew Janke
 @page
 @vskip 0pt plus 1filll
@@ -108,7 +108,7 @@ The easiest way to obtain Tablicious is by using Octave's @code{pkg} package man
 To install the development prerelease of Tablicious, run this in Octave:
 
 @example
-pkg install https://github.com/apjanke/octave-tablicious/releases/download/v0.4.3-SNAPSHOT/tablicious-0.4.3-SNAPSHOT.tar.gz
+pkg install https://github.com/apjanke/octave-tablicious/releases/download/v0.4.3/tablicious-0.4.3.tar.gz
 @end example
 
 (Check the releases page at @url{https://github.com/apjanke/octave-tablicious/releases} to
@@ -1331,6 +1331,25 @@ Gets display strings for each element in @var{obj}. The display strings are
 either the category string, or @code{'<undefined>'} for undefined values.
 
 Returns a cellstr array the same size as @var{obj}.
+
+@end deftypefn
+
+@node categorical.double
+@subsubsection categorical.double
+
+@deftypefn {Method} {@var{out} =} double (@var{obj})
+
+Convert to double array, by getting the underlying code values.
+
+Converts @var{obj} to a string array. The doubles will be the
+underlying numeric code values of @var{obj}, or @code{NaN} for
+undefined values.
+
+The numeric code values of two different categorical arrays do
+*not* necessarily correspond to the same string values, and can
+*not* be meaningfully compared for equality or ordering.
+
+Returns a @code{double} array the same size as @var{obj}.
 
 @end deftypefn
 
@@ -3751,6 +3770,21 @@ a table @code{t}. That will give you a property instead of a variable.
 (And due to this mechanism, it will cause problems if you have a @code{table}
 with a variable named @code{Properties}. Try to avoid that.)
 
+WARNING ABOUT HANDLE CLASSES IN TABLE VARIABLES
+
+Using a handle class in a table variable (column) value may lead to unpredictable
+and buggy behavior! A handle class array is a reference type, and it holds shared
+mutable state, which may be shared with references to it in other table arrays or
+outside the table array. The table class makes no guarantees about what it will
+or will not do internally with arrays that are held in table variables, and any
+operation on a table holding handle arrays may have unpredictable and undesirable
+side effects. These side effects may change between versions of Tablicious.
+
+We currently recommend that you do not use handle classes in table variables. It
+may be okay to use handle classes *inside* cells or other non-handle composite types
+that are used in table variables, but this hasn't been fully thought through or
+tested.
+
 See also: tblish.table.grpstats, tblish.evalWithTableVars, tblish.examples.SpDb
 
 @end deftp
@@ -3772,6 +3806,16 @@ A cell vector containing the values for each of the variables.
 
 An optional list of row names that identify each row in the table. This
 is a cellstr column vector, if present.
+
+@end deftypeivar
+
+@deftypeivar table @code{cellstr} DimensionNames
+
+Names for the two dimensions of the table array, as a cellstr row vector. Always
+exactly 2-long, because tables are always exactly 2-D. Defaults to
+@code{@{"Row", "Variables"@}}. (I feel the singular "Row" and plural "Variables" here
+are inconsistent, but that's what Matlab uses, so Tablicious uses it too, for
+Matlab compatibility.)
 
 @end deftypeivar
 
@@ -4469,7 +4513,11 @@ omitted, it sets all two of them. Since there are always two dimension,
 the indexes in @var{ix} may never be higher than 2.
 
 This method exists because the @code{obj.Properties.DimensionNames = @dots{}}
-assignment form does not work, possibly due to an Octave bug.
+assignment form did not originally work, possibly due to an Octave bug, or more
+likely due to a bug in Tablicious prior to the early 0.4.x versions. That was
+fixed around 0.4.4. This method may be deprecated and removed at some point, since
+it is not part of the standard Matlab table interface, and is now redundant with
+the @code{obj.Properties.DimensionNames = @dots{}} assignment form.
 
 @end deftypefn
 
@@ -4625,10 +4673,19 @@ Stack multiple table variables into a single variable.
 
 @deftypefn {Method} summary (@var{obj})
 
-Summary of table's data.
+Display a summary of a table's data.
 
 Displays a summary of data in the input table. This will contain some
-statistical information on each of its variables.
+statistical information on each of its variables. The output is printed
+to the Octave console (command window, stdout, or the like in your current
+session), in a format suited for human consumption. The output format is
+not fixed or formally defined, and may change over time. It is only
+suitable for human display, and not for parsing or programmatic use.
+
+This method supports, to some degree, extension by other packages. If your
+Octave session has loaded other packages which supply extension implementaions
+of `summary`, Tablicious will use those in preference to its own internal
+implementation, and you will get different, and hopefully better, output.
 
 @end deftypefn
 

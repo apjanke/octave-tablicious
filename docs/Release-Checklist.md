@@ -9,7 +9,7 @@ Here's the process for doing a Tablicious release.
 1. Update the version info in the repo.
     1. Update the version number and date in `DESCRIPTION`.
     1. Update the `CHANGES.txt` file with the release date.
-        1. Use the current calendar date in UTC time, not your local time.
+        1. Use the current calendar date in UTC time, not your local time. Or use your local time; who really cares.
         1. And check that it has a complete change list for the release. This _should_ be done as changes are committed, but we're not great about that.
 1. Update the installation instructions in README to use the upcoming release tarball URL.
     1. Format is: `https://github.com/apjanke/octave-tablicious/releases/download/v<version>/tablicious-<version>.tar.gz`

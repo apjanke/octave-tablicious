@@ -78,6 +78,8 @@
                             </section>
                             <section title="categorical.dispstrs" ref="html/categorical_002edispstrs.html">
                             </section>
+                            <section title="categorical.double" ref="html/categorical_002edouble.html">
+                            </section>
                             <section title="categorical.iscategory" ref="html/categorical_002eiscategory.html">
                             </section>
                             <section title="categorical.ismissing" ref="html/categorical_002eismissing.html">
@@ -722,6 +724,7 @@
             <keyword name="categorical.categories" id="categorical.categories" ref="html/categorical_002ecategories.html"/>
             <keyword name="categorical.cellstr" id="categorical.cellstr" ref="html/categorical_002ecellstr.html"/>
             <keyword name="categorical.dispstrs" id="categorical.dispstrs" ref="html/categorical_002edispstrs.html"/>
+            <keyword name="categorical.double" id="categorical.double" ref="html/categorical_002edouble.html"/>
             <keyword name="categorical.iscategory" id="categorical.iscategory" ref="html/categorical_002eiscategory.html"/>
             <keyword name="categorical.ismissing" id="categorical.ismissing" ref="html/categorical_002eismissing.html"/>
             <keyword name="categorical.isnanny" id="categorical.isnanny" ref="html/categorical_002eisnanny.html"/>
@@ -1321,6 +1324,7 @@
             <file>html/categorical_002eisnanny.html</file>
             <file>html/categorical_002eismissing.html</file>
             <file>html/categorical_002eiscategory.html</file>
+            <file>html/categorical_002edouble.html</file>
             <file>html/categorical_002edispstrs.html</file>
             <file>html/categorical_002ecellstr.html</file>
             <file>html/categorical_002ecategories.html</file>
