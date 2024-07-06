@@ -11,6 +11,7 @@ Tablicious Changelog
   * Fix assignment to some `table.Properties.<X>` pseudo-properties.
   * Apply object validation after more mutation operations.
 * Fix variable number display in table.summary.
+* Fix duration ctor bug that returned NaNs in cellstr row vectors. ([#134](https://github.com/apjanke/octave-tablicious/issues/134))
 
 0.4.2 (2024-02-07)
 ------------------

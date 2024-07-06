@@ -560,7 +560,7 @@ classdef duration
     function out = parseTimeStringsToDatenum (strs)
       strs = cellstr (strs);
       out = NaN (size (strs));
-      for i = 1:size (strs)
+      for i = 1:numel (strs)
         strIn = strs{i};
         str = strIn;
         ixDot = find (str == '.');
