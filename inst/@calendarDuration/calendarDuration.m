@@ -251,10 +251,10 @@ classdef calendarDuration
     endfunction
 
     ## -*- texinfo -*-
-    ## @node calendarDuration.times
+    ## @node calendarDuration.mtimes
     ## @deftypefn {Method} {@var{out} =} times (@var{obj}, @var{B})
     ##
-    ## Multiplication: Multiplies a @code{calendarDuration} by a numeric factor.
+    ## Multiplication: Multiplies a @code{calendarDuration} by a numeric factor @var{B}.
     ##
     ## Returns a @code{calendarDuration}.
     ##
@@ -264,6 +264,7 @@ classdef calendarDuration
       if (isnumeric (this) && isa (B, 'calendarDuration'))
         out = times (B, this);
       endif
+      #TODO: Change these messages to reflect the original input order/names
       if (! isa (this, 'calendarDuration'))
         error ('Left-hand side of * must be numeric or calendarDuration');
       endif
@@ -282,6 +283,25 @@ classdef calendarDuration
       out.Time = this.Time .* B;
       out.IsNaN = this.IsNaN | isnan (B);
       out = normalizeNaNs (out);
+    endfunction
+
+    ## -*- texinfo -*-
+    ## @node calendarDuration.mtimes
+    ## @deftypefn {Method} {@var{out} =} times (@var{obj}, @var{B})
+    ##
+    ## Multiplication: Multiplies a @code{calendarDuration} by a numeric factor.
+    ##
+    ## This does not do true matrix multiplication, so at least one of the input arguments
+    ## must be scalar.
+    ##
+    ## Returns a @code{calendarDuration}.
+    ##
+    ## @end deftypefn
+    function out = mtimes (this, B)
+      if (! (isscalar (this) || isscalar (B)))
+        error ('At least one of the arguments to .* must be scalar for calendarDuration.')
+      endif
+      out = times (this, B);
     endfunction
 
     ## -*- texinfo -*-
