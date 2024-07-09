@@ -1128,36 +1128,80 @@ classdef datetime
       out = lower.dnum <= this.dnum && this.dnum <= upper.dnum;
     endfunction
 
-    function out = colon (this, varargin)
+    ## -*- texinfo -*-
+    ## @node datetime.colon
+    ## @deftypefn {Method} {@var{out} =} colon (@var{lo}, @var{hi})
+    ## @deftypefn {Method} {@var{out} =} colon (@var{hi}, @var{inc}, @var{hi})
+    ##
+    ## Generate a sequence of uniformly-spaced values.
+    ##
+    ## This method implements the behavior for the colon operator (@code{lo:hi} or
+    ## @code{lo:inc:hi} calls) for the datetime type.
+    ##
+    ## "Uniformly-spaced" means uniform in terms of the duration or calendarDuration
+    ## value used as the increment. Calendar durations are not necessarily equal-sized in
+    ## terms of the amount of actual time contained in them, so when using a
+    ## calendarDuration as the increment, the resulting vector may not be, and often will
+    ## not be, uniformly spaced in terms of actual (non-"calendar") time.
+    ##
+    ## The @var{inc} argument may be a duration, calendarDuration, or numeric. Numerics
+    ## are taken to be a number of days (uniform-size days, not calendar days), and are
+    ## converted to a duration object with @code{duration.ofDays (inc)}. The default value
+    ## for @var{inc}, used in the two-arg @code{lo:hi} is 1, that is, 1 day of exactly 24
+    ## hours.
+    ##
+    ## Returns a datetime vector.
+    ##
+    ## @end deftypefn
+    function out = colon (lo, varargin)
       narginchk (2, 3);
       switch (nargin)
         case 2
-          limit = varargin{1};
-          increment = 1;
+          hi = varargin{1};
+          inc = 1;
         case 3
-          increment = varargin{1};
-          limit = varargin{2};
+          inc = varargin{1};
+          hi = varargin{2};
       endswitch
-      if (isa (increment, 'calendarDuration'))
-        # TODO: Fix this slow, Shlemiel implementation
-        out = this;
-        while (subset (out, numel(out)) < limit)
-          next_date = subset (out, numel(out)) + increment;
-          out = [out next_date];
-        endwhile
+      if (! isscalar (lo) || !isscalar (hi))
+        error ('lo and hi must both be scalar');
+      endif
+      mustBeScalar(inc);
+      if (! (isa (lo, 'datetime') && isa (hi, 'datetime')))
+        error ('lo and hi arguments must both be datetimes')
+      end
+      if (isnumeric (inc))
+        inc = duration.ofDays (inc);
+      endif
+      if (hi < lo)
+        out = repmat (lo, [1 0]);
+        return
+      elseif (isnat (hi) || isnat (lo))
+        out = lo;
+        lo.dnum = NaN;
         return
       endif
-      if (isnumeric (increment))
-        increment = duration.ofDays (increment);
+
+      if (isa (inc, 'calendarDuration'))
+        # TODO: Fix this slow, Shlemiel implementation
+        out = lo;
+        next = lo;
+        i = 0;
+        while true
+          i = i + 1;
+          next = lo + (inc * i);
+          if next > hi
+            break
+          endif
+          out = [out next];
+        endwhile
+      elseif (isa (inc, 'duration'))
+        out = lo;
+        out.dnum = lo.dnum:inc.days:hi.dnum;
+      else
+        error ('invalid inc argument: must be a duration, calendarDuration, or numeric; got a %s', ...
+          class (inc));
       endif
-      if (! isa (increment, 'duration'))
-        error ('increment must be a duration object');
-      endif
-      if (! isscalar (this) || !isscalar (limit))
-        error ('base and limit must both be scalar');
-      endif
-      out = this;
-      out.dnum = this.dnum:increment.days:limit.dnum;
     endfunction
 
     ## -*- texinfo -*-
