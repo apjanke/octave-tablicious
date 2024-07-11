@@ -411,7 +411,9 @@ classdef datetime
     endfunction
 
     function this = set.Format (this, x)
-      error ('Changing datetime format is currently unimplemented');
+      if (! isequal (x, this.Format))
+        error ('Changing a datetime''s Format is currently unimplemented. Sorry.');
+      endif
     endfunction
 
     function out = get.Year (this)
@@ -741,12 +743,7 @@ classdef datetime
     ##
     ## @end deftypefn
     function out = datestruct (this)
-      if (isempty (this.TimeZone))
-        local_dnums = this.dnum;
-      else
-        local_dnums = datetime.convertDatenumTimeZone (this.dnum, 'UTC', this.TimeZone);
-      endif
-      dvec = datevec (local_dnums);
+      dvec = datevec (this);
       sz = size (this);
       out.Year = reshape (dvec(:,1), sz);
       out.Month = reshape (dvec(:,2), sz);
@@ -777,7 +774,7 @@ classdef datetime
     ## @node datetime.datenum
     ## @deftypefn {Method} {@var{out} =} datenum (@var{obj})
     ##
-    ## Convert this to datenums that represent the same local time
+    ## Convert this to datenums that represent the same local time.
     ##
     ## Returns double array of same size as this.
     ##
@@ -788,6 +785,20 @@ classdef datetime
         dnums = datetime.convertDatenumTimeZone (dnums, 'UTC', this.TimeZone);
       endif
       out = dnums;
+    endfunction
+
+    ## -*- texinfo -*-
+    ## @node datetime.datevec
+    ## @deftypefn {Method} {@var{out} =} datevec (@var{obj})
+    ##
+    ## Convert this to a datevec that represent the same local wall time.
+    ##
+    ## Returns double array of size [numel(obj) 6].
+    ##
+    ## @end deftypefn
+    function out = datevec (this)
+      dn = datenum (this);
+      out = datevec (dn(:));
     endfunction
 
     ## -*- texinfo -*-
@@ -1013,6 +1024,9 @@ classdef datetime
     ## Numeric @var{B} inputs are implicitly converted to @code{duration} using
     ## @code{duration.ofDays}.
     ##
+    ## WARNING: Arithmetic with calendarDuration arguments on datetimes in time zones
+    ## which use Daylight Saving Time may be buggy.
+    ##
     ## Returns @code{datetime} array the same size as @var{A}.
     ##
     ## @end deftypefn
@@ -1042,26 +1056,6 @@ classdef datetime
         out = A + duration.ofDays (B);
       else
         error ('datetime.plus: Invalid input type: %s', class (B));
-      endif
-    endfunction
-
-    function out = plusScalarCalendarDuration (this, dur)
-      ds = datestruct (this);
-      out = this;
-      if (dur.Sign < 0)
-        ds.Year = ds.Year - dur.Years;
-        ds.Month = ds.Month - dur.Months;
-        ds.Day = ds.Day - dur.Days;
-        tmp = datetime.ofDatestruct (ds);
-        tmp.dnum = tmp.dnum - dur.Time;
-        out.dnum = tmp.dnum;
-      else
-        ds.Year = ds.Year + dur.Years;
-        ds.Month = ds.Month + dur.Months;
-        ds.Day = ds.Day + dur.Days;
-        tmp = datetime.ofDatestruct (ds);
-        tmp.dnum = tmp.dnum + dur.Time;
-        out.dnum = tmp.dnum;
       endif
     endfunction
 
@@ -1152,6 +1146,13 @@ classdef datetime
     ##
     ## Returns a datetime vector.
     ##
+    ## WARNING: There are issues with negative-direction sequences. When hi is less than
+    ## lo, this will always produce an empty array, even if @var{inc} is a negative value.
+    ## And there are cases with calendarDurations that have both Months, Days and/or Times
+    ## with mixed signs that values may move in the "wrong" direction, or produce an
+    ## infinite loop. If these problem cases can be correctly identified, but not
+    ## corrected, those cases may raise an error future releases of Tablicious.
+    ##
     ## @end deftypefn
     function out = colon (lo, varargin)
       narginchk (2, 3);
@@ -1186,11 +1187,12 @@ classdef datetime
         # TODO: Fix this slow, Shlemiel implementation
         out = lo;
         next = lo;
+        last = lo;
         i = 0;
-        while true
+        while (true)
           i = i + 1;
           next = lo + (inc * i);
-          if next > hi
+          if (next > hi)
             break
           endif
           out = [out next];
@@ -1546,7 +1548,37 @@ classdef datetime
 
   endmethods
 
-  methods (Access=private)
+  methods (Access = private)
+
+    function out = plusScalarCalendarDuration (this, dur)
+      % Add a scalar calendar duration to a datetime array
+      mustBeScalar (dur);
+      dv = datevec (this);
+      n = size (dv, 1);
+      dv(:,2) = dv(:,2) + dur.Months;
+      dv = normDatevecForNegMonths (dv);
+      % Normalize year-months, then cap last day of month
+      dvNewMth = [dv(:,1:2) ones(n, 1)];
+      dvNextMth = dvNewMth;
+      dvNextMth(:,2) = dvNextMth(:,2) + 1;
+      dnNextMth = datenum (dvNextMth);
+      dnNewMthEnd = dnNextMth - 1;
+      dvNewMthEnd = datevec(dnNewMthEnd);
+      tfTooHi = dv(:,3) > dvNewMthEnd;
+      dv(:,tfTooHi) = dvNewMthEnd(:,tfTooHi);
+      dv(:,1:2) = dvNewMth(:,1:2);
+      % dv now has Months added, day is capped to end of month, and y/m is normalized
+      dv(:,3) = dv(:,3) + dur.Days; % add calendar days
+      dn = datenum (dv);
+      % Time zone support: This dv/dn is in local wall time. Put it in a zoned datetime to
+      % get back in to zoned space, before adding uniform time.
+      dt = datetime.ofDatenum (dn);
+      dt.TimeZone = this.TimeZone;
+      % Format is currently unimplemented
+      % dt.Format = this.Format;
+      dt.dnum = dt.dnum + dur.Time; % add uniform time
+      out = reshape (dt, size (this));
+    endfunction
 
     function out = subsasgnParensPlanar (this, s, rhs)
       #SUBSASGNPARENSPLANAR ()-assignment for planar object
@@ -1658,6 +1690,22 @@ classdef datetime
   endmethods
 
 endclassdef
+
+function out = normDatevecForNegMonths (dv)
+  % Normalize a datevec to have >= month values.
+  % Month values of <= 0 don't "roll over"; they get treated as January.
+  tfNpMth = dv(:,2) <= 0;
+  if (! any (tfNpMth))
+    out = dv;
+    return
+  endif
+  dvIn = dv;
+  npMth = dv(tfNpMth,2);
+  nYrs = ceil (abs (npMth) / 12);
+  dv(tfNpMth,1) = dv(tfNpMth,1) - nYrs;
+  dv(tfNpMth,2) = dv(tfNpMth,2) + (nYrs * 12);
+  out = dv;
+endfunction
 
 %!test datetime;
 %!test datetime ('2011-03-07');
