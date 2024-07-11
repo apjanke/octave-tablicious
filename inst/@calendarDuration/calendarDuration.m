@@ -16,85 +16,36 @@
 ## along with Octave; see the file COPYING.  If not, see
 ## <https://www.gnu.org/licenses/>.
 
+## -*- texinfo -*-
+## @deftp {Class} calendarDuration
+##
+## Durations of time using variable-length calendar periods, such as days,
+## months, and years, which may vary in length over time. (For example, a
+## calendar month may have 28, 30, or 31 days.)
+##
+## @end deftp
+##
+## @deftypeivar calendarDuration @code{char} Format
+##
+## The format to display this @code{calendarDuration} in. Currently unsupported.
+##
+## This is a single value that applies to the whole array.
+##
+## @end deftypeivar
 classdef calendarDuration
-  ## -*- texinfo -*-
-  ## @deftp {Class} calendarDuration
-  ##
-  ## Durations of time using variable-length calendar periods, such as days,
-  ## months, and years, which may vary in length over time. (For example, a
-  ## calendar month may have 28, 30, or 31 days.)
-  ##
-  ## @end deftp
-  ##
-  ## @deftypeivar calendarDuration @code{char} Sign
-  ##
-  ## The sign (1 or -1) of this duration, which indicates whether it is a
-  ## positive or negative span of time.
-  ##
-  ## @end deftypeivar
-  ##
-  ## @deftypeivar calendarDuration @code{char} Years
-  ##
-  ## The number of whole calendar years in this duration. Must be integer-valued.
-  ##
-  ## @end deftypeivar
-  ##
-  ## @deftypeivar calendarDuration @code{char} Months
-  ##
-  ## The number of whole calendar months in this duration. Must be integer-valued.
-  ##
-  ## @end deftypeivar
-  ##
-  ## @deftypeivar calendarDuration @code{char} Days
-  ##
-  ## The number of whole calendar days in this duration. Must be integer-valued.
-  ##
-  ## @end deftypeivar
-  ##
-  ## @deftypeivar calendarDuration @code{char} Hours
-  ##
-  ## The number of whole hours in this duration. Must be integer-valued.
-  ##
-  ## @end deftypeivar
-  ##
-  ## @deftypeivar calendarDuration @code{char} Minutes
-  ##
-  ## The number of whole minutes in this duration. Must be integer-valued.
-  ##
-  ## @end deftypeivar
-  ##
-  ## @deftypeivar calendarDuration @code{char} Seconds
-  ##
-  ## The number of seconds in this duration. May contain fractional values.
-  ##
-  ## @end deftypeivar
-  ##
-  ## @deftypeivar calendarDuration @code{char} Format
-  ##
-  ## The format to display this @code{calendarDuration} in. Currently unsupported.
-  ##
-  ## This is a single value that applies to the whole array.
-  ##
-  ## @end deftypeivar
+  # planar precedence: (Months,Days,Time)
 
-  # planar precedence: (IsNaN,Sign,Years,Months,Days,Time)
-
+  properties (SetAccess = private)
+    # Display format
+    Format = 'ymdt'
+  endproperties
   properties (Access = private)
-    Sign = 1     % planar
-    # Whole calendar years
-    Years = 0    % planar
     # Whole calendar months
     Months = 0   % planar
     # Whole calendar days
     Days = 0     % planar
     # Time as datenum-style double; will typically be a fractional value (<1.0)
     Time = 0     % planar
-    # Flag for whether each element is NaN/NaT; logical
-    IsNaN = false  % planar
-  endproperties
-  properties
-    # Display format
-    Format
   endproperties
 
   methods
@@ -122,7 +73,7 @@ classdef calendarDuration
       # this = calendarDuration (Y, M, D, T)
       # this = calendarDuration (X)
       #
-      # this = calendarDuration (..., 'Format',displayFormat)
+      # this = calendarDuration (..., 'Format', displayFormat)
 
       args = varargin;
       if (nargin == 1 && isa (args{1}, 'calendarDuration'))
@@ -147,50 +98,65 @@ classdef calendarDuration
           Y = X(:,1);
           M = X(:,2);
           D = X(:,3);
-          if (size(X, 2) > 3)
-            T = X(:,4);
-          else
+          if (size (X, 2) == 3)
             T = zeros (size (Y));
+          elseif (size (X, 2) == 4)
+            T = X(:,4);
+          elseif (size (X, 2) == 6)
+            [h, mi, s] = deal (X(:,4), X(:,5), X(:,6));
+            T = (h / 24) + (mi / (24 * 60)) + (s / (24 * 60 * 60));
+          else
+            error (['single-argument numeric input must have exactly 3, 4, or 6 columns; ' ...
+              'had %d columns'], size (x, 2))
           endif
         case 3
-          [Y,M,D] = args{:};
+          [Y, M, D] = args{:};
           T = zeros (size (Y));
         case 4
-          [Y,M,D,T] = args{:};
+          [Y, M, D, T] = args{:};
         case 6
-          [Y,M,D,h,mi,s] = args{:};
+          [Y, M, D, h, mi, s] = args{:};
           T = (h / 24) + (mi / (24 * 60)) + (s / (24 * 60 * 60));
         otherwise
-          error('Invalid number of inputs');
+          error 'Invalid number of inputs');
       endswitch
       # Input validation
       Y = double (Y);
       M = double (M);
       D = double (D);
       T = double (T);
+      tblish.internal.mustBeIntValOrNan (Y);
+      tblish.internal.mustBeIntValOrNan (M);
+      tblish.internal.mustBeIntValOrNan (D);
       [Y, M, D, T] = tblish.internal.chrono.scalarexpand (Y, M, D, T);
       # Construction
-      this.Years = Y;
-      this.Months = M;
+      totalMonths = (12 * Y) + M;
+      this.Months = totalMonths;
       this.Days = D;
       this.Time = T;
-      this.Sign = ones (size (Y));
       if (isfield (opts, 'Format'))
         this.Format = opts.Format;
       endif
       this = normalizeNaNs(this);
     endfunction
 
+    function this = set.Format (this, Format)
+      if (! isequal (Format, 'ymdt'))
+        error ('Only Format ''ymdt'' is currently supported')
+      endif
+      this.Format = Format;
+    endfunction
+
     # Structure
 
     function [keysA, keysB] = proxyKeys (a, b)
       #PROXYKEYS Proxy key values for sorting and set operations
-      keysA = [a.Sign(:) a.Years(:) a.Months(:) a.Days(:) a.Time(:) double(a.IsNaN(:))];
-      keysB = [b.Sign(:) b.Years(:) b.Months(:) b.Days(:) b.Time(:) double(b.IsNaN(:))];
+      keysA = [a.Months(:) a.Days(:) a.Time(:)];
+      keysB = [b.Months(:) b.Days(:) b.Time(:)];
     endfunction
 
     function out = calyears (this)
-      out = this.Years;
+      out = fix (this.Months / 12);
     endfunction
 
     function out = calmonths (this)
@@ -203,13 +169,16 @@ classdef calendarDuration
     ## @node calendarDuration.uminus
     ## @deftypefn {Method} {@var{out} =} uminus (@var{obj})
     ##
-    ## Unary minus. Negates the sign of @var{obj}.
+    ## Unary minus. Negates the sign of @var{obj}, which is equivalent to negating each
+    ## of its components.
     ##
     ## @end deftypefn
     function out = uminus (this)
       #UMINUS Unary minus.
       out = this;
-      out.Sign = -out.Sign;
+      out.Months = -this.Months;
+      out.Days = -this.Days;
+      out.Time = -this.Time;
     endfunction
 
     ## -*- texinfo -*-
@@ -236,18 +205,15 @@ classdef calendarDuration
       if (isnumeric (B))
         B = calendarDuration.ofDays (B);
       endif
-      if (isa (B, 'calendarDuration'))
-        out = this;
-        out.Years = this.Years + (B.Sign .* B.Years);
-        out.Months = this.Months + (B.Sign .* B.Months);
-        out.Days = this.Days + (B.Sign .* B.Days);
-        out.Time = this.Time + (B.Sign .* B.Time);
-        out.IsNaN = this.IsNaN | B.IsNaN;
-        out = normalizeNaNs (out);
-      else
+      if (! isa (B, 'calendarDuration'))
         error ('Invalid input: B must be numeric or calendarDuration; got a %s', ...
           class (B));
       endif
+      out = this;
+      out.Months = this.Months + B.Months;
+      out.Days = this.Days + B.Days;
+      out.Time = this.Time + B.Time;
+      out = normalizeNaNs (out);
     endfunction
 
     ## -*- texinfo -*-
@@ -272,16 +238,9 @@ classdef calendarDuration
         error ('B must be numeric; got a %s', class (B));
       endif
       out = this;
-      tfNeg = B < 0;
-      if (any (any (tfNeg)))
-        out.Sign(tfNeg) = -out.Sign(tfNeg);
-        B = abs (B);
-      endif
-      out.Years = this.Years .* B;
       out.Months = this.Months .* B;
       out.Days = this.Days .* B;
       out.Time = this.Time .* B;
-      out.IsNaN = this.IsNaN | isnan (B);
       out = normalizeNaNs (out);
     endfunction
 
@@ -315,7 +274,7 @@ classdef calendarDuration
     ## @end deftypefn
     function out = minus (A, B)
       #MINUS Subtraction.
-      out = A + -B;
+      out = A + (-B);
     endfunction
 
     # Display
@@ -365,22 +324,24 @@ classdef calendarDuration
         return
       endif
       els = {};
-      if (this.Sign < 0)
-        els{end+1} = '-';
-      endif
-      if (this.Years != 0)
-        els{end+1} = sprintf ('%dy', this.Years);
-      endif
-      if (this.Months != 0)
-        els{end+1} = sprintf ('%dmo', this.Months);
-      endif
-      if (this.Days != 0)
-        els{end+1} = sprintf ('%dd', this.Days);
-      endif
-      if (this.Time != 0)
-        time_str = dispstrs (duration.ofDays (this.Time));
-        time_str = time_str{1};
-        els{end+1} = time_str;
+      [y, m] = this.wholeYM;
+      if isequal (this.Format, 'ymdt')
+        if (y != 0)
+          els{end+1} = sprintf ('%dy', y);
+        endif
+        if (m != 0)
+          els{end+1} = sprintf ('%dmo', m);
+        endif
+        if (this.Days != 0)
+          els{end+1} = sprintf ('%dd', this.Days);
+        endif
+        if (this.Time != 0)
+          time_str = dispstrs (duration.ofDays (this.Time));
+          time_str = time_str{1};
+          els{end+1} = time_str;
+        endif
+      else
+        error ('invalid Format property for calendarDuration: ''%s''', this.Format)
       endif
       if (isempty (els))
         els = {'0d'};
@@ -400,35 +361,20 @@ classdef calendarDuration
 
     function out = fprintf (varargin)
       args = varargin;
-      if (isnumeric (args{1}))
-        fid = args{1};
-        args(1) = [];
-      else
-        fid = [];
-      endif
-      fmt = args{1};
-      args(1) = [];
       for i = 1:numel (args)
         if (isa (args{i}, 'calendarDuration'))
           args{i} = dispstr (args{i});
         endif
       endfor
-      if (isempty (fid))
-        fprintf (fmt, args{:});
-      else
-        fprintf (fid, fmt, args{:});
+      out = fprintf (args{:});
+      if nargout == 0
+        clear out
       endif
     endfunction
 
     function this = normalizeNaNs (this)
-      this.IsNaN = this.IsNaN ...
-        | isnan (this.Years) ...
-        | isnan (this.Months) ...
-        | isnan (this.Days) ...
-        | isnan (this.Time);
-      tfNaN = this.IsNaN;
+      tfNaN = isnan (this.Months) | isnan (this.Days) |isnan (this.Time);
       if any (tfNaN(:))
-        this.Years(tfNaN) = NaN;
         this.Months(tfNaN) = NaN;
         this.Days(tfNaN) = NaN;
         this.Time(tfNaN) = NaN;
@@ -443,20 +389,20 @@ classdef calendarDuration
 
     function out = numel (this)
       #NUMEL Number of elements in array.
-      out = numel (this.Sign);
+      out = numel (this.Months);
     endfunction
 
     function out = ndims (this)
       #NDIMS Number of dimensions.
-      out = ndims (this.Sign);
+      out = ndims (this.Months);
     endfunction
 
     function out = size (this, dim)
       #SIZE Size of array.
       if (nargin == 1)
-        out = size (this.Sign);
+        out = size (this.Months);
       else
-        out = size (this, dim);
+        out = size (this.Months, dim);
       endif
     endfunction
 
@@ -470,32 +416,32 @@ classdef calendarDuration
 
     function out = isempty (this)
       #ISEMPTY True for empty array.
-      out = isempty (this.Sign);
+      out = isempty (this.Months);
     endfunction
 
     function out = isscalar (this)
       #ISSCALAR True if input is scalar.
-      out = isscalar (this.Sign);
+      out = isscalar (this.Months);
     endfunction
 
     function out = isvector (this)
       #ISVECTOR True if input is a vector.
-      out = isvector (this.Sign);
+      out = isvector (this.Months);
     endfunction
 
     function out = iscolumn (this)
       #ISCOLUMN True if input is a column vector.
-      out = iscolumn (this.Sign);
+      out = iscolumn (this.Months);
     endfunction
 
     function out = isrow (this)
       #ISROW True if input is a row vector.
-      out = isrow (this.Sign);
+      out = isrow (this.Months);
     endfunction
 
     function out = ismatrix (this)
       #ISMATRIX True if input is a matrix.
-      out = ismatrix (this.Sign);
+      out = ismatrix (this.Months);
     endfunction
 
     ## -*- texinfo -*-
@@ -512,12 +458,7 @@ classdef calendarDuration
     ## @end deftypefn
     function out = isnan (this)
       #ISNAN True for Not-a-Number.
-      out = isnan (this.Days) ...
-              | isnan (this.Months) ...
-              | isnan (this.Sign) ...
-              | isnan (this.Time) ...
-              | isnan (this.Years);
-      out (this.IsNaN) = true;
+      out = ismissing (this);
     endfunction
 
     ## -*- texinfo -*-
@@ -532,105 +473,76 @@ classdef calendarDuration
     ##
     ## @end deftypefn
     function out = ismissing (this)
-      out = isnan (this);
+      # NaNs are normalized, so we can test just one field.
+      out = isnan (this.Months);
     endfunction
 
     function this = reshape (this, varargin)
       #RESHAPE Reshape array.
-      this.Sign = reshape (this.Sign, varargin{:});
-      this.Years = reshape (this.Years, varargin{:});
       this.Months = reshape (this.Months, varargin{:});
       this.Days = reshape (this.Days, varargin{:});
       this.Time = reshape (this.Time, varargin{:});
-      this.IsNaN = reshape (this.IsNaN, varargin{:});
     endfunction
 
     function this = squeeze (this, varargin)
       #SQUEEZE Remove singleton dimensions.
-      this.Sign = squeeze (this.Sign, varargin{:});
-      this.Years = squeeze (this.Years, varargin{:});
       this.Months = squeeze (this.Months, varargin{:});
       this.Days = squeeze (this.Days, varargin{:});
       this.Time = squeeze (this.Time, varargin{:});
-      this.IsNaN = squeeze (this.IsNaN, varargin{:});
     endfunction
 
     function this = circshift (this, varargin)
       #CIRCSHIFT Shift positions of elements circularly.
-      this.Sign = circshift (this.Sign, varargin{:});
-      this.Years = circshift (this.Years, varargin{:});
       this.Months = circshift (this.Months, varargin{:});
       this.Days = circshift (this.Days, varargin{:});
       this.Time = circshift (this.Time, varargin{:});
-      this.IsNaN = circshift (this.IsNaN, varargin{:});
     endfunction
 
     function this = permute (this, varargin)
       #PERMUTE Permute array dimensions.
-      this.Sign = permute (this.Sign, varargin{:});
-      this.Years = permute (this.Years, varargin{:});
       this.Months = permute (this.Months, varargin{:});
       this.Days = permute (this.Days, varargin{:});
       this.Time = permute (this.Time, varargin{:});
-      this.IsNaN = permute (this.IsNaN, varargin{:});
     endfunction
 
     function this = ipermute (this, varargin)
       #IPERMUTE Inverse permute array dimensions.
-      this.Sign = ipermute (this.Sign, varargin{:});
-      this.Years = ipermute (this.Years, varargin{:});
       this.Months = ipermute (this.Months, varargin{:});
       this.Days = ipermute (this.Days, varargin{:});
       this.Time = ipermute (this.Time, varargin{:});
-      this.IsNaN = ipermute (this.IsNaN, varargin{:});
     endfunction
 
     function this = repmat (this, varargin)
       #REPMAT Replicate and tile array.
-      this.Sign = repmat (this.Sign, varargin{:});
-      this.Years = repmat (this.Years, varargin{:});
       this.Months = repmat (this.Months, varargin{:});
       this.Days = repmat (this.Days, varargin{:});
       this.Time = repmat (this.Time, varargin{:});
-      this.IsNaN = repmat (this.IsNaN, varargin{:});
     endfunction
 
     function this = ctranspose (this, varargin)
       #CTRANSPOSE Complex conjugate transpose.
-      this.Sign = ctranspose (this.Sign, varargin{:});
-      this.Years = ctranspose (this.Years, varargin{:});
       this.Months = ctranspose (this.Months, varargin{:});
       this.Days = ctranspose (this.Days, varargin{:});
       this.Time = ctranspose (this.Time, varargin{:});
-      this.IsNaN = ctranspose (this.IsNaN, varargin{:});
     endfunction
 
     function this = transpose (this, varargin)
       #TRANSPOSE Transpose vector or matrix.
-      this.Sign = transpose (this.Sign, varargin{:});
-      this.Years = transpose (this.Years, varargin{:});
       this.Months = transpose (this.Months, varargin{:});
       this.Days = transpose (this.Days, varargin{:});
       this.Time = transpose (this.Time, varargin{:});
-      this.IsNaN = transpose (this.IsNaN, varargin{:});
     endfunction
 
     function [this, nshifts] = shiftdim (this, n)
       #SHIFTDIM Shift dimensions.
       if nargin > 1
-        this.Sign = shiftdim (this.Sign, n);
-        this.Years = shiftdim (this.Years, n);
-        this.Months = shiftdim (this.Months, n);
+        [this.Months, nshifts] = shiftdim (this.Months, n);
         this.Days = shiftdim (this.Days, n);
         this.Time = shiftdim (this.Time, n);
-        this.IsNaN = shiftdim (this.IsNaN, n);
       else
-        this.Sign = shiftdim (this.Sign);
-        this.Years = shiftdim (this.Years);
-        this.Months = shiftdim (this.Months);
+        [this.Months, nshifts] = shiftdim (this.Months);
         this.Days = shiftdim (this.Days);
         this.Time = shiftdim (this.Time);
-        [this.IsNaN,nshifts] = shiftdim (this.IsNaN);
       endif
     endfunction
 
@@ -643,18 +555,12 @@ classdef calendarDuration
         endif
       endfor
       out = args{1};
-      fieldArgs = cellfun (@(obj) obj.Sign, args, 'UniformOutput', false);
-      out.Sign = cat (dim, fieldArgs{:});
-      fieldArgs = cellfun (@(obj) obj.Years, args, 'UniformOutput', false);
-      out.Years = cat (dim, fieldArgs{:});
       fieldArgs = cellfun (@(obj) obj.Months, args, 'UniformOutput', false);
       out.Months = cat (dim, fieldArgs{:});
       fieldArgs = cellfun (@(obj) obj.Days, args, 'UniformOutput', false);
       out.Days = cat (dim, fieldArgs{:});
       fieldArgs = cellfun (@(obj) obj.Time, args, 'UniformOutput', false);
       out.Time = cat (dim, fieldArgs{:});
-      fieldArgs = cellfun (@(obj) obj.IsNaN, args, 'UniformOutput', false);
-      out.IsNaN = cat (dim, fieldArgs{:});
     endfunction
 
     function out = horzcat (varargin)
@@ -844,40 +750,31 @@ classdef calendarDuration
 
   endmethods
 
-  methods (Access=private)
+  methods (Access = private)
 
     function this = subsasgnParensPlanar (this, s, rhs)
       #SUBSASGNPARENSPLANAR ()-assignment for planar object
       if (isnumeric (rhs) && isequal (size (rhs), [0 0]))
         # Special `x(ix) = []` deletion form
-        this.Sign(s.subs{:}) = [];
-        this.Years(s.subs{:}) = [];
         this.Months(s.subs{:}) = [];
         this.Days(s.subs{:}) = [];
         this.Time(s.subs{:}) = [];
-        this.IsNaN(s.subs{:}) = [];
         return
       endif
       if (! isa (rhs, 'calendarDuration'))
         rhs = calendarDuration (rhs);
       endif
-      this.Sign(s.subs{:}) = rhs.Sign;
-      this.Years(s.subs{:}) = rhs.Years;
       this.Months(s.subs{:}) = rhs.Months;
       this.Days(s.subs{:}) = rhs.Days;
       this.Time(s.subs{:}) = rhs.Time;
-      this.IsNaN(s.subs{:}) = rhs.IsNaN;
     endfunction
 
     function out = subsrefParensPlanar (this, s)
       #SUBSREFPARENSPLANAR ()-indexing for planar object
       out = this;
-      out.Sign = this.Sign(s.subs{:});
-      out.Years = this.Years(s.subs{:});
       out.Months = this.Months(s.subs{:});
       out.Days = this.Days(s.subs{:});
       out.Time = this.Time(s.subs{:});
-      out.IsNaN = this.IsNaN(s.subs{:});
     endfunction
 
     function out = parensRef (this, varargin)
@@ -904,6 +801,12 @@ classdef calendarDuration
       s.type = '()';
       s.subs = ix;
       out = subsasgnParensPlanar (this, s, value);
+    endfunction
+
+    function [y, m] = wholeYM (this)
+      % This's Months, converted to whole years and remaining months
+      y = fix (this.Months / 12);
+      m = rem (this.Months, 12);
     endfunction
 
   endmethods
