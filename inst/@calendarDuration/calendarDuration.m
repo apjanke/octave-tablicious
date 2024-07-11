@@ -183,16 +183,17 @@ classdef calendarDuration
 
     ## -*- texinfo -*-
     ## @node calendarDuration.plus
-    ## @deftypefn {Method} {@var{out} =} plus (@var{A}, @var{B})
+    ## @deftypefn {Method} {@var{out} =} plus (@var{obj}, @var{B})
     ##
-    ## Addition: add two @code{calendarDuration}s.
+    ## Addition: add to a @code{calendarDuration}.
     ##
     ## All the calendar elements (properties) of the two inputs are added
     ## together. No normalization is done across the elements, aside from
     ## the normalization of NaNs.
     ##
+    ## @var{B} may be a @code{calendarDuration}, @code{duration}, or numeric.
     ## If @var{B} is numeric, it is converted to a @code{calendarDuration}
-    ## using @code{calendarDuration.ofDays}.
+    ## using @code{caldays(B)}.
     ##
     ## Returns a @code{calendarDuration}.
     ##
@@ -205,14 +206,19 @@ classdef calendarDuration
       if (isnumeric (B))
         B = calendarDuration.ofDays (B);
       endif
-      if (! isa (B, 'calendarDuration'))
-        error ('Invalid input: B must be numeric or calendarDuration; got a %s', ...
+      [this, B] = tblish.internal.chrono.scalarexpand (this, B);
+      if (isa (B, 'calendarDuration'))
+        out = this;
+        out.Months = this.Months + B.Months;
+        out.Days = this.Days + B.Days;
+        out.Time = this.Time + B.Time;
+      elseif (isa (B, 'duration'))
+        out = this;
+        out.Time = this.Time + B.days;
+      else
+        error ('Invalid input: B must be numeric, calendarDuration, or duration; got a %s', ...
           class (B));
       endif
-      out = this;
-      out.Months = this.Months + B.Months;
-      out.Days = this.Days + B.Days;
-      out.Time = this.Time + B.Time;
       out = normalizeNaNs (out);
     endfunction
 

@@ -484,6 +484,9 @@ classdef duration
       elseif (isa (A, 'duration') && isa (B, 'duration'))
         out = A;
         out.days = A.days + B.days;
+      elseif (isa (A, 'duration') && isa (B, 'calendarDuration'))
+        % Delegate to calendarDuration's implementation
+        out = B + A;
       elseif (isa (A, 'duration') && isa (B, 'double'))
         out = A;
         out.days = A.days + B;
@@ -494,7 +497,7 @@ classdef duration
 
     function out = minus (A, B)
       #MINUS Subtraction
-      out = A + (-1 * B);
+      out = A + (-B);
     endfunction
 
     function out = uminus (A)

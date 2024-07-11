@@ -1035,7 +1035,7 @@ classdef datetime
       A_in = A;
       B_in = B;
       # TODO: Maybe support `duration/calendarDuration + datetime` form by just swapping the
-      # arguments.
+      # arguments?
       if (! isa (A, 'datetime'))
         error ('datetime.plus: Expected left-hand side of A + B to be a datetime; got a %s', ...
           class (A));
