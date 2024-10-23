@@ -9,15 +9,18 @@ Here's the process for doing a Tablicious release.
     1. Wouldn't hurt to do `make clean && git status && make test` and manual-cleanup, just to be sure.
 1. Update the version info in the repo.
     1. Update the version number and date in `DESCRIPTION`.
+        1. Remove the `-SNAPSHOT` suffix from the version number.
     1. Update the `CHANGES.txt` file with the release date.
         1. Use the current calendar date in UTC time, not your local time. Or use your local time; who really cares.
         1. And check that it has a complete change list for the release. This _should_ be done as changes are committed, but we're not great about that.
 1. Update the installation instructions in README to use the upcoming release tarball URL.
     1. Format is: `https://github.com/apjanke/octave-tablicious/releases/download/v<version>/tablicious-<version>.tar.gz`
-1. Update the generated doco
+    1. As of 2024-10, this is just in the "Quick start" section.
+1. Update the generated doco.
     1. Regenerate the doco: `make doc; make gh-pages`
     1. Make a versioned copy for this release:
         * `ver=$(grep ^Version DESCRIPTION | cut -d ' ' -f 2); mkdir -p docs/release/v${ver}/user-guide; cd doc; cp -R html tablicious.html tablicious.pdf ../docs/release/v${ver}/user-guide`
+        1. What is wrong with you, Andrew? Make this a `make` target instead of a 200-character-long bash cut-and-paste command.
     1. Add a section for the new release's doco to `docs/index.md`, and update the links in the main paragraph to point to it.
 1. Commit all the files changed by the above steps.
     1. Use form: `git add -A; git commit -a -m '[release] v<version>'`
