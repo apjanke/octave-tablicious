@@ -1125,7 +1125,7 @@ classdef datetime
     ## -*- texinfo -*-
     ## @node datetime.colon
     ## @deftypefn {Method} {@var{out} =} colon (@var{lo}, @var{hi})
-    ## @deftypefn {Method} {@var{out} =} colon (@var{hi}, @var{inc}, @var{hi})
+    ## @deftypefnx {Method} {@var{out} =} colon (@var{hi}, @var{inc}, @var{hi})
     ##
     ## Generate a sequence of uniformly-spaced values.
     ##
