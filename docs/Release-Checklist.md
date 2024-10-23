@@ -43,7 +43,7 @@ Here's the process for doing a Tablicious release.
 1. Open development for next version
     1. Update version number and date in `DESCRIPTION` to next patch or minor version, as appropriate.
         1. Include a `-SNAPSHOT` suffix to indicate this is a work in progress.
-    1. Add a section to `CHANGES.txt` for the new upcoming release, at the top. Use `(in progress)` for its release date.
+    1. Add a section to `CHANGES.txt` for the new upcoming release, at the top. Use `(unreleased)` for its release date.
     1. Rebuild the doco
         1. `make doc; make gh-pages`
     1. `git add -A; git commit -a -m 'Open development for next version'; git push`
