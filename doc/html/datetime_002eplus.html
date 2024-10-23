@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<!-- Created by GNU Texinfo 7.1, https://www.gnu.org/software/texinfo/ -->
+<!-- Created by GNU Texinfo 7.1.1, https://www.gnu.org/software/texinfo/ -->
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <!-- This manual is for Tablicious, version 0.4.4-SNAPSHOT.
@@ -50,7 +50,7 @@ strong.def-name {font-family: monospace; font-weight: bold; font-size: larger}
 Next: <a href="datetime_002eposix2datenum.html" accesskey="n" rel="next">datetime.posix2datenum</a>, Previous: <a href="datetime_002eofDatestruct.html" accesskey="p" rel="prev">datetime.ofDatestruct</a>, Up: <a href="datetime.html" accesskey="u" rel="up">datetime</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
 </div>
 <hr>
-<h4 class="subsubsection" id="datetime_002eplus-1"><span>8.2.9.27 datetime.plus<a class="copiable-link" href="#datetime_002eplus-1"> &para;</a></span></h4>
+<h4 class="subsubsection" id="datetime_002eplus-1"><span>8.2.10.29 datetime.plus<a class="copiable-link" href="#datetime_002eplus-1"> &para;</a></span></h4>
 
 <dl class="first-deftypefn">
 <dt class="deftypefn" id="index-plus-1"><span class="category-def">Method: </span><span><code class="def-type"><var class="var">out</var> =</code> <strong class="def-name">plus</strong> <code class="def-code-arguments">(<var class="var">A</var>, <var class="var">B</var>)</code><a class="copiable-link" href="#index-plus-1"> &para;</a></span></dt>
@@ -62,6 +62,9 @@ or numeric <var class="var">B</var> to a <code class="code">datetime</code> <var
 </p>
 <p>Numeric <var class="var">B</var> inputs are implicitly converted to <code class="code">duration</code> using
 <code class="code">duration.ofDays</code>.
+</p>
+<p>WARNING: Arithmetic with calendarDuration arguments on datetimes in time zones
+which use Daylight Saving Time may be buggy.
 </p>
 <p>Returns <code class="code">datetime</code> array the same size as <var class="var">A</var>.
 </p>

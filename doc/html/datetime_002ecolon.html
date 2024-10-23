@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.1.1, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- This manual is for Tablicious, version 0.4.4-SNAPSHOT.
+
+Copyright © 2019, 2023, 2024 Andrew Janke
+
+Permission is granted to make and distribute verbatim copies of
+this manual provided the copyright notice and this permission notice
+are preserved on all copies.
+
+Permission is granted to copy and distribute modified versions of this
+manual under the conditions for verbatim copying, provided that the entire
+resulting derived work is distributed under the terms of a permission
+notice identical to this one.
+
+Permission is granted to copy and distribute translations of this manual
+into another language, under the same conditions as for modified versions. -->
+<title>datetime.colon (Tablicious v0.4.4-SNAPSHOT)</title>
+
+<meta name="description" content="User manual for Tablicious for Octave.">
+<meta name="keywords" content="datetime.colon (Tablicious v0.4.4-SNAPSHOT)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="datetime.html" rel="up" title="datetime">
+<link href="datetime_002econvertDatenumTimeZone.html" rel="next" title="datetime.convertDatenumTimeZone">
+<style type="text/css">
+<!--
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+span:hover a.copiable-link {visibility: visible}
+strong.def-name {font-family: monospace; font-weight: bold; font-size: larger}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<div class="subsubsection-level-extent" id="datetime_002ecolon">
+<div class="nav-panel">
+<p>
+Next: <a href="datetime_002econvertDatenumTimeZone.html" accesskey="n" rel="next">datetime.convertDatenumTimeZone</a>, Up: <a href="datetime.html" accesskey="u" rel="up">datetime</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<hr>
+<h4 class="subsubsection" id="datetime_002ecolon-1"><span>8.2.10.1 datetime.colon<a class="copiable-link" href="#datetime_002ecolon-1"> &para;</a></span></h4>
+
+<dl class="first-deftypefn">
+<dt class="deftypefn" id="index-colon"><span class="category-def">Method: </span><span><code class="def-type"><var class="var">out</var> =</code> <strong class="def-name">colon</strong> <code class="def-code-arguments">(<var class="var">lo</var>, <var class="var">hi</var>)</code><a class="copiable-link" href="#index-colon"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn" id="index-colon-1"><span class="category-def">Method: </span><span><code class="def-type"><var class="var">out</var> =</code> <strong class="def-name">colon</strong> <code class="def-code-arguments">(<var class="var">hi</var>, <var class="var">inc</var>, <var class="var">hi</var>)</code><a class="copiable-link" href="#index-colon-1"> &para;</a></span></dt>
+<dd>
+<p>Generate a sequence of uniformly-spaced values.
+</p>
+<p>This method implements the behavior for the colon operator (<code class="code">lo:hi</code> or
+<code class="code">lo:inc:hi</code> calls) for the datetime type.
+</p>
+<p>&quot;Uniformly-spaced&quot; means uniform in terms of the duration or calendarDuration
+value used as the increment. Calendar durations are not necessarily equal-sized in
+terms of the amount of actual time contained in them, so when using a
+calendarDuration as the increment, the resulting vector may not be, and often will
+not be, uniformly spaced in terms of actual (non-&quot;calendar&quot;) time.
+</p>
+<p>The <var class="var">inc</var> argument may be a duration, calendarDuration, or numeric. Numerics
+are taken to be a number of days (uniform-size days, not calendar days), and are
+converted to a duration object with <code class="code">duration.ofDays (inc)</code>. The default value
+for <var class="var">inc</var>, used in the two-arg <code class="code">lo:hi</code> is 1, that is, 1 day of exactly 24
+hours.
+</p>
+<p>Returns a datetime vector.
+</p>
+<p>WARNING: There are issues with negative-direction sequences. When hi is less than
+lo, this will always produce an empty array, even if <var class="var">inc</var> is a negative value.
+And there are cases with calendarDurations that have both Months, Days and/or Times
+with mixed signs that values may move in the &quot;wrong&quot; direction, or produce an
+infinite loop. If these problem cases can be correctly identified, but not
+corrected, those cases may raise an error future releases of Tablicious.
+</p>
+</dd></dl>
+
+</div>
+<hr>
+<div class="nav-panel">
+<p>
+Next: <a href="datetime_002econvertDatenumTimeZone.html">datetime.convertDatenumTimeZone</a>, Up: <a href="datetime.html">datetime</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+
+
+
+</body>
+</html>

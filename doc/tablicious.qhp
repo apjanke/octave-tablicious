@@ -45,6 +45,8 @@
                     <section title="API Alphabetically" ref="html/API-Alphabetically.html">
                         <section title="array2table" ref="html/array2table.html">
                         </section>
+                        <section title="caldays" ref="html/caldays.html">
+                        </section>
                         <section title="calendarDuration" ref="html/calendarDuration.html">
                             <section title="calendarDuration.calendarDuration" ref="html/calendarDuration_002ecalendarDuration.html">
                             </section>
@@ -55,6 +57,8 @@
                             <section title="calendarDuration.isnan" ref="html/calendarDuration_002eisnan.html">
                             </section>
                             <section title="calendarDuration.minus" ref="html/calendarDuration_002eminus.html">
+                            </section>
+                            <section title="calendarDuration.mtimes" ref="html/calendarDuration_002emtimes.html">
                             </section>
                             <section title="calendarDuration.plus" ref="html/calendarDuration_002eplus.html">
                             </section>
@@ -118,6 +122,8 @@
                         <section title="contains" ref="html/contains.html">
                         </section>
                         <section title="datetime" ref="html/datetime.html">
+                            <section title="datetime.colon" ref="html/datetime_002ecolon.html">
+                            </section>
                             <section title="datetime.convertDatenumTimeZone" ref="html/datetime_002econvertDatenumTimeZone.html">
                             </section>
                             <section title="datetime.datenum" ref="html/datetime_002edatenum.html">
@@ -131,6 +137,8 @@
                             <section title="datetime.datestruct" ref="html/datetime_002edatestruct.html">
                             </section>
                             <section title="datetime.datetime" ref="html/datetime_002edatetime.html">
+                            </section>
+                            <section title="datetime.datevec" ref="html/datetime_002edatevec.html">
                             </section>
                             <section title="datetime.diff" ref="html/datetime_002ediff.html">
                             </section>
@@ -707,12 +715,14 @@
             <keyword name="NaS" id="NaS" ref="html/NaS.html"/>
             <keyword name="NaT" id="NaT" ref="html/NaT.html"/>
             <keyword name="array2table" id="array2table" ref="html/array2table.html"/>
+            <keyword name="caldays" id="caldays" ref="html/caldays.html"/>
             <keyword name="calendarDuration" id="calendarDuration" ref="html/calendarDuration.html"/>
             <keyword name="calendarDuration.calendarDuration" id="calendarDuration.calendarDuration" ref="html/calendarDuration_002ecalendarDuration.html"/>
             <keyword name="calendarDuration.dispstrs" id="calendarDuration.dispstrs" ref="html/calendarDuration_002edispstrs.html"/>
             <keyword name="calendarDuration.ismissing" id="calendarDuration.ismissing" ref="html/calendarDuration_002eismissing.html"/>
             <keyword name="calendarDuration.isnan" id="calendarDuration.isnan" ref="html/calendarDuration_002eisnan.html"/>
             <keyword name="calendarDuration.minus" id="calendarDuration.minus" ref="html/calendarDuration_002eminus.html"/>
+            <keyword name="calendarDuration.mtimes" id="calendarDuration.mtimes" ref="html/calendarDuration_002emtimes.html"/>
             <keyword name="calendarDuration.plus" id="calendarDuration.plus" ref="html/calendarDuration_002eplus.html"/>
             <keyword name="calendarDuration.times" id="calendarDuration.times" ref="html/calendarDuration_002etimes.html"/>
             <keyword name="calendarDuration.uminus" id="calendarDuration.uminus" ref="html/calendarDuration_002euminus.html"/>
@@ -748,6 +758,7 @@
             <keyword name="datasets.load" id="datasets.load" ref="html/datasets_002eload.html"/>
             <keyword name="datetime" id="datetime" ref="html/datetime.html"/>
             <keyword name="datetime.NaT" id="datetime.NaT" ref="html/datetime_002eNaT.html"/>
+            <keyword name="datetime.colon" id="datetime.colon" ref="html/datetime_002ecolon.html"/>
             <keyword name="datetime.convertDatenumTimeZone" id="datetime.convertDatenumTimeZone" ref="html/datetime_002econvertDatenumTimeZone.html"/>
             <keyword name="datetime.datenum" id="datetime.datenum" ref="html/datetime_002edatenum.html"/>
             <keyword name="datetime.datenum2posix" id="datetime.datenum2posix" ref="html/datetime_002edatenum2posix.html"/>
@@ -755,6 +766,7 @@
             <keyword name="datetime.datestrs" id="datetime.datestrs" ref="html/datetime_002edatestrs.html"/>
             <keyword name="datetime.datestruct" id="datetime.datestruct" ref="html/datetime_002edatestruct.html"/>
             <keyword name="datetime.datetime" id="datetime.datetime" ref="html/datetime_002edatetime.html"/>
+            <keyword name="datetime.datevec" id="datetime.datevec" ref="html/datetime_002edatevec.html"/>
             <keyword name="datetime.diff" id="datetime.diff" ref="html/datetime_002ediff.html"/>
             <keyword name="datetime.dispstrs" id="datetime.dispstrs" ref="html/datetime_002edispstrs.html"/>
             <keyword name="datetime.eq" id="datetime.eq" ref="html/datetime_002eeq.html"/>
@@ -1298,6 +1310,7 @@
             <file>html/datetime_002eeq.html</file>
             <file>html/datetime_002edispstrs.html</file>
             <file>html/datetime_002ediff.html</file>
+            <file>html/datetime_002edatevec.html</file>
             <file>html/datetime_002edatetime.html</file>
             <file>html/datetime_002edatestruct.html</file>
             <file>html/datetime_002edatestrs.html</file>
@@ -1305,6 +1318,7 @@
             <file>html/datetime_002edatenum2posix.html</file>
             <file>html/datetime_002edatenum.html</file>
             <file>html/datetime_002econvertDatenumTimeZone.html</file>
+            <file>html/datetime_002ecolon.html</file>
             <file>html/datetime.html</file>
             <file>html/contains.html</file>
             <file>html/colvecfun.html</file>
@@ -1336,12 +1350,14 @@
             <file>html/calendarDuration_002euminus.html</file>
             <file>html/calendarDuration_002etimes.html</file>
             <file>html/calendarDuration_002eplus.html</file>
+            <file>html/calendarDuration_002emtimes.html</file>
             <file>html/calendarDuration_002eminus.html</file>
             <file>html/calendarDuration_002eisnan.html</file>
             <file>html/calendarDuration_002eismissing.html</file>
             <file>html/calendarDuration_002edispstrs.html</file>
             <file>html/calendarDuration_002ecalendarDuration.html</file>
             <file>html/calendarDuration.html</file>
+            <file>html/caldays.html</file>
             <file>html/array2table.html</file>
             <file>html/API-Alphabetically.html</file>
             <file>html/API-by-Category.html</file>
