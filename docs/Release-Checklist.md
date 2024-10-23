@@ -3,6 +3,7 @@
 Here's the process for doing a Tablicious release.
 
 1. Run all the tests.
+    1. `addpath(fullfile(getenv('HOME'),'repos', 'octave-tablicious', 'inst'))`
     1. `__run_test_suite__ ({fullfile(getenv('HOME'),'/repos/octave-tablicious/inst')}, {})`
     1. `tblish_test_tablicious`
     1. Wouldn't hurt to do `make clean && git status && make test` and manual-cleanup, just to be sure.

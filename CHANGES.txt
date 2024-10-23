@@ -1,10 +1,12 @@
 Tablicious Changelog
 ====================
 
-0.4.4 (in progress)
--------------------
+0.4.4 (2024-10-23)
+------------------
 
-(Nothing here yet.)
+* Improvements (hopefully) to duration-related arithmetic and datatype interaction.
+* Fix hi-bound and striding bugs in `datetime.colon` (`:` operator).
+* Add missing `calendarDuration.mtimes` method.
 
 0.4.3 (2024-07-06)
 -------------------
