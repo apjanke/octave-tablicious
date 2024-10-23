@@ -223,7 +223,7 @@ classdef calendarDuration
     endfunction
 
     ## -*- texinfo -*-
-    ## @node calendarDuration.mtimes
+    ## @node calendarDuration.times
     ## @deftypefn {Method} {@var{out} =} times (@var{obj}, @var{B})
     ##
     ## Multiplication: Multiplies a @code{calendarDuration} by a numeric factor @var{B}.
