@@ -10,7 +10,7 @@ if nargin < 2 || isempty (exit_on_fail); exit_on_fail = false; endif
 
 my_t_dir = fileparts (mfilename ('fullpath'));
 
-tests = list_mpower_tests_in_dirs (my_t_dir)
+tests = list_mpower_tests_in_dirs (my_t_dir);
 all_ok = t_run_tests (tests, verbose);
 
 # Handle success/failure
