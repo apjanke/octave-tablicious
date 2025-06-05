@@ -329,14 +329,12 @@ classdef string
     ##
     ## Test if string ends with pattern.
     ##
-    ## Missing values are considered nannish; any other string value is not.
-    ##
     ## Returns a logical array the size of the scalar expansion of @var{obj} and @var{pattern}.
     ##
     ## @end deftypefn
     function out = endsWith(this, pattern, varargin)
         #ENDSWITH Test if string ends with pattern.
-    
+
       # Handle 'IgnoreCase' flag
       ignoreCase = false;
       if nargin > 2
@@ -345,11 +343,11 @@ classdef string
           ignoreCase = varargin{idx+1};
         end
       end
-    
+
       [this, pattern] = promote(this, pattern); % promote to string arrays, scalar expand
       [this, pattern] = scalarexpand(this, pattern);
       out = false(size(this));
-    
+
       for i = 1:numel(this)
         if this.tfMissing(i) || pattern.tfMissing(i)
           out(i) = false; % Or handle as missing, if that's your convention
@@ -362,6 +360,49 @@ classdef string
           pat = lower(pat);
         end
         if length(pat) <= length(str) && strcmp(str(end-length(pat)+1:end), pat)
+          out(i) = true;
+        end
+      end
+    end
+
+        ## -*- texinfo -*-
+    ## @node string.startsWith
+    ## @deftypefn {Method} {@var{out} =} startsWith (@var{obj}, @var{pattern})
+    ## @deftypefn {Method} {@var{out} =} startsWith (@var{obj}, @var{pattern}, 'IgnoreCase', true/false)
+    ##
+    ## Test if string starts with pattern.
+    ##
+    ## Returns a logical array the size of the scalar expansion of @var{obj} and @var{pattern}.
+    ##
+    ## @end deftypefn
+    function out = startsWith(this, pattern, varargin)
+        #ENDSWITH Test if string ends with pattern.
+
+      # Handle 'IgnoreCase' flag
+      ignoreCase = false;
+      if nargin > 2
+        idx = find(strcmpi(varargin, 'IgnoreCase'), 1);
+        if ~isempty(idx)
+          ignoreCase = varargin{idx+1};
+        end
+      end
+
+      [this, pattern] = promote(this, pattern); % promote to string arrays, scalar expand
+      [this, pattern] = scalarexpand(this, pattern);
+      out = false(size(this));
+
+      for i = 1:numel(this)
+        if this.tfMissing(i) || pattern.tfMissing(i)
+          out(i) = false; % Or handle as missing, if that's your convention
+          continue
+        end
+        str = this.strs{i};
+        pat = pattern.strs{i};
+        if ignoreCase
+          str = lower(str);
+          pat = lower(pat);
+        end
+        if length(pat) <= length(str) && strcmp(str(1:length(pat)), pat)
           out(i) = true;
         end
       end
@@ -1426,3 +1467,13 @@ endfunction
 %! tfM = ismissing (str);
 %! assert (cellstr (str), {"3y 4mo 5d"; ""})
 %! assert (tfM, logical ([0; 1]))
+%!test
+%! str = string ('abcdf');
+%! tfEW = endsWith (str, 'cdf');
+%! assert (tfEW == true)
+%! assert (tfEW, logical ([0; 1]))
+%!test
+%! str = string ('abcdf');
+%! tfEW = endsWith (str, 'xxx');
+%! assert (tfEW == false)
+%! assert (tfEW, logical ([0; 1]))
