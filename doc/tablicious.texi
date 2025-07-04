@@ -2,7 +2,7 @@
 
 @c %**start of header
 
-@set VERSION 0.4.5-SNAPSHOT
+@set VERSION 0.4.5
 
 @setfilename tablicious.info
 @settitle Tablicious v@value{VERSION}
@@ -36,7 +36,7 @@ User manual for Tablicious for Octave.
 
 @titlepage
 @title  Tablicious for GNU Octave
-@subtitle version @value{VERSION}, January 2099
+@subtitle version @value{VERSION}, July 2025
 @author Andrew Janke
 @page
 @vskip 0pt plus 1filll
@@ -108,7 +108,7 @@ The easiest way to obtain Tablicious is by using Octave's @code{pkg} package man
 To install the development prerelease of Tablicious, run this in Octave:
 
 @example
-pkg install https://github.com/apjanke/octave-tablicious/releases/download/v0.4.5-SNAPSHOT/tablicious-0.4.5-SNAPSHOT.tar.gz
+pkg install https://github.com/apjanke/octave-tablicious/releases/download/v0.4.5/tablicious-0.4.5.tar.gz
 @end example
 
 (Check the releases page at @url{https://github.com/apjanke/octave-tablicious/releases} to
@@ -3454,6 +3454,18 @@ See also: @ref{string.decode}.
 
 @end deftypefn
 
+@node string.endsWith
+@subsubsection string.endsWith
+
+@deftypefn {Method} {@var{out} =} endsWith (@var{obj}, @var{pattern})
+@deftypefnx {Method} {@var{out} =} endsWith (@var{obj}, @var{pattern}, 'IgnoreCase', true/false)
+
+Test if string ends with pattern.
+
+Returns a logical array the size of the scalar expansion of @var{obj} and @var{pattern}.
+
+@end deftypefn
+
 @node string.erase
 @subsubsection string.erase
 
@@ -3611,6 +3623,18 @@ You probably do not want to use this method. You probably want to use
 Returns a string array the same size as @var{obj}.
 
 See also: @ref{string.reverse}
+
+@end deftypefn
+
+@node string.startsWith
+@subsubsection string.startsWith
+
+@deftypefn {Method} {@var{out} =} startsWith (@var{obj}, @var{pattern})
+@deftypefnx {Method} {@var{out} =} startsWith (@var{obj}, @var{pattern}, 'IgnoreCase', true/false)
+
+Test if string starts with pattern.
+
+Returns a logical array the size of the scalar expansion of @var{obj} and @var{pattern}.
 
 @end deftypefn
 

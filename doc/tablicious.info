@@ -1,7 +1,7 @@
-This is tablicious.info, produced by makeinfo version 7.1.1 from
+This is tablicious.info, produced by makeinfo version 7.2 from
 tablicious.texi.
 
-This manual is for Tablicious, version 0.4.5-SNAPSHOT.
+This manual is for Tablicious, version 0.4.5.
 
    Copyright © 2019, 2023, 2024 Andrew Janke
 
@@ -24,7 +24,7 @@ File: tablicious.info,  Node: Top,  Next: Introduction,  Up: (dir)
 Tablicious for GNU Octave
 *************************
 
-This manual is for Tablicious, version 0.4.5-SNAPSHOT.
+This manual is for Tablicious, version 0.4.5.
 
 * Menu:
 
@@ -49,8 +49,8 @@ File: tablicious.info,  Node: Introduction,  Next: Getting Started,  Up: Top
 
                           -- _Douglas Adams_
 
-   This is the manual for the Tablicious package version 0.4.5-SNAPSHOT
-for GNU Octave.
+   This is the manual for the Tablicious package version 0.4.5 for GNU
+Octave.
 
    Tablicious provides somewhat-Matlab-compatible tabular data and
 date/time support for GNU Octave.  This includes a ‘table’ class with
@@ -83,7 +83,7 @@ The easiest way to obtain Tablicious is by using Octave's ‘pkg’ package
 manager.  To install the development prerelease of Tablicious, run this
 in Octave:
 
-     pkg install https://github.com/apjanke/octave-tablicious/releases/download/v0.4.5-SNAPSHOT/tablicious-0.4.5-SNAPSHOT.tar.gz
+     pkg install https://github.com/apjanke/octave-tablicious/releases/download/v0.4.5/tablicious-0.4.5.tar.gz
 
    (Check the releases page at
 <https://github.com/apjanke/octave-tablicious/releases> to find out what
@@ -3657,6 +3657,7 @@ File: tablicious.info,  Node: string,  Next: struct2table,  Prev: splitapply,  U
 * string.dispstrs::
 * string.empty::
 * string.encode::
+* string.endsWith::
 * string.erase::
 * string.ismissing::
 * string.isnanny::
@@ -3667,6 +3668,7 @@ File: tablicious.info,  Node: string,  Next: struct2table,  Prev: splitapply,  U
 * string.regexprep::
 * string.reverse::
 * string.reverse_bytes::
+* string.startsWith::
 * string.strcat::
 * string.strcmp::
 * string.strfind::
@@ -3807,7 +3809,7 @@ File: tablicious.info,  Node: string.empty,  Next: string.encode,  Prev: string.
      Returns an empty string array of the requested size.
 
 
-File: tablicious.info,  Node: string.encode,  Next: string.erase,  Prev: string.empty,  Up: string
+File: tablicious.info,  Node: string.encode,  Next: string.endsWith,  Prev: string.empty,  Up: string
 
 8.2.53.8 string.encode
 ......................
@@ -3826,10 +3828,24 @@ File: tablicious.info,  Node: string.encode,  Next: string.erase,  Prev: string.
      See also: *note string.decode::.
 
 
-File: tablicious.info,  Node: string.erase,  Next: string.ismissing,  Prev: string.encode,  Up: string
+File: tablicious.info,  Node: string.endsWith,  Next: string.erase,  Prev: string.encode,  Up: string
 
-8.2.53.9 string.erase
-.....................
+8.2.53.9 string.endsWith
+........................
+
+ -- Method: OUT = endsWith (OBJ, PATTERN)
+ -- Method: OUT = endsWith (OBJ, PATTERN, 'IgnoreCase', true/false)
+
+     Test if string ends with pattern.
+
+     Returns a logical array the size of the scalar expansion of OBJ and
+     PATTERN.
+
+
+File: tablicious.info,  Node: string.erase,  Next: string.ismissing,  Prev: string.endsWith,  Up: string
+
+8.2.53.10 string.erase
+......................
 
  -- Method: OUT = erase (OBJ, MATCH)
 
@@ -3842,7 +3858,7 @@ File: tablicious.info,  Node: string.erase,  Next: string.ismissing,  Prev: stri
 
 File: tablicious.info,  Node: string.ismissing,  Next: string.isnanny,  Prev: string.erase,  Up: string
 
-8.2.53.10 string.ismissing
+8.2.53.11 string.ismissing
 ..........................
 
  -- Method: OUT = ismissing (OBJ)
@@ -3858,7 +3874,7 @@ File: tablicious.info,  Node: string.ismissing,  Next: string.isnanny,  Prev: st
 
 File: tablicious.info,  Node: string.isnanny,  Next: string.isstring,  Prev: string.ismissing,  Up: string
 
-8.2.53.11 string.isnanny
+8.2.53.12 string.isnanny
 ........................
 
  -- Method: OUT = isnanny (OBJ)
@@ -3873,7 +3889,7 @@ File: tablicious.info,  Node: string.isnanny,  Next: string.isstring,  Prev: str
 
 File: tablicious.info,  Node: string.isstring,  Next: string.lower,  Prev: string.isnanny,  Up: string
 
-8.2.53.12 string.isstring
+8.2.53.13 string.isstring
 .........................
 
  -- Method: OUT = isstring (OBJ)
@@ -3887,7 +3903,7 @@ File: tablicious.info,  Node: string.isstring,  Next: string.lower,  Prev: strin
 
 File: tablicious.info,  Node: string.lower,  Next: string.missing,  Prev: string.isstring,  Up: string
 
-8.2.53.13 string.lower
+8.2.53.14 string.lower
 ......................
 
  -- Method: OUT = lower (OBJ)
@@ -3906,7 +3922,7 @@ File: tablicious.info,  Node: string.lower,  Next: string.missing,  Prev: string
 
 File: tablicious.info,  Node: string.missing,  Next: string.plus,  Prev: string.lower,  Up: string
 
-8.2.53.14 string.missing
+8.2.53.15 string.missing
 ........................
 
  -- Static Method: OUT = string.missing (SZ)
@@ -3923,7 +3939,7 @@ File: tablicious.info,  Node: string.missing,  Next: string.plus,  Prev: string.
 
 File: tablicious.info,  Node: string.plus,  Next: string.regexprep,  Prev: string.missing,  Up: string
 
-8.2.53.15 string.plus
+8.2.53.16 string.plus
 .....................
 
  -- Method: OUT = plus (A, B)
@@ -3944,7 +3960,7 @@ File: tablicious.info,  Node: string.plus,  Next: string.regexprep,  Prev: strin
 
 File: tablicious.info,  Node: string.regexprep,  Next: string.reverse,  Prev: string.plus,  Up: string
 
-8.2.53.16 string.regexprep
+8.2.53.17 string.regexprep
 ..........................
 
  -- Method: OUT = regexprep (OBJ, PAT, REPSTR)
@@ -3960,7 +3976,7 @@ File: tablicious.info,  Node: string.regexprep,  Next: string.reverse,  Prev: st
 
 File: tablicious.info,  Node: string.reverse,  Next: string.reverse_bytes,  Prev: string.regexprep,  Up: string
 
-8.2.53.17 string.reverse
+8.2.53.18 string.reverse
 ........................
 
  -- Method: OUT = reverse (OBJ)
@@ -3974,9 +3990,9 @@ File: tablicious.info,  Node: string.reverse,  Next: string.reverse_bytes,  Prev
      Returns a string array the same size as OBJ.
 
 
-File: tablicious.info,  Node: string.reverse_bytes,  Next: string.strcat,  Prev: string.reverse,  Up: string
+File: tablicious.info,  Node: string.reverse_bytes,  Next: string.startsWith,  Prev: string.reverse,  Up: string
 
-8.2.53.18 string.reverse_bytes
+8.2.53.19 string.reverse_bytes
 ..............................
 
  -- Method: OUT = reverse_bytes (OBJ)
@@ -3998,9 +4014,23 @@ File: tablicious.info,  Node: string.reverse_bytes,  Next: string.strcat,  Prev:
      See also: *note string.reverse::
 
 
-File: tablicious.info,  Node: string.strcat,  Next: string.strcmp,  Prev: string.reverse_bytes,  Up: string
+File: tablicious.info,  Node: string.startsWith,  Next: string.strcat,  Prev: string.reverse_bytes,  Up: string
 
-8.2.53.19 string.strcat
+8.2.53.20 string.startsWith
+...........................
+
+ -- Method: OUT = startsWith (OBJ, PATTERN)
+ -- Method: OUT = startsWith (OBJ, PATTERN, 'IgnoreCase', true/false)
+
+     Test if string starts with pattern.
+
+     Returns a logical array the size of the scalar expansion of OBJ and
+     PATTERN.
+
+
+File: tablicious.info,  Node: string.strcat,  Next: string.strcmp,  Prev: string.startsWith,  Up: string
+
+8.2.53.21 string.strcat
 .......................
 
  -- Method: OUT = strcat (VARARGIN)
@@ -4020,7 +4050,7 @@ File: tablicious.info,  Node: string.strcat,  Next: string.strcmp,  Prev: string
 
 File: tablicious.info,  Node: string.strcmp,  Next: string.strfind,  Prev: string.strcat,  Up: string
 
-8.2.53.20 string.strcmp
+8.2.53.22 string.strcmp
 .......................
 
  -- Method: OUT = strcmp (A, B)
@@ -4041,7 +4071,7 @@ File: tablicious.info,  Node: string.strcmp,  Next: string.strfind,  Prev: strin
 
 File: tablicious.info,  Node: string.strfind,  Next: string.string,  Prev: string.strcmp,  Up: string
 
-8.2.53.21 string.strfind
+8.2.53.23 string.strfind
 ........................
 
  -- Method: OUT = strfind (OBJ, PATTERN)
@@ -4059,7 +4089,7 @@ File: tablicious.info,  Node: string.strfind,  Next: string.string,  Prev: strin
 
 File: tablicious.info,  Node: string.string,  Next: string.strlength,  Prev: string.strfind,  Up: string
 
-8.2.53.22 string.string
+8.2.53.24 string.string
 .......................
 
  -- Constructor: OBJ = string ()
@@ -4080,7 +4110,7 @@ File: tablicious.info,  Node: string.string,  Next: string.strlength,  Prev: str
 
 File: tablicious.info,  Node: string.strlength,  Next: string.strlength_bytes,  Prev: string.string,  Up: string
 
-8.2.53.23 string.strlength
+8.2.53.25 string.strlength
 ..........................
 
  -- Method: OUT = strlength (OBJ)
@@ -4107,7 +4137,7 @@ File: tablicious.info,  Node: string.strlength,  Next: string.strlength_bytes,  
 
 File: tablicious.info,  Node: string.strlength_bytes,  Next: string.strrep,  Prev: string.strlength,  Up: string
 
-8.2.53.24 string.strlength_bytes
+8.2.53.26 string.strlength_bytes
 ................................
 
  -- Method: OUT = strlength_bytes (OBJ)
@@ -4127,7 +4157,7 @@ File: tablicious.info,  Node: string.strlength_bytes,  Next: string.strrep,  Pre
 
 File: tablicious.info,  Node: string.strrep,  Next: string.upper,  Prev: string.strlength_bytes,  Up: string
 
-8.2.53.25 string.strrep
+8.2.53.27 string.strrep
 .......................
 
  -- Method: OUT = strrep (OBJ, MATCH, REPLACEMENT)
@@ -4147,7 +4177,7 @@ File: tablicious.info,  Node: string.strrep,  Next: string.upper,  Prev: string.
 
 File: tablicious.info,  Node: string.upper,  Prev: string.strrep,  Up: string
 
-8.2.53.26 string.upper
+8.2.53.28 string.upper
 ......................
 
  -- Method: OUT = upper (OBJ)
@@ -5570,7 +5600,6 @@ File: tablicious.info,  Node: tblish.dataset.airmiles,  Next: tblish.dataset.Air
           xlabel ("Passenger-miles flown by U.S. commercial airlines")
           ylabel ("airmiles");
 
-
 
 File: tablicious.info,  Node: tblish.dataset.AirPassengers,  Next: tblish.dataset.airquality,  Prev: tblish.dataset.airmiles,  Up: tblish.dataset
 
@@ -5598,7 +5627,6 @@ File: tablicious.info,  Node: tblish.dataset.AirPassengers,  Next: tblish.datase
      ........
 
           ## TODO: This example needs to be ported from R.
-
 
 
 File: tablicious.info,  Node: tblish.dataset.airquality,  Next: tblish.dataset.anscombe,  Prev: tblish.dataset.AirPassengers,  Up: tblish.dataset
@@ -5675,7 +5703,6 @@ File: tablicious.info,  Node: tblish.dataset.airquality,  Next: tblish.dataset.a
             endfor
           endfor
 
-
 
 File: tablicious.info,  Node: tblish.dataset.anscombe,  Next: tblish.dataset.attenu,  Prev: tblish.dataset.airquality,  Up: tblish.dataset
 
@@ -5745,7 +5772,6 @@ File: tablicious.info,  Node: tblish.dataset.anscombe,  Next: tblish.dataset.att
           linkaxes (haxs);
           xlim (haxs(1), x_limits);
           ylim (haxs(1), y_limits);
-
 
 
 File: tablicious.info,  Node: tblish.dataset.attenu,  Next: tblish.dataset.attitude,  Prev: tblish.dataset.anscombe,  Up: tblish.dataset
@@ -5853,7 +5879,6 @@ File: tablicious.info,  Node: tblish.dataset.attitude,  Next: tblish.dataset.aus
           # TODO: Whatever those statistical linear-model plots are that R is doing
 
 
-
 
 File: tablicious.info,  Node: tblish.dataset.austres,  Next: tblish.dataset.beavers,  Prev: tblish.dataset.attitude,  Up: tblish.dataset
 
@@ -5892,7 +5917,6 @@ File: tablicious.info,  Node: tblish.dataset.austres,  Next: tblish.dataset.beav
           plot (datenum (t.date), t.residents);
           datetick x
           xlabel ("Month"); ylabel ("Residents"); title ("Australian Residents");
-
 
 
 File: tablicious.info,  Node: tblish.dataset.beavers,  Next: tblish.dataset.BJsales,  Prev: tblish.dataset.austres,  Up: tblish.dataset
@@ -5981,7 +6005,6 @@ File: tablicious.info,  Node: tblish.dataset.BJsales,  Next: tblish.dataset.BOD,
 
           # TODO: Come up with example code here
 
-
 
 File: tablicious.info,  Node: tblish.dataset.BOD,  Next: tblish.dataset.cars,  Prev: tblish.dataset.BJsales,  Up: tblish.dataset
 
@@ -6021,7 +6044,6 @@ File: tablicious.info,  Node: tblish.dataset.BOD,  Next: tblish.dataset.cars,  P
      ........
 
           # TODO: Port this example from R
-
 
 
 File: tablicious.info,  Node: tblish.dataset.cars,  Next: tblish.dataset.ChickWeight,  Prev: tblish.dataset.BOD,  Up: tblish.dataset
@@ -6095,7 +6117,6 @@ File: tablicious.info,  Node: tblish.dataset.cars,  Next: tblish.dataset.ChickWe
           endfor
 
 
-
 
 File: tablicious.info,  Node: tblish.dataset.ChickWeight,  Next: tblish.dataset.chickwts,  Prev: tblish.dataset.cars,  Up: tblish.dataset
 
@@ -6141,7 +6162,6 @@ File: tablicious.info,  Node: tblish.dataset.ChickWeight,  Next: tblish.dataset.
           t = tblish.dataset.ChickWeight
 
           tblish.examples.coplot (t, "Time", "weight", "Chick");
-
 
 
 File: tablicious.info,  Node: tblish.dataset.chickwts,  Next: tblish.dataset.co2,  Prev: tblish.dataset.ChickWeight,  Up: tblish.dataset
@@ -6202,7 +6222,6 @@ File: tablicious.info,  Node: tblish.dataset.chickwts,  Next: tblish.dataset.co2
           # Linear model
           # TODO: This linear model thing and anova
 
-
 
 File: tablicious.info,  Node: tblish.dataset.co2,  Next: tblish.dataset.crimtab,  Prev: tblish.dataset.chickwts,  Up: tblish.dataset
 
@@ -6260,7 +6279,6 @@ File: tablicious.info,  Node: tblish.dataset.co2,  Next: tblish.dataset.crimtab,
           datetick ("x");
           xlabel ("Time"); ylabel ("Atmospheric concentration of CO2");
           title ("co2 data set");
-
 
 
 File: tablicious.info,  Node: tblish.dataset.crimtab,  Next: tblish.dataset.cupcake,  Prev: tblish.dataset.co2,  Up: tblish.dataset
@@ -6353,7 +6371,6 @@ File: tablicious.info,  Node: tblish.dataset.crimtab,  Next: tblish.dataset.cupc
 
           # TODO: Port this from R
 
-
 
 File: tablicious.info,  Node: tblish.dataset.cupcake,  Next: tblish.dataset.discoveries,  Prev: tblish.dataset.crimtab,  Up: tblish.dataset
 
@@ -6391,7 +6408,6 @@ File: tablicious.info,  Node: tblish.dataset.cupcake,  Next: tblish.dataset.disc
           t = tblish.dataset.cupcake
           plot (datenum (t.Month), t.Cupcake)
           title ('“Cupcake” Google Searches'); xlabel ("Year"); ylabel ("Unknown popularity metric");
-
 
 
 File: tablicious.info,  Node: tblish.dataset.discoveries,  Next: tblish.dataset.DNase,  Prev: tblish.dataset.cupcake,  Up: tblish.dataset
@@ -6436,7 +6452,6 @@ File: tablicious.info,  Node: tblish.dataset.discoveries,  Next: tblish.dataset.
           plot (t.year, t.discoveries);
           xlabel ("Time"); ylabel ("Number of important discoveries");
           title ("discoveries data set");
-
 
 
 File: tablicious.info,  Node: tblish.dataset.DNase,  Next: tblish.dataset.esoph,  Prev: tblish.dataset.discoveries,  Up: tblish.dataset
@@ -6485,7 +6500,6 @@ File: tablicious.info,  Node: tblish.dataset.DNase,  Next: tblish.dataset.esoph,
           tblish.examples.coplot (t, "conc", "density", "Run", "PlotFcn", @loglog, ...
             "PlotArgs", {"o"});
 
-
 
 File: tablicious.info,  Node: tblish.dataset.esoph,  Next: tblish.dataset.euro,  Prev: tblish.dataset.DNase,  Up: tblish.dataset
 
@@ -6533,7 +6547,6 @@ File: tablicious.info,  Node: tblish.dataset.esoph,  Next: tblish.dataset.euro, 
           # TODO: Port the fancy plot
           # This involves a "mosaic plot", which is not supported by Octave, so this will
           # take some work.
-
 
 
 File: tablicious.info,  Node: tblish.dataset.euro,  Next: tblish.dataset.eurodist,  Prev: tblish.dataset.esoph,  Up: tblish.dataset
@@ -6592,7 +6605,6 @@ File: tablicious.info,  Node: tblish.dataset.euro,  Next: tblish.dataset.eurodis
           # TODO: Example conversion
 
           # TODO: "dot chart" showing euro-to-whatever conversion rates and vice versa
-
 
 
 File: tablicious.info,  Node: tblish.dataset.eurodist,  Next: tblish.dataset.EuStockMarkets,  Prev: tblish.dataset.euro,  Up: tblish.dataset
@@ -6690,7 +6702,6 @@ File: tablicious.info,  Node: tblish.dataset.EuStockMarkets,  Next: tblish.datas
 
 
 
-
 
 File: tablicious.info,  Node: tblish.dataset.faithful,  Next: tblish.dataset.Formaldehyde,  Prev: tblish.dataset.EuStockMarkets,  Up: tblish.dataset
 
@@ -6756,7 +6767,6 @@ File: tablicious.info,  Node: tblish.dataset.faithful,  Next: tblish.dataset.For
           title ("faithful data: Eruptions of Old Faithful")
           # TODO: Port Lowess smoothing to Octave
 
-
 
 File: tablicious.info,  Node: tblish.dataset.Formaldehyde,  Next: tblish.dataset.freeny,  Prev: tblish.dataset.faithful,  Up: tblish.dataset
 
@@ -6811,7 +6821,6 @@ File: tablicious.info,  Node: tblish.dataset.Formaldehyde,  Next: tblish.dataset
 
           # TODO: Add linear model summary output
           # TOD: Add linear model summary plot
-
 
 
 File: tablicious.info,  Node: tblish.dataset.freeny,  Next: tblish.dataset.HairEyeColor,  Prev: tblish.dataset.Formaldehyde,  Up: tblish.dataset
@@ -6873,7 +6882,6 @@ File: tablicious.info,  Node: tblish.dataset.freeny,  Next: tblish.dataset.HairE
           # TODO: Create linear model and print summary
 
           # TODO: Linear model plot
-
 
 
 File: tablicious.info,  Node: tblish.dataset.HairEyeColor,  Next: tblish.dataset.Harman23cor,  Prev: tblish.dataset.freeny,  Up: tblish.dataset
@@ -6954,7 +6962,6 @@ File: tablicious.info,  Node: tblish.dataset.HairEyeColor,  Next: tblish.dataset
 
           # TODO: Port mosaic plot to Octave
 
-
 
 File: tablicious.info,  Node: tblish.dataset.Harman23cor,  Next: tblish.dataset.Harman74cor,  Prev: tblish.dataset.HairEyeColor,  Up: tblish.dataset
 
@@ -6992,7 +6999,6 @@ File: tablicious.info,  Node: tblish.dataset.Harman23cor,  Next: tblish.dataset.
           tblish.dataset.Harman23cor;
 
           # TODO: Port factanal to Octave
-
 
 
 File: tablicious.info,  Node: tblish.dataset.Harman74cor,  Next: tblish.dataset.Indometh,  Prev: tblish.dataset.Harman23cor,  Up: tblish.dataset
@@ -7032,7 +7038,6 @@ File: tablicious.info,  Node: tblish.dataset.Harman74cor,  Next: tblish.dataset.
           tblish.dataset.Harman74cor;
 
           # TODO: Port factanal to Octave
-
 
 
 File: tablicious.info,  Node: tblish.dataset.Indometh,  Next: tblish.dataset.infert,  Prev: tblish.dataset.Harman74cor,  Up: tblish.dataset
@@ -7139,7 +7144,6 @@ File: tablicious.info,  Node: tblish.dataset.infert,  Next: tblish.dataset.Insec
 
           # TODO: Port glm() (generalized linear model) stuff to Octave
 
-
 
 File: tablicious.info,  Node: tblish.dataset.InsectSprays,  Next: tblish.dataset.iris,  Prev: tblish.dataset.infert,  Up: tblish.dataset
 
@@ -7183,7 +7187,6 @@ File: tablicious.info,  Node: tblish.dataset.InsectSprays,  Next: tblish.dataset
           # TODO: boxplot
 
           # TODO: AOV plots
-
 
 
 File: tablicious.info,  Node: tblish.dataset.iris,  Next: tblish.dataset.islands,  Prev: tblish.dataset.InsectSprays,  Up: tblish.dataset
@@ -7242,7 +7245,6 @@ File: tablicious.info,  Node: tblish.dataset.iris,  Next: tblish.dataset.islands
 
           # TODO: Port this example from R
 
-
 
 File: tablicious.info,  Node: tblish.dataset.islands,  Next: tblish.dataset.JohnsonJohnson,  Prev: tblish.dataset.iris,  Up: tblish.dataset
 
@@ -7285,7 +7287,6 @@ File: tablicious.info,  Node: tblish.dataset.islands,  Next: tblish.dataset.John
 
           # TODO: Port dot chart to Octave
 
-
 
 File: tablicious.info,  Node: tblish.dataset.JohnsonJohnson,  Next: tblish.dataset.LakeHuron,  Prev: tblish.dataset.islands,  Up: tblish.dataset
 
@@ -7322,7 +7323,6 @@ File: tablicious.info,  Node: tblish.dataset.JohnsonJohnson,  Next: tblish.datas
           t = tblish.dataset.JohnsonJohnson
 
           # TODO: Yikes, look at all those plots. Port them to Octave.
-
 
 
 File: tablicious.info,  Node: tblish.dataset.LakeHuron,  Next: tblish.dataset.lh,  Prev: tblish.dataset.JohnsonJohnson,  Up: tblish.dataset
@@ -7368,7 +7368,6 @@ File: tablicious.info,  Node: tblish.dataset.LakeHuron,  Next: tblish.dataset.lh
           ylabel ("Lake level (ft)")
           title ("Level of Lake Huron")
 
-
 
 File: tablicious.info,  Node: tblish.dataset.lh,  Next: tblish.dataset.LifeCycleSavings,  Prev: tblish.dataset.LakeHuron,  Up: tblish.dataset
 
@@ -7407,7 +7406,6 @@ File: tablicious.info,  Node: tblish.dataset.lh,  Next: tblish.dataset.LifeCycle
           plot (t.sample, t.lh);
           xlabel ("Sample Number");
           ylabel ("lh level");
-
 
 
 File: tablicious.info,  Node: tblish.dataset.LifeCycleSavings,  Next: tblish.dataset.Loblolly,  Prev: tblish.dataset.lh,  Up: tblish.dataset
@@ -7476,7 +7474,6 @@ File: tablicious.info,  Node: tblish.dataset.LifeCycleSavings,  Next: tblish.dat
 
           # TODO: pairs plot with Lowess smoothed line
 
-
 
 File: tablicious.info,  Node: tblish.dataset.Loblolly,  Next: tblish.dataset.longley,  Prev: tblish.dataset.LifeCycleSavings,  Up: tblish.dataset
 
@@ -7525,7 +7522,6 @@ File: tablicious.info,  Node: tblish.dataset.Loblolly,  Next: tblish.dataset.lon
           title ("Loblolly data and fitted curve (Seed 329 only)")
 
           # TODO: Compute and plot fitted curve
-
 
 
 File: tablicious.info,  Node: tblish.dataset.longley,  Next: tblish.dataset.lynx,  Prev: tblish.dataset.Loblolly,  Up: tblish.dataset
@@ -7582,7 +7578,6 @@ File: tablicious.info,  Node: tblish.dataset.longley,  Next: tblish.dataset.lynx
           # TODO: Linear model
           # TODO: opar plot
 
-
 
 File: tablicious.info,  Node: tblish.dataset.lynx,  Next: tblish.dataset.morley,  Prev: tblish.dataset.longley,  Up: tblish.dataset
 
@@ -7634,7 +7629,6 @@ File: tablicious.info,  Node: tblish.dataset.lynx,  Next: tblish.dataset.morley,
           plot (t.year, t.lynx);
           xlabel ("Year");
           ylabel ("Lynx Trapped");
-
 
 
 File: tablicious.info,  Node: tblish.dataset.morley,  Next: tblish.dataset.mtcars,  Prev: tblish.dataset.lynx,  Up: tblish.dataset
@@ -7693,7 +7687,6 @@ File: tablicious.info,  Node: tblish.dataset.morley,  Next: tblish.dataset.mtcar
           t = tblish.dataset.morley;
 
           # TODO: Port to Octave
-
 
 
 File: tablicious.info,  Node: tblish.dataset.mtcars,  Next: tblish.dataset.nhtemp,  Prev: tblish.dataset.morley,  Up: tblish.dataset
@@ -7803,7 +7796,6 @@ File: tablicious.info,  Node: tblish.dataset.nhtemp,  Next: tblish.dataset.Nile,
           title ("nhtemp data");
           xlabel ("Mean annual temperature in New Haven, CT (deg. F)");
 
-
 
 File: tablicious.info,  Node: tblish.dataset.Nile,  Next: tblish.dataset.nottem,  Prev: tblish.dataset.nhtemp,  Up: tblish.dataset
 
@@ -7855,7 +7847,6 @@ File: tablicious.info,  Node: tblish.dataset.Nile,  Next: tblish.dataset.nottem,
 
           # TODO: Port the rest of the example to Octave
 
-
 
 File: tablicious.info,  Node: tblish.dataset.nottem,  Next: tblish.dataset.npk,  Prev: tblish.dataset.Nile,  Up: tblish.dataset
 
@@ -7892,7 +7883,6 @@ File: tablicious.info,  Node: tblish.dataset.nottem,  Next: tblish.dataset.npk, 
      ........
 
           # TODO: Come up with example code here
-
 
 
 File: tablicious.info,  Node: tblish.dataset.npk,  Next: tblish.dataset.occupationalStatus,  Prev: tblish.dataset.nottem,  Up: tblish.dataset
@@ -7944,7 +7934,6 @@ File: tablicious.info,  Node: tblish.dataset.npk,  Next: tblish.dataset.occupati
 
           # TODO: Port aov() and LM to Octave
 
-
 
 File: tablicious.info,  Node: tblish.dataset.occupationalStatus,  Next: tblish.dataset.Orange,  Prev: tblish.dataset.npk,  Up: tblish.dataset
 
@@ -7979,7 +7968,6 @@ File: tablicious.info,  Node: tblish.dataset.occupationalStatus,  Next: tblish.d
      ........
 
           # TODO: Come up with example code here
-
 
 
 File: tablicious.info,  Node: tblish.dataset.Orange,  Next: tblish.dataset.OrchardSprays,  Prev: tblish.dataset.occupationalStatus,  Up: tblish.dataset
@@ -8032,7 +8020,6 @@ File: tablicious.info,  Node: tblish.dataset.Orange,  Next: tblish.dataset.Orcha
           # TODO: Port coplot to Octave
 
           # TODO: Linear model
-
 
 
 File: tablicious.info,  Node: tblish.dataset.OrchardSprays,  Next: tblish.dataset.PlantGrowth,  Prev: tblish.dataset.Orange,  Up: tblish.dataset
@@ -8101,7 +8088,6 @@ File: tablicious.info,  Node: tblish.dataset.OrchardSprays,  Next: tblish.datase
 
           tblish.examples.plot_pairs (t);
 
-
 
 File: tablicious.info,  Node: tblish.dataset.PlantGrowth,  Next: tblish.dataset.precip,  Prev: tblish.dataset.OrchardSprays,  Up: tblish.dataset
 
@@ -8139,7 +8125,6 @@ File: tablicious.info,  Node: tblish.dataset.PlantGrowth,  Next: tblish.dataset.
           t = tblish.dataset.PlantGrowth;
 
           # TODO: Port anova to Octave
-
 
 
 File: tablicious.info,  Node: tblish.dataset.precip,  Next: tblish.dataset.presidents,  Prev: tblish.dataset.PlantGrowth,  Up: tblish.dataset
@@ -8182,7 +8167,6 @@ File: tablicious.info,  Node: tblish.dataset.precip,  Next: tblish.dataset.presi
           t = tblish.dataset.precip;
 
           # TODO: Port dot plot to Octave
-
 
 
 File: tablicious.info,  Node: tblish.dataset.presidents,  Next: tblish.dataset.pressure,  Prev: tblish.dataset.precip,  Up: tblish.dataset
@@ -8238,7 +8222,6 @@ File: tablicious.info,  Node: tblish.dataset.presidents,  Next: tblish.dataset.p
           ylabel ("Approval rating (%)")
           title ("presidents data")
 
-
 
 File: tablicious.info,  Node: tblish.dataset.pressure,  Next: tblish.dataset.Puromycin,  Prev: tblish.dataset.presidents,  Up: tblish.dataset
 
@@ -8291,7 +8274,6 @@ File: tablicious.info,  Node: tblish.dataset.pressure,  Next: tblish.dataset.Pur
           xlabel ("Temperature (deg C)")
           ylabel ("Pressure (mm of Hg)")
           title ("pressure data: Vapor Pressure of Mercury")
-
 
 
 
@@ -8355,7 +8337,6 @@ File: tablicious.info,  Node: tblish.dataset.Puromycin,  Next: tblish.dataset.qu
 
           # TODO: Port example to Octave
 
-
 
 File: tablicious.info,  Node: tblish.dataset.quakes,  Next: tblish.dataset.randu,  Prev: tblish.dataset.Puromycin,  Up: tblish.dataset
 
@@ -8415,7 +8396,6 @@ File: tablicious.info,  Node: tblish.dataset.quakes,  Next: tblish.dataset.randu
 
           # TODO: Come up with example code here
 
-
 
 File: tablicious.info,  Node: tblish.dataset.randu,  Next: tblish.dataset.rivers,  Prev: tblish.dataset.quakes,  Up: tblish.dataset
 
@@ -8468,7 +8448,6 @@ File: tablicious.info,  Node: tblish.dataset.randu,  Next: tblish.dataset.rivers
           t = tblish.dataset.randu;
 
 
-
 
 File: tablicious.info,  Node: tblish.dataset.rivers,  Next: tblish.dataset.rock,  Prev: tblish.dataset.randu,  Up: tblish.dataset
 
@@ -8509,7 +8488,6 @@ File: tablicious.info,  Node: tblish.dataset.rivers,  Next: tblish.dataset.rock,
 
           longest_river = max (rivers)
           shortest_river = min (rivers)
-
 
 
 File: tablicious.info,  Node: tblish.dataset.rock,  Next: tblish.dataset.sleep,  Prev: tblish.dataset.rivers,  Up: tblish.dataset
@@ -8560,7 +8538,6 @@ File: tablicious.info,  Node: tblish.dataset.rock,  Next: tblish.dataset.sleep, 
           scatter (t.area, t.perm)
           xlabel ("Area of pores space (pixels out of 256x256)")
           ylabel ("Permeability (milli-Darcies)")
-
 
 
 File: tablicious.info,  Node: tblish.dataset.sleep,  Next: tblish.dataset.stackloss,  Prev: tblish.dataset.rock,  Up: tblish.dataset
@@ -8615,7 +8592,6 @@ File: tablicious.info,  Node: tblish.dataset.sleep,  Next: tblish.dataset.stackl
           t = tblish.dataset.sleep;
 
           # TODO: Port to Octave
-
 
 
 File: tablicious.info,  Node: tblish.dataset.stackloss,  Next: tblish.dataset.state,  Prev: tblish.dataset.sleep,  Up: tblish.dataset
@@ -8687,7 +8663,6 @@ File: tablicious.info,  Node: tblish.dataset.stackloss,  Next: tblish.dataset.st
 
           # TODO: Create linear model and print summary
 
-
 
 File: tablicious.info,  Node: tblish.dataset.state,  Next: tblish.dataset.sunspot_month,  Prev: tblish.dataset.stackloss,  Up: tblish.dataset
 
@@ -8757,7 +8732,6 @@ File: tablicious.info,  Node: tblish.dataset.state,  Next: tblish.dataset.sunspo
 
           t = tblish.dataset.state;
 
-
 
 File: tablicious.info,  Node: tblish.dataset.sunspot_month,  Next: tblish.dataset.sunspot_year,  Prev: tblish.dataset.state,  Up: tblish.dataset
 
@@ -8794,7 +8768,6 @@ File: tablicious.info,  Node: tblish.dataset.sunspot_month,  Next: tblish.datase
      ........
 
           t = tblish.dataset.sunspot_month;
-
 
 
 
@@ -8836,7 +8809,6 @@ File: tablicious.info,  Node: tblish.dataset.sunspot_year,  Next: tblish.dataset
           plot (t.year, t.sunspots)
           xlabel ("Year")
           ylabel ("Sunspots")
-
 
 
 File: tablicious.info,  Node: tblish.dataset.sunspots,  Next: tblish.dataset.swiss,  Prev: tblish.dataset.sunspot_year,  Up: tblish.dataset
@@ -8881,7 +8853,6 @@ File: tablicious.info,  Node: tblish.dataset.sunspots,  Next: tblish.dataset.swi
           xlabel ("Date")
           ylabel ("Monthly sunspot numbers")
           title ("sunspots data")
-
 
 
 
@@ -8954,7 +8925,6 @@ File: tablicious.info,  Node: tblish.dataset.swiss,  Next: tblish.dataset.Theoph
           t = tblish.dataset.swiss;
 
           # TODO: Port linear model to Octave
-
 
 
 File: tablicious.info,  Node: tblish.dataset.Theoph,  Next: tblish.dataset.Titanic,  Prev: tblish.dataset.swiss,  Up: tblish.dataset
@@ -9030,7 +9000,6 @@ File: tablicious.info,  Node: tblish.dataset.Theoph,  Next: tblish.dataset.Titan
 
           # TODO: Coplot
           # TODO: Yet another linear model to port to Octave
-
 
 
 File: tablicious.info,  Node: tblish.dataset.Titanic,  Next: tblish.dataset.ToothGrowth,  Prev: tblish.dataset.Theoph,  Up: tblish.dataset
@@ -9110,7 +9079,6 @@ File: tablicious.info,  Node: tblish.dataset.Titanic,  Next: tblish.dataset.Toot
 
           # TODO: Check for higher survival rates in children and females
 
-
 
 File: tablicious.info,  Node: tblish.dataset.ToothGrowth,  Next: tblish.dataset.treering,  Prev: tblish.dataset.Titanic,  Up: tblish.dataset
 
@@ -9164,7 +9132,6 @@ File: tablicious.info,  Node: tblish.dataset.ToothGrowth,  Next: tblish.dataset.
 
           # TODO: Port Lowess smoothing to Octave
 
-
 
 File: tablicious.info,  Node: tblish.dataset.treering,  Next: tblish.dataset.trees,  Prev: tblish.dataset.ToothGrowth,  Up: tblish.dataset
 
@@ -9210,7 +9177,6 @@ File: tablicious.info,  Node: tblish.dataset.treering,  Next: tblish.dataset.tre
      ........
 
           t = tblish.dataset.treering;
-
 
 
 File: tablicious.info,  Node: tblish.dataset.trees,  Next: tblish.dataset.UCBAdmissions,  Prev: tblish.dataset.treering,  Up: tblish.dataset
@@ -9268,7 +9234,6 @@ File: tablicious.info,  Node: tblish.dataset.trees,  Next: tblish.dataset.UCBAdm
           # TODO: Transform to log space for the coplot
 
           # TODO: Linear model
-
 
 
 File: tablicious.info,  Node: tblish.dataset.UCBAdmissions,  Next: tblish.dataset.UKDriverDeaths,  Prev: tblish.dataset.trees,  Up: tblish.dataset
@@ -9336,7 +9301,6 @@ File: tablicious.info,  Node: tblish.dataset.UCBAdmissions,  Next: tblish.datase
           tblish.dataset.UCBAdmissions;
 
           # TODO: Port mosaic plot to Octave
-
 
 
 File: tablicious.info,  Node: tblish.dataset.UKDriverDeaths,  Next: tblish.dataset.UKgas,  Prev: tblish.dataset.UCBAdmissions,  Up: tblish.dataset
@@ -9417,7 +9381,6 @@ File: tablicious.info,  Node: tblish.dataset.UKDriverDeaths,  Next: tblish.datas
 
           # TODO: Port the model and plots to Octave
 
-
 
 File: tablicious.info,  Node: tblish.dataset.UKgas,  Next: tblish.dataset.UKLungDeaths,  Prev: tblish.dataset.UKDriverDeaths,  Up: tblish.dataset
 
@@ -9458,7 +9421,6 @@ File: tablicious.info,  Node: tblish.dataset.UKgas,  Next: tblish.dataset.UKLung
           datetick ("x")
           xlabel ("Month")
           ylabel ("Gas consumption (MM therms)")
-
 
 
 File: tablicious.info,  Node: tblish.dataset.UKLungDeaths,  Next: tblish.dataset.USAccDeaths,  Prev: tblish.dataset.UKgas,  Up: tblish.dataset
@@ -9512,7 +9474,6 @@ File: tablicious.info,  Node: tblish.dataset.UKLungDeaths,  Next: tblish.dataset
           xlabel ("Month")
           ylabel ("Deaths")
 
-
 
 File: tablicious.info,  Node: tblish.dataset.USAccDeaths,  Next: tblish.dataset.USArrests,  Prev: tblish.dataset.UKLungDeaths,  Up: tblish.dataset
 
@@ -9547,7 +9508,6 @@ File: tablicious.info,  Node: tblish.dataset.USAccDeaths,  Next: tblish.dataset.
      ........
 
           t = tblish.dataset.USAccDeaths;
-
 
 
 File: tablicious.info,  Node: tblish.dataset.USArrests,  Next: tblish.dataset.USJudgeRatings,  Prev: tblish.dataset.USAccDeaths,  Up: tblish.dataset
@@ -9620,7 +9580,6 @@ File: tablicious.info,  Node: tblish.dataset.USArrests,  Next: tblish.dataset.US
 
           # TODO: +/- 0.5 to restore the original <n>.5 percentages
 
-
 
 File: tablicious.info,  Node: tblish.dataset.USJudgeRatings,  Next: tblish.dataset.USPersonalExpenditure,  Prev: tblish.dataset.USArrests,  Up: tblish.dataset
 
@@ -9678,7 +9637,6 @@ File: tablicious.info,  Node: tblish.dataset.USJudgeRatings,  Next: tblish.datas
           tblish.examples.plot_pairs (t(:,2:end));
           title ("USJudgeRatings data")
 
-
 
 File: tablicious.info,  Node: tblish.dataset.USPersonalExpenditure,  Next: tblish.dataset.uspop,  Prev: tblish.dataset.USJudgeRatings,  Up: tblish.dataset
 
@@ -9724,7 +9682,6 @@ File: tablicious.info,  Node: tblish.dataset.USPersonalExpenditure,  Next: tblis
 
           # TODO: Port medpolish() from R, whatever that is.
 
-
 
 File: tablicious.info,  Node: tblish.dataset.uspop,  Next: tblish.dataset.VADeaths,  Prev: tblish.dataset.USPersonalExpenditure,  Up: tblish.dataset
 
@@ -9765,7 +9722,6 @@ File: tablicious.info,  Node: tblish.dataset.uspop,  Next: tblish.dataset.VADeat
           semilogy (t.year, t.population)
           xlabel ("Year")
           ylabel ("U.S. Population (millions)")
-
 
 
 File: tablicious.info,  Node: tblish.dataset.VADeaths,  Next: tblish.dataset.volcano,  Prev: tblish.dataset.uspop,  Up: tblish.dataset
@@ -9819,7 +9775,6 @@ File: tablicious.info,  Node: tblish.dataset.VADeaths,  Next: tblish.dataset.vol
 
           # TODO: Port to Octave
 
-
 
 File: tablicious.info,  Node: tblish.dataset.volcano,  Next: tblish.dataset.warpbreaks,  Prev: tblish.dataset.VADeaths,  Up: tblish.dataset
 
@@ -9866,7 +9821,6 @@ File: tablicious.info,  Node: tblish.dataset.volcano,  Next: tblish.dataset.warp
 
           # TODO: Figure out how to do a topo map in Octave. Just a gridded color plot
           # should be fine. And then maybe do a 3-d mesh plot.
-
 
 
 File: tablicious.info,  Node: tblish.dataset.warpbreaks,  Next: tblish.dataset.women,  Prev: tblish.dataset.volcano,  Up: tblish.dataset
@@ -9920,7 +9874,6 @@ File: tablicious.info,  Node: tblish.dataset.warpbreaks,  Next: tblish.dataset.w
           summary (t)
 
           # TODO: Port the plotting code and OPAR to Octave
-
 
 
 File: tablicious.info,  Node: tblish.dataset.women,  Next: tblish.dataset.WorldPhones,  Prev: tblish.dataset.warpbreaks,  Up: tblish.dataset
@@ -9978,7 +9931,6 @@ File: tablicious.info,  Node: tblish.dataset.women,  Next: tblish.dataset.WorldP
           ylabel ("Weight (lb")
           title ("women data: American women aged 30-39")
 
-
 
 File: tablicious.info,  Node: tblish.dataset.WorldPhones,  Next: tblish.dataset.WWWusage,  Prev: tblish.dataset.women,  Up: tblish.dataset
 
@@ -10025,7 +9977,6 @@ File: tablicious.info,  Node: tblish.dataset.WorldPhones,  Next: tblish.dataset.
 
           # TODO: Port matplot() to Octave
 
-
 
 File: tablicious.info,  Node: tblish.dataset.WWWusage,  Next: tblish.dataset.zCO2,  Prev: tblish.dataset.WorldPhones,  Up: tblish.dataset
 
@@ -10064,7 +10015,6 @@ File: tablicious.info,  Node: tblish.dataset.WWWusage,  Next: tblish.dataset.zCO
      ........
 
           # TODO: Come up with example code here
-
 
 
 File: tablicious.info,  Node: tblish.dataset.zCO2,  Prev: tblish.dataset.WWWusage,  Up: tblish.dataset
@@ -10112,7 +10062,6 @@ File: tablicious.info,  Node: tblish.dataset.zCO2,  Prev: tblish.dataset.WWWusag
 
           # TODO: Coplot
           # TODO: Port the linear model to Octave
-
 
 
 File: tablicious.info,  Node: tblish.datasets,  Next: tblish.evalWithTableVars,  Prev: tblish.dataset,  Up: API Alphabetically
@@ -10542,7 +10491,7 @@ Zimmerman.
 9.2 Manual Copyright
 ====================
 
-This manual is for Tablicious, version 0.4.5-SNAPSHOT.
+This manual is for Tablicious, version 0.4.5.
 
    Copyright © 2019, 2023, 2024 Andrew Janke
 
@@ -10559,361 +10508,362 @@ This manual is for Tablicious, version 0.4.5-SNAPSHOT.
      manual into another language, under the same conditions as for
      modified versions.
 
-
 
 Tag Table:
-Node: Top795
-Node: Introduction1203
-Node: Getting Started2582
-Node: Table Representation3412
-Node: Table Construction4971
-Node: Tables vs SQL6200
-Node: Date and Time Representation8148
-Node: datetime Class8695
-Node: Datenum Compatibility9659
-Node: Time Zones11191
-Node: Defined Time Zones14052
-Node: Durations15049
-Node: duration Class15231
-Node: calendarDuration Class15988
-Node: Validation Functions16897
-Node: Example Data Sets19208
-Node: Data Sets from R20649
-Node: Missing Functionality21558
-Node: API Reference23044
-Node: API by Category23233
-Node: API Alphabetically29712
-Node: array2table33878
-Node: caldays34791
-Node: calendarDuration35366
-Node: calendarDuration.calendarDuration36235
-Node: calendarDuration.dispstrs36748
-Node: calendarDuration.ismissing37107
-Node: calendarDuration.isnan37498
-Node: calendarDuration.minus37947
-Node: calendarDuration.mtimes38294
-Node: calendarDuration.plus38769
-Node: calendarDuration.times39436
-Node: calendarDuration.uminus39800
-Node: calmonths40114
-Node: calyears40703
-Node: categorical41047
-Node: categorical.addcats43381
-Node: categorical.categorical43780
-Node: categorical.categories45053
-Node: categorical.cellstr45453
-Node: categorical.dispstrs45896
-Node: categorical.double46351
-Node: categorical.iscategory47037
-Node: categorical.ismissing47479
-Node: categorical.isnanny47884
-Node: categorical.isordinal48350
-Node: categorical.isundefined48723
-Node: categorical.mergecats49243
-Node: categorical.missing49896
-Node: categorical.removecats50618
-Node: categorical.renamecats51261
-Node: categorical.reordercats51679
-Node: categorical.setcats52214
-Node: categorical.squeezecats52660
-Node: categorical.string53055
-Node: categorical.summary53506
-Node: categorical.undefined53959
-Node: cell2table54506
-Node: colvecfun55234
-Node: contains55958
-Node: datetime56776
-Node: datetime.colon59170
-Node: datetime.convertDatenumTimeZone60889
-Node: datetime.datenum61565
-Node: datetime.datenum2posix61903
-Node: datetime.datestr62302
-Node: datetime.datestrs62697
-Node: datetime.datestruct63116
-Node: datetime.datetime63918
-Node: datetime.datevec64732
-Node: datetime.diff65055
-Node: datetime.dispstrs65438
-Node: datetime.eq65734
-Node: datetime.ge66170
-Node: datetime.gmtime66620
-Node: datetime.gt67051
-Node: datetime.hms67489
-Node: datetime.isbetween67888
-Node: datetime.isnan68374
-Node: datetime.isnat68754
-Node: datetime.le69030
-Node: datetime.linspace69481
-Node: datetime.localtime70076
-Node: datetime.lt70799
-Node: datetime.minus71239
-Node: datetime.NaT71883
-Node: datetime.ne72634
-Node: datetime.ofDatenum73076
-Node: datetime.ofDatestruct73434
-Node: datetime.plus73946
-Node: datetime.posix2datenum74597
-Node: datetime.posixtime75075
-Node: datetime.proxyKeys75616
-Node: datetime.timeofday76268
-Node: datetime.week76693
-Node: datetime.ymd76950
-Node: datetime.ymdhms77342
-Node: days77760
-Node: discretize78226
-Node: dispstrs79111
-Node: duration79895
-Node: duration.char81322
-Node: duration.dispstrs81725
-Node: duration.hours82022
-Node: duration.linspace82396
-Node: duration.milliseconds82999
-Node: duration.minutes83391
-Node: duration.ofDays83779
-Node: duration.seconds84265
-Node: duration.years84618
-Node: eqn84968
-Node: head86043
-Node: hours86818
-Node: iscalendarduration87303
-Node: iscategorical87812
-Node: isdatetime88296
-Node: isduration88754
-Node: isfile89205
-Node: isfolder89353
-Node: isnanny89502
-Node: istable90538
-Node: istabular91238
-Node: istimetable91738
-Node: localdate92472
-Node: localdate.datenum93785
-Node: localdate.datestr94087
-Node: localdate.datestrs94482
-Node: localdate.datestruct94907
-Node: localdate.dispstrs95839
-Node: localdate.isnan96148
-Node: localdate.isnat96531
-Node: localdate.localdate96818
-Node: localdate.NaT97372
-Node: localdate.posixtime98266
-Node: localdate.ymd98828
-Node: milliseconds99113
-Node: minutes99648
-Node: missing99906
-Node: missing.dispstrs100944
-Node: missing.ismissing101317
-Node: missing.isnan101682
-Node: missing.isnanny102019
-Node: missing.missing102367
-Node: mustBeA102680
-Node: mustBeCellstr102833
-Node: mustBeCharvec103004
-Node: mustBeFinite103180
-Node: mustBeInteger103354
-Node: mustBeMember103529
-Node: mustBeNonempty103704
-Node: mustBeNumeric103883
-Node: mustBeReal104058
-Node: mustBeSameSize104227
-Node: mustBeScalar104403
-Node: mustBeScalarLogical104584
-Node: mustBeVector104777
-Node: NaC104947
-Node: NaS105877
-Node: NaT106759
-Node: pp107582
-Node: scalarexpand108188
-Node: seconds109105
-Node: size2str109604
-Node: splitapply110207
-Node: string111318
-Node: string.cell114466
-Node: string.cellstr114933
-Node: string.char115273
-Node: string.cmp115798
-Node: string.decode116772
-Node: string.dispstrs117200
-Node: string.empty117776
-Node: string.encode118310
-Node: string.erase118815
-Node: string.ismissing119154
-Node: string.isnanny119632
-Node: string.isstring120010
-Node: string.lower120335
-Node: string.missing120841
-Node: string.plus121272
-Node: string.regexprep121842
-Node: string.reverse122316
-Node: string.reverse_bytes122791
-Node: string.strcat123526
-Node: string.strcmp124111
-Node: string.strfind124805
-Node: string.string125325
-Node: string.strlength125956
-Node: string.strlength_bytes126924
-Node: string.strrep127597
-Node: string.upper128210
-Node: struct2table128691
-Node: table129152
-Node: table.addvars133379
-Node: table.antijoin133803
-Node: table.cartesian134545
-Node: table.convertvars135908
-Node: table.findgroups136893
-Node: table.getvar137475
-Node: table.getvars137967
-Node: table.groupby138439
-Node: table.height139377
-Node: table.horzcat139792
-Node: table.innerjoin140414
-Node: table.intersect141078
-Node: table.isempty141691
-Node: table.ismember142019
-Node: table.ismissing142421
-Node: table.istable143103
-Node: table.join143318
-Node: table.mergevars144067
-Node: table.movevars144450
-Node: table.ndims145176
-Node: table.numel145487
-Node: table.outerfillvals145977
-Node: table.outerjoin146407
-Node: table.prettyprint147216
-Node: table.realjoin147675
-Node: table.removevars148553
-Node: table.renamevars148938
-Node: table.repelem149639
-Node: table.repmat150080
-Node: table.restrict150825
-Node: table.rowfun152129
-Node: table.rows2vars155210
-Node: table.semijoin156315
-Node: table.setdiff157172
-Node: table.setDimensionNames157720
-Node: table.setRowNames158946
-Node: table.setvar159312
-Node: table.setVariableNames160200
-Node: table.setxor160981
-Node: table.size161620
-Node: table.splitapply162027
-Node: table.splitvars162531
-Node: table.squeeze163076
-Node: table.stack163473
-Node: table.summary163871
-Node: table.table164884
-Node: table.table2array166222
-Node: table.table2cell166466
-Node: table.table2struct166956
-Node: table.union167577
-Node: table.varfun168146
-Node: table.varnames168684
-Node: table.vertcat169056
-Node: table.width169763
-Node: tableOuterFillValue170075
-Node: tail170253
-Node: tblish.dataset171050
-Node: tblish.dataset.airmiles174021
-Node: tblish.dataset.AirPassengers174776
-Node: tblish.dataset.airquality175545
-Node: tblish.dataset.anscombe177646
-Node: tblish.dataset.attenu179623
-Node: tblish.dataset.attitude181062
-Node: tblish.dataset.austres182292
-Node: tblish.dataset.beavers183206
-Node: tblish.dataset.BJsales184351
-Node: tblish.dataset.BOD185459
-Node: tblish.dataset.cars186431
-Node: tblish.dataset.ChickWeight188163
-Node: tblish.dataset.chickwts189655
-Node: tblish.dataset.co2191145
-Node: tblish.dataset.crimtab192633
-Node: tblish.dataset.cupcake196108
-Node: tblish.dataset.discoveries197081
-Node: tblish.dataset.DNase198113
-Node: tblish.dataset.esoph199392
-Node: tblish.dataset.euro200558
-Node: tblish.dataset.eurodist202230
-Node: tblish.dataset.EuStockMarkets203140
-Node: tblish.dataset.faithful204677
-Node: tblish.dataset.Formaldehyde206513
-Node: tblish.dataset.freeny207950
-Node: tblish.dataset.HairEyeColor209560
-Node: tblish.dataset.Harman23cor212089
-Node: tblish.dataset.Harman74cor213014
-Node: tblish.dataset.Indometh213981
-Node: tblish.dataset.infert215308
-Node: tblish.dataset.InsectSprays216716
-Node: tblish.dataset.iris217660
-Node: tblish.dataset.islands219199
-Node: tblish.dataset.JohnsonJohnson220090
-Node: tblish.dataset.LakeHuron220991
-Node: tblish.dataset.lh222059
-Node: tblish.dataset.LifeCycleSavings222949
-Node: tblish.dataset.Loblolly224851
-Node: tblish.dataset.longley226146
-Node: tblish.dataset.lynx227533
-Node: tblish.dataset.morley228940
-Node: tblish.dataset.mtcars230674
-Node: tblish.dataset.nhtemp232411
-Node: tblish.dataset.Nile233400
-Node: tblish.dataset.nottem234689
-Node: tblish.dataset.npk235547
-Node: tblish.dataset.occupationalStatus236838
-Node: tblish.dataset.Orange237865
-Node: tblish.dataset.OrchardSprays239250
-Node: tblish.dataset.PlantGrowth241087
-Node: tblish.dataset.precip241973
-Node: tblish.dataset.presidents242855
-Node: tblish.dataset.pressure244069
-Node: tblish.dataset.Puromycin245403
-Node: tblish.dataset.quakes247226
-Node: tblish.dataset.randu248783
-Node: tblish.dataset.rivers250034
-Node: tblish.dataset.rock250927
-Node: tblish.dataset.sleep252147
-Node: tblish.dataset.stackloss253369
-Node: tblish.dataset.state255632
-Node: tblish.dataset.sunspot_month257417
-Node: tblish.dataset.sunspot_year258383
-Node: tblish.dataset.sunspots259232
-Node: tblish.dataset.swiss260333
-Node: tblish.dataset.Theoph262423
-Node: tblish.dataset.Titanic264756
-Node: tblish.dataset.ToothGrowth267430
-Node: tblish.dataset.treering268853
-Node: tblish.dataset.trees269947
-Node: tblish.dataset.UCBAdmissions271365
-Node: tblish.dataset.UKDriverDeaths273531
-Node: tblish.dataset.UKgas275857
-Node: tblish.dataset.UKLungDeaths276803
-Node: tblish.dataset.USAccDeaths278079
-Node: tblish.dataset.USArrests278846
-Node: tblish.dataset.USJudgeRatings280819
-Node: tblish.dataset.USPersonalExpenditure282134
-Node: tblish.dataset.uspop283349
-Node: tblish.dataset.VADeaths284268
-Node: tblish.dataset.volcano285644
-Node: tblish.dataset.warpbreaks287043
-Node: tblish.dataset.women288299
-Node: tblish.dataset.WorldPhones289606
-Node: tblish.dataset.WWWusage290667
-Node: tblish.dataset.zCO2291578
-Node: tblish.datasets292821
-Node: datasets.description293341
-Node: datasets.list293893
-Node: datasets.load294402
-Node: tblish.evalWithTableVars294769
-Node: tblish.examples.coplot295725
-Node: tblish.examples.plot_pairs297799
-Node: tblish.examples.SpDb298989
-Node: tblish.sizeof2299839
-Node: tblish.table.grpstats302021
-Node: timezones303176
-Node: todatetime304230
-Node: vartype305224
-Node: vecfun305938
-Node: years306665
-Node: Copying307342
+Node: Top784
+Node: Introduction1183
+Node: Getting Started2553
+Node: Table Representation3365
+Node: Table Construction4924
+Node: Tables vs SQL6153
+Node: Date and Time Representation8101
+Node: datetime Class8648
+Node: Datenum Compatibility9612
+Node: Time Zones11144
+Node: Defined Time Zones14005
+Node: Durations15002
+Node: duration Class15184
+Node: calendarDuration Class15941
+Node: Validation Functions16850
+Node: Example Data Sets19161
+Node: Data Sets from R20602
+Node: Missing Functionality21511
+Node: API Reference22997
+Node: API by Category23186
+Node: API Alphabetically29665
+Node: array2table33831
+Node: caldays34744
+Node: calendarDuration35319
+Node: calendarDuration.calendarDuration36188
+Node: calendarDuration.dispstrs36701
+Node: calendarDuration.ismissing37060
+Node: calendarDuration.isnan37451
+Node: calendarDuration.minus37900
+Node: calendarDuration.mtimes38247
+Node: calendarDuration.plus38722
+Node: calendarDuration.times39389
+Node: calendarDuration.uminus39753
+Node: calmonths40067
+Node: calyears40656
+Node: categorical41000
+Node: categorical.addcats43334
+Node: categorical.categorical43733
+Node: categorical.categories45006
+Node: categorical.cellstr45406
+Node: categorical.dispstrs45849
+Node: categorical.double46304
+Node: categorical.iscategory46990
+Node: categorical.ismissing47432
+Node: categorical.isnanny47837
+Node: categorical.isordinal48303
+Node: categorical.isundefined48676
+Node: categorical.mergecats49196
+Node: categorical.missing49849
+Node: categorical.removecats50571
+Node: categorical.renamecats51214
+Node: categorical.reordercats51632
+Node: categorical.setcats52167
+Node: categorical.squeezecats52613
+Node: categorical.string53008
+Node: categorical.summary53459
+Node: categorical.undefined53912
+Node: cell2table54459
+Node: colvecfun55187
+Node: contains55911
+Node: datetime56729
+Node: datetime.colon59123
+Node: datetime.convertDatenumTimeZone60842
+Node: datetime.datenum61518
+Node: datetime.datenum2posix61856
+Node: datetime.datestr62255
+Node: datetime.datestrs62650
+Node: datetime.datestruct63069
+Node: datetime.datetime63871
+Node: datetime.datevec64685
+Node: datetime.diff65008
+Node: datetime.dispstrs65391
+Node: datetime.eq65687
+Node: datetime.ge66123
+Node: datetime.gmtime66573
+Node: datetime.gt67004
+Node: datetime.hms67442
+Node: datetime.isbetween67841
+Node: datetime.isnan68327
+Node: datetime.isnat68707
+Node: datetime.le68983
+Node: datetime.linspace69434
+Node: datetime.localtime70029
+Node: datetime.lt70752
+Node: datetime.minus71192
+Node: datetime.NaT71836
+Node: datetime.ne72587
+Node: datetime.ofDatenum73029
+Node: datetime.ofDatestruct73387
+Node: datetime.plus73899
+Node: datetime.posix2datenum74550
+Node: datetime.posixtime75028
+Node: datetime.proxyKeys75569
+Node: datetime.timeofday76221
+Node: datetime.week76646
+Node: datetime.ymd76903
+Node: datetime.ymdhms77295
+Node: days77713
+Node: discretize78179
+Node: dispstrs79064
+Node: duration79848
+Node: duration.char81275
+Node: duration.dispstrs81678
+Node: duration.hours81975
+Node: duration.linspace82349
+Node: duration.milliseconds82952
+Node: duration.minutes83344
+Node: duration.ofDays83732
+Node: duration.seconds84218
+Node: duration.years84571
+Node: eqn84921
+Node: head85996
+Node: hours86771
+Node: iscalendarduration87256
+Node: iscategorical87765
+Node: isdatetime88249
+Node: isduration88707
+Node: isfile89158
+Node: isfolder89306
+Node: isnanny89455
+Node: istable90491
+Node: istabular91191
+Node: istimetable91691
+Node: localdate92425
+Node: localdate.datenum93738
+Node: localdate.datestr94040
+Node: localdate.datestrs94435
+Node: localdate.datestruct94860
+Node: localdate.dispstrs95792
+Node: localdate.isnan96101
+Node: localdate.isnat96484
+Node: localdate.localdate96771
+Node: localdate.NaT97325
+Node: localdate.posixtime98219
+Node: localdate.ymd98781
+Node: milliseconds99066
+Node: minutes99601
+Node: missing99859
+Node: missing.dispstrs100897
+Node: missing.ismissing101270
+Node: missing.isnan101635
+Node: missing.isnanny101972
+Node: missing.missing102320
+Node: mustBeA102633
+Node: mustBeCellstr102786
+Node: mustBeCharvec102957
+Node: mustBeFinite103133
+Node: mustBeInteger103307
+Node: mustBeMember103482
+Node: mustBeNonempty103657
+Node: mustBeNumeric103836
+Node: mustBeReal104011
+Node: mustBeSameSize104180
+Node: mustBeScalar104356
+Node: mustBeScalarLogical104537
+Node: mustBeVector104730
+Node: NaC104900
+Node: NaS105830
+Node: NaT106712
+Node: pp107535
+Node: scalarexpand108141
+Node: seconds109058
+Node: size2str109557
+Node: splitapply110160
+Node: string111271
+Node: string.cell114461
+Node: string.cellstr114928
+Node: string.char115268
+Node: string.cmp115793
+Node: string.decode116767
+Node: string.dispstrs117195
+Node: string.empty117771
+Node: string.encode118305
+Node: string.endsWith118813
+Node: string.erase119208
+Node: string.ismissing119551
+Node: string.isnanny120029
+Node: string.isstring120407
+Node: string.lower120732
+Node: string.missing121238
+Node: string.plus121669
+Node: string.regexprep122239
+Node: string.reverse122713
+Node: string.reverse_bytes123188
+Node: string.startsWith123927
+Node: string.strcat124344
+Node: string.strcmp124926
+Node: string.strfind125620
+Node: string.string126140
+Node: string.strlength126771
+Node: string.strlength_bytes127739
+Node: string.strrep128412
+Node: string.upper129025
+Node: struct2table129506
+Node: table129967
+Node: table.addvars134194
+Node: table.antijoin134618
+Node: table.cartesian135360
+Node: table.convertvars136723
+Node: table.findgroups137708
+Node: table.getvar138290
+Node: table.getvars138782
+Node: table.groupby139254
+Node: table.height140192
+Node: table.horzcat140607
+Node: table.innerjoin141229
+Node: table.intersect141893
+Node: table.isempty142506
+Node: table.ismember142834
+Node: table.ismissing143236
+Node: table.istable143918
+Node: table.join144133
+Node: table.mergevars144882
+Node: table.movevars145265
+Node: table.ndims145991
+Node: table.numel146302
+Node: table.outerfillvals146792
+Node: table.outerjoin147222
+Node: table.prettyprint148031
+Node: table.realjoin148490
+Node: table.removevars149368
+Node: table.renamevars149753
+Node: table.repelem150454
+Node: table.repmat150895
+Node: table.restrict151640
+Node: table.rowfun152944
+Node: table.rows2vars156025
+Node: table.semijoin157130
+Node: table.setdiff157987
+Node: table.setDimensionNames158535
+Node: table.setRowNames159761
+Node: table.setvar160127
+Node: table.setVariableNames161015
+Node: table.setxor161796
+Node: table.size162435
+Node: table.splitapply162842
+Node: table.splitvars163346
+Node: table.squeeze163891
+Node: table.stack164288
+Node: table.summary164686
+Node: table.table165699
+Node: table.table2array167037
+Node: table.table2cell167281
+Node: table.table2struct167771
+Node: table.union168392
+Node: table.varfun168961
+Node: table.varnames169499
+Node: table.vertcat169871
+Node: table.width170578
+Node: tableOuterFillValue170890
+Node: tail171068
+Node: tblish.dataset171865
+Node: tblish.dataset.airmiles174836
+Node: tblish.dataset.AirPassengers175590
+Node: tblish.dataset.airquality176358
+Node: tblish.dataset.anscombe178458
+Node: tblish.dataset.attenu180434
+Node: tblish.dataset.attitude181873
+Node: tblish.dataset.austres183102
+Node: tblish.dataset.beavers184015
+Node: tblish.dataset.BJsales185160
+Node: tblish.dataset.BOD186267
+Node: tblish.dataset.cars187238
+Node: tblish.dataset.ChickWeight188969
+Node: tblish.dataset.chickwts190460
+Node: tblish.dataset.co2191949
+Node: tblish.dataset.crimtab193436
+Node: tblish.dataset.cupcake196910
+Node: tblish.dataset.discoveries197882
+Node: tblish.dataset.DNase198913
+Node: tblish.dataset.esoph200191
+Node: tblish.dataset.euro201356
+Node: tblish.dataset.eurodist203027
+Node: tblish.dataset.EuStockMarkets203937
+Node: tblish.dataset.faithful205473
+Node: tblish.dataset.Formaldehyde207308
+Node: tblish.dataset.freeny208744
+Node: tblish.dataset.HairEyeColor210353
+Node: tblish.dataset.Harman23cor212881
+Node: tblish.dataset.Harman74cor213805
+Node: tblish.dataset.Indometh214771
+Node: tblish.dataset.infert216098
+Node: tblish.dataset.InsectSprays217505
+Node: tblish.dataset.iris218448
+Node: tblish.dataset.islands219986
+Node: tblish.dataset.JohnsonJohnson220876
+Node: tblish.dataset.LakeHuron221776
+Node: tblish.dataset.lh222843
+Node: tblish.dataset.LifeCycleSavings223732
+Node: tblish.dataset.Loblolly225633
+Node: tblish.dataset.longley226927
+Node: tblish.dataset.lynx228313
+Node: tblish.dataset.morley229719
+Node: tblish.dataset.mtcars231452
+Node: tblish.dataset.nhtemp233189
+Node: tblish.dataset.Nile234177
+Node: tblish.dataset.nottem235465
+Node: tblish.dataset.npk236322
+Node: tblish.dataset.occupationalStatus237612
+Node: tblish.dataset.Orange238638
+Node: tblish.dataset.OrchardSprays240022
+Node: tblish.dataset.PlantGrowth241858
+Node: tblish.dataset.precip242743
+Node: tblish.dataset.presidents243624
+Node: tblish.dataset.pressure244837
+Node: tblish.dataset.Puromycin246170
+Node: tblish.dataset.quakes247992
+Node: tblish.dataset.randu249548
+Node: tblish.dataset.rivers250798
+Node: tblish.dataset.rock251690
+Node: tblish.dataset.sleep252909
+Node: tblish.dataset.stackloss254130
+Node: tblish.dataset.state256392
+Node: tblish.dataset.sunspot_month258176
+Node: tblish.dataset.sunspot_year259141
+Node: tblish.dataset.sunspots259989
+Node: tblish.dataset.swiss261089
+Node: tblish.dataset.Theoph263178
+Node: tblish.dataset.Titanic265510
+Node: tblish.dataset.ToothGrowth268183
+Node: tblish.dataset.treering269605
+Node: tblish.dataset.trees270698
+Node: tblish.dataset.UCBAdmissions272115
+Node: tblish.dataset.UKDriverDeaths274280
+Node: tblish.dataset.UKgas276605
+Node: tblish.dataset.UKLungDeaths277550
+Node: tblish.dataset.USAccDeaths278825
+Node: tblish.dataset.USArrests279591
+Node: tblish.dataset.USJudgeRatings281563
+Node: tblish.dataset.USPersonalExpenditure282877
+Node: tblish.dataset.uspop284091
+Node: tblish.dataset.VADeaths285009
+Node: tblish.dataset.volcano286384
+Node: tblish.dataset.warpbreaks287782
+Node: tblish.dataset.women289037
+Node: tblish.dataset.WorldPhones290343
+Node: tblish.dataset.WWWusage291403
+Node: tblish.dataset.zCO2292313
+Node: tblish.datasets293555
+Node: datasets.description294075
+Node: datasets.list294627
+Node: datasets.load295136
+Node: tblish.evalWithTableVars295503
+Node: tblish.examples.coplot296459
+Node: tblish.examples.plot_pairs298533
+Node: tblish.examples.SpDb299723
+Node: tblish.sizeof2300573
+Node: tblish.table.grpstats302755
+Node: timezones303910
+Node: todatetime304964
+Node: vartype305958
+Node: vecfun306672
+Node: years307399
+Node: Copying308076
 
 End Tag Table
 
