@@ -8,6 +8,8 @@ As of 2024-02, this is use of MP-Test is experimental. I don't know if I'm going
 
 You'll need the MP-Test library, which is installed separately, and is (I think) not available from Octave Forge. Clone it from the Git repo at <https://github.com/MATPOWER/mptest>, and add its `lib/` dir to your Octave path. By default, if autodiscovery is enabled, Tablicious will look for MP-Test at `~/repos/mptest` and `~/repos/octave-repos/mptest`. (Those are apjanke's favorite places to put things, not a standard GNU Octave convention.)
 
+NOTE: Autodiscovery of MP-Test is currently broken (or missing entirely). You'll need to add it manually for now.
+
 ## Usage
 
 To run the tests, add this `inst/t` subdirectory to your Octave path, and call the `tblish_test_tablicious` function. (The `inst/t` directory is not loaded on the Octave path by default, even when you have loaded the Tablicious package.) You'll also need MP-Test available, done by adding its `lib/` directory to the Octave path.

@@ -39,6 +39,8 @@ For functions and classes inside packages (namespaces), you should fully qualify
 
 The support for packages (namespaces) and classes in `mktexi.pl` is a Tablicious customization we added, after copying that tool from another OF package. `mktexi.pl` is heavily modified in other ways, and doesn't closely match the "standard" one used by other OF packages.
 
+You need TeX installed, along with some TeX packages like those supplied in the TeXLive distribution. I don't know specifically which packages. They're some packages (or other things) supplied by the full MacTeX TeXLive distribution, but not by the BasicTeX version. If you don't have them, then the `texi2*` calls inside the `make doc` target may fail with errors like `/usr/local/bin/texi2dvi: texinfo.tex appears to be broken. ... ! I can't find file 'texinfo.tex'`.
+
 ## Unit Tests
 
 Tablicious doesn't have great unit test coverage, but it has some. It uses a combination of regular Octave style BISTs and [MP-Test](https://github.com/MATPOWER/mptest) ("mptest") tests. The BISTs and mptest suites are not integrated with each other, so you must run both to see full test results.

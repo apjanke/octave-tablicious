@@ -3,17 +3,21 @@
 Here's the process for doing a Tablicious release.
 
 1. Run all the tests.
-    1. `addpath(fullfile(getenv('HOME'),'repos', 'octave-tablicious', 'inst'))`
-    1. `__run_test_suite__ ({fullfile(getenv('HOME'),'/repos/octave-tablicious/inst')}, {})`
-    1. `tblish_test_tablicious`
+    1. `tblish_inst = fullfile(getenv('HOME'), 'repos', 'octave-repos', 'octave-tablicious', 'inst')`
+    1. `addpath(tblish_inst)`
+    1. `__run_test_suite__ ({tblish_inst}, {})`
+    1. Run the MP-Test tests
+        1. `addpath(fullfile(tblish_inst, 't'))`
+        1. `addpath(fullfile(getenv('HOME'), 'repos', 'octave-repos', 'mptest', 'lib'))`
+        1. `tblish_test_tablicious`
     1. Wouldn't hurt to do `make clean && git status && make test` and manual-cleanup, just to be sure.
 1. Update the version info in the repo.
     1. Update the version number and date in `DESCRIPTION`.
         1. Remove the `-SNAPSHOT` suffix from the version number.
     1. Update the `CHANGES.txt` file with the release date.
         1. Use the current calendar date in UTC time, not your local time. Or use your local time; who really cares.
-        1. And check that it has a complete change list for the release. This _should_ be done as changes are committed, but we're not great about that.
-1. Update the installation instructions in README to use the upcoming release tarball URL.
+        1. And check that it has a complete change list for the release. This _ought_ to be done as changes are committed, but we're not good about that at all, so assume it didn't happen.
+1. Update the installation instructions in `README.md` to use the upcoming release tarball URL.
     1. Format is: `https://github.com/apjanke/octave-tablicious/releases/download/v<version>/tablicious-<version>.tar.gz`
     1. As of 2024-10, this is just in the "Quick start" section.
 1. Update the generated doco.
@@ -21,7 +25,9 @@ Here's the process for doing a Tablicious release.
     1. Make a versioned copy for this release:
         * `ver=$(grep ^Version DESCRIPTION | cut -d ' ' -f 2); mkdir -p docs/release/v${ver}/user-guide; cd doc; cp -R html tablicious.html tablicious.pdf ../docs/release/v${ver}/user-guide`
         1. What is wrong with you, Andrew? Make this a `make` target instead of a 200-character-long bash cut-and-paste command.
-    1. Add a section for the new release's doco to `docs/index.md`, and update the links in the main paragraph to point to it.
+    1. Update `docs/index.md` with the new release.
+        1. Add a section for the new release's doco under Releases.
+        1. Update the links in the first paragraph in User Documentation to point to the new release, and the release number in the second paragraph.
 1. Commit all the files changed by the above steps.
     1. Use form: `git add -A; git commit -a -m '[release] v<version>'`
 1. Make sure your repo is clean: `git status` should show no local changes.

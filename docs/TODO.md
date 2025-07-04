@@ -2,26 +2,37 @@
 
 ## For this document
 
-* This TODO document is way out of date. Review it and remove stuff that got done or WONTFIXed.
+* This TODO document is way out of date as of 2024. Review it and remove stuff that got done or WONTFIXed.
 
 ## Overall
 
-* Convert internal dnums representation to UTC
-  * Math goes bad around DST and other zone transitions if you don't do that
+* Convert internal dnums representation to UTC.
+  * Math goes bad around DST and other zone transitions if you don't do that.
 * Documentation
 * Add more BISTs
-* Consider using GNU FDL for the documentation license
-* Propagate NaN-filling fix for planargen back to Janklab
+* Consider using GNU FDL for the documentation license.
+* Propagate NaN-filling fix for planargen back to Janklab.
 
 * Report crash: giving duration a days method while it has a days property results in a crash.
 
+## Unit tests
+
+* Automatic MP-test detection is broken.
+* A single M-code script to run both BISTs and MP-Test suite.
+  * Doing what the `runtests.sh` shell wrapper does now, moving it in to M-code.
+
+## Build and packaging
+
+* Make the "versioned copy of doco" step of the release a script or `make target` instead of a big copy-pasted command.
+* Rework the Release Checklist so that the generated doco building and capture is a separate commit from the "config" changes and headline doco changes for a release.
+
 ## Doco stuff
 
-* Document my new class/namespace-supporting stuff
+* Document my new class/namespace-supporting stuff.
   * Stick a README in the doc/ directory describing how my new stuff works, and detailing the texinfo conventions needed to work with it.
-* Add support for namespaces/packages
-  * Recursively find files in `+blah` dirs under main source path dirs
-  * Establish node naming convention for things in namespaces
+* Add support for namespaces/packages.
+  * Recursively find files in `+blah` dirs under main source path dirs.
+  * Establish node naming convention for things in namespaces.
 
 ## Areas
 
