@@ -1,10 +1,12 @@
 Tablicious Changelog
 ====================
 
-0.4.5 (unreleased)
+0.4.5 (2025-07-03)
 ------------------
 
-(nothing here yet)
+* Add `startsWith` and `endsWith` methods to `string`. ([#141](https://github.com/apjanke/octave-tablicious/pull/141))
+* Fix `string.regexprep` "demote_strings" error. ([#139](https://github.com/apjanke/octave-tablicious/issues/139))
+* Fix `make test` failure due to missing `runtests` in Octave 8.x. ([#140](https://github.com/apjanke/octave-tablicious/issues/140))
 
 0.4.4 (2024-10-23)
 ------------------
@@ -18,7 +20,7 @@ Tablicious Changelog
 
 * Fix "[foo (...)]" syntax-ish errors in some functions.
   * Affected datetime, calendarDuration, localdate, splitapply, mustBeCellstr, and some display functions using tblish.internal.mycombvec.
-* table
+* `table` fixes
   * Correctly handle nested tables in some cases ()- and {}-indexed assignments, when indexing in to those nested tables.
   * Fix assignment to some `table.Properties.<X>` pseudo-properties.
   * Apply object validation after more mutation operations.
@@ -29,7 +31,7 @@ Tablicious Changelog
 ------------------
 
 * Add `end` override methods to string, datetime, etc. so `x(end)` indexing works correctly.
-* table
+* `table` fixes
   * table: summary: omit NaNs from mean(), include NaN counts.
   * table: Fix rownames, broken by bad internal `.Properties` reference.
 * categorical.summary: include frequencies in output
