@@ -25,6 +25,7 @@
 
 * Make the "versioned copy of doco" step of the release a script or `make target` instead of a big copy-pasted command.
 * Rework the Release Checklist so that the generated doco building and capture is a separate commit from the "config" changes and headline doco changes for a release.
+* Have Release Checklist test the local package from dist tarball before pushing the release to GitHub.
 
 ## Doco stuff
 

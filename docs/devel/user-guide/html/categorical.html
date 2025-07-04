@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
-<!-- Created by GNU Texinfo 7.1.1, https://www.gnu.org/software/texinfo/ -->
+<!-- Created by GNU Texinfo 7.2, https://www.gnu.org/software/texinfo/ -->
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<!-- This manual is for Tablicious, version 0.4.5-SNAPSHOT.
+<!-- This manual is for Tablicious, version 0.4.6-SNAPSHOT.
 
 Copyright © 2019, 2023, 2024 Andrew Janke
 
@@ -18,10 +18,10 @@ notice identical to this one.
 
 Permission is granted to copy and distribute translations of this manual
 into another language, under the same conditions as for modified versions. -->
-<title>categorical (Tablicious v0.4.5-SNAPSHOT)</title>
+<title>categorical (Tablicious v0.4.6-SNAPSHOT)</title>
 
 <meta name="description" content="User manual for Tablicious for Octave.">
-<meta name="keywords" content="categorical (Tablicious v0.4.5-SNAPSHOT)">
+<meta name="keywords" content="categorical (Tablicious v0.4.6-SNAPSHOT)">
 <meta name="resource-type" content="document">
 <meta name="distribution" content="global">
 <meta name="Generator" content="makeinfo">
@@ -52,8 +52,8 @@ Next: <a href="cell2table.html" accesskey="n" rel="next">cell2table</a>, Previou
 </div>
 <hr>
 <h4 class="subsection" id="categorical-1"><span>8.2.6 categorical<a class="copiable-link" href="#categorical-1"> &para;</a></span></h4>
-<dl class="first-deftp">
-<dt class="deftp" id="index-categorical-6"><span class="category-def">Class: </span><span><strong class="def-name">categorical</strong><a class="copiable-link" href="#index-categorical-6"> &para;</a></span></dt>
+<dl class="first-deftp def-block">
+<dt class="deftp def-line" id="index-categorical-6"><span class="category-def">Class: </span><span><strong class="def-name">categorical</strong><a class="copiable-link" href="#index-categorical-6"> &para;</a></span></dt>
 <dd>
 <p>Categorical variable array.
 </p>
@@ -81,8 +81,8 @@ analagous to a <code class="code">NaN</code> value.
 
 </dd></dl>
 
-<dl class="first-deftypecv first-deftypeivar-alias-first-deftypecv">
-<dt class="deftypecv deftypeivar-alias-deftypecv" id="index-code-of-categorical"><span class="category-def">Instance Variable of <code class="code">categorical</code>: </span><span><code class="def-type"><code class="code">uint16</code></code> <strong class="def-name">code</strong><a class="copiable-link" href="#index-code-of-categorical"> &para;</a></span></dt>
+<dl class="first-deftypecv first-deftypeivar-alias-first-deftypecv def-block">
+<dt class="deftypecv deftypeivar-alias-deftypecv def-line" id="index-code-of-categorical"><span class="category-def">Instance Variable of <code class="code">categorical</code>: </span><span><code class="def-type"><code class="code">uint16</code></code> <strong class="def-name">code</strong><a class="copiable-link" href="#index-code-of-categorical"> &para;</a></span></dt>
 <dd>
 <p>The numeric codes of the array element values. These are indexes into the
 <code class="code">cats</code> category list.
@@ -91,8 +91,8 @@ analagous to a <code class="code">NaN</code> value.
 </p>
 </dd></dl>
 
-<dl class="first-deftypecv first-deftypeivar-alias-first-deftypecv">
-<dt class="deftypecv deftypeivar-alias-deftypecv" id="index-tfMissing-of-categorical"><span class="category-def">Instance Variable of <code class="code">categorical</code>: </span><span><code class="def-type"><code class="code">logical</code></code> <strong class="def-name">tfMissing</strong><a class="copiable-link" href="#index-tfMissing-of-categorical"> &para;</a></span></dt>
+<dl class="first-deftypecv first-deftypeivar-alias-first-deftypecv def-block">
+<dt class="deftypecv deftypeivar-alias-deftypecv def-line" id="index-tfMissing-of-categorical"><span class="category-def">Instance Variable of <code class="code">categorical</code>: </span><span><code class="def-type"><code class="code">logical</code></code> <strong class="def-name">tfMissing</strong><a class="copiable-link" href="#index-tfMissing-of-categorical"> &para;</a></span></dt>
 <dd>
 <p>A logical mask indicating whether each element of the array is missing
 (that is, undefined).
@@ -101,16 +101,16 @@ analagous to a <code class="code">NaN</code> value.
 </p>
 </dd></dl>
 
-<dl class="first-deftypecv first-deftypeivar-alias-first-deftypecv">
-<dt class="deftypecv deftypeivar-alias-deftypecv" id="index-cats-of-categorical"><span class="category-def">Instance Variable of <code class="code">categorical</code>: </span><span><code class="def-type"><code class="code">cellstr</code></code> <strong class="def-name">cats</strong><a class="copiable-link" href="#index-cats-of-categorical"> &para;</a></span></dt>
+<dl class="first-deftypecv first-deftypeivar-alias-first-deftypecv def-block">
+<dt class="deftypecv deftypeivar-alias-deftypecv def-line" id="index-cats-of-categorical"><span class="category-def">Instance Variable of <code class="code">categorical</code>: </span><span><code class="def-type"><code class="code">cellstr</code></code> <strong class="def-name">cats</strong><a class="copiable-link" href="#index-cats-of-categorical"> &para;</a></span></dt>
 <dd>
 <p>The names of the categories in this array. This is the list into which
 the <code class="code">code</code> values are indexes.
 </p>
 </dd></dl>
 
-<dl class="first-deftypecv first-deftypeivar-alias-first-deftypecv">
-<dt class="deftypecv deftypeivar-alias-deftypecv" id="index-isOrdinal-of-categorical"><span class="category-def">Instance Variable of <code class="code">categorical</code>: </span><span><code class="def-type"><code class="code">scalar_logical</code></code> <strong class="def-name">isOrdinal</strong><a class="copiable-link" href="#index-isOrdinal-of-categorical"> &para;</a></span></dt>
+<dl class="first-deftypecv first-deftypeivar-alias-first-deftypecv def-block">
+<dt class="deftypecv deftypeivar-alias-deftypecv def-line" id="index-isOrdinal-of-categorical"><span class="category-def">Instance Variable of <code class="code">categorical</code>: </span><span><code class="def-type"><code class="code">scalar_logical</code></code> <strong class="def-name">isOrdinal</strong><a class="copiable-link" href="#index-isOrdinal-of-categorical"> &para;</a></span></dt>
 <dd>
 <p>A scalar logical indicating whether the categories in this array have an
 ordinal relationship.

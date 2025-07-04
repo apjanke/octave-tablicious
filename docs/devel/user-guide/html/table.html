@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
-<!-- Created by GNU Texinfo 7.1.1, https://www.gnu.org/software/texinfo/ -->
+<!-- Created by GNU Texinfo 7.2, https://www.gnu.org/software/texinfo/ -->
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<!-- This manual is for Tablicious, version 0.4.5-SNAPSHOT.
+<!-- This manual is for Tablicious, version 0.4.6-SNAPSHOT.
 
 Copyright © 2019, 2023, 2024 Andrew Janke
 
@@ -18,10 +18,10 @@ notice identical to this one.
 
 Permission is granted to copy and distribute translations of this manual
 into another language, under the same conditions as for modified versions. -->
-<title>table (Tablicious v0.4.5-SNAPSHOT)</title>
+<title>table (Tablicious v0.4.6-SNAPSHOT)</title>
 
 <meta name="description" content="User manual for Tablicious for Octave.">
-<meta name="keywords" content="table (Tablicious v0.4.5-SNAPSHOT)">
+<meta name="keywords" content="table (Tablicious v0.4.6-SNAPSHOT)">
 <meta name="resource-type" content="document">
 <meta name="distribution" content="global">
 <meta name="Generator" content="makeinfo">
@@ -51,8 +51,8 @@ Next: <a href="tableOuterFillValue.html" accesskey="n" rel="next">tableOuterFill
 </div>
 <hr>
 <h4 class="subsection" id="table-1"><span>8.2.55 table<a class="copiable-link" href="#table-1"> &para;</a></span></h4>
-<dl class="first-deftp">
-<dt class="deftp" id="index-table-5"><span class="category-def">Class: </span><span><strong class="def-name">table</strong><a class="copiable-link" href="#index-table-5"> &para;</a></span></dt>
+<dl class="first-deftp def-block">
+<dt class="deftp def-line" id="index-table-5"><span class="category-def">Class: </span><span><strong class="def-name">table</strong><a class="copiable-link" href="#index-table-5"> &para;</a></span></dt>
 <dd>
 <p>Tabular data array containing multiple columnar variables.
 </p>
@@ -95,31 +95,31 @@ tested.
 </p>
 </dd></dl>
 
-<dl class="first-deftypecv first-deftypeivar-alias-first-deftypecv">
-<dt class="deftypecv deftypeivar-alias-deftypecv" id="index-VariableNames-of-table"><span class="category-def">Instance Variable of <code class="code">table</code>: </span><span><code class="def-type"><code class="code">cellstr</code></code> <strong class="def-name">VariableNames</strong><a class="copiable-link" href="#index-VariableNames-of-table"> &para;</a></span></dt>
+<dl class="first-deftypecv first-deftypeivar-alias-first-deftypecv def-block">
+<dt class="deftypecv deftypeivar-alias-deftypecv def-line" id="index-VariableNames-of-table"><span class="category-def">Instance Variable of <code class="code">table</code>: </span><span><code class="def-type"><code class="code">cellstr</code></code> <strong class="def-name">VariableNames</strong><a class="copiable-link" href="#index-VariableNames-of-table"> &para;</a></span></dt>
 <dd>
 <p>The names of the variables in the table, as a cellstr row vector.
 </p>
 </dd></dl>
 
-<dl class="first-deftypecv first-deftypeivar-alias-first-deftypecv">
-<dt class="deftypecv deftypeivar-alias-deftypecv" id="index-VariableValues-of-table"><span class="category-def">Instance Variable of <code class="code">table</code>: </span><span><code class="def-type"><code class="code">cell</code></code> <strong class="def-name">VariableValues</strong><a class="copiable-link" href="#index-VariableValues-of-table"> &para;</a></span></dt>
+<dl class="first-deftypecv first-deftypeivar-alias-first-deftypecv def-block">
+<dt class="deftypecv deftypeivar-alias-deftypecv def-line" id="index-VariableValues-of-table"><span class="category-def">Instance Variable of <code class="code">table</code>: </span><span><code class="def-type"><code class="code">cell</code></code> <strong class="def-name">VariableValues</strong><a class="copiable-link" href="#index-VariableValues-of-table"> &para;</a></span></dt>
 <dd>
 <p>A cell vector containing the values for each of the variables.
 <code class="code">VariableValues(i)</code> corresponds to <code class="code">VariableNames(i)</code>.
 </p>
 </dd></dl>
 
-<dl class="first-deftypecv first-deftypeivar-alias-first-deftypecv">
-<dt class="deftypecv deftypeivar-alias-deftypecv" id="index-RowNames-of-table"><span class="category-def">Instance Variable of <code class="code">table</code>: </span><span><code class="def-type"><code class="code">cellstr</code></code> <strong class="def-name">RowNames</strong><a class="copiable-link" href="#index-RowNames-of-table"> &para;</a></span></dt>
+<dl class="first-deftypecv first-deftypeivar-alias-first-deftypecv def-block">
+<dt class="deftypecv deftypeivar-alias-deftypecv def-line" id="index-RowNames-of-table"><span class="category-def">Instance Variable of <code class="code">table</code>: </span><span><code class="def-type"><code class="code">cellstr</code></code> <strong class="def-name">RowNames</strong><a class="copiable-link" href="#index-RowNames-of-table"> &para;</a></span></dt>
 <dd>
 <p>An optional list of row names that identify each row in the table. This
 is a cellstr column vector, if present.
 </p>
 </dd></dl>
 
-<dl class="first-deftypecv first-deftypeivar-alias-first-deftypecv">
-<dt class="deftypecv deftypeivar-alias-deftypecv" id="index-DimensionNames-of-table"><span class="category-def">Instance Variable of <code class="code">table</code>: </span><span><code class="def-type"><code class="code">cellstr</code></code> <strong class="def-name">DimensionNames</strong><a class="copiable-link" href="#index-DimensionNames-of-table"> &para;</a></span></dt>
+<dl class="first-deftypecv first-deftypeivar-alias-first-deftypecv def-block">
+<dt class="deftypecv deftypeivar-alias-deftypecv def-line" id="index-DimensionNames-of-table"><span class="category-def">Instance Variable of <code class="code">table</code>: </span><span><code class="def-type"><code class="code">cellstr</code></code> <strong class="def-name">DimensionNames</strong><a class="copiable-link" href="#index-DimensionNames-of-table"> &para;</a></span></dt>
 <dd>
 <p>Names for the two dimensions of the table array, as a cellstr row vector. Always
 exactly 2-long, because tables are always exactly 2-D. Defaults to

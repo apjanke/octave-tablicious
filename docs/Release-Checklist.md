@@ -33,6 +33,11 @@ Here's the process for doing a Tablicious release.
 1. Make sure your repo is clean: `git status` should show no local changes.
 1. Run `make dist` first to make sure it works.
     1. This has to be done _after_ the commit, because it extracts from git history.
+1. Test the dist tarball.
+    1. Install it with `pkg install <path/to>/target/tablicious-x.y.z.tar.gz`.
+    1. Run tests on the installed package.
+        1. `pkg test tablicious` will do the BISTs. Prob have to run the MP-Test suite manually for now.
+    1. Preferably on both Mac and Linux, and maybe Windows.
 1. Create a git tag and push it and the above changes to GitHub.
     1. `git tag v<version>; git push; git push --tags`
 1. Create a new GitHub release from the tag.
@@ -40,19 +45,16 @@ Here's the process for doing a Tablicious release.
     1. Copy and paste the changes for this release from the `CHANGES.txt` file into the GitHub Release description field.
     1. Upload the dist tarball as a file for the release.
 1. Test installing the release using `pkg install` against the new release URL.
-    1. On macOS.
-    1. On Ubuntu.
-    1. _sigh_ I suppose, on Windows.
     1. Do this by copy-and-pasting the `pkg install` example from the [live README page](https://github.com/apjanke/octave-tablicious/blob/master/README.md) on the GitHub repo. This makes sure the current install instructions are correct.
-        1. Don't short-circuit this and just edit an entry from your Octave command history! Open GitHub in a browser and actually copy-and-paste it!
-    1. `pkg test tablicious` should do it.
+        1. Don't short-circuit this by just editing an entry from your Octave command history! Open GitHub in a browser and actually copy-and-paste it.
+    1. Run tests on the installed package, like above.
 1. Open development for next version
     1. Update version number and date in `DESCRIPTION` to next patch or minor version, as appropriate.
         1. Include a `-SNAPSHOT` suffix to indicate this is a work in progress.
     1. Add a section to `CHANGES.txt` for the new upcoming release, at the top. Use `(unreleased)` for its release date.
     1. Rebuild the doco
         1. `make doc; make gh-pages`
-    1. `git add -A; git commit -a -m 'Open development for next version'; git push`
+    1. `git add -A; git commit -a -m 'Open development for next version (<x.y.z>)'; git push`
 1. Close the GitHub Issues [Milestone](https://github.com/apjanke/octave-tablicious/milestones) for this release.
     1. Create a new Milestone for the next release, if one doesn't already exist.
 1. Announce the release.
