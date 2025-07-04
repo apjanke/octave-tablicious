@@ -325,7 +325,7 @@ classdef string
     ## -*- texinfo -*-
     ## @node string.endsWith
     ## @deftypefn {Method} {@var{out} =} endsWith (@var{obj}, @var{pattern})
-    ## @deftypefn {Method} {@var{out} =} endsWith (@var{obj}, @var{pattern}, 'IgnoreCase', true/false)
+    ## @deftypefnx {Method} {@var{out} =} endsWith (@var{obj}, @var{pattern}, 'IgnoreCase', true/false)
     ##
     ## Test if string ends with pattern.
     ##
@@ -333,7 +333,7 @@ classdef string
     ##
     ## @end deftypefn
     function out = endsWith(this, pattern, varargin)
-        #ENDSWITH Test if string ends with pattern.
+      #ENDSWITH Test if string ends with pattern.
 
       # Handle 'IgnoreCase' flag
       ignoreCase = false;
@@ -365,10 +365,10 @@ classdef string
       end
     end
 
-        ## -*- texinfo -*-
+    ## -*- texinfo -*-
     ## @node string.startsWith
     ## @deftypefn {Method} {@var{out} =} startsWith (@var{obj}, @var{pattern})
-    ## @deftypefn {Method} {@var{out} =} startsWith (@var{obj}, @var{pattern}, 'IgnoreCase', true/false)
+    ## @deftypefnx {Method} {@var{out} =} startsWith (@var{obj}, @var{pattern}, 'IgnoreCase', true/false)
     ##
     ## Test if string starts with pattern.
     ##
@@ -376,7 +376,7 @@ classdef string
     ##
     ## @end deftypefn
     function out = startsWith(this, pattern, varargin)
-        #ENDSWITH Test if string ends with pattern.
+      #ENDSWITH Test if string ends with pattern.
 
       # Handle 'IgnoreCase' flag
       ignoreCase = false;
@@ -1449,9 +1449,9 @@ endfunction
 %! str = string ('abcdf');
 %! tfEW = endsWith (str, 'cdf');
 %! assert (tfEW == true)
-%! assert (tfEW, logical ([0; 1]))
+%! assert (tfEW, logical ([1]))
 %!test
 %! str = string ('abcdf');
 %! tfEW = endsWith (str, 'xxx');
 %! assert (tfEW == false)
-%! assert (tfEW, logical ([0; 1]))
+%! assert (tfEW, logical ([0]))
