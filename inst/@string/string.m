@@ -555,13 +555,52 @@ classdef string
     ##
     ## @end deftypefn
     function out = strlength (this)
+      persistent do_u2n_buflen_bug_workaround
+      if isempty (do_u2n_buflen_bug_workaround)
+        # Workaround for unicode2native() buffer-length bug in pre-10.2.0 Octave that
+        # results in extra bytes in its output for short strings.
+        # See:
+        #   * https://github.com/apjanke/octave-tablicious/issues/143
+        #   * https://octave.discourse.group/t/wrong-number-of-bytes-returned-from-unicode2native/6418
+        # There's a bug in Octave that causes unicode2native() conversions to UTF-16 or
+        # UTF-32 to add extra bogus bytes when converting short strings, which throws off
+        # the character count here. The bug doesn't seem to affect strings length 4 or
+        # longer. So as a hacky workaround, in affected Octave versions, we'll just add
+        # some padding to all the strings passed to unicode2native to get out of the danger
+        # zone for that bug, and then back them out of the resulting char counts.
+        # I'm not sure which versions of Octave were affected, or exactly what the scope of
+        # the bug is, so probe for the specific buggy behavior I'm familiar with, and bail
+        # if we get something that doesn't closely match that or the good-case behavior.
+        good_strlens = [0 2 4 6 8 10];
+        buflenbug_strlens = [0 5 6 7 8 10];
+        got_strlens = arrayfun(@(n) numel (unicode2native (repmat ('a', [1 n]), 'UTF-16LE')), 0:5);
+        if (isequal (got_strlens, good_strlens))
+          do_u2n_buflen_bug_workaround = false;
+        elseif (isequal (got_strlens, buflenbug_strlens))
+          do_u2n_buflen_bug_workaround = true;
+        else
+          error ('tablicious:BUG', ['Got an unexpected strlen probe value for unicode2native test ' ...
+            'test in strlength() initialization. This indicates a behavior of core Octave that ' ...
+            'Tablicious is unprepared for. This is a bug that Tablicious cannot handle. Please ' ...
+            'report this to the Tablicious maintainers if you are so inclined. Cannot produce ' ...
+            'reasonable strlength() results in these conditions. Aborting. Sorry.'])
+        endif
+      endif
       out = NaN (size (this));
       for i = 1:numel (out)
         if (this.tfMissing(i))
           continue
         endif
-        utf16 = unicode2native (this.strs{i}, 'UTF-16LE');
-        out(i) = numel (utf16) / 2;
+        if (do_u2n_buflen_bug_workaround)
+          # unicode2native bug workaround case for pre-10.2.0 Octave; see above.
+          # Yes, this is a terrible hack. Sorry about that.
+          utf16 = unicode2native (['aaaa' this.strs{i}], 'UTF-16LE');
+          out(i) = (numel (utf16) / 2) - 4;
+        else
+          # regular case
+          utf16 = unicode2native (this.strs{i}, 'UTF-16LE');
+          out(i) = numel (utf16) / 2;
+        endif
       endfor
     endfunction
 
