@@ -174,7 +174,7 @@ classdef string
     ## @end itemize
     ##
     ## @end deftypefn
-    function this = string(in)
+    function this = string (in)
       # TODO: Maybe fall back to calling cellstr() on arbitrary input objects.
       if (nargin == 0)
         return
@@ -332,23 +332,23 @@ classdef string
     ## Returns a logical array the size of the scalar expansion of @var{obj} and @var{pattern}.
     ##
     ## @end deftypefn
-    function out = endsWith(this, pattern, varargin)
+    function out = endsWith (this, pattern, varargin)
       #ENDSWITH Test if string ends with pattern.
 
       # Handle 'IgnoreCase' flag
       ignoreCase = false;
       if nargin > 2
-        idx = find(strcmpi(varargin, 'IgnoreCase'), 1);
-        if ~isempty(idx)
+        idx = find (strcmpi (varargin, 'IgnoreCase'), 1);
+        if ~isempty (idx)
           ignoreCase = varargin{idx+1};
         end
       end
 
-      [this, pattern] = promote(this, pattern); % promote to string arrays, scalar expand
-      [this, pattern] = scalarexpand(this, pattern);
+      [this, pattern] = promote (this, pattern); % promote to string arrays, scalar expand
+      [this, pattern] = scalarexpand (this, pattern);
       out = false(size(this));
 
-      for i = 1:numel(this)
+      for i = 1:numel (this)
         if this.tfMissing(i) || pattern.tfMissing(i)
           out(i) = false; % Or handle as missing, if that's your convention
           continue
@@ -356,10 +356,10 @@ classdef string
         str = this.strs{i};
         pat = pattern.strs{i};
         if ignoreCase
-          str = lower(str);
-          pat = lower(pat);
+          str = lower (str);
+          pat = lower (pat);
         end
-        if length(pat) <= length(str) && strcmp(str(end-length(pat)+1:end), pat)
+        if length (pat) <= length (str) && strcmp (str(end-length(pat)+1:end), pat)
           out(i) = true;
         end
       end
@@ -375,23 +375,23 @@ classdef string
     ## Returns a logical array the size of the scalar expansion of @var{obj} and @var{pattern}.
     ##
     ## @end deftypefn
-    function out = startsWith(this, pattern, varargin)
+    function out = startsWith (this, pattern, varargin)
       #ENDSWITH Test if string ends with pattern.
 
       # Handle 'IgnoreCase' flag
       ignoreCase = false;
       if nargin > 2
-        idx = find(strcmpi(varargin, 'IgnoreCase'), 1);
-        if ~isempty(idx)
+        idx = find (strcmpi (varargin, 'IgnoreCase'), 1);
+        if ~isempty (idx)
           ignoreCase = varargin{idx+1};
         end
       end
 
-      [this, pattern] = promote(this, pattern); % promote to string arrays, scalar expand
-      [this, pattern] = scalarexpand(this, pattern);
+      [this, pattern] = promote (this, pattern); % promote to string arrays, scalar expand
+      [this, pattern] = scalarexpand (this, pattern);
       out = false(size(this));
 
-      for i = 1:numel(this)
+      for i = 1:numel (this)
         if this.tfMissing(i) || pattern.tfMissing(i)
           out(i) = false; % Or handle as missing, if that's your convention
           continue
@@ -399,10 +399,10 @@ classdef string
         str = this.strs{i};
         pat = pattern.strs{i};
         if ignoreCase
-          str = lower(str);
-          pat = lower(pat);
+          str = lower (str);
+          pat = lower (pat);
         end
-        if length(pat) <= length(str) && strcmp(str(1:length(pat)), pat)
+        if length (pat) <= length (str) && strcmp (str(1:length(pat)), pat)
           out(i) = true;
         end
       end
@@ -469,7 +469,7 @@ classdef string
       if any (this.tfMissing)
         error ('string.char: Cannot convert missing string data to char');
       endif
-      out = char(cellstr(this));
+      out = char (cellstr (this));
     endfunction
 
     # Encoding
@@ -554,8 +554,8 @@ classdef string
     ## See also: @ref{string.strlength_bytes}
     ##
     ## @end deftypefn
-    function out = strlength(this)
-      out = NaN (size(this));
+    function out = strlength (this)
+      out = NaN (size (this));
       for i = 1:numel (out)
         if (this.tfMissing(i))
           continue
@@ -606,7 +606,7 @@ classdef string
     ## Returns a string array the same size as @var{obj}.
     ##
     ## @end deftypefn
-    function out = reverse(this)
+    function out = reverse (this)
       points = codepoints (this);
       rev_points = points;
       for i = 1:numel (this)
@@ -671,7 +671,7 @@ classdef string
     ##
     ## @end deftypefn
     function out = plus (a, b)
-      out = strcat(a, b);
+      out = strcat (a, b);
     endfunction
 
     ## -*- texinfo -*-
@@ -732,7 +732,7 @@ classdef string
     function out = erase (this, match)
       [this, match] = promote (this, match);
       out = this;
-      out.strs = strrep (this.strs, char(match), '');
+      out.strs = strrep (this.strs, char (match), '');
     endfunction
 
     ## -*- texinfo -*-
@@ -754,7 +754,7 @@ classdef string
     function out = strrep (this, match, replacement, varargin)
       [this, match, replacement] = promote (this, match, replacement);
       out = this;
-      out.strs = strrep(this.strs, char(match), char(replacement), varargin{:});
+      out.strs = strrep (this.strs, char (match), char (replacement), varargin{:});
     endfunction
 
     ## -*- texinfo -*-
@@ -772,9 +772,9 @@ classdef string
     ## Returns either an index vector, or a cell array of index vectors.
     ##
     ## @end deftypefn
-    function out = strfind(this, pattern, varargin)
+    function out = strfind (this, pattern, varargin)
       [this, pattern] = promote (this, pattern);
-      out = strfind(this.strs, char(pattern), varargin{:});
+      out = strfind(this.strs, char (pattern), varargin{:});
       out(this.tfMissing) = {[]};
     endfunction
 
@@ -791,11 +791,11 @@ classdef string
     ## Returns a string array of the same size as @var{obj}.
     ##
     ## @end deftypefn
-    function out = regexprep(this, pat, repstr, varargin)
+    function out = regexprep (this, pat, repstr, varargin)
       [this, pat, repstr] = promote (this, pat, repstr);
-      args = demote_strings(varargin);
+      args = demote_strings (varargin);
       out = this;
-      out.strs = regexprep(this.strs, char(pat), char(repstr), args{:});
+      out.strs = regexprep (this.strs, char (pat), char (repstr), args{:});
     endfunction
 
     # Relational operations
@@ -856,7 +856,7 @@ classdef string
     ## @var{outB}, as a programming convenience.
     ##
     ## @end deftypefn
-    function [out, A, B] = cmp(A, B)
+    function [out, A, B] = cmp (A, B)
       [A, B] = promote (A, B);
       # In production code, you wouldn't scalarexpand; you'd do a scalar test
       # and smarter indexing.
@@ -897,7 +897,7 @@ classdef string
       out = propagate_missing (out, A, B);
     endfunction
 
-    function out = gt(A, B)
+    function out = gt (A, B)
       #GT Greater than.
       [cmpval, A, B] = cmp (A, B);
       out = cmpval > 0;
@@ -1106,10 +1106,10 @@ classdef string
 
     function out = ndims (this)
       #NDIMS Number of dimensions.
-      out = ndims(this.strs);
+      out = ndims (this.strs);
     endfunction
 
-    function out = isempty(this)
+    function out = isempty (this)
       #ISEMPTY True for empty array.
       out = isempty (this.strs);
     endfunction
@@ -1187,7 +1187,7 @@ classdef string
       this.tfMissing = transpose (this.tfMissing, varargin{:});
     endfunction
 
-    function [this, nshifts] = shiftdim( this, n)
+    function [this, nshifts] = shiftdim (this, n)
       #SHIFTDIM Shift dimensions.
       if (nargin > 1)
         this.strs = shiftdim (this.strs, n);
@@ -1223,13 +1223,13 @@ classdef string
       out = cat (1, varargin{:});
     endfunction
 
-    function this = subsasgn(this, s, b)
+    function this = subsasgn (this, s, b)
       #SUBSASGN Subscripted assignment.
 
       # Chained subscripts
       if (numel (s) > 1)
-        rhs_in = subsref(this, s(1));
-        rhs = subsasgn(rhs_in, s(2:end), b);
+        rhs_in = subsref (this, s(1));
+        rhs = subsasgn (rhs_in, s(2:end), b);
       else
         rhs = b;
       endif
@@ -1237,11 +1237,11 @@ classdef string
       # Base case
       switch (s(1).type)
         case '()'
-          this = subsasgnParensPlanar(this, s(1), rhs);
+          this = subsasgnParensPlanar (this, s(1), rhs);
         case '{}'
           # This works just like ()-assignment, and is only defined for
           # compatibility with cellstrs
-          this = subsasgnParensPlanar(this, s(1), rhs);
+          this = subsasgnParensPlanar (this, s(1), rhs);
         case '.'
           error ('string:BadOperation', '.-assignment is not defined for string arrays');
       endswitch
@@ -1258,7 +1258,7 @@ classdef string
           # This pops out char arrays
           varargout = subsrefParensPlanar (this, s(1));
         case '.'
-          error('string:BadOperation',...
+          error('string:BadOperation', ...
               '.-subscripting is not supported for string arrays');
       endswitch
 
@@ -1287,19 +1287,19 @@ classdef string
       this.tfMissing(s.subs{:}) = rhs.tfMissing;
     endfunction
 
-    function out = subsrefParensPlanar(this, s)
+    function out = subsrefParensPlanar (this, s)
       #SUBSREFPARENSPLANAR ()-indexing for planar object
       out = this;
       out.strs = this.strs(s.subs{:});
       out.tfMissing = this.tfMissing(s.subs{:});
     endfunction
 
-    function out = parensRef(this, varargin)
+    function out = parensRef (this, varargin)
       #PARENSREF ()-indexing, for this class's internal use
       out = subsrefParensPlanar (this, struct ('subs', {varargin}));
     endfunction
 
-    function out = subset(this, varargin)
+    function out = subset (this, varargin)
       #SUBSET Subset array by indexes.
       # This is what you call internally inside the class instead of doing
       # ()-indexing references on the RHS, which don't work properly inside the class
@@ -1307,7 +1307,7 @@ classdef string
       out = parensRef (this, varargin{:});
     endfunction
 
-    function out = asgn(this, ix, value)
+    function out = asgn (this, ix, value)
       #ASGN Assign array elements by indexes.
       # This is what you call internally inside the class instead of doing
       # ()-indexing references on the LHS, which don't work properly inside
@@ -1324,14 +1324,14 @@ classdef string
 
   methods (Access=private)
 
-    function out = codepoints(this)
+    function out = codepoints (this)
       # Convert to cell array of 32-bit Unicode code point vectors
       #
       # This is a little utility to support other Unicode-character-aware methods,
       # like strlength() and reverse().
       persistent native_utf32_encoding
       if isempty (native_utf32_encoding)
-        [~,~,endian] = computer ();
+        [~, ~, endian] = computer ();
         native_utf32_encoding = sprintf ('UTF-32%cE', endian);
       endif
 
@@ -1351,7 +1351,7 @@ classdef string
       # This is the inverse of codepoints().
       persistent native_utf32_encoding
       if (isempty (native_utf32_encoding))
-        [~,~,endian] = computer ();
+        [~, ~, endian] = computer ();
         native_utf32_encoding = sprintf ('UTF-32%cE', endian);
       endif
 

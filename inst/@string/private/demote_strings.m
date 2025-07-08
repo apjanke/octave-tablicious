@@ -1,7 +1,7 @@
-function out = demote_strings(args)
+function out = demote_strings (args)
   #DEMOTE_STRINGS Turn all string arguments into chars
   #
-  # out = demote_strings(args)
+  # out = demote_strings (args)
   #
   # This is for compatibility with functions that take chars or cellstrs,
   # but are not aware of string arrays.
@@ -14,7 +14,7 @@ function out = demote_strings(args)
   # turned in to cellstrs. This might not actually be the right thing,
   # depending on what function you are calling!
   out = args;
-  for i = 1:numel(args)
+  for i = 1:numel (args)
     if (isa (args{i}, 'string'))
       if (isscalar (args{i}))
         out{i} = char (args{i});

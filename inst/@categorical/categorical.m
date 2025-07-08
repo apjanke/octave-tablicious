@@ -818,7 +818,7 @@ classdef categorical
     ##
     ## @end deftypefn
     function out = squeezecats (this)
-      error('categorical.squeezecategories: This is unimplemented. Sorry.');
+      error ('categorical.squeezecategories: This is unimplemented. Sorry.');
     endfunction
 
     function [A, B] = promote2 (A, B)
@@ -1066,7 +1066,7 @@ classdef categorical
 
     function out = ndims (this)
       #NDIMS Number of dimensions.
-      out = ndims(this.code);
+      out = ndims (this.code);
     endfunction
 
     function out = isempty(this)
@@ -1147,7 +1147,7 @@ classdef categorical
       this.tfMissing = transpose (this.tfMissing, varargin{:});
     endfunction
 
-    function [this, nshifts] = shiftdim( this, n)
+    function [this, nshifts] = shiftdim (this, n)
       #SHIFTDIM Shift dimensions.
       if (nargin > 1)
         this.code = shiftdim (this.code, n);
@@ -1161,9 +1161,9 @@ classdef categorical
     function out = cat (dim, varargin)
       #CAT Concatenate arrays.
       args = varargin;
-      for i = 1:numel(args)
-        if (! isa(args{i}, 'categorical'))
-          args{i} = categorical(args{i});
+      for i = 1:numel (args)
+        if (! isa (args{i}, 'categorical'))
+          args{i} = categorical (args{i});
         endif
       endfor
       out = varargin{1};
@@ -1172,8 +1172,8 @@ classdef categorical
         b = varargin{i};
         [a, b] = promote2 (a, b);
         out = a;
-        out.code = cat(dim, a.code, b.code);
-        out.tfMissing = cat(dim, a.tfMissing, b.tfMissing);
+        out.code = cat (dim, a.code, b.code);
+        out.tfMissing = cat (dim, a.tfMissing, b.tfMissing);
       endfor
     endfunction
 
@@ -1187,13 +1187,13 @@ classdef categorical
       out = cat (1, varargin{:});
     endfunction
 
-    function this = subsasgn(this, s, b)
+    function this = subsasgn (this, s, b)
       #SUBSASGN Subscripted assignment.
 
       # Chained subscripts
       if (numel(s) > 1)
-        rhs_in = subsref(this, s(1));
-        rhs = subsasgn(rhs_in, s(2:end), b);
+        rhs_in = subsref (this, s(1));
+        rhs = subsasgn (rhs_in, s(2:end), b);
       else
         rhs = b;
       endif
@@ -1201,17 +1201,17 @@ classdef categorical
       # Base case
       switch (s(1).type)
         case '()'
-          this = subsasgnParensPlanar(this, s(1), rhs);
+          this = subsasgnParensPlanar (this, s(1), rhs);
         case '{}'
           # This works just like ()-assignment, and is only defined for
           # compatibility with cellcode
-          this = subsasgnParensPlanar(this, s(1), rhs);
+          this = subsasgnParensPlanar (this, s(1), rhs);
         case '.'
           error ('categorical:BadOperation', '.-assignment is not defined for categorical arrays');
       endswitch
     endfunction
 
-    function varargout = subsref(this, s)
+    function varargout = subsref (this, s)
     #SUBSREF Subscripted reference.
 
       # Base case
