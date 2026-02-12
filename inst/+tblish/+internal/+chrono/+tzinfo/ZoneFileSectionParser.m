@@ -1,4 +1,4 @@
-## Copyright (C) 2019, 2023, 2024 Andrew Janke <floss@apjanke.net>
+## Copyright (C) 2019, 2023, 2024, 2026 Andrew Janke <floss@apjanke.net>
 ##
 ## This file is part of Tablicious.
 ##
@@ -16,16 +16,15 @@
 ## along with Octave; see the file COPYING.  If not, see
 ## <https://www.gnu.org/licenses/>.
 
-## This class exists for Octave 4.2 compatibility: something about having a
-## method with nested closures (my old implementation approach) is causing it
-## to break, with an undefined function input even though one was supplied
-## by the caller.
 classdef ZoneFileSectionParser < handle
+  # Parser for tzinfo database zone info files.
+  #
+  # See 'man tzfile' for info on this file format.
 
   properties
     sectionFormat
     data
-    ix = 1 % A "cursor" index into data
+    ix = 1  % A "cursor" index into this.data
   endproperties
 
   methods
@@ -60,11 +59,11 @@ classdef ZoneFileSectionParser < handle
     endfunction
 
     function out = get_int (this, my_bytes)
-      out = swapbytes (typecast (my_bytes, 'int32'));
+      out = ntoh (typecast (my_bytes, 'int32'));
     endfunction
 
     function out = get_int64 (this, my_bytes)
-      out = swapbytes (typecast (my_bytes, 'int64'));
+      out = ntoh (typecast (my_bytes, 'int64'));
     endfunction
 
     function out = get_null_terminated_string (this, my_bytes)
@@ -155,3 +154,40 @@ classdef ZoneFileSectionParser < handle
   endmethods
 
 endclassdef
+
+function out = ntoh (x)
+  #NTOH Convert ints from network byte order (MSB) to host byte order
+  #
+  # NTOH converts the byte order for ints from network byte order (most
+  # significant byte first, aka big-endian) to this host's native byte order
+  # (LSB aka little-endian on most "modern" machines). This function exists
+  # because Octave's SWAPBYTES function does the order swapping unconditionally,
+  # so calling it unconditionally will cause bugs on big-endian machines.
+  #
+  # Swaps the bytes of each element of the input array on a per-element basis,
+  # in the manner of, and using, SWAPBYTES.
+  #
+  # Only works on int types, because floating point values are not expected to
+  # be transmitted in a byte-swapped manner. Only supports big-endian and
+  # little-endian architectures. Other exotic byte-order architectures (which
+  # Octave doesn't support either, AFAIK) are not supported, and will raise an
+  # error.
+  if ~isinteger (x)
+    error('tblish:Bug', ['ntoh() got unexpected non-integer input type: %s. ' ...
+        'This is a bug in Tablicious. Feel free to report this to the ' ...
+        'maintainers.'], class(x))
+  endif
+
+  [~, ~, endian] = computer;
+  if isequal (endian, 'L')
+    out = swapbytes (x);
+  elseif isequal (endian, 'B')
+    out = x;
+  else
+    error('tblish:UnsupportedEndianness', ["ntoh() got unexpected endianness " ...
+        "value from computer(). Expected 'L' or 'B'; got '%s'. This is likely " ...
+        "a bug in Tablicious, though it's also possible you are running on an " ...
+        "exotic computer architecture that Tablicious is unaware of and does " ...
+        "not support."], endian)
+  endif
+endfunction
