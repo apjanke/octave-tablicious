@@ -50,3 +50,13 @@ The BISTs are embedded in the various `*.m` source code files. To run them, use 
 The MP-Test tests are in `inst/t`. To run them, you'll need MP-Test, which you get separately from [the MP-Test GitHub repo](https://github.com/MATPOWER/mptest). (I don't think it's available as an Octave Forge package.) Add the `lib/` dir from the MP-Test repo to your Octave path. Then add Tablicious' `inst/t/` dir to your path, as that's not done as part of loading the Tablicious package. Then run `tblish_test_tablicious()` to run all our tests, or a single test name like `t_01_table()` to run a single test. The single tests show detailed output by default.
 
 The MP-Test test suites from Tablicious and other packages may interfere with each other, so you should only have one package's MP-Test test suite on the Octave path at a time.
+
+## Distribution
+
+Tablicious is indexed in the [GNU Octave Packages](https://gnu-octave.github.io/packages) index at <https://gnu-octave.github.io/packages/tablicious>. The index entry is in the [gnu-octave/packages repo](https://github.com/gnu-octave/packages) at `packages/tablicious.yaml`. It is supported by the `DESCRIPTION` and `octave-tablicious.metainfo.xml` files in this repo.
+
+Debian is considering picking up Tablicious, at <https://sources.debian.org/src/octave-tablicious>.
+
+[Octave Online](https://octave-online.net) includes Tablicious.
+
+It's my intent to support all these downstream packagers (to the extent that's convenient), but Tablicious has no formal relationship with them.

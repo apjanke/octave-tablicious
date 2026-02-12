@@ -43,6 +43,11 @@ User manual for Tablicious for Octave.
 @insertcopying
 @end titlepage
 
+@dircategory Math
+@direntry
+* Tablicious: (tablicious).         Tablicious package for Octave
+@end direntry
+
 @shortcontents
 @contents
 
@@ -563,7 +568,11 @@ tracker at @url{https://github.com/apjanke/octave-tablicious/issues} and
 
 Tablicious for GNU Octave is covered by the GNU GPLv3 and other Free and Open Source Software licenses.
 
-The main code of Tablicious is licensed under the GNU GPL version 3.
+The main code of Tablicious is licensed under the GNU GPL version 3 or later.
+
+Certain files in the build tools are licensed under the GNU GPL version 2 or later. This includes the @code{mktexi.pl} and @code{OctTexiDoc.pm} files in the @code{doc/} directory.
+
+The tzinfo database file is Public Domain.
 
 The date/time portion of Tablicious includes some Unicode data files licensed under the Unicode License Agreement - Data Files and Software license.
 

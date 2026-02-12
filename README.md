@@ -67,13 +67,17 @@ To avoid issues with the Matlab license's Non-Compete clause, this project needs
 
 ## License
 
-Tablicious is mostly GNU GPL v3, with some other Free and Open Source licensed code and files redistributed with it. I believe this is all compatible with redistribution as a GNU GPL licensed package, but I am not a lawyer.
+Tablicious is mostly GNU GPL v3 or later (GPL-3+), with some other Free and Open Source licensed code and files redistributed with it. I believe this is all compatible with redistribution as a GNU GPL licensed package, and conforms with the Debian Free Software Guidelines, but I am not a lawyer.
 
-The main code of Tablicious is licensed under the GNU GPL version 3. See the `LICENSE` file.
+The main code of Tablicious is licensed under the GNU GPL version 3 or later (GPL-3+). See the `LICENSE` file.
+
+Certain files in the build tools are licensed under the GNU GPL version 2 or later (GPL-2+). This includes the `mktexi.pl` and `OctTexiDoc.pm` files in the `doc/` directory.
+
+The tzinfo database file is Public Domain.
 
 The date/time portion of Tablicious includes some Unicode data files licensed under the Unicode License Agreement - Data Files and Software license. See the `LICENSES/LICENSE-Unicode` file.
 
-The test suite contains some files, specifically some table-related tests in `inst/t` using MP-Test, which are BSD 3-clause licensed. See the `LICENSES/LICENSE-MATPOWER` file.
+The test suite contains some files, specifically some table-related tests in `inst/t/` using MP-Test, which are BSD 3-Clause licensed (BSD-3-clause), and are adapted from MATPOWER written by Ray Zimmerman. All files under `inst/t/` are BSD-3-clause licensed. See the `LICENSES/LICENSE-MATPOWER` file.
 
 The Fisher Iris dataset is Public Domain.
 
@@ -86,3 +90,5 @@ Thanks to [Polkadot Stingray](https://polkadotstingray-official.jimdo.com/) for 
 Shout out to [Mike Miller](https://mtmxr.com/) for showing me how to properly structure an Octave package repo, and encouraging me to contribute.
 
 Thanks to [Sebastian Schöps](https://github.com/schoeps) for getting me more involved in Octave development in the first place, via his [Octave.app](https://octave-app.org) project.
+
+Thanks to Ray Zimmerman for contributing to Tablicious's unit test suite, and writing the whole MP-Test tool.

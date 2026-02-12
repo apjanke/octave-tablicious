@@ -1,6 +1,6 @@
 # Covered by the 3-clause BSD License (see LICENSES/LICENSE-MATPOWER file for details).
 #
-# Copyright (c) 2025, Andrew Janke
+# Copyright (c) 2025, 2026 Andrew Janke
 
 function obj = t_02_string (quiet)
 # Tests for string array.

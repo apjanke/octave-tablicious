@@ -1,7 +1,7 @@
 # Covered by the 3-clause BSD License (see LICENSES/LICENSE-MATPOWER file for details).
 #
-# Copyright (c) 1996-2022, Power Systems Engineering Research Center (PSERC)
-# Copyright (c) 2024, Andrew Janke
+# Copyright (c) 1996-2022 Power Systems Engineering Research Center (PSERC)
+# Copyright (c) 2024, 2026 Andrew Janke
 
 function obj = t_01_table (quiet)
 # Tests for table array.

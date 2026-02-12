@@ -16,5 +16,8 @@ To run the tests, add this `inst/t` subdirectory to your Octave path, and call t
 
 ## Developer Notes
 
-The tests in this directory assume that you have no other MP-Test directories on your path. They are in function files named `t_*.m`, with no other prefixing, and may collide with MP-Test files from other packages.
+The tests in this directory assume that you have no other MP-Test directories on your path. They are in function files named `t_*.m`, with no other prefixing (i.e., no namespaces), and may collide with MP-Test files from other packages. If that happens, this may run the wrong tests, and you'll get incorrect test results.
 
+## License
+
+The files in this `t/` directory are licensed under the 3-Clause BSD License (BSD-3-clause), even though the bulk of Tablicious is GPL-3+. This is because some of these files originated from a contribution from MATPOWER and were licensed under BSD-3-clause, and I want to keep the licensing of this directory uniform so it's easy to accept additional contributions like that.
