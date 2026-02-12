@@ -5,6 +5,7 @@ Tablicious Changelog
 ------------------
 
 * Work around `unicode2native` buffer length bug in `string.strlength`. ([#143](https://github.com/apjanke/octave-tablicious/issues/143))
+* Update source file headers to uniformly say "GPLv3+" instead of "GPLv2+", matching the `DESCRIPTION` file and my original intent. ([#149](https://github.com/apjanke/octave-tablicious/issues/149))
 * Internal changes.
   * Change some more code to GNU Octave style.
 
