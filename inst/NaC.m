@@ -47,3 +47,16 @@ function out = NaC (sz)
     out = categorical.undefined (sz);
   endif
 endfunction
+
+%!shared t, t0
+%! t = NaC;
+%! t0 = categorical ('foo');
+%!assert (isequal (class (t), 'categorical'))
+%!assert (ismissing (t))
+%!assert (isnanny (t))
+%!assert (! (t == t0))
+%!assert (t != t0)
+%!xtest assert (! (t < t0))
+%!xtest assert (! (t > t0))
+%!assert (! (t == t))
+%!assert (t != t)

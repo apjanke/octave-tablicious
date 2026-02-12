@@ -49,3 +49,14 @@ function out = head (A, k)
   ixs{1} = 1:k;
   out = A(ixs{:});
 endfunction
+
+
+%!shared x, tbl
+%!  x = repmat (magic (3), [10 1]);
+%!  tbl = array2table (x, 'VariableNames', {'a', 'b', 'c'});
+%!assert (isa (head (x), 'double'))
+%!assert (isequal (size (head (x)), [8 3]))
+%!assert (isequal (size (head (x, 5)), [5 3]))
+%!assert (isa (head (tbl), 'table'))
+%!assert (isequal (size (head (tbl)), [8 3]))
+%!assert (isequal (size (head (tbl, 5)), [5 3]))

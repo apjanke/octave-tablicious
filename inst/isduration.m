@@ -46,3 +46,10 @@ function out = isduration (x)
     out = false;
   endif
 endfunction
+
+%!assert (isduration (duration))
+%!assert (! isduration (datetime))
+%!assert (isequal (isduration (repmat (duration, [2 3])), true))
+%!assert (! isduration (42))
+%!assert (! isduration ('01:02:03'))
+%!assert (isequal (isduration (repmat (42, [2 3])), false))

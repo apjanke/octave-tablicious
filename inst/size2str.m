@@ -41,3 +41,7 @@ function out = size2str (sz)
 	endfor
 	out = strjoin (strs, "-by-");
 endfunction
+
+
+%!assert (ischar (size2str ([1 2 3])))
+%!assert (isequal (size2str ([1 2 3]), '1-by-2-by-3'))

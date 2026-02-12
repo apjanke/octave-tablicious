@@ -78,3 +78,7 @@ out = datetime (x);
 
 end
 
+
+%!assert (isa (todatetime ('1989-12-13'), 'datetime'))
+%!assert (isa (todatetime ('1989-12-13 01:02:03'), 'datetime'))
+%!assert (isa (todatetime (datenum ('1989-12-13')), 'datetime'))

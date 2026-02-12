@@ -67,3 +67,9 @@ function out = array2table(c, varargin)
   endif
   out = table (colVals{:}, optArgs{:});
 endfunction
+
+%!test
+%!  t = array2table(magic(3), 'VariableNames', {'foo', 'bar', 'baz'});
+%!  assert (isa (t, 'table'))
+%!  assert (isequal (size (t), [3 3]))
+%!  assert (istable (t))

@@ -49,3 +49,14 @@ function out = tail (A, k)
   ixs{1} = nRows-k+1:nRows;
   out = A(ixs{:});
 endfunction
+
+
+%!shared x, tbl
+%!  x = repmat (magic (3), [10 1]);
+%!  tbl = array2table (x, 'VariableNames', {'a', 'b', 'c'});
+%!assert (isa (tail (x), 'double'))
+%!assert (isequal (size (tail (x)), [8 3]))
+%!assert (isequal (size (tail (x, 5)), [5 3]))
+%!assert (isa (tail (tbl), 'table'))
+%!assert (isequal (size (tail (tbl)), [8 3]))
+%!assert (isequal (size (tail (tbl, 5)), [5 3]))

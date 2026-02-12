@@ -65,3 +65,15 @@ function out = isnanny (x)
     out = false (size (x));
   endif
 endfunction
+
+%!assert (isequal(isnanny([]), logical([])))
+%!assert (isequal('foo', 'foo'))
+%!assert (isnanny (NaN))
+%!assert (isnanny (NaT))
+%!assert (isnanny (NaC))
+%!assert (isnanny (missing))
+%!assert (isnanny (string (missing)))
+%!assert (! isnanny (0))
+%!assert (! isnanny (42))
+%!assert (! isnanny (string ("")))
+

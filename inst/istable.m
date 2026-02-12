@@ -62,3 +62,9 @@ function out = istable (x)
     out = false;
   endif
 endfunction
+
+%!assert (istable (table))
+%!assert (istable (array2table (magic (3))))
+%!assert (isequal (istable (array2table (magic (3))), true))
+%!assert (! istable (42))
+%!assert (! istable (magic (3)))

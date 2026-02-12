@@ -35,7 +35,7 @@
 ##
 ## @end deftypefn
 function out = NaT (sz)
-  #NaT Not-a-Time
+  #NaT Not-a-Time (missing-valued datetime array)
   #
   # Creates an array of datetimes with the value NaT.
   if (nargin == 0)
@@ -44,3 +44,16 @@ function out = NaT (sz)
     out = repmat (datetime.NaT, sz);
   endif
 endfunction
+
+%!shared t, t0
+%! t = NaT;
+%! t0 = todatetime (0);
+%!assert (isequal (class (t), 'datetime'))
+%!assert (ismissing (t))
+%!assert (isnan (t))
+%!assert (! (t == t0))
+%!assert (t != t0)
+%!assert (! (t < t0))
+%!assert (! (t > t0))
+%!assert (! (t == t))
+%!assert (t != t)

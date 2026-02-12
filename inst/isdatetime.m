@@ -46,3 +46,16 @@ function out = isdatetime (x)
     out = false;
   endif
 endfunction
+
+%!assert (isdatetime (datetime))
+%!assert (isdatetime (NaT))
+%!assert (isequal (isdatetime ([NaT NaT NaT]), true))
+%!assert (! isdatetime (now))
+%!assert (! isdatetime (datenum(1989, 12, 13)))
+%!assert (! isdatetime ([1989, 12, 13]))
+%!assert (! isdatetime ([1989, 12, 13, 0, 0, 0]))
+%!assert (! isdatetime ('1989-12-13'))
+%!assert (! isdatetime (42))
+%!assert (! isdatetime (NaN))
+%!assert (! isdatetime (localdate))
+%!assert (isequal (isdatetime ([1 2 3]), false))

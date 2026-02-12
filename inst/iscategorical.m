@@ -44,3 +44,11 @@ function out = iscategorical (x)
     out = false;
   endif
 endfunction
+
+%!assert (iscategorical (categorical ('foo')))
+%!assert (isequal (iscategorical (categorical ({'foo', 'bar', 'baz'})), true))
+%!assert (! iscategorical ('foo'))
+%!assert (! iscategorical (string ('foo')))
+%!assert (! iscategorical ({'foo', 'bar'}))
+%!assert (! iscategorical (42))
+%!assert (isequal (iscategorical ({'foo', 'bar', 'baz'}), false))

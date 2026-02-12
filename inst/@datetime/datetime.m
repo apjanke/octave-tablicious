@@ -1716,3 +1716,8 @@ endfunction
 %!  d2 = d;
 %!  d2.TimeZone = 'America/Chicago';
 %!  assert (abs (datenum (d) - datenum (d2)), (1/24), .0001)
+%!test
+%!  dm = datetime (missing);
+%!  assert (ismissing (dm))
+%!  assert (isnat (dm))
+%!  assert (isnan (dm))

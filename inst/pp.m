@@ -62,3 +62,5 @@ function pp (varargin)
     prettyprint (value);
   endfor
 endfunction
+
+%!assert (ischar (evalc ('pp (table (42))')))

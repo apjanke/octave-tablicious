@@ -40,3 +40,13 @@ function out = caldays (x)
   endif
   out = calendarDuration (0, 0, x);
 endfunction
+
+# The Months, Days, and Time properties shouldn't be accessible bc they're private,
+# but they seem to be anyway, and that's a decent way to test it I guess.
+%!test
+%!  d = caldays (4);
+%!  assert (isa (d, 'calendarDuration'))
+%!  assert (isequal (class (d), 'calendarDuration'))
+%!  assert (isequal (d.Months, 0))
+%!  assert (isequal (d.Days, 4))
+%!  assert (isequal (d.Time, 0))

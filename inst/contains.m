@@ -72,3 +72,12 @@ function out = contains (str, pattern, varargin)
     endfor
   endfor
 endfunction
+
+
+%!assert (contains ('foobar', 'foo'))
+%!assert (contains ('foobar', 'bar'))
+%!assert (! contains ('foobar', 'qux'))
+%!assert (contains (string ('foobar'), 'foo'))
+%!assert (contains (string ('foobar'), 'bar'))
+%!assert (! contains (string ('foobar'), 'qux'))
+

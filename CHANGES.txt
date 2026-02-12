@@ -6,7 +6,9 @@ Tablicious Changelog
 
 * Work around `unicode2native` buffer length bug in `string.strlength`. ([#143](https://github.com/apjanke/octave-tablicious/issues/143))
 * Fix `datetime` TimeZone support on big-endian systems. ([#151](https://github.com/apjanke/octave-tablicious/issues/151))
-* Unit tests: Centralize test running code in tblish.internal.runtests, and add MP-Test support to it.
+* Unit tests
+  * Centralize test running code in tblish.internal.runtests, and add MP-Test support to it.
+  * Add some more unit tests.
 * Clarify and expand licensing documentation.
   * Update source file headers to uniformly say "GPLv3+" instead of "GPLv2+", matching the `DESCRIPTION` file and my original intent. ([#149](https://github.com/apjanke/octave-tablicious/issues/149))
 * Doco updates: Add category directory entry to the texi doco.

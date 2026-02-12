@@ -48,3 +48,12 @@ function out = days (x)
     error ('Invalid input: expected numeric or duration; got %s', class (x));
   endif
 endfunction
+
+
+# The days property shouldn't be accessible bc it's private, but it seems to be
+# anyway, and that's a decent way to test it I guess.
+%!test
+%!  d = days (3);
+%!  assert (isa (d, 'duration'))
+%!  assert (isequal (class (d), 'duration'))
+%!  assert (isequal (d.days, 3))

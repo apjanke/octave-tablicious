@@ -117,3 +117,16 @@ function out = octave_has_table
   endif
   out = cache;
 endfunction
+
+
+%!shared tzs
+%!  tzs = timezones();
+%!assert (istable (tzs))
+%!assert (isa (tzs, 'table'))
+%!assert (isequal (tzs.Properties.VariableNames, {'Name', 'Area'}))
+%!assert (all (ismember ({'UTC'}, tzs.Name)))
+%!assert (all (ismember ({'Etc/UTC'}, tzs.Name)))
+
+#TODO: Add tests for existence of additional specific time zones, and areas,
+# once I confirm how time zone representation and names work on Windows.
+#TODO: Add test for "Factory" time zone? Is that Unix specific?

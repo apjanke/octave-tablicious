@@ -74,3 +74,13 @@ function varargout = scalarexpand (varargin)
   endfor
 
 endfunction
+
+
+%!shared a, b, c
+%!  [a, b, c] = scalarexpand (1, magic (3), {'foo'});
+%!assert (isequal (size (a), [3 3]))
+%!assert (isequal (size (b), [3 3]))
+%!assert (isequal (size (b), [3 3]))
+%!assert (isa (a, 'double'))
+%!assert (isa (a, 'double'))
+%!assert (isa (c, 'cell'))
