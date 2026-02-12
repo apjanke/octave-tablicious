@@ -13,7 +13,7 @@
 @copying
 This manual is for Tablicious, version @value{VERSION}.
 
-Copyright @copyright{} 2019, 2023, 2024 Andrew Janke
+Copyright @copyright{} 2019, 2023, 2024, 2025, 2026 Andrew Janke
 
 @quotation
 Permission is granted to make and distribute verbatim copies of
