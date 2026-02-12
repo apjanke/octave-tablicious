@@ -19,7 +19,7 @@
   </suggests>
   <project_license>GPL-3.0+</project_license>
 
-  <url type="homepage">https://apjanke.github.io/octave-tablicious/</url>
+  <url type="homepage">https://apjanke.github.io/octave-tablicious</url>
   <url type="bugtracker">https://github.com/apjanke/octave-tablicious/issues</url>
   <url type="help">https://apjanke.github.io/octave-tablicious/devel/user-guide/html/index.html</url>
   <url type="faq">https://apjanke.github.io/octave-tablicious/FAQ.html</url>

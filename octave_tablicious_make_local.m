@@ -47,7 +47,10 @@ function octave_tablicious_make_local ()
   for i = 1:numel (octfcns)
     octfcn = octfcns{i};
     mkoctfile (sprintf ('src/%s.cc', octfcn));
-    delete (sprintf ('%s.o', octfcn));
+    dot_o_file = sprintf ('%s.o', octfcn);
+    if isfile (dot_o_file)
+      delete (dot_o_file);
+    endif
     movefile (sprintf ('%s.oct', octfcn), 'inst');
     printf (sprintf ('Built %s\n', octfcn));
   endfor

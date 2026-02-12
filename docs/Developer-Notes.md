@@ -31,7 +31,7 @@ The texinfo format we use requires Texinfo 6.0 or newer. This is newer than the 
 
 ### Texinfo notes
 
-The `mktexi.pl` tool we use doesn't have great support for classdefs; it is more function-oriented. You need to work around that a little bit.
+The `mktexi.pl` tool we use doesn't have great support for classdefs; it is more function-oriented. You need to work around that a little bit in the texinfo documentation you write.
 
 For methods in classes, including the constructor, you need to manually add a `@node <class>.<method>` line in the texinfo block, right before the `@deftypefn` line. That's because mktexi.pl will auto-generate `@node` lines for free functions, but not for methods inside functions. Other things – free functions, classdefs, and scripts, including those inside packages (namespaces) – should not have explicit `@node` lines in the texinfo; those will be added automatically by `mktexi.pl`.
 
@@ -43,11 +43,13 @@ You need TeX installed, along with some TeX packages like those supplied in the 
 
 ## Unit Tests
 
-Tablicious doesn't have great unit test coverage, but it has some. It uses a combination of regular Octave style BISTs and [MP-Test](https://github.com/MATPOWER/mptest) ("mptest") tests. The BISTs and mptest suites are not integrated with each other, so you must run both to see full test results.
+Tablicious doesn't have great unit test coverage, but it has some. It uses a combination of regular Octave style BISTs and [MP-Test](https://github.com/MATPOWER/mptest) ("mptest") tests. The BISTs and mptest suites are integrated with each other, in `tblish.internal.runtests`, so you can run them together as a suite. But the result reporting is a little disjoint; you need to read the textual output to evaluate the full results.
 
-The BISTs are embedded in the various `*.m` source code files. To run them, use Octave's `oruntests`, running `oruntests(fullfile (getenv ('HOME'), 'repos/octave-tablicious/inst'))` (or whatever the path to your Tablicious repo or installation is). To see details, do `test <fcn> verbose`, e.g. `test string verbose`.
+To run the full Tablicious unit test suite, run `tblish.internal.runtests()` while Tablicious is loaded. It will skip the MP-Test tests if MP-Test is not also loaded.
 
-The MP-Test tests are in `inst/t`. To run them, you'll need MP-Test, which you get separately from [the MP-Test GitHub repo](https://github.com/MATPOWER/mptest). (I don't think it's available as an Octave Forge package.) Add the `lib/` dir from the MP-Test repo to your Octave path. Then add Tablicious' `inst/t/` dir to your path, as that's not done as part of loading the Tablicious package. Then run `tblish_test_tablicious()` to run all our tests, or a single test name like `t_01_table()` to run a single test. The single tests show detailed output by default.
+The BISTs are embedded in the various `*.m` source code files.
+
+The MP-Test tests are in `inst/t`. To run them, you'll need MP-Test, which you get separately from [the MP-Test GitHub repo](https://github.com/MATPOWER/mptest). (I don't think it's available as an Octave Forge package.) Add the `lib/` dir from the MP-Test repo to your Octave path. Then run `tblish.internal.runtests()`, and it will include the MP-Test tests in its test suite. Or, add Tablicious' `inst/t/` dir to your path (that's not done as part of loading the Tablicious package), and run `tblish_mptest_tablicious()` to run them all. Or, call one of the test functions like `t_01_table()` to run a single test. The single tests show detailed output by default; the combined suite does not.
 
 The MP-Test test suites from Tablicious and other packages may interfere with each other, so you should only have one package's MP-Test test suite on the Octave path at a time.
 

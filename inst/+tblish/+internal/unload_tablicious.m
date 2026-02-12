@@ -47,5 +47,4 @@ function unload_tablicious
     rmpath (fullfile (inst_dir, more_code_subdirs{i}));
   end
 
-
 endfunction

@@ -3,19 +3,19 @@
 Here's the process for doing a Tablicious release.
 
 1. Run all the tests.
-    1. `tblish_inst = fullfile(getenv('HOME'), 'repos', 'octave-repos', 'octave-tablicious', 'inst')`
+    1. `tblish_inst = fullfile(getenv('HOME'), 'repos', 'octave-repos', 'tablicious', 'inst')`
     1. `addpath(tblish_inst)`
     1. `__run_test_suite__ ({tblish_inst}, {})`
+    1. `tblish.internal.runtests`
     1. Run the MP-Test tests
-        1. `addpath(fullfile(tblish_inst, 't'))`
         1. `addpath(fullfile(getenv('HOME'), 'repos', 'octave-repos', 'mptest', 'lib'))`
-        1. `tblish_test_tablicious`
+        1. `tblish_mptest_tablicious`
     1. Wouldn't hurt to do `make clean && git status && make test` and manual-cleanup, just to be sure.
 1. Update the version info in the repo.
     1. Update the version number and date in `DESCRIPTION`.
         1. Remove the `-SNAPSHOT` suffix from the version number.
     1. Update the `CHANGES.txt` file with the release date.
-        1. Use the current calendar date in UTC time, not your local time. Or use your local time; who really cares.
+        1. Use the current calendar date in UTC time, not your local time.
         1. And check that it has a complete change list for the release. This _ought_ to be done as changes are committed, but we're not good about that at all, so assume it didn't happen.
 1. Update the installation instructions in `README.md` to use the upcoming release tarball URL.
     1. Format is: `https://github.com/apjanke/octave-tablicious/releases/download/v<version>/tablicious-<version>.tar.gz`
@@ -36,7 +36,7 @@ Here's the process for doing a Tablicious release.
 1. Test the dist tarball.
     1. Install it with `pkg install <path/to>/target/tablicious-x.y.z.tar.gz`.
     1. Run tests on the installed package.
-        1. `pkg test tablicious` will do the BISTs. Prob have to run the MP-Test suite manually for now.
+        1. `pkg test tablicious` will do the BISTs. (But only the oruntest-discoverable ones?) Prob have to run the MP-Test suite manually for now.
     1. Preferably on both Mac and Linux, and maybe Windows.
 1. Create a git tag and push it and the above changes to GitHub.
     1. `git tag v<version>; git push; git push --tags`
@@ -48,7 +48,7 @@ Here's the process for doing a Tablicious release.
     1. Do this by copy-and-pasting the `pkg install` example from the [live README page](https://github.com/apjanke/octave-tablicious/blob/master/README.md) on the GitHub repo. This makes sure the current install instructions are correct.
         1. Don't short-circuit this by just editing an entry from your Octave command history! Open GitHub in a browser and actually copy-and-paste it.
     1. Run tests on the installed package, like above.
-1. Open development for next version
+1. Open development for next version.
     1. Update version number and date in `DESCRIPTION` to next patch or minor version, as appropriate.
         1. Include a `-SNAPSHOT` suffix to indicate this is a work in progress.
     1. Add a section to `CHANGES.txt` for the new upcoming release, at the top. Use `(unreleased)` for its release date.

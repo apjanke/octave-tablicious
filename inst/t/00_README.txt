@@ -2,17 +2,17 @@
 
 This directory contains unit tests that run under the [MP-Test unit testing framework](https://github.com/MATPOWER/mptest) from the developers
 
-As of 2024-02, this is use of MP-Test is experimental. I don't know if I'm going to adopt it for the long term. If adopted, it would be a supplement to the classic Octave style BISTs in Tablicious.
+As of 2024-02, this is use of MP-Test is experimental. I don't know if I'm going to adopt it for the long term. (As of 2025-02, probably yes.) If adopted, it would be a supplement to the classic Octave style BISTs in Tablicious.
 
 ## Installation and Setup
 
-You'll need the MP-Test library, which is installed separately, and is (I think) not available from Octave Forge. Clone it from the Git repo at <https://github.com/MATPOWER/mptest>, and add its `lib/` dir to your Octave path. By default, if autodiscovery is enabled, Tablicious will look for MP-Test at `~/repos/mptest` and `~/repos/octave-repos/mptest`. (Those are apjanke's favorite places to put things, not a standard GNU Octave convention.)
-
-NOTE: Autodiscovery of MP-Test is currently broken (or missing entirely). You'll need to add it manually for now.
+You'll need the MP-Test library, which is installed separately, and is (I think) not available from Octave Forge. Clone it from the Git repo at <https://github.com/MATPOWER/mptest>, and add its `lib/` dir to your Octave path using `addpath()`.
 
 ## Usage
 
-To run the tests, add this `inst/t` subdirectory to your Octave path, and call the `tblish_test_tablicious` function. (The `inst/t` directory is not loaded on the Octave path by default, even when you have loaded the Tablicious package.) You'll also need MP-Test available, done by adding its `lib/` directory to the Octave path.
+If you run the full Tablicious test suite by calling `tblish.internal.runtests` while MP-Test is loaded, it will automatically run these MP-Test tests as part of the test suite.
+
+To run just these MP-Test tests, add this `inst/t` subdirectory to your Octave path, and call the `tblish_mptest_tablicious` function. (The `inst/t` directory is not loaded on the Octave path by default, even when you have loaded the Tablicious package using `pkg load`.) You'll also need MP-Test loaded, done by adding its `lib/` directory to the Octave path. `tblish_mptest_tablicious` does not do that automatically.
 
 ## Developer Notes
 

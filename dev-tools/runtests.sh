@@ -2,18 +2,12 @@
 #
 # Test wrapper for Octave tests.
 #
-# BROKEN: As of Octave 8.x (and maybe earlier), it looks like runtests() no longer
-# exists, and this script will error out with a "'runtests' undefined..." error.
-#
-# This exists because Octave's runtests() does not return an error status, so
-# you can't detect within octave whether your tests have failed.
+# This exists because Octave's (o)runtests() does not return an error status, so
+# you can't detect within octave whether your tests have failed. This wrapper
+# script captures and parses the textual output of running the tests to detect
+# failures.
 #
 # Prerequisite: "make local" must have been run on this package.
-#
-# TODO: Factor most of this out to M-code like tblish.internal.runtests, now that
-# we need to do runtests vs. oruntests detection. And the "more_tests" stuff should
-# be centralized so you can run it inside Octave instead of requiring this wrapper
-# script.
 
 set -o errexit
 set -o nounset
@@ -24,13 +18,9 @@ if [[ "${TRACE-0}" == "1" ]]; then set -o xtrace; fi
 
 THIS_PROGRAM=$(basename $0)
 
-function info() {
-  echo "$*"
-}
-
-function error() {
-  echo >&2 "${THIS_PROGRAM}: ERROR: $*"
-}
+function info()  { emit "$*"; }
+function error() { emit "ERROR: $*"; }
+function emit()  { echo >&2 "${THIS_PROGRAM}: $*"; }
 
 # Main script code
 
@@ -38,9 +28,9 @@ pkg_dir=$(dirname $(realpath $(dirname "$0")))
 inst_dir="${pkg_dir}/inst"
 test_dir="$inst_dir"
 package='tablicious'
+#TODO: Should this pull in a defined $OCTAVE? Or will that cause problems with redundant
+# --norc --silent --no-gui from the Makefile?
 OCTAVE=(octave --norc --no-gui --path="$inst_dir")
-# Extra tests that are not detected by oruntests
-more_things_to_test=( @datetime/datetime.m @duration/duration.m @string/string.m @table/table.m )
 TIMESTAMP=$(date '+%Y-%m-%d_%H-%M-%S')
 
 outfile="octave-${package}-tests-${TIMESTAMP}.log"
@@ -55,9 +45,11 @@ function run_main_tests() {
 
   info "Running tests for package ${package}"
 
-  oct_test_code="addpath('$test_dir'); oruntests('$test_dir')"
+  # Run the tests
+  oct_test_code="addpath('$test_dir'); tblish.internal.runtests;"
   "${OCTAVE[@]}" --eval="${oct_test_code}" 2>&1 | tee "$outfile"
 
+  # Evaluate test output
   if grep FAIL "$outfile" &>/dev/null; then
     STATUS=1
     info "Some tests FAILED!"
@@ -68,23 +60,7 @@ function run_main_tests() {
   echo ''
 }
 
-function run_more_tests() {
-  local thing
-
-  info "Running additional tests so we can get output"
-  for thing in "${more_things_to_test[@]}"; do
-    info "Testing ${thing}"
-    "${OCTAVE[@]}" --eval="addpath('$test_dir'); test('${thing}')" 2>&1 | tee -a "$outfile"
-  done
-}
-
-function run_tests_using_mcode() {
-  info "Running tests using ${package}'s M-code test script"
-  "${OCTAVE[@]}" --eval="tblish.internal.runtests" 2>&1 | tee "$outfile"
-}
-
 run_main_tests
-run_more_tests
 
 if [[ $STATUS = 0 ]]; then
   extra_fail=''
@@ -92,7 +68,6 @@ else
   extra_fail='SOME TESTS FAILED!'
 fi
 
-echo ''
 info "Done running tests. Exiting with status ${STATUS}. ${extra_fail}"
 info "Test output is in file: ${outfile}"
 echo ''

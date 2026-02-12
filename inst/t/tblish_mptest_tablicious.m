@@ -1,9 +1,9 @@
-function ok = tblish_test_tablicious(verbose, exit_on_fail)
-#TBLISH_TEST_TABLICIOUS Run all Tablicious MP-Test tests (not the BISTs).
+function ok = tblish_mptest_tablicious(verbose, exit_on_fail)
+#TBLISH_MPTEST_TABLICIOUS Run all the Tablicious MP-Test tests (not the BISTs).
 #
-# ok = tblish_test_tablicious(verbose, exit_on_fail)
+# ok = tblish_mptest_tablicious(verbose, exit_on_fail)
 #
-# See also: T_RUN_TESTS.
+# See also: T_RUN_TESTS, TBLISH.INTERNAL.RUNTESTS.
 
 if nargin < 1 || isempty (verbose);      verbose = false;      endif
 if nargin < 2 || isempty (exit_on_fail); exit_on_fail = false; endif
@@ -14,12 +14,17 @@ tests = list_mpower_tests_in_dirs (my_t_dir);
 all_ok = t_run_tests (tests, verbose);
 
 # Handle success/failure
-if exit_on_fail && ~all_ok
+if ~all_ok
+  # Emit all-caps "FAIL" so Tablicious's runtests.sh parsing can detect failure.
+  printf ('FAILED: Failed some MP-Test tests\n')
+  if exit_on_fail
     exit (1)
-end
+  endif
+endif
+
 if nargout
-    success = all_ok;
-end
+  success = all_ok;
+endif
 
 endfunction
 
