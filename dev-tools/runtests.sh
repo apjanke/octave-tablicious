@@ -50,7 +50,9 @@ function run_main_tests() {
   "${OCTAVE[@]}" --eval="${oct_test_code}" 2>&1 | tee "$outfile"
 
   # Evaluate test output
-  if grep FAIL "$outfile" &>/dev/null; then
+  # The '! test failed' case is for BISTs run as individual files bc oruntests
+  # doesn't discover them.
+  if grep '[^X]FAIL\|! test failed' "$outfile" &>/dev/null; then
     STATUS=1
     info "Some tests FAILED!"
   else
