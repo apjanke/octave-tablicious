@@ -894,6 +894,22 @@ classdef datetime
       out = isnat (this);
     endfunction
 
+    ## -*- texinfo -*-
+    ## @node datetime.ismissing
+    ## @deftypefn {Method} {@var{out} =} ismissing (@var{obj})
+    ##
+    ## Test whether array elements are missing.
+    ##
+    ## For @code{string} arrays, the special NaT value is considered missing.
+    ## This is equivalent to a NaN used as a datenum.
+    ##
+    ## Returns logical array the same size as @var{obj}.
+    ##
+    ## @end deftypefn
+    function out = ismissing (this)
+      out = isnat (this);
+    endfunction
+
     # Relational operations
 
     ## -*- texinfo -*-
