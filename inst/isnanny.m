@@ -16,7 +16,7 @@
 ## -*- texinfo -*-
 ## @deftypefn {Function} {@var{out} =} isnanny (@var{X})
 ##
-## Test if elements are NaN or NaN-like
+## Test if elements are NaN or NaN-like.
 ##
 ## Tests if input elements are NaN, NaT, or otherwise NaN-like. This is true
 ## if @code{isnan()} or @code{isnat()} returns true, and is false for types that do not support
@@ -30,6 +30,10 @@
 ## test for them with a different “isnat()” function, and
 ## @item
 ## isnan() errors out for some types that do not support isnan(), like cells.
+## @item
+## Octave does not define an @code{ismissing} function, but the Octave Forge statistics
+## package does, and adding an @code{ismissing} function to Tablicious would conflict
+## with that in hard-to-resolve ways.
 ## @end enumerate
 ##
 ## @code{isnanny()} smooths over those differences so you can call it polymorphically on

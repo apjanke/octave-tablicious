@@ -544,9 +544,19 @@ But not all of it is implemented yet. The missing parts are currently:
 @item Moving window methods in @code{fillmissing}
 @item @code{UTCOffset} and @code{DSTOffset} fields in the output of @code{timezones()}
 @item Plotting support
+@item Things omitted for compatibility:
+@itemize
+@item @code{ismissing} function
+@end itemize
 @end itemize
 
-It is the author’s hope that many these will be implemented some day.
+A global @code{ismissing} function is intentionally omitted from Tablicious to avoid
+conflict with the Octave Forge statistics package. @code{ismissing} methods for
+various classes in Tablicious are defined. Tablicious also supplies an @code{isnanny}
+function with behavior similar to @code{ismissing} for clients which which wish to
+have @code{ismissing}-like behavior using a dependency only on Tablicious.
+
+It is the author’s hope that many of these will be implemented some day.
 
 These areas of missing functionality are tracked on the Tablicious issue
 tracker at @url{https://github.com/apjanke/octave-tablicious/issues} and
