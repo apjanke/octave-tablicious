@@ -912,10 +912,11 @@ classdef categorical
       #NE Not equal
       [A, B] = promote2 (A, B);
       out = A.code != B.code;
-      out(A.tfMissing | B.tfMissing) = false;
+      out(A.tfMissing | B.tfMissing) = true;
     endfunction
 
-    # TODO: lt, le, gt, ge - depends on more refined conversion semantics
+    # TODO: lt, le, gt, ge - depends on more refined conversion semantics, and
+    # support for "ordinal" categoricals.
 
     function [out, idx] = ismember (A, B, varargin)
       #ISMEMBER Set membership
