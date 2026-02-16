@@ -56,9 +56,7 @@ Here's the process for doing a Tablicious release.
     1. Update version number and date in `DESCRIPTION` to next patch or minor version, as appropriate.
         1. Include a `-SNAPSHOT` suffix to indicate this is a work in progress.
     1. Add a section to `CHANGES.txt` for the new upcoming release, at the top. Use `(unreleased)` for its release date.
-    1. Rebuild the doco
-        1. `make doc; make gh-pages`
-    1. `git add -A; git commit -a -m 'Open development for next version (<x.y.z>)'; git push`
+    1. `git add -A; git commit -a -m '[release] open development for next version (<x.y.z>)'; git push`
 1. Close the GitHub Issues [Milestone](https://github.com/apjanke/octave-tablicious/milestones) for this release.
     1. Create a new Milestone for the next release, if one doesn't already exist.
 1. Announce the release.
