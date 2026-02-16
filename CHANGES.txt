@@ -1,7 +1,7 @@
 Tablicious Changelog
 ====================
 
-0.4.6 (unreleased)
+0.4.6 (2026-02-16)
 ------------------
 
 * Work around `unicode2native` buffer length bug in `string.strlength`. ([#143](https://github.com/apjanke/octave-tablicious/issues/143))

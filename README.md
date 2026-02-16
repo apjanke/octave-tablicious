@@ -32,7 +32,7 @@ Tablicious does not require the Octave Forge [Statistics package](https://gnu-oc
 To get started using or testing this project, install it using Octave's `pkg` function:
 
 ```octave
-pkg install https://github.com/apjanke/octave-tablicious/releases/download/v0.4.5/tablicious-0.4.5.tar.gz
+pkg install https://github.com/apjanke/octave-tablicious/releases/download/v0.4.6/tablicious-0.4.6.tar.gz
 pkg load tablicious
 ```
 

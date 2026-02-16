@@ -2,6 +2,7 @@
 
 Here's the process for doing a Tablicious release.
 
+1. Make a new `release/v<version>` branch for the prep work and switch to it.
 1. Run all the tests.
     1. `tblish_inst = fullfile(getenv('HOME'), 'repos', 'octave-repos', 'tablicious', 'inst')`
     1. `addpath(tblish_inst)`
@@ -20,6 +21,8 @@ Here's the process for doing a Tablicious release.
 1. Update the installation instructions in `README.md` to use the upcoming release tarball URL.
     1. Format is: `https://github.com/apjanke/octave-tablicious/releases/download/v<version>/tablicious-<version>.tar.gz`
     1. As of 2024-10, this is just in the "Quick start" section.
+1. Commit the changes so far with commit message `[release] v<version> - prep`.
+    1. Use form: `git add -A; git commit -a -m '[release] v<version> - prep'`
 1. Update the generated doco.
     1. Regenerate the doco: `make doc; make gh-pages`
     1. Make a versioned copy for this release:
@@ -28,8 +31,8 @@ Here's the process for doing a Tablicious release.
     1. Update `docs/index.md` with the new release.
         1. Add a section for the new release's doco under Releases.
         1. Update the links in the first paragraph in User Documentation to point to the new release, and the release number in the second paragraph.
-1. Commit all the files changed by the above steps.
-    1. Use form: `git add -A; git commit -a -m '[release] v<version>'`
+1. Commit the regenerated doco with commit message `[release] v<version> - doco`.
+    1. Use form: `git add -A; git commit -a -m '[release] v<version> - doco'`
 1. Make sure your repo is clean: `git status` should show no local changes.
 1. Run `make dist` first to make sure it works.
     1. This has to be done _after_ the commit, because it extracts from git history.
@@ -38,6 +41,7 @@ Here's the process for doing a Tablicious release.
     1. Run tests on the installed package.
         1. `pkg test tablicious` will do the BISTs. (But only the oruntest-discoverable ones?) Prob have to run the MP-Test suite manually for now.
     1. Preferably on both Mac and Linux, and maybe Windows.
+1. Merge the `release/v<version>` branch to `main` and switch to `main`.
 1. Create a git tag and push it and the above changes to GitHub.
     1. `git tag v<version>; git push; git push --tags`
 1. Create a new GitHub release from the tag.
