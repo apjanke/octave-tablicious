@@ -3,9 +3,9 @@
 <!-- Created by GNU Texinfo 7.2, https://www.gnu.org/software/texinfo/ -->
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<!-- This manual is for Tablicious, version 0.4.6-SNAPSHOT.
+<!-- This manual is for Tablicious, version 0.4.6.
 
-Copyright © 2019, 2023, 2024 Andrew Janke
+Copyright © 2019, 2023, 2024, 2025, 2026 Andrew Janke
 
 Permission is granted to make and distribute verbatim copies of
 this manual provided the copyright notice and this permission notice
@@ -18,10 +18,10 @@ notice identical to this one.
 
 Permission is granted to copy and distribute translations of this manual
 into another language, under the same conditions as for modified versions. -->
-<title>Missing Functionality (Tablicious v0.4.6-SNAPSHOT)</title>
+<title>Missing Functionality (Tablicious v0.4.6)</title>
 
 <meta name="description" content="User manual for Tablicious for Octave.">
-<meta name="keywords" content="Missing Functionality (Tablicious v0.4.6-SNAPSHOT)">
+<meta name="keywords" content="Missing Functionality (Tablicious v0.4.6)">
 <meta name="resource-type" content="document">
 <meta name="distribution" content="global">
 <meta name="Generator" content="makeinfo">
@@ -78,9 +78,19 @@ But not all of it is implemented yet. The missing parts are currently:
 </li><li>Moving window methods in <code class="code">fillmissing</code>
 </li><li><code class="code">UTCOffset</code> and <code class="code">DSTOffset</code> fields in the output of <code class="code">timezones()</code>
 </li><li>Plotting support
+</li><li>Things omitted for compatibility:
+<ul class="itemize mark-bullet">
+<li><code class="code">ismissing</code> function
+</li></ul>
 </li></ul>
 
-<p>It is the author’s hope that many these will be implemented some day.
+<p>A global <code class="code">ismissing</code> function is intentionally omitted from Tablicious to avoid
+conflict with the Octave Forge statistics package. <code class="code">ismissing</code> methods for
+various classes in Tablicious are defined. Tablicious also supplies an <code class="code">isnanny</code>
+function with behavior similar to <code class="code">ismissing</code> for clients which which wish to
+have <code class="code">ismissing</code>-like behavior using a dependency only on Tablicious.
+</p>
+<p>It is the author’s hope that many of these will be implemented some day.
 </p>
 <p>These areas of missing functionality are tracked on the Tablicious issue
 tracker at <a class="url" href="https://github.com/apjanke/octave-tablicious/issues">https://github.com/apjanke/octave-tablicious/issues</a> and

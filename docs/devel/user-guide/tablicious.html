@@ -3,9 +3,9 @@
 <!-- Created by GNU Texinfo 7.2, https://www.gnu.org/software/texinfo/ -->
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<!-- This manual is for Tablicious, version 0.4.6-SNAPSHOT.
+<!-- This manual is for Tablicious, version 0.4.6.
 
-Copyright © 2019, 2023, 2024 Andrew Janke
+Copyright © 2019, 2023, 2024, 2025, 2026 Andrew Janke
 
 Permission is granted to make and distribute verbatim copies of
 this manual provided the copyright notice and this permission notice
@@ -18,10 +18,10 @@ notice identical to this one.
 
 Permission is granted to copy and distribute translations of this manual
 into another language, under the same conditions as for modified versions. -->
-<title>Tablicious v0.4.6-SNAPSHOT</title>
+<title>Tablicious v0.4.6</title>
 
 <meta name="description" content="User manual for Tablicious for Octave.">
-<meta name="keywords" content="Tablicious v0.4.6-SNAPSHOT">
+<meta name="keywords" content="Tablicious v0.4.6">
 <meta name="resource-type" content="document">
 <meta name="distribution" content="global">
 <meta name="Generator" content="makeinfo">
@@ -52,6 +52,7 @@ ul.toc-numbered-mark {list-style: none}
 
 
 
+
 <div class="top-level-extent" id="Top">
 <div class="nav-panel">
 <p>
@@ -59,7 +60,7 @@ Next: <a href="#Introduction" accesskey="n" rel="next">Introduction</a> &nbsp; [
 </div>
 <h1 class="top" id="Tablicious-for-GNU-Octave"><span>Tablicious for GNU Octave<a class="copiable-link" href="#Tablicious-for-GNU-Octave"> &para;</a></span></h1>
 
-<p>This manual is for Tablicious, version 0.4.6-SNAPSHOT.
+<p>This manual is for Tablicious, version 0.4.6.
 </p>
 
 
@@ -193,25 +194,26 @@ Next: <a href="#Introduction" accesskey="n" rel="next">Introduction</a> &nbsp; [
         <li><a id="toc-datetime_002egt" href="#datetime_002egt">8.2.10.15 datetime.gt</a></li>
         <li><a id="toc-datetime_002ehms" href="#datetime_002ehms">8.2.10.16 datetime.hms</a></li>
         <li><a id="toc-datetime_002eisbetween" href="#datetime_002eisbetween">8.2.10.17 datetime.isbetween</a></li>
-        <li><a id="toc-datetime_002eisnan" href="#datetime_002eisnan">8.2.10.18 datetime.isnan</a></li>
-        <li><a id="toc-datetime_002eisnat" href="#datetime_002eisnat">8.2.10.19 datetime.isnat</a></li>
-        <li><a id="toc-datetime_002ele" href="#datetime_002ele">8.2.10.20 datetime.le</a></li>
-        <li><a id="toc-datetime_002elinspace" href="#datetime_002elinspace">8.2.10.21 datetime.linspace</a></li>
-        <li><a id="toc-datetime_002elocaltime" href="#datetime_002elocaltime">8.2.10.22 datetime.localtime</a></li>
-        <li><a id="toc-datetime_002elt" href="#datetime_002elt">8.2.10.23 datetime.lt</a></li>
-        <li><a id="toc-datetime_002eminus" href="#datetime_002eminus">8.2.10.24 datetime.minus</a></li>
-        <li><a id="toc-datetime_002eNaT" href="#datetime_002eNaT">8.2.10.25 datetime.NaT</a></li>
-        <li><a id="toc-datetime_002ene" href="#datetime_002ene">8.2.10.26 datetime.ne</a></li>
-        <li><a id="toc-datetime_002eofDatenum" href="#datetime_002eofDatenum">8.2.10.27 datetime.ofDatenum</a></li>
-        <li><a id="toc-datetime_002eofDatestruct" href="#datetime_002eofDatestruct">8.2.10.28 datetime.ofDatestruct</a></li>
-        <li><a id="toc-datetime_002eplus" href="#datetime_002eplus">8.2.10.29 datetime.plus</a></li>
-        <li><a id="toc-datetime_002eposix2datenum" href="#datetime_002eposix2datenum">8.2.10.30 datetime.posix2datenum</a></li>
-        <li><a id="toc-datetime_002eposixtime" href="#datetime_002eposixtime">8.2.10.31 datetime.posixtime</a></li>
-        <li><a id="toc-datetime_002eproxyKeys" href="#datetime_002eproxyKeys">8.2.10.32 datetime.proxyKeys</a></li>
-        <li><a id="toc-datetime_002etimeofday" href="#datetime_002etimeofday">8.2.10.33 datetime.timeofday</a></li>
-        <li><a id="toc-datetime_002eweek" href="#datetime_002eweek">8.2.10.34 datetime.week</a></li>
-        <li><a id="toc-datetime_002eymd" href="#datetime_002eymd">8.2.10.35 datetime.ymd</a></li>
-        <li><a id="toc-datetime_002eymdhms" href="#datetime_002eymdhms">8.2.10.36 datetime.ymdhms</a></li>
+        <li><a id="toc-datetime_002eismissing" href="#datetime_002eismissing">8.2.10.18 datetime.ismissing</a></li>
+        <li><a id="toc-datetime_002eisnan" href="#datetime_002eisnan">8.2.10.19 datetime.isnan</a></li>
+        <li><a id="toc-datetime_002eisnat" href="#datetime_002eisnat">8.2.10.20 datetime.isnat</a></li>
+        <li><a id="toc-datetime_002ele" href="#datetime_002ele">8.2.10.21 datetime.le</a></li>
+        <li><a id="toc-datetime_002elinspace" href="#datetime_002elinspace">8.2.10.22 datetime.linspace</a></li>
+        <li><a id="toc-datetime_002elocaltime" href="#datetime_002elocaltime">8.2.10.23 datetime.localtime</a></li>
+        <li><a id="toc-datetime_002elt" href="#datetime_002elt">8.2.10.24 datetime.lt</a></li>
+        <li><a id="toc-datetime_002eminus" href="#datetime_002eminus">8.2.10.25 datetime.minus</a></li>
+        <li><a id="toc-datetime_002eNaT" href="#datetime_002eNaT">8.2.10.26 datetime.NaT</a></li>
+        <li><a id="toc-datetime_002ene" href="#datetime_002ene">8.2.10.27 datetime.ne</a></li>
+        <li><a id="toc-datetime_002eofDatenum" href="#datetime_002eofDatenum">8.2.10.28 datetime.ofDatenum</a></li>
+        <li><a id="toc-datetime_002eofDatestruct" href="#datetime_002eofDatestruct">8.2.10.29 datetime.ofDatestruct</a></li>
+        <li><a id="toc-datetime_002eplus" href="#datetime_002eplus">8.2.10.30 datetime.plus</a></li>
+        <li><a id="toc-datetime_002eposix2datenum" href="#datetime_002eposix2datenum">8.2.10.31 datetime.posix2datenum</a></li>
+        <li><a id="toc-datetime_002eposixtime" href="#datetime_002eposixtime">8.2.10.32 datetime.posixtime</a></li>
+        <li><a id="toc-datetime_002eproxyKeys" href="#datetime_002eproxyKeys">8.2.10.33 datetime.proxyKeys</a></li>
+        <li><a id="toc-datetime_002etimeofday" href="#datetime_002etimeofday">8.2.10.34 datetime.timeofday</a></li>
+        <li><a id="toc-datetime_002eweek" href="#datetime_002eweek">8.2.10.35 datetime.week</a></li>
+        <li><a id="toc-datetime_002eymd" href="#datetime_002eymd">8.2.10.36 datetime.ymd</a></li>
+        <li><a id="toc-datetime_002eymdhms" href="#datetime_002eymdhms">8.2.10.37 datetime.ymdhms</a></li>
       </ul></li>
       <li><a id="toc-days" href="#days">8.2.11 days</a></li>
       <li><a id="toc-discretize" href="#discretize">8.2.12 discretize</a></li>
@@ -508,7 +510,7 @@ Next: <a href="#Getting-Started" accesskey="n" rel="next">Getting Started</a>, U
 <div class="center">&mdash; <em class="emph">Douglas Adams</em>
 </div>
 
-<p>This is the manual for the Tablicious package version 0.4.6-SNAPSHOT for GNU Octave.
+<p>This is the manual for the Tablicious package version 0.4.6 for GNU Octave.
 </p>
 <p>Tablicious provides somewhat-Matlab-compatible tabular data and date/time support for
 GNU Octave.
@@ -545,7 +547,7 @@ Next: <a href="#Table-Representation" accesskey="n" rel="next">Table Representat
 To install the development prerelease of Tablicious, run this in Octave:
 </p>
 <div class="example">
-<pre class="example-preformatted">pkg install https://github.com/apjanke/octave-tablicious/releases/download/v0.4.6-SNAPSHOT/tablicious-0.4.6-SNAPSHOT.tar.gz
+<pre class="example-preformatted">pkg install https://github.com/apjanke/octave-tablicious/releases/download/v0.4.6/tablicious-0.4.6.tar.gz
 </pre></div>
 
 <p>(Check the releases page at <a class="url" href="https://github.com/apjanke/octave-tablicious/releases">https://github.com/apjanke/octave-tablicious/releases</a> to
@@ -1064,9 +1066,19 @@ But not all of it is implemented yet. The missing parts are currently:
 </li><li>Moving window methods in <code class="code">fillmissing</code>
 </li><li><code class="code">UTCOffset</code> and <code class="code">DSTOffset</code> fields in the output of <code class="code">timezones()</code>
 </li><li>Plotting support
+</li><li>Things omitted for compatibility:
+<ul class="itemize mark-bullet">
+<li><code class="code">ismissing</code> function
+</li></ul>
 </li></ul>
 
-<p>It is the author’s hope that many these will be implemented some day.
+<p>A global <code class="code">ismissing</code> function is intentionally omitted from Tablicious to avoid
+conflict with the Octave Forge statistics package. <code class="code">ismissing</code> methods for
+various classes in Tablicious are defined. Tablicious also supplies an <code class="code">isnanny</code>
+function with behavior similar to <code class="code">ismissing</code> for clients which which wish to
+have <code class="code">ismissing</code>-like behavior using a dependency only on Tablicious.
+</p>
+<p>It is the author’s hope that many of these will be implemented some day.
 </p>
 <p>These areas of missing functionality are tracked on the Tablicious issue
 tracker at <a class="url" href="https://github.com/apjanke/octave-tablicious/issues">https://github.com/apjanke/octave-tablicious/issues</a> and
@@ -1313,7 +1325,7 @@ Next: <a href="#API-Alphabetically" accesskey="n" rel="next">API Alphabetically<
 <p>See <a class="xref" href="#missing">missing</a>.
 </p></dd>
 <dt>isnanny</dt>
-<dd><p>Test if elements are NaN or NaN-like
+<dd><p>Test if elements are NaN or NaN-like.
 </p>
 <p>See <a class="xref" href="#isnanny">isnanny</a>.
 </p></dd>
@@ -2657,6 +2669,7 @@ underlying UTC times that its elements represent.
 <li><a href="#datetime_002egt">datetime.gt</a></li>
 <li><a href="#datetime_002ehms">datetime.hms</a></li>
 <li><a href="#datetime_002eisbetween">datetime.isbetween</a></li>
+<li><a href="#datetime_002eismissing">datetime.ismissing</a></li>
 <li><a href="#datetime_002eisnan">datetime.isnan</a></li>
 <li><a href="#datetime_002eisnat">datetime.isnat</a></li>
 <li><a href="#datetime_002ele">datetime.le</a></li>
@@ -3045,7 +3058,7 @@ Next: <a href="#datetime_002eisbetween" accesskey="n" rel="next">datetime.isbetw
 <div class="subsubsection-level-extent" id="datetime_002eisbetween">
 <div class="nav-panel">
 <p>
-Next: <a href="#datetime_002eisnan" accesskey="n" rel="next">datetime.isnan</a>, Previous: <a href="#datetime_002ehms" accesskey="p" rel="prev">datetime.hms</a>, Up: <a href="#datetime" accesskey="u" rel="up">datetime</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+Next: <a href="#datetime_002eismissing" accesskey="n" rel="next">datetime.ismissing</a>, Previous: <a href="#datetime_002ehms" accesskey="p" rel="prev">datetime.hms</a>, Up: <a href="#datetime" accesskey="u" rel="up">datetime</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
 </div>
 <h4 class="subsubsection" id="datetime_002eisbetween-1"><span>8.2.10.17 datetime.isbetween<a class="copiable-link" href="#datetime_002eisbetween-1"> &para;</a></span></h4>
 
@@ -3064,12 +3077,33 @@ to scalar expansion.
 
 <hr>
 </div>
+<div class="subsubsection-level-extent" id="datetime_002eismissing">
+<div class="nav-panel">
+<p>
+Next: <a href="#datetime_002eisnan" accesskey="n" rel="next">datetime.isnan</a>, Previous: <a href="#datetime_002eisbetween" accesskey="p" rel="prev">datetime.isbetween</a>, Up: <a href="#datetime" accesskey="u" rel="up">datetime</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<h4 class="subsubsection" id="datetime_002eismissing-1"><span>8.2.10.18 datetime.ismissing<a class="copiable-link" href="#datetime_002eismissing-1"> &para;</a></span></h4>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-ismissing-2"><span class="category-def">Method: </span><span><code class="def-type"><var class="var">out</var> =</code> <strong class="def-name">ismissing</strong> <code class="def-code-arguments">(<var class="var">obj</var>)</code><a class="copiable-link" href="#index-ismissing-2"> &para;</a></span></dt>
+<dd>
+<p>Test whether array elements are missing.
+</p>
+<p>For <code class="code">string</code> arrays, the special NaT value is considered missing.
+This is equivalent to a NaN used as a datenum.
+</p>
+<p>Returns logical array the same size as <var class="var">obj</var>.
+</p>
+</dd></dl>
+
+<hr>
+</div>
 <div class="subsubsection-level-extent" id="datetime_002eisnan">
 <div class="nav-panel">
 <p>
-Next: <a href="#datetime_002eisnat" accesskey="n" rel="next">datetime.isnat</a>, Previous: <a href="#datetime_002eisbetween" accesskey="p" rel="prev">datetime.isbetween</a>, Up: <a href="#datetime" accesskey="u" rel="up">datetime</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+Next: <a href="#datetime_002eisnat" accesskey="n" rel="next">datetime.isnat</a>, Previous: <a href="#datetime_002eismissing" accesskey="p" rel="prev">datetime.ismissing</a>, Up: <a href="#datetime" accesskey="u" rel="up">datetime</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
 </div>
-<h4 class="subsubsection" id="datetime_002eisnan-1"><span>8.2.10.18 datetime.isnan<a class="copiable-link" href="#datetime_002eisnan-1"> &para;</a></span></h4>
+<h4 class="subsubsection" id="datetime_002eisnan-1"><span>8.2.10.19 datetime.isnan<a class="copiable-link" href="#datetime_002eisnan-1"> &para;</a></span></h4>
 
 <dl class="first-deftypefn def-block">
 <dt class="deftypefn def-line" id="index-isnan-1"><span class="category-def">Method: </span><span><code class="def-type"><var class="var">out</var> =</code> <strong class="def-name">isnan</strong> <code class="def-code-arguments">(<var class="var">obj</var>)</code><a class="copiable-link" href="#index-isnan-1"> &para;</a></span></dt>
@@ -3088,7 +3122,7 @@ to support type compatibility and polymorphic programming.
 <p>
 Next: <a href="#datetime_002ele" accesskey="n" rel="next">datetime.le</a>, Previous: <a href="#datetime_002eisnan" accesskey="p" rel="prev">datetime.isnan</a>, Up: <a href="#datetime" accesskey="u" rel="up">datetime</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
 </div>
-<h4 class="subsubsection" id="datetime_002eisnat-1"><span>8.2.10.19 datetime.isnat<a class="copiable-link" href="#datetime_002eisnat-1"> &para;</a></span></h4>
+<h4 class="subsubsection" id="datetime_002eisnat-1"><span>8.2.10.20 datetime.isnat<a class="copiable-link" href="#datetime_002eisnat-1"> &para;</a></span></h4>
 
 <dl class="first-deftypefn def-block">
 <dt class="deftypefn def-line" id="index-isnat"><span class="category-def">Method: </span><span><code class="def-type"><var class="var">out</var> =</code> <strong class="def-name">isnat</strong> <code class="def-code-arguments">(<var class="var">obj</var>)</code><a class="copiable-link" href="#index-isnat"> &para;</a></span></dt>
@@ -3106,7 +3140,7 @@ Next: <a href="#datetime_002ele" accesskey="n" rel="next">datetime.le</a>, Previ
 <p>
 Next: <a href="#datetime_002elinspace" accesskey="n" rel="next">datetime.linspace</a>, Previous: <a href="#datetime_002eisnat" accesskey="p" rel="prev">datetime.isnat</a>, Up: <a href="#datetime" accesskey="u" rel="up">datetime</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
 </div>
-<h4 class="subsubsection" id="datetime_002ele-1"><span>8.2.10.20 datetime.le<a class="copiable-link" href="#datetime_002ele-1"> &para;</a></span></h4>
+<h4 class="subsubsection" id="datetime_002ele-1"><span>8.2.10.21 datetime.le<a class="copiable-link" href="#datetime_002ele-1"> &para;</a></span></h4>
 
 <dl class="first-deftypefn def-block">
 <dt class="deftypefn def-line" id="index-le"><span class="category-def">Method: </span><span><code class="def-type"><var class="var">out</var> =</code> <strong class="def-name">le</strong> <code class="def-code-arguments">(<var class="var">A</var>, <var class="var">B</var>)</code><a class="copiable-link" href="#index-le"> &para;</a></span></dt>
@@ -3128,7 +3162,7 @@ constructor or conversion method.
 <p>
 Next: <a href="#datetime_002elocaltime" accesskey="n" rel="next">datetime.localtime</a>, Previous: <a href="#datetime_002ele" accesskey="p" rel="prev">datetime.le</a>, Up: <a href="#datetime" accesskey="u" rel="up">datetime</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
 </div>
-<h4 class="subsubsection" id="datetime_002elinspace-1"><span>8.2.10.21 datetime.linspace<a class="copiable-link" href="#datetime_002elinspace-1"> &para;</a></span></h4>
+<h4 class="subsubsection" id="datetime_002elinspace-1"><span>8.2.10.22 datetime.linspace<a class="copiable-link" href="#datetime_002elinspace-1"> &para;</a></span></h4>
 
 <dl class="first-deftypefn def-block">
 <dt class="deftypefn def-line" id="index-linspace"><span class="category-def">Method: </span><span><code class="def-type"><var class="var">out</var> =</code> <strong class="def-name">linspace</strong> <code class="def-code-arguments">(<var class="var">from</var>, <var class="var">to</var>, <var class="var">n</var>)</code><a class="copiable-link" href="#index-linspace"> &para;</a></span></dt>
@@ -3154,7 +3188,7 @@ vector.
 <p>
 Next: <a href="#datetime_002elt" accesskey="n" rel="next">datetime.lt</a>, Previous: <a href="#datetime_002elinspace" accesskey="p" rel="prev">datetime.linspace</a>, Up: <a href="#datetime" accesskey="u" rel="up">datetime</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
 </div>
-<h4 class="subsubsection" id="datetime_002elocaltime-1"><span>8.2.10.22 datetime.localtime<a class="copiable-link" href="#datetime_002elocaltime-1"> &para;</a></span></h4>
+<h4 class="subsubsection" id="datetime_002elocaltime-1"><span>8.2.10.23 datetime.localtime<a class="copiable-link" href="#datetime_002elocaltime-1"> &para;</a></span></h4>
 
 <dl class="first-deftypefn def-block">
 <dt class="deftypefn def-line" id="index-localtime"><span class="category-def">Method: </span><span><code class="def-type"><var class="var">out</var> =</code> <strong class="def-name">localtime</strong> <code class="def-code-arguments">(<var class="var">obj</var>)</code><a class="copiable-link" href="#index-localtime"> &para;</a></span></dt>
@@ -3185,7 +3219,7 @@ tm_struct = localtime (dt);
 <p>
 Next: <a href="#datetime_002eminus" accesskey="n" rel="next">datetime.minus</a>, Previous: <a href="#datetime_002elocaltime" accesskey="p" rel="prev">datetime.localtime</a>, Up: <a href="#datetime" accesskey="u" rel="up">datetime</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
 </div>
-<h4 class="subsubsection" id="datetime_002elt-1"><span>8.2.10.23 datetime.lt<a class="copiable-link" href="#datetime_002elt-1"> &para;</a></span></h4>
+<h4 class="subsubsection" id="datetime_002elt-1"><span>8.2.10.24 datetime.lt<a class="copiable-link" href="#datetime_002elt-1"> &para;</a></span></h4>
 
 <dl class="first-deftypefn def-block">
 <dt class="deftypefn def-line" id="index-lt"><span class="category-def">Method: </span><span><code class="def-type"><var class="var">out</var> =</code> <strong class="def-name">lt</strong> <code class="def-code-arguments">(<var class="var">A</var>, <var class="var">B</var>)</code><a class="copiable-link" href="#index-lt"> &para;</a></span></dt>
@@ -3207,7 +3241,7 @@ constructor or conversion method.
 <p>
 Next: <a href="#datetime_002eNaT" accesskey="n" rel="next">datetime.NaT</a>, Previous: <a href="#datetime_002elt" accesskey="p" rel="prev">datetime.lt</a>, Up: <a href="#datetime" accesskey="u" rel="up">datetime</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
 </div>
-<h4 class="subsubsection" id="datetime_002eminus-1"><span>8.2.10.24 datetime.minus<a class="copiable-link" href="#datetime_002eminus-1"> &para;</a></span></h4>
+<h4 class="subsubsection" id="datetime_002eminus-1"><span>8.2.10.25 datetime.minus<a class="copiable-link" href="#datetime_002eminus-1"> &para;</a></span></h4>
 
 <dl class="first-deftypefn def-block">
 <dt class="deftypefn def-line" id="index-minus"><span class="category-def">Method: </span><span><code class="def-type"><var class="var">out</var> =</code> <strong class="def-name">minus</strong> <code class="def-code-arguments">(<var class="var">A</var>, <var class="var">B</var>)</code><a class="copiable-link" href="#index-minus"> &para;</a></span></dt>
@@ -3233,7 +3267,7 @@ Otherwise, the output is a <code class="code">datetime</code>.
 <p>
 Next: <a href="#datetime_002ene" accesskey="n" rel="next">datetime.ne</a>, Previous: <a href="#datetime_002eminus" accesskey="p" rel="prev">datetime.minus</a>, Up: <a href="#datetime" accesskey="u" rel="up">datetime</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
 </div>
-<h4 class="subsubsection" id="datetime_002eNaT-1"><span>8.2.10.25 datetime.NaT<a class="copiable-link" href="#datetime_002eNaT-1"> &para;</a></span></h4>
+<h4 class="subsubsection" id="datetime_002eNaT-1"><span>8.2.10.26 datetime.NaT<a class="copiable-link" href="#datetime_002eNaT-1"> &para;</a></span></h4>
 
 <dl class="first-deftypefn def-block">
 <dt class="deftypefn def-line" id="index-datetime_002eNaT"><span class="category-def">Static Method: </span><span><code class="def-type"><var class="var">out</var> =</code> <strong class="def-name">datetime.NaT</strong> <code class="def-code-arguments">()</code><a class="copiable-link" href="#index-datetime_002eNaT"> &para;</a></span></dt>
@@ -3258,7 +3292,7 @@ any other value results in a <code class="code">NaT</code>.
 <p>
 Next: <a href="#datetime_002eofDatenum" accesskey="n" rel="next">datetime.ofDatenum</a>, Previous: <a href="#datetime_002eNaT" accesskey="p" rel="prev">datetime.NaT</a>, Up: <a href="#datetime" accesskey="u" rel="up">datetime</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
 </div>
-<h4 class="subsubsection" id="datetime_002ene-1"><span>8.2.10.26 datetime.ne<a class="copiable-link" href="#datetime_002ene-1"> &para;</a></span></h4>
+<h4 class="subsubsection" id="datetime_002ene-1"><span>8.2.10.27 datetime.ne<a class="copiable-link" href="#datetime_002ene-1"> &para;</a></span></h4>
 
 <dl class="first-deftypefn def-block">
 <dt class="deftypefn def-line" id="index-ne"><span class="category-def">Method: </span><span><code class="def-type"><var class="var">out</var> =</code> <strong class="def-name">ne</strong> <code class="def-code-arguments">(<var class="var">A</var>, <var class="var">B</var>)</code><a class="copiable-link" href="#index-ne"> &para;</a></span></dt>
@@ -3280,7 +3314,7 @@ constructor or conversion method.
 <p>
 Next: <a href="#datetime_002eofDatestruct" accesskey="n" rel="next">datetime.ofDatestruct</a>, Previous: <a href="#datetime_002ene" accesskey="p" rel="prev">datetime.ne</a>, Up: <a href="#datetime" accesskey="u" rel="up">datetime</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
 </div>
-<h4 class="subsubsection" id="datetime_002eofDatenum-1"><span>8.2.10.27 datetime.ofDatenum<a class="copiable-link" href="#datetime_002eofDatenum-1"> &para;</a></span></h4>
+<h4 class="subsubsection" id="datetime_002eofDatenum-1"><span>8.2.10.28 datetime.ofDatenum<a class="copiable-link" href="#datetime_002eofDatenum-1"> &para;</a></span></h4>
 
 <dl class="first-deftypefn def-block">
 <dt class="deftypefn def-line" id="index-datetime_002eofDatenum"><span class="category-def">Static Method: </span><span><code class="def-type"><var class="var">obj</var> =</code> <strong class="def-name">datetime.ofDatenum</strong> <code class="def-code-arguments">(<var class="var">dnums</var>)</code><a class="copiable-link" href="#index-datetime_002eofDatenum"> &para;</a></span></dt>
@@ -3298,7 +3332,7 @@ Next: <a href="#datetime_002eofDatestruct" accesskey="n" rel="next">datetime.ofD
 <p>
 Next: <a href="#datetime_002eplus" accesskey="n" rel="next">datetime.plus</a>, Previous: <a href="#datetime_002eofDatenum" accesskey="p" rel="prev">datetime.ofDatenum</a>, Up: <a href="#datetime" accesskey="u" rel="up">datetime</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
 </div>
-<h4 class="subsubsection" id="datetime_002eofDatestruct-1"><span>8.2.10.28 datetime.ofDatestruct<a class="copiable-link" href="#datetime_002eofDatestruct-1"> &para;</a></span></h4>
+<h4 class="subsubsection" id="datetime_002eofDatestruct-1"><span>8.2.10.29 datetime.ofDatestruct<a class="copiable-link" href="#datetime_002eofDatestruct-1"> &para;</a></span></h4>
 
 <dl class="first-deftypefn def-block">
 <dt class="deftypefn def-line" id="index-datetime_002eofDatestruct"><span class="category-def">Static Method: </span><span><code class="def-type"><var class="var">obj</var> =</code> <strong class="def-name">datetime.ofDatestruct</strong> <code class="def-code-arguments">(<var class="var">dstruct</var>)</code><a class="copiable-link" href="#index-datetime_002eofDatestruct"> &para;</a></span></dt>
@@ -3319,7 +3353,7 @@ Year, Month, Day, Hour, Minute, and Second. It is not a standard Octave datatype
 <p>
 Next: <a href="#datetime_002eposix2datenum" accesskey="n" rel="next">datetime.posix2datenum</a>, Previous: <a href="#datetime_002eofDatestruct" accesskey="p" rel="prev">datetime.ofDatestruct</a>, Up: <a href="#datetime" accesskey="u" rel="up">datetime</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
 </div>
-<h4 class="subsubsection" id="datetime_002eplus-1"><span>8.2.10.29 datetime.plus<a class="copiable-link" href="#datetime_002eplus-1"> &para;</a></span></h4>
+<h4 class="subsubsection" id="datetime_002eplus-1"><span>8.2.10.30 datetime.plus<a class="copiable-link" href="#datetime_002eplus-1"> &para;</a></span></h4>
 
 <dl class="first-deftypefn def-block">
 <dt class="deftypefn def-line" id="index-plus-1"><span class="category-def">Method: </span><span><code class="def-type"><var class="var">out</var> =</code> <strong class="def-name">plus</strong> <code class="def-code-arguments">(<var class="var">A</var>, <var class="var">B</var>)</code><a class="copiable-link" href="#index-plus-1"> &para;</a></span></dt>
@@ -3346,7 +3380,7 @@ which use Daylight Saving Time may be buggy.
 <p>
 Next: <a href="#datetime_002eposixtime" accesskey="n" rel="next">datetime.posixtime</a>, Previous: <a href="#datetime_002eplus" accesskey="p" rel="prev">datetime.plus</a>, Up: <a href="#datetime" accesskey="u" rel="up">datetime</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
 </div>
-<h4 class="subsubsection" id="datetime_002eposix2datenum-1"><span>8.2.10.30 datetime.posix2datenum<a class="copiable-link" href="#datetime_002eposix2datenum-1"> &para;</a></span></h4>
+<h4 class="subsubsection" id="datetime_002eposix2datenum-1"><span>8.2.10.31 datetime.posix2datenum<a class="copiable-link" href="#datetime_002eposix2datenum-1"> &para;</a></span></h4>
 
 <dl class="first-deftypefn def-block">
 <dt class="deftypefn def-line" id="index-datetime_002eposix2datenum"><span class="category-def">Static Method: </span><span><code class="def-type"><var class="var">dnums</var> =</code> <strong class="def-name">datetime.posix2datenum</strong> <code class="def-code-arguments">(<var class="var">pdates</var>)</code><a class="copiable-link" href="#index-datetime_002eposix2datenum"> &para;</a></span></dt>
@@ -3366,7 +3400,7 @@ is implicitly in UTC.
 <p>
 Next: <a href="#datetime_002eproxyKeys" accesskey="n" rel="next">datetime.proxyKeys</a>, Previous: <a href="#datetime_002eposix2datenum" accesskey="p" rel="prev">datetime.posix2datenum</a>, Up: <a href="#datetime" accesskey="u" rel="up">datetime</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
 </div>
-<h4 class="subsubsection" id="datetime_002eposixtime-1"><span>8.2.10.31 datetime.posixtime<a class="copiable-link" href="#datetime_002eposixtime-1"> &para;</a></span></h4>
+<h4 class="subsubsection" id="datetime_002eposixtime-1"><span>8.2.10.32 datetime.posixtime<a class="copiable-link" href="#datetime_002eposixtime-1"> &para;</a></span></h4>
 
 <dl class="first-deftypefn def-block">
 <dt class="deftypefn def-line" id="index-posixtime"><span class="category-def">Method: </span><span><code class="def-type"><var class="var">out</var> =</code> <strong class="def-name">posixtime</strong> <code class="def-code-arguments">(<var class="var">obj</var>)</code><a class="copiable-link" href="#index-posixtime"> &para;</a></span></dt>
@@ -3388,7 +3422,7 @@ POSIX times are, by definition, in UTC.
 <p>
 Next: <a href="#datetime_002etimeofday" accesskey="n" rel="next">datetime.timeofday</a>, Previous: <a href="#datetime_002eposixtime" accesskey="p" rel="prev">datetime.posixtime</a>, Up: <a href="#datetime" accesskey="u" rel="up">datetime</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
 </div>
-<h4 class="subsubsection" id="datetime_002eproxyKeys-1"><span>8.2.10.32 datetime.proxyKeys<a class="copiable-link" href="#datetime_002eproxyKeys-1"> &para;</a></span></h4>
+<h4 class="subsubsection" id="datetime_002eproxyKeys-1"><span>8.2.10.33 datetime.proxyKeys<a class="copiable-link" href="#datetime_002eproxyKeys-1"> &para;</a></span></h4>
 
 <dl class="first-deftypefn def-block">
 <dt class="deftypefn def-line" id="index-proxyKeys"><span class="category-def">Method: </span><span><code class="def-type">[<var class="var">keysA</var>, <var class="var">keysB</var>] =</code> <strong class="def-name">proxyKeys</strong> <code class="def-code-arguments">(<var class="var">a</var>, <var class="var">b</var>)</code><a class="copiable-link" href="#index-proxyKeys"> &para;</a></span></dt>
@@ -3412,7 +3446,7 @@ in the corresponding input.
 <p>
 Next: <a href="#datetime_002eweek" accesskey="n" rel="next">datetime.week</a>, Previous: <a href="#datetime_002eproxyKeys" accesskey="p" rel="prev">datetime.proxyKeys</a>, Up: <a href="#datetime" accesskey="u" rel="up">datetime</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
 </div>
-<h4 class="subsubsection" id="datetime_002etimeofday-1"><span>8.2.10.33 datetime.timeofday<a class="copiable-link" href="#datetime_002etimeofday-1"> &para;</a></span></h4>
+<h4 class="subsubsection" id="datetime_002etimeofday-1"><span>8.2.10.34 datetime.timeofday<a class="copiable-link" href="#datetime_002etimeofday-1"> &para;</a></span></h4>
 
 <dl class="first-deftypefn def-block">
 <dt class="deftypefn def-line" id="index-timeofday"><span class="category-def">Method: </span><span><code class="def-type"><var class="var">out</var> =</code> <strong class="def-name">timeofday</strong> <code class="def-code-arguments">(<var class="var">obj</var>)</code><a class="copiable-link" href="#index-timeofday"> &para;</a></span></dt>
@@ -3432,7 +3466,7 @@ Next: <a href="#datetime_002eweek" accesskey="n" rel="next">datetime.week</a>, P
 <p>
 Next: <a href="#datetime_002eymd" accesskey="n" rel="next">datetime.ymd</a>, Previous: <a href="#datetime_002etimeofday" accesskey="p" rel="prev">datetime.timeofday</a>, Up: <a href="#datetime" accesskey="u" rel="up">datetime</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
 </div>
-<h4 class="subsubsection" id="datetime_002eweek-1"><span>8.2.10.34 datetime.week<a class="copiable-link" href="#datetime_002eweek-1"> &para;</a></span></h4>
+<h4 class="subsubsection" id="datetime_002eweek-1"><span>8.2.10.35 datetime.week<a class="copiable-link" href="#datetime_002eweek-1"> &para;</a></span></h4>
 
 <dl class="first-deftypefn def-block">
 <dt class="deftypefn def-line" id="index-week"><span class="category-def">Method: </span><span><code class="def-type"><var class="var">out</var> =</code> <strong class="def-name">week</strong> <code class="def-code-arguments">(<var class="var">obj</var>)</code><a class="copiable-link" href="#index-week"> &para;</a></span></dt>
@@ -3450,7 +3484,7 @@ Next: <a href="#datetime_002eymd" accesskey="n" rel="next">datetime.ymd</a>, Pre
 <p>
 Next: <a href="#datetime_002eymdhms" accesskey="n" rel="next">datetime.ymdhms</a>, Previous: <a href="#datetime_002eweek" accesskey="p" rel="prev">datetime.week</a>, Up: <a href="#datetime" accesskey="u" rel="up">datetime</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
 </div>
-<h4 class="subsubsection" id="datetime_002eymd-1"><span>8.2.10.35 datetime.ymd<a class="copiable-link" href="#datetime_002eymd-1"> &para;</a></span></h4>
+<h4 class="subsubsection" id="datetime_002eymd-1"><span>8.2.10.36 datetime.ymd<a class="copiable-link" href="#datetime_002eymd-1"> &para;</a></span></h4>
 
 <dl class="first-deftypefn def-block">
 <dt class="deftypefn def-line" id="index-ymd"><span class="category-def">Method: </span><span><code class="def-type">[<var class="var">y</var>, <var class="var">m</var>, <var class="var">d</var>] =</code> <strong class="def-name">ymd</strong> <code class="def-code-arguments">(<var class="var">obj</var>)</code><a class="copiable-link" href="#index-ymd"> &para;</a></span></dt>
@@ -3470,7 +3504,7 @@ Next: <a href="#datetime_002eymdhms" accesskey="n" rel="next">datetime.ymdhms</a
 <p>
 Previous: <a href="#datetime_002eymd" accesskey="p" rel="prev">datetime.ymd</a>, Up: <a href="#datetime" accesskey="u" rel="up">datetime</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
 </div>
-<h4 class="subsubsection" id="datetime_002eymdhms-1"><span>8.2.10.36 datetime.ymdhms<a class="copiable-link" href="#datetime_002eymdhms-1"> &para;</a></span></h4>
+<h4 class="subsubsection" id="datetime_002eymdhms-1"><span>8.2.10.37 datetime.ymdhms<a class="copiable-link" href="#datetime_002eymdhms-1"> &para;</a></span></h4>
 
 <dl class="first-deftypefn def-block">
 <dt class="deftypefn def-line" id="index-ymdhms"><span class="category-def">Method: </span><span><code class="def-type">[<var class="var">y</var>, <var class="var">m</var>, <var class="var">d</var>, <var class="var">h</var>, <var class="var">mi</var>, <var class="var">s</var>] =</code> <strong class="def-name">ymdhms</strong> <code class="def-code-arguments">(<var class="var">obj</var>)</code><a class="copiable-link" href="#index-ymdhms"> &para;</a></span></dt>
@@ -4022,7 +4056,7 @@ Next: <a href="#istable" accesskey="n" rel="next">istable</a>, Previous: <a href
 <dl class="first-deftypefn def-block">
 <dt class="deftypefn def-line" id="index-isnanny-1"><span class="category-def">Function: </span><span><code class="def-type"><var class="var">out</var> =</code> <strong class="def-name">isnanny</strong> <code class="def-code-arguments">(<var class="var">X</var>)</code><a class="copiable-link" href="#index-isnanny-1"> &para;</a></span></dt>
 <dd>
-<p>Test if elements are NaN or NaN-like
+<p>Test if elements are NaN or NaN-like.
 </p>
 <p>Tests if input elements are NaN, NaT, or otherwise NaN-like. This is true
 if <code class="code">isnan()</code> or <code class="code">isnat()</code> returns true, and is false for types that do not support
@@ -4034,6 +4068,9 @@ if <code class="code">isnan()</code> or <code class="code">isnat()</code> return
 <li> Matlab decided to call their NaN values for datetime “NaT” instead, and
 test for them with a different “isnat()” function, and
 </li><li> isnan() errors out for some types that do not support isnan(), like cells.
+</li><li> Octave does not define an <code class="code">ismissing</code> function, but the Octave Forge statistics
+package does, and adding an <code class="code">ismissing</code> function to Tablicious would conflict
+with that in hard-to-resolve ways.
 </li></ol>
 
 <p><code class="code">isnanny()</code> smooths over those differences so you can call it polymorphically on
@@ -4525,7 +4562,7 @@ Next: <a href="#missing_002eisnan" accesskey="n" rel="next">missing.isnan</a>, P
 <h4 class="subsubsection" id="missing_002eismissing-1"><span>8.2.31.2 missing.ismissing<a class="copiable-link" href="#missing_002eismissing-1"> &para;</a></span></h4>
 
 <dl class="first-deftypefn def-block">
-<dt class="deftypefn def-line" id="index-ismissing-2"><span class="category-def">Method: </span><span><code class="def-type"><var class="var">out</var> =</code> <strong class="def-name">ismissing</strong> <code class="def-code-arguments">(<var class="var">obj</var>)</code><a class="copiable-link" href="#index-ismissing-2"> &para;</a></span></dt>
+<dt class="deftypefn def-line" id="index-ismissing-3"><span class="category-def">Method: </span><span><code class="def-type"><var class="var">out</var> =</code> <strong class="def-name">ismissing</strong> <code class="def-code-arguments">(<var class="var">obj</var>)</code><a class="copiable-link" href="#index-ismissing-3"> &para;</a></span></dt>
 <dd>
 <p>Test whether elements are missing values.
 </p>
@@ -5301,7 +5338,7 @@ Next: <a href="#string_002eisnanny" accesskey="n" rel="next">string.isnanny</a>,
 <h4 class="subsubsection" id="string_002eismissing-1"><span>8.2.53.11 string.ismissing<a class="copiable-link" href="#string_002eismissing-1"> &para;</a></span></h4>
 
 <dl class="first-deftypefn def-block">
-<dt class="deftypefn def-line" id="index-ismissing-3"><span class="category-def">Method: </span><span><code class="def-type"><var class="var">out</var> =</code> <strong class="def-name">ismissing</strong> <code class="def-code-arguments">(<var class="var">obj</var>)</code><a class="copiable-link" href="#index-ismissing-3"> &para;</a></span></dt>
+<dt class="deftypefn def-line" id="index-ismissing-4"><span class="category-def">Method: </span><span><code class="def-type"><var class="var">out</var> =</code> <strong class="def-name">ismissing</strong> <code class="def-code-arguments">(<var class="var">obj</var>)</code><a class="copiable-link" href="#index-ismissing-4"> &para;</a></span></dt>
 <dd>
 <p>Test whether array elements are missing.
 </p>
@@ -6262,8 +6299,8 @@ Next: <a href="#table_002eistable" accesskey="n" rel="next">table.istable</a>, P
 <h4 class="subsubsection" id="table_002eismissing-1"><span>8.2.55.15 table.ismissing<a class="copiable-link" href="#table_002eismissing-1"> &para;</a></span></h4>
 
 <dl class="first-deftypefn def-block">
-<dt class="deftypefn def-line" id="index-ismissing-4"><span class="category-def">Method: </span><span><code class="def-type"><var class="var">out</var> =</code> <strong class="def-name">ismissing</strong> <code class="def-code-arguments">(<var class="var">obj</var>)</code><a class="copiable-link" href="#index-ismissing-4"> &para;</a></span></dt>
-<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-ismissing-5"><span class="category-def">Method: </span><span><code class="def-type"><var class="var">out</var> =</code> <strong class="def-name">ismissing</strong> <code class="def-code-arguments">(<var class="var">obj</var>, <var class="var">indicator</var>)</code><a class="copiable-link" href="#index-ismissing-5"> &para;</a></span></dt>
+<dt class="deftypefn def-line" id="index-ismissing-5"><span class="category-def">Method: </span><span><code class="def-type"><var class="var">out</var> =</code> <strong class="def-name">ismissing</strong> <code class="def-code-arguments">(<var class="var">obj</var>)</code><a class="copiable-link" href="#index-ismissing-5"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-ismissing-6"><span class="category-def">Method: </span><span><code class="def-type"><var class="var">out</var> =</code> <strong class="def-name">ismissing</strong> <code class="def-code-arguments">(<var class="var">obj</var>, <var class="var">indicator</var>)</code><a class="copiable-link" href="#index-ismissing-6"> &para;</a></span></dt>
 <dd>
 <p>Find missing values.
 </p>
@@ -13174,7 +13211,11 @@ Previous: <a href="#API-Reference" accesskey="p" rel="prev">API Reference</a>, U
 
 <p>Tablicious for GNU Octave is covered by the GNU GPLv3 and other Free and Open Source Software licenses.
 </p>
-<p>The main code of Tablicious is licensed under the GNU GPL version 3.
+<p>The main code of Tablicious is licensed under the GNU GPL version 3 or later.
+</p>
+<p>Certain files in the build tools are licensed under the GNU GPL version 2 or later. This includes the <code class="code">mktexi.pl</code> and <code class="code">OctTexiDoc.pm</code> files in the <code class="code">doc/</code> directory.
+</p>
+<p>The tzinfo database file is Public Domain.
 </p>
 <p>The date/time portion of Tablicious includes some Unicode data files licensed under the Unicode License Agreement - Data Files and Software license.
 </p>
@@ -13186,9 +13227,9 @@ Previous: <a href="#API-Reference" accesskey="p" rel="prev">API Reference</a>, U
 <div class="section-level-extent" id="Manual-Copyright">
 <h3 class="section"><span>9.2 Manual Copyright<a class="copiable-link" href="#Manual-Copyright"> &para;</a></span></h3>
 
-<p>This manual is for Tablicious, version 0.4.6-SNAPSHOT.
+<p>This manual is for Tablicious, version 0.4.6.
 </p>
-<p>Copyright &copy; 2019, 2023, 2024 Andrew Janke
+<p>Copyright &copy; 2019, 2023, 2024, 2025, 2026 Andrew Janke
 </p>
 <blockquote class="quotation">
 <p>Permission is granted to make and distribute verbatim copies of

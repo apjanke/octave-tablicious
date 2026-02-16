@@ -156,6 +156,8 @@
                             </section>
                             <section title="datetime.isbetween" ref="html/datetime_002eisbetween.html">
                             </section>
+                            <section title="datetime.ismissing" ref="html/datetime_002eismissing.html">
+                            </section>
                             <section title="datetime.isnan" ref="html/datetime_002eisnan.html">
                             </section>
                             <section title="datetime.isnat" ref="html/datetime_002eisnat.html">
@@ -779,6 +781,7 @@
             <keyword name="datetime.gt" id="datetime.gt" ref="html/datetime_002egt.html"/>
             <keyword name="datetime.hms" id="datetime.hms" ref="html/datetime_002ehms.html"/>
             <keyword name="datetime.isbetween" id="datetime.isbetween" ref="html/datetime_002eisbetween.html"/>
+            <keyword name="datetime.ismissing" id="datetime.ismissing" ref="html/datetime_002eismissing.html"/>
             <keyword name="datetime.isnan" id="datetime.isnan" ref="html/datetime_002eisnan.html"/>
             <keyword name="datetime.isnat" id="datetime.isnat" ref="html/datetime_002eisnat.html"/>
             <keyword name="datetime.le" id="datetime.le" ref="html/datetime_002ele.html"/>
@@ -1310,6 +1313,7 @@
             <file>html/datetime_002ele.html</file>
             <file>html/datetime_002eisnat.html</file>
             <file>html/datetime_002eisnan.html</file>
+            <file>html/datetime_002eismissing.html</file>
             <file>html/datetime_002eisbetween.html</file>
             <file>html/datetime_002ehms.html</file>
             <file>html/datetime_002egt.html</file>

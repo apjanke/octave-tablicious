@@ -2,7 +2,7 @@
 
 @c %**start of header
 
-@set VERSION 0.4.6-SNAPSHOT
+@set VERSION 0.4.6
 
 @setfilename tablicious.info
 @settitle Tablicious v@value{VERSION}
@@ -13,7 +13,7 @@
 @copying
 This manual is for Tablicious, version @value{VERSION}.
 
-Copyright @copyright{} 2019, 2023, 2024 Andrew Janke
+Copyright @copyright{} 2019, 2023, 2024, 2025, 2026 Andrew Janke
 
 @quotation
 Permission is granted to make and distribute verbatim copies of
@@ -36,12 +36,17 @@ User manual for Tablicious for Octave.
 
 @titlepage
 @title  Tablicious for GNU Octave
-@subtitle version @value{VERSION}, January 2099
+@subtitle version @value{VERSION}, February 2026
 @author Andrew Janke
 @page
 @vskip 0pt plus 1filll
 @insertcopying
 @end titlepage
+
+@dircategory Math
+@direntry
+* Tablicious: (tablicious).         Tablicious package for Octave
+@end direntry
 
 @shortcontents
 @contents
@@ -108,7 +113,7 @@ The easiest way to obtain Tablicious is by using Octave's @code{pkg} package man
 To install the development prerelease of Tablicious, run this in Octave:
 
 @example
-pkg install https://github.com/apjanke/octave-tablicious/releases/download/v0.4.6-SNAPSHOT/tablicious-0.4.6-SNAPSHOT.tar.gz
+pkg install https://github.com/apjanke/octave-tablicious/releases/download/v0.4.6/tablicious-0.4.6.tar.gz
 @end example
 
 (Check the releases page at @url{https://github.com/apjanke/octave-tablicious/releases} to
@@ -539,9 +544,19 @@ But not all of it is implemented yet. The missing parts are currently:
 @item Moving window methods in @code{fillmissing}
 @item @code{UTCOffset} and @code{DSTOffset} fields in the output of @code{timezones()}
 @item Plotting support
+@item Things omitted for compatibility:
+@itemize
+@item @code{ismissing} function
+@end itemize
 @end itemize
 
-It is the author’s hope that many these will be implemented some day.
+A global @code{ismissing} function is intentionally omitted from Tablicious to avoid
+conflict with the Octave Forge statistics package. @code{ismissing} methods for
+various classes in Tablicious are defined. Tablicious also supplies an @code{isnanny}
+function with behavior similar to @code{ismissing} for clients which which wish to
+have @code{ismissing}-like behavior using a dependency only on Tablicious.
+
+It is the author’s hope that many of these will be implemented some day.
 
 These areas of missing functionality are tracked on the Tablicious issue
 tracker at @url{https://github.com/apjanke/octave-tablicious/issues} and
@@ -717,7 +732,7 @@ Generic auto-converting missing value.
 
 @xref{missing}.
 @item isnanny
-Test if elements are NaN or NaN-like
+Test if elements are NaN or NaN-like.
 
 @xref{isnanny}.
 @item eqn
@@ -900,7 +915,7 @@ Create a ‘calendarDuration’ that is a given number of calendar days long.
 * isduration::	True if input is a ‘duration’ array, false otherwise.
 * isfile::	
 * isfolder::	
-* isnanny::	Test if elements are NaN or NaN-like
+* isnanny::	Test if elements are NaN or NaN-like.
 * istable::	True if input is a ‘table’ array or other table-like
 		type, false otherwise.
 * istabular::	True if input is eitehr a ‘table’ or ‘timetable’
@@ -1969,6 +1984,20 @@ Returns a logical array the same size as the scalar expansion of the inputs.
 
 @end deftypefn
 
+@node datetime.ismissing
+@subsubsection datetime.ismissing
+
+@deftypefn {Method} {@var{out} =} ismissing (@var{obj})
+
+Test whether array elements are missing.
+
+For @code{string} arrays, the special NaT value is considered missing.
+This is equivalent to a NaN used as a datenum.
+
+Returns logical array the same size as @var{obj}.
+
+@end deftypefn
+
 @node datetime.isnan
 @subsubsection datetime.isnan
 
@@ -2624,7 +2653,7 @@ Returns a scalar logical.
 @subsection isnanny
 @deftypefn {Function} {@var{out} =} isnanny (@var{X})
 
-Test if elements are NaN or NaN-like
+Test if elements are NaN or NaN-like.
 
 Tests if input elements are NaN, NaT, or otherwise NaN-like. This is true
 if @code{isnan()} or @code{isnat()} returns true, and is false for types that do not support
@@ -2638,6 +2667,10 @@ Matlab decided to call their NaN values for datetime “NaT” instead, and
 test for them with a different “isnat()” function, and
 @item
 isnan() errors out for some types that do not support isnan(), like cells.
+@item
+Octave does not define an @code{ismissing} function, but the Octave Forge statistics
+package does, and adding an @code{ismissing} function to Tablicious would conflict
+with that in hard-to-resolve ways.
 @end enumerate
 
 @code{isnanny()} smooths over those differences so you can call it polymorphically on
@@ -9670,7 +9703,11 @@ use @code{calyears}.
 
 Tablicious for GNU Octave is covered by the GNU GPLv3 and other Free and Open Source Software licenses.
 
-The main code of Tablicious is licensed under the GNU GPL version 3.
+The main code of Tablicious is licensed under the GNU GPL version 3 or later.
+
+Certain files in the build tools are licensed under the GNU GPL version 2 or later. This includes the @code{mktexi.pl} and @code{OctTexiDoc.pm} files in the @code{doc/} directory.
+
+The tzinfo database file is Public Domain.
 
 The date/time portion of Tablicious includes some Unicode data files licensed under the Unicode License Agreement - Data Files and Software license.
 

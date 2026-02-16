@@ -3,9 +3,9 @@
 <!-- Created by GNU Texinfo 7.2, https://www.gnu.org/software/texinfo/ -->
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<!-- This manual is for Tablicious, version 0.4.6-SNAPSHOT.
+<!-- This manual is for Tablicious, version 0.4.6.
 
-Copyright © 2019, 2023, 2024 Andrew Janke
+Copyright © 2019, 2023, 2024, 2025, 2026 Andrew Janke
 
 Permission is granted to make and distribute verbatim copies of
 this manual provided the copyright notice and this permission notice
@@ -18,10 +18,10 @@ notice identical to this one.
 
 Permission is granted to copy and distribute translations of this manual
 into another language, under the same conditions as for modified versions. -->
-<title>isnanny (Tablicious v0.4.6-SNAPSHOT)</title>
+<title>isnanny (Tablicious v0.4.6)</title>
 
 <meta name="description" content="User manual for Tablicious for Octave.">
-<meta name="keywords" content="isnanny (Tablicious v0.4.6-SNAPSHOT)">
+<meta name="keywords" content="isnanny (Tablicious v0.4.6)">
 <meta name="resource-type" content="document">
 <meta name="distribution" content="global">
 <meta name="Generator" content="makeinfo">
@@ -54,7 +54,7 @@ Next: <a href="istable.html" accesskey="n" rel="next">istable</a>, Previous: <a 
 <dl class="first-deftypefn def-block">
 <dt class="deftypefn def-line" id="index-isnanny-1"><span class="category-def">Function: </span><span><code class="def-type"><var class="var">out</var> =</code> <strong class="def-name">isnanny</strong> <code class="def-code-arguments">(<var class="var">X</var>)</code><a class="copiable-link" href="#index-isnanny-1"> &para;</a></span></dt>
 <dd>
-<p>Test if elements are NaN or NaN-like
+<p>Test if elements are NaN or NaN-like.
 </p>
 <p>Tests if input elements are NaN, NaT, or otherwise NaN-like. This is true
 if <code class="code">isnan()</code> or <code class="code">isnat()</code> returns true, and is false for types that do not support
@@ -66,6 +66,9 @@ if <code class="code">isnan()</code> or <code class="code">isnat()</code> return
 <li> Matlab decided to call their NaN values for datetime “NaT” instead, and
 test for them with a different “isnat()” function, and
 </li><li> isnan() errors out for some types that do not support isnan(), like cells.
+</li><li> Octave does not define an <code class="code">ismissing</code> function, but the Octave Forge statistics
+package does, and adding an <code class="code">ismissing</code> function to Tablicious would conflict
+with that in hard-to-resolve ways.
 </li></ol>
 
 <p><code class="code">isnanny()</code> smooths over those differences so you can call it polymorphically on
