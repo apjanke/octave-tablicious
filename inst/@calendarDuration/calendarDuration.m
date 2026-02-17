@@ -163,6 +163,36 @@ classdef calendarDuration
       out = this.Months;
     endfunction
 
+    ## -*- texinfo -*-
+    ## @node calendarDuration.datevec
+    ## @deftypefn {Method} {[@var{dvec}] =} datevec (@var{obj})
+    ## @deftypefnx {Method} {[@var{Y}, @var{M}, @var{D}, @var{H}, @var{MN}, @var{S}] =} datevec (@var{obj})
+    ##
+    ## Convert a @code{calendarDuration} to a datevec whose elements represent its
+    ## components of. The components are the year, month, day, hour, minute, and
+    ## second quantities of this @code{calendarDuration}.
+    ##
+    ## When nargout is 0 or 1, returns a double array of size n-by-6, where n is
+    ## @code{numel(obj)}. When nargout is 2 or more, returns double arrays the
+    ## same size as @var{obj}.
+    ##
+    ## @end deftypefn
+    function [out, M, D, H, MN, S] = datevec (this)
+      yrs = this.Months / 12;
+      Y = fix (yrs);
+      M = this.Months - (Y * 12);
+      D = this.Days;
+      x = this.Time;
+      [H, x] = deal (fix (x * 24), rem (x * 24, 1));
+      [MN, x] = deal (fix (x * 60), rem (x * 60, 1));
+      S = x * 60;
+      if nargout < 2
+        out = [Y(:) M(:) D(:) H(:) MN(:) S(:)];
+      else
+        out = Y;
+      end
+    endfunction
+
     # Arithmetic
 
     ## -*- texinfo -*-

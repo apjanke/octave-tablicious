@@ -58,6 +58,11 @@ classdef duration
     # Display format (currently unsupported)
     Format = 'hh:mm:ss'
   endproperties
+  properties (Constant)
+    # Size of fixed-size years, as a number of days, including a fractional part.
+    # Equal to 365.2425.
+    FixedSizeYearDays = 365.2425
+  endproperties
 
   methods (Static)
     ## -*- texinfo -*-
@@ -171,7 +176,7 @@ classdef duration
     ## @end deftypefn
     function out = years (this)
       #YEARS Number of fixed-length years equivalent to this.
-      out = this.days / 365.2425;
+      out = this.days / duration.FixedSizeYearDays;
     endfunction
 
     # Can't have a days() function as well as a days property or it will cause Octave to crash
@@ -269,6 +274,46 @@ classdef duration
       minutes = rem(hours, 1) * 60;
       m = fix(minutes);
       s = rem(minutes, 1) * 60;
+    endfunction
+
+    ## -*- texinfo -*-
+    ## @node duration.datevec
+    ## @deftypefn {Method} {[@var{dvec}] =} datevec (@var{obj})
+    ## @deftypefnx {Method} {[@var{Y}, @var{M}, @var{D}, @var{H}, @var{MN}, @var{S}] =} datevec (@var{obj})
+    ##
+    ## Convert @var{obj} to a datevec whose elements represent the components of
+    ## this duration. The components are the year, month, days, hour, minute, and
+    ## second quantities of this duration. The years are in terms of fixed size
+    ## years that are 365.2425 days long, and days are fixed size 24-hour days.
+    ## The fixed size year size can be found in the FixedSizeYearDays constant
+    ## class property on the duration class. The month component is always zero,
+    ## since months are variable lengths and there is no equivalent fixed size
+    ## month. Thus, the days component may be more than 31.
+    ##
+    ## When nargout is 0 or 1, returns a double array of size n-by-6, where n is
+    ## @code{numel(obj)}. When nargout is 2 or more, returns double arrays the
+    ## same size as @var{obj}.
+    ##
+    ## @end deftypefn
+    function [out, M, D, H, MN, S] = datevec (this)
+      x = this.days;
+      x = x / duration.FixedSizeYearDays;
+      [Y, x] = deal (fix (x), rem (x, 1));
+      x = x * duration.FixedSizeYearDays;
+      M = zeros (size (this));
+      [D, x] = deal (fix (x), rem (x, 1));
+      x = x * 24;
+      [H, x] = deal (fix (x), rem (x, 1));
+      x = x * 60;
+      [MN, x] = deal (fix (x), rem (x, 1));
+      x = x * 60;
+      S = x;
+      if nargout < 2
+        out = [Y(:) M(:) D(:) H(:) MN(:) S(:)];
+      else
+        out = Y;
+        % Other argouts are already in correct format
+      endif
     endfunction
 
     function [keysA, keysB] = proxyKeys (a, b)

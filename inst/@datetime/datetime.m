@@ -792,15 +792,22 @@ classdef datetime
     ## -*- texinfo -*-
     ## @node datetime.datevec
     ## @deftypefn {Method} {@var{out} =} datevec (@var{obj})
+    ## @deftypefnx {Method} {[@var{Y}, @var{M}, @var{D}, @var{H}, @var{MN}, @var{S}] =} datevec (@var{obj})
     ##
     ## Convert this to a datevec that represent the same local wall time.
     ##
-    ## Returns double array of size [numel(obj) 6].
+    ## When nargout is 0 or 1, returns a double array of size n-by-6, where n is
+    ## @code{numel(obj)}. When nargout is 2 or more, returns double arrays the
+    ## same size as @var{obj}.
     ##
     ## @end deftypefn
-    function out = datevec (this)
+    function [out, M, D, H, MN, S] = datevec (this)
       dn = datenum (this);
-      out = datevec (dn(:));
+      if nargout < 2
+        out = datevec (this.dnum(:));
+      else
+        [out, M, D, H, MN, S] = datevec (this.dnum);
+      endif
     endfunction
 
     ## -*- texinfo -*-
