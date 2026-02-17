@@ -271,6 +271,23 @@ classdef duration
       s = rem(minutes, 1) * 60;
     endfunction
 
+    ## -*- texinfo -*-
+    ## @node duration.datevec
+    ## @deftypefn {Method} {[@var{dvec}] =} datevec (@var{obj})
+    ## @deftypefnx {Method} {[@var{y}, @var{m}, @var{d}, @var{h}, @var{mn}, @var{s}] =} datevec (@var{obj})
+    ##
+    ## In the case of zero or one argouts, returns an n-by-6 double array, where n is the
+    ## number of elements in @var{obj}. In the case of two ore more argouts, returns double
+    ## arrays the same size as @var{obj}.
+    ##
+    ## Returns an n-by-6 double array in the casearrays the same size as @code{obj}.
+    ##
+    ## @end deftypefn
+    function [y, m, d, h, mn, s] = datevec (this)
+      #TODO: Finish this. Factor out 365.2425 to a constant static property.
+      error('tblish:Unimplemented', 'duration.datevec is not yet implemented')
+    endfunction
+
     function [keysA, keysB] = proxyKeys (a, b)
       #PROXYKEYS Proxy key values for sorting and set operations
       keysA = a.days(:);
