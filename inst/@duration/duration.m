@@ -252,6 +252,25 @@ classdef duration
       out = this.days * (24 * 60 * 60 * 1000);
     endfunction
 
+    ## -*- texinfo -*-
+    ## @node duration.hms
+    ## @deftypefn {Method} {[@var{h}, @var{m}, @var{s}] =} hms (@var{obj})
+    ##
+    ## Get the Hour, Minute, and Second values of a @var{duration}. These are
+    ## the hour, minute, and second values that when combined are equal to the
+    ## same duration value.
+    ##
+    ## Returns double arrays the same size as @code{obj}.
+    ##
+    ## @end deftypefn
+    function [h, m, s] = hms (this)
+      hours = this.days * 24;
+      h = fix(hours);
+      minutes = rem(hours, 1) * 60;
+      m = fix(minutes);
+      s = rem(minutes, 1) * 60;
+    endfunction
+
     function [keysA, keysB] = proxyKeys (a, b)
       #PROXYKEYS Proxy key values for sorting and set operations
       keysA = a.days(:);

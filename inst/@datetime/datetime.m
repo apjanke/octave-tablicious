@@ -532,7 +532,9 @@ classdef datetime
     ## @node datetime.hms
     ## @deftypefn {Method} {[@var{h}, @var{m}, @var{s}] =} hms (@var{obj})
     ##
-    ## Get the Hour, Minute, and Second components of a @var{obj}.
+    ## Get the Hour, Minute, and Second components of a @var{datetime}. These are the time
+    ## of day components. The Year, Month, and Day components are ignored, and not
+    ## incorporated in to the result.
     ##
     ## For zoned @code{datetime}s, these will be local times in the associated time zone.
     ##

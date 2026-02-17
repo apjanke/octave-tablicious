@@ -4,7 +4,8 @@ Tablicious Changelog
 0.4.7 (unreleased)
 ------------------
 
-* (nothing here yet)
+* Date/time fixes
+  * Add duration.hms() method.
 
 0.4.6 (2026-02-16)
 ------------------
