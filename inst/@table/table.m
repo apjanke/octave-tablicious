@@ -2712,6 +2712,7 @@ classdef table
       # Input handling
       mustBeA (func, 'function_handle');
       mustBeA (A, 'table');
+      this = A;
       validOptions = {'InputVariables', 'GroupingVariables', 'OutputFormat', ...
         'SeparateInputs', 'ExtractCellContents', 'OutputVariableNames', ...
         'NumOutputs', 'ErrorHandler'};
@@ -2729,10 +2730,10 @@ classdef table
       if (isfield (opts, 'OutputFormat'))
         output_format = opts.OutputFormat;
       endif
-      validOutputFormats = {'table','uniform','cell'};
-      if (! ismember (outputFormat, validOutputFormats))
+      validOutputFormats = {'table', 'uniform', 'cell'};
+      if (! ismember (output_format, validOutputFormats))
         error ('table.rowfun: Invalid OutputFormat: %s. Must be one of: %s', ...
-          outputFormat, strjoin (validOutputFormats, ', '));
+          output_format, strjoin (validOutputFormats, ', '));
       endif
       errorHandler = [];
       if isfield (opts, 'ErrorHandler')
@@ -2742,7 +2743,6 @@ classdef table
         endif
         errorHandler = opts.ErrorHandler;
       endif
-      tbl = A;
       n_out_args = [];
       if (isfield (opts, 'NumOutputs'))
         mustBeScalar (opts.NumOutputs, 'opts.NumOutputs');
@@ -2759,7 +2759,7 @@ classdef table
         endif
         out_var_names = cell (1, n_out_args);
         for i = 1:n_out_args
-          out_var_names = sprintf ("out%d", i);
+          out_var_names{i} = sprintf ("out%d", i);
         endfor
       endif
       do_separate_inputs = true;
@@ -2828,15 +2828,15 @@ classdef table
       # Output packaging
       switch (output_format)
         case 'table'
-          out_vars = cellfun (@(c) cat(1, c{:}), out_bufs);
+          out_vars = cellfun (@(c) cat(1, c{:}), out_bufs, 'UniformOutput', false);
           out = table (out_vars{:}, 'VariableNames', out_var_names);
           varargout = { out };
         case 'cell'
-          varargout = out_vars;
+          varargout = out_bufs;
         case 'uniform'
-          varargout = cellfun(@(c) cat(1, c{:}), out_bufs);
+          varargout = cellfun (@(c) cat(1, c{:}), out_bufs, 'UniformOutput', false);
         case 'timetable'
-          error ('timetable is not yet implemented. Sorry.');
+          error ('timetable is not yet implemented in Tablicious. Sorry.');
         otherwise
           error ('table.rowfun: Invalid OutputFormat: ''%s''', output_format);
       endswitch

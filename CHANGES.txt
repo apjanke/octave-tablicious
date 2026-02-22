@@ -7,6 +7,7 @@ Tablicious Changelog
 * Date/time fixes
   * Add datevec() methods for duration and calendarDuration; add multi-argout form for datetime.datevec(). ([#153](https://github.com/apjanke/octave-tablicious/issues/153))
   * Add duration.hms() method.
+* Fix table.rowfun() bugs that broke it. ([#155](https://github.com/apjanke/octave-tablicious/issues/155))
 
 0.4.6 (2026-02-16)
 ------------------

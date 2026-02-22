@@ -10,7 +10,6 @@ function obj = t_01_table (quiet)
 # and then modified by Andrew Janke.
 
 if nargin < 1 || isempty (quiet);   quiet = false;  endif
-
 verbose = ! quiet;
 
 table_classes = {@table};
