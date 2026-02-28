@@ -200,10 +200,10 @@ classdef table
           varNames = [];
         endif
         blank = tblish.internal.table.blankTable (opts.Size, opts.VariableTypes, varNames, 'ctor');
-        flds = fieldnames (this);
-        for iFld = 1:numel(flds)
-          this.(flds{iFld}) = blank.(flds{iFld});
-        endfor
+        this.VariableNames = blank.VariableNames;
+        this.VariableValues = blank.VariableValues;
+        this.RowNames = blank.RowNames;
+        this.DimensionNames = blank.DimensionNames;
         if (isfield (opts, 'DimensionNames'))
           this = setDimensionNames (this, opts.DimensionNames);
         endif
@@ -1342,6 +1342,7 @@ classdef table
     ##
     ## @end deftypefn
     function out = setvar (this, varRef, value)
+      narginchk (3, 3);
       ixVar = resolveVarRef (this, varRef, 'lenient');
       if (! isscalar (ixVar))
         error('table.setvar: Only a single variable is allowed for varRef; got %d', ...
