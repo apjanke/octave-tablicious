@@ -2,7 +2,7 @@
 
 @c %**start of header
 
-@set VERSION 0.4.6
+@set VERSION 0.4.7
 
 @setfilename tablicious.info
 @settitle Tablicious v@value{VERSION}
@@ -113,7 +113,7 @@ The easiest way to obtain Tablicious is by using Octave's @code{pkg} package man
 To install the development prerelease of Tablicious, run this in Octave:
 
 @example
-pkg install https://github.com/apjanke/octave-tablicious/releases/download/v0.4.6/tablicious-0.4.6.tar.gz
+pkg install https://github.com/apjanke/octave-tablicious/releases/download/v0.4.7/tablicious-0.4.7.tar.gz
 @end example
 
 (Check the releases page at @url{https://github.com/apjanke/octave-tablicious/releases} to
@@ -1055,6 +1055,22 @@ Constructs new @code{calendarDuration} arrays based on input values.
 
 @end deftypefn
 
+@node calendarDuration.datevec
+@subsubsection calendarDuration.datevec
+
+@deftypefn {Method} {[@var{dvec}] =} datevec (@var{obj})
+@deftypefnx {Method} {[@var{Y}, @var{M}, @var{D}, @var{H}, @var{MN}, @var{S}] =} datevec (@var{obj})
+
+Convert a @code{calendarDuration} to a datevec whose elements represent its
+components of. The components are the year, month, day, hour, minute, and
+second quantities of this @code{calendarDuration}.
+
+When nargout is 0 or 1, returns a double array of size n-by-6, where n is
+@code{numel(obj)}. When nargout is 2 or more, returns double arrays the
+same size as @var{obj}.
+
+@end deftypefn
+
 @node calendarDuration.dispstrs
 @subsubsection calendarDuration.dispstrs
 
@@ -1865,10 +1881,13 @@ Constructs a new @code{datetime} array based on input values.
 @subsubsection datetime.datevec
 
 @deftypefn {Method} {@var{out} =} datevec (@var{obj})
+@deftypefnx {Method} {[@var{Y}, @var{M}, @var{D}, @var{H}, @var{MN}, @var{S}] =} datevec (@var{obj})
 
 Convert this to a datevec that represent the same local wall time.
 
-Returns double array of size [numel(obj) 6].
+When nargout is 0 or 1, returns a double array of size n-by-6, where n is
+@code{numel(obj)}. When nargout is 2 or more, returns double arrays the
+same size as @var{obj}.
 
 @end deftypefn
 
@@ -1961,7 +1980,9 @@ Returns logical array the same size as @var{obj}.
 
 @deftypefn {Method} {[@var{h}, @var{m}, @var{s}] =} hms (@var{obj})
 
-Get the Hour, Minute, and Second components of a @var{obj}.
+Get the Hour, Minute, and Second components of a @var{datetime}. These are the time
+of day components. The Year, Month, and Day components are ignored, and not
+incorporated in to the result.
 
 For zoned @code{datetime}s, these will be local times in the associated time zone.
 
@@ -2401,6 +2422,27 @@ Returns a 2-D char array with one row per element in @var{obj}.
 
 @end deftypefn
 
+@node duration.datevec
+@subsubsection duration.datevec
+
+@deftypefn {Method} {[@var{dvec}] =} datevec (@var{obj})
+@deftypefnx {Method} {[@var{Y}, @var{M}, @var{D}, @var{H}, @var{MN}, @var{S}] =} datevec (@var{obj})
+
+Convert @var{obj} to a datevec whose elements represent the components of
+this duration. The components are the year, month, days, hour, minute, and
+second quantities of this duration. The years are in terms of fixed size
+years that are 365.2425 days long, and days are fixed size 24-hour days.
+The fixed size year size can be found in the FixedSizeYearDays constant
+class property on the duration class. The month component is always zero,
+since months are variable lengths and there is no equivalent fixed size
+month. Thus, the days component may be more than 31.
+
+When nargout is 0 or 1, returns a double array of size n-by-6, where n is
+@code{numel(obj)}. When nargout is 2 or more, returns double arrays the
+same size as @var{obj}.
+
+@end deftypefn
+
 @node duration.dispstrs
 @subsubsection duration.dispstrs
 
@@ -2409,6 +2451,19 @@ Returns a 2-D char array with one row per element in @var{obj}.
 Get display strings for each element of @var{obj}.
 
 Returns a cellstr the same size as @var{obj}.
+
+@end deftypefn
+
+@node duration.hms
+@subsubsection duration.hms
+
+@deftypefn {Method} {[@var{h}, @var{m}, @var{s}] =} hms (@var{obj})
+
+Get the Hour, Minute, and Second values of a @var{duration}. These are
+the hour, minute, and second values that when combined are equal to the
+same duration value.
+
+Returns double arrays the same size as @code{obj}.
 
 @end deftypefn
 

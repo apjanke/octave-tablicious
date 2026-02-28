@@ -50,6 +50,8 @@
                         <section title="calendarDuration" ref="html/calendarDuration.html">
                             <section title="calendarDuration.calendarDuration" ref="html/calendarDuration_002ecalendarDuration.html">
                             </section>
+                            <section title="calendarDuration.datevec" ref="html/calendarDuration_002edatevec.html">
+                            </section>
                             <section title="calendarDuration.dispstrs" ref="html/calendarDuration_002edispstrs.html">
                             </section>
                             <section title="calendarDuration.ismissing" ref="html/calendarDuration_002eismissing.html">
@@ -206,7 +208,11 @@
                         <section title="duration" ref="html/duration.html">
                             <section title="duration.char" ref="html/duration_002echar.html">
                             </section>
+                            <section title="duration.datevec" ref="html/duration_002edatevec.html">
+                            </section>
                             <section title="duration.dispstrs" ref="html/duration_002edispstrs.html">
+                            </section>
+                            <section title="duration.hms" ref="html/duration_002ehms.html">
                             </section>
                             <section title="duration.hours" ref="html/duration_002ehours.html">
                             </section>
@@ -724,6 +730,7 @@
             <keyword name="caldays" id="caldays" ref="html/caldays.html"/>
             <keyword name="calendarDuration" id="calendarDuration" ref="html/calendarDuration.html"/>
             <keyword name="calendarDuration.calendarDuration" id="calendarDuration.calendarDuration" ref="html/calendarDuration_002ecalendarDuration.html"/>
+            <keyword name="calendarDuration.datevec" id="calendarDuration.datevec" ref="html/calendarDuration_002edatevec.html"/>
             <keyword name="calendarDuration.dispstrs" id="calendarDuration.dispstrs" ref="html/calendarDuration_002edispstrs.html"/>
             <keyword name="calendarDuration.ismissing" id="calendarDuration.ismissing" ref="html/calendarDuration_002eismissing.html"/>
             <keyword name="calendarDuration.isnan" id="calendarDuration.isnan" ref="html/calendarDuration_002eisnan.html"/>
@@ -805,7 +812,9 @@
             <keyword name="dispstrs" id="dispstrs" ref="html/dispstrs.html"/>
             <keyword name="duration" id="duration" ref="html/duration.html"/>
             <keyword name="duration.char" id="duration.char" ref="html/duration_002echar.html"/>
+            <keyword name="duration.datevec" id="duration.datevec" ref="html/duration_002edatevec.html"/>
             <keyword name="duration.dispstrs" id="duration.dispstrs" ref="html/duration_002edispstrs.html"/>
+            <keyword name="duration.hms" id="duration.hms" ref="html/duration_002ehms.html"/>
             <keyword name="duration.hours" id="duration.hours" ref="html/duration_002ehours.html"/>
             <keyword name="duration.linspace" id="duration.linspace" ref="html/duration_002elinspace.html"/>
             <keyword name="duration.milliseconds" id="duration.milliseconds" ref="html/duration_002emilliseconds.html"/>
@@ -1288,7 +1297,9 @@
             <file>html/duration_002emilliseconds.html</file>
             <file>html/duration_002elinspace.html</file>
             <file>html/duration_002ehours.html</file>
+            <file>html/duration_002ehms.html</file>
             <file>html/duration_002edispstrs.html</file>
+            <file>html/duration_002edatevec.html</file>
             <file>html/duration_002echar.html</file>
             <file>html/duration.html</file>
             <file>html/dispstrs.html</file>
@@ -1367,6 +1378,7 @@
             <file>html/calendarDuration_002eisnan.html</file>
             <file>html/calendarDuration_002eismissing.html</file>
             <file>html/calendarDuration_002edispstrs.html</file>
+            <file>html/calendarDuration_002edatevec.html</file>
             <file>html/calendarDuration_002ecalendarDuration.html</file>
             <file>html/calendarDuration.html</file>
             <file>html/caldays.html</file>

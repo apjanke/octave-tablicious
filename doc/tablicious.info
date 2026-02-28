@@ -1,7 +1,7 @@
 This is tablicious.info, produced by makeinfo version 7.2 from
 tablicious.texi.
 
-This manual is for Tablicious, version 0.4.6.
+This manual is for Tablicious, version 0.4.7.
 
    Copyright © 2019, 2023, 2024, 2025, 2026 Andrew Janke
 
@@ -28,7 +28,7 @@ File: tablicious.info,  Node: Top,  Next: Introduction,  Up: (dir)
 Tablicious for GNU Octave
 *************************
 
-This manual is for Tablicious, version 0.4.6.
+This manual is for Tablicious, version 0.4.7.
 
 * Menu:
 
@@ -53,7 +53,7 @@ File: tablicious.info,  Node: Introduction,  Next: Getting Started,  Up: Top
 
                           -- _Douglas Adams_
 
-   This is the manual for the Tablicious package version 0.4.6 for GNU
+   This is the manual for the Tablicious package version 0.4.7 for GNU
 Octave.
 
    Tablicious provides somewhat-Matlab-compatible tabular data and
@@ -87,7 +87,7 @@ The easiest way to obtain Tablicious is by using Octave's ‘pkg’ package
 manager.  To install the development prerelease of Tablicious, run this
 in Octave:
 
-     pkg install https://github.com/apjanke/octave-tablicious/releases/download/v0.4.6/tablicious-0.4.6.tar.gz
+     pkg install https://github.com/apjanke/octave-tablicious/releases/download/v0.4.7/tablicious-0.4.7.tar.gz
 
    (Check the releases page at
 <https://github.com/apjanke/octave-tablicious/releases> to find out what
@@ -1085,6 +1085,7 @@ File: tablicious.info,  Node: calendarDuration,  Next: calmonths,  Prev: caldays
 * Menu:
 
 * calendarDuration.calendarDuration::
+* calendarDuration.datevec::
 * calendarDuration.dispstrs::
 * calendarDuration.ismissing::
 * calendarDuration.isnan::
@@ -1095,7 +1096,7 @@ File: tablicious.info,  Node: calendarDuration,  Next: calmonths,  Prev: caldays
 * calendarDuration.uminus::
 
 
-File: tablicious.info,  Node: calendarDuration.calendarDuration,  Next: calendarDuration.dispstrs,  Up: calendarDuration
+File: tablicious.info,  Node: calendarDuration.calendarDuration,  Next: calendarDuration.datevec,  Up: calendarDuration
 
 8.2.3.1 calendarDuration.calendarDuration
 .........................................
@@ -1110,9 +1111,26 @@ File: tablicious.info,  Node: calendarDuration.calendarDuration,  Next: calendar
      Constructs new ‘calendarDuration’ arrays based on input values.
 
 
-File: tablicious.info,  Node: calendarDuration.dispstrs,  Next: calendarDuration.ismissing,  Prev: calendarDuration.calendarDuration,  Up: calendarDuration
+File: tablicious.info,  Node: calendarDuration.datevec,  Next: calendarDuration.dispstrs,  Prev: calendarDuration.calendarDuration,  Up: calendarDuration
 
-8.2.3.2 calendarDuration.dispstrs
+8.2.3.2 calendarDuration.datevec
+................................
+
+ -- Method: [DVEC] = datevec (OBJ)
+ -- Method: [Y, M, D, H, MN, S] = datevec (OBJ)
+
+     Convert a ‘calendarDuration’ to a datevec whose elements represent
+     its components of.  The components are the year, month, day, hour,
+     minute, and second quantities of this ‘calendarDuration’.
+
+     When nargout is 0 or 1, returns a double array of size n-by-6,
+     where n is ‘numel(obj)’.  When nargout is 2 or more, returns double
+     arrays the same size as OBJ.
+
+
+File: tablicious.info,  Node: calendarDuration.dispstrs,  Next: calendarDuration.ismissing,  Prev: calendarDuration.datevec,  Up: calendarDuration
+
+8.2.3.3 calendarDuration.dispstrs
 .................................
 
  -- Method: OUT = dispstrs (OBJ)
@@ -1124,7 +1142,7 @@ File: tablicious.info,  Node: calendarDuration.dispstrs,  Next: calendarDuration
 
 File: tablicious.info,  Node: calendarDuration.ismissing,  Next: calendarDuration.isnan,  Prev: calendarDuration.dispstrs,  Up: calendarDuration
 
-8.2.3.3 calendarDuration.ismissing
+8.2.3.4 calendarDuration.ismissing
 ..................................
 
  -- Method: OUT = ismissing (OBJ)
@@ -1138,7 +1156,7 @@ File: tablicious.info,  Node: calendarDuration.ismissing,  Next: calendarDuratio
 
 File: tablicious.info,  Node: calendarDuration.isnan,  Next: calendarDuration.minus,  Prev: calendarDuration.ismissing,  Up: calendarDuration
 
-8.2.3.4 calendarDuration.isnan
+8.2.3.5 calendarDuration.isnan
 ..............................
 
  -- Method: OUT = isnan (OBJ)
@@ -1153,7 +1171,7 @@ File: tablicious.info,  Node: calendarDuration.isnan,  Next: calendarDuration.mi
 
 File: tablicious.info,  Node: calendarDuration.minus,  Next: calendarDuration.mtimes,  Prev: calendarDuration.isnan,  Up: calendarDuration
 
-8.2.3.5 calendarDuration.minus
+8.2.3.6 calendarDuration.minus
 ..............................
 
  -- Method: OUT = times (A, B)
@@ -1165,7 +1183,7 @@ File: tablicious.info,  Node: calendarDuration.minus,  Next: calendarDuration.mt
 
 File: tablicious.info,  Node: calendarDuration.mtimes,  Next: calendarDuration.plus,  Prev: calendarDuration.minus,  Up: calendarDuration
 
-8.2.3.6 calendarDuration.mtimes
+8.2.3.7 calendarDuration.mtimes
 ...............................
 
  -- Method: OUT = times (OBJ, B)
@@ -1181,7 +1199,7 @@ File: tablicious.info,  Node: calendarDuration.mtimes,  Next: calendarDuration.p
 
 File: tablicious.info,  Node: calendarDuration.plus,  Next: calendarDuration.times,  Prev: calendarDuration.mtimes,  Up: calendarDuration
 
-8.2.3.7 calendarDuration.plus
+8.2.3.8 calendarDuration.plus
 .............................
 
  -- Method: OUT = plus (OBJ, B)
@@ -1201,7 +1219,7 @@ File: tablicious.info,  Node: calendarDuration.plus,  Next: calendarDuration.tim
 
 File: tablicious.info,  Node: calendarDuration.times,  Next: calendarDuration.uminus,  Prev: calendarDuration.plus,  Up: calendarDuration
 
-8.2.3.8 calendarDuration.times
+8.2.3.9 calendarDuration.times
 ..............................
 
  -- Method: OUT = times (OBJ, B)
@@ -1214,8 +1232,8 @@ File: tablicious.info,  Node: calendarDuration.times,  Next: calendarDuration.um
 
 File: tablicious.info,  Node: calendarDuration.uminus,  Prev: calendarDuration.times,  Up: calendarDuration
 
-8.2.3.9 calendarDuration.uminus
-...............................
+8.2.3.10 calendarDuration.uminus
+................................
 
  -- Method: OUT = uminus (OBJ)
 
@@ -2008,10 +2026,13 @@ File: tablicious.info,  Node: datetime.datevec,  Next: datetime.diff,  Prev: dat
 .........................
 
  -- Method: OUT = datevec (OBJ)
+ -- Method: [Y, M, D, H, MN, S] = datevec (OBJ)
 
      Convert this to a datevec that represent the same local wall time.
 
-     Returns double array of size [numel(obj) 6].
+     When nargout is 0 or 1, returns a double array of size n-by-6,
+     where n is ‘numel(obj)’.  When nargout is 2 or more, returns double
+     arrays the same size as OBJ.
 
 
 File: tablicious.info,  Node: datetime.diff,  Next: datetime.dispstrs,  Prev: datetime.datevec,  Up: datetime
@@ -2111,7 +2132,9 @@ File: tablicious.info,  Node: datetime.hms,  Next: datetime.isbetween,  Prev: da
 
  -- Method: [H, M, S] = hms (OBJ)
 
-     Get the Hour, Minute, and Second components of a OBJ.
+     Get the Hour, Minute, and Second components of a DATETIME.  These
+     are the time of day components.  The Year, Month, and Day
+     components are ignored, and not incorporated in to the result.
 
      For zoned ‘datetime’s, these will be local times in the associated
      time zone.
@@ -2565,7 +2588,9 @@ File: tablicious.info,  Node: duration,  Next: eqn,  Prev: dispstrs,  Up: API Al
 * Menu:
 
 * duration.char::
+* duration.datevec::
 * duration.dispstrs::
+* duration.hms::
 * duration.hours::
 * duration.linspace::
 * duration.milliseconds::
@@ -2575,7 +2600,7 @@ File: tablicious.info,  Node: duration,  Next: eqn,  Prev: dispstrs,  Up: API Al
 * duration.years::
 
 
-File: tablicious.info,  Node: duration.char,  Next: duration.dispstrs,  Up: duration
+File: tablicious.info,  Node: duration.char,  Next: duration.datevec,  Up: duration
 
 8.2.14.1 duration.char
 ......................
@@ -2590,9 +2615,32 @@ File: tablicious.info,  Node: duration.char,  Next: duration.dispstrs,  Up: dura
      Returns a 2-D char array with one row per element in OBJ.
 
 
-File: tablicious.info,  Node: duration.dispstrs,  Next: duration.hours,  Prev: duration.char,  Up: duration
+File: tablicious.info,  Node: duration.datevec,  Next: duration.dispstrs,  Prev: duration.char,  Up: duration
 
-8.2.14.2 duration.dispstrs
+8.2.14.2 duration.datevec
+.........................
+
+ -- Method: [DVEC] = datevec (OBJ)
+ -- Method: [Y, M, D, H, MN, S] = datevec (OBJ)
+
+     Convert OBJ to a datevec whose elements represent the components of
+     this duration.  The components are the year, month, days, hour,
+     minute, and second quantities of this duration.  The years are in
+     terms of fixed size years that are 365.2425 days long, and days are
+     fixed size 24-hour days.  The fixed size year size can be found in
+     the FixedSizeYearDays constant class property on the duration
+     class.  The month component is always zero, since months are
+     variable lengths and there is no equivalent fixed size month.
+     Thus, the days component may be more than 31.
+
+     When nargout is 0 or 1, returns a double array of size n-by-6,
+     where n is ‘numel(obj)’.  When nargout is 2 or more, returns double
+     arrays the same size as OBJ.
+
+
+File: tablicious.info,  Node: duration.dispstrs,  Next: duration.hms,  Prev: duration.datevec,  Up: duration
+
+8.2.14.3 duration.dispstrs
 ..........................
 
  -- Method: OUT = duration (OBJ)
@@ -2602,9 +2650,23 @@ File: tablicious.info,  Node: duration.dispstrs,  Next: duration.hours,  Prev: d
      Returns a cellstr the same size as OBJ.
 
 
-File: tablicious.info,  Node: duration.hours,  Next: duration.linspace,  Prev: duration.dispstrs,  Up: duration
+File: tablicious.info,  Node: duration.hms,  Next: duration.hours,  Prev: duration.dispstrs,  Up: duration
 
-8.2.14.3 duration.hours
+8.2.14.4 duration.hms
+.....................
+
+ -- Method: [H, M, S] = hms (OBJ)
+
+     Get the Hour, Minute, and Second values of a DURATION.  These are
+     the hour, minute, and second values that when combined are equal to
+     the same duration value.
+
+     Returns double arrays the same size as ‘obj’.
+
+
+File: tablicious.info,  Node: duration.hours,  Next: duration.linspace,  Prev: duration.hms,  Up: duration
+
+8.2.14.5 duration.hours
 .......................
 
  -- Method: OUT = hours (OBJ)
@@ -2619,7 +2681,7 @@ File: tablicious.info,  Node: duration.hours,  Next: duration.linspace,  Prev: d
 
 File: tablicious.info,  Node: duration.linspace,  Next: duration.milliseconds,  Prev: duration.hours,  Up: duration
 
-8.2.14.4 duration.linspace
+8.2.14.6 duration.linspace
 ..........................
 
  -- Method: OUT = linspace (FROM, TO, N)
@@ -2639,7 +2701,7 @@ File: tablicious.info,  Node: duration.linspace,  Next: duration.milliseconds,  
 
 File: tablicious.info,  Node: duration.milliseconds,  Next: duration.minutes,  Prev: duration.linspace,  Up: duration
 
-8.2.14.5 duration.milliseconds
+8.2.14.7 duration.milliseconds
 ..............................
 
  -- Method: OUT = milliseconds (OBJ)
@@ -2654,7 +2716,7 @@ File: tablicious.info,  Node: duration.milliseconds,  Next: duration.minutes,  P
 
 File: tablicious.info,  Node: duration.minutes,  Next: duration.ofDays,  Prev: duration.milliseconds,  Up: duration
 
-8.2.14.6 duration.minutes
+8.2.14.8 duration.minutes
 .........................
 
  -- Method: OUT = minutes (OBJ)
@@ -2669,7 +2731,7 @@ File: tablicious.info,  Node: duration.minutes,  Next: duration.ofDays,  Prev: d
 
 File: tablicious.info,  Node: duration.ofDays,  Next: duration.seconds,  Prev: duration.minutes,  Up: duration
 
-8.2.14.7 duration.ofDays
+8.2.14.9 duration.ofDays
 ........................
 
  -- Static Method: OBJ = duration.ofDays (DNUMS)
@@ -2683,8 +2745,8 @@ File: tablicious.info,  Node: duration.ofDays,  Next: duration.seconds,  Prev: d
 
 File: tablicious.info,  Node: duration.seconds,  Next: duration.years,  Prev: duration.ofDays,  Up: duration
 
-8.2.14.8 duration.seconds
-.........................
+8.2.14.10 duration.seconds
+..........................
 
  -- Method: OUT = seconds (OBJ)
 
@@ -2697,8 +2759,8 @@ File: tablicious.info,  Node: duration.seconds,  Next: duration.years,  Prev: du
 
 File: tablicious.info,  Node: duration.years,  Prev: duration.seconds,  Up: duration
 
-8.2.14.9 duration.years
-.......................
+8.2.14.11 duration.years
+........................
 
  -- Method: OUT = years (OBJ)
 
@@ -10532,7 +10594,7 @@ Zimmerman.
 9.2 Manual Copyright
 ====================
 
-This manual is for Tablicious, version 0.4.6.
+This manual is for Tablicious, version 0.4.7.
 
    Copyright © 2019, 2023, 2024, 2025, 2026 Andrew Janke
 
@@ -10575,337 +10637,340 @@ Node: API Alphabetically30295
 Node: array2table34462
 Node: caldays35375
 Node: calendarDuration35950
-Node: calendarDuration.calendarDuration36819
-Node: calendarDuration.dispstrs37332
-Node: calendarDuration.ismissing37691
-Node: calendarDuration.isnan38082
-Node: calendarDuration.minus38531
-Node: calendarDuration.mtimes38878
-Node: calendarDuration.plus39353
-Node: calendarDuration.times40020
-Node: calendarDuration.uminus40384
-Node: calmonths40698
-Node: calyears41287
-Node: categorical41631
-Node: categorical.addcats43965
-Node: categorical.categorical44364
-Node: categorical.categories45637
-Node: categorical.cellstr46037
-Node: categorical.dispstrs46480
-Node: categorical.double46935
-Node: categorical.iscategory47621
-Node: categorical.ismissing48063
-Node: categorical.isnanny48468
-Node: categorical.isordinal48934
-Node: categorical.isundefined49307
-Node: categorical.mergecats49827
-Node: categorical.missing50480
-Node: categorical.removecats51202
-Node: categorical.renamecats51845
-Node: categorical.reordercats52263
-Node: categorical.setcats52798
-Node: categorical.squeezecats53244
-Node: categorical.string53639
-Node: categorical.summary54090
-Node: categorical.undefined54543
-Node: cell2table55090
-Node: colvecfun55818
-Node: contains56542
-Node: datetime57360
-Node: datetime.colon59777
-Node: datetime.convertDatenumTimeZone61496
-Node: datetime.datenum62172
-Node: datetime.datenum2posix62510
-Node: datetime.datestr62909
-Node: datetime.datestrs63304
-Node: datetime.datestruct63723
-Node: datetime.datetime64525
-Node: datetime.datevec65339
-Node: datetime.diff65662
-Node: datetime.dispstrs66045
-Node: datetime.eq66341
-Node: datetime.ge66777
-Node: datetime.gmtime67227
-Node: datetime.gt67658
-Node: datetime.hms68096
-Node: datetime.isbetween68495
-Node: datetime.ismissing68985
-Node: datetime.isnan69421
-Node: datetime.isnat69801
-Node: datetime.le70077
-Node: datetime.linspace70528
-Node: datetime.localtime71123
-Node: datetime.lt71846
-Node: datetime.minus72286
-Node: datetime.NaT72930
-Node: datetime.ne73681
-Node: datetime.ofDatenum74123
-Node: datetime.ofDatestruct74481
-Node: datetime.plus74993
-Node: datetime.posix2datenum75644
-Node: datetime.posixtime76122
-Node: datetime.proxyKeys76663
-Node: datetime.timeofday77315
-Node: datetime.week77740
-Node: datetime.ymd77997
-Node: datetime.ymdhms78389
-Node: days78807
-Node: discretize79273
-Node: dispstrs80158
-Node: duration80942
-Node: duration.char82369
-Node: duration.dispstrs82772
-Node: duration.hours83069
-Node: duration.linspace83443
-Node: duration.milliseconds84046
-Node: duration.minutes84438
-Node: duration.ofDays84826
-Node: duration.seconds85312
-Node: duration.years85665
-Node: eqn86015
-Node: head87090
-Node: hours87865
-Node: iscalendarduration88350
-Node: iscategorical88859
-Node: isdatetime89343
-Node: isduration89801
-Node: isfile90252
-Node: isfolder90400
-Node: isnanny90549
-Node: istable91827
-Node: istabular92527
-Node: istimetable93027
-Node: localdate93761
-Node: localdate.datenum95074
-Node: localdate.datestr95376
-Node: localdate.datestrs95771
-Node: localdate.datestruct96196
-Node: localdate.dispstrs97128
-Node: localdate.isnan97437
-Node: localdate.isnat97820
-Node: localdate.localdate98107
-Node: localdate.NaT98661
-Node: localdate.posixtime99555
-Node: localdate.ymd100117
-Node: milliseconds100402
-Node: minutes100937
-Node: missing101195
-Node: missing.dispstrs102233
-Node: missing.ismissing102606
-Node: missing.isnan102971
-Node: missing.isnanny103308
-Node: missing.missing103656
-Node: mustBeA103969
-Node: mustBeCellstr104122
-Node: mustBeCharvec104293
-Node: mustBeFinite104469
-Node: mustBeInteger104643
-Node: mustBeMember104818
-Node: mustBeNonempty104993
-Node: mustBeNumeric105172
-Node: mustBeReal105347
-Node: mustBeSameSize105516
-Node: mustBeScalar105692
-Node: mustBeScalarLogical105873
-Node: mustBeVector106066
-Node: NaC106236
-Node: NaS107166
-Node: NaT108048
-Node: pp108871
-Node: scalarexpand109477
-Node: seconds110394
-Node: size2str110893
-Node: splitapply111496
-Node: string112607
-Node: string.cell115797
-Node: string.cellstr116264
-Node: string.char116604
-Node: string.cmp117129
-Node: string.decode118103
-Node: string.dispstrs118531
-Node: string.empty119107
-Node: string.encode119641
-Node: string.endsWith120149
-Node: string.erase120544
-Node: string.ismissing120887
-Node: string.isnanny121365
-Node: string.isstring121743
-Node: string.lower122068
-Node: string.missing122574
-Node: string.plus123005
-Node: string.regexprep123575
-Node: string.reverse124049
-Node: string.reverse_bytes124524
-Node: string.startsWith125263
-Node: string.strcat125680
-Node: string.strcmp126262
-Node: string.strfind126956
-Node: string.string127476
-Node: string.strlength128107
-Node: string.strlength_bytes129075
-Node: string.strrep129748
-Node: string.upper130361
-Node: struct2table130842
-Node: table131303
-Node: table.addvars135530
-Node: table.antijoin135954
-Node: table.cartesian136696
-Node: table.convertvars138059
-Node: table.findgroups139044
-Node: table.getvar139626
-Node: table.getvars140118
-Node: table.groupby140590
-Node: table.height141528
-Node: table.horzcat141943
-Node: table.innerjoin142565
-Node: table.intersect143229
-Node: table.isempty143842
-Node: table.ismember144170
-Node: table.ismissing144572
-Node: table.istable145254
-Node: table.join145469
-Node: table.mergevars146218
-Node: table.movevars146601
-Node: table.ndims147327
-Node: table.numel147638
-Node: table.outerfillvals148128
-Node: table.outerjoin148558
-Node: table.prettyprint149367
-Node: table.realjoin149826
-Node: table.removevars150704
-Node: table.renamevars151089
-Node: table.repelem151790
-Node: table.repmat152231
-Node: table.restrict152976
-Node: table.rowfun154280
-Node: table.rows2vars157361
-Node: table.semijoin158466
-Node: table.setdiff159323
-Node: table.setDimensionNames159871
-Node: table.setRowNames161097
-Node: table.setvar161463
-Node: table.setVariableNames162351
-Node: table.setxor163132
-Node: table.size163771
-Node: table.splitapply164178
-Node: table.splitvars164682
-Node: table.squeeze165227
-Node: table.stack165624
-Node: table.summary166022
-Node: table.table167035
-Node: table.table2array168373
-Node: table.table2cell168617
-Node: table.table2struct169107
-Node: table.union169728
-Node: table.varfun170297
-Node: table.varnames170835
-Node: table.vertcat171207
-Node: table.width171914
-Node: tableOuterFillValue172226
-Node: tail172404
-Node: tblish.dataset173201
-Node: tblish.dataset.airmiles176172
-Node: tblish.dataset.AirPassengers176926
-Node: tblish.dataset.airquality177694
-Node: tblish.dataset.anscombe179794
-Node: tblish.dataset.attenu181770
-Node: tblish.dataset.attitude183209
-Node: tblish.dataset.austres184438
-Node: tblish.dataset.beavers185351
-Node: tblish.dataset.BJsales186496
-Node: tblish.dataset.BOD187603
-Node: tblish.dataset.cars188574
-Node: tblish.dataset.ChickWeight190305
-Node: tblish.dataset.chickwts191796
-Node: tblish.dataset.co2193285
-Node: tblish.dataset.crimtab194772
-Node: tblish.dataset.cupcake198246
-Node: tblish.dataset.discoveries199218
-Node: tblish.dataset.DNase200249
-Node: tblish.dataset.esoph201527
-Node: tblish.dataset.euro202692
-Node: tblish.dataset.eurodist204363
-Node: tblish.dataset.EuStockMarkets205273
-Node: tblish.dataset.faithful206809
-Node: tblish.dataset.Formaldehyde208644
-Node: tblish.dataset.freeny210080
-Node: tblish.dataset.HairEyeColor211689
-Node: tblish.dataset.Harman23cor214217
-Node: tblish.dataset.Harman74cor215141
-Node: tblish.dataset.Indometh216107
-Node: tblish.dataset.infert217434
-Node: tblish.dataset.InsectSprays218841
-Node: tblish.dataset.iris219784
-Node: tblish.dataset.islands221322
-Node: tblish.dataset.JohnsonJohnson222212
-Node: tblish.dataset.LakeHuron223112
-Node: tblish.dataset.lh224179
-Node: tblish.dataset.LifeCycleSavings225068
-Node: tblish.dataset.Loblolly226969
-Node: tblish.dataset.longley228263
-Node: tblish.dataset.lynx229649
-Node: tblish.dataset.morley231055
-Node: tblish.dataset.mtcars232788
-Node: tblish.dataset.nhtemp234525
-Node: tblish.dataset.Nile235513
-Node: tblish.dataset.nottem236801
-Node: tblish.dataset.npk237658
-Node: tblish.dataset.occupationalStatus238948
-Node: tblish.dataset.Orange239974
-Node: tblish.dataset.OrchardSprays241358
-Node: tblish.dataset.PlantGrowth243194
-Node: tblish.dataset.precip244079
-Node: tblish.dataset.presidents244960
-Node: tblish.dataset.pressure246173
-Node: tblish.dataset.Puromycin247506
-Node: tblish.dataset.quakes249328
-Node: tblish.dataset.randu250884
-Node: tblish.dataset.rivers252134
-Node: tblish.dataset.rock253026
-Node: tblish.dataset.sleep254245
-Node: tblish.dataset.stackloss255466
-Node: tblish.dataset.state257728
-Node: tblish.dataset.sunspot_month259512
-Node: tblish.dataset.sunspot_year260477
-Node: tblish.dataset.sunspots261325
-Node: tblish.dataset.swiss262425
-Node: tblish.dataset.Theoph264514
-Node: tblish.dataset.Titanic266846
-Node: tblish.dataset.ToothGrowth269519
-Node: tblish.dataset.treering270941
-Node: tblish.dataset.trees272034
-Node: tblish.dataset.UCBAdmissions273451
-Node: tblish.dataset.UKDriverDeaths275616
-Node: tblish.dataset.UKgas277941
-Node: tblish.dataset.UKLungDeaths278886
-Node: tblish.dataset.USAccDeaths280161
-Node: tblish.dataset.USArrests280927
-Node: tblish.dataset.USJudgeRatings282899
-Node: tblish.dataset.USPersonalExpenditure284213
-Node: tblish.dataset.uspop285427
-Node: tblish.dataset.VADeaths286345
-Node: tblish.dataset.volcano287720
-Node: tblish.dataset.warpbreaks289118
-Node: tblish.dataset.women290373
-Node: tblish.dataset.WorldPhones291679
-Node: tblish.dataset.WWWusage292739
-Node: tblish.dataset.zCO2293649
-Node: tblish.datasets294891
-Node: datasets.description295411
-Node: datasets.list295963
-Node: datasets.load296472
-Node: tblish.evalWithTableVars296839
-Node: tblish.examples.coplot297795
-Node: tblish.examples.plot_pairs299869
-Node: tblish.examples.SpDb301059
-Node: tblish.sizeof2301909
-Node: tblish.table.grpstats304091
-Node: timezones305246
-Node: todatetime306300
-Node: vartype307294
-Node: vecfun308008
-Node: years308735
-Node: Copying309412
+Node: calendarDuration.calendarDuration36848
+Node: calendarDuration.datevec37360
+Node: calendarDuration.dispstrs38064
+Node: calendarDuration.ismissing38414
+Node: calendarDuration.isnan38805
+Node: calendarDuration.minus39254
+Node: calendarDuration.mtimes39601
+Node: calendarDuration.plus40076
+Node: calendarDuration.times40743
+Node: calendarDuration.uminus41107
+Node: calmonths41423
+Node: calyears42012
+Node: categorical42356
+Node: categorical.addcats44690
+Node: categorical.categorical45089
+Node: categorical.categories46362
+Node: categorical.cellstr46762
+Node: categorical.dispstrs47205
+Node: categorical.double47660
+Node: categorical.iscategory48346
+Node: categorical.ismissing48788
+Node: categorical.isnanny49193
+Node: categorical.isordinal49659
+Node: categorical.isundefined50032
+Node: categorical.mergecats50552
+Node: categorical.missing51205
+Node: categorical.removecats51927
+Node: categorical.renamecats52570
+Node: categorical.reordercats52988
+Node: categorical.setcats53523
+Node: categorical.squeezecats53969
+Node: categorical.string54364
+Node: categorical.summary54815
+Node: categorical.undefined55268
+Node: cell2table55815
+Node: colvecfun56543
+Node: contains57267
+Node: datetime58085
+Node: datetime.colon60502
+Node: datetime.convertDatenumTimeZone62221
+Node: datetime.datenum62897
+Node: datetime.datenum2posix63235
+Node: datetime.datestr63634
+Node: datetime.datestrs64029
+Node: datetime.datestruct64448
+Node: datetime.datetime65250
+Node: datetime.datevec66064
+Node: datetime.diff66564
+Node: datetime.dispstrs66947
+Node: datetime.eq67243
+Node: datetime.ge67679
+Node: datetime.gmtime68129
+Node: datetime.gt68560
+Node: datetime.hms68998
+Node: datetime.isbetween69540
+Node: datetime.ismissing70030
+Node: datetime.isnan70466
+Node: datetime.isnat70846
+Node: datetime.le71122
+Node: datetime.linspace71573
+Node: datetime.localtime72168
+Node: datetime.lt72891
+Node: datetime.minus73331
+Node: datetime.NaT73975
+Node: datetime.ne74726
+Node: datetime.ofDatenum75168
+Node: datetime.ofDatestruct75526
+Node: datetime.plus76038
+Node: datetime.posix2datenum76689
+Node: datetime.posixtime77167
+Node: datetime.proxyKeys77708
+Node: datetime.timeofday78360
+Node: datetime.week78785
+Node: datetime.ymd79042
+Node: datetime.ymdhms79434
+Node: days79852
+Node: discretize80318
+Node: dispstrs81203
+Node: duration81987
+Node: duration.char83452
+Node: duration.datevec83854
+Node: duration.dispstrs84894
+Node: duration.hms85192
+Node: duration.hours85613
+Node: duration.linspace85982
+Node: duration.milliseconds86585
+Node: duration.minutes86977
+Node: duration.ofDays87365
+Node: duration.seconds87851
+Node: duration.years88206
+Node: eqn88558
+Node: head89633
+Node: hours90408
+Node: iscalendarduration90893
+Node: iscategorical91402
+Node: isdatetime91886
+Node: isduration92344
+Node: isfile92795
+Node: isfolder92943
+Node: isnanny93092
+Node: istable94370
+Node: istabular95070
+Node: istimetable95570
+Node: localdate96304
+Node: localdate.datenum97617
+Node: localdate.datestr97919
+Node: localdate.datestrs98314
+Node: localdate.datestruct98739
+Node: localdate.dispstrs99671
+Node: localdate.isnan99980
+Node: localdate.isnat100363
+Node: localdate.localdate100650
+Node: localdate.NaT101204
+Node: localdate.posixtime102098
+Node: localdate.ymd102660
+Node: milliseconds102945
+Node: minutes103480
+Node: missing103738
+Node: missing.dispstrs104776
+Node: missing.ismissing105149
+Node: missing.isnan105514
+Node: missing.isnanny105851
+Node: missing.missing106199
+Node: mustBeA106512
+Node: mustBeCellstr106665
+Node: mustBeCharvec106836
+Node: mustBeFinite107012
+Node: mustBeInteger107186
+Node: mustBeMember107361
+Node: mustBeNonempty107536
+Node: mustBeNumeric107715
+Node: mustBeReal107890
+Node: mustBeSameSize108059
+Node: mustBeScalar108235
+Node: mustBeScalarLogical108416
+Node: mustBeVector108609
+Node: NaC108779
+Node: NaS109709
+Node: NaT110591
+Node: pp111414
+Node: scalarexpand112020
+Node: seconds112937
+Node: size2str113436
+Node: splitapply114039
+Node: string115150
+Node: string.cell118340
+Node: string.cellstr118807
+Node: string.char119147
+Node: string.cmp119672
+Node: string.decode120646
+Node: string.dispstrs121074
+Node: string.empty121650
+Node: string.encode122184
+Node: string.endsWith122692
+Node: string.erase123087
+Node: string.ismissing123430
+Node: string.isnanny123908
+Node: string.isstring124286
+Node: string.lower124611
+Node: string.missing125117
+Node: string.plus125548
+Node: string.regexprep126118
+Node: string.reverse126592
+Node: string.reverse_bytes127067
+Node: string.startsWith127806
+Node: string.strcat128223
+Node: string.strcmp128805
+Node: string.strfind129499
+Node: string.string130019
+Node: string.strlength130650
+Node: string.strlength_bytes131618
+Node: string.strrep132291
+Node: string.upper132904
+Node: struct2table133385
+Node: table133846
+Node: table.addvars138073
+Node: table.antijoin138497
+Node: table.cartesian139239
+Node: table.convertvars140602
+Node: table.findgroups141587
+Node: table.getvar142169
+Node: table.getvars142661
+Node: table.groupby143133
+Node: table.height144071
+Node: table.horzcat144486
+Node: table.innerjoin145108
+Node: table.intersect145772
+Node: table.isempty146385
+Node: table.ismember146713
+Node: table.ismissing147115
+Node: table.istable147797
+Node: table.join148012
+Node: table.mergevars148761
+Node: table.movevars149144
+Node: table.ndims149870
+Node: table.numel150181
+Node: table.outerfillvals150671
+Node: table.outerjoin151101
+Node: table.prettyprint151910
+Node: table.realjoin152369
+Node: table.removevars153247
+Node: table.renamevars153632
+Node: table.repelem154333
+Node: table.repmat154774
+Node: table.restrict155519
+Node: table.rowfun156823
+Node: table.rows2vars159904
+Node: table.semijoin161009
+Node: table.setdiff161866
+Node: table.setDimensionNames162414
+Node: table.setRowNames163640
+Node: table.setvar164006
+Node: table.setVariableNames164894
+Node: table.setxor165675
+Node: table.size166314
+Node: table.splitapply166721
+Node: table.splitvars167225
+Node: table.squeeze167770
+Node: table.stack168167
+Node: table.summary168565
+Node: table.table169578
+Node: table.table2array170916
+Node: table.table2cell171160
+Node: table.table2struct171650
+Node: table.union172271
+Node: table.varfun172840
+Node: table.varnames173378
+Node: table.vertcat173750
+Node: table.width174457
+Node: tableOuterFillValue174769
+Node: tail174947
+Node: tblish.dataset175744
+Node: tblish.dataset.airmiles178715
+Node: tblish.dataset.AirPassengers179469
+Node: tblish.dataset.airquality180237
+Node: tblish.dataset.anscombe182337
+Node: tblish.dataset.attenu184313
+Node: tblish.dataset.attitude185752
+Node: tblish.dataset.austres186981
+Node: tblish.dataset.beavers187894
+Node: tblish.dataset.BJsales189039
+Node: tblish.dataset.BOD190146
+Node: tblish.dataset.cars191117
+Node: tblish.dataset.ChickWeight192848
+Node: tblish.dataset.chickwts194339
+Node: tblish.dataset.co2195828
+Node: tblish.dataset.crimtab197315
+Node: tblish.dataset.cupcake200789
+Node: tblish.dataset.discoveries201761
+Node: tblish.dataset.DNase202792
+Node: tblish.dataset.esoph204070
+Node: tblish.dataset.euro205235
+Node: tblish.dataset.eurodist206906
+Node: tblish.dataset.EuStockMarkets207816
+Node: tblish.dataset.faithful209352
+Node: tblish.dataset.Formaldehyde211187
+Node: tblish.dataset.freeny212623
+Node: tblish.dataset.HairEyeColor214232
+Node: tblish.dataset.Harman23cor216760
+Node: tblish.dataset.Harman74cor217684
+Node: tblish.dataset.Indometh218650
+Node: tblish.dataset.infert219977
+Node: tblish.dataset.InsectSprays221384
+Node: tblish.dataset.iris222327
+Node: tblish.dataset.islands223865
+Node: tblish.dataset.JohnsonJohnson224755
+Node: tblish.dataset.LakeHuron225655
+Node: tblish.dataset.lh226722
+Node: tblish.dataset.LifeCycleSavings227611
+Node: tblish.dataset.Loblolly229512
+Node: tblish.dataset.longley230806
+Node: tblish.dataset.lynx232192
+Node: tblish.dataset.morley233598
+Node: tblish.dataset.mtcars235331
+Node: tblish.dataset.nhtemp237068
+Node: tblish.dataset.Nile238056
+Node: tblish.dataset.nottem239344
+Node: tblish.dataset.npk240201
+Node: tblish.dataset.occupationalStatus241491
+Node: tblish.dataset.Orange242517
+Node: tblish.dataset.OrchardSprays243901
+Node: tblish.dataset.PlantGrowth245737
+Node: tblish.dataset.precip246622
+Node: tblish.dataset.presidents247503
+Node: tblish.dataset.pressure248716
+Node: tblish.dataset.Puromycin250049
+Node: tblish.dataset.quakes251871
+Node: tblish.dataset.randu253427
+Node: tblish.dataset.rivers254677
+Node: tblish.dataset.rock255569
+Node: tblish.dataset.sleep256788
+Node: tblish.dataset.stackloss258009
+Node: tblish.dataset.state260271
+Node: tblish.dataset.sunspot_month262055
+Node: tblish.dataset.sunspot_year263020
+Node: tblish.dataset.sunspots263868
+Node: tblish.dataset.swiss264968
+Node: tblish.dataset.Theoph267057
+Node: tblish.dataset.Titanic269389
+Node: tblish.dataset.ToothGrowth272062
+Node: tblish.dataset.treering273484
+Node: tblish.dataset.trees274577
+Node: tblish.dataset.UCBAdmissions275994
+Node: tblish.dataset.UKDriverDeaths278159
+Node: tblish.dataset.UKgas280484
+Node: tblish.dataset.UKLungDeaths281429
+Node: tblish.dataset.USAccDeaths282704
+Node: tblish.dataset.USArrests283470
+Node: tblish.dataset.USJudgeRatings285442
+Node: tblish.dataset.USPersonalExpenditure286756
+Node: tblish.dataset.uspop287970
+Node: tblish.dataset.VADeaths288888
+Node: tblish.dataset.volcano290263
+Node: tblish.dataset.warpbreaks291661
+Node: tblish.dataset.women292916
+Node: tblish.dataset.WorldPhones294222
+Node: tblish.dataset.WWWusage295282
+Node: tblish.dataset.zCO2296192
+Node: tblish.datasets297434
+Node: datasets.description297954
+Node: datasets.list298506
+Node: datasets.load299015
+Node: tblish.evalWithTableVars299382
+Node: tblish.examples.coplot300338
+Node: tblish.examples.plot_pairs302412
+Node: tblish.examples.SpDb303602
+Node: tblish.sizeof2304452
+Node: tblish.table.grpstats306634
+Node: timezones307789
+Node: todatetime308843
+Node: vartype309837
+Node: vecfun310551
+Node: years311278
+Node: Copying311955
 
 End Tag Table
 
