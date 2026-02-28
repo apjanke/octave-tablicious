@@ -1,7 +1,7 @@
 Tablicious Changelog
 ====================
 
-0.4.7 (unreleased)
+0.4.7 (2026-02-28)
 ------------------
 
 * Date/time fixes
